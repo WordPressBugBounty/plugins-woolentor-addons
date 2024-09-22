@@ -70,6 +70,7 @@ class Woolentor_Wl_Currency_Switcher_Widget extends Widget_Base{
                     'flag_style',
                     [
                         'label'   => __( 'Flag Style', 'woolentor' ),
+                        'description'=> __('This setting works only with the default flags.','woolentor'),
                         'type'    => Controls_Manager::SELECT,
                         'default' => 'circle',
                         'options' => [

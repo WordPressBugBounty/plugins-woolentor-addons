@@ -59,7 +59,14 @@ class Shortcode{
         $wc_currencie_list = get_woocommerce_currencies();
         $current_currency_symbol = woolentor_currency_symbol( $current_currency );
 
-        $current_currency_flag = ( $atts['flags'] == 'yes' ) ? '<img src="'.$this->get_flag_url( $atts['flag_style'], $current_currency['currency'] ).'" alt="'.$wc_currencie_list[$current_currency['currency']].'"/>' : '';
+        $custom_flags = array_column( $currency_list, 'custom_flag', 'currency' );
+
+        $current_currency_flag = ( $atts['flags'] == 'yes' ) 
+            ? ( !empty($custom_flags[$current_currency['currency']]) 
+                ? '<img src="'.esc_url($custom_flags[$current_currency['currency']]).'" alt="'.$wc_currencie_list[$current_currency['currency']].'"/>' 
+                : '<img src="'.$this->get_flag_url( $atts['flag_style'], $current_currency['currency'] ).'" alt="'.$wc_currencie_list[$current_currency['currency']].'"/>'
+            ) 
+            : '';
 
         ob_start();
         ?>
@@ -74,7 +81,12 @@ class Shortcode{
                                     $currency_symbol = woolentor_currency_symbol( $currency );
                                     $active_currency = ( $current_currency_code === $currency['currency'] ) ? "class='active-currency'" : '';
 
-                                    $flag = ( $atts['flags'] == 'yes' ) ? '<img src="'.$this->get_flag_url( $atts['flag_style'], $currency['currency'] ).'" alt="'.$wc_currencie_list[$currency['currency']].'"/>' : '';
+                                    $flag = ( $atts['flags'] === 'yes' ) 
+                                        ? (!empty($currency['custom_flag']) 
+                                            ? '<img src="' . esc_url($currency['custom_flag']) . '" alt="' . $wc_currencie_list[$currency['currency']] . '"/>' 
+                                            : '<img src="' . $this->get_flag_url( $atts['flag_style'], $currency['currency'] ) . '" alt="' . $wc_currencie_list[$currency['currency']] . '"/>' 
+                                        ) 
+                                        : '';
 
                                     echo sprintf('<li %4$s data-value="%1$s">%5$s %2$s (%3$s)</li>', $currency['currency'], $wc_currencie_list[$currency['currency']], $currency_symbol, $active_currency, $flag ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                 }
@@ -95,7 +107,12 @@ class Shortcode{
                                     $hide_currency = ( $current_currency_code === $currency['currency'] ) ? "class='hide-currency'" : '';
                                     $currency_symbol = woolentor_currency_symbol( $currency );
 
-                                    $flag = ( $atts['flags'] == 'yes' ) ? '<img src="'.$this->get_flag_url( $atts['flag_style'], $currency['currency'] ).'" alt="'.$wc_currencie_list[$currency['currency']].'"/>' : '';
+                                    $flag = ( $atts['flags'] === 'yes' ) 
+                                        ? (!empty($currency['custom_flag']) 
+                                            ? '<img src="' . esc_url($currency['custom_flag']) . '" alt="' . $wc_currencie_list[$currency['currency']] . '"/>' 
+                                            : '<img src="' . $this->get_flag_url( $atts['flag_style'], $currency['currency'] ) . '" alt="' . $wc_currencie_list[$currency['currency']] . '"/>' 
+                                        ) 
+                                        : '';
 
                                     echo sprintf('<li %4$s data-value="%1$s">%5$s %2$s (%3$s)</li>', $currency['currency'], $wc_currencie_list[$currency['currency']], $currency_symbol, $hide_currency, $flag); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                 }

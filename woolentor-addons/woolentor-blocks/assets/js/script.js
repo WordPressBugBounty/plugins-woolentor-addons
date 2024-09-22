@@ -71,7 +71,7 @@
      */
     initSlickSlider: function ($block) {
       $($block).css("display", "block");
-      var settings = $($block).data("settings");
+      var settings = WooLentorBlocks.sanitizeObject($($block).data("settings"));
       if (settings) {
         var arrows = settings["arrows"];
         var dots = settings["dots"];
@@ -139,7 +139,7 @@
     initSlickNavForAsSlider: function ($sliderwrap) {
       $($sliderwrap).find(".woolentor-learg-img").css("display", "block");
       $($sliderwrap).find(".woolentor-thumbnails").css("display", "block");
-      var settings = $($sliderwrap).data("settings");
+      var settings = WooLentorBlocks.sanitizeObject($($sliderwrap).data("settings"));
 
       if (settings) {
         $($sliderwrap)
@@ -194,6 +194,56 @@
       }
     },
 
+    /**
+     * Senitize HTML
+     */
+    sanitizeHTML: function (str) {
+      if( str ){
+        return str.replace(/[&<>"']/g, function (c) {
+            switch (c) {
+                case '&': return '&amp;';
+                case '<': return '&lt;';
+                case '>': return '&gt;';
+                case '"': return '&quot;';
+                case "'": return '&#39;';
+                default: return c;
+            }
+        });
+      }else{
+        return '';
+      }
+    },
+
+    /**
+     * Object Sanitize
+     */
+    sanitizeObject: function (inputObj) {
+      const sanitizedObj = {};
+
+      for (let key in inputObj) {
+          if (inputObj.hasOwnProperty(key)) {
+              let value = inputObj[key];
+  
+              // Sanitize based on the value type
+              if (typeof value === 'string') {
+                  // Sanitize strings to prevent injection
+                  sanitizedObj[key] = WooLentorBlocks.sanitizeHTML(value);
+              } else if (typeof value === 'number') {
+                  // Ensure numbers are valid (you could also set limits if needed)
+                  sanitizedObj[key] = Number.isFinite(value) ? value : 0;
+              } else if (typeof value === 'boolean') {
+                  // Keep boolean values as they are
+                  sanitizedObj[key] = value;
+              } else {
+                  // Handle other types if needed (e.g., arrays, objects)
+                  sanitizedObj[key] = value;
+              }
+          }
+      }
+  
+      return sanitizedObj;
+  },
+
     /*
      * Tool Tip
      */
@@ -205,7 +255,7 @@
       }
       element.on("mouseover", function () {
         if ($(".woolentor-tip").length == 0) {
-          element.before('<span class="woolentor-tip">' + tipText + "</span>");
+          element.before('<span class="woolentor-tip">' + WooLentorBlocks.sanitizeHTML(tipText) + "</span>");
           $(".woolentor-tip").css("transition", "all 0.5s ease 0s");
           $(".woolentor-tip").css("margin-left", 0);
         }
@@ -253,13 +303,13 @@
           $this.html(
             event.strftime(
               '<div class="cd-single"><div class="cd-single-inner"><h3>%D</h3><p>' +
-                customlavel.daytxt +
+              WooLentorBlocks.sanitizeHTML(customlavel.daytxt) +
                 '</p></div></div><div class="cd-single"><div class="cd-single-inner"><h3>%H</h3><p>' +
-                customlavel.hourtxt +
+                WooLentorBlocks.sanitizeHTML(customlavel.hourtxt) +
                 '</p></div></div><div class="cd-single"><div class="cd-single-inner"><h3>%M</h3><p>' +
-                customlavel.minutestxt +
+                WooLentorBlocks.sanitizeHTML(customlavel.minutestxt) +
                 '</p></div></div><div class="cd-single"><div class="cd-single-inner"><h3>%S</h3><p>' +
-                customlavel.secondstxt +
+                WooLentorBlocks.sanitizeHTML(customlavel.secondstxt) +
                 "</p></div></div>"
             )
           );

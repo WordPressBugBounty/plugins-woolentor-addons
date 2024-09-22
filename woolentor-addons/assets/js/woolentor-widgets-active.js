@@ -1,6 +1,56 @@
 ;(function($){
 "use strict";
 
+    /**
+     * Senitize HTML
+     */
+    var woolentorSanitizeHTML = function (str) {
+        if( str ){
+            return str.replace(/[&<>"']/g, function (c) {
+                switch (c) {
+                    case '&': return '&amp;';
+                    case '<': return '&lt;';
+                    case '>': return '&gt;';
+                    case '"': return '&quot;';
+                    case "'": return '&#39;';
+                    default: return c;
+                }
+            });
+        }else{
+            return '';
+        }
+    }
+
+    /**
+     * Sanitize Object
+     */
+    var woolentorSanitizeObject = function (inputObj) {
+        const sanitizedObj = {};
+    
+        for (let key in inputObj) {
+            if (inputObj.hasOwnProperty(key)) {
+                let value = inputObj[key];
+    
+                // Sanitize based on the value type
+                if (typeof value === 'string') {
+                    // Sanitize strings to prevent injection
+                    sanitizedObj[key] = woolentorSanitizeHTML(value);
+                } else if (typeof value === 'number') {
+                    // Ensure numbers are valid (you could also set limits if needed)
+                    sanitizedObj[key] = Number.isFinite(value) ? value : 0;
+                } else if (typeof value === 'boolean') {
+                    // Keep boolean values as they are
+                    sanitizedObj[key] = value;
+                } else {
+                    // Handle other types if needed (e.g., arrays, objects)
+                    sanitizedObj[key] = value;
+                }
+            }
+        }
+    
+        return sanitizedObj;
+    }
+
    /* 
     * Product Slider 
     */
@@ -12,7 +62,7 @@
 
             slider_elem[0].style.display='block';
 
-            var settings = slider_elem.data('settings');
+            var settings = woolentorSanitizeObject(slider_elem.data('settings'));
             var arrows = settings['arrows'];
             var dots = settings['dots'];
             var autoplay = settings['autoplay'];
@@ -110,7 +160,7 @@
             var $this = $(this), finalDate = $(this).data('countdown');
             var customlavel = $(this).data('customlavel');
             $this.countdown(finalDate, function(event) {
-                $this.html(event.strftime('<div class="cd-single"><div class="cd-single-inner"><h3>%D</h3><p>'+customlavel.daytxt+'</p></div></div><div class="cd-single"><div class="cd-single-inner"><h3>%H</h3><p>'+customlavel.hourtxt+'</p></div></div><div class="cd-single"><div class="cd-single-inner"><h3>%M</h3><p>'+customlavel.minutestxt+'</p></div></div><div class="cd-single"><div class="cd-single-inner"><h3>%S</h3><p>'+customlavel.secondstxt+'</p></div></div>'));
+                $this.html(event.strftime('<div class="cd-single"><div class="cd-single-inner"><h3>%D</h3><p>'+woolentorSanitizeHTML(customlavel.daytxt)+'</p></div></div><div class="cd-single"><div class="cd-single-inner"><h3>%H</h3><p>'+woolentorSanitizeHTML(customlavel.hourtxt)+'</p></div></div><div class="cd-single"><div class="cd-single-inner"><h3>%M</h3><p>'+woolentorSanitizeHTML(customlavel.minutestxt)+'</p></div></div><div class="cd-single"><div class="cd-single-inner"><h3>%S</h3><p>'+woolentorSanitizeHTML(customlavel.secondstxt)+'</p></div></div>'));
             });
         });
 
@@ -127,7 +177,7 @@
         }
         element.on('mouseover', function() {
             if ( $('.woolentor-tip').length == 0 ) {
-                element.before('<span class="woolentor-tip">' + tipText + '</span>');
+                element.before('<span class="woolentor-tip">' + woolentorSanitizeHTML(tipText) + '</span>');
                 $('.woolentor-tip').css('transition', 'all 0.5s ease 0s');
                 $('.woolentor-tip').css('margin-left', 0);
             }

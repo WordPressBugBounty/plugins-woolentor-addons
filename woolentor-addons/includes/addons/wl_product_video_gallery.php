@@ -235,7 +235,7 @@ class Woolentor_Wl_Product_Video_Gallery_Widget extends Widget_Base {
                                 $j=0;
                                 foreach ( $gallery_images_ids as $thkey => $gallery_attachment_id ) {
                                     $j++;
-                                    if( $j == 1 ){ $tabactive = 'htactive'; }else{ $tabactive = ' '; }
+                                    if( $j == 1 ){ $tabactive = 'htactive'; }else{ $tabactive = ''; }
                                     $video_url = get_post_meta( $gallery_attachment_id, 'woolentor_video_url', true );
                                     ?>
                                     <li class="<?php if( !empty( $video_url ) ){ echo 'wlvideothumb'; }?>">
@@ -273,7 +273,7 @@ class Woolentor_Wl_Product_Video_Gallery_Widget extends Widget_Base {
                             $i = 0;
                             foreach ( $gallery_images_ids as $thkey => $gallery_attachment_id ) {
                                 $i++;
-                                if( $i == 1 ){ $tabactive = 'htactive'; }else{ $tabactive = ' '; }
+                                if( $i == 1 ){ $tabactive = 'htactive'; }else{ $tabactive = ''; }
                                 $video_url = get_post_meta( $gallery_attachment_id, 'woolentor_video_url', true );
                                 ?>
                                 <div class="video-cus-tab-pane <?php echo esc_attr($tabactive); ?>" id="wlvideo-<?php echo esc_attr($i); ?>">
@@ -301,7 +301,7 @@ class Woolentor_Wl_Product_Video_Gallery_Widget extends Widget_Base {
                                 $j=0;
                                 foreach ( $gallery_images_ids as $thkey => $gallery_attachment_id ) {
                                     $j++;
-                                    if( $j == 1 ){ $tabactive = 'htactive'; }else{ $tabactive = ' '; }
+                                    if( $j == 1 ){ $tabactive = 'htactive'; }else{ $tabactive = ''; }
                                     $video_url = get_post_meta( $gallery_attachment_id, 'woolentor_video_url', true );
                                     ?>
                                     <li class="<?php if( !empty( $video_url ) ){ echo 'wlvideothumb'; }?>">
@@ -340,20 +340,43 @@ class Woolentor_Wl_Product_Video_Gallery_Widget extends Widget_Base {
                 };
                 $( '.single_variation_wrap' ).on( 'show_variation', function ( event, variation ) {
 
+                    // Active First Tab
+                    $( '#wlvideo-1' ).addClass('htactive').siblings().removeClass('htactive');
+                    $('.woolentor-product-video-tabs li a[href="#wlvideo-1"]').addClass('htactive').parent().siblings().children('a').removeClass('htactive');
+
+                    var currentImage = $('.woolentor-product-gallery-video').find('.video-cus-tab-pane.htactive img'),
+                        currentTab   = $('.woolentor-product-gallery-video').find('.video-cus-tab-pane.htactive');
+
                     // Get First image data
-                    if( $default_data.src.length === 0 ){
-                        $default_data.srcfull = $('.woolentor-product-gallery-video').find('.video-cus-tab-pane.htactive img').attr('src');
-                        $default_data.src = $('.woolentor-product-gallery-video').find('.video-cus-tab-pane.htactive img').attr('src');
-                        $default_data.srcset = $('.woolentor-product-gallery-video').find('.video-cus-tab-pane.htactive img').attr('srcset');
+                    if( $default_data?.src?.length === 0 ){
+                        $default_data.srcfull = currentImage.attr('src');
+                        $default_data.src = currentImage.attr('src');
+                        $default_data.srcset = currentImage.attr('srcset');
                     }
 
-                    $('.woolentor-product-gallery-video').find('.video-cus-tab-pane.htactive img').wc_set_variation_attr('src',variation.image.full_src);
-                    $('.woolentor-product-gallery-video').find('.video-cus-tab-pane.htactive img').wc_set_variation_attr('srcset',variation.image.srcset);
-                    $('.woolentor-product-gallery-video').find('.video-cus-tab-pane.htactive img').wc_set_variation_attr('src',variation.image.src);
+                    if( currentImage.length === 0 ){
+                        currentTab.find('.embed-responsive').css({"display":"none"});
+                        currentTab.prepend('<img class="attachment-woocommerce_single size-woocommerce_single" src="'+variation.image.full_src+'" />');
+                    }
+
+                    if( currentTab.children('.embed-responsive').length > 0 ){
+                        currentTab.children('.embed-responsive').css({"display":"none"});
+                        currentTab.children('img').css({"display":"block"});
+                    }
+
+                    currentImage.wc_set_variation_attr('src',variation.image.full_src);
+                    currentImage.wc_set_variation_attr('srcset',variation.image.srcset);
+                    currentImage.wc_set_variation_attr('src',variation.image.src);
 
                     $('.variations').find('.reset_variations').on('click', function(e){
-                        $('.woolentor-product-gallery-video').find('.video-cus-tab-pane.htactive img').wc_set_variation_attr('src', $default_data.srcfull );
-                        $('.woolentor-product-gallery-video').find('.video-cus-tab-pane.htactive img').wc_set_variation_attr('srcset', $default_data.srcset );
+
+                        if( currentTab.children('.embed-responsive').length > 0 ){
+                            currentTab.children('.embed-responsive').css({"display":"block"});
+                            currentTab.children('img').css({"display":"none"});
+                        }
+
+                        currentImage.wc_set_variation_attr('src', $default_data.srcfull );
+                        currentImage.wc_set_variation_attr('srcset', $default_data.srcset );
                     });
 
                 });

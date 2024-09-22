@@ -84,7 +84,8 @@ class Fields {
                         'desc'    => esc_html__( 'Enable this option to display a quick view on mobile devices.', 'woolentor' ),
                         'type'    => 'checkbox',
                         'default' => 'off',
-                        'class'   => 'woolentor-action-field-left'
+                        'class'   => 'woolentor-action-field-left',
+                        'condition' => [ 'enable_on_shop_archive', '==', 'true' ]
                     ],
 
                     [
@@ -120,7 +121,7 @@ class Fields {
                     [
                         'name'        => 'button_text',
                         'label'       => esc_html__( 'Button text', 'woolentor' ),
-                        'desc'        => esc_html__( 'Enter your quickview button text.', 'woolentor' ),
+                        'desc'        => esc_html__( 'Enter your quick view button text.', 'woolentor' ),
                         'type'        => 'text',
                         'default'     => esc_html__( 'Quick view', 'woolentor' ),
                         'placeholder' => esc_html__( 'Quick view', 'woolentor' ),
@@ -130,7 +131,7 @@ class Fields {
                     [
                         'name'    => 'button_icon_type',
                         'label'   => esc_html__( 'Button icon type', 'woolentor' ),
-                        'desc'    => esc_html__( 'Choose an icon type for the quickview button from here.', 'woolentor' ),
+                        'desc'    => esc_html__( 'Choose an icon type for the quick view button from here.', 'woolentor' ),
                         'type'    => 'select',
                         'default' => 'default',
                         'options' => [
@@ -166,7 +167,7 @@ class Fields {
                     [
                         'name'    => 'button_icon_position',
                         'label'   => esc_html__( 'Button icon Position', 'woolentor' ),
-                        'desc'    => esc_html__( 'Choose an icon type for the quickview button from here.', 'woolentor' ),
+                        'desc'    => esc_html__( 'Choose an icon type for the quick view button from here.', 'woolentor' ),
                         'type'    => 'select',
                         'default' => 'before_text',
                         'options' => [
@@ -207,7 +208,7 @@ class Fields {
 
                     [
                         'name'  => 'enable_ajax_cart',
-                        'label'  => esc_html__( 'Enable ajax add to cart', 'woolentor' ),
+                        'label'  => esc_html__( 'Enable AJAX add to cart', 'woolentor' ),
                         'type'  => 'checkbox',
                         'default' => 'on',
                         'desc'    => esc_html__( 'Enable this to activate AJAX add to cart feature in the popup window.', 'woolentor' ),

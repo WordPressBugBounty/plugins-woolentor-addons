@@ -296,6 +296,7 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
                             'type'      => Controls_Manager::COLOR,
                             'selectors' => [
                                 '{{WRAPPER}} .wl-addto-cart.wl-style-2 form.cart .wl-quantity-wrap .wl-quantity.wl-qunatity-minus:hover' => 'color: {{VALUE}}',
+                                '{{WRAPPER}} .wl-addto-cart.wl-style-4 form.cart .wl-quantity-wrap .wl-quantity.wl-qunatity-minus:hover' => 'color: {{VALUE}}',
                             ],
                             'conditions' => [
                                 'relation' => 'or',
@@ -314,6 +315,7 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
                             'type'      => Controls_Manager::COLOR,
                             'selectors' => [
                                 '{{WRAPPER}} .wl-addto-cart.wl-style-2 form.cart .wl-quantity-wrap .wl-quantity.wl-qunatity-plus:hover' => 'color: {{VALUE}}',
+                                '{{WRAPPER}} .wl-addto-cart.wl-style-4 form.cart .wl-quantity-wrap .wl-quantity.wl-qunatity-plus:hover' => 'color: {{VALUE}}',
                             ],
                             'conditions' => [
                                 'relation' => 'or',

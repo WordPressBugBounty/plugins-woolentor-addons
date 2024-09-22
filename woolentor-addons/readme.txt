@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, tarekht, aslamhasi
 Tags: Elementor, WooCommerce, WooCommerce Elementor, WooCommerce Builder, WooCommerce Product, Woo Builder, Variation Swatches, woocommerce blocks, Product Slider, Product Compare, Wishlist, Product Filter
 Requires at least: 4.7
 Tested up to: 6.6
-Stable tag: 2.9.7
+Stable tag: 2.9.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -1102,6 +1102,12 @@ Feel free to [Contact us](https://hasthemes.com/contact-us/)
 Elementor Pro is not required. But you can use ShopLentor with Elementor free & Pro.
 
 == Changelog ==
+
+= Version: 2.9.8 - Date: 22-09-2024 =
+* Solved : Variation image change issue with Video gallery Elementor widget.
+* Solved : Quantity icon hover color issue in Add to Cart addon.
+* Solved : Escaping function has been added in Slider activation JS.
+* Compatibility : Latest WordPress and WooCommerce version.
 
 = Version: 2.9.7 - Date: 15-09-2024 =
 * Solved : Quick View By default option for Mobile.
