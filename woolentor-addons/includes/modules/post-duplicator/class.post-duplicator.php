@@ -1,24 +1,9 @@
 <?php
+use WooLentor\Traits\Singleton;
 if( ! defined( 'ABSPATH' ) ) exit(); // Exit if accessed directly
 
 class WooLentor_Post_Dupicator{
-
-    /**
-     * [$_instance]
-     * @var null
-     */
-    private static $_instance = null;
-
-    /**
-     * [instance] Initializes a singleton instance
-     * @return [WooLentor_Post_Dupicator]
-     */
-    public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
 
     /**
      * [__construct description]

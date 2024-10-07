@@ -1,32 +1,17 @@
 <?php
 namespace EverCompare;
+use WooLentor\Traits\Singleton;
 /**
  * Assets handlers class
  */
 class Assets {
-
-    /**
-     * [$_instance]
-     * @var null
-     */
-    private static $_instance = null;
+    use Singleton;
 
     /**
      * [$suffix]
      * @var [string]
      */
     public $suffix = '';
-
-    /**
-     * [instance] Initializes a singleton instance
-     * @return [Base]
-     */
-    public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
 
     /**
      * Class constructor

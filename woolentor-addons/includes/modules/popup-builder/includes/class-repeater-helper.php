@@ -1,21 +1,11 @@
 <?php
 namespace Woolentor\Modules\Popup_Builder;
+use WooLentor\Traits\Singleton;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Repeater_Helper{
-
-    private static $_instance = null;
-
-    /**
-     * Get Instance
-     */
-    public static function get_instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
 
     public function get_condition_type_options( $return = 'array' ) {
         $options = array(

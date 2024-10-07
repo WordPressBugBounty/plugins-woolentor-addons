@@ -19,12 +19,12 @@ $conditions       = isset($popup_meta['conditions']) ? $popup_meta['conditions']
     )
 );
 
-$trigger_settings = !empty($popup_meta['triggers']) ? wp_parse_args($popup_meta['triggers'],Manage_Metabox::get_instance()->get_default_values('trigger_fields') ) : Manage_Metabox::get_instance()->get_default_values('trigger_fields');
+$trigger_settings = !empty($popup_meta['triggers']) ? wp_parse_args($popup_meta['triggers'],Manage_Metabox::instance()->get_default_values('trigger_fields') ) : Manage_Metabox::instance()->get_default_values('trigger_fields');
 
-$advanced_settings = !empty($popup_meta['advanced']) ? wp_parse_args($popup_meta['advanced'],Manage_Metabox::get_instance()->get_default_values('advanced_fields') ) : Manage_Metabox::get_instance()->get_default_values('advanced_fields');
+$advanced_settings = !empty($popup_meta['advanced']) ? wp_parse_args($popup_meta['advanced'],Manage_Metabox::instance()->get_default_values('advanced_fields') ) : Manage_Metabox::instance()->get_default_values('advanced_fields');
 
-$customization_fields = Manage_Metabox::get_instance()->get_fields('customization_fields');
-$general_fields       = Manage_Metabox::get_instance()->get_fields('general_fields');
+$customization_fields = Manage_Metabox::instance()->get_fields('customization_fields');
+$general_fields       = Manage_Metabox::instance()->get_fields('general_fields');
 
 // Initialize variables
 $pro_adv_class      = 'wlpb-pro-adv';
@@ -158,7 +158,7 @@ wp_enqueue_script('js-cookie');
                                                     <?php
                                                         if( $condition['name'] && $condition['name'] != 'entire_site' ){
 															echo '<div class="woolentor-admin-select wlpb-sub_name">';
-                                                                echo Repeater_Helper::get_instance()->get_options_by_name( $condition['name'], 'html', $condition['sub_name'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                                echo Repeater_Helper::instance()->get_options_by_name( $condition['name'], 'html', $condition['sub_name'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 															echo '</div>';
                                                         }
                                                     ?>
@@ -167,7 +167,7 @@ wp_enqueue_script('js-cookie');
                                                     <?php
                                                         if( $condition['sub_name'] ){
 															echo '<div class="woolentor-admin-select wlpb-sub_id">';
-                                                                echo Repeater_Helper::get_instance()->get_options_by_sub_name( $condition['sub_name'], 'html', $condition['sub_id'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                                echo Repeater_Helper::instance()->get_options_by_sub_name( $condition['sub_name'], 'html', $condition['sub_id'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 															echo '</div>';
                                                         }
                                                     ?>
@@ -531,7 +531,7 @@ wp_enqueue_script('js-cookie');
                 </div>
 
                 <div class="woolentor-admin-select wlpb-name">
-                    <?php echo Repeater_Helper::get_instance()->get_condition_type_options( 'html' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                    <?php echo Repeater_Helper::instance()->get_condition_type_options( 'html' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                 </div>
             </div>
 

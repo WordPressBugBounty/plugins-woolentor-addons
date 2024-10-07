@@ -1,22 +1,12 @@
 <?php
 namespace Woolentor\Modules\Popup_Builder;
-
+use WooLentor\Traits\Singleton;
 use Woolentor\Modules\Popup_Builder\Repeater_Helper;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Ajax_Actions{
-    private static $_instance = null;
-
-    /**
-     * Get Instance
-     */
-    public static function get_instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
 
     /**
      * Constructor
@@ -45,7 +35,7 @@ class Ajax_Actions{
 
         // Get sub_name options with html by name.
         if( $name != 'entire_site' ){
-            $return_data = Repeater_Helper::get_instance()->get_options_by_name($name, 'html');
+            $return_data = Repeater_Helper::instance()->get_options_by_name($name, 'html');
         }
     
         wp_send_json_success( $return_data );
@@ -65,7 +55,7 @@ class Ajax_Actions{
 
         // Get sub_id options html from sub_name.
         if( post_type_exists( $sub_name ) || taxonomy_exists( $sub_name ) ){
-            $return_data = Repeater_Helper::get_instance()->get_options_by_sub_name($sub_name, 'html');
+            $return_data = Repeater_Helper::instance()->get_options_by_sub_name($sub_name, 'html');
         }
     
         wp_send_json_success( $return_data );
@@ -114,7 +104,7 @@ class Ajax_Actions{
         }
 
         // Sanitize $post_data array.
-        $post_data = Helper::get_instance()->wlpb_clean( $post_data );
+        $post_data = Helper::instance()->wlpb_clean( $post_data );
 
         // Save popup data.
         $status = update_post_meta( $popup_id, '_wlpb_popup_seetings', $post_data );

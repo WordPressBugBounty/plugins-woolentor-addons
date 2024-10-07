@@ -1,19 +1,13 @@
 <?php
+use WooLentor\Traits\Singleton;
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /**
 * Class Sale Notification
 */
 if( !class_exists('Woolentor_Sale_Notification') ){
     class Woolentor_Sale_Notification{
-
-        private static $_instance = null;
-        public static function instance(){
-            if( is_null( self::$_instance ) ){
-                self::$_instance = new self();
-            }
-            return self::$_instance;
-        }
-        
-        function __construct(){
+        use Singleton;
+        public function __construct(){
             add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
             add_action( 'wp_enqueue_scripts', [ $this, 'woolentor_inline_styles' ] );
             add_action( 'wp_footer', [ $this, 'woolentor_ajax_request' ] );
@@ -29,7 +23,7 @@ if( !class_exists('Woolentor_Sale_Notification') ){
             $notification = array();
             $get_notification_tmp = !empty(woolentor_get_option( 'noification_fake_data','woolentor_sales_notification_tabs', '' )) ? woolentor_get_option( 'noification_fake_data','woolentor_sales_notification_tabs', '' ) : array();
             foreach(  $get_notification_tmp as $key => $fakedata ) {
-                $nc = class_exists('\Elementor\Plugin') ? \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $fakedata ) : '';
+                $nc = woolentor_get_template_content_by_id( $fakedata );
                 array_push( $notification, $nc );
             }
             return $notification;

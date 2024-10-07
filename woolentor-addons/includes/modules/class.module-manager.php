@@ -1,19 +1,9 @@
 <?php  
+use WooLentor\Traits\Singleton;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Woolentor_Module_Manager{
-
-    private static $_instance = null;
-
-    /**
-     * Instance
-     */
-    public static function instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
 
     /**
      * Constructor
@@ -74,7 +64,6 @@ class Woolentor_Module_Manager{
 
         // Wishlist
         if( woolentor_get_option( 'wishlist', 'woolentor_others_tabs', 'off' ) == 'on' ){
-            // $this->deactivate( 'wishsuite/wishsuite.php' );
             if( ! class_exists('WishSuite_Base') ){
                 require_once( WOOLENTOR_ADDONS_PL_PATH .'includes/modules/wishlist/init.php' );
             }
@@ -82,7 +71,6 @@ class Woolentor_Module_Manager{
 
         // Compare
         if( woolentor_get_option( 'compare', 'woolentor_others_tabs', 'off' ) == 'on' ){
-            // $this->deactivate( 'ever-compare/ever-compare.php' );
             if( ! class_exists('Ever_Compare') ){
                 require_once( WOOLENTOR_ADDONS_PL_PATH .'includes/modules/compare/init.php' );
             }
@@ -145,6 +133,21 @@ class Woolentor_Module_Manager{
                 \Woolentor\Modules\CurrencySwitcher\woolentor_currency_switcher( true );
             } else {
                 \Woolentor\Modules\CurrencySwitcher\woolentor_currency_switcher( false );
+            }
+        }
+
+        // Product Badges
+        if( file_exists(WOOLENTOR_ADDONS_PL_PATH .'includes/modules/badges/badges.php') ){
+            require_once( WOOLENTOR_ADDONS_PL_PATH .'includes/modules/badges/badges.php' );
+            if( is_plugin_active('woolentor-addons-pro/woolentor_addons_pro.php') && defined( "WOOLENTOR_ADDONS_PL_PATH_PRO" ) ){
+                if( file_exists(WOOLENTOR_ADDONS_PL_PATH_PRO .'includes/modules/badges/badges.php')){
+                    require_once( WOOLENTOR_ADDONS_PL_PATH_PRO .'includes/modules/badges/badges.php' );
+                }
+            }
+            if( woolentor_get_option( 'enable', 'woolentor_badges_settings', 'off' ) == 'on' ){
+                \Woolentor\Modules\Badges\Product_Badges::instance( true );
+            } else {
+                \Woolentor\Modules\Badges\Product_Badges::instance( false );
             }
         }
 
@@ -238,6 +241,7 @@ class Woolentor_Module_Manager{
 
     /**
      * [deactivate] Deactivated
+     * Uses : $this->deactivate( 'ever-compare/ever-compare.php' );
      * @return [void]
      */
     public function deactivate( $slug ){

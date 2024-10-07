@@ -1,21 +1,12 @@
 <?php
 namespace Woolentor\Modules\Swatchly;
 use Woolentor\Modules\Swatchly\Helper as Helper;
+use WooLentor\Traits\Singleton;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Ajax_Actions{
-    private static $_instance = null;
-
-    /**
-     * Instance
-     */
-    public static function instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
 
     /**
      * Constructor

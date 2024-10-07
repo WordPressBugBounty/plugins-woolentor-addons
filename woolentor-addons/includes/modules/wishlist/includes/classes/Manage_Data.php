@@ -1,26 +1,11 @@
 <?php
 namespace WishSuite;
+use WooLentor\Traits\Singleton;
 /**
  * Manage_Data handlers class
  */
 class Manage_Data {
-
-    /**
-     * [$_instance]
-     * @var null
-     */
-    private static $_instance = null;
-
-    /**
-     * [instance] Initializes a singleton instance
-     * @return [Manage_Data]
-     */
-    public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
 
     /**
      * [create]

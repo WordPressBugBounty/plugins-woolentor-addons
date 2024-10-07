@@ -1,22 +1,13 @@
 <?php
 namespace Woolentor\Modules\Popup_Builder;
+use WooLentor\Traits\Singleton;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Assets{
-    private static $_instance = null;
+    use Singleton;
 
     private $version;
-
-    /**
-     * Get Instance
-     */
-    public static function get_instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
 
     /**
      * Constructor

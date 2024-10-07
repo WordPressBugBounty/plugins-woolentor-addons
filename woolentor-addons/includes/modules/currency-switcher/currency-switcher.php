@@ -1,26 +1,11 @@
 <?php
 namespace Woolentor\Modules\CurrencySwitcher;
+use WooLentor\Traits\ModuleBase;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Currency_Switcher{
 
-    /**
-     * Enabled.
-     */
-    private static $_enabled = true;
-
-    private static $_instance = null;
-
-    /**
-     * Get Instance
-     */
-    public static function instance( $enabled = true ){
-        self::$_enabled = $enabled;
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use ModuleBase;
 
     /**
      * Class Constructor
@@ -63,30 +48,6 @@ class Currency_Switcher{
         require_once( MODULE_PATH. "/includes/classes/Admin.php" );
         require_once( MODULE_PATH. "/includes/classes/Frontend.php" );
         require_once( MODULE_PATH. "/includes/classes/Widgets_And_Blocks.php" );
-    }
-
-    /**
-     * What type of request is this?
-     *
-     * @param  string $type admin, ajax, cron or frontend.
-     */
-    private function is_request( $type ) {
-        switch ( $type ) {
-            case 'admin' :
-                return is_admin();
-
-            case 'ajax' :
-                return defined( 'DOING_AJAX' );
-
-            case 'rest' :
-                return defined( 'REST_REQUEST' );
-
-            case 'cron' :
-                return defined( 'DOING_CRON' );
-
-            case 'frontend' :
-                return ( ! is_admin() || defined( 'DOING_AJAX' ) || ( ! empty( $_REQUEST['action'] ) && 'elementor' === $_REQUEST['action'] ) ) && ! defined( 'DOING_CRON' );
-        }
     }
 
     /**

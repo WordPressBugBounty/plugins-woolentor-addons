@@ -1,23 +1,13 @@
 <?php
 namespace Woolentor\Modules\Popup_Builder\Frontend;
-
+use WooLentor\Traits\Singleton;
 use Woolentor\Modules\Popup_Builder\Helper;
 use const Woolentor\Modules\Popup_Builder\MODULE_PATH;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Manage_Elementor_Editor {
-    private static $_instance = null;
-
-    /**
-     * Get Instance
-     */
-    public static function get_instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
 
     /**
      * Constructor

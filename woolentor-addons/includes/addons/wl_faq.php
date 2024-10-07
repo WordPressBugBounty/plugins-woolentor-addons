@@ -933,7 +933,7 @@ class Woolentor_Wl_Faq_Widget extends Widget_Base {
                                         if ( $accordion['content_source'] == 'custom' && !empty( $accordion['content'] ) ) {
                                             echo wp_kses_post( $accordion['content'] );
                                         } elseif ( $accordion['content_source'] == "elementor" && !empty( $accordion['template_id'] )) {
-                                            echo Plugin::instance()->frontend->get_builder_content_for_display( $accordion['template_id'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            echo woolentor_get_template_content_by_id( $accordion['template_id'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                         }
                                     ?>
                                     </div>

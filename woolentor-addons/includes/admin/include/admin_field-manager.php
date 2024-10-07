@@ -427,6 +427,7 @@ class Woolentor_Admin_Fields_Manager {
         $add_limit = $args['add_limit'] !== 0 ? 'data-limit="'.$args['add_limit'].'"' : '';
         $custom_button = 'data-customaction="'.esc_attr( htmlspecialchars( wp_json_encode( $args['custom_button'] ) ) ).'"';
         $custom_button_html = $args['custom_button'] ? sprintf('<button class="button button-primary woolentor-repeater-custom-action woolentor-admin-btn-primary" type="button" %1$s>%2$s</button>', $custom_button, $args['custom_button']['text'] ) : '';
+        $add_button_label = isset( $args['options']['button_label'] ) ? $args['options']['button_label'] : esc_html__('Add Item','woolentor');
 
         echo '<div class="woolentor-option-repeater-item woolentor-repeater-hidden" data-depend-id="'.$args['id'].'">';
         ?>
@@ -448,7 +449,7 @@ class Woolentor_Admin_Fields_Manager {
             </div>
         <?php
         echo '</div>';
-        echo '<button type="button" class="woolentor-repeater-item-add woolentor-admin-btn-primary" '.$add_limit.'><span class="dashicon dashicons dashicons-plus-alt2"></span>'.esc_html__('Add Item','woolentor').'</button>'.$custom_button_html.'</div>';
+        echo '<button type="button" class="woolentor-repeater-item-add woolentor-admin-btn-primary" '.$add_limit.'><span class="dashicon dashicons dashicons-plus-alt2"></span>'.esc_html( $add_button_label ).'</button>'.$custom_button_html.'</div>';
 
 
     }

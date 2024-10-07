@@ -24,7 +24,7 @@ if( class_exists('\Elementor\Plugin') ){
 </head>
 
 <body <?php body_class(); ?>>
-	<?php Manage_Popup::get_instance()->render_single_popup( get_the_id(), array(
+	<?php Manage_Popup::instance()->render_single_popup( get_the_id(), array(
 		'disable_overlay' => false
 	) ) ?>
 

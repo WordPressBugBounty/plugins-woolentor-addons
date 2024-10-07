@@ -1,19 +1,13 @@
 <?php
+use WooLentor\Traits\Singleton;
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
 * Class Sale Notification
 */
 class Woolentor_Sale_Notification{
-
-    private static $_instance = null;
-    public static function instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
-    
-    function __construct(){
+    use Singleton;
+    public function __construct(){
 
         add_action( 'wp_head',[ $this, 'woolentor_ajaxurl' ] );
         add_action( 'wp_enqueue_scripts', [ $this, 'woolentor_inline_styles' ] );

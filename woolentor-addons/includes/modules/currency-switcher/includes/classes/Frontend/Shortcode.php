@@ -1,20 +1,11 @@
 <?php
 namespace Woolentor\Modules\CurrencySwitcher\Frontend;
+use WooLentor\Traits\Singleton;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Shortcode{
-    private static $_instance = null;
-
-    /**
-     * Get Instance
-     */
-    public static function instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
 
     public function __construct(){
         add_shortcode( 'woolentor_currency_switcher', [ $this, 'currency_switcher' ] );

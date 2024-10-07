@@ -1,28 +1,13 @@
 <?php
 namespace Woolentor\Modules\QuickView;
+use WooLentor\Traits\Singleton;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
  * Assets handlers class
  */
 class Assets {
-
-    /**
-     * [$_instance]
-     * @var null
-     */
-    private static $_instance = null;
-
-    /**
-     * [instance] Initializes a singleton instance
-     * @return [Assets]
-     */
-    public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
     
     /**
      * Class construct

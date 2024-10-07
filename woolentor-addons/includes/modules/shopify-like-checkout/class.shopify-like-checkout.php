@@ -1,23 +1,12 @@
-<?php  
+<?php 
+use WooLentor\Traits\Singleton;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Woolentor_Shopify_Like_Checkout extends \WC_Checkout{
-
-    private static $_instance = null;
-
+    use Singleton;
     public $hide_billing_company = true;
     public $hide_billing_phone   = true;
     public $field_manager_enable = false;
-
-    /**
-     * Get Instance
-     */
-    public static function get_instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
 
     /**
      * Constructor
@@ -88,7 +77,7 @@ class Woolentor_Shopify_Like_Checkout extends \WC_Checkout{
         $suffix = Automattic\Jetpack\Constants::is_true( 'SCRIPT_DEBUG' ) ? '' : '.min';
         wp_enqueue_script( 'serializejson', WC()->plugin_url() . '/assets/js/jquery-serializejson/jquery.serializejson' . $suffix . '.js', array( 'jquery' ), '2.8.1', true );
         wp_enqueue_script( 'woolentor-checkout');
-        wp_enqueue_script( 'woolentor-shopify-like-checkout', plugin_dir_url( __FILE__ ) . 'assets/shopify-like-checkout.js', array('jquery', 'wc-checkout'), WOOLENTOR_VERSION, 'all' );
+        wp_enqueue_script( 'woolentor-shopify-like-checkout', plugin_dir_url( __FILE__ ) . 'assets/shopify-like-checkout.js', array('jquery', 'wc-checkout'), WOOLENTOR_VERSION, true );
         wp_localize_script( 'woolentor-shopify-like-checkout', 'woolentor_slc_params',
             array( 
                 'ajax_url' => admin_url( 'admin-ajax.php' ),
@@ -784,4 +773,4 @@ class Woolentor_Shopify_Like_Checkout extends \WC_Checkout{
     }
 }
 
-Woolentor_Shopify_Like_Checkout::get_instance();    
+Woolentor_Shopify_Like_Checkout::instance();

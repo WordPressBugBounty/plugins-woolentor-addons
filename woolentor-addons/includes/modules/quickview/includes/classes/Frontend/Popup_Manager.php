@@ -1,20 +1,11 @@
 <?php
 namespace Woolentor\Modules\QuickView\Frontend;
+use WooLentor\Traits\Singleton;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Popup_Manager {
-    private static $_instance = null;
-
-    /**
-     * Get Instance
-     */
-    public static function instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
 
     public function __construct(){
         add_action( 'woolentor_footer_render_content', [ $this, 'quick_view_html' ], 10 );

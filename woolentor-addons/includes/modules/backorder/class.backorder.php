@@ -1,19 +1,9 @@
 <?php  
+use WooLentor\Traits\Singleton;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Woolentor_Backorder extends WC_Product{
-
-    private static $_instance = null;
-
-    /**
-     * Get Instance
-     */
-    public static function get_instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+   use Singleton;
 
     /**
      * Constructor
@@ -512,4 +502,4 @@ class Woolentor_Backorder extends WC_Product{
     }
 }
 
-Woolentor_Backorder::get_instance();    
+Woolentor_Backorder::instance();    

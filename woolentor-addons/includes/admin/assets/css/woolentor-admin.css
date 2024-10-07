@@ -2147,6 +2147,9 @@
 .woolentor-module-setting-popup-content .woolentor-admin-option.woolentor-action-field-left.woolentor-dimention-field-left .woolentor_dimensions li {
   width: 73px;
 }
+.woolentor-module-setting-popup-content .woolentor-admin-option.woolentor-action-field-left.woolentor-dimention-field-left.woolentor-repeater-field .woolentor_dimensions li {
+  width: 65px;
+}
 .woolentor-module-setting-popup-content .woolentor-admin-option.woolentor-action-field-left.woolentor-dimention-field-left .woolentor-admin-option-action {
   width: 60%;
   padding-left: 10px;

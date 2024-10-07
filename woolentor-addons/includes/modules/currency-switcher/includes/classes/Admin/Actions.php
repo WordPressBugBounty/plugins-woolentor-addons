@@ -1,20 +1,10 @@
 <?php
 namespace Woolentor\Modules\CurrencySwitcher\Admin;
+use WooLentor\Traits\Singleton;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Actions {
-
-    private static $_instance = null;
-
-    /**
-     * Get Instance
-     */
-    public static function instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
 
     /**
      * Class Constructor

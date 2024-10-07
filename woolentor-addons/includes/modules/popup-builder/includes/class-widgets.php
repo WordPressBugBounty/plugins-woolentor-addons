@@ -28,7 +28,7 @@ class Widgets {
      * @return void
      */
     public function init(){
-        if( Helper::get_instance()->is_elementor_editor() ){
+        if( Helper::instance()->is_elementor_editor() ){
             add_filter( 'woolentor_load_widget_list', [ $this, 'load_widget_list' ], 999, 3 );
         }
     }

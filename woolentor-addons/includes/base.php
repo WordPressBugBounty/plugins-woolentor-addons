@@ -436,6 +436,7 @@ final class Base {
     public function include_files(){
 
         require( WOOLENTOR_ADDONS_PL_PATH.'includes/helper-function.php' );
+        woolentor_include_all(WOOLENTOR_ADDONS_PL_PATH.'includes/traits');
         require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.assest_management.php' );
         require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.widgets_control.php' );
         require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.default_data.php' );

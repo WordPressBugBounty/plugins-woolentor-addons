@@ -1,27 +1,12 @@
 <?php
 namespace EverCompare;
+use WooLentor\Traits\Singleton;
 
 /**
  * Frontend handlers class
  */
 class Frontend {
-
-    /**
-     * [$_instance]
-     * @var null
-     */
-    private static $_instance = null;
-
-    /**
-     * [instance] Initializes a singleton instance
-     * @return [Base]
-     */
-    public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
     
     /**
      * Initialize the class

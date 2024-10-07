@@ -1,26 +1,11 @@
 <?php
 namespace Woolentor\Modules\QuickView;
+use WooLentor\Traits\ModuleBase;
+
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Quick_View{
-
-    /**
-     * Enabled.
-     */
-    private static $_enabled = true;
-
-    private static $_instance = null;
-
-    /**
-     * Get Instance
-     */
-    public static function instance( $enabled = true ){
-        self::$_enabled = $enabled;
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use ModuleBase;
 
     /**
      * Class Constructor
@@ -74,30 +59,6 @@ class Quick_View{
             if( file_exists(WOOLENTOR_ADDONS_PL_PATH_PRO .'includes/modules/quickview/quickview.php')){
                 require_once( WOOLENTOR_ADDONS_PL_PATH_PRO .'includes/modules/quickview/quickview.php' );
             }
-        }
-    }
-
-    /**
-     * What type of request is this?
-     *
-     * @param  string $type admin, ajax, cron or frontend.
-     */
-    private function is_request( $type ) {
-        switch ( $type ) {
-            case 'admin' :
-                return is_admin();
-
-            case 'ajax' :
-                return defined( 'DOING_AJAX' );
-
-            case 'rest' :
-                return defined( 'REST_REQUEST' );
-
-            case 'cron' :
-                return defined( 'DOING_CRON' );
-
-            case 'frontend' :
-                return ( ! is_admin() || defined( 'DOING_AJAX' ) || ( ! empty( $_REQUEST['action'] ) && 'elementor' === $_REQUEST['action'] ) ) && ! defined( 'DOING_CRON' );
         }
     }
 

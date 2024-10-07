@@ -1,32 +1,17 @@
 <?php
 namespace EverCompare\Frontend;
+use WooLentor\Traits\Singleton;
 /**
  * Button handlers class
  */
 class Manage_Compare {
-
-    /**
-     * [$_instance]
-     * @var null
-     */
-    private static $_instance = null;
+    use Singleton;
 
     /**
      * [$reached_max_limit]
      * @var boolean
      */
     public $reached_max_limit = false;
-
-    /**
-     * [instance] Initializes a singleton instance
-     * @return [Compare_Button]
-     */
-    public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
     
     /**
      * Initialize the class

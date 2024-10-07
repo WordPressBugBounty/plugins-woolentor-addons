@@ -1,9 +1,11 @@
 <?php
 namespace WishSuite\Admin;
+use WooLentor\Traits\Singleton;
 /**
  * Dashboard handlers class
  */
 class Dashboard {
+    use Singleton;
 
     /**
      * Menu capability
@@ -20,24 +22,6 @@ class Dashboard {
      * @var string
      */
     static $admin_menu_hook = '';
-
-
-    /**
-     * [$_instance]
-     * @var null
-     */
-    private static $_instance = null;
-
-    /**
-     * [instance] Initializes a singleton instance
-     * @return [Admin]
-     */
-    public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
 
     /**
      * Initialize the class
@@ -105,7 +89,7 @@ class Dashboard {
      * Add a post display state for special WishSuite page in the page list table.
      *
      * @param array   $post_states An array of post display states.
-     * @param WP_Post $post  The current post object.
+     * @param $post  The current post object.
      */
     public function add_display_post_states( $post_states, $post ){
         if ( (int)woolentor_get_option( 'wishlist_page', 'wishsuite_table_settings_tabs' ) === $post->ID ) {

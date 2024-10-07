@@ -664,7 +664,6 @@
                 },
 
                 error: function(errorThrown){
-                    console.log(errorThrown);
                     Swal.fire({
                         icon: "error",
                         title: "Oops...",

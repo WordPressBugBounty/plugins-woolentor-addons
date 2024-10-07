@@ -1,26 +1,12 @@
 <?php
 namespace Woolentor\Modules\QuickView\Frontend;
+use WooLentor\Traits\Singleton;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /**
  * Manage Button class
  */
 class Button_Manager {
-    /**
-     * [$_instance]
-     * @var null
-     */
-    private static $_instance = null;
-
-    /**
-     * [instance] Initializes a singleton instance
-     * @return [Button_Manager]
-     */
-    public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
     
     /**
      * Class construct

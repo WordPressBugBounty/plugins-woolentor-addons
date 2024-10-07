@@ -1,10 +1,11 @@
 <?php
 namespace Woolentor\Modules\CurrencySwitcher\Frontend;
+use WooLentor\Traits\Singleton;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Manage_Price {
-    private static $_instance = null;
+    use Singleton;
 
     private $currency_code = 'USD';
 	private $decimal;
@@ -13,16 +14,6 @@ class Manage_Price {
     private $exchange_rate;
     private $exchange_fee;
 	private $disallowed_payment_method;
-
-    /**
-     * Get Instance
-     */
-    public static function instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
 
     public function __construct(){
         $this->set_current_currency();
@@ -56,7 +47,7 @@ class Manage_Price {
 
     /**
 	 * Set Current Currency Switcher Property
-	 * @return NULL
+	 * @return void
 	 */
     private function set_current_currency() {
 		$this->currency_code = woolentor_current_currency_code();

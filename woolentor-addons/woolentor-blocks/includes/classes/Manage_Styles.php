@@ -113,7 +113,7 @@ class Manage_Styles {
 	public function save_block_css( $request ){
 		try{
 			global $wp_filesystem;
-			if ( ! $wp_filesystem ) {
+			if ( ! $wp_filesystem || !function_exists('WP_Filesystem') ) {
 				require_once( ABSPATH . 'wp-admin/includes/file.php' );
 			}
 
@@ -174,7 +174,7 @@ class Manage_Styles {
 	 */
 	public function appened_css( $request ) {
 		global $wp_filesystem;
-		if ( ! $wp_filesystem ) {
+		if ( ! $wp_filesystem || !function_exists('WP_Filesystem') ) {
 			require_once( ABSPATH . 'wp-admin/includes/file.php' );
 		}
 
@@ -256,7 +256,7 @@ class Manage_Styles {
 		if( $post_id ){
 
 			global $wp_filesystem;
-			if ( ! $wp_filesystem ) {
+			if ( ! $wp_filesystem || !function_exists('WP_Filesystem') ) {
 				require_once( ABSPATH . 'wp-admin/includes/file.php' );
 			}
 

@@ -1,28 +1,13 @@
 <?php
 namespace EverCompare\Admin;
+use WooLentor\Traits\Singleton;
 /**
  * Admin Page Fields handlers class
  */
 class Admin_Fields {
+    use Singleton;
 
     private $settings_api;
-
-    /**
-     * [$_instance]
-     * @var null
-     */
-    private static $_instance = null;
-
-    /**
-     * [instance] Initializes a singleton instance
-     * @return [Admin]
-     */
-    public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
 
     function __construct() {
         require_once( WOOLENTOR_ADDONS_PL_PATH .'includes/admin/include/settings_field_manager_default.php' );

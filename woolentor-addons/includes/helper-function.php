@@ -86,6 +86,24 @@ function woolentor_build_page_content( $page_id ){
 }
 
 /**
+ * Get template content by id
+ * @since 2.6.6
+ * @param [type] $template_id
+ * @return string
+ */
+function woolentor_get_template_content_by_id($template_id) {
+    $template_post = get_post( $template_id );
+    
+    // Check if the post exists and its status is 'publish'
+    if ( $template_post && $template_post->post_status === 'publish' ) {
+        return class_exists('\Elementor\Plugin') ? \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $template_id ) : '';
+    } else {
+        return esc_html__( 'Template not published or does not exist', 'woolentor');
+    }
+}
+
+
+/**
 * Checked Current theme is FSE
 */
 function woolentor_current_theme_is_fse() {
@@ -97,6 +115,30 @@ function woolentor_current_theme_is_fse() {
 	}
 
 	return false;
+}
+
+/**
+ * All PHP file include from folder
+ * @param mixed $folder_name
+ * @return void
+ */
+function woolentor_include_all($folder_name){
+    foreach (glob("{$folder_name}/*.php") as $filename){
+        include $filename;
+    }
+}
+
+/**
+ * Single String Translate
+ * @param mixed $name
+ * @param mixed $value
+ * @return mixed
+ */
+function woolentor_translator( $name, $value ){
+    if( method_exists('\WooLentor\MultiLanguage\Languages','translator') ) {
+        return \WooLentor\MultiLanguage\Languages::translator($name, $value);
+    }
+    // return $value;
 }
 
 /**
@@ -162,6 +204,73 @@ function woolentor_render_icon( $settings = [], $new_icon = 'selected_icon', $ol
 
     return $output;
  
+}
+
+/**
+* [woolentor_generate_css]
+* @param  [string] $key      
+* @param  [string] $tab      
+* @param  [string] $css_attr 
+* @return [type]  
+*/
+function woolentor_generate_css( $key, $tab, $css_attr, $unit = '', $default = '', $important = '' ){
+    $field_value = !empty( woolentor_get_option( $key, $tab ) ) ? woolentor_get_option( $key, $tab ) : $default;
+
+    if( !empty( $field_value ) ){
+        $css_attr .= ":{$field_value}{$unit}";
+        return $css_attr."{$important};";
+    }else{
+        return false;
+    }
+
+}
+
+/**
+ * [woolentor_dimensions]
+ * @param  [string] $key
+ * @param  [string] $tab
+ * @return [String | Bool]
+ */
+function woolentor_dimensions( $key, $tab, $css_attr, $default = [], $important = '' ){
+    $dimensions = !empty( woolentor_get_option( $key, $tab ) ) ? woolentor_get_option( $key, $tab ) : $default;
+    if( !empty( $dimensions['top'] ) || !empty( $dimensions['right'] ) || !empty( $dimensions['bottom'] ) || !empty( $dimensions['left'] ) ){
+
+        $unit   = ( empty( $dimensions['unit'] ) ? 'px' : $dimensions['unit'] );
+        $top    = ( !empty( $dimensions['top'] ) ? $dimensions['top'] : 0 );
+        $right  = ( !empty( $dimensions['right'] ) ? $dimensions['right'] : 0 );
+        $bottom = ( !empty( $dimensions['bottom'] ) ? $dimensions['bottom'] : 0 );
+        $left   = ( !empty( $dimensions['left'] ) ? $dimensions['left'] : 0 );
+
+        $css_attr .= ":{$top}{$unit} {$right}{$unit} {$bottom}{$unit} {$left}{$unit}";
+        return $css_attr."{$important};";
+        
+    }else{
+        return false;
+    }
+}
+
+/**
+ * [woolentor_css_position]
+ * @param  [string] $key
+ * @param  [string] $tab
+ * @return [String | Bool]
+ */
+function woolentor_css_position( $key, $tab, $css_attr, $default = [], $important = '' ){
+    $dimensions = !empty( woolentor_get_option( $key, $tab ) ) ? woolentor_get_option( $key, $tab ) : $default;
+    if( !empty( $dimensions['top'] ) || !empty( $dimensions['right'] ) || !empty( $dimensions['bottom'] ) || !empty( $dimensions['left'] ) ){
+
+        $unit   = ( empty( $dimensions['unit'] ) ? 'px' : $dimensions['unit'] );
+        $top    = ( !empty( $dimensions['top'] ) ? $dimensions['top'].$unit : ($dimensions['top'] === "" ? "auto" : 0) );
+        $right  = ( !empty( $dimensions['right'] ) ? $dimensions['right'].$unit : ($dimensions['right'] === "" ? "auto" : 0) );
+        $bottom = ( !empty( $dimensions['bottom'] ) ? $dimensions['bottom'].$unit : ($dimensions['bottom'] === "" ? "auto" : 0) );
+        $left   = ( !empty( $dimensions['left'] ) ? $dimensions['left'].$unit : ($dimensions['left'] === "" ? "auto" : 0) );
+
+        $css_attr .= "top:{$top};right:{$right};bottom:{$bottom};left:{$left}";
+        return $css_attr."{$important};";
+        
+    }else{
+        return false;
+    }
 }
 
 /**
@@ -987,6 +1096,10 @@ if( class_exists('WooCommerce') ){
 
     /* Custom product badge */
     function woolentor_custom_product_badge( $show = 'yes' ){
+        // If Enable Product Badge Module
+        if( woolentor_get_option( 'enable', 'woolentor_badges_settings', 'off' ) == 'on' ){
+            return;
+        }
         global $product;
         $custom_saleflash_text = get_post_meta( get_the_ID(), '_saleflash_text', true );
         if( $show == 'yes' && is_a( $product, 'WC_Product' ) ){

@@ -1,32 +1,24 @@
 <?php
+namespace WooLentor\MultiLanguage;
+use WooLentor\Traits\Singleton;
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-class WooLentor_Multi_Languages {
+class Languages {
+    use Singleton;
     
     /**
      * [$language_code]
      * @var string
      */
     public static $language_code;
-    
-    /**
-     * [$_instance]
-     * @var null
-     */
-    private static $_instance = null;
 
     /**
-     * [instance] Initializes a singleton instance
-     * @return [WooLentor_Multi_Languages]
+     * Translator Name
+     * @var 
      */
-    public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    public static $translator_name;
 
     /**
      * [__construct] Class constructor
@@ -44,9 +36,11 @@ class WooLentor_Multi_Languages {
         
         if ( is_plugin_active( 'sitepress-multilingual-cms/sitepress.php' ) ) {
             self::$language_code = apply_filters( 'wpml_current_language', 'en' );
+            self::$translator_name = 'wpml';
             
         } elseif ( function_exists( 'pll_current_language' ) ) {
             self::$language_code = pll_current_language();
+            self::$translator_name = 'polylang';
         }
         
     }
@@ -63,5 +57,20 @@ class WooLentor_Multi_Languages {
         return $language_code;
     }
 
+    /**
+     * Manage Single Text translate
+     * @param mixed $name
+     * @param mixed $value
+     * @return mixed
+     */
+    public static function translator( $name, $value ){
+        if ( 'polylang' === self::$translator_name && function_exists('pll_translate_string') ) {
+            return pll_translate_string( $value, self::$translator_name );
+        } elseif ( 'wpml' === self::$translator_name ) {
+            return apply_filters( 'wpml_translate_single_string', $value, 'ShopLentor Module', $name );
+        }
+        return $value;
+    }
+
 }
-WooLentor_Multi_Languages::instance();
+Languages::instance();

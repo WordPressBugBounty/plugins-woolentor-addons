@@ -1,20 +1,10 @@
 <?php
 namespace Woolentor\Modules\FlashSale;
+use WooLentor\Traits\Singleton;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Woolentor_Flash_Sale{
-
-    private static $_instance = null;
-
-    /**
-     * Get Instance
-     */
-    public static function get_instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
 
     /**
      * Constructor
@@ -544,4 +534,4 @@ class Woolentor_Flash_Sale{
 
 }
 
-Woolentor_Flash_Sale::get_instance();
+Woolentor_Flash_Sale::instance();

@@ -1,21 +1,11 @@
 <?php
 namespace Woolentor\Modules\QuickView\Admin;
+use WooLentor\Traits\Singleton;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Fields {
 
-    private static $_instance = null;
-
-    /**
-     * Get Instance
-     */
-    public static function instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
-
+    use Singleton;
     public function __construct(){
         add_filter( 'woolentor_admin_fields', [ $this, 'admin_fields' ], 99, 1 );
     }
@@ -57,7 +47,7 @@ class Fields {
                 'default'=> 'on',
                 'section'  => 'woolentor_quickview_settings',
                 'option_id' => 'enable',
-                'documentation' => esc_url('https://woolentor.com/doc/'),
+                'documentation' => esc_url('https://woolentor.com/doc/quick-view/'),
                 'require_settings'  => true,
                 'setting_fields' => [
                     

@@ -1,26 +1,11 @@
 <?php
 namespace WishSuite;
+use WooLentor\Traits\Singleton;
 /**
  * Ajax handlers class
  */
 class Ajax {
-
-    /**
-     * [$_instance]
-     * @var null
-     */
-    private static $_instance = null;
-
-    /**
-     * [instance] Initializes a singleton instance
-     * @return [Ajax]
-     */
-    public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
     
     /**
      * Initialize the class
@@ -55,7 +40,7 @@ class Ajax {
             );
             wp_send_json_error( $errormessage );
         }
-        $id = sanitize_text_field( $_GET['id'] );
+        $id = !empty($_GET['id']) ? sanitize_text_field($_GET['id']) : '';
         $inserted = \WishSuite\Frontend\Manage_Wishlist::instance()->add_product( $id );
         if ( ! $inserted ) {
             wp_send_json_success([
@@ -81,7 +66,7 @@ class Ajax {
             );
             wp_send_json_error( $errormessage );
         }
-        $id = sanitize_text_field( $_GET['id'] );
+        $id = !empty($_GET['id']) ? sanitize_text_field($_GET['id']) : '';
         $deleted = \WishSuite\Frontend\Manage_Wishlist::instance()->remove_product( $id );
         if ( ! $deleted ) {
             wp_send_json_success([

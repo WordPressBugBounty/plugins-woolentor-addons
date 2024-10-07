@@ -1,26 +1,11 @@
 <?php
 namespace EverCompare\Frontend;
+use WooLentor\Traits\Singleton;
 /**
  * Shortcode handler class
  */
 class Shortcode {
-
-    /**
-     * [$_instance]
-     * @var null
-     */
-    private static $_instance = null;
-
-    /**
-     * [instance] Initializes a singleton instance
-     * @return [Base]
-     */
-    public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
 
     /**
      * Initializes the class

@@ -1,9 +1,11 @@
 <?php
 namespace EverCompare\Admin;
+use WooLentor\Traits\Singleton;
 /**
  * Dashboard handlers class
  */
 class Dashboard {
+    use Singleton;
 
     /**
      * Parent Menu Page Slug
@@ -15,23 +17,6 @@ class Dashboard {
      * @var string
      */
     static $admin_menu_hook = '';
-
-    /**
-     * [$_instance]
-     * @var null
-     */
-    private static $_instance = null;
-
-    /**
-     * [instance] Initializes a singleton instance
-     * @return [Admin]
-     */
-    public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
 
     /**
      * Initialize the class

@@ -269,6 +269,7 @@ class Woolentor_Wl_Product_Video_Gallery_Widget extends Widget_Base {
                             if(function_exists('woolentor_custom_product_badge')){
                                 woolentor_custom_product_badge();
                             }
+                            do_action('woolentor_product_thumbnail_image');
 
                             $i = 0;
                             foreach ( $gallery_images_ids as $thkey => $gallery_attachment_id ) {

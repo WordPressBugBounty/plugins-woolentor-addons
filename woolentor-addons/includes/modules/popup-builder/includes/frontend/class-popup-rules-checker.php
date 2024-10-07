@@ -1,22 +1,12 @@
 <?php
 namespace Woolentor\Modules\Popup_Builder\Frontend;
+use WooLentor\Traits\Singleton;
 use Woolentor\Modules\Popup_Builder\Helper;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Popup_Rules_Checker{
-
-    private static $_instance = null;
-
-    /**
-     * Get Instance
-     */
-    public static function get_instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
 
     /**
      * @return bool true if the popup should be shown, false otherwise
@@ -34,7 +24,7 @@ class Popup_Rules_Checker{
         }
 
         // For elementor preview mode we should not check the rules.
-        if( Helper::get_instance()->is_elementor_editor() ){
+        if( Helper::instance()->is_elementor_editor() ){
             return $return_value;
         }
 
@@ -67,7 +57,7 @@ class Popup_Rules_Checker{
         $types = array_column($filtered_rules, 'type');
         array_multisort($types, SORT_ASC, $filtered_rules);
 
-        if( Helper::get_instance()->wlpb_debug_status() ){
+        if( Helper::instance()->wlpb_debug_status() ){
             echo '<pre>';
             echo 'filtered_rules';
             var_dump($filtered_rules);

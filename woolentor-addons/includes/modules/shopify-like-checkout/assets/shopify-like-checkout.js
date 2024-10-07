@@ -65,7 +65,7 @@
     function serializeFormData(){
 
         let checkoutForm = $('.woolentor-checkout__section.woolentor-step--info').parents('.woocommerce-checkout');
-        let formSerializeArrayData = checkoutForm.serializeArray();
+        let formSerializeArrayData = checkoutForm.find(':input:visible').serializeArray();
 
         let allFieldNames = ( function(){
             let names = [],

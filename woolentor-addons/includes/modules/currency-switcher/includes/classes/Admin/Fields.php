@@ -1,20 +1,10 @@
 <?php
 namespace Woolentor\Modules\CurrencySwitcher\Admin;
+use WooLentor\Traits\Singleton;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Fields {
-
-    private static $_instance = null;
-
-    /**
-     * Get Instance
-     */
-    public static function instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
 
     public function __construct(){
         add_filter( 'woolentor_admin_fields', [ $this, 'admin_fields' ], 99, 1 );
@@ -150,7 +140,7 @@ class Fields {
                                 'label'   => esc_html__( 'Custom Currency Symbol', 'woolentor' ),
                                 'type'    => 'text',
                                 'class'   => 'woolentor-action-field-left',
-                                'default' => 'This is a pro features',
+                                'default' => esc_html__('This is a pro features','woolentor'),
                                 'is_pro'  => true,
                             ),
 

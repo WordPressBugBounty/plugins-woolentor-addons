@@ -5,25 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Helper{
 
-    private static $_instance = null;
-
-    /**
-     * Instance
-     */
-    public static function instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
-
-    /**
-     * Constructor
-     */
-    public function __construct(){
-        
-    }
-
     /**
      * Get global options value.
      *
@@ -232,5 +213,3 @@ class Helper{
     }
 
 }
-
-Helper::instance();

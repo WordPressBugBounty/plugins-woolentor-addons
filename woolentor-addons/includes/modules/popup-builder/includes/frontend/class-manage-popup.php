@@ -1,6 +1,6 @@
 <?php
 namespace Woolentor\Modules\Popup_Builder\Frontend;
-
+use WooLentor\Traits\Singleton;
 use Woolentor\Modules\Popup_Builder\Helper;
 use Woolentor\Modules\Popup_Builder\Admin\Manage_Metabox;
 use Woolentor\Modules\Popup_Builder_Pro\Frontend\Popup_Rules_Checker_Pro;
@@ -8,18 +8,7 @@ use Woolentor\Modules\Popup_Builder_Pro\Frontend\Popup_Rules_Checker_Pro;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Manage_Popup {
-
-    private static $_instance = null;
-
-    /**
-     * Get Instance
-     */
-    public static function get_instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
 
     /**
      * Constructor
@@ -75,15 +64,19 @@ class Manage_Popup {
         );
 
         if( Helper::is_pro_version_active() && class_exists('Woolentor\Modules\Popup_Builder_Pro\Frontend\Popup_Rules_Checker_Pro') ){
-            if( method_exists(Popup_Rules_Checker_Pro::get_instance(),'check_rules') ){
-                $popup_condition_status      = Popup_Rules_Checker_Pro::get_instance()->check_rules( $popup_id, $popup_conditions );
+
+            $rule_checker_obj = method_exists('Woolentor\Modules\Popup_Builder_Pro\Frontend\Popup_Rules_Checker_Pro','instance') ? Popup_Rules_Checker_Pro::instance() : Popup_Rules_Checker_Pro::get_instance();
+
+            if( method_exists($rule_checker_obj,'check_rules') ){
+                $popup_condition_status = $rule_checker_obj->check_rules( $popup_id, $popup_conditions );
             }
             
-            if( method_exists(Popup_Rules_Checker_Pro::get_instance(),'check_advanced_rules') ){
-                $popup_advanced_rules_status = Popup_Rules_Checker_Pro::get_instance()->check_advanced_rules( $popup_id );
+            if( method_exists($rule_checker_obj,'check_advanced_rules') ){
+                $popup_advanced_rules_status = $rule_checker_obj->check_advanced_rules( $popup_id );
             }
+
         } else {
-            $popup_condition_status      = Popup_Rules_Checker::get_instance()->check_rules( $popup_id, $popup_conditions );
+            $popup_condition_status = Popup_Rules_Checker::instance()->check_rules( $popup_id, $popup_conditions );
         }
 
         // Check $popup_condition_status first and then $popup_advanced_rules_status.
@@ -117,8 +110,8 @@ class Manage_Popup {
 
         // Prepare default values so we don't need to check isset() for each value.
         $popup_default_settings = array();
-        $popup_default_settings = array_merge($popup_default_settings, Manage_Metabox::get_instance()->get_default_values('general_fields'));
-        $popup_default_settings = array_merge($popup_default_settings, Manage_Metabox::get_instance()->get_default_values('customization_fields'));
+        $popup_default_settings = array_merge($popup_default_settings, Manage_Metabox::instance()->get_default_values('general_fields'));
+        $popup_default_settings = array_merge($popup_default_settings, Manage_Metabox::instance()->get_default_values('customization_fields'));
 
         // @todo: add the below options later.
         $popup_default_settings['popup_display_as']   = 'modal';
@@ -182,7 +175,7 @@ class Manage_Popup {
         return get_posts( array(
             'post_type'         => 'woolentor-template',
             'post_status'       => array('publish', 'private', 'draft'),
-            'posts_per_page'    => Helper::get_instance()->get_dropdown_posts_limit(),
+            'posts_per_page'    => Helper::instance()->get_dropdown_posts_limit(),
             'fields'            => 'ids',
             // Include templates where key = woolentor_template_meta_type,vlaue = popup.
             // and key = _wlpb_popup_seetings,value = not empty.
@@ -234,7 +227,7 @@ class Manage_Popup {
         $data_settings['id']        = $popup_id;
 
         // Loop through each group of the fields
-        foreach( Manage_Metabox::get_instance()->get_fields() as $group_name => $group_fields ){
+        foreach( Manage_Metabox::instance()->get_fields() as $group_name => $group_fields ){
 
             // Loop through each fields of the current group
             foreach( $group_fields as $field ){

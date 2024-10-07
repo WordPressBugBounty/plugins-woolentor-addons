@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  *
  * @since 1.0.1
  *
- * @param arr   $arr
+ * @param $arr
  *
  * @return string|null
  */

@@ -1,19 +1,9 @@
 <?php 
+use WooLentor\Traits\Singleton;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Woolentor_Free_Custom_Meta_Fields{
-
-    private static $_instance = null;
-
-    /**
-     * Get Instance
-     */
-    public static function get_instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
 
     /**
      * Constructor
@@ -69,7 +59,7 @@ class Woolentor_Free_Custom_Meta_Fields{
         echo '<div id="woolentor_product_data" class="panel woocommerce_options_panel hidden">';
             woocommerce_wp_text_input( array(
                 'id'          => '_saleflash_text',
-                'label'       => __( 'Custom Product Badge Text', 'woolentor' ),
+                'label'       => __( 'Custom Product Badge', 'woolentor' ),
                 'placeholder' => __( 'New', 'woolentor' ),
                 'description' => __( 'Enter your preferred Sale badge text. Ex: New / Free etc (Only for Universal layout addon)', 'woolentor' ),
                 'desc_tip' => true
@@ -84,11 +74,11 @@ class Woolentor_Free_Custom_Meta_Fields{
 
             // Quantity field
             $stock_quantity = !empty( $_POST['woolentor_total_stock_quantity'] ) ? wc_clean( $_POST['woolentor_total_stock_quantity'] ) : '';
-            update_post_meta( $post_id, 'woolentor_total_stock_quantity', $stock_quantity );
+            update_post_meta($post_id, 'woolentor_total_stock_quantity', $stock_quantity);
 
             // Sale Flash
             $saleflash_text = wp_kses_post( stripslashes( $_POST['_saleflash_text'] ) );
-            update_post_meta( $post_id, '_saleflash_text', $saleflash_text);
+            update_post_meta($post_id, '_saleflash_text', $saleflash_text);
 
         }else{
             delete_post_meta( $post_id, 'woolentor_total_stock_quantity' );
@@ -99,4 +89,4 @@ class Woolentor_Free_Custom_Meta_Fields{
 
 
 }
-Woolentor_Free_Custom_Meta_Fields::get_instance();
+Woolentor_Free_Custom_Meta_Fields::instance();

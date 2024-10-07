@@ -1,21 +1,11 @@
 <?php
 namespace Woolentor\Modules\Popup_Builder;
+use WooLentor\Traits\Singleton;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Helper{
-
-    private static $_instance = null;
-
-    /**
-     * Get Instance
-     */
-    public static function get_instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
 
     /**
      * Check if elementor is editor mode.
@@ -81,7 +71,7 @@ class Helper{
         $template_type = get_post_meta(get_the_id(), 'woolentor_template_meta_type', true);
         $action = isset($_GET['action']) ? sanitize_text_field($_GET['action']) : '';
 
-        if( in_array($action, array('edit', 'elementor')) && $template_type == 'popup' && ( is_admin() || Helper::get_instance()->is_elementor_editor() ) ){
+        if( in_array($action, array('edit', 'elementor')) && $template_type == 'popup' && ( is_admin() || Helper::instance()->is_elementor_editor() ) ){
             return true;
         }
 

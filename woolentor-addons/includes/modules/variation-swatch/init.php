@@ -3,6 +3,7 @@ namespace Woolentor\Modules;
 use const Woolentor\Modules\Swatchly\MODULE_PATH;
 use const Woolentor\Modules\Swatchly\MODULE_FILE;
 use const Woolentor\Modules\Swatchly\MODULE_URL;
+use WooLentor\Traits\Singleton;
 
 
 // If this file is accessed directly, exit
@@ -16,28 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0.0
  */
 final class Swatchly {
-
-    /**
-     * The single instance of the class
-     *
-     * @since 1.0.0
-     */
-    protected static $_instance = null;
-
-    /**
-     * Main Instance
-     *
-     * Ensures only one instance of this pluin is loaded
-     *
-     * @since 1.0.0
-     */
-    public static function instance() {
-        if ( is_null( self::$_instance ) ) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
-
+    use Singleton;
+    
     /**
      * Constructor
      *

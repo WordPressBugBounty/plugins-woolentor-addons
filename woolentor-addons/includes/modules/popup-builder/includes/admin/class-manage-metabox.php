@@ -1,6 +1,6 @@
 <?php
 namespace Woolentor\Modules\Popup_Builder\Admin;
-
+use WooLentor\Traits\Singleton;
 use Woolentor\Modules\Popup_Builder as Popup_Builder;
 use Woolentor\Modules\Popup_Builder\Helper;
 
@@ -8,17 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Manage_Metabox{
 
-    private static $_instance = null;
-
-    /**
-     * Get Instance
-     */
-    public static function get_instance(){
-        if( is_null( self::$_instance ) ){
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+    use Singleton;
 
     /**
      * Constructor
@@ -38,7 +28,7 @@ class Manage_Metabox{
      * Add metabox
      */
     public function add_meta_box(){
-        if( Helper::get_instance()->is_popup_edit_page() ){
+        if( Helper::instance()->is_popup_edit_page() ){
             add_meta_box(
                 'wlpb-metabox-button-side',
                 __( 'Popup Builder', 'woolentor' ),
@@ -67,7 +57,7 @@ class Manage_Metabox{
      * Render modal
      */
     public function render_modal_markup_template(){
-        if( Helper::get_instance()->is_popup_edit_page() ){
+        if( Helper::instance()->is_popup_edit_page() ){
             ob_start();
             include_once( Popup_Builder\MODULE_PATH. '/includes/admin/tmpl-popup-builder-modal.php' );
 
