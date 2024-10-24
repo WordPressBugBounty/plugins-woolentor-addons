@@ -1,8 +1,9 @@
 <?php
+namespace Woolentor\Modules\AjaxSearch;
 /**
 *  Class Ajax Search Widgets
 */
-class WooLentor_Product_Search_Ajax_Widget extends WP_Widget{
+class Ajax_Search_Widget extends \WP_Widget{
         
     /**
     * Default Constructor

@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, tarekht, aslamhasi
 Tags: Elementor, WooCommerce, WooCommerce Elementor, WooCommerce Builder, WooCommerce Product, Woo Builder, Variation Swatches, woocommerce blocks, Product Slider, Product Compare, Wishlist, Product Filter
 Requires at least: 4.7
 Tested up to: 6.6
-Stable tag: 2.9.9
+Stable tag: 3.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -1103,6 +1103,16 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 
 == Changelog ==
 
+= Version: 3.0.0 - Date: 24-10-2024 =
+* Added : Advanced Coupon Module.
+* Solved : Specific country validation issue with Shopify Style Checkout Module.
+* Solved : Ajax Search widget search page redirect issue and product fetching issue.
+* Solved : Selected category showing issue in option box with Ajax Search Module.
+* Solved : Border radius style issue on the "WL: Add To cart".
+* Solved : Variation swatch taxonomy metabox showing issue.
+* Solved : Product badge showing issue in All archive page.
+* Compatibility : Latest WordPress and WooCommerce version.
+
 = Version: 2.9.9 - Date: 07-10-2024 =
 * Added : Product Badge Module.
 * Solved : Conditional Field Submit issue with Shopify Style Checkout Module.
@@ -1606,23 +1616,6 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 * Solved : Product curvy style issue.
 * Solved : Multiple Add to cart button issue in universal layout.
 * Solved : Single product style issue for Blocksy and Woostify theme.
-
-= Version: 2.2.0 - Date: 20-02-2022 =
-* Solved : Shopify style checkout page conflict issue with redux  template.
-* Solved : Wishlist and compare dashboard menu syntax issue.
-* Solved: Template library showing issue.
-* Solved : Sale Notification style issue in shopify style checkout page.
-
-= Version: 2.1.9 - Date: 12-02-2022 =
-* Added : Wishlist Counter addon.
-* Added : Out of stock badge color option in Universal layout addons.
-* Fixed : Checkout page shipping calculate issue in shopify style checkout page.
-* Fixed : Extra li element generate issue in shopify style checkout page.
-* Fixed: Solved a title styling issue in the default Archive addon for OceanWP theme.
-
-= Version: 2.1.8 - Date: 02-02-2022 =
-* Added : Backorder Module.
-* Fixed : Print notices issue in editor mode.
 
 == Installation ==
 This section describes how to install the ShopLentor - WooCommerce Addons for Elementor Page Builder plugin and get it working.

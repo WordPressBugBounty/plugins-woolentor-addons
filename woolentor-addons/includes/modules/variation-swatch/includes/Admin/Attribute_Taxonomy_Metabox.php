@@ -15,6 +15,13 @@ class Attribute_Taxonomy_Metabox{
      * Constructor
      */
     public function __construct() {
+		$current_post_type = !empty( $_GET['post_type'] ) ? sanitize_text_field( $_GET['post_type'] ) : '';
+		$this->taxnow = isset( $_GET['taxonomy'] ) ? sanitize_text_field( $_GET['taxonomy'] ) : '';
+
+		if( $current_post_type !== 'product' && $this->taxnow && strpos( $this->taxnow, 'pa_' ) !== true ){
+			return;
+		}
+
 		$this->image_defaults = array(
 			'url'         => '',
 			'id'          => '',
@@ -26,7 +33,6 @@ class Attribute_Taxonomy_Metabox{
 			'description' => '',
 		);
 
-        $this->taxnow = isset( $_GET['taxonomy'] ) ? sanitize_text_field( $_GET['taxonomy'] ) : '';
 		$swatch_type = $this->get_taxonomy_swatch_type( $this->taxnow );
 
 		$prefix      			  = 'swatchly_taxonomy_meta';

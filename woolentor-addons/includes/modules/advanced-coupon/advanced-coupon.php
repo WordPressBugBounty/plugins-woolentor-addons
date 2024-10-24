@@ -1,10 +1,10 @@
 <?php
-namespace Woolentor\Modules\Badges;
+namespace Woolentor\Modules\AdvancedCoupon;
 use WooLentor\Traits\ModuleBase;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class Product_Badges{
+class Advanced_Coupon{
     use ModuleBase;
 
     /**
@@ -29,14 +29,11 @@ class Product_Badges{
      * @return void
      */
     public function define_constants(){
-        define( 'Woolentor\Modules\Badges\MODULE_FILE', __FILE__ );
-        define( 'Woolentor\Modules\Badges\MODULE_PATH', __DIR__ );
-        define( 'Woolentor\Modules\Badges\WIDGETS_PATH', MODULE_PATH. "/includes/widgets" );
-        define( 'Woolentor\Modules\Badges\BLOCKS_PATH', MODULE_PATH. "/includes/blocks" );
-        define( 'Woolentor\Modules\Badges\TEMPLATE_PATH', MODULE_PATH. "/includes/templates/" );
-        define( 'Woolentor\Modules\Badges\MODULE_URL', plugins_url( '', MODULE_FILE ) );
-        define( 'Woolentor\Modules\Badges\MODULE_ASSETS', MODULE_URL . '/assets' );
-        define( 'Woolentor\Modules\Badges\ENABLED', self::$_enabled );
+        define( 'Woolentor\Modules\AdvancedCoupon\MODULE_FILE', __FILE__ );
+        define( 'Woolentor\Modules\AdvancedCoupon\MODULE_PATH', __DIR__ );
+        define( 'Woolentor\Modules\AdvancedCoupon\MODULE_URL', plugins_url( '', MODULE_FILE ) );
+        define( 'Woolentor\Modules\AdvancedCoupon\MODULE_ASSETS', MODULE_URL . '/assets' );
+        define( 'Woolentor\Modules\AdvancedCoupon\ENABLED', self::$_enabled );
     }
 
     /**
@@ -45,15 +42,17 @@ class Product_Badges{
      * @return void
      */
     public function include(){
+        require_once( MODULE_PATH. "/includes/Functions.php" );
         require_once( MODULE_PATH. "/includes/classes/Admin.php" );
         require_once( MODULE_PATH. "/includes/classes/Frontend.php" );
 
         // If is Active Pro.
-        if( is_plugin_active('woolentor-addons-pro/woolentor_addons_pro.php') && defined( "WOOLENTOR_ADDONS_PL_PATH_PRO" ) ){
-            if( file_exists(WOOLENTOR_ADDONS_PL_PATH_PRO .'includes/modules/badges/badges.php')){
-                require_once( WOOLENTOR_ADDONS_PL_PATH_PRO .'includes/modules/badges/badges.php' );
+        if( $this->is_pro() ){
+            if( file_exists(WOOLENTOR_ADDONS_PL_PATH_PRO .'includes/modules/advanced-coupon/advanced-coupon.php')){
+                require_once( WOOLENTOR_ADDONS_PL_PATH_PRO .'includes/modules/advanced-coupon/advanced-coupon.php' );
             }
         }
+
     }
 
     /**
@@ -65,6 +64,9 @@ class Product_Badges{
         // For Admin
         if ( $this->is_request( 'admin' ) ) {
             Admin::instance();
+            if( !$this->is_pro() && self::$_enabled ){
+                add_action('woolentor_coupon_payment_fields',[Admin\Coupon_Meta_Boxes::instance(),'pro_payment_option_field'], 10, 1);
+            }
         }
 
         if( self::$_enabled ){

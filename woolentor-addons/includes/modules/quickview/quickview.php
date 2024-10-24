@@ -100,10 +100,3 @@ class Quick_View{
     }
 
 }
-
-/**
- * Returns the instance.
- */
-function woolentor_QuickView( $enabled = true ) {
-    return Quick_View::instance( $enabled );
-}

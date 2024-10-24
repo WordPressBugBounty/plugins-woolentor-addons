@@ -26,7 +26,7 @@ class Fields {
     }
 
     /**
-     * Currency Fields;
+     * Settings Fields;
      */
     public function sitting_fields(){
         $fields = [
@@ -37,7 +37,7 @@ class Fields {
                 'default'=> 'off',
                 'section'  => 'woolentor_badges_settings',
                 'option_id' => 'enable',
-                'documentation' => esc_url('https://woolentor.com/doc/'),
+                'documentation' => esc_url('https://woolentor.com/doc/product-badges-module/'),
                 'require_settings'  => true,
                 'setting_fields' => [
                     [
@@ -165,7 +165,7 @@ class Fields {
                             [
                                 'name'    => 'badge_position',
                                 'label'   => esc_html__( 'Badge Position', 'woolentor' ),
-                                'desc'    => esc_html__( 'Choose an icon type for the quick checkout button from here.', 'woolentor' ),
+                                'desc'    => esc_html__( 'Choose a badge position from here.', 'woolentor' ),
                                 'type'    => 'select',
                                 'default' => 'top_left',
                                 'options' => [

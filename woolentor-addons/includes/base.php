@@ -435,36 +435,36 @@ final class Base {
      */
     public function include_files(){
 
-        require( WOOLENTOR_ADDONS_PL_PATH.'includes/helper-function.php' );
+        require_once( WOOLENTOR_ADDONS_PL_PATH.'includes/helper-function.php' );
         woolentor_include_all(WOOLENTOR_ADDONS_PL_PATH.'includes/traits');
-        require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.assest_management.php' );
-        require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.widgets_control.php' );
-        require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.default_data.php' );
-        require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.icon_list.php' );
-        require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.multi_language.php' );
-        require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.ajax_actions.php' );
+        require_once( WOOLENTOR_ADDONS_PL_PATH.'classes/class.assest_management.php' );
+        require_once( WOOLENTOR_ADDONS_PL_PATH.'classes/class.widgets_control.php' );
+        require_once( WOOLENTOR_ADDONS_PL_PATH.'classes/class.default_data.php' );
+        require_once( WOOLENTOR_ADDONS_PL_PATH.'classes/class.icon_list.php' );
+        require_once( WOOLENTOR_ADDONS_PL_PATH.'classes/class.multi_language.php' );
+        require_once( WOOLENTOR_ADDONS_PL_PATH.'classes/class.ajax_actions.php' );
 
         // Admin Setting file
         if( is_admin() ){
-            require( WOOLENTOR_ADDONS_PL_PATH.'includes/custom-metabox.php' );
-            require( WOOLENTOR_ADDONS_PL_PATH.'includes/admin/admin-init.php' );
+            require_once( WOOLENTOR_ADDONS_PL_PATH.'includes/custom-metabox.php' );
+            require_once( WOOLENTOR_ADDONS_PL_PATH.'includes/admin/admin-init.php' );
         }
 
         // Builder File
         if( woolentor_get_option( 'enablecustomlayout', 'woolentor_woo_template_tabs', 'on' ) == 'on' ){
 
-            require( WOOLENTOR_ADDONS_PL_PATH.'includes/manage_wc_template.php' );
-            require( WOOLENTOR_ADDONS_PL_PATH.'includes/archive_product_render.php' );           
-            require( WOOLENTOR_ADDONS_PL_PATH.'includes/class.product_video_gallery.php' );
-            require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.product_query.php' );
-            require( WOOLENTOR_ADDONS_PL_PATH.'classes/class.third_party.php' );
+            require_once( WOOLENTOR_ADDONS_PL_PATH.'includes/manage_wc_template.php' );
+            require_once( WOOLENTOR_ADDONS_PL_PATH.'includes/archive_product_render.php' );           
+            require_once( WOOLENTOR_ADDONS_PL_PATH.'includes/class.product_video_gallery.php' );
+            require_once( WOOLENTOR_ADDONS_PL_PATH.'classes/class.product_query.php' );
+            require_once( WOOLENTOR_ADDONS_PL_PATH.'classes/class.third_party.php' );
         }
 
         // Page Action
-        require( WOOLENTOR_ADDONS_PL_PATH. 'classes/class.page_action.php' );
+        require_once( WOOLENTOR_ADDONS_PL_PATH. 'classes/class.page_action.php' );
 
         // Modules Manager
-        require( WOOLENTOR_ADDONS_PL_PATH. 'includes/modules/class.module-manager.php' );
+        require_once( WOOLENTOR_ADDONS_PL_PATH. 'includes/modules/class.module-manager.php' );
 
 
     }

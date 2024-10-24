@@ -216,7 +216,11 @@ class Badge_Manager {
      * @return mixed
      */
     public function product_badge_loop_item( $product_image, $product = false ){
-        if ( !is_admin() && (is_shop() || is_single()) ){
+        $termobj            = get_queried_object();
+        $get_all_taxonomies = woolentor_get_taxonomies();
+        $is_archive_page = ( is_tax('product_cat') && is_product_category() ) || ( is_tax('product_tag') && is_product_tag() ) || ( isset( $termobj->taxonomy ) && is_tax( $termobj->taxonomy ) && array_key_exists( $termobj->taxonomy, $get_all_taxonomies ) );
+
+        if ( !is_admin() && (is_shop() || is_single() || $is_archive_page) ){
             return $product_image.$this->product_badges();
         }else{
             return $product_image;

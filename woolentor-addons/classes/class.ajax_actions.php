@@ -33,10 +33,6 @@ class Woolentor_Ajax_Action{
         add_action( 'wp_ajax_woolentor_add_to_cart_single_product', [ $this, 'add_to_cart_from_single_product' ] );
 		add_action( 'wp_ajax_nopriv_woolentor_add_to_cart_single_product', [ $this, 'add_to_cart_from_single_product' ] );
 
-        // For ajax search
-        add_action( 'wp_ajax_woolentor_ajax_search', [ $this, 'ajax_search_callback' ] );
-        add_action( 'wp_ajax_nopriv_woolentor_ajax_search', [ $this, 'ajax_search_callback' ] );
-
         // Sugest Price Elementor addon
         add_action( 'wp_ajax_woolentor_suggest_price_action', [$this, 'suggest_price'] );
         add_action( 'wp_ajax_nopriv_woolentor_suggest_price_action', [$this, 'suggest_price'] );
@@ -142,14 +138,6 @@ class Woolentor_Ajax_Action{
         }
         wp_send_json_success();
         
-    }
-
-    /**
-     * [ajax_search_callback] ajax search
-     * @return [void]
-     */
-    public function ajax_search_callback(){
-        WooLentor_Ajax_Search_Base::instance()->ajax_search_callback();
     }
 
     /**

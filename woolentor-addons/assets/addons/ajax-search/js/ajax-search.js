@@ -39,7 +39,7 @@
 
 		if ( $this.length > 0 ) {
 		    var searchString 	 = $this.val(),
-				catagoryValue 	 = $this.closest(".woolentor_widget_psa").find(".woolentor_widget_psa_category select").val(),
+				catagoryValue 	 = $this.closest(".woolentor_widget_psa").find(".woolentor_widget_psa_category select").find(':selected').attr('data-value'),
 				searchResultWrap = $this.closest(".woolentor_widget_psa").find("#woolentor_psa_results_wrapper");
 		    if( searchString == '' ){
 		    	searchResultWrap.html('');

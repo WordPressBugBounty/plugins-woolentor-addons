@@ -138,7 +138,7 @@ function woolentor_translator( $name, $value ){
     if( method_exists('\WooLentor\MultiLanguage\Languages','translator') ) {
         return \WooLentor\MultiLanguage\Languages::translator($name, $value);
     }
-    // return $value;
+    return $value;
 }
 
 /**
@@ -1370,12 +1370,12 @@ if( class_exists('WooCommerce') ){
         $value_max = wp_cache_get( $value_max_cache_key );
 
         if ( false === $value_min ) {
-            $value_min = $wpdb->get_var( $wpdb->prepare( "SELECT MIN( CAST( meta_value as UNSIGNED ) ) FROM {$wpdb->postmeta} WHERE meta_key = %s", '_price' ) );
+            $value_min = $wpdb->get_var( $wpdb->prepare( "SELECT MIN( CAST( meta_value AS DECIMAL(10, 2) ) ) FROM {$wpdb->postmeta} WHERE meta_key = %s", '_price' ));
             wp_cache_set( $value_min_cache_key, $value_min );
         }
 
         if ( false === $value_max ) {
-            $value_max = $wpdb->get_var( $wpdb->prepare( "SELECT MAX( CAST( meta_value as UNSIGNED ) ) FROM {$wpdb->postmeta} WHERE meta_key = %s", '_price' ) );
+            $value_max = $wpdb->get_var( $wpdb->prepare( "SELECT MAX( CAST( meta_value AS DECIMAL(10, 2) ) ) FROM {$wpdb->postmeta} WHERE meta_key = %s", '_price' ));
             wp_cache_set( $value_max_cache_key, $value_max );
         }
 

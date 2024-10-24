@@ -15,7 +15,7 @@ $attachment_count = count( $attachment_ids );
 	<div class="woocommerce-product-gallery__wrapper <?php echo ( 'slider' === $thumbnail_layout ? 'woolentor-quickview-main-image-slider' : '' ); ?>">
 		<?php
 			$attributes = [
-				'title' => esc_attr( get_the_title( $post_thumbnail_id ) )
+				'title' => esc_attr( get_the_title( get_post_thumbnail_id() ) )
 			];
 
 			if ( has_post_thumbnail( $product->get_id() ) ) {

@@ -43,6 +43,7 @@
     background: transparent;
     border: none;
     padding: 10px 10px;
+	appearance:auto;
 }
 .woolentor_widget_psa_category select:focus-visible{
 	outline: none;

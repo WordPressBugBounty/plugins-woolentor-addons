@@ -20,6 +20,18 @@ trait ModuleBase {
     }
 
     /**
+     * Check WooLentor Pro is active
+     * @return bool
+     */
+    private function is_pro(){
+        if( is_plugin_active('woolentor-addons-pro/woolentor_addons_pro.php') && defined( "WOOLENTOR_ADDONS_PL_PATH_PRO" ) ){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
      * What type of request is this?
      *
      * @param  string $type admin, ajax, cron or frontend.

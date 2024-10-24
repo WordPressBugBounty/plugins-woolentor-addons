@@ -1119,8 +1119,8 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
                             'label' => __( 'Border Radius', 'woolentor' ),
                             'type' => Controls_Manager::DIMENSIONS,
                             'selectors' => [
-                                '{{WRAPPER}} .wl-addto-cart[class*="wl-style-"] form.cart button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                                '{{WRAPPER}} .wl-style-1 form.cart button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                                '{{WRAPPER}} .wl-addto-cart[class*="wl-style-"] form.cart button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
+                                '{{WRAPPER}} .wl-style-1 form.cart button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
                             ],
                         ]
                     );
