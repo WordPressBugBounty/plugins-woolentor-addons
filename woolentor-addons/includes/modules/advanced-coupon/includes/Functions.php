@@ -120,5 +120,110 @@ class Functions{
         return 0;
     }
 
+    /**
+     * Generate Coupon URL from coupon id
+     * @param mixed $coupon_id
+     * @return array|string
+     */
+    public static function generate_coupon_url( $coupon_id ){
+
+        if ( get_post_status( $coupon_id ) === 'auto-draft' ) {
+            return '';
+        }
+
+        $coupon_obj = new \WC_Coupon($coupon_id);
+
+        $coupon_permalink = get_permalink( $coupon_id, true );
+        $custom_code      = self::get_meta_data($coupon_id,'woolentor_code_change_in_url');
+        $coupon_code      = !empty( $custom_code ) ? $custom_code : $coupon_obj->get_code();
+
+        // Replace any colon (:) with %3A and any comma (,) with %2C in the coupon code to ensure it is URL-safe
+        $slug = str_replace( [':', ','], ['%3A', '%2C'], $coupon_code );
+
+        // Generate permalink.
+        $coupon_permalink = str_replace( '%shop_coupon%', $slug, $coupon_permalink );
+
+        return $coupon_permalink;
+
+    }
+
+    /**
+     * Get Coupon ID
+     * @param mixed $coupon_slug
+     * @return int|mixed
+     */
+    public static function get_coupon_id_by_slug( $coupon_slug ) {
+        $post      = $coupon_slug ? get_page_by_path( $coupon_slug, OBJECT, 'shop_coupon' ) : null;
+        $coupon_id = $post ? $post->ID : 0;
+
+        // Checked if custom coupon code is Exist in the meta value and coupon id not found.
+        if ( $coupon_slug && !$coupon_id ) {
+            $coupon_id = self::get_coupon_id_by_custom_slug( $coupon_slug );
+        }
+
+        return $coupon_id;
+    }
+
+    /**
+     * Get Coupon ID from custom slug
+     * @param mixed $coupon_slug
+     * @return int
+     */
+    public static function get_coupon_id_by_custom_slug( $coupon_slug ){
+        $args = [
+            'post_type'      => 'shop_coupon',
+            'posts_per_page' => 1,
+            'meta_query'     => [
+                [
+                    'key'     => 'woolentor_code_change_in_url',
+                    'value'   => $coupon_slug,
+                    'compare' => '=',
+                ],
+            ],
+            'fields' => 'ids', // return only the post ID
+        ];
+        
+        $coupon_ids = get_posts($args);
+        
+        if (!empty($coupon_ids)) {
+            $coupon_id = absint($coupon_ids[0]);
+        } else {
+            $coupon_id = 0;
+        }
+
+        return $coupon_id;
+    }
+
+    /**
+     * Get WooCommerce Error Message
+     * @return mixed
+     */
+    public static function get_error_message() {
+        $error_message = wc_get_notices( 'error' );
+        $notice        = is_array( $error_message ) && ! empty( $error_message ) ? end( $error_message ) : null;
+
+        if ( is_array( $notice ) ) {
+            return $notice['notice'];
+        } else {
+            return $notice ? $notice : '';
+        }
+        
+    }
+
+    /**
+     * Generate String
+     * @param mixed $length
+     * @return string
+     */
+    public static function generate_string($length = 5) {
+        $character_set = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        
+        do {
+            $generate_string = substr(str_shuffle(str_repeat($character_set, $length)), 0, $length);
+        } while (wc_get_coupon_id_by_code($generate_string));
+    
+        return $generate_string;
+    }
+
 
 }

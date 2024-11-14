@@ -157,7 +157,7 @@ class Manage_Popup {
 
                     <?php  ?>
                     <span class="wlpb-popup-close-btn <?php echo esc_attr($popup_settings['disable_close_button'] == false ? '' : 'wlpb-d-none') ?>" style="<?php echo esc_attr($popup_close_button_inline_css) ?>">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><rect x="0" fill="none" width="20" height="20"></rect><g><path d="M14.95 6.46L11.41 10l3.54 3.54-1.41 1.41L10 11.42l-3.53 3.53-1.42-1.42L8.58 10 5.05 6.47l1.42-1.42L10 8.58l3.54-3.53z"></path></g></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20"><rect x="0" fill="none" width="20" height="20"></rect><g><path d="M14.95 6.46L11.41 10l3.54 3.54-1.41 1.41L10 11.42l-3.53 3.53-1.42-1.42L8.58 10 5.05 6.47l1.42-1.42L10 8.58l3.54-3.53z"></path></g></svg>
                     </span>
 
                     <?php $popup_container_inner_inline_css = Helper::generate_inline_css($popup_id, $popup_settings, 'popup_container_inner'); ?>

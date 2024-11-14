@@ -86,6 +86,12 @@ class Coupon_Meta_Boxes {
 			'class'  => 'woolentor_coupon_country',
         ];
 
+        $tabs['woolentor_coupon_url'] = [
+			'label'  => esc_html__( 'URL Coupons', 'woolentor' ),
+			'target' => 'woolentor_coupon_url',
+			'class'  => 'woolentor_coupon_url',
+        ];
+
 		return $tabs;
 	}
 
@@ -296,6 +302,13 @@ class Coupon_Meta_Boxes {
                 <!-- Country restriction end -->
 
             </div>
+            <!-- Country restriction End -->
+
+            <!-- URL Coupon Field Start -->
+            <div id="woolentor_coupon_url" class="panel woocommerce_options_panel">
+                <?php do_action('woolentor_coupon_url_fields', $coupon_id); ?>
+            </div>
+            <!-- URL Coupon Field End -->
         <?php
     }
 
@@ -349,6 +362,79 @@ class Coupon_Meta_Boxes {
                             'value'       => '',
                             'custom_attributes' =>[ "disabled" => true ]
                         ]);
+                    ?>
+                </fieldset>
+            </div>
+        <?php
+    }
+
+    /**
+     * URL Pro Field
+     * @param mixed $coupon_id
+     * @return void
+     */
+    public function pro_url_option_field( $coupon_id ){
+        ?>
+            <div class="woolentor-coupon-pro-options options_group" style="border-top:0;">
+                <fieldset>
+                    <legend><?php esc_html_e('Pro','woolentor');?></legend>
+                    <?php
+
+                        woocommerce_wp_checkbox([
+                            'id'          => 'woolentor_coupon_url_enable',
+                            'value'       => 'no',
+                            'label'       => esc_html__( 'Enable URL Coupon', 'woolentor' ),
+                            'description' => esc_html__( 'You can enable or disable the coupon URL functionality here.', 'woolentor' ),
+                            'desc_tip'    => false,
+                            'custom_attributes' =>[ "disabled" => true ]
+                        ]);
+
+                        woocommerce_wp_text_input([
+                            'id'                => 'woolentor_coupon_url',
+                            'label'             => esc_html__( 'Coupon URL', 'woolentor' ),
+                            'description'       => esc_html__( 'When visitors use this link, the coupon code will be automatically applied to their cart.', 'woolentor' ),
+                            'type'              => 'text',
+                            'data_type'         => 'text',
+                            'value'             => '',
+                            'custom_attributes' => [ 'disabled' => true ],
+                            'desc_tip'          => true,
+                        ]);
+
+                        woocommerce_wp_text_input([
+                            'id'          => 'woolentor_code_change_in_url',
+                            'label'       => esc_html__( 'Code Change In URL', 'woolentor' ),
+                            'description' => esc_html__( 'You can change the url code to use this field.', 'woolentor' ),
+                            'desc_tip'    => true,
+                            'type'        => 'text',
+                            'data_type'   => 'text',
+                            'value'       => '',
+                            'custom_attributes' => [ 'disabled' => true ],
+                        ]);
+
+                        woocommerce_wp_text_input([
+                            'id'          => 'woolentor_coupon_url_redirect_url',
+                            'label'       => esc_html__( 'Redirect URL', 'woolentor' ),
+                            'description' => esc_html__( 'User redirect URL after apply coupon.', 'woolentor' ),
+                            'desc_tip'    => true,
+                            'type'        => 'text',
+                            'data_type'   => 'text',
+                            'value'       => '',
+                            'placeholder' => wc_get_cart_url(),
+                            'custom_attributes' => [ 'disabled' => true ],
+                        ]);
+
+                        woocommerce_wp_textarea_input([
+                            'id'          => 'woolentor_coupon_url_success_message',
+                            'label'       => esc_html__( 'Apply Success Message', 'woolentor' ),
+                            'description' => esc_html__( 'Message that will be displayed when a coupon has been applied successfully. Leave blank to use the default message.', 'woolentor' ),
+                            'desc_tip'    => true,
+                            'type'        => 'text',
+                            'data_type'   => 'text',
+                            'placeholder' => esc_html__( 'The coupon was applied successfully.', 'woolentor' ),
+                            'value'       => '',
+                            'custom_attributes' => [ 'disabled' => true ],
+                        ]);
+
                     ?>
                 </fieldset>
             </div>

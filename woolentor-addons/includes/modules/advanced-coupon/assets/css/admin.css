@@ -27,3 +27,29 @@
     background: rgba(255, 0, 0, 0.1);
     content: "Pro";
 }
+
+p.form-field.woolentor_coupon_url_field input {
+    padding-right: 30px;
+}
+p.form-field.woolentor_coupon_url_field:before {
+    content: "\f105";
+    position: absolute;
+    margin-left: -30px;
+    height: 31px;
+    width: 30px;
+    text-align: center;
+    line-height: 31px;
+    border-left: 1px solid #ccc;
+    cursor: pointer;
+    font-family: 'dashicons';
+    font-size: 16px;
+}
+p.form-field.woolentor_coupon_url_field.copied:before{
+    content: "\f15e";
+}
+#woolentor_bulk_coupon{
+    display: none;
+}
+#woolentor_bulk_coupon .woocommerce_options_panel label {
+    width: 200px;
+}

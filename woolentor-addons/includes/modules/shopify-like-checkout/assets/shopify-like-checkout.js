@@ -101,7 +101,7 @@
 
         $.ajax({
             type : 'POST',
-            url  : woolentor_slc_params.ajax_url,
+            url: window.location.href + '?wl_ajax=validate_1st_step',
             data : {
                 'action': 'validate_1st_step',
                 'fields': serializeFormData(), // Instance of "$('.woolentor-checkout__section.woolentor-step--info').find(':input').serialize()"

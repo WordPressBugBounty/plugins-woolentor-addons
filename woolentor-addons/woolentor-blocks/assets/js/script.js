@@ -249,7 +249,7 @@
      */
     woolentorToolTips: function (element, content) {
       if (content == "html") {
-        var tipText = element.html();
+        var tipText = element.text();
       } else {
         var tipText = element.attr("title");
       }

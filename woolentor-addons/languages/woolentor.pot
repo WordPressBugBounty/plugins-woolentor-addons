@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: ShopLentor – WooCommerce Builder for Elementor & "
 "Gutenberg\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-23 09:25+0000\n"
+"POT-Creation-Date: 2024-11-12 08:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Loco-Version: 2.6.11; wp-6.6.2\n"
 "X-Domain: woolentor"
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:125
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:131
 msgid " (Only for block checkout)"
 msgstr ""
 
@@ -257,6 +257,10 @@ msgstr ""
 msgid "Add New Badge"
 msgstr ""
 
+#: includes/modules/advanced-coupon/includes/classes/Admin.php:62
+msgid "Add new coupon"
+msgstr ""
+
 #: includes/admin/include/class.template_cpt.php:53
 msgid "Add New Template"
 msgstr ""
@@ -366,8 +370,8 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:236
-#: includes/modules/advanced-coupon/includes/classes/Admin/Fields.php:30
+#: includes/modules/class.module-manager.php:249
+#: includes/modules/advanced-coupon/includes/classes/Admin/Fields.php:36
 msgid "Advanced Coupon"
 msgstr ""
 
@@ -417,7 +421,7 @@ msgstr ""
 msgid "Ajax Add to Cart (In Product Detail Page)"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:80
+#: includes/modules/class.module-manager.php:93
 msgid "AJAX Search Widget"
 msgstr ""
 
@@ -511,10 +515,10 @@ msgstr ""
 msgid "Allow Order"
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:145
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:201
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:274
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:332
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:151
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:207
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:280
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:345
 msgid "Allowed"
 msgstr ""
 
@@ -556,6 +560,10 @@ msgstr ""
 
 #: includes/modules/shopify-like-checkout/templates/form-coupon.php:21
 msgid "Apply coupon"
+msgstr ""
+
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:428
+msgid "Apply Success Message"
 msgstr ""
 
 #: includes/admin/include/class.template-manager.php:266
@@ -732,6 +740,10 @@ msgstr ""
 msgid "Awaiting product image"
 msgstr ""
 
+#: includes/modules/advanced-coupon/includes/classes/Admin.php:60
+msgid "Back"
+msgstr ""
+
 #: includes/admin/include/template-library/templates_list.php:49
 msgid "Back to Library"
 msgstr ""
@@ -835,7 +847,7 @@ msgstr ""
 msgid "Background Type"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:188
+#: includes/modules/class.module-manager.php:201
 #: includes/admin/templates/dashboard-freevspro.php:125
 msgid "Backorder"
 msgstr ""
@@ -1003,7 +1015,7 @@ msgstr ""
 msgid "Billing address"
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:237
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:243
 msgid "Billing Address."
 msgstr ""
 
@@ -1322,6 +1334,10 @@ msgstr ""
 
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:604
 msgid "Browsers"
+msgstr ""
+
+#: includes/modules/advanced-coupon/includes/classes/Admin.php:59
+msgid "Bulk Coupon Generate"
 msgstr ""
 
 #: includes/addons/wl_onepage_slider.php:294
@@ -1757,6 +1773,10 @@ msgstr ""
 msgid "Close Popup"
 msgstr ""
 
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:405
+msgid "Code Change In URL"
+msgstr ""
+
 #: includes/addons/product_accordion.php:436
 msgid "Collapse Background"
 msgstr ""
@@ -1898,7 +1918,7 @@ msgstr ""
 #: includes/helper-function.php:1502
 #: woolentor-blocks/includes/helper-functions.php:615
 #: includes/addons/wb_product_add_to_cart.php:1292
-#: includes/modules/class.module-manager.php:128
+#: includes/modules/class.module-manager.php:141
 #: woolentor-blocks/production/includes/helper-functions.php:615
 #: woolentor-blocks/build/blocks/product-addtocart/manager.php:115
 #: woolentor-blocks/src/blocks/product-addtocart/manager.php:115
@@ -2088,20 +2108,20 @@ msgstr ""
 msgid "Counter Text Color"
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:249
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:255
 msgid "Country"
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:241
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:242
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:247
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:248
 msgid "Country check in type"
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:285
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:291
 msgid "Country error message"
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:278
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:284
 msgid "Country restrict type"
 msgstr ""
 
@@ -2122,6 +2142,10 @@ msgstr ""
 msgid "Coupon start date error message"
 msgstr ""
 
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:394
+msgid "Coupon URL"
+msgstr ""
+
 #: includes/admin/include/template-library/popup-template.php:32
 msgid "Create a new page from this template"
 msgstr ""
@@ -2139,7 +2163,7 @@ msgstr ""
 msgid "Currency"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:212
+#: includes/modules/class.module-manager.php:225
 #: includes/modules/currency-switcher/includes/classes/Widgets_And_Blocks.php:31
 #: includes/modules/currency-switcher/includes/classes/Widgets_And_Blocks.php:44
 #: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:22
@@ -2440,9 +2464,9 @@ msgstr ""
 msgid "Disable Popup Overlay"
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:146
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:202
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:275
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:152
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:208
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:281
 msgid "Disallowed"
 msgstr ""
 
@@ -2470,13 +2494,13 @@ msgstr ""
 msgid "Dismiss this notice."
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:286
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:292
 msgid ""
 "Display a personalized error message to customers attempting to use a coupon "
 "if the country condition does not match."
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:213
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:219
 msgid ""
 "Display a personalized error message to customers attempting to use a coupon "
 "if the user role condition does not match."
@@ -2577,12 +2601,12 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:332
+#: includes/modules/class.module-manager.php:345
 #: includes/admin/templates/dashboard-freevspro.php:153
 msgid "Email Automation"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:320
+#: includes/modules/class.module-manager.php:333
 #: includes/admin/templates/dashboard-freevspro.php:149
 msgid "Email Customizer"
 msgstr ""
@@ -2625,16 +2649,20 @@ msgid "Enable"
 msgstr ""
 
 #: includes/modules/quickview/includes/classes/Admin/Fields.php:56
-#: includes/modules/advanced-coupon/includes/classes/Admin/Fields.php:40
+#: includes/modules/advanced-coupon/includes/classes/Admin/Fields.php:46
 #: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:57
 #: includes/modules/badges/includes/classes/Admin/Fields.php:45
 msgid "Enable / Disable"
 msgstr ""
 
 #: includes/modules/quickview/includes/classes/Admin/Fields.php:57
-#: includes/modules/advanced-coupon/includes/classes/Admin/Fields.php:41
+#: includes/modules/advanced-coupon/includes/classes/Admin/Fields.php:47
 #: includes/modules/badges/includes/classes/Admin/Fields.php:46
 msgid "Enable / disable this module."
+msgstr ""
+
+#: includes/modules/advanced-coupon/includes/classes/Admin/Fields.php:55
+msgid "Enable / disable URL Coupon."
 msgstr ""
 
 #: includes/addons/wb_product_qr_code.php:62
@@ -2707,6 +2735,10 @@ msgstr ""
 
 #: includes/modules/quickview/includes/classes/Admin/Fields.php:204
 msgid "Enable this to activate AJAX add to cart feature in the popup window."
+msgstr ""
+
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:386
+msgid "Enable URL Coupon"
 msgstr ""
 
 #: includes/addons/wb_product_add_to_cart.php:72
@@ -3062,7 +3094,7 @@ msgstr ""
 msgid "flash"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:176
+#: includes/modules/class.module-manager.php:189
 #: includes/admin/templates/dashboard-freevspro.php:105
 msgid "Flash Sale Countdown"
 msgstr ""
@@ -3167,6 +3199,10 @@ msgstr ""
 msgid "General Style"
 msgstr ""
 
+#: includes/modules/advanced-coupon/includes/classes/Admin.php:61
+msgid "Generate Bulk Coupon"
+msgstr ""
+
 #: includes/addons/wb_customer_review.php:157
 msgid "Gerald Gilbert"
 msgstr ""
@@ -3198,7 +3234,7 @@ msgstr ""
 msgid "Gradient Color"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:296
+#: includes/modules/class.module-manager.php:309
 #: includes/admin/templates/dashboard-freevspro.php:181
 msgid "GTM Conversion Tracking"
 msgstr ""
@@ -4235,6 +4271,12 @@ msgstr ""
 msgid "Message is required."
 msgstr ""
 
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:429
+msgid ""
+"Message that will be displayed when a coupon has been applied successfully. "
+"Leave blank to use the default message."
+msgstr ""
+
 #: includes/addons/wb_product_meta.php:43
 #: includes/modules/quickview/includes/classes/Frontend/Popup_Manager.php:83
 #: includes/modules/quickview/includes/classes/Admin/Fields.php:187
@@ -4731,7 +4773,7 @@ msgstr ""
 msgid "order"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:344
+#: includes/modules/class.module-manager.php:357
 #: includes/admin/templates/dashboard-freevspro.php:141
 msgid "Order Bump"
 msgstr ""
@@ -4882,7 +4924,7 @@ msgstr ""
 msgid "Parent Item:"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:272
+#: includes/modules/class.module-manager.php:285
 #: includes/admin/templates/dashboard-freevspro.php:157
 msgid "Partial Payment"
 msgstr ""
@@ -4905,7 +4947,7 @@ msgstr ""
 msgid "Payment & shipping methods restriction"
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:343
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:356
 msgid "Payment error message"
 msgstr ""
 
@@ -4913,11 +4955,11 @@ msgstr ""
 msgid "Payment Method Disables"
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:321
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:334
 msgid "Payment methods"
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:335
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:348
 msgid "Payment restrict type"
 msgstr ""
 
@@ -5048,7 +5090,7 @@ msgstr ""
 msgid "Popup Area"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:164
+#: includes/modules/class.module-manager.php:177
 #: includes/admin/templates/dashboard-freevspro.php:137
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:34
 msgid "Popup Builder"
@@ -5113,7 +5155,7 @@ msgctxt "Post Type Singular Name"
 msgid "Template Builder"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:284
+#: includes/modules/class.module-manager.php:297
 #: includes/admin/templates/dashboard-freevspro.php:161
 msgid "Pre Orders"
 msgstr ""
@@ -5196,7 +5238,8 @@ msgstr ""
 #: includes/admin/include/template-library/templates_list.php:31
 #: includes/modules/popup-builder/includes/admin/tmpl-popup-builder-modal.php:244
 #: includes/modules/popup-builder/includes/admin/tmpl-popup-builder-modal.php:372
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:311
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:324
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:380
 msgid "Pro"
 msgstr ""
 
@@ -5249,7 +5292,7 @@ msgstr ""
 msgid "Product Badge"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:224
+#: includes/modules/class.module-manager.php:237
 #: includes/modules/badges/includes/classes/Admin/Fields.php:35
 msgid "Product Badges"
 msgstr ""
@@ -5318,7 +5361,7 @@ msgid "Product Description"
 msgstr ""
 
 #: classes/class.widgets_control.php:305
-#: includes/modules/class.module-manager.php:356
+#: includes/modules/class.module-manager.php:369
 #: woolentor-blocks/includes/classes/Blocks_List.php:293
 #: includes/admin/templates/dashboard-freevspro.php:145
 #: woolentor-blocks/production/includes/classes/Blocks_List.php:293
@@ -5631,11 +5674,11 @@ msgstr ""
 msgid "Query String Is"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:380
+#: includes/modules/class.module-manager.php:393
 msgid "Quick Checkout"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:200
+#: includes/modules/class.module-manager.php:213
 #: woolentor-blocks/includes/templates/product-universal.php:161
 #: woolentor-blocks/includes/templates/product-universal.php:210
 #: woolentor-blocks/production/includes/templates/product-universal.php:161
@@ -5758,6 +5801,7 @@ msgid "Redirect to Checkout"
 msgstr ""
 
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:92
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:416
 msgid "Redirect URL"
 msgstr ""
 
@@ -5810,7 +5854,7 @@ msgstr ""
 msgid "Remove image"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:68
+#: includes/modules/class.module-manager.php:81
 #: includes/admin/templates/dashboard-freevspro.php:93
 msgid "Rename Label"
 msgstr ""
@@ -5938,7 +5982,7 @@ msgstr ""
 msgid "Right Space"
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:205
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:211
 msgid "Role restrict type"
 msgstr ""
 
@@ -6050,7 +6094,7 @@ msgstr ""
 msgid "Sale!"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:92
+#: includes/modules/class.module-manager.php:105
 #: includes/admin/templates/dashboard-freevspro.php:97
 msgid "Sales Notification"
 msgstr ""
@@ -6186,7 +6230,7 @@ msgstr ""
 msgid "Select content to show"
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:250
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:256
 msgid "Select Countries"
 msgstr ""
 
@@ -6210,7 +6254,7 @@ msgstr ""
 msgid "Select Option"
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:318
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:331
 msgid "Select Payment Method"
 msgstr ""
 
@@ -6224,7 +6268,7 @@ msgstr ""
 msgid "Select Products"
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:106
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:112
 msgid "Select shipping method"
 msgstr ""
 
@@ -6248,7 +6292,7 @@ msgstr ""
 msgid "Select the categories in which products the badge will be show."
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:178
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:184
 msgid "Select user role"
 msgstr ""
 
@@ -6349,7 +6393,7 @@ msgstr ""
 msgid "Shipping"
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:238
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:244
 msgid "Shipping Address."
 msgstr ""
 
@@ -6357,7 +6401,7 @@ msgstr ""
 msgid "Shipping costs are calculated during checkout."
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:156
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:162
 msgid "Shipping error message"
 msgstr ""
 
@@ -6365,7 +6409,7 @@ msgstr ""
 msgid "Shipping Method"
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:105
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:111
 msgid "Shipping methods"
 msgstr ""
 
@@ -6373,7 +6417,7 @@ msgstr ""
 msgid "Shipping options will be updated during checkout."
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:149
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:155
 msgid "Shipping restrict type"
 msgstr ""
 
@@ -6399,7 +6443,7 @@ msgstr ""
 msgid "Shop page button position"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:140
+#: includes/modules/class.module-manager.php:153
 #: includes/admin/templates/dashboard-freevspro.php:101
 msgid "Shopify Style Checkout"
 msgstr ""
@@ -6464,8 +6508,8 @@ msgid "Show"
 msgstr ""
 
 #: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:53
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:157
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:344
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:163
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:357
 msgid ""
 "Show a personalized error message to customers attempting to use a coupon "
 "before it state date."
@@ -6602,7 +6646,7 @@ msgstr ""
 msgid "Show Variable Product Stock Status"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:368
+#: includes/modules/class.module-manager.php:381
 #: includes/admin/templates/dashboard-freevspro.php:169
 msgid "Side Mini Cart"
 msgstr ""
@@ -6626,7 +6670,7 @@ msgstr ""
 msgid "Single Image"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:104
+#: includes/modules/class.module-manager.php:117
 msgid "Single Product AJAX Add To Cart"
 msgstr ""
 
@@ -6657,7 +6701,7 @@ msgstr ""
 msgid "Size"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:308
+#: includes/modules/class.module-manager.php:321
 msgid "Size Chart"
 msgstr ""
 
@@ -7462,25 +7506,29 @@ msgid ""
 "in this pattern \"%s\""
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:264
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:433
+msgid "The coupon was applied successfully."
+msgstr ""
+
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:270
 msgid ""
 "The coupon will only be applicable if the selected country matches either "
 "the shipping or billing address."
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:322
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:335
 msgid ""
 "The coupon will only be applicable if the selected payment method matches "
 "either condition."
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:135
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:141
 msgid ""
 "The coupon will only be applicable if the selected shipping method matches "
 "either condition."
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:191
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:197
 msgid ""
 "The coupon will only be applicable if the selected user role matches either "
 "condition."
@@ -7518,14 +7566,14 @@ msgstr ""
 msgid "The short description does not set this product."
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:279
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:285
 msgid ""
 "The type of implementation for this restriction. Select \"allowed\" to allow "
 "coupon only to country under the selected countries. Select \"disallowed\" "
 "to only allow coupon to country that don't fall under the selected countries."
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:336
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:349
 msgid ""
 "The type of implementation for this restriction. Select \"allowed\" to allow "
 "coupon only to payment method under the selected method. Select "
@@ -7533,7 +7581,7 @@ msgid ""
 "selected method."
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:150
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:156
 msgid ""
 "The type of implementation for this restriction. Select \"allowed\" to allow "
 "coupon only to shipping method under the selected method. Select "
@@ -7541,7 +7589,7 @@ msgid ""
 "selected method."
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:206
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:212
 msgid ""
 "The type of implementation for this restriction. Select \"allowed\" to allow "
 "coupon only to user role under the selected method. Select \"disallowed\" to "
@@ -7569,11 +7617,11 @@ msgid ""
 "been entered correctly, or contact us if you need any help."
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:348
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:361
 msgid "This coupon is not applicable with your selected payment method."
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:161
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:167
 msgid "This coupon is not applicable with your selected shipping method."
 msgstr ""
 
@@ -7993,6 +8041,15 @@ msgstr ""
 msgid "Upsells"
 msgstr ""
 
+#: includes/modules/advanced-coupon/includes/classes/Admin/Fields.php:63
+msgid "URL Coupon Slug"
+msgstr ""
+
+#: includes/modules/advanced-coupon/includes/classes/Admin/Fields.php:54
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:90
+msgid "URL Coupons"
+msgstr ""
+
 #: classes/class.widgets_control.php:782
 #, php-format
 msgid ""
@@ -8129,7 +8186,11 @@ msgstr ""
 msgid "Use Shortcode"
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:212
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:417
+msgid "User redirect URL after apply coupon."
+msgstr ""
+
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:218
 msgid "User role error message"
 msgstr ""
 
@@ -8137,7 +8198,7 @@ msgstr ""
 msgid "User role restriction"
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:177
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:183
 msgid "User Roles"
 msgstr ""
 
@@ -8162,7 +8223,7 @@ msgstr ""
 msgid "Value Hover Color"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:152
+#: includes/modules/class.module-manager.php:165
 #: includes/admin/templates/dashboard-freevspro.php:129
 msgid "Variation Swatches"
 msgstr ""
@@ -8265,6 +8326,12 @@ msgstr ""
 msgid "When the product tab is off, Then working slider."
 msgstr ""
 
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:395
+msgid ""
+"When visitors use this link, the coupon code will be automatically applied "
+"to their cart."
+msgstr ""
+
 #: classes/class.widgets_control.php:453
 #: includes/admin/include/class.extension-manager.php:67
 msgid "Whols"
@@ -8300,7 +8367,7 @@ msgstr ""
 msgid "Width"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:116
+#: includes/modules/class.module-manager.php:129
 #: includes/admin/templates/dashboard-freevspro.php:121
 #: includes/modules/wishlist/includes/classes/Admin/Dashboard.php:49
 #: includes/modules/wishlist/includes/classes/Admin/Dashboard.php:50
@@ -8863,8 +8930,8 @@ msgstr ""
 msgid "You are not authorized."
 msgstr ""
 
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:217
-#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:290
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:223
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:296
 msgid "You are not eligible to use this coupon."
 msgstr ""
 
@@ -8894,6 +8961,14 @@ msgstr ""
 msgid "You can change table heading text from here."
 msgstr ""
 
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:406
+msgid "You can change the url code to use this field."
+msgstr ""
+
+#: includes/modules/advanced-coupon/includes/classes/Admin/Fields.php:64
+msgid "You can change URL coupon slug from here."
+msgstr ""
+
 #: includes/modules/wishlist/includes/classes/Admin/Admin_Fields.php:237
 msgid ""
 "You can choose the number of wishlist products to display per page. The "
@@ -8911,6 +8986,10 @@ msgstr ""
 #: includes/admin/templates/dashboard-element.php:16
 #: includes/admin/templates/dashboard-module.php:18
 msgid "You can enable or disable all options by one click."
+msgstr ""
+
+#: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:387
+msgid "You can enable or disable the coupon URL functionality here."
 msgstr ""
 
 #: includes/admin/include/template-library/popup-template.php:23

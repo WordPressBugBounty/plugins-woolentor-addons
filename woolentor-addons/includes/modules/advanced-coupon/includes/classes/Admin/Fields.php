@@ -15,7 +15,13 @@ class Fields {
      * @return mixed
      */
     public function admin_fields( $fields ){
-        array_splice( $fields['woolentor_others_tabs']['modules'], 13, 0, $this->sitting_fields() );
+        
+        if( woolentor_is_pro() && method_exists( '\WoolentorPro\Modules\AdvancedCoupon\Admin\Fields', 'sitting_fields') ){
+            array_splice( $fields['woolentor_others_tabs']['modules'], 13, 0, \WoolentorPro\Modules\AdvancedCoupon\Admin\Fields::instance()->sitting_fields() );
+        }else{
+            array_splice( $fields['woolentor_others_tabs']['modules'], 13, 0, $this->sitting_fields() );
+        }
+
         return $fields;
     }
 
@@ -32,7 +38,7 @@ class Fields {
                 'default'=> 'off',
                 'section'  => 'woolentor_advanced_coupon_settings',
                 'option_id' => 'enable',
-                'documentation' => esc_url('https://woolentor.com/doc/'),
+                'documentation' => esc_url('https://woolentor.com/doc/advanced-coupon/'),
                 'require_settings'  => true,
                 'setting_fields' => [
                     [
@@ -42,6 +48,24 @@ class Fields {
                         'type'    => 'checkbox',
                         'default' => 'off',
                         'class'   => 'woolentor-action-field-left'
+                    ],
+                    [
+                        'name'    => 'url_couponp',
+                        'label'   => esc_html__( 'URL Coupons', 'woolentor' ),
+                        'desc'    => esc_html__( 'Enable / disable URL Coupons.', 'woolentor' ),
+                        'type'    => 'checkbox',
+                        'default' => 'off',
+                        'class'   => 'woolentor-action-field-left',
+                        'is_pro'  => true
+                    ],
+                    [
+                        'name'    => 'url_coupon_slugp',
+                        'label'   => esc_html__( 'URL Coupon Slug', 'woolentor' ),
+                        'desc'    => esc_html__( 'You can change URL coupon slug from here.', 'woolentor' ),
+                        'type'    => 'text',
+                        'default' => 'discount',
+                        'class'   => 'woolentor-action-field-left',
+                        'is_pro'  => true
                     ]
 
                 ]

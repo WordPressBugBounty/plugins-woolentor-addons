@@ -1,9 +1,9 @@
-=== ShopLentor – WooCommerce Builder for Elementor & Gutenberg +12 Modules – All in One Solution (formerly WooLentor) ===
+=== ShopLentor – WooCommerce Builder for Elementor & Gutenberg +16 Modules – All in One Solution (formerly WooLentor) ===
 Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, tarekht, aslamhasib
 Tags: Elementor, WooCommerce, WooCommerce Elementor, WooCommerce Builder, WooCommerce Product, Woo Builder, Variation Swatches, woocommerce blocks, Product Slider, Product Compare, Wishlist, Product Filter
 Requires at least: 4.7
-Tested up to: 6.6
-Stable tag: 3.0.0
+Tested up to: 6.7
+Stable tag: 3.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -1103,6 +1103,12 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 
 == Changelog ==
 
+= Version: 3.0.1 - Date: 14-11-2024 =
+* Solved : SVG Icon Showing issue with Popup Builder module in MAC.
+* Solved : Universal Product Layout Tooltip Showing issue with Sydney Theme.
+* Solved : Checkout field validation issue with Shopify like checkout module.
+* Compatibility : Latest WordPress and WooCommerce version.
+
 = Version: 3.0.0 - Date: 24-10-2024 =
 * Added : Advanced Coupon Module.
 * Solved : Specific country validation issue with Shopify Style Checkout Module.
@@ -1609,13 +1615,6 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 * Added : Spinner in shopify style checkout page.
 * Solved : Warning issue in Archive title addon.
 * Solved : Default address field select style issue in shopify style checkout page.
-
-= Version: 2.2.1 - Date: 06-03-2022 =
-* Added : Archive title addon.
-* Added : Breadcrumbs addon.
-* Solved : Product curvy style issue.
-* Solved : Multiple Add to cart button issue in universal layout.
-* Solved : Single product style issue for Blocksy and Woostify theme.
 
 == Installation ==
 This section describes how to install the ShopLentor - WooCommerce Addons for Elementor Page Builder plugin and get it working.

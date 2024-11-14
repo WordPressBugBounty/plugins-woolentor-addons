@@ -42,9 +42,8 @@ class Woolentor_Shopify_Like_Checkout extends \WC_Checkout{
         // Update order review fragments
         add_filter( 'woocommerce_update_order_review_fragments', [ $this, 'woocommerce_update_order_review_fragments_filter' ], 99, 2 );
 
-        // Ajax actions
-        add_action('wp_ajax_validate_1st_step', [ $this, 'validate_1st_step' ] );
-        add_action('wp_ajax_nopriv_validate_1st_step', [ $this, 'validate_1st_step' ] );
+        // Validate first step fields by custom managed ajax
+        add_action('template_redirect', [ $this, 'validate_1st_step' ] );
 
         add_filter('woocommerce_form_field_args', [ $this, 'woocommerce_form_field_args_filter' ], 10 , 3);
     }
@@ -411,10 +410,12 @@ class Woolentor_Shopify_Like_Checkout extends \WC_Checkout{
 
     /**
      * Validate 1st step fields
-     * 
-     * Attached with: wp_ajax_validate_1st_step action
      */
     public function validate_1st_step(){
+        if (!isset($_GET['wl_ajax']) || $_GET['wl_ajax'] !== 'validate_1st_step') {
+            return;
+        }
+
         $post_data = wp_unslash($_POST);
 
         // Verify nonce
