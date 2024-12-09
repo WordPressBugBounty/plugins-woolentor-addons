@@ -1370,12 +1370,22 @@ if( class_exists('WooCommerce') ){
         $value_max = wp_cache_get( $value_max_cache_key );
 
         if ( false === $value_min ) {
-            $value_min = $wpdb->get_var( $wpdb->prepare( "SELECT MIN( CAST( meta_value AS DECIMAL(10, 2) ) ) FROM {$wpdb->postmeta} WHERE meta_key = %s", '_price' ));
+            $value_min = $wpdb->get_var( $wpdb->prepare( "SELECT MIN( CAST( meta_value AS DECIMAL(10, 2) ) ) 
+                FROM {$wpdb->postmeta} 
+                WHERE meta_key = %s 
+                AND meta_value REGEXP '^[0-9]+(\.[0-9]+)?$'", 
+                '_price' 
+            ));
             wp_cache_set( $value_min_cache_key, $value_min );
         }
 
         if ( false === $value_max ) {
-            $value_max = $wpdb->get_var( $wpdb->prepare( "SELECT MAX( CAST( meta_value AS DECIMAL(10, 2) ) ) FROM {$wpdb->postmeta} WHERE meta_key = %s", '_price' ));
+            $value_max = $wpdb->get_var( $wpdb->prepare( "SELECT MAX( CAST( meta_value AS DECIMAL(10, 2) ) ) 
+                FROM {$wpdb->postmeta} 
+                WHERE meta_key = %s 
+                AND meta_value REGEXP '^[0-9]+(\.[0-9]+)?$'", 
+                '_price' 
+            ));
             wp_cache_set( $value_max_cache_key, $value_max );
         }
 

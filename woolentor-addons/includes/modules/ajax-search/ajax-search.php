@@ -155,7 +155,9 @@ class Ajax_Search{
 								<?php
 									foreach( $category_list as $cat_key => $cat ){
 										$term_object = get_term( $cat_key );
-										echo '<option value="'.esc_attr( $term_object->slug ).'" data-value="'.esc_attr($cat_key).'" '.selected( ($selected_cat === $term_object->slug), true, false ).'>'.esc_html( $cat ).'</option>';
+										$term_slug = is_wp_error($term_object) ? "" : ($term_object->slug ? $term_object->slug : "");
+
+										echo '<option value="'.esc_attr( $term_slug ).'" data-value="'.esc_attr($cat_key).'" '.selected( ($selected_cat === $term_slug), true, false ).'>'.esc_html( $cat ).'</option>';
 									}
 								?>
 							</select>

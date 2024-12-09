@@ -255,6 +255,18 @@ class Woolentor_Module_Manager{
                 'main_class' => '\Woolentor\Modules\AdvancedCoupon\Advanced_Coupon',
                 'is_pro'     => false,
                 'manage_setting' => true
+            ],
+            'cart-reserve-time' => [
+                'slug'   =>'cart-reserve-time',
+                'title'  => esc_html__('Cart Reserved Timer','woolentor'),
+                'option' => [
+                    'key'     => 'enable',
+                    'section' => 'woolentor_cart_reserve_timer_settings',
+                    'default' => 'off'
+                ],
+                'main_class' => '\Woolentor\Modules\CartReserveTime\Cart_Reserve_Time',
+                'is_pro'     => false,
+                'manage_setting' => true
             ]
 
         ];

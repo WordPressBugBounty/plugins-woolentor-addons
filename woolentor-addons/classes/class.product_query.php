@@ -151,6 +151,28 @@ class WooLentorProductQuery{
 
             $woo_taxonomies = get_object_taxonomies( 'product' );
 
+
+            // Filter With Currenct taxonomies page filter
+            if( isset( $_GET['min_price'] ) && isset( $_GET['max_price'] ) ){
+                $termobj = get_queried_object();
+                $get_all_taxonomies = woolentor_get_taxonomies();
+
+                if ( is_shop() || ( is_tax('product_cat') && is_product_category() ) || ( is_tax('product_tag') && is_product_tag() ) || ( isset( $termobj->taxonomy ) && is_tax( $termobj->taxonomy ) && array_key_exists( $termobj->taxonomy, $get_all_taxonomies ) ) ) {
+                    if(( is_tax('product_cat') && is_product_category() ) || ( is_tax('product_tag') && is_product_tag() )){
+                        $term_id = $termobj->term_id;
+                        $tax_query[] = array(
+                            array(
+                                'taxonomy' => $termobj->taxonomy,
+                                'terms' => $term_id,
+                                'field' => 'term_id',
+                                'include_children' => true
+                            )
+                        );
+                    }
+                }
+            }
+
+
             $queries =[];
             $new_queries = [];
             parse_str( $_SERVER['QUERY_STRING' ], $queries );
@@ -252,7 +274,7 @@ class WooLentorProductQuery{
     public function get_meta_query(){
         $meta_query = WC()->query->get_meta_query();
 
-        if( isset( $_GET['min_price'] ) || isset( $_GET['max_price'] ) ){
+        if( isset( $_GET['min_price'] ) && isset( $_GET['max_price'] ) ){
             $meta_query = array_merge( array('relation' => 'AND'), $meta_query );
             $meta_query[] = array(
                 [

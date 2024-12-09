@@ -26,10 +26,13 @@ class Woolentor_Wl_Recently_Viewed_Products_Widget extends Widget_Base {
     }
 
     public function get_style_depends(){
-        return [
-            'woolentor-widgets',
-        ];
+        return [ 'woolentor-widgets','slick'];
     }
+
+    public function get_script_depends() {
+        return ['slick','woolentor-widgets-scripts'];
+    }
+
     public function get_keywords(){
         return ['recent product view','recently view','recent view product'];
     }
@@ -66,6 +69,16 @@ class Woolentor_Wl_Recently_Viewed_Products_Widget extends Widget_Base {
                 ]
             );
 
+            $this->add_control(
+                'slider_on',
+                [
+                    'label' => __( 'Slider On', 'woolentor' ),
+                    'type' => Controls_Manager::SWITCHER,
+                    'return_value' => 'yes',
+                    'separator'=>'before',
+                ]
+            );
+
             $this->add_responsive_control(
                 'grid_column',
                 [
@@ -86,6 +99,9 @@ class Woolentor_Wl_Recently_Viewed_Products_Widget extends Widget_Base {
                     ],
                     'label_block' => true,
                     'prefix_class' => 'wl-columns%s-',
+                    'condition'=>[
+                        'slider_on!'=>'yes',
+                    ]
                 ]
             );
 
@@ -121,6 +137,190 @@ class Woolentor_Wl_Recently_Viewed_Products_Widget extends Widget_Base {
                     'label_off'     => __( 'No', 'woolentor' ),
                     'return_value'  => 'yes',
                     'default'       => 'no',
+                ]
+            );
+
+        $this->end_controls_section();
+
+        // Slider Option
+        $this->start_controls_section(
+            'section_slider_option',
+            [
+                'label' => esc_html__( 'Slider Option', 'woolentor' ),
+                'condition'=>[
+                    'slider_on'=>'yes',
+                ]
+            ]
+        );
+            
+            $this->add_control(
+                'slitems',
+                [
+                    'label' => esc_html__( 'Slider Items', 'woolentor' ),
+                    'type' => Controls_Manager::NUMBER,
+                    'min' => 1,
+                    'step' => 1,
+                    'default' => 4
+                ]
+            );
+
+            $this->add_control(
+                'slarrows',
+                [
+                    'label' => esc_html__( 'Slider Arrow', 'woolentor' ),
+                    'type' => Controls_Manager::SWITCHER,
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                ]
+            );
+
+            $this->add_control(
+                'sldots',
+                [
+                    'label' => esc_html__( 'Slider dots', 'woolentor' ),
+                    'type' => Controls_Manager::SWITCHER,
+                    'return_value' => 'yes',
+                    'default' => 'no'
+                ]
+            );
+
+            $this->add_control(
+                'slpause_on_hover',
+                [
+                    'type' => Controls_Manager::SWITCHER,
+                    'label_off' => __('No', 'woolentor'),
+                    'label_on' => __('Yes', 'woolentor'),
+                    'return_value' => 'yes',
+                    'default' => 'yes',
+                    'label' => __('Pause on Hover?', 'woolentor'),
+                ]
+            );
+
+            $this->add_control(
+                'slautolay',
+                [
+                    'label' => esc_html__( 'Slider autoplay', 'woolentor' ),
+                    'type' => Controls_Manager::SWITCHER,
+                    'return_value' => 'yes',
+                    'separator' => 'before',
+                    'default' => 'no'
+                ]
+            );
+
+            $this->add_control(
+                'slautoplay_speed',
+                [
+                    'label' => __('Autoplay speed', 'woolentor'),
+                    'type' => Controls_Manager::NUMBER,
+                    'default' => 3000,
+                    'condition' => [
+                        'slautolay' => 'yes',
+                    ]
+                ]
+            );
+
+            $this->add_control(
+                'slanimation_speed',
+                [
+                    'label' => __('Autoplay animation speed', 'woolentor'),
+                    'type' => Controls_Manager::NUMBER,
+                    'default' => 300,
+                    'condition' => [
+                        'slautolay' => 'yes',
+                    ]
+                ]
+            );
+
+            $this->add_control(
+                'slscroll_columns',
+                [
+                    'label' => __('Slider item to scroll', 'woolentor'),
+                    'type' => Controls_Manager::NUMBER,
+                    'min' => 1,
+                    'step' => 1,
+                    'default' => 3,
+                ]
+            );
+
+            $this->add_control(
+                'heading_tablet',
+                [
+                    'label' => __( 'Tablet', 'woolentor' ),
+                    'type' => Controls_Manager::HEADING,
+                    'separator' => 'after',
+                ]
+            );
+
+            $this->add_control(
+                'sltablet_display_columns',
+                [
+                    'label' => __('Slider Items', 'woolentor'),
+                    'type' => Controls_Manager::NUMBER,
+                    'min' => 1,
+                    'step' => 1,
+                    'default' => 2,
+                ]
+            );
+
+            $this->add_control(
+                'sltablet_scroll_columns',
+                [
+                    'label' => __('Slider item to scroll', 'woolentor'),
+                    'type' => Controls_Manager::NUMBER,
+                    'min' => 1,
+                    'step' => 1,
+                    'default' => 2,
+                ]
+            );
+
+            $this->add_control(
+                'sltablet_width',
+                [
+                    'label' => __('Tablet Resolution', 'woolentor'),
+                    'description' => __('The resolution to the tablet.', 'woolentor'),
+                    'type' => Controls_Manager::NUMBER,
+                    'default' => 750,
+                ]
+            );
+
+            $this->add_control(
+                'heading_mobile',
+                [
+                    'label' => __( 'Mobile Phone', 'woolentor' ),
+                    'type' => Controls_Manager::HEADING,
+                    'separator' => 'after',
+                ]
+            );
+
+            $this->add_control(
+                'slmobile_display_columns',
+                [
+                    'label' => __('Slider Items', 'woolentor'),
+                    'type' => Controls_Manager::NUMBER,
+                    'min' => 1,
+                    'step' => 1,
+                    'default' => 1,
+                ]
+            );
+
+            $this->add_control(
+                'slmobile_scroll_columns',
+                [
+                    'label' => __('Slider item to scroll', 'woolentor'),
+                    'type' => Controls_Manager::NUMBER,
+                    'min' => 1,
+                    'step' => 1,
+                    'default' => 1,
+                ]
+            );
+
+            $this->add_control(
+                'slmobile_width',
+                [
+                    'label' => __('Mobile Resolution', 'woolentor'),
+                    'description' => __('The resolution to mobile.', 'woolentor'),
+                    'type' => Controls_Manager::NUMBER,
+                    'default' => 480,
                 ]
             );
 
@@ -729,6 +929,282 @@ class Woolentor_Wl_Recently_Viewed_Products_Widget extends Widget_Base {
 
         $this->end_controls_section();
 
+        // Slider Button style
+        $this->start_controls_section(
+            'products-slider-controller-style',
+            [
+                'label' => esc_html__( 'Slider Controller Style', 'woolentor' ),
+                'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'slider_on' => 'yes',
+                ]
+            ]
+        );
+
+            $this->start_controls_tabs('product_sliderbtn_style_tabs');
+
+                // Slider Button style Normal
+                $this->start_controls_tab(
+                    'product_sliderbtn_style_normal_tab',
+                    [
+                        'label' => __( 'Normal', 'woolentor' ),
+                    ]
+                );
+
+                    $this->add_control(
+                        'button_style_heading',
+                        [
+                            'label' => __( 'Navigation Arrow', 'woolentor' ),
+                            'type' => Controls_Manager::HEADING,
+                        ]
+                    );
+
+                    $this->add_responsive_control(
+                        'nvigation_position',
+                        [
+                            'label' => __( 'Position', 'woolentor' ),
+                            'type' => Controls_Manager::SLIDER,
+                            'size_units' => [ 'px', '%' ],
+                            'range' => [
+                                'px' => [
+                                    'min' => 0,
+                                    'max' => 1000,
+                                    'step' => 1,
+                                ],
+                                '%' => [
+                                    'min' => 0,
+                                    'max' => 100,
+                                ],
+                            ],
+                            'selectors' => [
+                                '{{WRAPPER}} .product-slider .slick-arrow' => 'top: {{SIZE}}{{UNIT}};',
+                            ],
+                        ]
+                    );
+
+                    $this->add_control(
+                        'button_color',
+                        [
+                            'label' => __( 'Color', 'woolentor' ),
+                            'type' => Controls_Manager::COLOR,
+                            'selectors' => [
+                                '{{WRAPPER}} .product-slider .slick-arrow' => 'color: {{VALUE}};',
+                            ],
+                        ]
+                    );
+
+                    $this->add_control(
+                        'button_bg_color',
+                        [
+                            'label' => __( 'Background Color', 'woolentor' ),
+                            'type' => Controls_Manager::COLOR,
+                            'selectors' => [
+                                '{{WRAPPER}} .product-slider .slick-arrow' => 'background-color: {{VALUE}} !important;',
+                            ],
+                        ]
+                    );
+
+                    $this->add_group_control(
+                        Group_Control_Border::get_type(),
+                        [
+                            'name' => 'button_border',
+                            'label' => __( 'Border', 'woolentor' ),
+                            'selector' => '{{WRAPPER}} .product-slider .slick-arrow',
+                        ]
+                    );
+
+                    $this->add_responsive_control(
+                        'button_border_radius',
+                        [
+                            'label' => esc_html__( 'Border Radius', 'woolentor' ),
+                            'type' => Controls_Manager::DIMENSIONS,
+                            'selectors' => [
+                                '{{WRAPPER}} .product-slider .slick-arrow' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
+                            ],
+                        ]
+                    );
+
+                    $this->add_responsive_control(
+                        'button_padding',
+                        [
+                            'label' => __( 'Padding', 'woolentor' ),
+                            'type' => Controls_Manager::DIMENSIONS,
+                            'size_units' => [ 'px', '%', 'em' ],
+                            'selectors' => [
+                                '{{WRAPPER}} .product-slider .slick-arrow' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
+                            ],
+                        ]
+                    );
+
+                    $this->add_control(
+                        'button_style_dots_heading',
+                        [
+                            'label' => __( 'Navigation Dots', 'woolentor' ),
+                            'type' => Controls_Manager::HEADING,
+                        ]
+                    );
+
+                        $this->add_responsive_control(
+                            'dots_position',
+                            [
+                                'label' => __( 'Position', 'woolentor' ),
+                                'type' => Controls_Manager::SLIDER,
+                                'size_units' => [ 'px', '%' ],
+                                'range' => [
+                                    'px' => [
+                                        'min' => 0,
+                                        'max' => 1000,
+                                        'step' => 1,
+                                    ],
+                                    '%' => [
+                                        'min' => 0,
+                                        'max' => 100,
+                                    ],
+                                ],
+                                'selectors' => [
+                                    '{{WRAPPER}} .product-slider .slick-dots' => 'left: {{SIZE}}{{UNIT}};',
+                                ],
+                            ]
+                        );
+
+                        $this->add_control(
+                            'dots_bg_color',
+                            [
+                                'label' => __( 'Background Color', 'woolentor' ),
+                                'type' => Controls_Manager::COLOR,
+                                'selectors' => [
+                                    '{{WRAPPER}} .product-slider .slick-dots li button' => 'background-color: {{VALUE}} !important;',
+                                ],
+                            ]
+                        );
+
+                        $this->add_group_control(
+                            Group_Control_Border::get_type(),
+                            [
+                                'name' => 'dots_border',
+                                'label' => __( 'Border', 'woolentor' ),
+                                'selector' => '{{WRAPPER}} .product-slider .slick-dots li button',
+                            ]
+                        );
+
+                        $this->add_responsive_control(
+                            'dots_border_radius',
+                            [
+                                'label' => esc_html__( 'Border Radius', 'woolentor' ),
+                                'type' => Controls_Manager::DIMENSIONS,
+                                'selectors' => [
+                                    '{{WRAPPER}} .product-slider .slick-dots li button' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
+                                ],
+                            ]
+                        );
+
+                $this->end_controls_tab();// Normal button style end
+
+                // Button style Hover
+                $this->start_controls_tab(
+                    'product_sliderbtn_style_hover_tab',
+                    [
+                        'label' => __( 'Hover', 'woolentor' ),
+                    ]
+                );
+
+                    $this->add_control(
+                        'button_style_arrow_heading',
+                        [
+                            'label' => __( 'Navigation', 'woolentor' ),
+                            'type' => Controls_Manager::HEADING,
+                        ]
+                    );
+
+                    $this->add_control(
+                        'button_hover_color',
+                        [
+                            'label' => __( 'Color', 'woolentor' ),
+                            'type' => Controls_Manager::COLOR,
+                            'selectors' => [
+                                '{{WRAPPER}} .product-slider .slick-arrow:hover' => 'color: {{VALUE}};',
+                            ],
+                        ]
+                    );
+
+                    $this->add_control(
+                        'button_hover_bg_color',
+                        [
+                            'label' => __( 'Background', 'woolentor' ),
+                            'type' => Controls_Manager::COLOR,
+                            'selectors' => [
+                                '{{WRAPPER}} .product-slider .slick-arrow:hover' => 'background-color: {{VALUE}} !important;',
+                            ],
+                        ]
+                    );
+
+                    $this->add_group_control(
+                        Group_Control_Border::get_type(),
+                        [
+                            'name' => 'button_hover_border',
+                            'label' => __( 'Border', 'woolentor' ),
+                            'selector' => '{{WRAPPER}} .product-slider .slick-arrow:hover',
+                        ]
+                    );
+
+                    $this->add_responsive_control(
+                        'button_hover_border_radius',
+                        [
+                            'label' => esc_html__( 'Border Radius', 'woolentor' ),
+                            'type' => Controls_Manager::DIMENSIONS,
+                            'selectors' => [
+                                '{{WRAPPER}} .product-slider .slick-arrow:hover' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
+                            ],
+                        ]
+                    );
+
+
+                    $this->add_control(
+                        'button_style_dotshov_heading',
+                        [
+                            'label' => __( 'Navigation Dots', 'woolentor' ),
+                            'type' => Controls_Manager::HEADING,
+                        ]
+                    );
+
+                        $this->add_control(
+                            'dots_hover_bg_color',
+                            [
+                                'label' => __( 'Background Color', 'woolentor' ),
+                                'type' => Controls_Manager::COLOR,
+                                'selectors' => [
+                                    '{{WRAPPER}} .product-slider .slick-dots li button:hover' => 'background-color: {{VALUE}} !important;',
+                                    '{{WRAPPER}} .product-slider .slick-dots li.slick-active button' => 'background-color: {{VALUE}} !important;',
+                                ],
+                            ]
+                        );
+
+                        $this->add_group_control(
+                            Group_Control_Border::get_type(),
+                            [
+                                'name' => 'dots_border_hover',
+                                'label' => __( 'Border', 'woolentor' ),
+                                'selector' => '{{WRAPPER}} .product-slider .slick-dots li button:hover',
+                            ]
+                        );
+
+                        $this->add_responsive_control(
+                            'dots_border_radius_hover',
+                            [
+                                'label' => esc_html__( 'Border Radius', 'woolentor' ),
+                                'type' => Controls_Manager::DIMENSIONS,
+                                'selectors' => [
+                                    '{{WRAPPER}} .product-slider .slick-dots li button:hover' => 'border-radius: {{TOP}}px {{RIGHT}}px {{BOTTOM}}px {{LEFT}}px;',
+                                ],
+                            ]
+                        );
+
+                $this->end_controls_tab();// Hover button style end
+
+            $this->end_controls_tabs();
+
+        $this->end_controls_section(); // Tab option end
+
     }
 
 
@@ -758,6 +1234,40 @@ class Woolentor_Wl_Recently_Viewed_Products_Widget extends Widget_Base {
             }
         }
 
+
+        // Slider Options
+        $slider_main_div_style = '';
+        if( $settings['slider_on'] === 'yes' ){
+
+            $is_rtl = is_rtl();
+            $direction = $is_rtl ? 'rtl' : 'ltr';
+            $slider_settings = [
+                'arrows' => ('yes' === $settings['slarrows']),
+                'dots' => ('yes' === $settings['sldots']),
+                'autoplay' => ('yes' === $settings['slautolay']),
+                'autoplay_speed' => absint($settings['slautoplay_speed']),
+                'animation_speed' => absint($settings['slanimation_speed']),
+                'pause_on_hover' => ('yes' === $settings['slpause_on_hover']),
+                'rtl' => $is_rtl,
+            ];
+
+            $slider_responsive_settings = [
+                'product_items' => absint($settings['slitems']),
+                'scroll_columns' => absint($settings['slscroll_columns']),
+                'tablet_width' => absint($settings['sltablet_width']),
+                'tablet_display_columns' => absint($settings['sltablet_display_columns']),
+                'tablet_scroll_columns' => absint($settings['sltablet_scroll_columns']),
+                'mobile_width' => absint($settings['slmobile_width']),
+                'mobile_display_columns' => absint($settings['slmobile_display_columns']),
+                'mobile_scroll_columns' => absint($settings['slmobile_scroll_columns']),
+
+            ];
+            $slider_settings = array_merge( $slider_settings, $slider_responsive_settings );
+            $slider_main_div_style = "style='display:none'";
+        }else{
+            $slider_settings = '';
+        }
+
         $products_list_value = array_values( $products_list );
 
         if( $settings['order'] == 'DESC' ){
@@ -773,9 +1283,11 @@ class Woolentor_Wl_Recently_Viewed_Products_Widget extends Widget_Base {
             'post__in'             => isset( $products_list_value ) ? $products_list_value : [],
         );
         $products = new \WP_Query( $args );
+        
+        //echo '<div class="wl-row '.( $settings['no_gutters'] === 'yes' ? 'wlno-gutters' : '' ).' '.( $settings['slider_on'] === 'yes' ? 'product-slider' : '' ).' " data-settings='.wp_json_encode( $slider_settings ).' '.$slider_main_div_style.'>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
         if ( $products->have_posts() ) {
-            echo '<div class="wl-row '.( $same_height_box == 'yes' ? 'woolentor-product-same-height' : '' ).'">';
+            echo '<div class="wl-row '.( $same_height_box == 'yes' ? 'woolentor-product-same-height' : '' ).' '.( $settings['slider_on'] === 'yes' ? 'product-slider' : '' ).' " data-settings='.wp_json_encode( $slider_settings ).' '.$slider_main_div_style.'>';
             while( $products->have_posts() ): $products->the_post();
                 ?>
                     <div class="<?php echo esc_attr( $collumval ); ?>">

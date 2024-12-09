@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: ShopLentor – WooCommerce Builder for Elementor & "
 "Gutenberg\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-12 08:10+0000\n"
+"POT-Creation-Date: 2024-12-05 06:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.6.11; wp-6.6.2\n"
+"X-Loco-Version: 2.6.14; wp-6.7.1\n"
 "X-Domain: woolentor"
 
 #: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:131
@@ -265,7 +265,7 @@ msgstr ""
 msgid "Add New Template"
 msgstr ""
 
-#: includes/addons/wl_recently_viewed_products.php:406
+#: includes/addons/wl_recently_viewed_products.php:606
 #: includes/addons/wb_wishsuite_table.php:347
 #: woolentor-blocks/includes/classes/Api/Api.php:258
 #: woolentor-blocks/production/includes/classes/Api/Api.php:258
@@ -303,8 +303,8 @@ msgstr ""
 msgid "Add to Cart Button Text"
 msgstr ""
 
-#: includes/helper-function.php:1478 includes/helper-function.php:1479
-#: includes/helper-function.php:1502
+#: includes/helper-function.php:1488 includes/helper-function.php:1489
+#: includes/helper-function.php:1512
 #: woolentor-blocks/includes/helper-functions.php:598
 #: woolentor-blocks/includes/helper-functions.php:599
 #: woolentor-blocks/includes/helper-functions.php:615
@@ -450,12 +450,13 @@ msgstr ""
 #: includes/addons/wb_product_title.php:103
 #: includes/addons/wb_product_sku.php:60
 #: includes/addons/wb_customer_review.php:286
-#: includes/addons/wl_recently_viewed_products.php:246
+#: includes/addons/wl_recently_viewed_products.php:446
 #: includes/addons/product_tabs.php:241 includes/addons/product_tabs.php:962
 #: includes/addons/product_tabs.php:1041
 #: includes/addons/wl_category_grid.php:730
 #: includes/addons/wb_product_tags.php:60
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:55
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:200
 msgid "Alignment"
 msgstr ""
 
@@ -542,6 +543,11 @@ msgid ""
 "An all-in-one WooCommerce solution to create a beautiful WooCommerce store."
 msgstr ""
 
+#: includes/modules/cart-reserve-time/includes/classes/Frontend.php:100
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:65
+msgid "An item of your cart is in high demand."
+msgstr ""
+
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:259
 msgid "Animation"
 msgstr ""
@@ -564,6 +570,10 @@ msgstr ""
 
 #: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:428
 msgid "Apply Success Message"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:146
+msgid "Apply timer to specific product categories."
 msgstr ""
 
 #: includes/admin/include/class.template-manager.php:266
@@ -660,7 +670,7 @@ msgstr ""
 #: includes/addons/product_image_accordion.php:167
 #: includes/addons/product_accordion.php:188
 #: includes/addons/wl_category.php:137 includes/addons/product_curvy.php:223
-#: includes/addons/wl_recently_viewed_products.php:64
+#: includes/addons/wl_recently_viewed_products.php:67
 #: includes/addons/product_tabs.php:182
 #: includes/addons/wl_category_grid.php:129
 msgid "Ascending"
@@ -698,12 +708,16 @@ msgstr ""
 msgid "Auto convert Dropdowns to Label Swatch"
 msgstr ""
 
-#: includes/addons/wl_testimonial.php:367 includes/addons/product_tabs.php:515
+#: includes/addons/wl_testimonial.php:367
+#: includes/addons/wl_recently_viewed_products.php:225
+#: includes/addons/product_tabs.php:515
 #: includes/addons/wl_category_grid.php:392
 msgid "Autoplay animation speed"
 msgstr ""
 
-#: includes/addons/wl_testimonial.php:354 includes/addons/product_tabs.php:502
+#: includes/addons/wl_testimonial.php:354
+#: includes/addons/wl_recently_viewed_products.php:213
+#: includes/addons/product_tabs.php:502
 #: includes/addons/wl_category_grid.php:380
 msgid "Autoplay speed"
 msgstr ""
@@ -792,6 +806,7 @@ msgstr ""
 #: includes/addons/wb_image_marker.php:207
 #: includes/addons/wb_image_marker.php:260
 #: includes/addons/wb_customer_review.php:327
+#: includes/addons/wl_recently_viewed_products.php:1133
 #: includes/addons/wb_wishsuite_table.php:398
 #: includes/addons/wb_wishsuite_table.php:430
 #: includes/addons/product_tabs.php:785
@@ -819,10 +834,13 @@ msgstr ""
 #: includes/addons/wb_product_suggest_price.php:672
 #: includes/addons/wb_product_suggest_price.php:783
 #: includes/addons/wb_product_suggest_price.php:815
-#: includes/addons/wl_recently_viewed_products.php:458
-#: includes/addons/wl_recently_viewed_products.php:510
-#: includes/addons/wl_recently_viewed_products.php:614
-#: includes/addons/wl_recently_viewed_products.php:689
+#: includes/addons/wl_recently_viewed_products.php:658
+#: includes/addons/wl_recently_viewed_products.php:710
+#: includes/addons/wl_recently_viewed_products.php:814
+#: includes/addons/wl_recently_viewed_products.php:889
+#: includes/addons/wl_recently_viewed_products.php:999
+#: includes/addons/wl_recently_viewed_products.php:1073
+#: includes/addons/wl_recently_viewed_products.php:1173
 #: includes/addons/wb_wishsuite_table.php:231
 #: includes/addons/product_tabs.php:670 includes/addons/product_tabs.php:722
 #: includes/addons/product_tabs.php:826 includes/addons/product_tabs.php:1155
@@ -834,6 +852,7 @@ msgstr ""
 #: includes/addons/wl_category_grid.php:938
 #: includes/addons/wl_category_grid.php:1038
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:222
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:171
 #: includes/modules/compare/includes/classes/Admin/Admin_Fields.php:440
 #: includes/modules/badges/includes/classes/Admin/Fields.php:97
 #: includes/modules/wishlist/includes/classes/Admin/Admin_Fields.php:454
@@ -871,7 +890,7 @@ msgstr ""
 msgid "Backordered"
 msgstr ""
 
-#: includes/addons/wl_recently_viewed_products.php:547
+#: includes/addons/wl_recently_viewed_products.php:747
 msgid "Badge"
 msgstr ""
 
@@ -1080,11 +1099,15 @@ msgstr ""
 #: includes/addons/wb_image_marker.php:331
 #: includes/addons/wb_customer_review.php:337
 #: includes/addons/wb_customer_review.php:370
-#: includes/addons/wl_recently_viewed_products.php:216
-#: includes/addons/wl_recently_viewed_products.php:286
-#: includes/addons/wl_recently_viewed_products.php:470
-#: includes/addons/wl_recently_viewed_products.php:522
-#: includes/addons/wl_recently_viewed_products.php:626
+#: includes/addons/wl_recently_viewed_products.php:416
+#: includes/addons/wl_recently_viewed_products.php:486
+#: includes/addons/wl_recently_viewed_products.php:670
+#: includes/addons/wl_recently_viewed_products.php:722
+#: includes/addons/wl_recently_viewed_products.php:826
+#: includes/addons/wl_recently_viewed_products.php:1011
+#: includes/addons/wl_recently_viewed_products.php:1085
+#: includes/addons/wl_recently_viewed_products.php:1145
+#: includes/addons/wl_recently_viewed_products.php:1186
 #: includes/addons/wb_wishsuite_table.php:99
 #: includes/addons/wb_wishsuite_table.php:127
 #: includes/addons/product_tabs.php:317 includes/addons/product_tabs.php:398
@@ -1173,11 +1196,15 @@ msgstr ""
 #: includes/addons/wb_image_marker.php:339
 #: includes/addons/wb_customer_review.php:345
 #: includes/addons/wb_customer_review.php:378
-#: includes/addons/wl_recently_viewed_products.php:224
-#: includes/addons/wl_recently_viewed_products.php:294
-#: includes/addons/wl_recently_viewed_products.php:478
-#: includes/addons/wl_recently_viewed_products.php:530
-#: includes/addons/wl_recently_viewed_products.php:634
+#: includes/addons/wl_recently_viewed_products.php:424
+#: includes/addons/wl_recently_viewed_products.php:494
+#: includes/addons/wl_recently_viewed_products.php:678
+#: includes/addons/wl_recently_viewed_products.php:730
+#: includes/addons/wl_recently_viewed_products.php:834
+#: includes/addons/wl_recently_viewed_products.php:1019
+#: includes/addons/wl_recently_viewed_products.php:1093
+#: includes/addons/wl_recently_viewed_products.php:1153
+#: includes/addons/wl_recently_viewed_products.php:1194
 #: includes/addons/product_tabs.php:325 includes/addons/product_tabs.php:406
 #: includes/addons/product_tabs.php:691 includes/addons/product_tabs.php:743
 #: includes/addons/product_tabs.php:806 includes/addons/product_tabs.php:848
@@ -1292,7 +1319,7 @@ msgstr ""
 #: includes/addons/wl_product_horizontal_filter.php:411
 #: includes/addons/wl_store_features.php:229
 #: includes/addons/wb_archive_product.php:225
-#: includes/addons/wl_recently_viewed_products.php:701
+#: includes/addons/wl_recently_viewed_products.php:901
 #: includes/addons/wl_category_grid.php:521
 msgid "Box Shadow"
 msgstr ""
@@ -1510,6 +1537,11 @@ msgid ""
 "layout template"
 msgstr ""
 
+#: includes/modules/class.module-manager.php:261
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:36
+msgid "Cart Reserved Timer"
+msgstr ""
+
 #: includes/addons/wb_product_categories.php:43
 msgid "Categories"
 msgstr ""
@@ -1578,7 +1610,7 @@ msgstr[1] ""
 #: includes/addons/wb_product_title.php:111
 #: includes/addons/wb_product_sku.php:68
 #: includes/addons/wb_customer_review.php:294
-#: includes/addons/wl_recently_viewed_products.php:254
+#: includes/addons/wl_recently_viewed_products.php:454
 #: includes/addons/product_tabs.php:249 includes/addons/product_tabs.php:970
 #: includes/addons/product_tabs.php:1049
 #: includes/addons/wl_category_grid.php:738
@@ -1647,6 +1679,10 @@ msgstr ""
 msgid "Choose an icon for the wishlist button from here."
 msgstr ""
 
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:110
+msgid "Choose an icon to display with the message."
+msgstr ""
+
 #: includes/modules/compare/includes/classes/Admin/Admin_Fields.php:197
 msgid "Choose an icon type for the compare button from here."
 msgstr ""
@@ -1701,6 +1737,10 @@ msgstr ""
 #: includes/modules/variation-swatch/includes/Frontend/Woo_Config.php:849
 #: includes/modules/variation-swatch/includes/Frontend/Woo_Config.php:941
 msgid "Clear"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:86
+msgid "Clear Cart"
 msgstr ""
 
 #: includes/modules/popup-builder/includes/admin/tmpl-popup-builder-modal.php:256
@@ -1853,12 +1893,14 @@ msgstr ""
 #: includes/addons/wb_customer_review.php:457
 #: includes/addons/wb_customer_review.php:513
 #: includes/addons/wb_customer_review.php:568
-#: includes/addons/wl_recently_viewed_products.php:326
-#: includes/addons/wl_recently_viewed_products.php:381
-#: includes/addons/wl_recently_viewed_products.php:447
-#: includes/addons/wl_recently_viewed_products.php:499
-#: includes/addons/wl_recently_viewed_products.php:592
-#: includes/addons/wl_recently_viewed_products.php:678
+#: includes/addons/wl_recently_viewed_products.php:526
+#: includes/addons/wl_recently_viewed_products.php:581
+#: includes/addons/wl_recently_viewed_products.php:647
+#: includes/addons/wl_recently_viewed_products.php:699
+#: includes/addons/wl_recently_viewed_products.php:792
+#: includes/addons/wl_recently_viewed_products.php:878
+#: includes/addons/wl_recently_viewed_products.php:988
+#: includes/addons/wl_recently_viewed_products.php:1122
 #: includes/addons/wb_wishsuite_table.php:153
 #: includes/addons/wb_wishsuite_table.php:193
 #: includes/addons/wb_wishsuite_table.php:213
@@ -1902,20 +1944,20 @@ msgstr ""
 #: includes/addons/wb_product_related.php:65
 #: includes/addons/product_curvy.php:75 includes/addons/product_curvy.php:93
 #: includes/addons/wb_customer_review.php:180
-#: includes/addons/wl_recently_viewed_products.php:72
+#: includes/addons/wl_recently_viewed_products.php:85
 #: includes/addons/product_tabs.php:92 includes/addons/wl_category_grid.php:238
 #: includes/addons/wl_category_grid.php:248
 msgid "Columns"
 msgstr ""
 
-#: includes/helper-function.php:1423 includes/addons/product_flash_sale.php:138
+#: includes/helper-function.php:1433 includes/addons/product_flash_sale.php:138
 #: includes/addons/product_image_accordion.php:150
 #: includes/addons/product_accordion.php:171
 #: includes/addons/product_curvy.php:206 includes/addons/product_tabs.php:165
 msgid "Comment count"
 msgstr ""
 
-#: includes/helper-function.php:1502
+#: includes/helper-function.php:1512
 #: woolentor-blocks/includes/helper-functions.php:615
 #: includes/addons/wb_product_add_to_cart.php:1292
 #: includes/modules/class.module-manager.php:141
@@ -1969,13 +2011,17 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:199
+msgid "Content Align"
+msgstr ""
+
 #: includes/addons/add_banner.php:63
 msgid "Content Alignment"
 msgstr ""
 
 #: includes/addons/wl_store_features.php:410
 #: includes/addons/product_accordion.php:449
-#: includes/addons/wl_recently_viewed_products.php:238
+#: includes/addons/wl_recently_viewed_products.php:438
 msgid "Content Area"
 msgstr ""
 
@@ -2027,7 +2073,7 @@ msgstr ""
 #: includes/addons/product_image_accordion.php:181
 #: includes/addons/product_accordion.php:202
 #: includes/addons/product_curvy.php:237
-#: includes/addons/wl_recently_viewed_products.php:132
+#: includes/addons/wl_recently_viewed_products.php:332
 msgid "Content Settings"
 msgstr ""
 
@@ -2127,6 +2173,10 @@ msgstr ""
 
 #: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:84
 msgid "Country restriction"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:101
+msgid "Coupon Code"
 msgstr ""
 
 #: includes/modules/shopify-like-checkout/templates/form-coupon.php:17
@@ -2301,7 +2351,7 @@ msgstr ""
 msgid "Data Saved successfully!"
 msgstr ""
 
-#: includes/helper-function.php:1420 includes/addons/product_flash_sale.php:135
+#: includes/helper-function.php:1430 includes/addons/product_flash_sale.php:135
 #: includes/addons/wb_product_upsell.php:66
 #: includes/addons/wb_archive_product.php:127
 #: includes/addons/product_image_accordion.php:147
@@ -2365,6 +2415,10 @@ msgstr ""
 msgid "Default: 10"
 msgstr ""
 
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:62
+msgid "Demand Message"
+msgstr ""
+
 #: includes/addons/wl_product_horizontal_filter.php:104
 #: includes/addons/wb_product_upsell.php:85
 #: includes/addons/wb_archive_product.php:149
@@ -2377,7 +2431,7 @@ msgstr ""
 #: includes/addons/product_image_accordion.php:166
 #: includes/addons/product_accordion.php:187
 #: includes/addons/wl_category.php:138 includes/addons/product_curvy.php:222
-#: includes/addons/wl_recently_viewed_products.php:63
+#: includes/addons/wl_recently_viewed_products.php:66
 #: includes/addons/product_tabs.php:181
 #: includes/addons/wl_category_grid.php:130
 msgid "Descending"
@@ -2572,7 +2626,7 @@ msgstr ""
 
 #: includes/addons/wl_testimonial.php:203
 #: includes/addons/wb_customer_review.php:191
-#: includes/addons/wl_recently_viewed_products.php:83
+#: includes/addons/wl_recently_viewed_products.php:96
 #: includes/addons/wl_category_grid.php:259
 msgid "Eight"
 msgstr ""
@@ -2601,12 +2655,12 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:345
+#: includes/modules/class.module-manager.php:357
 #: includes/admin/templates/dashboard-freevspro.php:153
 msgid "Email Automation"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:333
+#: includes/modules/class.module-manager.php:345
 #: includes/admin/templates/dashboard-freevspro.php:149
 msgid "Email Customizer"
 msgstr ""
@@ -2623,8 +2677,8 @@ msgstr ""
 msgid "Empty compare page text"
 msgstr ""
 
-#: includes/addons/wl_recently_viewed_products.php:105
-#: includes/addons/wl_recently_viewed_products.php:659
+#: includes/addons/wl_recently_viewed_products.php:121
+#: includes/addons/wl_recently_viewed_products.php:859
 msgid "Empty Message"
 msgstr ""
 
@@ -2648,6 +2702,7 @@ msgstr ""
 msgid "Enable"
 msgstr ""
 
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:46
 #: includes/modules/quickview/includes/classes/Admin/Fields.php:56
 #: includes/modules/advanced-coupon/includes/classes/Admin/Fields.php:46
 #: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:57
@@ -2655,6 +2710,7 @@ msgstr ""
 msgid "Enable / Disable"
 msgstr ""
 
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:47
 #: includes/modules/quickview/includes/classes/Admin/Fields.php:57
 #: includes/modules/advanced-coupon/includes/classes/Admin/Fields.php:47
 #: includes/modules/badges/includes/classes/Admin/Fields.php:46
@@ -2662,7 +2718,7 @@ msgid "Enable / disable this module."
 msgstr ""
 
 #: includes/modules/advanced-coupon/includes/classes/Admin/Fields.php:55
-msgid "Enable / disable URL Coupon."
+msgid "Enable / disable URL Coupons."
 msgstr ""
 
 #: includes/addons/wb_product_qr_code.php:62
@@ -2679,6 +2735,10 @@ msgstr ""
 msgid "Enable all"
 msgstr ""
 
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:136
+msgid "Enable different timer settings for individual products."
+msgstr ""
+
 #: includes/modules/variation-swatch/includes/Admin/Product_Metabox.php:120
 msgid "Enable Image Type Attribute For"
 msgstr ""
@@ -2686,6 +2746,10 @@ msgstr ""
 #: includes/modules/variation-swatch/includes/Admin/Attribute_Taxonomy_Metabox.php:92
 #: includes/modules/variation-swatch/includes/Admin/Product_Metabox.php:383
 msgid "Enable Multi Color"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:135
+msgid "Enable Per Product Timer"
 msgstr ""
 
 #: includes/modules/quickview/includes/classes/Admin/Fields.php:65
@@ -2882,6 +2946,10 @@ msgstr ""
 msgid "Exclude Products"
 msgstr ""
 
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:80
+msgid "Expiration Action"
+msgstr ""
+
 #: includes/admin/templates/dashboard-freevspro.php:300
 msgid "Explore the all features of ShopLentor Pro"
 msgstr ""
@@ -2993,7 +3061,7 @@ msgstr ""
 msgid "FAQ Title"
 msgstr ""
 
-#: includes/helper-function.php:1425
+#: includes/helper-function.php:1435
 msgid "Featured"
 msgstr ""
 
@@ -3075,7 +3143,7 @@ msgstr ""
 
 #: includes/addons/wl_testimonial.php:200
 #: includes/addons/wb_customer_review.php:188
-#: includes/addons/wl_recently_viewed_products.php:80
+#: includes/addons/wl_recently_viewed_products.php:93
 #: includes/addons/wl_category_grid.php:256
 msgid "Five"
 msgstr ""
@@ -3145,7 +3213,7 @@ msgstr ""
 
 #: includes/addons/wl_testimonial.php:199
 #: includes/addons/wb_customer_review.php:187
-#: includes/addons/wl_recently_viewed_products.php:79
+#: includes/addons/wl_recently_viewed_products.php:92
 #: includes/addons/wl_category_grid.php:255
 msgid "Four"
 msgstr ""
@@ -3234,7 +3302,7 @@ msgstr ""
 msgid "Gradient Color"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:309
+#: includes/modules/class.module-manager.php:321
 #: includes/admin/templates/dashboard-freevspro.php:181
 msgid "GTM Conversion Tracking"
 msgstr ""
@@ -3422,6 +3490,10 @@ msgstr ""
 msgid "Hide Rating"
 msgstr ""
 
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:85
+msgid "Hide Timer"
+msgstr ""
+
 #: includes/addons/product_image_accordion.php:232
 #: includes/addons/product_curvy.php:267
 #: includes/addons/wb_product_categories.php:84
@@ -3495,7 +3567,8 @@ msgstr ""
 #: includes/addons/wl_product_filter.php:381
 #: includes/addons/wl_product_filter.php:502
 #: includes/addons/wl_product_filter.php:765
-#: includes/addons/wl_recently_viewed_products.php:492
+#: includes/addons/wl_recently_viewed_products.php:692
+#: includes/addons/wl_recently_viewed_products.php:1107
 #: includes/addons/wb_wishsuite_table.php:411
 #: includes/addons/product_tabs.php:363 includes/addons/product_tabs.php:757
 #: includes/addons/product_tabs.php:1075 includes/addons/product_tabs.php:1197
@@ -3536,7 +3609,7 @@ msgstr ""
 #: includes/addons/wl_onepage_slider.php:326
 #: includes/addons/wl_onepage_slider.php:404
 #: includes/addons/wl_category.php:360
-#: includes/addons/wl_recently_viewed_products.php:337
+#: includes/addons/wl_recently_viewed_products.php:537
 #: includes/addons/wb_wishsuite_table.php:164
 #: includes/addons/wb_wishsuite_table.php:272
 #: includes/addons/add_banner.php:251 includes/addons/wl_category_grid.php:622
@@ -3643,7 +3716,7 @@ msgstr ""
 msgid "Icon Width"
 msgstr ""
 
-#: includes/helper-function.php:1419 includes/addons/product_flash_sale.php:134
+#: includes/helper-function.php:1429 includes/addons/product_flash_sale.php:134
 #: includes/addons/product_image_accordion.php:146
 #: includes/addons/product_accordion.php:167
 #: includes/addons/wl_category.php:152 includes/addons/product_curvy.php:202
@@ -3846,7 +3919,7 @@ msgstr ""
 msgid "Item"
 msgstr ""
 
-#: includes/addons/wl_recently_viewed_products.php:195
+#: includes/addons/wl_recently_viewed_products.php:395
 msgid "Item Area"
 msgstr ""
 
@@ -3993,8 +4066,8 @@ msgstr ""
 #: includes/addons/wb_product_title.php:107
 #: includes/addons/wb_product_sku.php:64
 #: includes/addons/wb_customer_review.php:290
-#: includes/addons/wl_recently_viewed_products.php:250
-#: includes/addons/wl_recently_viewed_products.php:562
+#: includes/addons/wl_recently_viewed_products.php:450
+#: includes/addons/wl_recently_viewed_products.php:762
 #: includes/addons/product_tabs.php:245 includes/addons/product_tabs.php:966
 #: includes/addons/product_tabs.php:1045 includes/addons/add_banner.php:67
 #: includes/addons/wl_category_grid.php:734
@@ -4197,9 +4270,9 @@ msgstr ""
 #: includes/addons/wb_customer_review.php:476
 #: includes/addons/wb_customer_review.php:532
 #: includes/addons/wb_product_stock.php:71
-#: includes/addons/wl_recently_viewed_products.php:348
-#: includes/addons/wl_recently_viewed_products.php:392
-#: includes/addons/wl_recently_viewed_products.php:721
+#: includes/addons/wl_recently_viewed_products.php:548
+#: includes/addons/wl_recently_viewed_products.php:592
+#: includes/addons/wl_recently_viewed_products.php:921
 #: includes/addons/wb_product_add_to_cart.php:768
 #: includes/addons/wb_product_add_to_cart.php:1098
 #: includes/addons/wb_product_additional_information.php:102
@@ -4277,6 +4350,10 @@ msgid ""
 "Leave blank to use the default message."
 msgstr ""
 
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:63
+msgid "Message to show high demand status."
+msgstr ""
+
 #: includes/addons/wb_product_meta.php:43
 #: includes/modules/quickview/includes/classes/Frontend/Popup_Manager.php:83
 #: includes/modules/quickview/includes/classes/Admin/Fields.php:187
@@ -4332,12 +4409,16 @@ msgstr ""
 msgid "Mobile"
 msgstr ""
 
-#: includes/addons/wl_testimonial.php:431 includes/addons/product_tabs.php:582
+#: includes/addons/wl_testimonial.php:431
+#: includes/addons/wl_recently_viewed_products.php:289
+#: includes/addons/product_tabs.php:582
 #: includes/addons/wl_category_grid.php:456
 msgid "Mobile Phone"
 msgstr ""
 
-#: includes/addons/wl_testimonial.php:462 includes/addons/product_tabs.php:615
+#: includes/addons/wl_testimonial.php:462
+#: includes/addons/wl_recently_viewed_products.php:320
+#: includes/addons/product_tabs.php:615
 #: includes/addons/wl_category_grid.php:487
 msgid "Mobile Resolution"
 msgstr ""
@@ -4398,7 +4479,7 @@ msgstr ""
 msgid "N/A"
 msgstr ""
 
-#: includes/helper-function.php:1421 includes/addons/product_flash_sale.php:136
+#: includes/helper-function.php:1431 includes/addons/product_flash_sale.php:136
 #: includes/addons/wl_testimonial.php:82 includes/addons/wl_testimonial.php:576
 #: includes/addons/product_image_accordion.php:148
 #: includes/addons/product_accordion.php:169
@@ -4417,19 +4498,25 @@ msgstr ""
 msgid "Name Field Placeholder"
 msgstr ""
 
-#: includes/addons/wl_testimonial.php:970 includes/addons/product_tabs.php:765
+#: includes/addons/wl_testimonial.php:970
+#: includes/addons/wl_recently_viewed_products.php:1114
+#: includes/addons/product_tabs.php:765
 #: includes/addons/wl_category_grid.php:979
 msgid "Navigation"
 msgstr ""
 
-#: includes/addons/wl_testimonial.php:813 includes/addons/product_tabs.php:650
+#: includes/addons/wl_testimonial.php:813
+#: includes/addons/wl_recently_viewed_products.php:957
+#: includes/addons/product_tabs.php:650
 #: includes/addons/wl_category_grid.php:822
 msgid "Navigation Arrow"
 msgstr ""
 
 #: includes/addons/wl_testimonial.php:898
-#: includes/addons/wl_testimonial.php:1021 includes/addons/product_tabs.php:714
-#: includes/addons/product_tabs.php:818
+#: includes/addons/wl_testimonial.php:1021
+#: includes/addons/wl_recently_viewed_products.php:1042
+#: includes/addons/wl_recently_viewed_products.php:1165
+#: includes/addons/product_tabs.php:714 includes/addons/product_tabs.php:818
 #: includes/addons/wl_category_grid.php:907
 #: includes/addons/wl_category_grid.php:1030
 msgid "Navigation Dots"
@@ -4445,7 +4532,7 @@ msgstr ""
 
 #: includes/addons/wl_testimonial.php:204
 #: includes/addons/wb_customer_review.php:192
-#: includes/addons/wl_recently_viewed_products.php:84
+#: includes/addons/wl_recently_viewed_products.php:97
 #: includes/addons/wl_category_grid.php:260
 msgid "Nine"
 msgstr ""
@@ -4458,7 +4545,8 @@ msgstr ""
 #: includes/addons/wl_faq.php:206 includes/addons/wl_testimonial.php:218
 #: includes/addons/wl_testimonial.php:332 includes/addons/wl_category.php:184
 #: includes/addons/wb_customer_review.php:206
-#: includes/addons/wl_recently_viewed_products.php:121
+#: includes/addons/wl_recently_viewed_products.php:137
+#: includes/addons/wl_recently_viewed_products.php:191
 #: includes/addons/product_tabs.php:477
 #: includes/addons/wb_product_add_to_cart.php:75
 #: includes/addons/wl_category_grid.php:177
@@ -4477,7 +4565,7 @@ msgstr ""
 msgid "No Gutters"
 msgstr ""
 
-#: includes/modules/shopify-like-checkout/shopify-like-checkout.php:424
+#: includes/modules/shopify-like-checkout/shopify-like-checkout.php:425
 #: includes/modules/variation-swatch/includes/ajax-actions.php:117
 #: includes/modules/variation-swatch/includes/ajax-actions.php:144
 #: includes/modules/variation-swatch/includes/ajax-actions.php:175
@@ -4489,7 +4577,7 @@ msgstr ""
 msgid "No Order label"
 msgstr ""
 
-#: includes/helper-function.php:1693
+#: includes/helper-function.php:1703
 msgid "No products were found matching your selection."
 msgstr ""
 
@@ -4546,12 +4634,13 @@ msgstr ""
 msgid "Nonce Varification Faild !"
 msgstr ""
 
-#: includes/helper-function.php:1418 includes/addons/product_flash_sale.php:133
+#: includes/helper-function.php:1428 includes/addons/product_flash_sale.php:133
 #: includes/addons/product_image_accordion.php:145
 #: includes/addons/product_accordion.php:166
 #: includes/addons/product_curvy.php:201
 #: includes/addons/wl_product_filter.php:106
 #: includes/addons/product_tabs.php:160
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:114
 #: includes/modules/quickview/includes/classes/Admin/Fields.php:128
 #: includes/modules/compare/includes/classes/Admin/Admin_Fields.php:201
 #: includes/modules/compare/includes/classes/Admin/Admin_Fields.php:226
@@ -4582,7 +4671,8 @@ msgstr ""
 #: includes/addons/wl_product_filter.php:330
 #: includes/addons/wl_product_filter.php:437
 #: includes/addons/wl_product_filter.php:700
-#: includes/addons/wl_recently_viewed_products.php:440
+#: includes/addons/wl_recently_viewed_products.php:640
+#: includes/addons/wl_recently_viewed_products.php:950
 #: includes/addons/wb_wishsuite_table.php:379
 #: includes/addons/product_tabs.php:277 includes/addons/product_tabs.php:643
 #: includes/addons/product_tabs.php:879 includes/addons/product_tabs.php:1136
@@ -4610,6 +4700,14 @@ msgstr ""
 
 #: classes/class.assest_management.php:362
 msgid "Nothing Found"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:109
+msgid "Notice Icon"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:161
+msgid "Notice Style"
 msgstr ""
 
 #: includes/addons/product_flash_sale.php:575
@@ -4698,7 +4796,7 @@ msgstr ""
 
 #: includes/addons/wl_testimonial.php:196
 #: includes/addons/wb_customer_review.php:184
-#: includes/addons/wl_recently_viewed_products.php:76
+#: includes/addons/wl_recently_viewed_products.php:89
 #: includes/addons/wl_category_grid.php:252
 msgid "One"
 msgstr ""
@@ -4761,7 +4859,7 @@ msgstr ""
 #: includes/addons/wb_archive_product.php:144
 #: includes/addons/wb_product_related.php:95
 #: includes/addons/wl_category.php:133
-#: includes/addons/wl_recently_viewed_products.php:59
+#: includes/addons/wl_recently_viewed_products.php:62
 #: includes/addons/product_tabs.php:177
 #: includes/addons/wl_category_grid.php:125
 msgid "Order"
@@ -4773,7 +4871,7 @@ msgstr ""
 msgid "order"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:357
+#: includes/modules/class.module-manager.php:369
 #: includes/admin/templates/dashboard-freevspro.php:141
 msgid "Order Bump"
 msgstr ""
@@ -4826,7 +4924,7 @@ msgstr ""
 msgid "Out of stock"
 msgstr ""
 
-#: includes/addons/wl_recently_viewed_products.php:603
+#: includes/addons/wl_recently_viewed_products.php:803
 msgid "Out of Stock Badge Color"
 msgstr ""
 
@@ -4882,11 +4980,12 @@ msgstr ""
 #: includes/addons/wb_customer_review.php:433
 #: includes/addons/wb_customer_review.php:489
 #: includes/addons/wb_customer_review.php:545
-#: includes/addons/wl_recently_viewed_products.php:203
-#: includes/addons/wl_recently_viewed_products.php:273
-#: includes/addons/wl_recently_viewed_products.php:425
-#: includes/addons/wl_recently_viewed_products.php:645
-#: includes/addons/wl_recently_viewed_products.php:709
+#: includes/addons/wl_recently_viewed_products.php:403
+#: includes/addons/wl_recently_viewed_products.php:473
+#: includes/addons/wl_recently_viewed_products.php:625
+#: includes/addons/wl_recently_viewed_products.php:845
+#: includes/addons/wl_recently_viewed_products.php:909
+#: includes/addons/wl_recently_viewed_products.php:1030
 #: includes/addons/wb_wishsuite_table.php:364
 #: includes/addons/product_tabs.php:702
 #: includes/addons/wb_product_add_to_cart.php:412
@@ -4924,7 +5023,7 @@ msgstr ""
 msgid "Parent Item:"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:285
+#: includes/modules/class.module-manager.php:297
 #: includes/admin/templates/dashboard-freevspro.php:157
 msgid "Partial Payment"
 msgstr ""
@@ -4934,7 +5033,9 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: includes/addons/wl_testimonial.php:336 includes/addons/product_tabs.php:481
+#: includes/addons/wl_testimonial.php:336
+#: includes/addons/wl_recently_viewed_products.php:195
+#: includes/addons/product_tabs.php:481
 #: includes/addons/wl_category_grid.php:362
 msgid "Pause on Hover?"
 msgstr ""
@@ -5112,7 +5213,9 @@ msgstr ""
 #: includes/addons/wl_testimonial.php:821
 #: includes/addons/wl_testimonial.php:906
 #: includes/addons/wb_archive_product.php:895
-#: includes/addons/wl_recently_viewed_products.php:558
+#: includes/addons/wl_recently_viewed_products.php:758
+#: includes/addons/wl_recently_viewed_products.php:965
+#: includes/addons/wl_recently_viewed_products.php:1050
 #: includes/addons/wb_product_add_to_cart.php:513
 #: includes/addons/wl_category_grid.php:830
 #: includes/addons/wl_category_grid.php:915
@@ -5155,7 +5258,7 @@ msgctxt "Post Type Singular Name"
 msgid "Template Builder"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:297
+#: includes/modules/class.module-manager.php:309
 #: includes/admin/templates/dashboard-freevspro.php:161
 msgid "Pre Orders"
 msgstr ""
@@ -5173,7 +5276,7 @@ msgstr ""
 #: includes/addons/wb_archive_product.php:405
 #: includes/addons/wb_product_related.php:83
 #: includes/addons/wl_product_filter.php:44
-#: includes/addons/wl_recently_viewed_products.php:362
+#: includes/addons/wl_recently_viewed_products.php:562
 #: includes/addons/wb_wishsuite_table.php:175
 #: includes/modules/quickview/includes/classes/Frontend/Popup_Manager.php:80
 #: includes/modules/quickview/includes/classes/Admin/Fields.php:184
@@ -5265,7 +5368,7 @@ msgstr ""
 msgid "Product Add To Cart"
 msgstr ""
 
-#: includes/helper-function.php:1480
+#: includes/helper-function.php:1490
 #: woolentor-blocks/includes/helper-functions.php:600
 #: woolentor-blocks/production/includes/helper-functions.php:600
 #: includes/modules/wishlist/includes/classes/Admin/Admin_Fields.php:206
@@ -5307,7 +5410,12 @@ msgstr ""
 #: includes/addons/product_curvy.php:163 includes/addons/product_tabs.php:135
 #: woolentor-blocks/includes/classes/Blocks_List.php:187
 #: woolentor-blocks/production/includes/classes/Blocks_List.php:187
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:145
 msgid "Product Categories"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:148
+msgid "Product categories"
 msgstr ""
 
 #: includes/addons/product_image_accordion.php:304
@@ -5361,7 +5469,7 @@ msgid "Product Description"
 msgstr ""
 
 #: classes/class.widgets_control.php:305
-#: includes/modules/class.module-manager.php:369
+#: includes/modules/class.module-manager.php:381
 #: woolentor-blocks/includes/classes/Blocks_List.php:293
 #: includes/admin/templates/dashboard-freevspro.php:145
 #: woolentor-blocks/production/includes/classes/Blocks_List.php:293
@@ -5423,7 +5531,7 @@ msgstr ""
 #: includes/addons/product_image_accordion.php:107
 #: includes/addons/product_accordion.php:142
 #: includes/addons/product_curvy.php:177
-#: includes/addons/wl_recently_viewed_products.php:49
+#: includes/addons/wl_recently_viewed_products.php:52
 msgid "Product Limit"
 msgstr ""
 
@@ -5448,7 +5556,7 @@ msgstr ""
 msgid "Product Per Page"
 msgstr ""
 
-#: classes/class.widgets_control.php:353 includes/helper-function.php:1426
+#: classes/class.widgets_control.php:353 includes/helper-function.php:1436
 #: includes/addons/product_flash_sale.php:467
 #: includes/addons/product_image_accordion.php:411
 #: includes/addons/product_accordion.php:489
@@ -5519,6 +5627,10 @@ msgstr ""
 #: includes/addons/product_tabs.php:216
 #: includes/admin/templates/dashboard-freevspro.php:47
 msgid "Product Slider"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:129
+msgid "Product Specific Settings"
 msgstr ""
 
 #: includes/admin/templates/dashboard-freevspro.php:165
@@ -5674,7 +5786,7 @@ msgstr ""
 msgid "Query String Is"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:393
+#: includes/modules/class.module-manager.php:405
 msgid "Quick Checkout"
 msgstr ""
 
@@ -5705,7 +5817,7 @@ msgstr ""
 msgid "Qunantity Text Color"
 msgstr ""
 
-#: includes/helper-function.php:1424 includes/addons/product_flash_sale.php:139
+#: includes/helper-function.php:1434 includes/addons/product_flash_sale.php:139
 #: includes/addons/wb_product_upsell.php:71
 #: includes/addons/wb_archive_product.php:132
 #: includes/addons/product_image_accordion.php:151
@@ -5801,6 +5913,7 @@ msgid "Redirect to Checkout"
 msgstr ""
 
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:92
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:93
 #: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:416
 msgid "Redirect URL"
 msgstr ""
@@ -5872,6 +5985,10 @@ msgstr ""
 
 #: includes/custom-metabox.php:37
 msgid "Required for stock progress bar"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:54
+msgid "Reserve Time (Minutes)"
 msgstr ""
 
 #: classes/class.assest_management.php:339
@@ -5954,8 +6071,8 @@ msgstr ""
 #: includes/addons/wb_product_title.php:115
 #: includes/addons/wb_product_sku.php:72
 #: includes/addons/wb_customer_review.php:298
-#: includes/addons/wl_recently_viewed_products.php:258
-#: includes/addons/wl_recently_viewed_products.php:566
+#: includes/addons/wl_recently_viewed_products.php:458
+#: includes/addons/wl_recently_viewed_products.php:766
 #: includes/addons/product_tabs.php:253 includes/addons/product_tabs.php:974
 #: includes/addons/product_tabs.php:1053 includes/addons/add_banner.php:68
 #: includes/addons/wl_category_grid.php:742
@@ -6099,7 +6216,7 @@ msgstr ""
 msgid "Sales Notification"
 msgstr ""
 
-#: includes/addons/wl_recently_viewed_products.php:118
+#: includes/addons/wl_recently_viewed_products.php:134
 msgid "Same Height Box ?"
 msgstr ""
 
@@ -6150,7 +6267,7 @@ msgstr ""
 
 #: includes/addons/wl_product_horizontal_filter.php:973
 #: includes/addons/wl_product_filter.php:853
-#: includes/modules/ajax-search/ajax-search.php:170
+#: includes/modules/ajax-search/ajax-search.php:172
 #: woolentor-blocks/build/blocks/product-horizontal-filter/index.php:65
 #: woolentor-blocks/build/blocks/product-filter/index.php:56
 #: woolentor-blocks/src/blocks/product-horizontal-filter/index.php:65
@@ -6213,6 +6330,12 @@ msgstr ""
 msgid "select"
 msgstr ""
 
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:81
+msgid ""
+"Select action to perform when timer expires. Note: Custom Redirect and Apply "
+"Coupon option avaialbe in pro version"
+msgstr ""
+
 #: includes/modules/badges/includes/classes/Admin/Fields.php:212
 msgid "Select Categories"
 msgstr ""
@@ -6273,6 +6396,7 @@ msgid "Select shipping method"
 msgstr ""
 
 #: includes/addons/wl_category_grid.php:51
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:163
 msgid "Select Style"
 msgstr ""
 
@@ -6333,6 +6457,10 @@ msgstr ""
 msgid "Set featured image"
 msgstr ""
 
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:55
+msgid "Set the cart reserve time in minutes."
+msgstr ""
+
 #: includes/modules/badges/includes/classes/Admin/Fields.php:106
 msgid "Set the font size for badge text."
 msgstr ""
@@ -6341,7 +6469,7 @@ msgstr ""
 msgid "Set the initial stock amount from"
 msgstr ""
 
-#: includes/base.php:300 includes/addons/wl_recently_viewed_products.php:42
+#: includes/base.php:300 includes/addons/wl_recently_viewed_products.php:45
 #: includes/addons/wb_product_add_to_cart.php:87
 #: includes/admin/admin-init.php:110 includes/admin/admin-init.php:111
 #: includes/admin/templates/dashboard-gutenberg.php:15
@@ -6350,7 +6478,7 @@ msgstr ""
 
 #: includes/addons/wl_testimonial.php:202
 #: includes/addons/wb_customer_review.php:190
-#: includes/addons/wl_recently_viewed_products.php:82
+#: includes/addons/wl_recently_viewed_products.php:95
 #: includes/addons/wl_category_grid.php:258
 msgid "Seven"
 msgstr ""
@@ -6386,8 +6514,8 @@ msgstr ""
 msgid "Ship to a different address?"
 msgstr ""
 
+#: includes/modules/shopify-like-checkout/shopify-like-checkout.php:292
 #: includes/modules/shopify-like-checkout/shopify-like-checkout.php:293
-#: includes/modules/shopify-like-checkout/shopify-like-checkout.php:294
 #: includes/modules/shopify-like-checkout/templates/review-order.php:26
 #: includes/modules/shopify-like-checkout/templates/form-checkout.php:54
 msgid "Shipping"
@@ -6515,11 +6643,11 @@ msgid ""
 "before it state date."
 msgstr ""
 
-#: includes/addons/wl_recently_viewed_products.php:159
+#: includes/addons/wl_recently_viewed_products.php:359
 msgid "Show Add To Cart Button"
 msgstr ""
 
-#: includes/addons/wl_recently_viewed_products.php:169
+#: includes/addons/wl_recently_viewed_products.php:369
 msgid "Show Badge"
 msgstr ""
 
@@ -6572,7 +6700,7 @@ msgstr ""
 msgid "Show Description"
 msgstr ""
 
-#: includes/addons/wl_recently_viewed_products.php:95
+#: includes/addons/wl_recently_viewed_products.php:111
 msgid "Show Empty Message"
 msgstr ""
 
@@ -6625,7 +6753,7 @@ msgstr ""
 msgid "Show Only on Devices"
 msgstr ""
 
-#: includes/addons/wl_recently_viewed_products.php:149
+#: includes/addons/wl_recently_viewed_products.php:349
 msgid "Show Price"
 msgstr ""
 
@@ -6638,7 +6766,7 @@ msgid "Show Stock Progress Bar"
 msgstr ""
 
 #: includes/addons/wl_archive_title.php:61
-#: includes/addons/wl_recently_viewed_products.php:139
+#: includes/addons/wl_recently_viewed_products.php:339
 msgid "Show Title"
 msgstr ""
 
@@ -6646,7 +6774,7 @@ msgstr ""
 msgid "Show Variable Product Stock Status"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:381
+#: includes/modules/class.module-manager.php:393
 #: includes/admin/templates/dashboard-freevspro.php:169
 msgid "Side Mini Cart"
 msgstr ""
@@ -6690,7 +6818,7 @@ msgstr ""
 
 #: includes/addons/wl_testimonial.php:201
 #: includes/addons/wb_customer_review.php:189
-#: includes/addons/wl_recently_viewed_products.php:81
+#: includes/addons/wl_recently_viewed_products.php:94
 #: includes/addons/wl_category_grid.php:257
 msgid "Six"
 msgstr ""
@@ -6701,7 +6829,7 @@ msgstr ""
 msgid "Size"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:321
+#: includes/modules/class.module-manager.php:333
 msgid "Size Chart"
 msgstr ""
 
@@ -6758,23 +6886,31 @@ msgstr ""
 msgid "Slider"
 msgstr ""
 
-#: includes/addons/wl_testimonial.php:311 includes/addons/product_tabs.php:450
+#: includes/addons/wl_testimonial.php:311
+#: includes/addons/wl_recently_viewed_products.php:170
+#: includes/addons/product_tabs.php:450
 #: includes/addons/wl_category_grid.php:337
 msgid "Slider Arrow"
 msgstr ""
 
-#: includes/addons/wl_testimonial.php:343 includes/addons/product_tabs.php:488
+#: includes/addons/wl_testimonial.php:343
+#: includes/addons/wl_recently_viewed_products.php:202
+#: includes/addons/product_tabs.php:488
 #: includes/addons/wl_category_grid.php:369
 msgid "Slider autoplay"
 msgstr ""
 
 #: includes/addons/wl_testimonial.php:792 includes/addons/wl_brand.php:354
-#: includes/addons/wl_brand.php:366 includes/addons/product_tabs.php:628
+#: includes/addons/wl_brand.php:366
+#: includes/addons/wl_recently_viewed_products.php:936
+#: includes/addons/product_tabs.php:628
 #: includes/addons/wl_category_grid.php:801
 msgid "Slider Controller Style"
 msgstr ""
 
-#: includes/addons/wl_testimonial.php:321 includes/addons/product_tabs.php:463
+#: includes/addons/wl_testimonial.php:321
+#: includes/addons/wl_recently_viewed_products.php:180
+#: includes/addons/product_tabs.php:463
 #: includes/addons/wl_category_grid.php:347
 msgid "Slider dots"
 msgstr ""
@@ -6785,8 +6921,12 @@ msgstr ""
 
 #: includes/addons/wl_testimonial.php:379
 #: includes/addons/wl_testimonial.php:410
-#: includes/addons/wl_testimonial.php:451 includes/addons/product_tabs.php:527
-#: includes/addons/product_tabs.php:560 includes/addons/product_tabs.php:603
+#: includes/addons/wl_testimonial.php:451
+#: includes/addons/wl_recently_viewed_products.php:237
+#: includes/addons/wl_recently_viewed_products.php:268
+#: includes/addons/wl_recently_viewed_products.php:309
+#: includes/addons/product_tabs.php:527 includes/addons/product_tabs.php:560
+#: includes/addons/product_tabs.php:603
 #: includes/addons/wl_category_grid.php:404
 #: includes/addons/wl_category_grid.php:435
 #: includes/addons/wl_category_grid.php:476
@@ -6795,8 +6935,12 @@ msgstr ""
 
 #: includes/addons/wl_testimonial.php:300
 #: includes/addons/wl_testimonial.php:399
-#: includes/addons/wl_testimonial.php:440 includes/addons/product_tabs.php:435
-#: includes/addons/product_tabs.php:548 includes/addons/product_tabs.php:591
+#: includes/addons/wl_testimonial.php:440
+#: includes/addons/wl_recently_viewed_products.php:159
+#: includes/addons/wl_recently_viewed_products.php:257
+#: includes/addons/wl_recently_viewed_products.php:298
+#: includes/addons/product_tabs.php:435 includes/addons/product_tabs.php:548
+#: includes/addons/product_tabs.php:591
 #: includes/addons/wl_category_grid.php:326
 #: includes/addons/wl_category_grid.php:424
 #: includes/addons/wl_category_grid.php:465
@@ -6811,12 +6955,15 @@ msgid ""
 msgstr ""
 
 #: includes/addons/wl_testimonial.php:169
+#: includes/addons/wl_recently_viewed_products.php:75
 #: includes/addons/wl_category_grid.php:225
 msgid "Slider On"
 msgstr ""
 
 #: includes/addons/wl_testimonial.php:290 includes/addons/wl_brand.php:212
-#: includes/addons/wl_brand.php:223 includes/addons/product_tabs.php:425
+#: includes/addons/wl_brand.php:223
+#: includes/addons/wl_recently_viewed_products.php:149
+#: includes/addons/product_tabs.php:425
 #: includes/addons/wl_category_grid.php:316
 msgid "Slider Option"
 msgstr ""
@@ -7103,6 +7250,7 @@ msgstr ""
 msgid "Style One"
 msgstr ""
 
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:155
 #: includes/modules/compare/includes/classes/Admin/Admin_Fields.php:43
 #: includes/modules/wishlist/includes/classes/Admin/Admin_Fields.php:49
 msgid "Style Settings"
@@ -7150,7 +7298,7 @@ msgstr ""
 msgid "Submit Button"
 msgstr ""
 
-#: includes/modules/ajax-search/ajax-search.php:170
+#: includes/modules/ajax-search/ajax-search.php:172
 msgctxt "submit button"
 msgid "Search"
 msgstr ""
@@ -7296,14 +7444,18 @@ msgstr ""
 msgid "Table style"
 msgstr ""
 
-#: includes/addons/wl_testimonial.php:390 includes/addons/product_tabs.php:539
+#: includes/addons/wl_testimonial.php:390
+#: includes/addons/wl_recently_viewed_products.php:248
+#: includes/addons/product_tabs.php:539
 #: includes/addons/wl_category_grid.php:415
 #: includes/modules/popup-builder/includes/admin/tmpl-popup-builder-modal.php:432
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:586
 msgid "Tablet"
 msgstr ""
 
-#: includes/addons/wl_testimonial.php:421 includes/addons/product_tabs.php:572
+#: includes/addons/wl_testimonial.php:421
+#: includes/addons/wl_recently_viewed_products.php:279
+#: includes/addons/product_tabs.php:572
 #: includes/addons/wl_category_grid.php:446
 msgid "Tablet Resolution"
 msgstr ""
@@ -7401,7 +7553,7 @@ msgstr ""
 
 #: includes/addons/wl_testimonial.php:205
 #: includes/addons/wb_customer_review.php:193
-#: includes/addons/wl_recently_viewed_products.php:85
+#: includes/addons/wl_recently_viewed_products.php:98
 #: includes/addons/wl_category_grid.php:261
 msgid "Ten"
 msgstr ""
@@ -7443,6 +7595,7 @@ msgstr ""
 #: includes/addons/wb_product_add_to_cart.php:1064
 #: includes/addons/wb_product_add_to_cart.php:1153
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:184
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:180
 #: includes/modules/badges/includes/classes/Admin/Fields.php:89
 msgid "Text Color"
 msgstr ""
@@ -7546,12 +7699,16 @@ msgstr ""
 msgid "The First attribute"
 msgstr ""
 
-#: includes/addons/wl_testimonial.php:463 includes/addons/product_tabs.php:616
+#: includes/addons/wl_testimonial.php:463
+#: includes/addons/wl_recently_viewed_products.php:321
+#: includes/addons/product_tabs.php:616
 #: includes/addons/wl_category_grid.php:488
 msgid "The resolution to mobile."
 msgstr ""
 
-#: includes/addons/wl_testimonial.php:422 includes/addons/product_tabs.php:573
+#: includes/addons/wl_testimonial.php:422
+#: includes/addons/wl_recently_viewed_products.php:280
+#: includes/addons/product_tabs.php:573
 #: includes/addons/wl_category_grid.php:447
 msgid "The resolution to the tablet."
 msgstr ""
@@ -7610,7 +7767,7 @@ msgstr ""
 msgid "Theme style"
 msgstr ""
 
-#: includes/modules/shopify-like-checkout/shopify-like-checkout.php:297
+#: includes/modules/shopify-like-checkout/shopify-like-checkout.php:296
 #: includes/modules/shopify-like-checkout/templates/cart-shipping.php:53
 msgid ""
 "There are no shipping options available. Please ensure that your address has "
@@ -7646,7 +7803,7 @@ msgstr ""
 
 #: includes/addons/wl_testimonial.php:198
 #: includes/addons/wb_customer_review.php:186
-#: includes/addons/wl_recently_viewed_products.php:78
+#: includes/addons/wl_recently_viewed_products.php:91
 #: includes/addons/wl_category_grid.php:254
 msgid "Three"
 msgstr ""
@@ -7680,7 +7837,15 @@ msgstr ""
 msgid "Thumbnails Position"
 msgstr ""
 
-#: includes/helper-function.php:1422 includes/addons/wl_faq.php:68
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:189
+msgid "Timer Color"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:71
+msgid "Timer Message"
+msgstr ""
+
+#: includes/helper-function.php:1432 includes/addons/wl_faq.php:68
 #: includes/addons/wl_faq.php:342 includes/addons/product_flash_sale.php:137
 #: includes/addons/product_flash_sale.php:773
 #: includes/addons/wl_product_horizontal_filter.php:249
@@ -7702,7 +7867,7 @@ msgstr ""
 #: includes/addons/wl_product_filter.php:94
 #: includes/addons/wl_product_filter.php:180
 #: includes/addons/wb_image_marker.php:304
-#: includes/addons/wl_recently_viewed_products.php:307
+#: includes/addons/wl_recently_viewed_products.php:507
 #: includes/addons/wb_wishsuite_table.php:135
 #: includes/addons/product_tabs.php:164 includes/addons/product_tabs.php:954
 #: includes/addons/add_banner.php:147 includes/addons/wl_category_grid.php:602
@@ -7746,7 +7911,7 @@ msgstr ""
 
 #: includes/addons/wl_archive_title.php:50
 #: includes/addons/wb_product_title.php:49
-#: includes/addons/wl_recently_viewed_products.php:179
+#: includes/addons/wl_recently_viewed_products.php:379
 msgid "Title HTML Tag"
 msgstr ""
 
@@ -7810,7 +7975,7 @@ msgstr ""
 msgid "Top On Image"
 msgstr ""
 
-#: includes/helper-function.php:1428
+#: includes/helper-function.php:1438
 msgid "Top Rated"
 msgstr ""
 
@@ -7824,7 +7989,7 @@ msgstr ""
 msgid "Top Right"
 msgstr ""
 
-#: includes/helper-function.php:1427
+#: includes/helper-function.php:1437
 msgid "Top Seller"
 msgstr ""
 
@@ -7855,7 +8020,7 @@ msgstr ""
 
 #: includes/addons/wl_testimonial.php:197
 #: includes/addons/wb_customer_review.php:185
-#: includes/addons/wl_recently_viewed_products.php:77
+#: includes/addons/wl_recently_viewed_products.php:90
 #: includes/addons/wl_category_grid.php:253
 msgid "Two"
 msgstr ""
@@ -8184,6 +8349,10 @@ msgstr ""
 #: includes/modules/wishlist/includes/classes/Admin/Admin_Fields.php:107
 #: includes/modules/wishlist/includes/classes/Admin/Admin_Fields.php:155
 msgid "Use Shortcode"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:72
+msgid "Use {time} placeholder to display the countdown timer."
 msgstr ""
 
 #: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:417
@@ -8912,7 +9081,8 @@ msgstr ""
 #: includes/addons/wl_testimonial.php:217
 #: includes/addons/wl_testimonial.php:333 includes/addons/wl_category.php:183
 #: includes/addons/wb_customer_review.php:205
-#: includes/addons/wl_recently_viewed_products.php:120
+#: includes/addons/wl_recently_viewed_products.php:136
+#: includes/addons/wl_recently_viewed_products.php:192
 #: includes/addons/product_tabs.php:478
 #: includes/addons/wb_product_add_to_cart.php:74
 #: includes/addons/wl_category_grid.php:176
@@ -9051,17 +9221,26 @@ msgstr ""
 msgid "You do not have permission to duplicate this private post!"
 msgstr ""
 
-#: includes/addons/wl_recently_viewed_products.php:108
+#: includes/addons/wl_recently_viewed_products.php:124
 msgid "You haven't viewed at any of the products yet."
 msgstr ""
 
-#: includes/addons/wl_recently_viewed_products.php:751
+#: includes/addons/wl_recently_viewed_products.php:1227
 #: woolentor-blocks/build/blocks/recently-viewed-products/index.php:23
 #: woolentor-blocks/src/blocks/recently-viewed-products/index.php:23
 #: woolentor-blocks/production/src/blocks/recently-viewed-products/index.php:23
 msgid ""
 "You haven't viewed at any of the products yet. Below are demo product for "
 "the editing mode."
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Frontend.php:161
+msgid "Your cart has expired and items have been removed."
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Frontend.php:101
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:74
+msgid "Your cart is saved for {time} minutes!"
 msgstr ""
 
 #: woolentor-blocks/build/blocks/product-reviews/index.php:26
@@ -9140,7 +9319,39 @@ msgid ""
 "laboris consequat. ”"
 msgstr ""
 
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:116
+msgid "⌛ Hourglass"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:118
+msgid "⏱️ Watch"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:119
+msgid "⏳ Timer"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:122
+msgid "✨ Spark"
+msgstr ""
+
 #: includes/admin/include/diagnostic-data.php:500
 #, php-format
 msgid "🌟 Enhance Your %1$s Experience as a Valued Contributor!"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:117
+msgid "🔔 Bell"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:115
+msgid "🔥 Fire"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:120
+msgid "🚀 Rocket"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:121
+msgid "🚨 Alert"
 msgstr ""

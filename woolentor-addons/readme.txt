@@ -1,9 +1,9 @@
-=== ShopLentor – WooCommerce Builder for Elementor & Gutenberg +16 Modules – All in One Solution (formerly WooLentor) ===
+=== ShopLentor – WooCommerce Builder for Elementor & Gutenberg +17 Modules – All in One Solution (formerly WooLentor) ===
 Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, tarekht, aslamhasib
 Tags: Elementor, WooCommerce, WooCommerce Elementor, WooCommerce Builder, WooCommerce Product, Woo Builder, Variation Swatches, woocommerce blocks, Product Slider, Product Compare, Wishlist, Product Filter
 Requires at least: 4.7
 Tested up to: 6.7
-Stable tag: 3.0.1
+Stable tag: 3.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -1103,6 +1103,15 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 
 == Changelog ==
 
+= Version: 3.0.2 - Date: 9-12-2024 =
+* Added : Cart Reserved Timer Module.
+* Added : Slider option in recently view product widget.
+* Solved : Tax-domain Load Issue. 
+* Solved : Product team fetching issue in Ajax Search Module.
+* Solved : Min and Max Price fetching warning issue.
+* Solved : Product filter issue with price range filter widget.
+* Compatibility : Latest WordPress and WooCommerce version.
+
 = Version: 3.0.1 - Date: 14-11-2024 =
 * Solved : SVG Icon Showing issue with Popup Builder module in MAC.
 * Solved : Universal Product Layout Tooltip Showing issue with Sydney Theme.
@@ -1598,23 +1607,6 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 * Solved : Phone Number validation issue in Shopify style checkout Module.
 * Solved : Add to cart button text showing issue in Product Accordion addon.
 * Tweak: Removed register_widget_type and widgets_registered deprecated method.
-
-= Version: 2.2.3 - Date: 20-03-2022 =
-* Added : Product SKU addon.
-* Added : Product tags addon.
-* Added : Product Categories addon.
-* Added : Archive Result Count addon.
-* Added : Archive Catalog Ordering addon.
-* Added : Hide cart and shipping step option in shopify style checkout module.
-* Added : Buttons and step label change option in shopify style checkout module.
-* Solved : Product limit set option in product tab addon.
-* Solved : Product filter wise product showing issue in archive default addon.
-* Solved : Ratting showing issue if Inline Font Icons is enable.
-
-= Version: 2.2.1 - Date: 07-03-2022 =
-* Added : Spinner in shopify style checkout page.
-* Solved : Warning issue in Archive title addon.
-* Solved : Default address field select style issue in shopify style checkout page.
 
 == Installation ==
 This section describes how to install the ShopLentor - WooCommerce Addons for Elementor Page Builder plugin and get it working.
