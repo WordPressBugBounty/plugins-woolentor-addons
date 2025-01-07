@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: ShopLentor – WooCommerce Builder for Elementor & "
 "Gutenberg\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-05 06:11+0000\n"
+"POT-Creation-Date: 2024-12-23 09:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -275,6 +275,8 @@ msgstr ""
 
 #: includes/addons/wb_product_add_to_cart.php:1034
 #: includes/modules/variation-swatch/includes/Frontend/Woo_Config.php:1018
+#: includes/modules/smart-cross-sell-popup/includes/classes/Frontend.php:92
+#: includes/modules/smart-cross-sell-popup/includes/classes/Frontend.php:390
 msgid "Add to Cart"
 msgstr ""
 
@@ -303,8 +305,8 @@ msgstr ""
 msgid "Add to Cart Button Text"
 msgstr ""
 
-#: includes/helper-function.php:1488 includes/helper-function.php:1489
-#: includes/helper-function.php:1512
+#: includes/helper-function.php:1504 includes/helper-function.php:1505
+#: includes/helper-function.php:1528
 #: woolentor-blocks/includes/helper-functions.php:598
 #: woolentor-blocks/includes/helper-functions.php:599
 #: woolentor-blocks/includes/helper-functions.php:615
@@ -322,6 +324,7 @@ msgstr ""
 msgid "add_to_cart"
 msgstr ""
 
+#: includes/modules/smart-cross-sell-popup/includes/classes/Frontend.php:93
 #: includes/modules/compare/includes/classes/Admin/Admin_Fields.php:190
 #: includes/modules/compare/includes/classes/Admin/Admin_Fields.php:191
 msgid "Added"
@@ -388,6 +391,7 @@ msgid "After Add To Cart"
 msgstr ""
 
 #: includes/addons/wb_product_add_to_cart.php:519
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:87
 msgid "After Add to Cart"
 msgstr ""
 
@@ -543,7 +547,7 @@ msgid ""
 "An all-in-one WooCommerce solution to create a beautiful WooCommerce store."
 msgstr ""
 
-#: includes/modules/cart-reserve-time/includes/classes/Frontend.php:100
+#: includes/modules/cart-reserve-time/includes/classes/Frontend.php:96
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:65
 msgid "An item of your cart is in high demand."
 msgstr ""
@@ -726,6 +730,10 @@ msgstr ""
 msgid "availability"
 msgstr ""
 
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:154
+msgid "Available after vacation"
+msgstr ""
+
 #: includes/addons/product_flash_sale.php:364
 msgid "Available Custom Text"
 msgstr ""
@@ -851,6 +859,7 @@ msgstr ""
 #: includes/addons/wl_category_grid.php:864
 #: includes/addons/wl_category_grid.php:938
 #: includes/addons/wl_category_grid.php:1038
+#: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:80
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:222
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:171
 #: includes/modules/compare/includes/classes/Admin/Admin_Fields.php:440
@@ -1012,6 +1021,18 @@ msgstr ""
 msgid "Before Border Color"
 msgstr ""
 
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:93
+msgid "Before Cart"
+msgstr ""
+
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:91
+msgid "Before Shop Loop"
+msgstr ""
+
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:92
+msgid "Before Single Product"
+msgstr ""
+
 #: includes/modules/quickview/includes/classes/Admin/Fields.php:164
 msgid "Before Text"
 msgstr ""
@@ -1124,6 +1145,7 @@ msgstr ""
 #: includes/addons/wl_category_grid.php:1051
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:207
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:324
+#: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:125
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:158
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:247
 msgid "Border"
@@ -1220,6 +1242,7 @@ msgstr ""
 #: includes/addons/wl_category_grid.php:1059
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:216
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:333
+#: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:133
 #: includes/modules/compare/includes/classes/Admin/Admin_Fields.php:505
 #: includes/modules/wishlist/includes/classes/Admin/Admin_Fields.php:498
 msgid "Border Radius"
@@ -1390,6 +1413,10 @@ msgstr ""
 msgid "Button Border"
 msgstr ""
 
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:124
+msgid "Button Color"
+msgstr ""
+
 #: includes/modules/quickview/includes/classes/Admin/Fields.php:147
 #: includes/modules/compare/includes/classes/Admin/Admin_Fields.php:209
 #: includes/modules/wishlist/includes/classes/Admin/Admin_Fields.php:385
@@ -1403,6 +1430,10 @@ msgstr ""
 
 #: includes/addons/product_flash_sale.php:745
 msgid "Button Hover Background Color"
+msgstr ""
+
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:133
+msgid "Button Hover Color"
 msgstr ""
 
 #: includes/addons/product_flash_sale.php:731
@@ -1950,14 +1981,14 @@ msgstr ""
 msgid "Columns"
 msgstr ""
 
-#: includes/helper-function.php:1433 includes/addons/product_flash_sale.php:138
+#: includes/helper-function.php:1449 includes/addons/product_flash_sale.php:138
 #: includes/addons/product_image_accordion.php:150
 #: includes/addons/product_accordion.php:171
 #: includes/addons/product_curvy.php:206 includes/addons/product_tabs.php:165
 msgid "Comment count"
 msgstr ""
 
-#: includes/helper-function.php:1512
+#: includes/helper-function.php:1528
 #: woolentor-blocks/includes/helper-functions.php:615
 #: includes/addons/wb_product_add_to_cart.php:1292
 #: includes/modules/class.module-manager.php:141
@@ -2079,6 +2110,10 @@ msgstr ""
 
 #: includes/addons/product_flash_sale.php:207
 msgid "Content Top"
+msgstr ""
+
+#: includes/modules/smart-cross-sell-popup/includes/classes/Frontend.php:356
+msgid "Continue Shopping"
 msgstr ""
 
 #: includes/modules/shopify-like-checkout/templates/form-checkout.php:66
@@ -2208,6 +2243,10 @@ msgstr ""
 msgid "Cross Icon"
 msgstr ""
 
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:99
+msgid "Cross-sells"
+msgstr ""
+
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:129
 #: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:82
 msgid "Currency"
@@ -2281,6 +2320,15 @@ msgstr ""
 msgid "Custom Label"
 msgstr ""
 
+#: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:49
+msgid "Custom Message"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:56
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:68
+msgid "Custom Minutes"
+msgstr ""
+
 #: includes/admin/templates/dashboard-freevspro.php:39
 msgid "Custom My Account Login and Register page Builder"
 msgstr ""
@@ -2333,12 +2381,16 @@ msgstr ""
 msgid "Customize"
 msgstr ""
 
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:58
+msgid "Daily"
+msgstr ""
+
 #: woolentor-blocks/includes/classes/Manage_Styles.php:205
 #: woolentor-blocks/production/includes/classes/Manage_Styles.php:205
 msgid "Data fetch"
 msgstr ""
 
-#: includes/admin/admin-init.php:456
+#: includes/admin/admin-init.php:458
 msgid "Data Fetch successfully!"
 msgstr ""
 
@@ -2347,11 +2399,11 @@ msgstr ""
 msgid "Data not found."
 msgstr ""
 
-#: includes/admin/admin-init.php:394
+#: includes/admin/admin-init.php:396
 msgid "Data Saved successfully!"
 msgstr ""
 
-#: includes/helper-function.php:1430 includes/addons/product_flash_sale.php:135
+#: includes/helper-function.php:1446 includes/addons/product_flash_sale.php:135
 #: includes/addons/wb_product_upsell.php:66
 #: includes/addons/wb_archive_product.php:127
 #: includes/addons/product_image_accordion.php:147
@@ -2359,6 +2411,14 @@ msgstr ""
 #: includes/addons/product_accordion.php:168
 #: includes/addons/product_curvy.php:203 includes/addons/product_tabs.php:162
 msgid "Date"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:111
+msgid "Day of Month"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:91
+msgid "Day of Week"
 msgstr ""
 
 #: includes/addons/product_flash_sale.php:266
@@ -2395,7 +2455,7 @@ msgstr ""
 msgid "Default icon"
 msgstr ""
 
-#: includes/helper-function.php:1204
+#: includes/helper-function.php:1220
 msgid "Default sorting"
 msgstr ""
 
@@ -2560,7 +2620,7 @@ msgid ""
 "if the user role condition does not match."
 msgstr ""
 
-#: includes/helper-function.php:769
+#: includes/helper-function.php:784
 msgid "div"
 msgstr ""
 
@@ -2655,12 +2715,12 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:357
+#: includes/modules/class.module-manager.php:393
 #: includes/admin/templates/dashboard-freevspro.php:153
 msgid "Email Automation"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:345
+#: includes/modules/class.module-manager.php:381
 #: includes/admin/templates/dashboard-freevspro.php:149
 msgid "Email Customizer"
 msgstr ""
@@ -2703,8 +2763,11 @@ msgid "Enable"
 msgstr ""
 
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:46
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:45
 #: includes/modules/quickview/includes/classes/Admin/Fields.php:56
 #: includes/modules/advanced-coupon/includes/classes/Admin/Fields.php:46
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:42
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:56
 #: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:57
 #: includes/modules/badges/includes/classes/Admin/Fields.php:45
 msgid "Enable / Disable"
@@ -2805,10 +2868,26 @@ msgstr ""
 msgid "Enable URL Coupon"
 msgstr ""
 
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:43
+msgid "Enable/disable email reports module"
+msgstr ""
+
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:46
+msgid "Enable/Disable Smart Cross-sell Popup module."
+msgstr ""
+
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:57
+msgid "Enable/Disable store vacation mode"
+msgstr ""
+
 #: includes/addons/wb_product_add_to_cart.php:72
 msgid ""
 "Enabling this option allows you to view the stock status of variable "
 "products along with their variation data."
+msgstr ""
+
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:73
+msgid "End Date"
 msgstr ""
 
 #: includes/modules/popup-builder/includes/admin/tmpl-popup-builder-modal.php:393
@@ -2829,8 +2908,30 @@ msgid ""
 "Wishlist icon."
 msgstr ""
 
+#: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:51
+msgid "Enter custom message or leave empty for default"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:124
+msgid "Enter email addresses (comma-separated)"
+msgstr ""
+
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:112
+msgid ""
+"Enter message to display during vacation. You can use these placeholders: "
+"{start_date}, {end_date}, {days_remaining}"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:69
+msgid "Enter minutes (minimum 5 minutes)"
+msgstr ""
+
 #: includes/modules/wishlist/includes/classes/Admin/Admin_Fields.php:204
 msgid "Enter the product added text."
+msgstr ""
+
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:63
+msgid "Enter the title for the popup."
 msgstr ""
 
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:95
@@ -2891,6 +2992,10 @@ msgstr ""
 msgid "Error Message"
 msgstr ""
 
+#: includes/modules/smart-cross-sell-popup/includes/classes/Frontend.php:94
+msgid "Error occurred"
+msgstr ""
+
 #: includes/addons/wb_ever_compare_table.php:97
 #: includes/addons/wb_ever_compare_table.php:103
 msgid "Even Heading Background"
@@ -2903,6 +3008,10 @@ msgstr ""
 #: classes/class.widgets_control.php:439
 #: includes/addons/wb_ever_compare_table.php:49
 msgid "EverCompare"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Schedule_Handler.php:34
+msgid "Every %d minutes"
 msgstr ""
 
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:426
@@ -3048,6 +3157,10 @@ msgstr ""
 msgid "fadeOutUpBig"
 msgstr ""
 
+#: includes/modules/smart-cross-sell-popup/includes/classes/Frontend.php:231
+msgid "Failed to add product to cart"
+msgstr ""
+
 #: woolentor-blocks/includes/classes/Blocks_List.php:74
 #: woolentor-blocks/production/includes/classes/Blocks_List.php:74
 msgid "FAQ"
@@ -3061,7 +3174,7 @@ msgstr ""
 msgid "FAQ Title"
 msgstr ""
 
-#: includes/helper-function.php:1435
+#: includes/helper-function.php:1451
 msgid "Featured"
 msgstr ""
 
@@ -3236,6 +3349,10 @@ msgstr ""
 msgid "Free!"
 msgstr ""
 
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:99
+msgid "Friday"
+msgstr ""
+
 #: classes/class.ajax_actions.php:185
 #: woolentor-blocks/build/blocks/suggest-price/index.php:45
 #: woolentor-blocks/src/blocks/suggest-price/index.php:45
@@ -3259,6 +3376,7 @@ msgid "General"
 msgstr ""
 
 #: includes/addons/product_flash_sale.php:64
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:56
 #: includes/modules/wishlist/includes/classes/Admin/Admin_Fields.php:34
 msgid "General Settings"
 msgstr ""
@@ -3302,7 +3420,7 @@ msgstr ""
 msgid "Gradient Color"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:321
+#: includes/modules/class.module-manager.php:357
 #: includes/admin/templates/dashboard-freevspro.php:181
 msgid "GTM Conversion Tracking"
 msgstr ""
@@ -3312,27 +3430,27 @@ msgstr ""
 msgid "Gutenberg"
 msgstr ""
 
-#: includes/helper-function.php:762
+#: includes/helper-function.php:777
 msgid "H1"
 msgstr ""
 
-#: includes/helper-function.php:763
+#: includes/helper-function.php:778
 msgid "H2"
 msgstr ""
 
-#: includes/helper-function.php:764
+#: includes/helper-function.php:779
 msgid "H3"
 msgstr ""
 
-#: includes/helper-function.php:765
+#: includes/helper-function.php:780
 msgid "H4"
 msgstr ""
 
-#: includes/helper-function.php:766
+#: includes/helper-function.php:781
 msgid "H5"
 msgstr ""
 
-#: includes/helper-function.php:767
+#: includes/helper-function.php:782
 msgid "H6"
 msgstr ""
 
@@ -3434,7 +3552,7 @@ msgstr ""
 msgid "Here"
 msgstr ""
 
-#: includes/helper-function.php:1335 includes/helper-function.php:1353
+#: includes/helper-function.php:1351 includes/helper-function.php:1369
 msgid "here"
 msgstr ""
 
@@ -3540,6 +3658,10 @@ msgstr ""
 
 #: classes/class.widgets_control.php:309
 msgid "Horizontal Product Filter"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:57
+msgid "Hourly"
 msgstr ""
 
 #: includes/addons/product_flash_sale.php:279
@@ -3716,7 +3838,7 @@ msgstr ""
 msgid "Icon Width"
 msgstr ""
 
-#: includes/helper-function.php:1429 includes/addons/product_flash_sale.php:134
+#: includes/helper-function.php:1445 includes/addons/product_flash_sale.php:134
 #: includes/addons/product_image_accordion.php:146
 #: includes/addons/product_accordion.php:167
 #: includes/addons/wl_category.php:152 includes/addons/product_curvy.php:202
@@ -3887,6 +4009,14 @@ msgstr ""
 
 #: classes/class.assest_management.php:371
 msgid "Installing.."
+msgstr ""
+
+#: includes/modules/smart-cross-sell-popup/includes/classes/Frontend.php:196
+msgid "Invalid product"
+msgstr ""
+
+#: includes/modules/smart-cross-sell-popup/includes/classes/Frontend.php:125
+msgid "Invalid product ID"
 msgstr ""
 
 #: includes/modules/popup-builder/includes/admin/tmpl-popup-builder-modal.php:401
@@ -4151,6 +4281,10 @@ msgstr ""
 msgid "List Item"
 msgstr ""
 
+#: includes/modules/smart-cross-sell-popup/includes/classes/Frontend.php:95
+msgid "Loading..."
+msgstr ""
+
 #: includes/modules/shopify-like-checkout/templates/form-checkout.php:60
 msgid "Log in"
 msgstr ""
@@ -4283,6 +4417,7 @@ msgstr ""
 #: includes/addons/wb_product_tags.php:151
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:448
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:229
+#: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:112
 #: includes/modules/compare/includes/classes/Admin/Admin_Fields.php:470
 #: includes/modules/wishlist/includes/classes/Admin/Admin_Fields.php:484
 msgid "Margin"
@@ -4431,6 +4566,14 @@ msgstr ""
 msgid "Module Setting page"
 msgstr ""
 
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:95
+msgid "Monday"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:60
+msgid "Monthly"
+msgstr ""
+
 #: includes/modules/variation-swatch/includes/Frontend/Woo_Config.php:743
 msgid "More"
 msgstr ""
@@ -4479,7 +4622,7 @@ msgstr ""
 msgid "N/A"
 msgstr ""
 
-#: includes/helper-function.php:1431 includes/addons/product_flash_sale.php:136
+#: includes/helper-function.php:1447 includes/addons/product_flash_sale.php:136
 #: includes/addons/wl_testimonial.php:82 includes/addons/wl_testimonial.php:576
 #: includes/addons/product_image_accordion.php:148
 #: includes/addons/product_accordion.php:169
@@ -4530,6 +4673,11 @@ msgstr ""
 msgid "New Template"
 msgstr ""
 
+#: includes/modules/sales-report-email/includes/classes/Schedule_Handler.php:161
+#, php-format
+msgid "Next run: %s (Schedule: %s)"
+msgstr ""
+
 #: includes/addons/wl_testimonial.php:204
 #: includes/addons/wb_customer_review.php:192
 #: includes/addons/wl_recently_viewed_products.php:97
@@ -4559,13 +4707,17 @@ msgstr ""
 msgid "No"
 msgstr ""
 
+#: includes/modules/smart-cross-sell-popup/includes/classes/Frontend.php:132
+msgid "No cross-sell products found"
+msgstr ""
+
 #: includes/addons/wl_testimonial.php:215
 #: includes/addons/wb_customer_review.php:203
 #: includes/addons/wl_category_grid.php:271
 msgid "No Gutters"
 msgstr ""
 
-#: includes/modules/shopify-like-checkout/shopify-like-checkout.php:425
+#: includes/modules/shopify-like-checkout/shopify-like-checkout.php:431
 #: includes/modules/variation-swatch/includes/ajax-actions.php:117
 #: includes/modules/variation-swatch/includes/ajax-actions.php:144
 #: includes/modules/variation-swatch/includes/ajax-actions.php:175
@@ -4577,7 +4729,7 @@ msgstr ""
 msgid "No Order label"
 msgstr ""
 
-#: includes/helper-function.php:1703
+#: includes/helper-function.php:1719
 msgid "No products were found matching your selection."
 msgstr ""
 
@@ -4593,7 +4745,7 @@ msgstr ""
 msgid "No Results Found"
 msgstr ""
 
-#: includes/helper-function.php:576
+#: includes/helper-function.php:591
 msgid "No saved templates found."
 msgstr ""
 
@@ -4634,7 +4786,7 @@ msgstr ""
 msgid "Nonce Varification Faild !"
 msgstr ""
 
-#: includes/helper-function.php:1428 includes/addons/product_flash_sale.php:133
+#: includes/helper-function.php:1444 includes/addons/product_flash_sale.php:133
 #: includes/addons/product_image_accordion.php:145
 #: includes/addons/product_accordion.php:166
 #: includes/addons/product_curvy.php:201
@@ -4692,6 +4844,10 @@ msgstr ""
 msgid "Not found in Trash"
 msgstr ""
 
+#: includes/modules/sales-report-email/includes/classes/Schedule_Handler.php:153
+msgid "Not scheduled"
+msgstr ""
+
 #: woolentor-blocks/build/blocks/product-reviews/index.php:41
 #: woolentor-blocks/src/blocks/product-reviews/index.php:41
 #: woolentor-blocks/production/src/blocks/product-reviews/index.php:41
@@ -4702,12 +4858,33 @@ msgstr ""
 msgid "Nothing Found"
 msgstr ""
 
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:127
+msgid "Notice Background Color"
+msgstr ""
+
+#: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:42
+msgid "Notice Content"
+msgstr ""
+
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:109
 msgid "Notice Icon"
 msgstr ""
 
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:87
+msgid "Notice Position"
+msgstr ""
+
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:81
+msgid "Notice Settings"
+msgstr ""
+
+#: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:61
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:161
 msgid "Notice Style"
+msgstr ""
+
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:119
+msgid "Notice Text Color"
 msgstr ""
 
 #: includes/addons/product_flash_sale.php:575
@@ -4871,7 +5048,7 @@ msgstr ""
 msgid "order"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:369
+#: includes/modules/class.module-manager.php:405
 #: includes/admin/templates/dashboard-freevspro.php:141
 msgid "Order Bump"
 msgstr ""
@@ -4905,6 +5082,10 @@ msgstr ""
 msgid "Ordering"
 msgstr ""
 
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:138
+msgid "Orders"
+msgstr ""
+
 #: includes/addons/product_flash_sale.php:595
 msgid "Others"
 msgstr ""
@@ -4920,7 +5101,7 @@ msgstr ""
 msgid "Out Of Stock"
 msgstr ""
 
-#: includes/helper-function.php:1127 includes/helper-function.php:1175
+#: includes/helper-function.php:1143 includes/helper-function.php:1191
 msgid "Out of stock"
 msgstr ""
 
@@ -4928,7 +5109,7 @@ msgstr ""
 msgid "Out of Stock Badge Color"
 msgstr ""
 
-#: includes/helper-function.php:768
+#: includes/helper-function.php:783
 msgid "p"
 msgstr ""
 
@@ -4995,6 +5176,7 @@ msgstr ""
 #: includes/addons/wl_category_grid.php:895
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:456
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:248
+#: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:100
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:166
 #: includes/modules/compare/includes/classes/Admin/Admin_Fields.php:456
 #: includes/modules/wishlist/includes/classes/Admin/Admin_Fields.php:470
@@ -5023,7 +5205,7 @@ msgstr ""
 msgid "Parent Item:"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:297
+#: includes/modules/class.module-manager.php:333
 #: includes/admin/templates/dashboard-freevspro.php:157
 msgid "Partial Payment"
 msgstr ""
@@ -5209,6 +5391,14 @@ msgstr ""
 msgid "Popup Settings"
 msgstr ""
 
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:62
+msgid "Popup Title"
+msgstr ""
+
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:115
+msgid "Popup Width"
+msgstr ""
+
 #: includes/addons/product_flash_sale.php:203
 #: includes/addons/wl_testimonial.php:821
 #: includes/addons/wl_testimonial.php:906
@@ -5258,7 +5448,7 @@ msgctxt "Post Type Singular Name"
 msgid "Template Builder"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:309
+#: includes/modules/class.module-manager.php:345
 #: includes/admin/templates/dashboard-freevspro.php:161
 msgid "Pre Orders"
 msgstr ""
@@ -5354,6 +5544,10 @@ msgstr ""
 msgid "Pro extension"
 msgstr ""
 
+#: includes/modules/smart-cross-sell-popup/includes/classes/Frontend.php:402
+msgid "Proceed to Checkout"
+msgstr ""
+
 #: includes/addons/wl_faq.php:158
 msgid "Producing Perfume From Home"
 msgstr ""
@@ -5368,7 +5562,7 @@ msgstr ""
 msgid "Product Add To Cart"
 msgstr ""
 
-#: includes/helper-function.php:1490
+#: includes/helper-function.php:1506
 #: woolentor-blocks/includes/helper-functions.php:600
 #: woolentor-blocks/production/includes/helper-functions.php:600
 #: includes/modules/wishlist/includes/classes/Admin/Admin_Fields.php:206
@@ -5380,6 +5574,10 @@ msgstr ""
 msgid "Product added text"
 msgstr ""
 
+#: includes/modules/smart-cross-sell-popup/includes/classes/Frontend.php:226
+msgid "Product added to cart"
+msgstr ""
+
 #: classes/class.widgets_control.php:337
 #: woolentor-blocks/includes/classes/Blocks_List.php:222
 #: woolentor-blocks/production/includes/classes/Blocks_List.php:222
@@ -5389,6 +5587,10 @@ msgstr ""
 #: includes/modules/wishlist/includes/classes/Admin/Admin_Fields.php:215
 #: includes/modules/wishlist/includes/classes/Admin/Admin_Fields.php:216
 msgid "Product already added"
+msgstr ""
+
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:151
+msgid "Product Availability Text"
 msgstr ""
 
 #: includes/custom-metabox.php:48
@@ -5469,7 +5671,7 @@ msgid "Product Description"
 msgstr ""
 
 #: classes/class.widgets_control.php:305
-#: includes/modules/class.module-manager.php:381
+#: includes/modules/class.module-manager.php:417
 #: woolentor-blocks/includes/classes/Blocks_List.php:293
 #: includes/admin/templates/dashboard-freevspro.php:145
 #: woolentor-blocks/production/includes/classes/Blocks_List.php:293
@@ -5527,11 +5729,16 @@ msgstr ""
 msgid "Product image border"
 msgstr ""
 
+#: includes/modules/smart-cross-sell-popup/includes/classes/Frontend.php:209
+msgid "Product is out of stock"
+msgstr ""
+
 #: includes/addons/product_flash_sale.php:92
 #: includes/addons/product_image_accordion.php:107
 #: includes/addons/product_accordion.php:142
 #: includes/addons/product_curvy.php:177
 #: includes/addons/wl_recently_viewed_products.php:52
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:71
 msgid "Product Limit"
 msgstr ""
 
@@ -5547,6 +5754,10 @@ msgid ""
 "from the \"Inventory\" tab to display the stock progress indicator.\""
 msgstr ""
 
+#: includes/modules/smart-cross-sell-popup/includes/classes/Frontend.php:205
+msgid "Product not found"
+msgstr ""
+
 #: includes/modules/compare/includes/classes/Admin/Admin_Fields.php:122
 #: includes/modules/wishlist/includes/classes/Admin/Admin_Fields.php:146
 msgid "Product page button position"
@@ -5556,7 +5767,7 @@ msgstr ""
 msgid "Product Per Page"
 msgstr ""
 
-#: classes/class.widgets_control.php:353 includes/helper-function.php:1436
+#: classes/class.widgets_control.php:353 includes/helper-function.php:1452
 #: includes/addons/product_flash_sale.php:467
 #: includes/addons/product_image_accordion.php:411
 #: includes/addons/product_accordion.php:489
@@ -5602,6 +5813,7 @@ msgid "Product reviews"
 msgstr ""
 
 #: includes/addons/product_tabs.php:54
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:136
 msgid "Product Settings"
 msgstr ""
 
@@ -5627,6 +5839,10 @@ msgstr ""
 #: includes/addons/product_tabs.php:216
 #: includes/admin/templates/dashboard-freevspro.php:47
 msgid "Product Slider"
+msgstr ""
+
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:95
+msgid "Product Source"
 msgstr ""
 
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:129
@@ -5696,6 +5912,10 @@ msgstr ""
 #: woolentor-blocks/includes/classes/Blocks_List.php:264
 #: woolentor-blocks/production/includes/classes/Blocks_List.php:264
 msgid "Product Upsell"
+msgstr ""
+
+#: includes/modules/smart-cross-sell-popup/includes/classes/Frontend.php:214
+msgid "Product validation failed"
 msgstr ""
 
 #: classes/class.widgets_control.php:369
@@ -5786,7 +6006,7 @@ msgstr ""
 msgid "Query String Is"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:405
+#: includes/modules/class.module-manager.php:441
 msgid "Quick Checkout"
 msgstr ""
 
@@ -5817,7 +6037,7 @@ msgstr ""
 msgid "Qunantity Text Color"
 msgstr ""
 
-#: includes/helper-function.php:1434 includes/addons/product_flash_sale.php:139
+#: includes/helper-function.php:1450 includes/addons/product_flash_sale.php:139
 #: includes/addons/wb_product_upsell.php:71
 #: includes/addons/wb_archive_product.php:132
 #: includes/addons/product_image_accordion.php:151
@@ -5895,6 +6115,10 @@ msgstr ""
 #: woolentor-blocks/includes/classes/Blocks_List.php:103
 #: woolentor-blocks/production/includes/classes/Blocks_List.php:103
 msgid "Recently Viewed Products"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:123
+msgid "Recipients"
 msgstr ""
 
 #: includes/modules/quickview/includes/templates/quickview-social-share.php:32
@@ -5977,6 +6201,14 @@ msgstr ""
 #: woolentor-blocks/src/blocks/suggest-price/index.php:45
 #: woolentor-blocks/production/src/blocks/suggest-price/index.php:45
 msgid "Reply-To: "
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:132
+msgid "Report Metrics"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:51
+msgid "Report Schedule"
 msgstr ""
 
 #: includes/admin/templates/dashboard-welcome.php:54
@@ -6207,13 +6439,22 @@ msgstr ""
 msgid "Sale Tag"
 msgstr ""
 
-#: includes/helper-function.php:1124 includes/helper-function.php:1170
+#: includes/helper-function.php:1140 includes/helper-function.php:1186
 msgid "Sale!"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:137
+msgid "Sales"
 msgstr ""
 
 #: includes/modules/class.module-manager.php:105
 #: includes/admin/templates/dashboard-freevspro.php:97
 msgid "Sales Notification"
+msgstr ""
+
+#: includes/modules/class.module-manager.php:273
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:32
+msgid "Sales Report Email"
 msgstr ""
 
 #: includes/addons/wl_recently_viewed_products.php:134
@@ -6222,6 +6463,10 @@ msgstr ""
 
 #: includes/admin/include/class.template-manager.php:478
 msgid "Sample Design"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:100
+msgid "Saturday"
 msgstr ""
 
 #: classes/class.assest_management.php:332
@@ -6318,7 +6563,7 @@ msgstr ""
 msgid "Seconds"
 msgstr ""
 
-#: includes/helper-function.php:551
+#: includes/helper-function.php:566
 #: includes/modules/variation-swatch/includes/Admin/Woo_Config.php:30
 msgid "Select"
 msgstr ""
@@ -6357,6 +6602,14 @@ msgstr ""
 msgid "Select Countries"
 msgstr ""
 
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:112
+msgid "Select day of the month"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:92
+msgid "Select day of the week"
+msgstr ""
+
 #: includes/addons/product_flash_sale.php:81
 msgid "Select Deal"
 msgstr ""
@@ -6371,6 +6624,10 @@ msgstr ""
 
 #: includes/addons/wl_category.php:50 includes/addons/wl_brand.php:58
 msgid "Select Layout"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:133
+msgid "Select metrics to include in report"
 msgstr ""
 
 #: includes/modules/badges/includes/classes/Admin/Fields.php:200
@@ -6391,6 +6648,10 @@ msgstr ""
 msgid "Select Products"
 msgstr ""
 
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:52
+msgid "Select report frequency"
+msgstr ""
+
 #: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:112
 msgid "Select shipping method"
 msgstr ""
@@ -6408,7 +6669,7 @@ msgstr ""
 msgid "Select Table"
 msgstr ""
 
-#: includes/helper-function.php:578 includes/addons/wl_faq.php:97
+#: includes/helper-function.php:593 includes/addons/wl_faq.php:97
 msgid "Select Template"
 msgstr ""
 
@@ -6418,6 +6679,18 @@ msgstr ""
 
 #: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:184
 msgid "Select user role"
+msgstr ""
+
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:75
+msgid "Select vacation end date"
+msgstr ""
+
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:67
+msgid "Select vacation start date"
+msgstr ""
+
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:83
+msgid "Select when to show the popup."
 msgstr ""
 
 #: includes/modules/badges/includes/classes/Admin/Fields.php:202
@@ -6449,12 +6722,28 @@ msgid ""
 "collected or tracked. %1$sLearn more%2$s."
 msgstr ""
 
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:125
+msgid "Set button color."
+msgstr ""
+
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:134
+msgid "Set button hover color."
+msgstr ""
+
 #: includes/admin/include/class.template-manager.php:458
 msgid "Set Default"
 msgstr ""
 
 #: includes/admin/include/class.template_cpt.php:64
 msgid "Set featured image"
+msgstr ""
+
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:72
+msgid "Set maximum number of products to display."
+msgstr ""
+
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:116
+msgid "Set popup width in pixel."
 msgstr ""
 
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:55
@@ -6465,8 +6754,12 @@ msgstr ""
 msgid "Set the font size for badge text."
 msgstr ""
 
-#: includes/helper-function.php:1335 includes/helper-function.php:1353
+#: includes/helper-function.php:1351 includes/helper-function.php:1369
 msgid "Set the initial stock amount from"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:81
+msgid "Set time (24-hour format)"
 msgstr ""
 
 #: includes/base.php:300 includes/addons/wl_recently_viewed_products.php:45
@@ -6514,8 +6807,8 @@ msgstr ""
 msgid "Ship to a different address?"
 msgstr ""
 
-#: includes/modules/shopify-like-checkout/shopify-like-checkout.php:292
-#: includes/modules/shopify-like-checkout/shopify-like-checkout.php:293
+#: includes/modules/shopify-like-checkout/shopify-like-checkout.php:298
+#: includes/modules/shopify-like-checkout/shopify-like-checkout.php:299
 #: includes/modules/shopify-like-checkout/templates/review-order.php:26
 #: includes/modules/shopify-like-checkout/templates/form-checkout.php:54
 msgid "Shipping"
@@ -6558,6 +6851,10 @@ msgstr ""
 #: includes/admin/include/class.template-manager.php:263
 #: includes/admin/include/class.template-manager.php:285
 msgid "Shop"
+msgstr ""
+
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:94
+msgid "Shop & Single Product"
 msgstr ""
 
 #: includes/addons/wl_onepage_slider.php:475
@@ -6774,7 +7071,7 @@ msgstr ""
 msgid "Show Variable Product Stock Status"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:393
+#: includes/modules/class.module-manager.php:429
 #: includes/admin/templates/dashboard-freevspro.php:169
 msgid "Side Mini Cart"
 msgstr ""
@@ -6829,7 +7126,7 @@ msgstr ""
 msgid "Size"
 msgstr ""
 
-#: includes/modules/class.module-manager.php:333
+#: includes/modules/class.module-manager.php:369
 msgid "Size Chart"
 msgstr ""
 
@@ -6972,6 +7269,11 @@ msgstr ""
 msgid "Slug"
 msgstr ""
 
+#: includes/modules/class.module-manager.php:285
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:34
+msgid "Smart Cross-sell Popup"
+msgstr ""
+
 #: includes/addons/wb_wishsuite_table.php:284
 msgid "Social Share"
 msgstr ""
@@ -6989,7 +7291,7 @@ msgstr ""
 msgid "Social share button title"
 msgstr ""
 
-#: includes/helper-function.php:1348
+#: includes/helper-function.php:1364
 msgid "Sold"
 msgstr ""
 
@@ -7110,23 +7412,23 @@ msgstr ""
 msgid "Sort By"
 msgstr ""
 
-#: includes/helper-function.php:1206
+#: includes/helper-function.php:1222
 msgid "Sort by average rating"
 msgstr ""
 
-#: includes/helper-function.php:1207
+#: includes/helper-function.php:1223
 msgid "Sort by latest"
 msgstr ""
 
-#: includes/helper-function.php:1205
+#: includes/helper-function.php:1221
 msgid "Sort by popularity"
 msgstr ""
 
-#: includes/helper-function.php:1209
+#: includes/helper-function.php:1225
 msgid "Sort by price: high to low"
 msgstr ""
 
-#: includes/helper-function.php:1208
+#: includes/helper-function.php:1224
 msgid "Sort by price: low to high"
 msgstr ""
 
@@ -7149,7 +7451,7 @@ msgstr ""
 msgid "Spacing"
 msgstr ""
 
-#: includes/helper-function.php:770
+#: includes/helper-function.php:785
 msgid "span"
 msgstr ""
 
@@ -7177,6 +7479,10 @@ msgstr ""
 
 #: includes/addons/wb_archive_product.php:513
 msgid "Star Size"
+msgstr ""
+
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:65
+msgid "Start Date"
 msgstr ""
 
 #: includes/addons/wl_store_features.php:120
@@ -7207,6 +7513,11 @@ msgstr ""
 
 #: classes/class.widgets_control.php:244
 msgid "Store Features"
+msgstr ""
+
+#: includes/modules/class.module-manager.php:297
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:45
+msgid "Store Vacation"
 msgstr ""
 
 #: includes/addons/wb_product_short_description.php:45
@@ -7251,6 +7562,7 @@ msgid "Style One"
 msgstr ""
 
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:155
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:109
 #: includes/modules/compare/includes/classes/Admin/Admin_Fields.php:43
 #: includes/modules/wishlist/includes/classes/Admin/Admin_Fields.php:49
 msgid "Style Settings"
@@ -7347,6 +7659,10 @@ msgstr ""
 #: woolentor-blocks/includes/classes/Blocks_List.php:215
 #: woolentor-blocks/production/includes/classes/Blocks_List.php:215
 msgid "Suggest Price"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:101
+msgid "Sunday"
 msgstr ""
 
 #: includes/admin/templates/dashboard-widget.php:100
@@ -7595,6 +7911,7 @@ msgstr ""
 #: includes/addons/wb_product_add_to_cart.php:1064
 #: includes/addons/wb_product_add_to_cart.php:1153
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:184
+#: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:69
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:180
 #: includes/modules/badges/includes/classes/Admin/Fields.php:89
 msgid "Text Color"
@@ -7606,6 +7923,10 @@ msgstr ""
 
 #: includes/modules/compare/includes/classes/Admin/Admin_Fields.php:287
 msgid "Text to show after link is copied"
+msgstr ""
+
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:153
+msgid "Text to show instead of Add to Cart button"
 msgstr ""
 
 #: includes/modules/wishlist/includes/classes/Admin/Admin_Fields.php:274
@@ -7767,7 +8088,7 @@ msgstr ""
 msgid "Theme style"
 msgstr ""
 
-#: includes/modules/shopify-like-checkout/shopify-like-checkout.php:296
+#: includes/modules/shopify-like-checkout/shopify-like-checkout.php:302
 #: includes/modules/shopify-like-checkout/templates/cart-shipping.php:53
 msgid ""
 "There are no shipping options available. Please ensure that your address has "
@@ -7837,6 +8158,14 @@ msgstr ""
 msgid "Thumbnails Position"
 msgstr ""
 
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:98
+msgid "Thursday"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:80
+msgid "Time"
+msgstr ""
+
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:189
 msgid "Timer Color"
 msgstr ""
@@ -7845,7 +8174,7 @@ msgstr ""
 msgid "Timer Message"
 msgstr ""
 
-#: includes/helper-function.php:1432 includes/addons/wl_faq.php:68
+#: includes/helper-function.php:1448 includes/addons/wl_faq.php:68
 #: includes/addons/wl_faq.php:342 includes/addons/product_flash_sale.php:137
 #: includes/addons/product_flash_sale.php:773
 #: includes/addons/wl_product_horizontal_filter.php:249
@@ -7975,7 +8304,11 @@ msgstr ""
 msgid "Top On Image"
 msgstr ""
 
-#: includes/helper-function.php:1438
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:139
+msgid "Top Products"
+msgstr ""
+
+#: includes/helper-function.php:1454
 msgid "Top Rated"
 msgstr ""
 
@@ -7989,7 +8322,7 @@ msgstr ""
 msgid "Top Right"
 msgstr ""
 
-#: includes/helper-function.php:1437
+#: includes/helper-function.php:1453
 msgid "Top Seller"
 msgstr ""
 
@@ -8005,8 +8338,24 @@ msgstr ""
 msgid "Total price is Less than X ammount"
 msgstr ""
 
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:82
+msgid "Trigger Type"
+msgstr ""
+
 #: includes/modules/popup-builder/includes/admin/tmpl-popup-builder-modal.php:109
 msgid "Triggers"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:96
+msgid "Tuesday"
+msgstr ""
+
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:142
+msgid "Turn Off Purchases"
+msgstr ""
+
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:144
+msgid "Turn off purchases during vacation"
 msgstr ""
 
 #: includes/modules/quickview/includes/templates/quickview-social-share.php:16
@@ -8114,6 +8463,7 @@ msgstr ""
 #: includes/addons/wl_category_grid.php:790
 #: includes/addons/wb_product_tags.php:52
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:197
+#: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:92
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:149
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:238
 msgid "Typography"
@@ -8351,6 +8701,10 @@ msgstr ""
 msgid "Use Shortcode"
 msgstr ""
 
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:95
+msgid "Use Shortcode / Widget"
+msgstr ""
+
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:72
 msgid "Use {time} placeholder to display the countdown timer."
 msgstr ""
@@ -8374,6 +8728,16 @@ msgstr ""
 #: includes/modules/shopify-like-checkout/templates/form-login.php:24
 #: includes/modules/shopify-like-checkout/templates/form-login.php:25
 msgid "Username or email"
+msgstr ""
+
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:110
+msgid "Vacation Message"
+msgstr ""
+
+#: includes/modules/store-vacation/includes/classes/Widgets_And_Blocks.php:31
+#: includes/modules/store-vacation/includes/classes/Widgets_And_Blocks.php:44
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:31
+msgid "Vacation Notice"
 msgstr ""
 
 #: includes/modules/popup-builder/includes/admin/tmpl-popup-builder-modal.php:410
@@ -8442,6 +8806,10 @@ msgstr ""
 msgid "View cart"
 msgstr ""
 
+#: includes/modules/smart-cross-sell-popup/includes/classes/Frontend.php:355
+msgid "View Shopping Cart"
+msgstr ""
+
 #: includes/admin/include/class.template_cpt.php:58
 msgid "View Template"
 msgstr ""
@@ -8471,6 +8839,14 @@ msgstr ""
 msgid ""
 "We've organized the documentation and kept it up to date on a regular basis. "
 "This manual will assist you in using our plugin effectively."
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:97
+msgid "Wednesday"
+msgstr ""
+
+#: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:59
+msgid "Weekly"
 msgstr ""
 
 #: includes/modules/compare/includes/classes/Admin/Admin_Fields.php:319
@@ -8987,6 +9363,10 @@ msgstr ""
 msgid "WL: Upsell Product layout(Custom)"
 msgstr ""
 
+#: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:13
+msgid "WL: Vacation Notice"
+msgstr ""
+
 #: includes/addons/wb_whols.php:13
 msgid "WL: Whols"
 msgstr ""
@@ -9234,11 +9614,17 @@ msgid ""
 "the editing mode."
 msgstr ""
 
-#: includes/modules/cart-reserve-time/includes/classes/Frontend.php:161
+#: includes/modules/smart-cross-sell-popup/includes/Functions.php:15
+#: includes/modules/smart-cross-sell-popup/includes/classes/Frontend.php:341
+#: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:65
+msgid "You May Also Like"
+msgstr ""
+
+#: includes/modules/cart-reserve-time/includes/classes/Frontend.php:159
 msgid "Your cart has expired and items have been removed."
 msgstr ""
 
-#: includes/modules/cart-reserve-time/includes/classes/Frontend.php:101
+#: includes/modules/cart-reserve-time/includes/classes/Frontend.php:97
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:74
 msgid "Your cart is saved for {time} minutes!"
 msgstr ""
@@ -9338,6 +9724,14 @@ msgstr ""
 #: includes/admin/include/diagnostic-data.php:500
 #, php-format
 msgid "🌟 Enhance Your %1$s Experience as a Valued Contributor!"
+msgstr ""
+
+#: includes/modules/store-vacation/includes/classes/Admin/Fields.php:113
+msgid ""
+"🏖️ Dear valued customers, our store is currently on vacation from "
+"{start_date} to {end_date}. During this time, new orders will be temporarily "
+"suspended. We will resume normal operations on {end_date}. Thank you for "
+"your understanding!"
 msgstr ""
 
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:117

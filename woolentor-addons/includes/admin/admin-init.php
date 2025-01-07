@@ -390,6 +390,8 @@ class Woolentor_Admin_Init{
             $this->update_option( $section, $filed, $value );
         }
 
+        do_action('woolentor_save_option_'.$section);
+
         wp_send_json_success([
             'message' => esc_html__( 'Data Saved successfully!', 'woolentor' ),
             'data'    => $data

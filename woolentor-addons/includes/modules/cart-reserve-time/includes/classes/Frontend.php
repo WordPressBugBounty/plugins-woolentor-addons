@@ -40,11 +40,13 @@ class Frontend{
 
     // Cart Reserved Notices
     public function add_cart_reserved_notices(){
-        // Add Cart Notice
-        if ( wc_post_content_has_shortcode( 'woocommerce_cart' ) || !empty( \Woolentor_Template_Manager::instance()->get_template_id( 'productcartpage' ) ) ) {
-            add_action( 'woocommerce_before_cart_contents', [ $this, 'add_cart_reserve_notice' ] );
-        } else {
-            add_filter( 'the_content', [$this, 'the_content_hook'] );
+        if ( wc_get_page_id( 'cart' ) == get_the_ID() ) {
+            // Add Cart Notice
+            if ( wc_post_content_has_shortcode( 'woocommerce_cart' ) || !empty( \Woolentor_Template_Manager::instance()->get_template_id( 'productcartpage' ) ) ) {
+                add_action( 'woocommerce_before_cart_contents', [ $this, 'add_cart_reserve_notice' ] );
+            } else {
+                add_filter( 'the_content', [$this, 'the_content_hook'] );
+            }
         }
     }
 

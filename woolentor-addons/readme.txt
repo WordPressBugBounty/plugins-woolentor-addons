@@ -1,9 +1,9 @@
-=== ShopLentor – WooCommerce Builder for Elementor & Gutenberg +17 Modules – All in One Solution (formerly WooLentor) ===
+=== ShopLentor – WooCommerce Builder for Elementor & Gutenberg +20 Modules – All in One Solution (formerly WooLentor) ===
 Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, tarekht, aslamhasib
 Tags: Elementor, WooCommerce, WooCommerce Elementor, WooCommerce Builder, WooCommerce Product, Woo Builder, Variation Swatches, woocommerce blocks, Product Slider, Product Compare, Wishlist, Product Filter
 Requires at least: 4.7
 Tested up to: 6.7
-Stable tag: 3.0.2
+Stable tag: 3.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -784,6 +784,22 @@ If you want to reach a wider audience while offering them a seamless shopping ex
 
 [More Details](https://woolentor.com/woocommerce-multi-currency/)
 
+= ⏰ Cart Reserved Timmer =
+This module adds a countdown timer to shopping carts to create urgency and reduce cart abandonment. The free version includes basic features like customizable reserve duration, timer display, and high-demand notifications. Pro users get additional capabilities such as product-specific timers, category rules, advanced styling, and automatic coupon application. The feature helps reduce cart abandonment, protect inventory, boost sales, and improve stock management. Users can activate it by updating WooLentor, going to Modules, and enabling Cart Reserve Time. Support is available for setup assistance, and users can upgrade to Pro for premium features.
+
+= 📈 WooComemrce Sales Report to Email =
+WooCommerce Sales Report Email module transforms how store owners track their business performance, offering a comprehensive suite of benefits without any cost. Store owners can enjoy automated delivery of crucial store metrics directly to their inbox, eliminating the need for manual data gathering and report creation. The module's flexibility stands out with its customizable scheduling options, allowing reports to be generated at any interval from minutes to monthly, complete with custom timezone support. Store performance tracking is made effortless through essential sales metrics, order analytics, and top-selling products monitoring, all presented in professionally designed email templates. The multi-recipient feature enables seamless team collaboration by keeping all stakeholders informed simultaneously. What makes this tool particularly valuable is its quick setup process - taking just minutes to configure - after which it operates silently in the background, continuously providing valuable insights without requiring any additional effort from the store owner.
+
+= 🚨 Store Vacation =
+The Store Vacation module enables WooCommerce store owners to efficiently manage their shop during temporary closures or vacation periods. It allows merchants to set specific vacation dates, display customizable notices to customers, and automatically handle product purchasing during the closure.
+
+Free features include basic vacation scheduling, customizable notice messages, and the ability to handle purchased button status "Add to Cart" buttons. The Pro version extends functionality with multiple vacation schedules, category-specific vacations, advanced notice displays (floating/popup), and countdown timers.
+
+= 📣 Smart Cross-Sell Popup Module =
+Smart Cross-sell Popup feature displays targeted product recommendations to customers during their shopping journey. The free version includes intelligent recommendations, a customizable design, after-add-to-cart triggers, and mobile responsiveness. The pro version offers advanced features like multiple triggers (exit intent, time delay), advanced product selection, custom collections, and analytics.
+Beta testing results show impressive outcomes: a 23% increase in cross-sell conversions, an 18% higher average order value, and improved product discovery. The feature aims to reduce cart abandonment by up to 15% while enhancing the customer shopping experience.
+Key benefits include increased average order value, automated cross-selling, better product discovery, and additional revenue streams. The feature is currently in final development, and customers can join a priority notification list to be among the first to try it when launched.
+
 = 🔔 Sales Notification =
 This feature allows showing the sales notification or sales popup to display real/custom WooCommerce orders. Furthermore, you can customize the design of the WooCommerce sales popup or live notification for WooCommerce from the module settings. Even though this recent sales popup WordPress module’s name suggests that is meant for displaying sales notifications, WooCommerce order notifications, or WooCommerce pop ups, nevertheless, you can also do other things like showing WooCommerce product announcements, WooCommerce announcements, WooCommerce product notices, or WooCommerce notices regarding WooCommerce product price drop or WooCommerce drop price. To achieve this, all you need to do is create a custom notification.
 
@@ -1102,6 +1118,14 @@ Feel free to [Contact us](https://hasthemes.com/contact-us/)
 Elementor Pro is not required. But you can use ShopLentor with Elementor free & Pro.
 
 == Changelog ==
+
+= Version: 3.0.3 - Date: 07-01-2025 =
+* Added : Sales Report Email Module.
+* Added : Smart Cross Sell Popup Module.
+* Added : Store Vacation Module.
+* Added : filter hook for Manage category list showing limit in universal product layout. 
+* Solved : PHP Warning with shopify like checkout module.
+* Compatibility : Latest WordPress and WooCommerce version.
 
 = Version: 3.0.2 - Date: 9-12-2024 =
 * Added : Cart Reserved Timer Module.

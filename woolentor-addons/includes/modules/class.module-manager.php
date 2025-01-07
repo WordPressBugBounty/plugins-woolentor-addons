@@ -267,6 +267,42 @@ class Woolentor_Module_Manager{
                 'main_class' => '\Woolentor\Modules\CartReserveTime\Cart_Reserve_Time',
                 'is_pro'     => false,
                 'manage_setting' => true
+            ],
+            'sales-report-email' => [
+                'slug'   =>'sales-report-email',
+                'title'  => esc_html__('Sales Report Email','woolentor'),
+                'option' => [
+                    'key'     => 'enable',
+                    'section' => 'woolentor_email_reports_settings',
+                    'default' => 'off'
+                ],
+                'main_class' => '\Woolentor\Modules\EmailReports\Sales_Email_Reports',
+                'is_pro'     => false,
+                'manage_setting' => true
+            ],
+            'smart-cross-sell-popup' => [
+                'slug'   =>'smart-cross-sell-popup',
+                'title'  => esc_html__('Smart Cross-sell Popup','woolentor'),
+                'option' => [
+                    'key'     => 'enable',
+                    'section' => 'woolentor_smart_cross_sell_popup_settings',
+                    'default' => 'off'
+                ],
+                'main_class' => '\Woolentor\Modules\Smart_Cross_Sell_Popup\Smart_Cross_Sell_Popup',
+                'is_pro'     => false,
+                'manage_setting' => true
+            ],
+            'store-vacation' => [
+                'slug'   =>'store-vacation',
+                'title'  => esc_html__('Store Vacation','woolentor'),
+                'option' => [
+                    'key'     => 'enable',
+                    'section' => 'woolentor_store_vacation_settings',
+                    'default' => 'off'
+                ],
+                'main_class' => '\Woolentor\Modules\StoreVacation\Store_Vacation',
+                'is_pro'     => false,
+                'manage_setting' => true
             ]
 
         ];

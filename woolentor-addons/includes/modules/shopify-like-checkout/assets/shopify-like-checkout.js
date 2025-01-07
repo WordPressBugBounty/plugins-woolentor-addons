@@ -99,9 +99,11 @@
             }
         });
 
+        let baseUrl = window.location.origin + window.location.pathname;
+
         $.ajax({
             type : 'POST',
-            url: window.location.href + '?wl_ajax=validate_1st_step',
+            url: baseUrl + '?wl_ajax=validate_1st_step',
             data : {
                 'action': 'validate_1st_step',
                 'fields': serializeFormData(), // Instance of "$('.woolentor-checkout__section.woolentor-step--info').find(':input').serialize()"

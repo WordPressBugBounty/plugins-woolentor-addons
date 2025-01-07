@@ -1595,6 +1595,9 @@
   .woolentor_heading_style_two .woolentor-admin-option-heading-title{
     margin-bottom: 10px;
   }
+  .woolenor-reapeater-fields-area + .woolentor-admin-option-heading {
+    margin-top: 20px;
+  }
   @media only screen and (max-width: 575px) {
     .woolentor-admin-option-heading:not(.woolentor_heading_style_two) {
       padding: 12px 20px;

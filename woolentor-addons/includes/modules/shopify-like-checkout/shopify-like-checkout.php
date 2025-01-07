@@ -184,7 +184,9 @@ class Woolentor_Shopify_Like_Checkout extends \WC_Checkout{
 
         if( isset($fieldset['billing']['billing_email']) ){
             $fieldset['billing']['billing_email']['priority'] = 1;
-            $fieldset['billing']['billing_email']['placeholder'] = $fieldset['billing']['billing_email']['label'];
+            if( isset($fieldset['billing']['billing_email']['label']) ){
+                $fieldset['billing']['billing_email']['placeholder'] = $fieldset['billing']['billing_email']['label'];
+            }
         }
 
         // Set the order of the fields
@@ -197,7 +199,9 @@ class Woolentor_Shopify_Like_Checkout extends \WC_Checkout{
             $fieldset['billing'][$field_name]['priority'] = $count * $priority;
 
             if( !isset($fieldset['billing'][$field_name]['placeholder']) ){
-                $fieldset['billing'][$field_name]['placeholder'] = $fieldset['billing'][$field_name]['label'];
+                if( isset($fieldset['billing'][$field_name]['label']) ){
+                    $fieldset['billing'][$field_name]['placeholder'] = $fieldset['billing'][$field_name]['label'];
+                }
             }
 
             // Customize classes
@@ -208,7 +212,9 @@ class Woolentor_Shopify_Like_Checkout extends \WC_Checkout{
 
         foreach($this->get_address_field_keys('shipping', $fieldset) as $field_name){
             if( !isset($fieldset['shipping'][$field_name]['placeholder']) ){
-                $fieldset['shipping'][$field_name]['placeholder'] = $fieldset['shipping'][$field_name]['label'];
+                if( isset($fieldset['shipping'][$field_name]['label']) ){
+                    $fieldset['shipping'][$field_name]['placeholder'] = $fieldset['shipping'][$field_name]['label'];
+                }
             }
 
             // Customize classes
@@ -676,7 +682,7 @@ class Woolentor_Shopify_Like_Checkout extends \WC_Checkout{
                 break;
             case 'checkbox':
                 $field = '<label class="checkbox ' . implode( ' ', $args['label_class'] ) . '" ' . implode( ' ', $custom_attributes ) . '>
-                        <input type="' . esc_attr( $args['type'] ) . '" class="input-checkbox ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" value="1" ' . checked( $value, 1, false ) . ' /> ' . $args['label'] . $required . '</label>';
+                        <input type="' . esc_attr( $args['type'] ) . '" class="input-checkbox ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" name="' . esc_attr( $key ) . '" id="' . esc_attr( $args['id'] ) . '" value="1" ' . implode( ' ', $custom_attributes ) . ' ' . checked( $value, 1, false ) . ' /> ' . $args['label'] . $required . '</label>';
 
                 break;
             case 'text':
