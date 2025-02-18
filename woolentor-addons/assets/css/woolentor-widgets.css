@@ -3468,6 +3468,12 @@ span.woolentor-order-item-title .product-thumbnail {
 }
 
 /* Single Product Sticky Add to Cart */
+.woolentor-add-to-cart-sticky .woolentor-flash-product-countdown {
+  display: none;
+}
+.woolentor-add-to-cart-sticky .woolentor-product-badge-area{
+  display: none;
+}
 .woolentor-add-to-cart-sticky {
   position: fixed;
   right: 0;
@@ -4529,6 +4535,13 @@ span.woolentor-order-item-title .product-thumbnail {
   .woocommerce-variation-add-to-cart
   .htcompare-button-area {
   display: none;
+}
+
+.wl-addto-cart .wishsuite-btn,.wl-addto-cart .wishsuite-button {
+  position: static !important;
+}
+.woolentor-sticky-wishlist .wishsuite-button,.woolentor-sticky-wishlist .wishsuite-btn{
+  display: none !important;
 }
 
 .woocommerce div.product .wl-addto-cart.wl-style-2 form.cart div.quantity,

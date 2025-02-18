@@ -533,6 +533,32 @@ function woolentor_user_role_list(){
     return $options;
 }
 
+/**
+ * Get User Rule List if get_editable_roles is not working
+ * @return array
+ */
+function woolentor_get_editable_roles(){
+    $all_roles = wp_roles()->roles;
+
+	/**
+	 * Filters the list of editable roles.
+	 *
+	 * @since 2.8.0
+	 *
+	 * @param array[] $all_roles Array of arrays containing role information.
+	 */
+	$editable_roles = apply_filters( 'editable_roles', $all_roles );
+
+    $rule_list = [];
+
+    if ( ! empty( $editable_roles ) && ! is_wp_error( $editable_roles ) ) {
+        foreach ( $editable_roles as $role_key => $role_value ) {
+            $rule_list[$role_key] = $role_value['name'];
+        }
+    }
+    return $rule_list;
+}
+
 /*
  * Get Post Type
  * return array

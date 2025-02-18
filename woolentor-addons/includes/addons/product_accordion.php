@@ -274,9 +274,6 @@ class Woolentor_Product_Accordion_Widget extends Widget_Base {
                 [
                     'label'     => __( 'Hide Content', 'woolentor' ),
                     'type'      => Controls_Manager::SWITCHER,
-                    'selectors' => [
-                        '{{WRAPPER}} .wl_product-accordion .card-body .product-content .product-content-top p' => 'display: none !important;',
-                    ],
                 ]
             );
 
@@ -298,9 +295,6 @@ class Woolentor_Product_Accordion_Widget extends Widget_Base {
                 [
                     'label'     => __( 'Hide Price', 'woolentor' ),
                     'type'      => Controls_Manager::SWITCHER,
-                    'selectors' => [
-                        '{{WRAPPER}} .wl_product-accordion .card-body .product-content .product-acontent-bottom .product-price' => 'display: none !important;',
-                    ],
                 ]
             );
 
@@ -309,9 +303,6 @@ class Woolentor_Product_Accordion_Widget extends Widget_Base {
                 [
                     'label'     => __( 'Hide Rating', 'woolentor' ),
                     'type'      => Controls_Manager::SWITCHER,
-                    'selectors' => [
-                        '{{WRAPPER}} .wl_product-accordion .card-body .product-content .product-content-top .reading' => 'display: none !important;',
-                    ],
                 ]
             );
 
@@ -838,14 +829,20 @@ class Woolentor_Product_Accordion_Widget extends Widget_Base {
                                             </div>
                                             <div class="product-content">
                                                 <div class="product-content-top">
-                                                    <p><?php echo $content_count; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-                                                    <div class="reading">
-                                                        <?php woocommerce_template_loop_rating(); ?>
-                                                    </div>
+                                                    <?php if($settings['hide_product_content'] !=='yes'){ ?>
+                                                        <p><?php echo $content_count; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+                                                    <?php } ?>
+                                                    <?php if($settings['hide_product_ratting'] !=='yes'){ ?>
+                                                        <div class="reading">
+                                                            <?php woocommerce_template_loop_rating(); ?>
+                                                        </div>
+                                                    <?php } ?>
                                                 </div>
                                                 <div class="product-acontent-bottom">
                                                     <div class="product-price">
-                                                        <span class="new-price"><?php woocommerce_template_loop_price();?></span>
+                                                        <?php if($settings['hide_product_price'] !=='yes'){ ?>
+                                                            <span class="new-price"><?php woocommerce_template_loop_price();?></span>
+                                                        <?php } ?>
                                                     </div>
                                                     <ul class="action">
                                                         <li class="btn_cart">

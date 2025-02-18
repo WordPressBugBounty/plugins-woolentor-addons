@@ -44,7 +44,7 @@ class Sales_Email_Reports{
      */
     public function init(){
         // Admin Instance
-        if ( $this->is_request( 'admin' ) ) {
+        if ( $this->is_request( 'admin' ) || $this->is_request( 'rest' ) ) {
             Admin::instance();
         }
 

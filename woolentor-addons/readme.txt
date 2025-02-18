@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, tarekht, aslamhasi
 Tags: Elementor, WooCommerce, WooCommerce Elementor, WooCommerce Builder, WooCommerce Product, Woo Builder, Variation Swatches, woocommerce blocks, Product Slider, Product Compare, Wishlist, Product Filter
 Requires at least: 4.7
 Tested up to: 6.7
-Stable tag: 3.0.3
+Stable tag: 3.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -1119,6 +1119,18 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 
 == Changelog ==
 
+= Version: 3.1.0 - Date: 18-02-2025 =
+* Improvements : Enhanced dashboard performance
+* Improvements : Better UI/UX
+* Solved : Wishlist icon position issue with add to cart addon.
+* Solved : Dynamic Text showing issue in Available Stock Progress-bar fixed.
+* Solved : Wishlist table product remove issue fixed.
+* Solved : Description, Price and ratting hide show issue fixed in Product Accordion addon
+* Solved : Description, Price, Title and ratting hide show issue fixed in Product Curvy addon.
+* Solved : Warnings Undefined Array Keys in Product Stock Progress Bar Block
+* Solved: Warnings Undefined Array Keys in Checkout Page
+* Compatibility : Latest WordPress and WooCommerce version.
+
 = Version: 3.0.3 - Date: 07-01-2025 =
 * Added : Sales Report Email Module.
 * Added : Smart Cross Sell Popup Module.
@@ -1621,16 +1633,6 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 * Added : Category Dropdown Field in AJAX search form.
 * Solved : Product showing issue with custom pagination.
 * Solved : Product right space issue in archive default addon.
-
-= Version: 2.2.4 - Date: 05-04-2022 =
-* Added : Recently Viewed products addon.
-* Solved : Product Column set issue in archive custom addon.
-* Solved : Wishlist counter fatal error.
-* Solved : Horizontal product filter Alignment issue for mobile device.
-* Solved : Event showing issue in WL : Product Flash Sale addon.
-* Solved : Phone Number validation issue in Shopify style checkout Module.
-* Solved : Add to cart button text showing issue in Product Accordion addon.
-* Tweak: Removed register_widget_type and widgets_registered deprecated method.
 
 == Installation ==
 This section describes how to install the ShopLentor - WooCommerce Addons for Elementor Page Builder plugin and get it working.

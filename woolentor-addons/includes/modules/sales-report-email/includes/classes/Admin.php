@@ -15,7 +15,7 @@ class Admin{
      */
     public function __construct(){
         $this->includes();
-        add_action( 'admin_init', [ $this, 'init' ] );
+        $this->init();
     }
 
     /**

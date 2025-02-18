@@ -226,7 +226,7 @@
 
     $(document.body).on('added_to_cart', function ( e, fragments, carthash, button ) {
 
-        var target_row = button.closest('tr');
+        var target_row = $(button).closest('tr') || button.closest('tr');
         target_row.find('.wishsuite-addtocart').addClass('added');
         $('.wishsuite-product-add_to_cart').removeClass('quick-cart-open');
 

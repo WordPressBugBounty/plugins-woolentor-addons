@@ -50,7 +50,7 @@ class Store_Vacation{
      */
     public function init(){
         // For Admin
-        if ( $this->is_request( 'admin' ) ) {
+        if ( $this->is_request( 'admin' ) || $this->is_request( 'rest' ) ) {
             Admin::instance();
         }
 

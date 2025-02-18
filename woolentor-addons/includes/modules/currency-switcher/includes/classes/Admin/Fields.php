@@ -7,27 +7,27 @@ class Fields {
     use Singleton;
 
     public function __construct(){
-        add_filter( 'woolentor_admin_fields', [ $this, 'admin_fields' ], 99, 1 );
+        add_filter( 'woolentor_admin_fields_vue', [ $this, 'admin_fields' ], 99, 1 );
     }
 
     public function admin_fields( $fields ){
         if( woolentor_is_pro() && method_exists( '\WoolentorPro\Modules\CurrencySwitcher\Currency_Switcher', 'Fields') ){
-            array_splice( $fields['woolentor_others_tabs']['modules'], 11, 0, \WoolentorPro\Modules\CurrencySwitcher\Currency_Switcher::instance()->Fields() );
+            array_splice( $fields['woolentor_others_tabs'], 11, 0, \WoolentorPro\Modules\CurrencySwitcher\Currency_Switcher::instance()->Fields() );
         }else{
-            array_splice( $fields['woolentor_others_tabs']['modules'], 11, 0, $this->currency_sitting_fields() );
+            array_splice( $fields['woolentor_others_tabs'], 11, 0, $this->currency_sitting_fields() );
         }
 
         $fields['woolentor_elements_tabs'][] = [
-            'name'    => 'wl_currency_switcher',
-            'label'   => esc_html__( 'Currency Switcher', 'woolentor' ),
+            'id'    => 'wl_currency_switcher',
+            'name'   => esc_html__( 'Currency Switcher', 'woolentor' ),
             'type'    => 'element',
             'default' => 'on'
         ];
 
         // Block
-        $fields['woolentor_gutenberg_tabs']['blocks'][] = [
-            'name'  => 'currency_switcher',
-            'label' => esc_html__( 'Currency Switcher', 'woolentor' ),
+        $fields['woolentor_gutenberg_tabs'][] = [
+            'id'  => 'currency_switcher',
+            'name' => esc_html__( 'Currency Switcher', 'woolentor' ),
             'type'  => 'element',
             'default' => 'on',
         ];
@@ -42,8 +42,8 @@ class Fields {
         $wc_currency = get_woocommerce_currency();
         $fields = array(
             array(
-                'name'     => 'currency_switcher',
-                'label'    => esc_html__( 'Currency Switcher', 'woolentor' ),
+                'id'     => 'woolentor_currency_switcher',
+                'name'    => esc_html__( 'Currency Switcher', 'woolentor' ),
                 'type'     => 'module',
                 'default'  => 'off',
                 'section'  => 'woolentor_currency_switcher',
@@ -53,8 +53,8 @@ class Fields {
                 'setting_fields' => array(
                     
                     array(
-                        'name'  => 'enable',
-                        'label' => esc_html__( 'Enable / Disable', 'woolentor' ),
+                        'id'  => 'enable',
+                        'name' => esc_html__( 'Enable / Disable', 'woolentor' ),
                         'desc'  => esc_html__( 'You can enable / disable currency switcher from here.', 'woolentor' ),
                         'type'  => 'checkbox',
                         'default' => 'off',
@@ -62,24 +62,46 @@ class Fields {
                     ),
 
                     array(
-                        'name'        => 'woolentor_currency_list',
-                        'label'       => esc_html__( 'Currency Switcher', 'woolentor' ),
+                        'id'        => 'woolentor_currency_list',
+                        'name'       => esc_html__( 'Currency Switcher', 'woolentor' ),
                         'type'        => 'repeater',
                         'title_field' => 'currency',
-                        'condition'   => [ 'enable', '==', '1' ],
-                        'add_limit'   => 2,
-                        'custom_button' => [
-                            'text' => esc_html__( 'Update Exchange Rates', 'woolentor' ),
-                            'option_section' => 'woolentor_currency_switcher',
+                        'condition'   => [ 'key'=>'enable','operator'=> '==', 'value' => 'on' ],
+                        'max_items'   => '2',
+                        'message'     => [
+                            'title' => esc_html__( 'Upgrade to Premium Version', 'woolentor' ),
+                            'desc'  => esc_html__( 'With the free version, you can add 2 currencies. To unlock more currencies and advanced features, please upgrade to the pro version.', 'woolentor' ),
+                            'pro_link' => esc_url('https://woolentor.com/pricing/?utm_source=admin&utm_medium=lockfeatures&utm_campaign=free'),
+                        ],
+                        'options' => [
+                            'button_label' => esc_html__( 'Add Currency', 'woolentor' ),
+                        ],
+                        'action_button' => [
+                            'label'    => esc_html__('Update Exchange Rates', 'woolentor'),
+                            'callback' => 'woolentor_currency_exchange_rate', // Callback function name
+                            'data'     => [
+                                'action' => 'update_currency_exchange_rate_test' // We can pass any data to callback function if needed
+                            ],
                             'option_id' => 'default_currency',
-                            'option_selector' => '.wlcs-default-selection .woolentor-admin-select select',
-                            'callback' => 'woolentor_currency_exchange_rate'
+                            'update_key' => 'currency', // Field Update base on this field value.
+                            'update_fields' => ['currency_excrate'], // Update these fields.
+                            'message' => esc_html__( 'Currency exchange rate updated successfully.', 'woolentor' ),
+                            'auto_save' => true,
+                        ],
+                        // Specify which fields should be updated based on repeater items
+                        'update_fields' => [
+                            [
+                                'field_id' => 'default_currency', // ID of the field to update
+                                'type' => 'select',
+                                'value_key' => 'currency', // Repeater item field to use as option value
+                                'label_key' => 'currency' // Repeater item field to use as option label
+                            ]
                         ],
                         'fields'  => [
 
                             array(
-                                'name'    => 'currency',
-                                'label'   => esc_html__( 'Currency', 'woolentor' ),
+                                'id'    => 'currency',
+                                'name'   => esc_html__( 'Currency', 'woolentor' ),
                                 'type'    => 'select',
                                 'default' => $wc_currency,
                                 'options' => woolentor_wc_currency_list(),
@@ -87,18 +109,16 @@ class Fields {
                             ),
 
                             array(
-                                'name'        => 'currency_decimal',
-                                'label'       => esc_html__( 'Decimal', 'woolentor' ),
+                                'id'        => 'currency_decimal',
+                                'name'       => esc_html__( 'Decimal', 'woolentor' ),
                                 'type'        => 'number',
-                                'default'     => 2,
-                                'class'       => 'woolentor-action-field-left',
+                                'default'     => 2
                             ),
 
                             array(
-                                'name'    => 'currency_position',
-                                'label'   => esc_html__( 'Currency Symbol Position', 'woolentor' ),
+                                'id'    => 'currency_position',
+                                'name'   => esc_html__( 'Currency Symbol Position', 'woolentor' ),
                                 'type'    => 'select',
-                                'class'   => 'woolentor-action-field-left',
                                 'default' => get_option( 'woocommerce_currency_pos' ),
                                 'options' => array(
                                     'left'  => esc_html__('Left','woolentor'),
@@ -109,24 +129,24 @@ class Fields {
                             ),
 
                             array(
-                                'name'        => 'currency_excrate',
-                                'label'       => esc_html__( 'Exchange Rate', 'woolentor' ),
+                                'id'        => 'currency_excrate',
+                                'name'       => esc_html__( 'Exchange Rate', 'woolentor' ),
                                 'type'        => 'number',
                                 'default'     => 1,
                                 'class'       => 'woolentor-action-field-left wlcs-currency-dynamic-exchange-rate',
                             ),
 
                             array(
-                                'name'        => 'currency_excfee',
-                                'label'       => esc_html__( 'Exchange Fee', 'woolentor' ),
+                                'id'        => 'currency_excfee',
+                                'name'       => esc_html__( 'Exchange Fee', 'woolentor' ),
                                 'type'        => 'number',
                                 'default'     => 0,
                                 'class'       => 'woolentor-action-field-left',
                             ),
 
                             array(
-                                'name'    => 'disallowed_payment_methodp',
-                                'label'   => esc_html__( 'Payment Method Disables', 'woolentor' ),
+                                'id'    => 'disallowed_payment_methodp',
+                                'name'   => esc_html__( 'Payment Method Disables', 'woolentor' ),
                                 'type'    => 'select',
                                 'options' => array(
                                     'select' => esc_html__('This is a pro features','woolentor'),
@@ -136,8 +156,8 @@ class Fields {
                             ),
 
                             array(
-                                'name'     => 'custom_currency_symbolp',
-                                'label'   => esc_html__( 'Custom Currency Symbol', 'woolentor' ),
+                                'id'     => 'custom_currency_symbolp',
+                                'name'   => esc_html__( 'Custom Currency Symbol', 'woolentor' ),
                                 'type'    => 'text',
                                 'class'   => 'woolentor-action-field-left',
                                 'default' => esc_html__('This is a pro features','woolentor'),
@@ -145,10 +165,10 @@ class Fields {
                             ),
 
                             array(
-                                'name'    => 'custom_flagp',
-                                'label'   => esc_html__( 'Custom Flag', 'woolentor' ),
+                                'id'    => 'custom_flagp',
+                                'name'   => esc_html__( 'Custom Flag', 'woolentor' ),
                                 'desc'    => esc_html__( 'You can upload your flag for currency switcher from here.', 'woolentor' ),
-                                'type'    => 'image_upload',
+                                'type'    => 'imageupload',
                                 'options' => [
                                     'button_label'        => esc_html__( 'Upload', 'woolentor' ),   
                                     'button_remove_label' => esc_html__( 'Remove', 'woolentor' ),   
@@ -172,13 +192,13 @@ class Fields {
                     ),
 
                     array(
-                        'name'    => 'default_currency',
-                        'label'   => esc_html__( 'Default Currency', 'woolentor' ),
+                        'id'    => 'default_currency',
+                        'name'   => esc_html__( 'Default Currency', 'woolentor' ),
                         'type'    => 'select',
                         'options' => woolentor_added_currency_list(),
                         'default' => $wc_currency,
                         'class'   => 'woolentor-action-field-left wlcs-default-selection',
-                        'condition'=> [ 'enable', '==', '1' ],
+                        'condition'   => [ 'key'=>'enable','operator'=> '==', 'value' => 'on' ],
                     ),
 
                 )

@@ -17,7 +17,7 @@ $areaClasses = array( $uniqClass, 'woolentor_block_wishsuite_counter' );
 echo '<div class="'.esc_attr( implode(' ', $areaClasses ) ).'">';
 
     $short_code_attributes = [
-        'text' => $settings['counterAfterText'],
+        'text' => isset($settings['counterAfterText']) ? $settings['counterAfterText'] : '',
     ];
     echo woolentor_do_shortcode( 'wishsuite_counter', $short_code_attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 

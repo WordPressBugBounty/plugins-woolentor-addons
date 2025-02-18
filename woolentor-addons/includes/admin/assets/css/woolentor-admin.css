@@ -1,76 +1,7 @@
 *, *::before, *::after {
     box-sizing: border-box;
   }
-  .woolentor-admin-wrapper {
-    font-family: "Open Sans", sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    font-style: normal;
-    line-height: 1.715;
-    position: relative;
-    visibility: visible;
-    color: #6D7175;
-  }
-  .woolentor-admin-wrapper h1, .woolentor-admin-wrapper h2, .woolentor-admin-wrapper h3, .woolentor-admin-wrapper h4, .woolentor-admin-wrapper h5, .woolentor-admin-wrapper h6 {
-    font-family: "Open Sans", sans-serif;
-    line-height: 1.2;
-    margin-top: 0;
-  }
-  .woolentor-admin-wrapper .h1, .woolentor-admin-wrapper .h2, .woolentor-admin-wrapper .h3, .woolentor-admin-wrapper .h4, .woolentor-admin-wrapper .h5, .woolentor-admin-wrapper .h6 {
-    line-height: inherit;
-    margin: 0;
-  }
-  .woolentor-admin-wrapper p {
-    margin-top: 0;
-  }
-  .woolentor-admin-wrapper p:last-child {
-    margin-bottom: 0;
-  }
-  .woolentor-admin-wrapper a, .woolentor-admin-wrapper button {
-    cursor: pointer;
-    text-decoration: none;
-  }
-  .woolentor-admin-wrapper a:not(.ui-draggable), .woolentor-admin-wrapper button, .woolentor-admin-wrapper img, .woolentor-admin-wrapper input {
-    transition: all 0.3s ease 0s;
-  }
-  .woolentor-admin-wrapper *:focus {
-    outline: none;
-    box-shadow: none;
-  }
-  .woolentor-admin-wrapper a:hover {
-    text-decoration: none;
-  }
-  .woolentor-admin-wrapper button, .woolentor-admin-wrapper input[type=submit] {
-    cursor: pointer;
-  }
-  .woolentor-admin-wrapper button[disabled="disabled"] {
-    cursor: not-allowed;
-}
-  .woolentor-admin-wrapper img {
-    max-width: 100%;
-  }
-  .woolentor-admin-wrapper input::-webkit-input-placeholder, .woolentor-admin-wrapper textarea::-webkit-input-placeholder {
-    opacity: 0.5;
-  }
-  .woolentor-admin-wrapper input:-moz-placeholder, .woolentor-admin-wrapper textarea:-moz-placeholder {
-    opacity: 0.5;
-  }
-  .woolentor-admin-wrapper input::-moz-placeholder, .woolentor-admin-wrapper textarea::-moz-placeholder {
-    opacity: 0.5;
-  }
-  .woolentor-admin-wrapper input:-ms-input-placeholder, .woolentor-admin-wrapper textarea:-ms-input-placeholder {
-    opacity: 0.5;
-  }
-  .woolentor-admin-wrapper ul {
-    margin-top: 0;
-  }
-  .woolentor-admin-wrapper ul:last-child {
-    margin-bottom: 0;
-  }
-  .woolentor-admin-wrapper hr {
-    border-top-width: 2px;
-  }
-  
+
   /* Option Disable */
   [data-woolentor-pro=disabled] {
     position: relative;
@@ -480,13 +411,13 @@
     background-color: #007EFF;
   }
   
-  /* Form Color */
+  /* For Color */
   .woolentor-admin-color {
     display: flex;
     width: 100%;
   }
 
-  /* Form Media Uploader */
+  /* For Media Uploader */
   .woolentor_display {
     max-width: 150px;
   }
@@ -641,95 +572,6 @@
   }
   .woolentor-admin-button-type a.woolentor-admin-btn{
     color: #fff;
-  }
-  
-  /* Icon List */
-  @font-face {
-    font-family: "woolentor-admin";
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-    src: url("../fonts/woolentor-admin.ttf?55zl88") format("truetype"), url("../fonts/woolentor-admin.woff?55zl88") format("woff"), url("../fonts/woolentor-admin.svg?55zl88#woolentor-admin") format("svg");
-  }
-  .wli {
-    font-family: "woolentor-admin";
-    font-weight: normal;
-    font-style: normal;
-    font-variant: normal;
-    line-height: 1;
-    text-transform: none;
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    /* speak: never; */
-  }
-  
-  .wli-feature-list:before {
-    content: "\e904";
-  }
-  
-  .wli-info:before {
-    content: "\e908";
-  }
-  
-  .wli-bell:before {
-    content: "\e900";
-  }
-  
-  .wli-cog:before {
-    content: "\e901";
-  }
-  
-  .wli-cog-light:before {
-    content: "\e902";
-  }
-  
-  .wli-envelope:before {
-    content: "\e903";
-  }
-  
-  .wli-file:before {
-    content: "\e905";
-  }
-  
-  .wli-grid:before {
-    content: "\e906";
-  }
-  
-  .wli-images:before {
-    content: "\e907";
-  }
-  
-  .wli-question:before {
-    content: "\e90d";
-  }
-  
-  .wli-masonry:before {
-    content: "\e909";
-  }
-  
-  .wli-monitor:before {
-    content: "\e90a";
-  }
-  
-  .wli-pencil:before {
-    content: "\e90b";
-  }
-  
-  .wli-play:before {
-    content: "\e90c";
-  }
-  
-  .wli-store:before {
-    content: "\e90e";
-  }
-  
-  .wli-support:before {
-    content: "\e90f";
-  }
-  
-  .wli-tag:before {
-    content: "\e910";
   }
   
   .woolentor-admin-main-nav {
@@ -2009,79 +1851,6 @@
   color: #FFFFFF;
   background-color: #007EFF;
 }
-/* Extension Tabs */
-.extension-admin-tab-area.wp-filter {
-  padding: 0;
-  margin: 0;
-  margin-bottom: 30px;
-  border: none;
-}
-.woolentor-admin-tabs.filter-links {
-  display: flex;
-  padding: 7px 10px;
-  list-style: none;
-  border: 2px solid #EAEFF3;
-  border-radius: 5px;
-  box-shadow: 0 4px 13px rgba(0, 0, 0, 0.1);
-}
-.woolentor-admin-tabs.filter-links li {
-  position: relative;
-  z-index: 1;
-  border: none;
-}
-.woolentor-admin-tabs.filter-links li::before, .woolentor-admin-tabs.filter-links li::after {
-  position: absolute;
-  z-index: -2;
-  top: 50%;
-  width: 5px;
-  height: 5px;
-  margin-top: -2.5px;
-  content: "";
-  transition: all 0.3s ease 0s;
-  opacity: 0.25;
-  border-radius: 10px;
-  background-color: #007EFF;
-}
-.woolentor-admin-tabs.filter-links li::before {
-  left: -2.5px;
-}
-.woolentor-admin-tabs.filter-links li::after {
-  right: -2.5px;
-}
-.woolentor-admin-tabs.filter-links li:first-child::before {
-  display: none;
-}
-.woolentor-admin-tabs.filter-links li:last-child::after {
-  display: none;
-}
-.woolentor-admin-tabs.filter-links li.wlactive {
-  z-index: 2;
-}
-.woolentor-admin-tabs.filter-links li.wlactive::before, .woolentor-admin-tabs.filter-links li.wlactive::after {
-  z-index: -1;
-  opacity: 1;
-  background-color: #FFFFFF;
-}
-.woolentor-admin-tabs.filter-links li a {
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1;
-  display: flex;
-  padding: 9px 20px;
-  text-transform: capitalize;
-  color: #007EFF;
-  border-radius: 5px;
-  margin: 0;
-  border: none;
-}
-.woolentor-admin-tabs.filter-links li a.wlactive {
-  color: #FFFFFF;
-  background-color: #007EFF;
-}
-.woolentor-admin-tabs.filter-links li a.wlactive:hover,.woolentor-admin-tabs.filter-links li a.wlactive:focus {
-  color: #FFFFFF;
-  background-color: #007EFF;
-}
 
 /* Module Edit PopUp */
 .woolentor-module-setting-popup-content {
@@ -2204,68 +1973,4 @@
 .woolentor-adv-pro-notice > *,.woolentor-adv-pro-opacity{
   opacity: 0.5;
   pointer-events: none;
-}
-
-/* Free VS Pro Tabs */
-.freevspro .woolentor-admin-main-nav-btn{
-  color: #f56640;
-}
-.freevspro .woolentor-admin-main-nav-btn:hover,.freevspro .woolentor-admin-main-nav-btn.wlactive{
-  color: #ffffff;
-}
-#woolentor_freevspro_tabs .woolentor-admin-header .woolentor-admin-btn.enable{
-  background-color: #007EFF;
-  color: #ffffff;
-}
-#woolentor_freevspro_tabs .woolentor-admin-header .woolentor-admin-btn.enable:hover{
-  background-color: #ffffff;
-  color: #007EFF;
-}
-.different-free-vs-pro table {
-  border: none;
-  width: 100%;
-  border-collapse:collapse;
-}
-.different-free-vs-pro table tr {
-  flex-flow: row wrap;
-  border-right: 1px solid #d3d4d4;
-  border-left: 1px solid #d3d4d4;
-}
-.different-free-vs-pro table tr td, .different-free-vs-pro table tr th {
-  word-break: break-all;
-  border: 1px solid #d3d4d4;
-  font-size: 14px;
-  padding: 16px;
-  text-align: center;
-  border-right: 0;
-  border-left: 0;
-}
-.different-free-vs-pro table tbody tr td:first-child, .different-free-vs-pro table thead tr th:first-child{
-  text-align: left;
-}
-.different-free-vs-pro table tbody tr:nth-child(2n+1) {
-  background-color: #fbfcfd;
-}
-#woolentor_freevspro_tabs .woolentor_heading_style_two{
-  padding-left: 0;
-}
-.different-free-vs-pro table tbody tr.explore-pro-features{
-  background-color: #ffffff;
-}
-.different-free-vs-pro table tbody tr.explore-pro-features td {
-  text-align: center;
-  font-size: 16px;
-}
-.different-free-vs-pro .explore-pro-features a {
-  display: inline-flex;
-}
-
-/* Currency Switcher Module */
-form[data-section=woolentor_currency_switcher] .woolenor-reapeater-fields-area+.woolentor-admin-option {
-  border-top: 1px solid #eaeaea;
-  margin-top: 20px;
-}
-.swal2-html-container {
-  font-size: 16px;
-  line-height: 26px;
 }

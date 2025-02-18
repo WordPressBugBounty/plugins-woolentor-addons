@@ -54,8 +54,10 @@ class Advanced_Coupon{
      */
     public function init(){
         // For Admin
-        if ( $this->is_request( 'admin' ) ) {
+        if ( $this->is_request( 'admin' ) || $this->is_request( 'rest' ) ) {
             Admin::instance();
+        }
+        if ( $this->is_request( 'admin' ) ) {
             if( !$this->is_pro() && self::$_enabled ){
                 add_action('woolentor_coupon_payment_fields',[Admin\Coupon_Meta_Boxes::instance(),'pro_payment_option_field'], 10, 1);
                 add_action('woolentor_coupon_url_fields',[Admin\Coupon_Meta_Boxes::instance(),'pro_url_option_field'], 10, 1);

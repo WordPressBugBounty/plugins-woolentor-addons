@@ -204,7 +204,7 @@ final class Base {
      * @return void
      */
     public function admin_rating_notice(){
-        $logo_url = esc_url(WOOLENTOR_ADDONS_PL_URL . "includes/admin/assets/images/logo.png");
+        $logo_url = esc_url(WOOLENTOROPT_ASSETS.'/images/logo.png');
 
         $message = '<div class="hastech-review-notice-wrap">
                     <div class="hastech-rating-notice-logo">
@@ -449,6 +449,9 @@ final class Base {
             require_once( WOOLENTOR_ADDONS_PL_PATH.'includes/custom-metabox.php' );
             require_once( WOOLENTOR_ADDONS_PL_PATH.'includes/admin/admin-init.php' );
         }
+
+        // Vue Dashboard
+        require_once( WOOLENTOR_ADDONS_PL_PATH .'includes/admin-panel/settings-panel.php');
 
         // Builder File
         if( woolentor_get_option( 'enablecustomlayout', 'woolentor_woo_template_tabs', 'on' ) == 'on' ){

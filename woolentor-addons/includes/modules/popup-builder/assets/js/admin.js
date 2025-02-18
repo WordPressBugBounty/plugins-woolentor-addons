@@ -492,9 +492,11 @@
     /**
      * Popup Menu for Editor Panel.
      */
-    var appBarMenu = elementorV2.editorAppBar;
-    if( typeof appBarMenu != "undefined" ){
-        appBarMenu.documentOptionsMenu.registerAction({ id: "wlpb_conditions", priority: 20, useProps: popupBuilderAdmin.MenuForTopBar })
+    if( typeof elementorV2 != "undefined" ){
+        var appBarMenu = elementorV2.editorAppBar;
+        if( typeof appBarMenu != "undefined" ){
+            appBarMenu.documentOptionsMenu.registerAction({ id: "wlpb_conditions", priority: 20, useProps: popupBuilderAdmin.MenuForTopBar })
+        }
     }
-
+    
 })(jQuery);

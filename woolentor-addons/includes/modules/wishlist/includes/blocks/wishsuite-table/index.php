@@ -17,7 +17,7 @@ $areaClasses = array( $uniqClass, 'woolentor_block_wishsuite_table' );
 echo '<div class="'.esc_attr( implode(' ', $areaClasses ) ).'">';
 
     $short_code_attributes = [
-        'empty_text' => $settings['emptyTableText'],
+        'empty_text' => isset($settings['emptyTableText']) ? $settings['emptyTableText'] : '',
     ];
     echo woolentor_do_shortcode( 'wishsuite_table', $short_code_attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 

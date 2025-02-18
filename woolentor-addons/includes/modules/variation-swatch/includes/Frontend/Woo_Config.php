@@ -978,7 +978,7 @@ class Woo_Config {
             }
         }
 
-        $custom_catalog_attributes = Helper::get_option('pl_catalog_custom_attributes');
+        $custom_catalog_attributes = Helper::get_option('pl_catalog_custom_attributes') != null ? Helper::get_option('pl_catalog_custom_attributes') : '';
         $custom_catalog_attributes = explode(PHP_EOL, $custom_catalog_attributes);
         $custom_catalog_attributes = array_map('trim', $custom_catalog_attributes); // remove white space from end of elements
 

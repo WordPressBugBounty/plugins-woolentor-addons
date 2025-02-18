@@ -6,7 +6,7 @@ class Fields {
     use Singleton;
 
     public function __construct(){
-        add_filter( 'woolentor_admin_fields', [ $this, 'admin_fields' ], 99, 1 );
+        add_filter( 'woolentor_admin_fields_vue', [ $this, 'admin_fields' ], 99, 1 );
     }
 
     /**
@@ -16,7 +16,7 @@ class Fields {
      */
     public function admin_fields( $fields ){
         
-        array_splice( $fields['woolentor_others_tabs']['modules'], 16, 0, $this->sitting_fields() );
+        array_splice( $fields['woolentor_others_tabs'], 16, 0, $this->sitting_fields() );
 
         return $fields;
     }
@@ -28,8 +28,8 @@ class Fields {
         
         $fields = array(
             array(
-                'name'     => 'email_reports_settings',
-                'label'    => esc_html__( 'Sales Report Email', 'woolentor' ),
+                'id'     => 'woolentor_email_reports_settings',
+                'name'    => esc_html__( 'Sales Report Email', 'woolentor' ),
                 'type'     => 'module',
                 'default'  => 'off',
                 'section'  => 'woolentor_email_reports_settings',
@@ -38,8 +38,8 @@ class Fields {
                 'documentation' => esc_url('https://woolentor.com/doc/sales-report-email-module-in-woocommerce/'),
                 'setting_fields' => array(
                     array(
-                        'name'  => 'enable',
-                        'label' => esc_html__( 'Enable / Disable', 'woolentor' ),
+                        'id'  => 'enable',
+                        'name' => esc_html__( 'Enable / Disable', 'woolentor' ),
                         'desc'  => esc_html__( 'Enable/disable email reports module', 'woolentor' ),
                         'type'  => 'checkbox',
                         'default' => 'off',
@@ -47,8 +47,8 @@ class Fields {
                     ),
 
                     array(
-                        'name'    => 'schedule_type',
-                        'label'   => esc_html__( 'Report Schedule', 'woolentor' ),
+                        'id'    => 'schedule_type',
+                        'name'   => esc_html__( 'Report Schedule', 'woolentor' ),
                         'desc'    => esc_html__( 'Select report frequency', 'woolentor' ),
                         'type'    => 'select',
                         'default' => 'daily',
@@ -64,31 +64,31 @@ class Fields {
 
                     // Add custom minutes field
                     array(
-                        'name'    => 'custom_minutes',
-                        'label'   => esc_html__( 'Custom Minutes', 'woolentor' ),
+                        'id'    => 'custom_minutes',
+                        'name'   => esc_html__( 'Custom Minutes', 'woolentor' ),
                         'desc'    => esc_html__( 'Enter minutes (minimum 5 minutes)', 'woolentor' ),
                         'type'    => 'number',
                         'min'     => 5,
                         'default' => 30,
                         'class'   => 'woolentor-action-field-left',
-                        'condition' => array( 'schedule_type', '==', 'custom' )
+                        'condition' => array( 'key'=>'schedule_type','operator'=> '==', 'value'=>'custom' )
                     ),
 
                     // Add time field for daily, weekly, monthly schedules
                     array(
-                        'name'    => 'schedule_time',
-                        'label'   => esc_html__( 'Time', 'woolentor' ),
+                        'id'    => 'schedule_time',
+                        'name'   => esc_html__( 'Time', 'woolentor' ),
                         'desc'    => esc_html__( 'Set time (24-hour format)', 'woolentor' ),
                         'type'    => 'text',
                         'default' => '00:00',
                         'class'   => 'woolentor-action-field-left',
-                        'condition' => array( 'schedule_type', 'any', 'daily,weekly,monthly' )
+                        'condition' => array( 'key'=>'schedule_type', 'operator'=> 'any', 'value'=>'daily,weekly,monthly' )
                     ),
 
                     // Add day selection for weekly schedule
                     array(
-                        'name'    => 'week_day',
-                        'label'   => esc_html__( 'Day of Week', 'woolentor' ),
+                        'id'    => 'week_day',
+                        'name'   => esc_html__( 'Day of Week', 'woolentor' ),
                         'desc'    => esc_html__( 'Select day of the week', 'woolentor' ),
                         'type'    => 'select',
                         'options' => array(
@@ -102,25 +102,25 @@ class Fields {
                         ),
                         'default' => '1',
                         'class'   => 'woolentor-action-field-left',
-                        'condition' => array( 'schedule_type', '==', 'weekly' )
+                        'condition' => array( 'key'=>'schedule_type', 'operator'=>'==', 'value'=>'weekly' )
                     ),
 
                     // Add day selection for monthly schedule
                     array(
-                        'name'    => 'month_day',
-                        'label'   => esc_html__( 'Day of Month', 'woolentor' ),
+                        'id'    => 'month_day',
+                        'name'   => esc_html__( 'Day of Month', 'woolentor' ),
                         'desc'    => esc_html__( 'Select day of the month', 'woolentor' ),
                         'type'    => 'number',
                         'min'     => 1,
                         'max'     => 31,
                         'default' => 1,
                         'class'   => 'woolentor-action-field-left',
-                        'condition' => array( 'schedule_type', '==', 'monthly' )
+                        'condition' => array( 'key'=>'schedule_type', 'operator'=>'==', 'value'=>'monthly' )
                     ),
             
                     array(
-                        'name'    => 'recipient_email',
-                        'label'   => esc_html__( 'Recipients', 'woolentor' ),
+                        'id'    => 'recipient_email',
+                        'name'   => esc_html__( 'Recipients', 'woolentor' ),
                         'desc'    => esc_html__( 'Enter email addresses (comma-separated)', 'woolentor' ),
                         'type'    => 'text',
                         'default' => get_option('admin_email'),
@@ -128,8 +128,8 @@ class Fields {
                     ),
             
                     array(
-                        'name'    => 'report_metrics',
-                        'label'   => esc_html__( 'Report Metrics', 'woolentor' ),
+                        'id'    => 'report_metrics',
+                        'name'   => esc_html__( 'Report Metrics', 'woolentor' ),
                         'desc'    => esc_html__( 'Select metrics to include in report', 'woolentor' ),
                         'type'    => 'multiselect',
                         'default' => array('sales', 'orders'),

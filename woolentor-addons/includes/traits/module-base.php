@@ -32,6 +32,21 @@ trait ModuleBase {
     }
 
     /**
+     * Check if the current request is a REST API request.
+     * @return bool
+     */
+    private function is_rest_api_request() {
+        if ( empty( $_SERVER['REQUEST_URI'] ) ) {
+            return false;
+        }
+
+        $rest_prefix         = trailingslashit( rest_get_url_prefix() );
+        $is_rest_api_request = ( false !== strpos( $_SERVER['REQUEST_URI'], $rest_prefix ) ); // phpcs:disable WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+
+        return $is_rest_api_request;
+    }
+
+    /**
      * What type of request is this?
      *
      * @param  string $type admin, ajax, cron or frontend.
@@ -45,7 +60,7 @@ trait ModuleBase {
                 return defined( 'DOING_AJAX' );
 
             case 'rest' :
-                return defined( 'REST_REQUEST' );
+                return ( defined( 'REST_REQUEST' ) || $this->is_rest_api_request() );
 
             case 'cron' :
                 return defined( 'DOING_CRON' );

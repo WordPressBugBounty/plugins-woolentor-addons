@@ -7,7 +7,7 @@ class Fields {
     use Singleton;
 
     public function __construct(){
-        add_filter( 'woolentor_admin_fields', [ $this, 'admin_fields' ], 99, 1 );
+        add_filter( 'woolentor_admin_fields_vue', [ $this, 'admin_fields' ], 99, 1 );
     }
 
     /**
@@ -17,9 +17,9 @@ class Fields {
      */
     public function admin_fields( $fields ){
         if( woolentor_is_pro() && method_exists( '\WoolentorPro\Modules\Badges\Product_Badges', 'Fields') ){
-            array_splice( $fields['woolentor_others_tabs']['modules'], 25, 0, \WoolentorPro\Modules\Badges\Product_Badges::instance()->Fields() );
+            array_splice( $fields['woolentor_others_tabs'], 25, 0, \WoolentorPro\Modules\Badges\Product_Badges::instance()->Fields() );
         }else{
-            array_splice( $fields['woolentor_others_tabs']['modules'], 13, 0, $this->sitting_fields() );
+            array_splice( $fields['woolentor_others_tabs'], 13, 0, $this->sitting_fields() );
         }
 
         return $fields;
@@ -31,8 +31,8 @@ class Fields {
     public function sitting_fields(){
         $fields = [
             [
-                'name'   => 'badges_settings',
-                'label'  => esc_html__( 'Product Badges', 'woolentor' ),
+                'id'   => 'woolentor_badges_settings',
+                'name'  => esc_html__( 'Product Badges', 'woolentor' ),
                 'type'   => 'module',
                 'default'=> 'off',
                 'section'  => 'woolentor_badges_settings',
@@ -41,8 +41,8 @@ class Fields {
                 'require_settings'  => true,
                 'setting_fields' => [
                     [
-                        'name'    => 'enable',
-                        'label'   => esc_html__( 'Enable / Disable', 'woolentor' ),
+                        'id'    => 'enable',
+                        'name'   => esc_html__( 'Enable / Disable', 'woolentor' ),
                         'desc'    => esc_html__( 'Enable / disable this module.', 'woolentor' ),
                         'type'    => 'checkbox',
                         'default' => 'off',
@@ -50,25 +50,30 @@ class Fields {
                     ],
 
                     [
-                        'name'        => 'badges_list',
-                        'label'       => esc_html__( 'Badge List', 'woolentor' ),
+                        'id'        => 'badges_list',
+                        'name'       => esc_html__( 'Badge List', 'woolentor' ),
                         'type'        => 'repeater',
                         'title_field' => 'badge_title',
-                        'condition'   => [ 'enable', '==', 'true' ],
-                        'add_limit'   => 2,
+                        'condition'   => [ 'key'=>'enable','operator'=>'==', 'value'=>'on' ],
+                        'max_items'   => '2',
+                        'message'     => [
+                            'title' => esc_html__( 'Upgrade to Premium Version', 'woolentor' ),
+                            'desc'  => esc_html__( 'With the free version, you can add 2 badges. To unlock more badges and advanced features, please upgrade to the pro version.', 'woolentor' ),
+                            'pro_link' => esc_url('https://woolentor.com/pricing/?utm_source=admin&utm_medium=lockfeatures&utm_campaign=free'),
+                        ],
                         'options' => [
                             'button_label' => esc_html__( 'Add New Badge', 'woolentor' ),  
                         ],
                         'fields'  => [
                             [
-                                'name'        => 'badge_title',
-                                'label'       => esc_html__( 'Badge Title', 'woolentor' ),
+                                'id'        => 'badge_title',
+                                'name'       => esc_html__( 'Badge Title', 'woolentor' ),
                                 'type'        => 'text',
                                 'class'       => 'woolentor-action-field-left'
                             ],
                             [
-                                'name'        => 'badge_type',
-                                'label'       => esc_html__( 'Badge Type', 'woolentor' ),
+                                'id'        => 'badge_type',
+                                'name'       => esc_html__( 'Badge Type', 'woolentor' ),
                                 'type'        => 'select',
                                 'default'     => 'text',
                                 'options' => [
@@ -78,31 +83,31 @@ class Fields {
                                 'class'       => 'woolentor-action-field-left'
                             ],
                             [
-                                'name'        => 'badge_text',
-                                'label'       => esc_html__( 'Badge Text', 'woolentor' ),
+                                'id'        => 'badge_text',
+                                'name'       => esc_html__( 'Badge Text', 'woolentor' ),
                                 'type'        => 'text',
                                 'class'       => 'woolentor-action-field-left',
-                                'condition' => [ 'badge_type', '==', 'text' ],
+                                'condition' => ['key'=> 'badge_type', 'operator'=>'==', 'value'=> 'text' ],
                             ],
                             [
-                                'name'  => 'badge_text_color',
-                                'label' => esc_html__( 'Text Color', 'woolentor' ),
+                                'id'  => 'badge_text_color',
+                                'name' => esc_html__( 'Text Color', 'woolentor' ),
                                 'desc'  => esc_html__( 'Badge text color.', 'woolentor' ),
                                 'type'  => 'color',
                                 'class' => 'woolentor-action-field-left',
-                                'condition' => [ 'badge_type', '==', 'text' ],
+                                'condition' => ['key'=> 'badge_type', 'operator'=>'==', 'value'=> 'text' ],
                             ],
                             [
-                                'name'  => 'badge_bg_color',
-                                'label' => esc_html__( 'Background Color', 'woolentor' ),
+                                'id'  => 'badge_bg_color',
+                                'name' => esc_html__( 'Background Color', 'woolentor' ),
                                 'desc'  => esc_html__( 'Badge background color.', 'woolentor' ),
                                 'type'  => 'color',
                                 'class' => 'woolentor-action-field-left',
-                                'condition' => [ 'badge_type', '==', 'text' ],
+                                'condition' => ['key'=> 'badge_type', 'operator'=>'==', 'value'=> 'text' ],
                             ],
                             [
-                                'name'              => 'badge_font_size',
-                                'label'             => esc_html__( 'Text Font Size (PX)', 'woolentor' ),
+                                'id'              => 'badge_font_size',
+                                'name'             => esc_html__( 'Text Font Size (PX)', 'woolentor' ),
                                 'desc'              => esc_html__( 'Set the font size for badge text.', 'woolentor' ),
                                 'min'               => 1,
                                 'max'               => 1000,
@@ -110,12 +115,12 @@ class Fields {
                                 'step'              => '1',
                                 'type'              => 'number',
                                 'sanitize_callback' => 'number',
-                                'condition' => [ 'badge_type', '==', 'text' ],
+                                'condition' => ['key'=> 'badge_type', 'operator'=>'==', 'value'=> 'text' ],
                                 'class'       => 'woolentor-action-field-left',
                             ],
                             [
-                                'name'    => 'badge_padding',
-                                'label'   => esc_html__( 'Badge padding', 'woolentor' ),
+                                'id'    => 'badge_padding',
+                                'name'   => esc_html__( 'Badge padding', 'woolentor' ),
                                 'desc'    => esc_html__( 'Badge area padding.', 'woolentor' ),
                                 'type'    => 'dimensions',
                                 'options' => [
@@ -126,11 +131,11 @@ class Fields {
                                     'unit'  => esc_html__( 'Unit', 'woolentor' ),
                                 ],
                                 'class' => 'woolentor-action-field-left woolentor-dimention-field-left',
-                                'condition' => [ 'badge_type', '==', 'text' ],
+                                'condition' => ['key'=> 'badge_type', 'operator'=>'==', 'value'=> 'text' ],
                             ],
                             [
-                                'name'    => 'badge_border_radius',
-                                'label'   => esc_html__( 'Badge border radius', 'woolentor' ),
+                                'id'    => 'badge_border_radius',
+                                'name'   => esc_html__( 'Badge border radius', 'woolentor' ),
                                 'desc'    => esc_html__( 'Badge area button border radius.', 'woolentor' ),
                                 'type'    => 'dimensions',
                                 'options' => [
@@ -141,30 +146,30 @@ class Fields {
                                     'unit'  => esc_html__( 'Unit', 'woolentor' ),
                                 ],
                                 'class' => 'woolentor-action-field-left woolentor-dimention-field-left',
-                                'condition' => [ 'badge_type', '==', 'text' ],
+                                'condition' => ['key'=> 'badge_type', 'operator'=>'==', 'value'=> 'text' ],
                             ],
                             [
-                                'name'    => 'badge_image',
-                                'label'   => esc_html__( 'Badge Image', 'woolentor-pro' ),
+                                'id'    => 'badge_image',
+                                'name'   => esc_html__( 'Badge Image', 'woolentor-pro' ),
                                 'desc'    => esc_html__( 'Upload your custom badge from here.', 'woolentor' ),
-                                'type'    => 'image_upload',
+                                'type'    => 'imageupload',
                                 'options' => [
                                     'button_label'        => esc_html__( 'Upload', 'woolentor' ),   
                                     'button_remove_label' => esc_html__( 'Remove', 'woolentor' ),   
                                 ],
                                 'class' => 'woolentor-action-field-left',
-                                'condition'   => [ 'badge_type', '==', 'image' ],
+                                'condition'   => [ 'key'=>'badge_type', 'operator'=>'==', 'value'=>'image' ],
                             ],
 
                             [
-                                'name'      => 'badge_setting_heading',
-                                'headding'  => esc_html__( 'Badge Settings', 'woolentor' ),
+                                'id'      => 'badge_setting_heading',
+                                'heading'  => esc_html__( 'Badge Settings', 'woolentor' ),
                                 'type'      => 'title'
                             ],
 
                             [
-                                'name'    => 'badge_position',
-                                'label'   => esc_html__( 'Badge Position', 'woolentor' ),
+                                'id'    => 'badge_position',
+                                'name'   => esc_html__( 'Badge Position', 'woolentor' ),
                                 'desc'    => esc_html__( 'Choose a badge position from here.', 'woolentor' ),
                                 'type'    => 'select',
                                 'default' => 'top_left',
@@ -177,8 +182,8 @@ class Fields {
                                 'class'       => 'woolentor-action-field-left',
                             ],
                             [
-                                'name'    => 'badge_custom_positionp',
-                                'label'   => esc_html__( 'Custom Position', 'woolentor' ),
+                                'id'    => 'badge_custom_positionp',
+                                'name'   => esc_html__( 'Custom Position', 'woolentor' ),
                                 'desc'    => esc_html__( 'Badge Custom Position.', 'woolentor' ),
                                 'type'    => 'dimensions',
                                 'options' => [
@@ -192,8 +197,8 @@ class Fields {
                                 'is_pro'    => true,
                             ],
                             [
-                                'name'    => 'badge_condition',
-                                'label'   => esc_html__( 'Badge Condition', 'woolentor' ),
+                                'id'    => 'badge_condition',
+                                'name'   => esc_html__( 'Badge Condition', 'woolentor' ),
                                 'type'    => 'select',
                                 'default' => 'none',
                                 'options' => [
@@ -208,34 +213,36 @@ class Fields {
                             ],
 
                             [
-                                'name'        => 'categories',
-                                'label'       => esc_html__( 'Select Categories', 'woolentor' ),
+                                'id'        => 'categories',
+                                'name'       => esc_html__( 'Select Categories', 'woolentor' ),
                                 'desc'        => esc_html__( 'Select the categories in which products the badge will be show.', 'woolentor' ),
                                 'type'        => 'multiselect',
+                                'convertnumber' => true,
                                 'options'     => woolentor_taxonomy_list('product_cat','term_id'),
-                                'condition'   => [ 'badge_condition', '==', 'category' ],
+                                'condition'   => [ 'key'=>'badge_condition', 'operator'=>'==', 'value'=>'category' ],
                                 'class'       => 'woolentor-action-field-left'
                             ],
 
                             [
-                                'name'        => 'products',
-                                'label'       => esc_html__( 'Select Products', 'woolentor' ),
+                                'id'        => 'products',
+                                'name'       => esc_html__( 'Select Products', 'woolentor' ),
                                 'desc'        => esc_html__( 'Select individual products in which the badge will be show.', 'woolentor' ),
                                 'type'        => 'multiselect',
+                                'convertnumber' => true,
                                 'options'     => woolentor_post_name( 'product' ),
-                                'condition'   => [ 'badge_condition', '==', 'selected_product' ],
+                                'condition'   => [ 'key'=>'badge_condition', 'operator'=>'==', 'value'=>'selected_product' ],
                                 'class'       => 'woolentor-action-field-left'
                             ],
 
                             [
-                                'name'        => 'exclude_productsp',
-                                'label'       => esc_html__( 'Exclude Products', 'woolentor' ),
+                                'id'        => 'exclude_productsp',
+                                'name'       => esc_html__( 'Exclude Products', 'woolentor' ),
                                 'type'        => 'select',
-                                'default'     => '0',
+                                'default'     => 'select_products',
                                 'options'     => [
-                                    'select'  => esc_html__('This is a pro features','woolentor'),
+                                    'select_products'  => esc_html__('This is a pro features','woolentor'),
                                 ],
-                                'condition'   => [ 'badge_condition', '!=', 'none' ],
+                                'condition'   => [ 'key'=>'badge_condition', 'operator'=>'!=', 'value'=>'none' ],
                                 'class'       => 'woolentor-action-field-left',
                                 'is_pro'      => true,
                             ]
