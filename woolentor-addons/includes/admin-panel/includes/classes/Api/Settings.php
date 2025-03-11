@@ -391,6 +391,10 @@ class Settings extends WP_REST_Controller {
             case 'shortable':
                 $finalvalue = $this->sanitize_shortable_field( $setting_value, $errors, $setting );
                 break;
+
+            case 'dimensions':
+                $finalvalue = $this->sanitize_dimensions_field( $setting_value, $errors, $setting );
+                break;
             
             default:
                 $finalvalue = sanitize_text_field( $setting_value );

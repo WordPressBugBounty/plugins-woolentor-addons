@@ -108,6 +108,18 @@ trait Sanitize_Trait {
 	public function sanitize_shortable_field( $setting_value, $errors, $setting ) {
 		return $setting_value;
 	}
+	
+	/**
+	 * Sanitize dimensions field data.
+	 *
+	 * @param string $setting_value
+	 * @param object $errors
+	 * @param array $setting
+	 * @return string
+	 */
+	public function sanitize_dimensions_field( $setting_value, $errors, $setting ) {
+		return $setting_value;
+	}
 
 	/**
 	 * Sanitize repeater field data recursively

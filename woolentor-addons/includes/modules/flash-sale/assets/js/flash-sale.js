@@ -1,10 +1,30 @@
 ;(function($){
     "use strict";
 
+    /**
+     * Senitize HTML
+     */
+    var flashSaleSanitizeHTML = function (str) {
+        if( str ){
+            return str.replace(/[&<>"']/g, function (c) {
+                switch (c) {
+                    case '&': return '&amp;';
+                    case '<': return '&lt;';
+                    case '>': return '&gt;';
+                    case '"': return '&quot;';
+                    case "'": return '&#39;';
+                    default: return c;
+                }
+            });
+        }else{
+            return '';
+        }
+    }
+
     // Flash sale countdown
     function FlashSaleCountDownFlip($this, $time) {
         var customlavel = $this.data('customlavel');
-        var labels = [customlavel.daytxt, customlavel.hourtxt, customlavel.minutestxt, customlavel.secondstxt],
+        var labels = [flashSaleSanitizeHTML(customlavel.daytxt), flashSaleSanitizeHTML(customlavel.hourtxt), flashSaleSanitizeHTML(customlavel.minutestxt), flashSaleSanitizeHTML(customlavel.secondstxt)],
             template = function(label, curr, next) {
                 return (
                     `<div class="woolentor-time woolentor-${label.toLowerCase()}">
@@ -92,7 +112,7 @@
                 remainingTimeMillisecond = endDate * 1000, //multiply by 1000 because javascript timestamps are in ms
                 customlavel = $(this).data('customlavel'),
                 currentTime = new Date(),
-                $template = `<div class="woolentor-time woolentor-days"><span class="woolentor-count">%D</span><span class="woolentor-label">${customlavel.daytxt}</span></div><div class="woolentor-time woolentor-hours"><span class="woolentor-count">%H</span><span class="woolentor-label">${customlavel.hourtxt}</span></div><div class="woolentor-time woolentor-mins"><span class="woolentor-count">%M</span><span class="woolentor-label">${customlavel.minutestxt}</span></div><div class="woolentor-time woolentor-secs"><span class="woolentor-count">%S</span><span class="woolentor-label">${customlavel.secondstxt}</span></div>`;
+                $template = `<div class="woolentor-time woolentor-days"><span class="woolentor-count">%D</span><span class="woolentor-label">${flashSaleSanitizeHTML(customlavel?.daytxt)}</span></div><div class="woolentor-time woolentor-hours"><span class="woolentor-count">%H</span><span class="woolentor-label">${flashSaleSanitizeHTML(customlavel?.hourtxt)}</span></div><div class="woolentor-time woolentor-mins"><span class="woolentor-count">%M</span><span class="woolentor-label">${flashSaleSanitizeHTML(customlavel?.minutestxt)}</span></div><div class="woolentor-time woolentor-secs"><span class="woolentor-count">%S</span><span class="woolentor-label">${flashSaleSanitizeHTML(customlavel?.secondstxt)}</span></div>`;
 
                 endDate = new Date( currentTime.getTime() + remainingTimeMillisecond );
 

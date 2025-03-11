@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, tarekht, aslamhasi
 Tags: Elementor, WooCommerce, WooCommerce Elementor, WooCommerce Builder, WooCommerce Product, Woo Builder, Variation Swatches, woocommerce blocks, Product Slider, Product Compare, Wishlist, Product Filter
 Requires at least: 4.7
 Tested up to: 6.7
-Stable tag: 3.1.0
+Stable tag: 3.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -1119,6 +1119,11 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 
 == Changelog ==
 
+= Version: 3.1.1 - Date: 11-03-2025 =
+* Solved : HTML Tag rendering issue in flash sale module.
+* Solved : Dimensions field value saving issue.
+* Compatibility : Latest WordPress and WooCommerce version.
+
 = Version: 3.1.0 - Date: 18-02-2025 =
 * Improvements : Enhanced dashboard performance
 * Improvements : Better UI/UX
@@ -1628,11 +1633,6 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 * Solved : Undefine offset Issue in Gutenberg blocks style.
 * Solved : Currency symbol position issue in product filter addon.
 * Solved : Compatibility With Lumise Product Designer.
-
-= Version: 2.2.5 - Date: 17-04-2022 =
-* Added : Category Dropdown Field in AJAX search form.
-* Solved : Product showing issue with custom pagination.
-* Solved : Product right space issue in archive default addon.
 
 == Installation ==
 This section describes how to install the ShopLentor - WooCommerce Addons for Elementor Page Builder plugin and get it working.
