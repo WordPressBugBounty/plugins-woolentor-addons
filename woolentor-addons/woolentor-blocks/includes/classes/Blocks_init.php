@@ -33,7 +33,8 @@ class Blocks_init {
 	 * The Constructor.
 	 */
 	public function __construct() {
-		$this->register_blocks();
+		// $this->register_blocks();
+        add_action( 'init', [ $this, 'register_blocks' ] );
 	}
 
     /**

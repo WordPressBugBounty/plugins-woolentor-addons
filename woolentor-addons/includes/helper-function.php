@@ -118,6 +118,14 @@ function woolentor_current_theme_is_fse() {
 }
 
 /**
+ * Get Current Theme Name
+ */
+function woolentor_get_current_theme() {
+    $theme = wp_get_theme();
+    return [ 'name' => $theme->get('Name'), 'slug' => $theme->get_stylesheet() ];
+}
+
+/**
  * All PHP file include from folder
  * @param mixed $folder_name
  * @return void
@@ -191,7 +199,7 @@ function woolentor_render_icon( $settings = [], $new_icon = 'selected_icon', $ol
 
     } else {
         if ( empty( $attributes['class'] ) ) {
-            $attributes['class'] = $settings[ $old_icon ];
+            $attributes['class'] = !empty( $settings[ $old_icon ] ) ? $settings[ $old_icon ] : '';
         } else {
             if ( is_array( $attributes['class'] ) ) {
                 $attributes['class'][] = $settings[ $old_icon ];
@@ -1500,7 +1508,7 @@ function woolentor_exist_quick_checkout(){
  * @return [bool]
  */
 function woolentor_exist_compare_plugin(){
-    if( class_exists('Ever_Compare') || class_exists('Woolentor_Ever_Compare') ){
+    if( class_exists('Ever_Compare') || class_exists('\EverCompare\Frontend\Manage_Compare') ){
         return true;
     }elseif( class_exists('YITH_Woocompare') ){
         return true;
@@ -1531,7 +1539,7 @@ function woolentor_compare_button( $button_arg = array() ){
     $button_text        = !empty( $button_arg['btn_text'] ) ? $button_arg['btn_text'] : esc_html__('Add to Compare','woolentor');
     $button_added_text  = !empty( $button_arg['btn_added_txt'] ) ? $button_arg['btn_added_txt'] : esc_html__( 'Product Added','woolentor' );
 
-    if( class_exists('Ever_Compare') || class_exists('Woolentor_Ever_Compare') ){
+    if( class_exists('Ever_Compare') || class_exists('\EverCompare\Frontend\Manage_Compare') ){
 
         if( !empty( $button_arg['btn_text_type'] ) && $button_arg['btn_text_type'] === 'text'){
             $button_text        = woolentor_get_option( 'button_text','ever_compare_settings_tabs', 'Compare' );
@@ -1566,7 +1574,7 @@ function woolentor_compare_button( $button_arg = array() ){
  * @return [bool]
  */
 function woolentor_has_wishlist_plugin(){
-    if( class_exists('WishSuite_Base') || class_exists('Woolentor_WishSuite_Base') ){
+    if( class_exists('WishSuite_Base') || class_exists('\WishSuite\Frontend\Manage_Wishlist') ){
         return true;
     }elseif( class_exists('YITH_WCWL') ){
         return true;

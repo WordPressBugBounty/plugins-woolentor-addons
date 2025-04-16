@@ -2,407 +2,544 @@
 namespace WoolentorOptions\Api;
 
 use WP_REST_Controller;
+use WP_Error;
+use WP_REST_Response;
+use WP_REST_Server;
 use WoolentorOptions\SanitizeTrail\Sanitize_Trait;
 
-if ( !class_exists( '\WoolentorOptions\Admin\Options_Field'  ) ) {
+if (!class_exists('\WoolentorOptions\Admin\Options_Field')) {
     require_once WOOLENTOROPT_INCLUDES . '/classes/Admin/Options_field.php';
 }
 
-// Load If Pro Active
-if( woolentor_is_pro() && defined( "WOOLENTOR_ADDONS_PL_PATH_PRO" ) && file_exists( WOOLENTOR_ADDONS_PL_PATH_PRO.'includes/admin/admin_fields.php' ) ){
-    require_once WOOLENTOR_ADDONS_PL_PATH_PRO.'includes/admin/admin_fields.php';
+// Load Pro Field functionality if available
+if (function_exists('woolentor_is_pro') && woolentor_is_pro() && defined("WOOLENTOR_ADDONS_PL_PATH_PRO") && file_exists(WOOLENTOR_ADDONS_PL_PATH_PRO . 'includes/admin/admin_fields.php')) {
+    require_once WOOLENTOR_ADDONS_PL_PATH_PRO . 'includes/admin/admin_fields.php';
 }
 
 /**
- * REST_API Handler
+ * REST_API Handler for WooLentor Options
  */
 class Settings extends WP_REST_Controller {
 
     use Sanitize_Trait;
 
+    /**
+     * API namespace
+     * @var string
+     */
     protected $namespace;
+    
+    /**
+     * API endpoint base
+     * @var string
+     */
     protected $rest_base;
+    
+    /**
+     * Plugin slug
+     * @var string
+     */
     protected $slug;
+    
+    /**
+     * Error handling object
+     * @var WP_Error
+     */
     protected $errors;
 
     /**
-	 * All registered settings.
-	 *
-	 * @var array
-	 */
-	protected $settings;
+     * All registered settings.
+     * @var array
+     */
+    protected $settings;
 
     /**
-     * [__construct Settings constructor]
+     * Constructor initializes important properties
      */
     public function __construct() {
         $this->slug      = 'woolentor_';
         $this->namespace = 'woolentoropt/v1';
         $this->rest_base = 'settings';
         $this->settings  = \WoolentorOptions\Admin\Options_Field::instance()->get_registered_settings();
-        $this->errors    = new \WP_Error();
+        $this->errors    = new WP_Error();
 
-        add_filter( $this->slug . '_settings_sanitize', [ $this, 'sanitize_settings' ], 3, 10 );
-
+        add_filter($this->slug . '_settings_sanitize', [$this, 'sanitize_settings'], 10, 3);
     }
 
     /**
-     * Register the routes
-     *
+     * Register API routes
+     * 
      * @return void
      */
     public function register_routes() {
+        // Main settings endpoint
         register_rest_route(
             $this->namespace,
-            '/'.$this->rest_base,
+            '/' . $this->rest_base,
             [
                 [
-                    'methods'             => \WP_REST_Server::READABLE,
-                    'callback'            => [ $this, 'get_items' ],
-                    'permission_callback' => [ $this, 'permissions_check' ],
+                    'methods'             => WP_REST_Server::READABLE,
+                    'callback'            => [$this, 'get_items'],
+                    'permission_callback' => [$this, 'permissions_check'],
                     'args'                => $this->get_collection_params(),
                 ],
-
                 [
-                    'methods'             => \WP_REST_Server::CREATABLE,
-                    'callback'            => [ $this, 'create_items' ],
-                    'permission_callback' => [ $this, 'permissions_check' ],
+                    'methods'             => WP_REST_Server::CREATABLE,
+                    'callback'            => [$this, 'create_items'],
+                    'permission_callback' => [$this, 'permissions_check'],
                     'args'                => $this->get_collection_params(),
                 ]
             ]
         );
 
+        // Dependent element settings endpoint
         register_rest_route(
             $this->namespace,
-            '/'.$this->rest_base.'/dependelement',
+            '/' . $this->rest_base . '/dependelement',
             [
                 [
-                    'methods'             => \WP_REST_Server::CREATABLE,
-                    'callback'            => [ $this, 'depend_element_settings' ],
-                    'permission_callback' => [ $this, 'permissions_check' ],
+                    'methods'             => WP_REST_Server::CREATABLE,
+                    'callback'            => [$this, 'depend_element_settings'],
+                    'permission_callback' => [$this, 'permissions_check'],
                 ]
             ]
         );
 
+        // Group settings endpoint
+        register_rest_route(
+            $this->namespace,
+            '/' . $this->rest_base . '/group',
+            [
+                [
+                    'methods'             => WP_REST_Server::CREATABLE,
+                    'callback'            => [$this, 'group_settings'],
+                    'permission_callback' => [$this, 'permissions_check'],
+                ]
+            ]
+        );
     }
 
     /**
-     * Checks if a given request has access to read the items.
-     *
-     * @param \WP_REST_Request $request Full details about the request.
-     *
-     * @return true|\WP_Error True if the request has read access, WP_Error object otherwise.
+     * Check permissions for API requests
+     * 
+     * @param \WP_REST_Request $request Request object
+     * @return bool|WP_Error
      */
-    public function permissions_check( $request ) {
+    public function permissions_check($request) {
+        if (!current_user_can('manage_options')) {
+            return new WP_Error('rest_forbidden', 'WOOLENTOR OPT: Permission Denied.', ['status' => 401]);
+        }
 
-        if ( ! current_user_can( 'manage_options' ) ) {
-			return new \WP_Error( 'rest_forbidden', 'WOOLENTOR OPT: Permission Denied.', [ 'status' => 401 ] );
-		}
-
-		return true;
+        return true;
     }
 
     /**
-     * Retrieves the query params for the items collection.
-     *
-     * @return array Collection parameters.
+     * Verify nonce from request
+     * 
+     * @param string $nonce Nonce to verify
+     * @return bool|WP_Error
+     */
+    protected function verify_nonce($nonce) {
+        if (!wp_verify_nonce($nonce, 'woolentor_verifynonce')) {
+            return new WP_Error('rest_forbidden', __('Nonce not verified.'), ['status' => 403]);
+        }
+        return true;
+    }
+
+    /**
+     * Get collection parameters
+     * 
+     * @return array
      */
     public function get_collection_params() {
         return [];
     }
 
     /**
-     * Retrieves a collection of items.
-     *
-     * @param \WP_REST_Request $request Full details about the request.
-     *
-     * @return \WP_REST_Response|\WP_Error Response object on success, or WP_Error object on failure.
+     * Get settings items
+     * 
+     * @param \WP_REST_Request $request Request object
+     * @return WP_REST_Response|WP_Error
      */
-    public function get_items( $request ) {
-        $items = [];
+    public function get_items($request) {
+        $nonce         = $request->get_param('nonce');
+        $nonce_check   = $this->verify_nonce($nonce);
 
-        $nonce = $request->get_param('nonce');
-        if ( ! wp_verify_nonce( $nonce, 'woolentor_verifynonce' ) ) {
-            return new \WP_Error('rest_forbidden', __('Nonce not verified.'), ['status' => 403]);
+        if (is_wp_error($nonce_check)) {
+            return $nonce_check;
         }
 
-        $section = (string) $request['section'];
-        if( !empty( $section ) ){
-            $items = $this->get_options_value( $section );
+        $section = !empty($request['section']) ? sanitize_text_field($request['section']) : '';
+        if (empty($section)) {
+            return rest_ensure_response([]);
         }
-        
-        $response = rest_ensure_response( $items );
-        return $response;
+
+        $items = $this->get_options_value($section);
+        return rest_ensure_response($items);
     }
 
-    public function get_options_value( $section ) {
-
+    /**
+     * Get options values for a section
+     * 
+     * @param string $section Section identifier
+     * @return array
+     */
+    public function get_options_value($section) {
         $registered_settings = !empty($section) && isset($this->settings[$section]) ? $this->settings[$section] : [];
-        $options = woolentor_opt_get_options_value_by_section($section, $registered_settings);
-        return $options;
+        return woolentor_opt_get_options_value_by_section($section, $registered_settings);
+    }
+
+    /**
+     * Create or update settings
+     * 
+     * @param \WP_REST_Request $request Request object
+     * @return WP_REST_Response|WP_Error
+     */
+    public function create_items($request) {
+        $nonce_check = $this->verify_nonce($request['settings']['verifynonce']);
+        if (is_wp_error($nonce_check)) {
+            return $nonce_check;
+        }
+
+        $section        = !empty($request['section']) ? sanitize_text_field($request['section']) : '';
+        $sub_section    = !empty($request['subsection']) ? sanitize_text_field($request['subsection']) : '';
+        $settings_received = !empty($request['settings']) ? woolentor_opt_data_clean($request['settings']) : '';
+        $settings_reset    = !empty($request['reset']) ? rest_sanitize_boolean($request['reset']) : '';
+
+        // Handle reset action
+        if ($settings_reset) {
+            $option_name = !empty($sub_section) ? $sub_section : $section;
+            $reseted     = delete_option($option_name);
+            return rest_ensure_response($reseted);
+        }
+
+        // Validate required parameters
+        if (empty($section) || empty($settings_received)) {
+            return new WP_Error('missing_parameters', __('Required parameters are missing.'), ['status' => 400]);
+        }
+
+        // Get registered settings for the section/subsection
+        $registered_settings = !empty($sub_section) 
+            ? $this->settings[$section][$this->get_section_index($section, $sub_section)]['setting_fields'] 
+            : $this->settings[$section];
         
-    }
+        // Get existing data from the database
+        $option_name    = !empty($sub_section) ? $sub_section : $section;
+        $existing_data  = get_option($option_name, []);
 
-    /**
-     * Create item response
-     */
-    public function create_items( $request ) {
-
-        if ( ! wp_verify_nonce( $request['settings']['verifynonce'], 'woolentor_verifynonce' ) ) {
-            return new \WP_Error('rest_forbidden', __('Nonce not verified.'), ['status' => 403]);
-        }
-
-        $section            = ( !empty( $request['section'] ) ? sanitize_text_field( $request['section'] ) : '' );
-        $sub_section        = ( !empty( $request['subsection'] ) ? sanitize_text_field( $request['subsection'] ) : '' );
-        $settings_received  = ( !empty( $request['settings'] ) ? woolentor_opt_data_clean( $request['settings'] ) : '' );
-        $settings_reset     = ( !empty( $request['reset'] ) ? rest_sanitize_boolean( $request['reset'] ) : '' );
-
-        // Data reset
-        if( $settings_reset == true ){
-
-            if( !empty( $sub_section ) ) {
-                $reseted = delete_option( $sub_section );
-            } else{
-                $reseted = delete_option( $section );
-            }
-            
-            return rest_ensure_response( $reseted );
-        }
-
-        if( empty( $section ) || empty( $settings_received ) ){
-            return;
-        }
-
-        $registered_settings = !empty($sub_section) ? $this->settings[$section][$this->get_section_index( $section, $sub_section )]['setting_fields'] : $this->settings[$section]; // If sub section is not empty, get the sub section settings.
-        $data_to_save        = [];
-
-        $existing_data = !empty($sub_section) ? get_option( $sub_section, [] ) : get_option( $section, [] );
-
-        if ( is_array( $registered_settings ) && ! empty( $registered_settings ) ) {
-			foreach ( $registered_settings as $setting ) {
-
-                // Skip if no setting type.
-                if ( ! $setting['type'] ) {
-                    continue;
-                }
-
-                // Skip if setting type is html.
-                if ( $setting['type'] === 'html' || $setting['type'] === 'title' ) {
-                    continue;
-                }
-
-                if ( isset( $setting['is_pro'] ) && $setting['is_pro'] ) {
-                    continue;
-                }
-
-                // Skip if the ID doesn't exist in the data received.
-                if ( ! array_key_exists( $setting['id'], $settings_received ) ) {
-                    continue;
-                }
-
-                // Sanitize the input.
-                $setting_type = $setting['type'];
-                $output       = apply_filters( $this->slug . '_settings_sanitize', $settings_received[ $setting['id'] ], $this->errors, $setting );
-                $output       = apply_filters( $this->slug . '_settings_sanitize_' . $setting['id'], $output, $this->errors, $setting );
-
-                if ( $setting_type == 'checkbox' && $output == false ) {
-                    continue;
-                }
-
-                // Add the option to the list of ones that we need to save.
-                if ( ! is_wp_error( $output ) ) {
-                    $existing_data[ $setting['id'] ] = $output;
-                }
-                // if ( ! empty( $output ) && ! is_wp_error( $output ) ) {
-                //     $existing_data[ $setting['id'] ] = $output;
-                // }
-
-            }
-        }
-
-        if ( ! empty( $this->errors->get_error_codes() ) ) {
-			return new \WP_REST_Response( $this->errors, 422 );
-		}
-
-        if( ! empty( $sub_section ) ){
-		    update_option( $sub_section, $existing_data );
-            
-        } else {
-            update_option( $section, $existing_data );
-        }
-
-		return rest_ensure_response( $existing_data );
+        // Process the settings
+        $processed_data = $this->process_settings($registered_settings, $settings_received, $existing_data);
         
+        // If there were errors
+        if (is_wp_error($processed_data)) {
+            return new WP_REST_Response($processed_data, 422);
+        }
+
+        // Save the data
+        update_option($option_name, $processed_data);
+        return rest_ensure_response($processed_data);
     }
 
     /**
-     * Element dependency settings Field but data save under parent section.
-     * @param mixed $request
+     * Process settings data, applying validation and sanitization
+     * 
+     * @param array $registered_settings The registered settings configuration
+     * @param array $input_data The data being submitted
+     * @param array $existing_data Existing data, if any
+     * @return array|WP_Error Processed data or error
      */
-    public function depend_element_settings( $request ){
-        if ( ! wp_verify_nonce( $request['settings']['verifynonce'], 'woolentor_verifynonce' ) ) {
-            return new \WP_Error('rest_forbidden', __('Nonce not verified.'), ['status' => 403]);
+    protected function process_settings($registered_settings, $input_data, $existing_data = []) {
+        if (!is_array($registered_settings) || empty($registered_settings)) {
+            return $existing_data;
         }
+        
+        foreach ($registered_settings as $setting) {
+            // Skip if setting doesn't meet criteria for processing
+            if (!$this->should_process_setting($setting, $input_data)) {
+                continue;
+            }
 
-        $settings_received  = ( !empty( $request['settings'] ) ? woolentor_opt_data_clean( $request['settings'] ) : '' );
-        $section            = ( !empty( $request['section'] ) ? sanitize_text_field( $request['section'] ) : '' );
-        $detect_id          = ( !empty( $settings_received['detectId'] ) ? sanitize_text_field( $settings_received['detectId'] ) : '' );
+            $sanitized_value = $this->sanitize_setting_value($setting, $input_data[$setting['id']]);
+            
+            // Skip empty checkbox values
+            if ($setting['type'] === 'checkbox' && $sanitized_value === false) {
+                continue;
+            }
 
-        $registered_settings = !empty($section) ? $this->settings[$section][$this->get_section_index( $section, $section, 'parent_id', $detect_id )]['setting_fields'] : $this->settings[$section];
-
-        $existing_data = get_option( $section, [] );
-
-        if ( is_array( $registered_settings ) && ! empty( $registered_settings ) ) {
-
-			foreach ( $registered_settings as $setting ) {
-
-                // Skip if no setting type.
-                if ( ! $setting['type'] ) {
-                    continue;
-                }
-
-                // Skip non-data fields
-                if( in_array( $setting['type'], ['title', 'html'], true ) ) {
-                    continue;
-                }
-
-                // Skip if pro field
-                if ( isset( $setting['is_pro'] ) && $setting['is_pro'] ) {
-                    continue;
-                }
-
-                // Skip if the ID doesn't exist in the data received.
-                if ( ! array_key_exists( $setting['id'], $settings_received ) ) {
-                    continue;
-                }
-
-                // Sanitize the input.
-                $setting_type = $setting['type'];
-                $output       = apply_filters( $this->slug . '_settings_sanitize', $settings_received[ $setting['id'] ], $this->errors, $setting );
-                $output       = apply_filters( $this->slug . '_settings_sanitize_' . $setting['id'], $output, $this->errors, $setting );
-
-                if ( $setting_type == 'checkbox' && $output == false ) {
-                    continue;
-                }
-
-                // Add the option to the list of ones that we need to save.
-                if ( ! empty( $output ) && ! is_wp_error( $output ) ) {
-                    $existing_data[ $setting['id'] ] = $output;
-                }
-
+            // Add sanitized value if no errors
+            if (!is_wp_error($sanitized_value)) {
+                $existing_data[$setting['id']] = $sanitized_value;
             }
         }
 
-        if ( ! empty( $this->errors->get_error_codes() ) ) {
-			return new \WP_REST_Response( $this->errors, 422 );
-		}
+        // Return errors if any occurred during processing
+        if (!empty($this->errors->get_error_codes())) {
+            return $this->errors;
+        }
 
-        update_option( $section, $existing_data );
-
-		return rest_ensure_response( $existing_data );
-
+        return $existing_data;
     }
 
     /**
-     * Find Subsection index
-     * @param mixed $section
-     * @param mixed $find_section
-     * @return mixed
+     * Determine if a setting should be processed
+     * 
+     * @param array $setting Setting configuration
+     * @param array $input_data Input data being processed
+     * @return bool
      */
-    public function get_section_index( $section, $find_section, $find_key = 'section', $field_id = '' ){
-        // Get all settings fields
-        $all_fields = $this->settings;
-    
-        // Look through others tab fields
-        if( isset( $all_fields[$section] ) ){
-            foreach( $all_fields[$section] as $index => $field ){
-                if( !empty( $field_id ) ){
-                    if( isset( $field[$find_key] ) && $field[$find_key] === $find_section && $field['id'] == $field_id ){
-                        return $index;
-                    }
-                }else{
-                    if( isset( $field[$find_key] ) && $field[$find_key] === $find_section ){
-                        return $index;
-                    }
+    protected function should_process_setting($setting, $input_data) {
+        // Must have a type
+        if (empty($setting['type'])) {
+            return false;
+        }
+        
+        // Skip non-data field types
+        if (in_array($setting['type'], ['html', 'title'], true)) {
+            return false;
+        }
+        
+        // Skip pro fields
+        if (isset($setting['is_pro']) && $setting['is_pro']) {
+            return false;
+        }
+        
+        // Must exist in submitted data
+        if (!array_key_exists($setting['id'], $input_data)) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    /**
+     * Sanitize a single setting value
+     * 
+     * @param array $setting Setting configuration
+     * @param mixed $value Value to sanitize
+     * @return mixed Sanitized value
+     */
+    protected function sanitize_setting_value($setting, $value) {
+        $sanitized = apply_filters(
+            $this->slug . '_settings_sanitize', 
+            $value, 
+            $this->errors, 
+            $setting
+        );
+        
+        return apply_filters(
+            $this->slug . '_settings_sanitize_' . $setting['id'], 
+            $sanitized, 
+            $this->errors, 
+            $setting
+        );
+    }
+
+    /**
+     * Element dependency settings handler
+     * 
+     * @param \WP_REST_Request $request Request object
+     * @return WP_REST_Response|WP_Error
+     */
+    public function depend_element_settings($request) {
+        $nonce_check = $this->verify_nonce($request['settings']['verifynonce']);
+        if (is_wp_error($nonce_check)) {
+            return $nonce_check;
+        }
+
+        $settings_received = !empty($request['settings']) ? woolentor_opt_data_clean($request['settings']) : '';
+        $section           = !empty($request['section']) ? sanitize_text_field($request['section']) : '';
+        $detect_id         = !empty($settings_received['detectId']) ? sanitize_text_field($settings_received['detectId']) : '';
+
+        // Get the registered settings and existing data
+        $registered_settings = !empty($section) 
+            ? $this->settings[$section][$this->get_section_index($section, $section, 'parent_id', $detect_id)]['setting_fields'] 
+            : [];
+        
+        $existing_data = get_option($section, []);
+
+        // Process the settings
+        $processed_data = $this->process_settings($registered_settings, $settings_received, $existing_data);
+        
+        // If there were errors
+        if (is_wp_error($processed_data)) {
+            return new WP_REST_Response($processed_data, 422);
+        }
+
+        // Save the data
+        update_option($section, $processed_data);
+        return rest_ensure_response($processed_data);
+    }
+
+    /**
+     * Group settings handler
+     * 
+     * @param \WP_REST_Request $request Request object
+     * @return WP_REST_Response|WP_Error
+     */
+    public function group_settings($request) {
+        $nonce_check = $this->verify_nonce($request['settings']['verifynonce']);
+        if (is_wp_error($nonce_check)) {
+            return $nonce_check;
+        }
+
+        $settings_received = !empty($request['settings']) ? woolentor_opt_data_clean($request['settings']) : '';
+        $section = !empty($request['group']) ? sanitize_text_field($request['group']) : '';
+        $parentId = !empty($request['parentId']) ? sanitize_text_field($request['parentId']) : '';
+        $section_index = $this->get_section_index($parentId, $section, 'id');
+
+        // Get the setting group and initialize the data to save
+        $registered_setting_group = $this->settings[$parentId][$section_index]['setting_tabs'];
+        $data_to_save = [];
+
+        // Process each group
+        if (is_array($registered_setting_group) && !empty($registered_setting_group)) {
+            foreach ($registered_setting_group as $group) {
+                if (!$this->is_valid_group($group)) {
+                    continue;
+                }
+
+                $group_data = $this->process_group_settings($group, $settings_received);
+                
+                if (!empty($group_data)) {
+                    $data_to_save[$group['setting_group']] = $group_data;
                 }
             }
         }
-    
+
+        return rest_ensure_response($data_to_save);
+    }
+
+    /**
+     * Check if a group configuration is valid for processing
+     * 
+     * @param array $group Group configuration
+     * @return bool
+     */
+    protected function is_valid_group($group) {
+        return isset($group['fields']) && is_array($group['fields']) && !empty($group['fields']);
+    }
+
+    /**
+     * Process group settings
+     * 
+     * @param array $group Group configuration
+     * @param array $settings_received Submitted settings
+     * @return array Processed settings
+     */
+    protected function process_group_settings($group, $settings_received) {
+        if (!isset($settings_received[$group['setting_group']])) {
+            return [];
+        }
+        
+        $existing_data = is_array(get_option($group['setting_group'], [])) 
+            ? get_option($group['setting_group'], []) 
+            : [];
+            
+        $processed_data = $this->process_settings(
+            $group['fields'], 
+            $settings_received[$group['setting_group']], 
+            $existing_data
+        );
+        
+        if (!is_wp_error($processed_data)) {
+            update_option($group['setting_group'], $processed_data);
+            return $processed_data;
+        }
+        
+        return [];
+    }
+
+    /**
+     * Find section index by specified criteria
+     * 
+     * @param string $section Section to look in
+     * @param string $find_section Section to find
+     * @param string $find_key Key to match
+     * @param string $field_id Optional field ID to match
+     * @return int
+     */
+    public function get_section_index($section, $find_section, $find_key = 'section', $field_id = '') {
+        if (!isset($this->settings[$section])) {
+            return -1;
+        }
+
+        foreach ($this->settings[$section] as $index => $field) {
+            if (!empty($field_id)) {
+                if (isset($field[$find_key]) && $field[$find_key] === $find_section && $field['id'] == $field_id) {
+                    return $index;
+                }
+            } else {
+                if (isset($field[$find_key]) && $field[$find_key] === $find_section) {
+                    return $index;
+                }
+            }
+        }
+
         return -1;
     }
 
     /**
-     * Sanitize callback for Settings Data
-     *
+     * Main sanitize callback for settings
+     * 
+     * @param mixed $setting_value The value to sanitize
+     * @param WP_Error $errors Error object for logging issues
+     * @param array $setting The setting configuration
      * @return mixed
      */
-    public function sanitize_settings( $setting_value, $errors, $setting ){
-
-        if ( ! empty( $setting['sanitize_callback'] ) && is_callable( $setting['sanitize_callback'] ) ) {
-            $setting_value = call_user_func( $setting['sanitize_callback'], $setting_value );
+    public function sanitize_settings($setting_value, $errors, $setting) {
+        if (!empty($setting['sanitize_callback']) && is_callable($setting['sanitize_callback'])) {
+            return call_user_func($setting['sanitize_callback'], $setting_value);
         } else {
-            $setting_value = $this->default_sanitizer( $setting_value, $errors, $setting );
+            return $this->default_sanitizer($setting_value, $errors, $setting);
         }
-
-        return $setting_value;
-
     }
 
     /**
-     * If no Sanitize callback function from option field.
-     *
+     * Default sanitizer based on setting type
+     * 
+     * @param mixed $setting_value The value to sanitize
+     * @param WP_Error $errors Error object for logging issues
+     * @param array $setting The setting configuration
      * @return mixed
      */
-    public function default_sanitizer( $setting_value, $errors, $setting ){
-
-        switch ( $setting['type'] ) {
+    public function default_sanitizer($setting_value, $errors, $setting) {
+        switch ($setting['type']) {
             case 'text':
             case 'radio':
             case 'select':
-                $finalvalue = $this->sanitize_text_field( $setting_value, $errors, $setting );
-                break;
+                return $this->sanitize_text_field($setting_value, $errors, $setting);
 
             case 'textarea':
-                $finalvalue = $this->sanitize_textarea_field( $setting_value, $errors, $setting );
-                break;
+                return $this->sanitize_textarea_field($setting_value, $errors, $setting);
 
             case 'checkbox':
             case 'switcher':
-                $finalvalue = $this->sanitize_checkbox_field( $setting_value, $errors, $setting );
-                break;
+                return $this->sanitize_checkbox_field($setting_value, $errors, $setting);
             
             case 'element':
-                $finalvalue = $this->sanitize_element_field( $setting_value, $errors, $setting );
-                break;
+                return $this->sanitize_element_field($setting_value, $errors, $setting);
 
             case 'multiselect':
             case 'multicheckbox':
-                $finalvalue = $this->sanitize_multiple_field( $setting_value, $errors, $setting );
-                break;
+                return $this->sanitize_multiple_field($setting_value, $errors, $setting);
 
             case 'file':
-                $finalvalue = $this->sanitize_file_field( $setting_value, $errors, $setting );
-                break;
+                return $this->sanitize_file_field($setting_value, $errors, $setting);
             
             case 'repeater':
-                $finalvalue = $this->sanitize_repeater_field( $setting_value, $errors, $setting );
-                break;
+                return $this->sanitize_repeater_field($setting_value, $errors, $setting);
 
             case 'shortable':
-                $finalvalue = $this->sanitize_shortable_field( $setting_value, $errors, $setting );
-                break;
+                return $this->sanitize_shortable_field($setting_value, $errors, $setting);
 
             case 'dimensions':
-                $finalvalue = $this->sanitize_dimensions_field( $setting_value, $errors, $setting );
-                break;
+                return $this->sanitize_dimensions_field($setting_value, $errors, $setting);
+                
+            case 'multitext':
+                return $this->sanitize_multitext_field($setting_value, $errors, $setting);
             
             default:
-                $finalvalue = sanitize_text_field( $setting_value );
-                break;
+                return sanitize_text_field($setting_value);
         }
-
-        return $finalvalue;
-
     }
-
 }

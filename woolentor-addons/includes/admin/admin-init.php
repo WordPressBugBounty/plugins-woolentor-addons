@@ -32,7 +32,6 @@ class Woolentor_Admin_Init{
     public function include(){
         require_once( WOOLENTOR_ADDONS_PL_PATH .'includes/api.php');
         require_once('include/admin_field-manager.php');
-        require_once('include/template-library.php');
     }
 
 

@@ -21,6 +21,9 @@ class Menu {
     public function init() {
         add_action( 'admin_menu', [ $this, 'admin_menu' ], 25 );
 
+        // Template Library Menu
+        add_action( 'admin_menu', [ $this, 'template_library_admin_menu' ], 225 );
+
         // Extension Menu in Last Position
         add_action( 'admin_menu', [ $this, 'extension_admin_menu' ], 226 );
 
@@ -40,9 +43,7 @@ class Menu {
     public function admin_menu(){
         global $submenu;
 
-        $parent_slug = 'woolentor_page';
         $sub_setting_slug = 'woolentor';
-        $capability  = 'manage_options';
 
         $parent_hook = add_menu_page(
             esc_html__( 'ShopLentor', 'woolentor' ),
@@ -101,13 +102,13 @@ class Menu {
         
         wp_enqueue_script( 'woolentoropt-admin' );
 
-         // Add the type="module" attribute
-         add_filter('script_loader_tag', function($tag, $handle) {
-            if ('woolentoropt-admin' === $handle) {
-                return str_replace('src', 'type="module" src', $tag);
+        // Add the type="module" attribute
+        add_filter('script_loader_tag', function($tag, $handle, $src) {
+            if ($handle === 'woolentoropt-admin' || $handle === 'woolentoropt-element-plus' || $handle === 'woolentoropt-vendor' ) {
+                return '<script type="module" src="' . esc_url($src) . '"></script>';
             }
             return $tag;
-        }, 10, 2);
+        }, 10, 3);
 
         $option_field = Options_Field::instance();
         if( ! $option_field ){
@@ -240,7 +241,20 @@ class Menu {
     }
 
     /**
-     * Extention Menu
+     * Template Library Menu
+     * @return void
+     */
+    public function template_library_admin_menu(){
+        global $submenu;
+        $sub_setting_slug = 'woolentor';
+
+        if ( current_user_can( self::MENU_CAPABILITY ) ) {
+            $submenu[ self::MENU_PAGE_SLUG ][] = array( esc_html__( 'Template Library', 'woolentor' ), self::MENU_CAPABILITY, 'admin.php?page=' . $sub_setting_slug . '#/template-library' );
+        }
+    }
+
+    /**
+     * Extension Menu
      * @return void
      */
     public function extension_admin_menu(){

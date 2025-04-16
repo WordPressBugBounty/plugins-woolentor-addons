@@ -44,6 +44,11 @@ class Woolentor_Module_Manager{
             $module_path = ($module['is_pro'] == true) ? WOOLENTOR_ADDONS_PL_PATH_PRO : WOOLENTOR_ADDONS_PL_PATH;
             $module_file = $module_path.'includes/modules/'.$module['slug'].'/'.$module_key.'.php';
 
+            // Check Plugin If Already Activated Then Module Should Not Load Again
+            if( !empty( $module['check_exist_class'] ) && class_exists( $module['check_exist_class'] ) ){
+                continue;
+            }
+
             if( $module['manage_setting'] && file_exists($module_file) ){
                 require_once $module_file;
                 if( method_exists($module['main_class'], 'instance')){
@@ -78,7 +83,7 @@ class Woolentor_Module_Manager{
         $module_list = [
             'rename_label' => [
                 'slug'   =>'rename-label',
-                'title'  => esc_html__('Rename Label','woolentor'),
+                'title'  => esc_html('Rename Label'),
                 'option' => [
                     'key'     => 'enablerenamelabel',
                     'section' => 'woolentor_rename_label_tabs',
@@ -90,7 +95,7 @@ class Woolentor_Module_Manager{
             ],
             'ajax-search' => [
                 'slug'   =>'ajax-search',
-                'title'  => esc_html__('AJAX Search Widget','woolentor'),
+                'title'  => esc_html('AJAX Search Widget'),
                 'option' => [
                     'key'     => 'ajaxsearch',
                     'section' => 'woolentor_others_tabs',
@@ -102,7 +107,7 @@ class Woolentor_Module_Manager{
             ],
             'sales-notification' => [
                 'slug'   =>'sales-notification',
-                'title'  => esc_html__('Sales Notification','woolentor'),
+                'title'  => esc_html('Sales Notification'),
                 'option' => [
                     'key'     => 'enableresalenotification',
                     'section' => 'woolentor_sales_notification_tabs',
@@ -114,7 +119,7 @@ class Woolentor_Module_Manager{
             ],
             'ajax_add_to_cart' => [
                 'slug'   =>'single-product-ajax-add-to-cart',
-                'title'  => esc_html__('Single Product AJAX Add To Cart','woolentor'),
+                'title'  => esc_html('Single Product AJAX Add To Cart'),
                 'option' => [
                     'key'     => 'ajaxcart_singleproduct',
                     'section' => 'woolentor_others_tabs',
@@ -126,31 +131,33 @@ class Woolentor_Module_Manager{
             ],
             'wishlist' => [
                 'slug'   =>'wishlist',
-                'title'  => esc_html__('Wishlist','woolentor'),
+                'title'  => esc_html('Wishlist'),
                 'option' => [
                     'key'     => 'wishlist',
                     'section' => 'woolentor_others_tabs',
                     'default' => 'off'
                 ],
-                'main_class' => '',
+                'main_class' => 'Woolentor_WishSuite_Base',
+                'check_exist_class' => 'WishSuite_Base',
                 'is_pro'     => false,
-                'manage_setting' => false
+                'manage_setting' => true
             ],
             'compare' => [
                 'slug'   =>'compare',
-                'title'  => esc_html__('Compare','woolentor'),
+                'title'  => esc_html('Compare'),
                 'option' => [
                     'key'     => 'compare',
                     'section' => 'woolentor_others_tabs',
                     'default' => 'off'
                 ],
-                'main_class' => '',
+                'main_class' => 'Woolentor_Ever_Compare',
+                'check_exist_class' => 'Ever_Compare',
                 'is_pro'     => false,
-                'manage_setting' => false
+                'manage_setting' => true
             ],
             'shopify-like-checkout' => [
                 'slug'   =>'shopify-like-checkout',
-                'title'  => esc_html__('Shopify Style Checkout','woolentor'),
+                'title'  => esc_html('Shopify Style Checkout'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_shopify_checkout_settings',
@@ -162,7 +169,7 @@ class Woolentor_Module_Manager{
             ],
             'variation-swatch' => [
                 'slug'   =>'variation-swatch',
-                'title'  => esc_html__('Variation Swatches','woolentor'),
+                'title'  => esc_html('Variation Swatches'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_swatch_settings',
@@ -174,7 +181,7 @@ class Woolentor_Module_Manager{
             ],
             'popup-builder' => [
                 'slug'   =>'popup-builder',
-                'title'  => esc_html__('Popup Builder','woolentor'),
+                'title'  => esc_html('Popup Builder'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_popup_builder_settings',
@@ -186,7 +193,7 @@ class Woolentor_Module_Manager{
             ],
             'flash-sale' => [
                 'slug'   =>'flash-sale',
-                'title'  => esc_html__('Flash Sale Countdown','woolentor'),
+                'title'  => esc_html('Flash Sale Countdown'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_flash_sale_settings',
@@ -198,7 +205,7 @@ class Woolentor_Module_Manager{
             ],
             'backorder' => [
                 'slug'   =>'backorder',
-                'title'  => esc_html__('Backorder','woolentor'),
+                'title'  => esc_html('Backorder'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_backorder_settings',
@@ -210,7 +217,7 @@ class Woolentor_Module_Manager{
             ],
             'quickview' => [
                 'slug'   =>'quickview',
-                'title'  => esc_html__('Quick View','woolentor'),
+                'title'  => esc_html('Quick View'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_quickview_settings',
@@ -222,7 +229,7 @@ class Woolentor_Module_Manager{
             ],
             'currency-switcher' => [
                 'slug'   =>'currency-switcher',
-                'title'  => esc_html__('Currency Switcher','woolentor'),
+                'title'  => esc_html('Currency Switcher'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_currency_switcher',
@@ -234,7 +241,7 @@ class Woolentor_Module_Manager{
             ],
             'badges' => [
                 'slug'   =>'badges',
-                'title'  => esc_html__('Product Badges','woolentor'),
+                'title'  => esc_html('Product Badges'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_badges_settings',
@@ -246,7 +253,7 @@ class Woolentor_Module_Manager{
             ],
             'advanced-coupon' => [
                 'slug'   =>'advanced-coupon',
-                'title'  => esc_html__('Advanced Coupon','woolentor'),
+                'title'  => esc_html('Advanced Coupon'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_advanced_coupon_settings',
@@ -258,7 +265,7 @@ class Woolentor_Module_Manager{
             ],
             'cart-reserve-time' => [
                 'slug'   =>'cart-reserve-time',
-                'title'  => esc_html__('Cart Reserved Timer','woolentor'),
+                'title'  => esc_html('Cart Reserved Timer'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_cart_reserve_timer_settings',
@@ -270,7 +277,7 @@ class Woolentor_Module_Manager{
             ],
             'sales-report-email' => [
                 'slug'   =>'sales-report-email',
-                'title'  => esc_html__('Sales Report Email','woolentor'),
+                'title'  => esc_html('Sales Report Email'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_email_reports_settings',
@@ -282,7 +289,7 @@ class Woolentor_Module_Manager{
             ],
             'smart-cross-sell-popup' => [
                 'slug'   =>'smart-cross-sell-popup',
-                'title'  => esc_html__('Smart Cross-sell Popup','woolentor'),
+                'title'  => esc_html('Smart Cross-sell Popup'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_smart_cross_sell_popup_settings',
@@ -294,7 +301,7 @@ class Woolentor_Module_Manager{
             ],
             'store-vacation' => [
                 'slug'   =>'store-vacation',
-                'title'  => esc_html__('Store Vacation','woolentor'),
+                'title'  => esc_html('Store Vacation'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_store_vacation_settings',
@@ -330,7 +337,7 @@ class Woolentor_Module_Manager{
             
             'partial-payment' => [
                 'slug'   =>'partial-payment',
-                'title'  => esc_html__('Partial Payment','woolentor'),
+                'title'  => esc_html('Partial Payment'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_partial_payment_settings',
@@ -342,7 +349,7 @@ class Woolentor_Module_Manager{
             ],
             'pre-orders' => [
                 'slug'   =>'pre-orders',
-                'title'  => esc_html__('Pre Orders','woolentor'),
+                'title'  => esc_html('Pre Orders'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_pre_order_settings',
@@ -354,7 +361,7 @@ class Woolentor_Module_Manager{
             ],
             'gtm-conversion-tracking' => [
                 'slug'   =>'gtm-conversion-tracking',
-                'title'  => esc_html__('GTM Conversion Tracking','woolentor'),
+                'title'  => esc_html('GTM Conversion Tracking'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_gtm_convertion_tracking_settings',
@@ -366,7 +373,7 @@ class Woolentor_Module_Manager{
             ],
             'size-chart' => [
                 'slug'   =>'size-chart',
-                'title'  => esc_html__('Size Chart','woolentor'),
+                'title'  => esc_html('Size Chart'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_size_chart_settings',
@@ -378,7 +385,7 @@ class Woolentor_Module_Manager{
             ],
             'email-customizer' => [
                 'slug'   =>'email-customizer',
-                'title'  => esc_html__('Email Customizer','woolentor'),
+                'title'  => esc_html('Email Customizer'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_email_customizer_settings',
@@ -390,7 +397,7 @@ class Woolentor_Module_Manager{
             ],
             'email-automation' => [
                 'slug'   =>'email-automation',
-                'title'  => esc_html__('Email Automation','woolentor'),
+                'title'  => esc_html('Email Automation'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_email_automation_settings',
@@ -402,7 +409,7 @@ class Woolentor_Module_Manager{
             ],
             'order-bump' => [
                 'slug'   =>'order-bump',
-                'title'  => esc_html__('Order Bump','woolentor'),
+                'title'  => esc_html('Order Bump'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_order_bump_settings',
@@ -414,7 +421,7 @@ class Woolentor_Module_Manager{
             ],
             'product-filter' => [
                 'slug'   =>'product-filter',
-                'title'  => esc_html__('Product Filter','woolentor'),
+                'title'  => esc_html('Product Filter'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_product_filter_settings',
@@ -426,7 +433,7 @@ class Woolentor_Module_Manager{
             ],
             'side-mini-cart' => [
                 'slug'   =>'side-mini-cart',
-                'title'  => esc_html__('Side Mini Cart','woolentor'),
+                'title'  => esc_html('Side Mini Cart'),
                 'option' => [
                     'key'     => 'mini_side_cart',
                     'section' => 'woolentor_others_tabs',
@@ -438,7 +445,7 @@ class Woolentor_Module_Manager{
             ],
             'quick-checkout' => [
                 'slug'   =>'quick-checkout',
-                'title'  => esc_html__('Quick Checkout','woolentor'),
+                'title'  => esc_html('Quick Checkout'),
                 'option' => [
                     'key'     => 'enable',
                     'section' => 'woolentor_quick_checkout_settings',

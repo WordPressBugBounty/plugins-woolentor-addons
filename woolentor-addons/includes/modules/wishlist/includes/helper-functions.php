@@ -77,7 +77,7 @@ function wishsuite_get_page_url() {
  * @return [HTML]
  */
 function wishsuite_add_to_cart( $product, $quentity ){
-    return \WishSuite\Frontend\Manage_Wishlist::instance()->add_to_cart_html( $product, $quentity );
+    return class_exists('\WishSuite\Frontend\Manage_Wishlist') ? \WishSuite\Frontend\Manage_Wishlist::instance()->add_to_cart_html( $product, $quentity ) : '';
 }
 
 /**
@@ -128,7 +128,7 @@ function wishsuite_table_heading(){
 
     $field_list = count( wishsuite_table_active_heading() ) > 0 ? wishsuite_table_active_heading() : $active_default_fields;
     foreach ( $field_list as $key => $value ) {
-        $new_list[$key] = \WishSuite\Frontend\Manage_Wishlist::instance()->field_name( $key );
+        $new_list[$key] = class_exists( '\WishSuite\Frontend\Manage_Wishlist' ) ? \WishSuite\Frontend\Manage_Wishlist::instance()->field_name( $key ) : '';
     }
     return $new_list;
 }

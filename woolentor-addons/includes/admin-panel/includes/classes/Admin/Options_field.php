@@ -3569,25 +3569,6 @@ class Options_Field {
 
                     )
                 ),
-
-                array(
-                    'id'     => 'wishlist',
-                    'name'    => esc_html__( 'Wishlist', 'woolentor' ),
-                    'type'     => 'element',
-                    'default' => 'off',
-                    'label_on' => __( 'ON', 'woolentor' ),
-                    'label_off' => __( 'OFF', 'woolentor' ),
-                    'documentation' => esc_url('https://woolentor.com/doc/wishlist-for-woocommerce/')
-                ),
-                array(
-                    'id'     => 'compare',
-                    'name'    => esc_html__( 'Compare', 'woolentor' ),
-                    'type'     => 'element',
-                    'default'  => 'off',
-                    'label_on' => __( 'ON', 'woolentor' ),
-                    'label_off' => __( 'OFF', 'woolentor' ),
-                    'documentation' => esc_url('https://woolentor.com/doc/woocommerce-product-compare/')
-                ),
                 
                 array(
                     'id'     => 'ajaxsearch',

@@ -602,21 +602,31 @@ class Manage_Wishlist {
         $total_items = count( \WishSuite\Frontend\Manage_Wishlist::instance()->get_products_data() );
         $product_per_page = woolentor_get_option( 'wishlist_product_per_page', 'wishsuite_table_settings_tabs', 20 );
         $total_pages = ceil($total_items / $product_per_page);
-        $args = array(
-            'base' => str_replace( $total_pages, '%#%', esc_url( get_pagenum_link( $total_pages ) ) ),
-            'format' => '?paged=%#%',
-            'prev_text' => __('&laquo;'),
-            'next_text' => __('&raquo;'),
-            'total' => $total_pages,
-            'current' => $current_page,
-            'show_all' => false,
-            'end_size' => 1,
-            'mid_size' => 2,
-            'type' => 'list',
-            'add_args' => true,
-            'add_fragment' => ''
-        );
-        echo '<nav class="wishsuite-pagination">' .wp_kses_post(paginate_links($args)). '</nav>';
+        
+        // Only proceed if there are items to paginate
+        if ($total_pages > 0) {
+            $args = array(
+                'base' => str_replace( $total_pages, '%#%', esc_url( get_pagenum_link( $total_pages ) ) ),
+                'format' => '?paged=%#%',
+                'prev_text' => __('&laquo;'),
+                'next_text' => __('&raquo;'),
+                'total' => $total_pages,
+                'current' => $current_page,
+                'show_all' => false,
+                'end_size' => 1,
+                'mid_size' => 2,
+                'type' => 'list',
+                'add_args' => true,
+                'add_fragment' => ''
+            );
+            
+            $pagination = paginate_links($args);
+            
+            // Only output if pagination links exist
+            if (!empty($pagination)) {
+                echo '<nav class="wishsuite-pagination">' . wp_kses_post($pagination) . '</nav>';
+            }
+        }
     }
 
 

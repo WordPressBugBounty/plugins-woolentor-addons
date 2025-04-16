@@ -54,7 +54,8 @@ class Popup_Manager {
         $this->image_manager();
 
         // Content.
-        $this->popup_content_manager();
+        // $this->popup_content_manager();
+        add_action('init',[ $this, 'popup_content_manager' ]);
 
         // Social share button
         if( woolentor_get_option( 'enable_social_share','woolentor_quickview_settings','on' ) === 'on' ){

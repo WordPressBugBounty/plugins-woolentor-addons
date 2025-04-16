@@ -649,7 +649,7 @@ class Manage_Compare {
         if( 'pa_' === $str ){
             $field_name = wc_attribute_label( $field );
         }else{
-            $field_name = $default[$field];
+            $field_name = !empty( $default[$field] ) ? $default[$field] : '';
         }
         return $field_name;
 

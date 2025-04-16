@@ -10,7 +10,7 @@
                 }
 
                 // Generate Filed name
-                $name = $evercompare->field_name( $field );
+                $name = $evercompare->field_name( $field_id );
                 if( array_key_exists( $field_id, $heading_txt ) && !empty( $heading_txt[$field_id] ) ){
                     $name = $evercompare->field_name( $heading_txt[$field_id], true );
                 }

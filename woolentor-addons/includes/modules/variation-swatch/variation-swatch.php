@@ -26,6 +26,10 @@ class Swatchly {
      */
     private function __construct() {
         $this->define_constants();
+        add_action('init', [$this, 'init']);
+    }
+
+    public function init(){
         $this->includes();
         $this->run();
     }

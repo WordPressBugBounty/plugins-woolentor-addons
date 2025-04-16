@@ -8,11 +8,21 @@ class Badge_Manager {
 
     public function __construct(){
 
-        add_action( 'woocommerce_before_shop_loop_item_title', [$this, 'template_loop_product_thumbnail_before'], 9 );
-        add_action( 'woocommerce_before_shop_loop_item_title', [$this, 'template_loop_product_thumbnail_after'], 11 );
+        if( woolentor_get_current_theme()['slug'] === 'oceanwp' ){
+            add_action( 'ocean_before_archive_product_image', [$this, 'template_loop_product_thumbnail_before'], 9 );
+            add_action( 'ocean_after_archive_product_image', [$this, 'template_loop_product_thumbnail_after'], 9 );
+        }else{
+            add_action( 'woocommerce_before_shop_loop_item_title', [$this, 'template_loop_product_thumbnail_before'], 9 );
+            add_action( 'woocommerce_before_shop_loop_item_title', [$this, 'template_loop_product_thumbnail_after'], 11 );
+        }
 
         // Shop / Archive
         add_filter( 'woocommerce_product_get_image', [$this, 'product_badge_loop_item'] , 100000, 2 );
+
+        // OceanWP Theme
+        if( woolentor_get_current_theme()['slug'] === 'oceanwp' ){
+            add_action( 'ocean_before_product_entry_image', [$this, 'product_badge_single_product'] );
+        }
 
         // Single Product page
         add_action('woolentor_product_thumbnail_image', [$this, 'product_badge_single_product'], 10);
@@ -145,7 +155,7 @@ class Badge_Manager {
         $badges_list = $this->badges_list();
 
         if( empty($badges_list) || !is_array( $badges_list ) ){
-            return;
+            return ob_get_clean();
         }
 
         foreach( $badges_list as $key => $badge ){

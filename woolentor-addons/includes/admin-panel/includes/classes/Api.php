@@ -35,6 +35,9 @@ class Api extends WP_REST_Controller {
         if ( !class_exists( __NAMESPACE__ . '\Api\Custom_Actions'  ) ) {
             require_once __DIR__ . '/Api/Custom_Actions.php';
         }
+        if ( !class_exists( __NAMESPACE__ . '\Api\TemplateLibrary'  ) ) {
+            require_once __DIR__ . '/Api/TemplateLibrary.php';
+        }
         if ( !class_exists( __NAMESPACE__ . '\Api\ChangeLog'  ) ) {
             require_once __DIR__ . '/Api/ChangeLog.php';
         }
@@ -50,6 +53,7 @@ class Api extends WP_REST_Controller {
         (new Api\Plugins())->register_routes();
         (new Api\Static_Content())->register_routes();
         (new Api\Custom_Actions())->register_routes();
+        (new Api\TemplateLibrary())->register_routes();
         (new Api\ChangeLog())->register_routes();
     }
 

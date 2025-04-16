@@ -64,11 +64,28 @@ class Assets {
      */
     public function get_scripts() {
         $prefix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '.min' : '';
+        $is_dev = isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] === 'plugindev.test';
 
         $scripts = [
+            'woolentoropt-element-plus' => [
+                'src'       => WOOLENTOROPT_ASSETS . '/js/element-plus.js',
+                'version'   => WOOLENTOR_VERSION,
+                'in_footer' => true
+            ],
+            'woolentoropt-vendor' => [
+                'src'       => WOOLENTOROPT_ASSETS . '/js/vendor.js',
+                'version'   => WOOLENTOR_VERSION,
+                'in_footer' => true,
+                'deps'      => [ 'woolentoropt-element-plus' ]
+            ],
+            'woolentoropt-vite-client' => [
+                'src'       => 'http://localhost:5173/@vite/client',
+                'version'   => null,
+                'in_footer' => true
+            ],
             'woolentoropt-admin' => [
-                'src'       => WOOLENTOROPT_ASSETS . '/js/admin.js',
-                'deps'      => [ 'jquery' ],
+                'src'       => $is_dev && $this->is_vite_running() ? 'http://localhost:5173/src/main.js' : WOOLENTOROPT_ASSETS . '/js/admin.js',
+                'deps'      => $is_dev && $this->is_vite_running() ? [ 'woolentoropt-vite-client' ] : [ 'jquery', 'woolentoropt-vendor' ],
                 'version'   => WOOLENTOR_VERSION,
                 'in_footer' => true
             ]
@@ -94,6 +111,21 @@ class Assets {
         ];
 
         return $styles;
+    }
+
+    /**
+     * Check if Vite dev server is running
+     */
+    private function is_vite_running() {
+        $handle = curl_init('http://localhost:5173');
+        curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($handle, CURLOPT_NOBODY, true);
+
+        curl_exec($handle);
+        $error = curl_errno($handle);
+        curl_close($handle);
+
+        return !$error;
     }
 
 }

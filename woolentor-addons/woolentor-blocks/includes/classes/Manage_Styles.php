@@ -230,8 +230,6 @@ class Manage_Styles {
 
     /**
      * Inline CSS Manage
-     *
-     * @return void
      */
     public function block_inline_css(){
 		$this->generate_inline_css( woolentorBlocks_get_ID() );
@@ -250,7 +248,6 @@ class Manage_Styles {
 	 * Generate Inline CSS
 	 *
 	 * @param [type] $post_id
-	 * @return void
 	 */
 	public function generate_inline_css( $post_id ){
 		if( $post_id ){

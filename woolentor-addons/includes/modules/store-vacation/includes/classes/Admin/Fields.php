@@ -153,7 +153,7 @@ class Fields {
                         'desc'    => esc_html__( 'Text to show instead of Add to Cart button', 'woolentor' ),
                         'default' => esc_html__( 'Available after vacation', 'woolentor' ),
                         'class'   => 'woolentor-action-field-left',
-                        'condition' => array( 'key'=>'hide_add_to_cart', 'operator'=>'==', 'value'=>'true' ),
+                        'condition' => array( 'key'=>'hide_add_to_cart', 'operator'=>'==', 'value'=>'on' ),
                     ),
     
                 )

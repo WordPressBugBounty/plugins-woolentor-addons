@@ -1,12 +1,12 @@
 <?php
-use WooLentor\Traits\Singleton;
+use WooLentor\Traits\ModuleBase;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
 * Plugin Main Class
 */
 class Woolentor_Ever_Compare{
-    use Singleton;
+    use ModuleBase;
     
     /**
      * [__construct] Class Constructor
@@ -35,6 +35,7 @@ class Woolentor_Ever_Compare{
         define( 'EVERCOMPARE_URL', plugins_url( '', EVERCOMPARE_FILE ) );
         define( 'EVERCOMPARE_ASSETS', EVERCOMPARE_URL . '/assets' );
         define( 'EVERCOMPARE_BLOCKS_PATH', EVERCOMPARE_MODULE_PATH. "/includes/blocks" );
+        define( 'EVERCOMPARE_ENABLED', self::$_enabled );
     }
 
      /**
@@ -61,23 +62,28 @@ class Woolentor_Ever_Compare{
      */
     public function init_plugin() {
 
-        EverCompare\Assets::instance();
-
-        if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-            EverCompare\Ajax::instance();
-        }
-
-        if ( is_admin() ) {
+        if ( $this->is_request( 'admin' ) || $this->is_request( 'rest' ) ) {
             EverCompare\Admin::instance();
         }
-        EverCompare\Frontend::instance();
-        EverCompare\Widgets_And_Blocks::instance();
 
-        // add image size
-        $this->set_image_size();
+        if( self::$_enabled ){
 
-        // let's filter the woocommerce image size
-        add_filter( 'woocommerce_get_image_size_ever-compare-image', [ $this, 'wc_image_filter_size' ], 10, 1 );
+            EverCompare\Assets::instance();
+
+            if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+                EverCompare\Ajax::instance();
+            }
+
+            EverCompare\Frontend::instance();
+            EverCompare\Widgets_And_Blocks::instance();
+
+            // add image size
+            $this->set_image_size();
+
+            // let's filter the woocommerce image size
+            add_filter( 'woocommerce_get_image_size_ever-compare-image', [ $this, 'wc_image_filter_size' ], 10, 1 );
+
+        }
 
     }
 
@@ -123,16 +129,4 @@ class Woolentor_Ever_Compare{
         
     }
 
-}
-
-/**
- * Initializes the main plugin
- *
- * @return Woolentor_Ever_Compare
- */
-function woolentor_ever_compare() {
-    return Woolentor_Ever_Compare::instance();
-}
-if( ! class_exists('Ever_Compare') ){
-    woolentor_ever_compare();
 }

@@ -61,6 +61,10 @@ class Helper{
             $option_value = 1;
         }
 
+        if($option_value === 'off'){
+            $option_value = 0;
+        }
+
         return $option_value;
     }
 

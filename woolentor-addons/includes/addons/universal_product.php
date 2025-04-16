@@ -1361,6 +1361,7 @@ class Woolentor_Universal_Product_Widget extends Widget_Base {
                             ],
                             'selectors' => [
                                 '{{WRAPPER}} .ht-products .ht-product .ht-product-inner .ht-product-action ul li a i' => 'font-size: {{SIZE}}{{UNIT}};',
+                                '{{WRAPPER}} .ht-products .ht-product .ht-product-inner .ht-product-action ul li a.wishsuite-button svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
                                 '{{WRAPPER}} .woolentor-compare.compare::before,{{WRAPPER}} .ht-product-action ul li.woolentor-cart a::before' => 'font-size: {{SIZE}}{{UNIT}};',
                             ],
                         ]

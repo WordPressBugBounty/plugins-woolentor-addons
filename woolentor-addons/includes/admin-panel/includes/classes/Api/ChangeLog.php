@@ -164,6 +164,25 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.1.2',
+                'date'    => '2025-04-15',
+                'changes' => [
+                    'Improvements' => [
+                        'Template Library Design and import process.',
+                        'Better UI/UX Wishlist and Compare Module Setting.'
+                    ],
+                    'Fixes' => [
+                        'Variation Swatch Color Picker showing issue.',
+                        'Variation Swatch showing issue in Product Archive page.',
+                        'Wishlist table product remove issue fixed',
+                        'Empty Product bases render issue.'
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.'
+                    ],
+                ]
+            ],
+            [
                 'version' => '3.1.0',
                 'date'    => '2025-02-18',
                 'changes' => [

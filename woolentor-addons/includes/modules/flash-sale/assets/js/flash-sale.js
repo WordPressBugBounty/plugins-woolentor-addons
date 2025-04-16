@@ -40,7 +40,7 @@
             },
             currDate = '00:00:00:00',
             nextDate = '00:00:00:00',
-            parser = /([0-9]{2})/gi;
+            parser = /([0-9]{2,})/gi;
         // Parse countdown string to an object
         function strfobj(str) {
             var parsed = str.match(parser),

@@ -121,7 +121,7 @@ function ever_compare_table_heading(){
     $new_list = array();
     $field_list = count( ever_compare_table_active_heading() ) > 0 ? ever_compare_table_active_heading() : ever_compare_get_default_fields();
     foreach ( $field_list as $key => $value ) {
-        $new_list[$key] = \EverCompare\Frontend\Manage_Compare::instance()->field_name( $key );
+        $new_list[$key] = class_exists( '\EverCompare\Frontend\Manage_Compare' ) ? \EverCompare\Frontend\Manage_Compare::instance()->field_name( $key ) : '';
     }
     return $new_list;
 }

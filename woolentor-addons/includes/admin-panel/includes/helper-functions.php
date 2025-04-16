@@ -87,6 +87,17 @@ function woolentor_opt_get_options( $registered_settings = [] ) {
                 continue;
             }
 
+            // Groupsetting fields
+            if( $setting['type'] == 'groupsetting' ) {
+                $group_options = woolentor_process_groupsetting_fields( $setting );
+                if( !empty( $group_options ) ) {
+                    $settings[$setting['id'].'_group'] = $group_options;
+                }
+                $section_options[ $setting['id'] ] = woolentor_get_field_value( $setting, $section_key );
+                continue;
+            }
+            // Group Field End
+
             // Handle sub-sections
             if( isset( $setting['section'] ) ) {
                 $sub_options = woolentor_process_sub_section_fields( $setting );
@@ -135,6 +146,39 @@ function woolentor_process_sub_section_fields( $setting ) {
     }
 
     return $sub_options;
+}
+
+/**
+ * Process groupsetting fields
+ * 
+ * @param array $setting Setting array containing groupsetting fields
+ * @return array Processed groupsetting options
+ */
+function woolentor_process_groupsetting_fields( $setting ) {
+    $group_options = [];
+
+    foreach ( $setting['setting_tabs'] as $group_setting ) {
+
+        $group_sub_options = [];
+
+        foreach ( $group_setting['fields'] as $field ) {
+
+            // Skip non-data fields
+            if( in_array( $field['type'], ['title', 'html'], true ) ) {
+                continue;
+            }
+
+            if( !isset( $field['id'] ) ) {
+                continue;
+            }
+
+            $group_sub_options[ $field['id'] ] = woolentor_get_field_value( $field, $group_setting['setting_group'] );
+        }
+
+        $group_options[ $group_setting['setting_group'] ] = $group_sub_options;
+    }
+
+    return $group_options;
 }
 
 /**

@@ -42,7 +42,8 @@ class Block_Patterns_init {
 	 * The Constructor.
 	 */
 	public function __construct() {
-        $this->register_patterns_category();
+        // $this->register_patterns_category();
+        add_action('init', [$this, 'register_patterns_category']);
         $this->register_patterns();
 	}
 

@@ -22,11 +22,6 @@ class Assets {
      */
     public function get_scripts() {
         return [
-            'wishsuite-admin' => [
-                'src'     => WISHSUITE_ASSETS . '/js/admin.js',
-                'version' => WOOLENTOR_VERSION,
-                'deps'    => [ 'jquery' ]
-            ],
             'wishsuite-frontend' => [
                 'src'     => WISHSUITE_ASSETS . '/js/frontend.js',
                 'version' => WOOLENTOR_VERSION,
@@ -42,10 +37,6 @@ class Assets {
      */
     public function get_styles() {
         return [
-            'wishsuite-admin' => [
-                'src'     => WISHSUITE_ASSETS . '/css/admin.css',
-                'version' => WOOLENTOR_VERSION,
-            ],
             'wishsuite-frontend' => [
                 'src'     => WISHSUITE_ASSETS . '/css/frontend.css',
                 'version' => WOOLENTOR_VERSION,
@@ -93,28 +84,7 @@ class Assets {
         );
 
         // Admin Localize data
-        $setting_page = 0;
-        if( isset( $_GET['page'] ) && $_GET['page'] == 'wishsuite' ){
-            $setting_page = 1;
-        }
-        $admin_option_data = array(
-            'btn_icon_type'        => woolentor_get_option( 'button_icon_type', 'wishsuite_style_settings_tabs', 'default' ),
-            'added_btn_icon_type'  => woolentor_get_option( 'addedbutton_icon_type', 'wishsuite_style_settings_tabs', 'default' ),
-            'shop_btn_position'    => woolentor_get_option( 'shop_btn_position', 'wishsuite_settings_tabs', 'after_cart_btn' ),
-            'product_btn_position' => woolentor_get_option( 'product_btn_position', 'wishsuite_settings_tabs', 'after_cart_btn' ),
-            'button_style'         => woolentor_get_option( 'button_style', 'wishsuite_style_settings_tabs', 'default' ),
-            'table_style'          => woolentor_get_option( 'table_style', 'wishsuite_style_settings_tabs', 'default' ),
-            'enable_social_share'  => woolentor_get_option( 'enable_social_share','wishsuite_table_settings_tabs','on' ),
-            'enable_login_limit'   => woolentor_get_option( 'enable_login_limit','wishsuite_general_tabs','off' ),
-        );
-        $admin_localize_data = array(
-            'ajaxurl'    => admin_url( 'admin-ajax.php' ),
-            'is_settings'=> $setting_page,
-            'option_data'=> $admin_option_data,
-        );
-
         wp_localize_script( 'wishsuite-frontend', 'WishSuite', $localize_data );
-        wp_localize_script( 'wishsuite-admin', 'WishSuite', $admin_localize_data );
 
         if( class_exists( '\Elementor\Plugin' ) && ( \Elementor\Plugin::$instance->preview->is_preview_mode() ) ){
             wp_enqueue_style( 'wishsuite-frontend' );

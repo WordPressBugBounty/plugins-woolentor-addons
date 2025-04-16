@@ -2,8 +2,8 @@
 Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, tarekht, aslamhasib
 Tags: Elementor, WooCommerce, WooCommerce Elementor, WooCommerce Builder, WooCommerce Product, Woo Builder, Variation Swatches, woocommerce blocks, Product Slider, Product Compare, Wishlist, Product Filter
 Requires at least: 4.7
-Tested up to: 6.7
-Stable tag: 3.1.1
+Tested up to: 6.8
+Stable tag: 3.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -1119,6 +1119,14 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 
 == Changelog ==
 
+= Version: 3.1.2 - Date: 16-04-2025 =
+* Improved : Template Library Design and import process.
+* Improved : Wishlist and Compare Module Setting option layout.
+* Solved : Variation Swatch Color Picker showing issue.
+* Solved : Variation Swatch showing issue in Product Archive page.
+* Solved : Empty Product bases render issue.
+* Compatibility : Latest WordPress and WooCommerce version.
+
 = Version: 3.1.1 - Date: 11-03-2025 =
 * Solved : HTML Tag rendering issue in flash sale module.
 * Solved : Dimensions field value saving issue.
@@ -1627,12 +1635,6 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 * Solved : Compare Button icon show server permission issue.
 * Solved : Compatibility  with FiboSearch plugin.
 * Solved : Action Button Line Height issue in Univarsel Layout Addon.
-
-= Version: 2.2.6 - Date: 25-04-2022 =
-* Added : Quantity Field Hide option in WL: Add to cart button.
-* Solved : Undefine offset Issue in Gutenberg blocks style.
-* Solved : Currency symbol position issue in product filter addon.
-* Solved : Compatibility With Lumise Product Designer.
 
 == Installation ==
 This section describes how to install the ShopLentor - WooCommerce Addons for Elementor Page Builder plugin and get it working.

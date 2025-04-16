@@ -544,7 +544,7 @@ a.woolentor-admin-settings-link {
 }
 
 /* Drawer */
-.woolentor-notification-drawer {
+.woolentor-notification-drawer,.woolentor-settings-drawer {
   top: 32px !important;
   height: calc(100% - 32px) !important;
 }

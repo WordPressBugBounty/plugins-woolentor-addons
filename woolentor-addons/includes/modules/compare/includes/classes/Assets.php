@@ -30,11 +30,6 @@ class Assets {
     public function get_scripts() {
 
         $script_list = [
-            'evercompare-admin' => [
-                'src'     => EVERCOMPARE_ASSETS . '/js/admin.js',
-                'version' => WOOLENTOR_VERSION,
-                'deps'    => [ 'jquery' ]
-            ],
             'evercompare-frontend' => [
                 'src'     => EVERCOMPARE_ASSETS . '/js/frontend'.$this->suffix.'.js',
                 'version' => WOOLENTOR_VERSION,
@@ -54,10 +49,6 @@ class Assets {
     public function get_styles() {
 
         $style_list = [
-            'evercompare-admin' => [
-                'src'     => EVERCOMPARE_ASSETS . '/css/admin.css',
-                'version' => WOOLENTOR_VERSION,
-            ],
             'evercompare-frontend' => [
                 'src'     => EVERCOMPARE_ASSETS . '/css/frontend'.$this->suffix.'.css',
                 'version' => WOOLENTOR_VERSION,
@@ -101,27 +92,7 @@ class Assets {
             'tableurl'      => Frontend\Manage_Compare::instance()->get_compare_page_url(),
             'option_data'   => $option_data,
         );
-
-        // Admin Localize data
-        $setting_page = 0;
-        if( isset( $_GET['page'] ) && $_GET['page'] == 'evercompare' ){
-            $setting_page = 1;
-        }
-        $admin_option_data = array(
-            'shop_btn_position'     => woolentor_get_option( 'shop_btn_position','ever_compare_settings_tabs','after_cart_btn' ),
-            'product_btn_position'  => woolentor_get_option( 'product_btn_position','ever_compare_settings_tabs','after_cart_btn' ),
-            'button_icon_type'      => woolentor_get_option( 'button_icon_type','ever_compare_settings_tabs','none' ),
-            'added_button_icon_type'=> woolentor_get_option( 'added_button_icon_type','ever_compare_settings_tabs','none' ),
-            'enable_shareable_link' => woolentor_get_option( 'enable_shareable_link','ever_compare_table_settings_tabs','off' ),
-            'button_style'          => woolentor_get_option( 'button_style','ever_compare_style_tabs','theme' ),
-            'table_style'           => woolentor_get_option( 'table_style','ever_compare_style_tabs','default' ),
-        );
-        $admin_localize_data = array(
-            'is_settings'=> $setting_page,
-            'option_data'=> $admin_option_data,
-        );
         wp_localize_script( 'evercompare-frontend', 'evercompare', $localize_data );
-        wp_localize_script( 'evercompare-admin', 'evercompare', $admin_localize_data );
         
     }
 

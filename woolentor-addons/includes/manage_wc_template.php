@@ -160,10 +160,10 @@ class Woolentor_Manage_WC_Template{
     public static function render_build_content( $id, $inline_css = false ){
 
         $output = '';
-        $document = woolentor_is_elementor_editor() ? Elementor\Plugin::instance()->documents->get( $id ) : false;
+        $document = woolentor_is_elementor_editor() ? \Elementor\Plugin::instance()->documents->get( $id ) : false;
 
         if( $document && $document->is_built_with_elementor() ){
-            $output = Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $id );
+            $output = \Elementor\Plugin::instance()->frontend->get_builder_content_for_display( $id );
         }else{
             $content = get_the_content( null, false, $id );
 

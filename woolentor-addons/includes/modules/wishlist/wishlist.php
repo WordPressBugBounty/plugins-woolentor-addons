@@ -1,12 +1,12 @@
 <?php
-use WooLentor\Traits\Singleton;
+use WooLentor\Traits\ModuleBase;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 /**
  * Plugin Main Class
  */
 class Woolentor_WishSuite_Base{
-    use Singleton;
+    use ModuleBase;
     
     /**
      * [__construct] Class Constructor
@@ -14,9 +14,11 @@ class Woolentor_WishSuite_Base{
     private function __construct(){
         $this->define_constants();
         $this->includes();
-        if( get_option('woolentor_wishsuite_status', 'no') === 'no' ){
-            add_action( 'wp_loaded',[ $this, 'activate' ] );
-            update_option( 'woolentor_wishsuite_status','yes' );
+        if( self::$_enabled ){
+            if( get_option('woolentor_wishsuite_status', 'no') === 'no' ){
+                add_action( 'wp_loaded',[ $this, 'activate' ] );
+                update_option( 'woolentor_wishsuite_status','yes' );
+            }   
         }
         $this->init_plugin();
     }
@@ -34,6 +36,7 @@ class Woolentor_WishSuite_Base{
         define( 'WISHSUITE_ASSETS', WISHSUITE_URL . '/assets' );
         define( 'WISHSUITE_BASE', plugin_basename( WISHSUITE_FILE ) );
         define( 'WISHSUITE_BLOCKS_PATH', WISHSUITE_MODULE_PATH. "/includes/blocks" );
+        define( 'WISHSUITE_ENABLED', self::$_enabled );
     }
 
     /**
@@ -59,24 +62,28 @@ class Woolentor_WishSuite_Base{
      */
     public function init_plugin() {
 
-        WishSuite\Assets::instance();
-
-        if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-            WishSuite\Ajax::instance();
-        }
-
-        if ( is_admin() ) {
+        if ( $this->is_request( 'admin' ) || $this->is_request( 'rest' ) ) {
             WishSuite\Admin::instance();
         }
-        WishSuite\Frontend::instance();
-        WishSuite\Widgets_And_Blocks::instance();
 
-        // add image size
-        $this->set_image_size();
+        if( self::$_enabled ){
 
-        // let's filter the woocommerce image size
-        add_filter( 'woocommerce_get_image_size_wishsuite-image', [ $this, 'wc_image_filter_size' ], 10, 1 );
-        
+            WishSuite\Assets::instance();
+
+            if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+                WishSuite\Ajax::instance();
+            }
+
+            WishSuite\Frontend::instance();
+            WishSuite\Widgets_And_Blocks::instance();
+
+            // add image size
+            $this->set_image_size();
+
+            // let's filter the woocommerce image size
+            add_filter( 'woocommerce_get_image_size_wishsuite-image', [ $this, 'wc_image_filter_size' ], 10, 1 );
+
+        }
 
     }
 
@@ -122,16 +129,4 @@ class Woolentor_WishSuite_Base{
         
     }
 
-}
-
-/**
- * Initializes the main plugin
- *
- * @return Woolentor_WishSuite_Base
- */
-function Woolentor_WishSuite() {
-    return Woolentor_WishSuite_Base::instance();
-}
-if( ! class_exists('WishSuite_Base') ){
-    Woolentor_WishSuite();
 }
