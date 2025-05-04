@@ -1601,7 +1601,7 @@ function woolentor_add_to_wishlist_button( $normalicon = '<i class="fa fa-heart-
 
     $output = '';
 
-    if( class_exists('WishSuite_Base') || class_exists('Woolentor_WishSuite_Base') ){
+    if( class_exists('WishSuite_Base') || class_exists('\WishSuite\Frontend\Manage_Wishlist') ){
 
         $button_class = ' wishlist'.( $tooltip == 'yes' ? '' : ' wltooltip_no' );
 

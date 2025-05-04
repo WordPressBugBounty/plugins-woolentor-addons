@@ -1325,6 +1325,8 @@ class Woolentor_Wl_Recently_Viewed_Products_Widget extends Widget_Base {
                     </div>
                 <?php
             endwhile;
+            wp_reset_query();
+            wp_reset_postdata();
             echo '</div>';
         }
 

@@ -6,10 +6,11 @@
         </header>
         <main class="woolentor-template-default has-global-padding is-layout-constrained wp-block-group" style="margin:0 auto; max-width:<?php echo $width ? esc_attr($width).'px; padding: 0 15px;' : '100%;'; ?>">
             <?php
-                while ( have_posts() ) { 
-                    the_post();
-                    do_action('woolentor/builder/content');
-                }
+                // while ( have_posts() ) { 
+                //     the_post();
+                //     do_action('woolentor/builder/content');
+                // }
+                do_action('woolentor/builder/content');
             ?>
         </main>
         <footer class="wp-block-template-part">
@@ -22,10 +23,11 @@
     <div class="wp-site-blocks">
         <div class="woolentor-template-default" style="margin:0 auto; max-width:<?php echo $width ? esc_attr($width).'px; padding: 0 15px;' : '100%;'; ?>">
             <?php
-                while ( have_posts() ) { 
-                    the_post();
-                    do_action('woolentor/builder/content');
-                }
+                // while ( have_posts() ) { 
+                //     the_post();
+                //     do_action('woolentor/builder/content');
+                // }
+                do_action('woolentor/builder/content');
             ?>
         </div>
     </div>

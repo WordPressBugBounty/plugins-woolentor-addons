@@ -26,10 +26,11 @@ if ( $width ) {
     echo '<div class="woolentor-template-default" style="max-width: '.esc_attr($width).'px; margin: 0 auto;">';
 }
 
-    while ( have_posts() ) { 
-        the_post();
-        do_action('woolentor/builder/content');
-    }
+    // while ( have_posts() ) { 
+    //     the_post();
+    //     do_action('woolentor/builder/content');
+    // }
+    do_action('woolentor/builder/content');
 
 if ( $width ) {
     echo '</div>';

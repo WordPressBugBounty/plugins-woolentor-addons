@@ -46,12 +46,12 @@ class WooLentorProductQuery{
 
         if ( isset( $_GET['wlfilter'] ) ) {
 
-            $queries =[];
-            $new_queries = [];
-            parse_str( $_SERVER['QUERY_STRING' ], $queries );
-            foreach ( $queries as $key => $querie ) {
-                $new_queries[] = $key;
-            }
+            // $queries =[];
+            // $new_queries = [];
+            // parse_str( $_SERVER['QUERY_STRING' ], $queries );
+            // foreach ( $queries as $key => $querie ) {
+            //     $new_queries[] = $key;
+            // }
 
             if( isset( $_GET['wlorder_by'] ) ){
                 if( in_array( $_GET['wlorder_by'], [ '_price', 'total_sales', '_wc_average_rating' ] ) ) {
@@ -153,24 +153,24 @@ class WooLentorProductQuery{
 
 
             // Filter With Currenct taxonomies page filter
-            if( isset( $_GET['min_price'] ) && isset( $_GET['max_price'] ) ){
-                $termobj = get_queried_object();
-                $get_all_taxonomies = woolentor_get_taxonomies();
+            // if( isset( $_GET['min_price'] ) && isset( $_GET['max_price'] ) ){
+            //     $termobj = get_queried_object();
+            //     $get_all_taxonomies = woolentor_get_taxonomies();
 
-                if ( is_shop() || ( is_tax('product_cat') && is_product_category() ) || ( is_tax('product_tag') && is_product_tag() ) || ( isset( $termobj->taxonomy ) && is_tax( $termobj->taxonomy ) && array_key_exists( $termobj->taxonomy, $get_all_taxonomies ) ) ) {
-                    if(( is_tax('product_cat') && is_product_category() ) || ( is_tax('product_tag') && is_product_tag() )){
-                        $term_id = $termobj->term_id;
-                        $tax_query[] = array(
-                            array(
-                                'taxonomy' => $termobj->taxonomy,
-                                'terms' => $term_id,
-                                'field' => 'term_id',
-                                'include_children' => true
-                            )
-                        );
-                    }
-                }
-            }
+            //     if ( is_shop() || ( is_tax('product_cat') && is_product_category() ) || ( is_tax('product_tag') && is_product_tag() ) || ( isset( $termobj->taxonomy ) && is_tax( $termobj->taxonomy ) && array_key_exists( $termobj->taxonomy, $get_all_taxonomies ) ) ) {
+            //         if(( is_tax('product_cat') && is_product_category() ) || ( is_tax('product_tag') && is_product_tag() )){
+            //             $term_id = $termobj->term_id;
+            //             $tax_query[] = array(
+            //                 array(
+            //                     'taxonomy' => $termobj->taxonomy,
+            //                     'terms' => $term_id,
+            //                     'field' => 'term_id',
+            //                     'include_children' => true
+            //                 )
+            //             );
+            //         }
+            //     }
+            // }
 
 
             $queries =[];
@@ -191,6 +191,7 @@ class WooLentorProductQuery{
                     }
 
                     if( ( $taxonomy !== "" ) && in_array( $taxonomy, $woo_taxonomies ) ){
+                        $new_queries[] = $key;
                         $tax_query[] = array(
                             'taxonomy' => $taxonomy,
                             'field' => 'slug',
@@ -202,23 +203,27 @@ class WooLentorProductQuery{
 
             }
 
+            // Set Current taxonomy if no filter with taxonomy
+            if( is_array( $new_queries ) && count($new_queries) == 0 ){
+                $termobj = get_queried_object();
+                $get_all_taxonomies = woolentor_get_taxonomies();
 
-            // $woo_taxonomies = get_object_taxonomies( 'product' );
-            // if( isset( $new_queries[1] ) && !in_array( $new_queries[1], [ 'wlsort', 'wlorder_by' ] ) ){
-            //     $attr_pre_str = substr( $new_queries[1], 0, 6 );
+                if ( is_shop() || ( is_tax('product_cat') && is_product_category() ) || ( is_tax('product_tag') && is_product_tag() ) || ( isset( $termobj->taxonomy ) && is_tax( $termobj->taxonomy ) && array_key_exists( $termobj->taxonomy, $get_all_taxonomies ) ) ) {
+                    if(( is_tax('product_cat') && is_product_category() ) || ( is_tax('product_tag') && is_product_tag() )){
+                        $term_id = $termobj->term_id;
+                        $tax_query[] = array(
+                            array(
+                                'taxonomy' => $termobj->taxonomy,
+                                'terms' => $term_id,
+                                'field' => 'term_id',
+                                'include_children' => true
+                            )
+                        );
+                    }
+                }
+            }
 
-            //     $taxonomy = ( 'filter' === $attr_pre_str ) ? str_replace('filter', 'pa', $new_queries[1] ) : $new_queries[1];
-            //     $taxonomy = ('woolentor' === substr( $taxonomy, 0, 9 ) ) ? str_replace('woolentor_','',$taxonomy) : $taxonomy;
-            //     if( isset( $_GET[$new_queries[1] ] ) && in_array( $taxonomy, $woo_taxonomies ) ){
-            //         $tax_query[] = array(
-            //             'taxonomy' => $taxonomy,
-            //             'field' => 'slug',
-            //             'terms' => explode( ',', $_GET[$new_queries[1]] ),
-            //         );
-            //     }
-
-            // }
-
+            // Featured Product
             if( isset( $_GET['wlorder_by'] ) && $_GET['wlorder_by'] === 'featured' ){
                 $tax_query[] = [
                     'taxonomy' => 'product_visibility',
