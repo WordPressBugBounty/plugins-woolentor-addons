@@ -187,7 +187,7 @@ class WooLentorProductQuery{
                     } else if( 'woolentor' === substr( $key, 0, 9 ) ){
                         $taxonomy = str_replace('woolentor_','',$key);
                     }else{
-                        $taxonomy = "";
+                        $taxonomy = $key;
                     }
 
                     if( ( $taxonomy !== "" ) && in_array( $taxonomy, $woo_taxonomies ) ){

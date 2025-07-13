@@ -593,7 +593,7 @@ function woolentorBlocks_compare_button( $button_arg = array() ){
 
     $button_style       = !empty( $button_arg['style'] ) ? $button_arg['style'] : 1;
 
-    if( class_exists('Ever_Compare') || class_exists('Woolentor_Ever_Compare') ){
+    if( class_exists('Ever_Compare') || class_exists('\EverCompare\Frontend\Manage_Compare') ){
 
         $button_title       = !empty( $button_arg['title'] ) ? $button_arg['title'] : esc_html__('Add to Compare','woolentor');
         $button_text        = !empty( $button_arg['btn_text'] ) ? $button_arg['btn_text'] : esc_html__('Add to Compare','woolentor');

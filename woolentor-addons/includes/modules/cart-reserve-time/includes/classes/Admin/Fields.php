@@ -17,7 +17,7 @@ class Fields {
     public function admin_fields( $fields ){
         
         if( woolentor_is_pro() && method_exists( '\WoolentorPro\Modules\CartReserveTime\Admin\Fields', 'sitting_fields') ){
-            array_splice( $fields['woolentor_others_tabs'], 29, 0, \WoolentorPro\Modules\CartReserveTime\Admin\Fields::instance()->sitting_fields() );
+            array_splice( $fields['woolentor_others_tabs'], 25, 0, \WoolentorPro\Modules\CartReserveTime\Admin\Fields::instance()->sitting_fields() );
         }else{
             array_splice( $fields['woolentor_others_tabs'], 15, 0, $this->sitting_fields() );
         }

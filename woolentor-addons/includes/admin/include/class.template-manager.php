@@ -306,10 +306,10 @@ class Woolentor_Template_Manager{
 	public function get_template_library(){
 
 		// Delete transient data
-		if ( get_option( 'woolentor_do_activation_library_cache', FALSE ) ) {
-            delete_transient( 'woolentor_template_info' );
-			delete_option('woolentor_do_activation_library_cache');
-        }
+		// if ( get_option( 'woolentor_do_activation_library_cache', FALSE ) ) {
+        //     delete_transient( 'woolentor_template_info' );
+		// 	delete_option('woolentor_do_activation_library_cache');
+        // }
 
 		$elementor_template = Woolentor_Template_Library_Manager::get_templates_info();
 		$gutenberg_template	= Woolentor_Template_Library_Manager::get_gutenberg_templates_info();

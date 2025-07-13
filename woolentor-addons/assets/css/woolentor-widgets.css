@@ -456,6 +456,9 @@ li.woolentor-cart .button:before {
   padding: 0;
   margin: 0;
 }
+.woolentor_current_theme_blocksy .ht-product-action ul li.woolentor-cart a.wc-forward.added_to_cart{
+  background-color: transparent !important;
+}
 .woolentor-short-desc ul,
 .woolentor-short-desc ol,
 .woolentor-products .woocommerce-product-details__short-description ul,
@@ -1086,6 +1089,9 @@ li.woolentor-cart .button:before {
   text-indent: 0;
   width: 100%;
   line-height: 30px;
+  opacity: 1 !important;
+  filter: blur(0) !important;
+  z-index: 9999;
 }
 .ht-product-action ul li.woolentor-cart a::before {
   content: "";

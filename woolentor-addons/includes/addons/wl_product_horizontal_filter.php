@@ -1119,7 +1119,7 @@ class Woolentor_Wl_Product_Horizontal_Filter_Widget extends Widget_Base {
                                                         $filter_name = 'filter_' . wc_attribute_taxonomy_slug( $filter_item['wl_filter_type'] );
                                                     }
 
-                                                    if( $filter_name === 'product_cat' || $filter_name === 'product_tag' ){
+                                                    if( $filter_name === 'product_cat' || $filter_name === 'product_tag' || $filter_name === 'product_brand' ){
                                                         $filter_name = 'woolentor_'.$filter_name;
                                                     }
 
@@ -1268,7 +1268,7 @@ class Woolentor_Wl_Product_Horizontal_Filter_Widget extends Widget_Base {
             $filter_name = 'filter_' . wc_attribute_taxonomy_slug( $filter_type );
         }
 
-        if( $filter_name === 'product_cat' || $filter_name === 'product_tag' ){
+        if( $filter_name === 'product_cat' || $filter_name === 'product_tag' || $filter_name === 'product_brand' ){
             $filter_name = 'woolentor_'.$filter_name;
         }
 

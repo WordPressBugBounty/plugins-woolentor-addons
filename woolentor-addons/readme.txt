@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, tarekht, aslamhasi
 Tags: Elementor, WooCommerce, WooCommerce Elementor, WooCommerce Builder, WooCommerce Product, Woo Builder, Variation Swatches, woocommerce blocks, Product Slider, Product Compare, Wishlist, Product Filter
 Requires at least: 4.7
 Tested up to: 6.8
-Stable tag: 3.1.4
+Stable tag: 3.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -1119,6 +1119,13 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 
 == Changelog ==
 
+= Version: 3.1.5 - Date: 13-07-2025 =
+* Improved : Brand wise product filter support in Horizontal and Vertical Filter addon.
+* Solved : Compare module button showing issue if module is off.
+* Solved : Template Library load issue.
+* Compatibility : With YITH Wishlist latest Version.
+* Compatibility : Latest WordPress and WooCommerce version.
+
 = Version: 3.1.4 - Date: 04-05-2025 =
 * Solved : Filter Product issue with Horizontal Product Filter addon.
 * Solved : Product render issue with current query.
@@ -1632,19 +1639,6 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 * Solved :  Wishlist Icon Overlapping issue, if icon position is set Top On Image.
 * Solved : iframe dimension issue in Product Video gallery addon.
 * Solved : Compatibility with BuddyBoos Theme.
-
-= Version: 2.2.8 - Date: 15-05-2022 =
-* Solved : Product showing issue with product filter addon in category page.
-* Solved : Video thumbnails overlapping issue in Video Gallery Addon.
-* Compatibility With latest WooCommerce version.
-
-= Version: 2.2.7 - Date: 08-05-2022 =
-* Added : Add to cart button style option in Wishlist table.
-* Solved : Wishlist Button icon show server permission issue.
-* Solved : Wishlist table heading showing issue in mobile device.
-* Solved : Compare Button icon show server permission issue.
-* Solved : Compatibility  with FiboSearch plugin.
-* Solved : Action Button Line Height issue in Univarsel Layout Addon.
 
 == Installation ==
 This section describes how to install the ShopLentor - WooCommerce Addons for Elementor Page Builder plugin and get it working.

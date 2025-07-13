@@ -1631,7 +1631,7 @@ function woolentor_add_to_wishlist_button( $normalicon = '<i class="fa fa-heart-
             global $yith_wcwl;
             $url          = YITH_WCWL()->get_wishlist_url();
             $product_type = $product->get_type();
-            $exists       = $yith_wcwl->is_product_in_wishlist( $product->get_id() );
+            $exists       = class_exists('YITH_WCWL_Wishlists') ? yith_wcwl_wishlists()->is_product_in_wishlist( $product->get_id() ) : $yith_wcwl->is_product_in_wishlist( $product->get_id() );
             $classes      = 'class="add_to_wishlist"';
             $add          = get_option( 'yith_wcwl_add_to_wishlist_text' );
             $browse       = get_option( 'yith_wcwl_browse_wishlist_text' );
@@ -1831,7 +1831,7 @@ if( !function_exists('woolentor_block_filter_generate_term_link') ){
             $filter_name = 'filter_' . wc_attribute_taxonomy_slug( $filter_type );
         }
 
-        if( $filter_name === 'product_cat' || $filter_name === 'product_tag' ){
+        if( $filter_name === 'product_cat' || $filter_name === 'product_tag' || $filter_name === 'product_brand'){
             $filter_name = 'woolentor_'.$filter_name;
         }
 

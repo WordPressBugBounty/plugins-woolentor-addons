@@ -8,7 +8,7 @@ use WP_REST_Server;
 use WoolentorOptions\SanitizeTrail\Sanitize_Trait;
 
 if (!class_exists('\WoolentorOptions\Admin\Options_Field')) {
-    require_once WOOLENTOROPT_INCLUDES . '/classes/Admin/Options_field.php';
+    require_once dirname(__DIR__) . '/Admin/Options_field.php';
 }
 
 // Load Pro Field functionality if available
