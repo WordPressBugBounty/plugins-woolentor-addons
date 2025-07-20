@@ -162,6 +162,19 @@ class Fields {
                             ],
 
                             [
+                                'id'    => 'badge_image_size',
+                                'name'   => esc_html__( 'Image Size', 'woolentor' ),
+                                'desc'    => esc_html__( 'Set the image size for badge image.', 'woolentor' ),
+                                'type'    => 'dimensions',
+                                'options' => [
+                                    'width'   => esc_html__( 'Width', 'woolentor' ),
+                                    'height'  => esc_html__( 'Height', 'woolentor' ),
+                                    'unit'    => esc_html__( 'Unit', 'woolentor' ),
+                                ],
+                                'condition'   => [ 'key'=>'badge_type', 'operator'=>'==', 'value'=>'image' ],
+                            ],
+
+                            [
                                 'id'      => 'badge_setting_heading',
                                 'heading'  => esc_html__( 'Badge Settings', 'woolentor' ),
                                 'type'      => 'title'

@@ -9,11 +9,16 @@
         $badge_css .= $custom_position;
     }
 
+    $badge_image_size = !empty( $badge['badge_image_size'] ) ? $badge['badge_image_size'] : [];
+    $badge_image_size_css = "height: auto; width: 35px;";
+    if( !empty( $badge_image_size ) ){
+        $badge_image_size_css = 'width: '.($badge_image_size['width'] ? $badge_image_size['width'].$badge_image_size['unit'] : '35px').'; height: '.($badge_image_size['height'] ? $badge_image_size['height'].$badge_image_size['unit'] : 'auto').';';
+    }
 ?>
 <?php if( !empty($badge_image_url) ): ?>
     <div class="woolentor-product-badge-area <?php echo esc_attr($classes); ?>" style="<?php echo esc_attr($badge_css); ?>">
         <div class="woolentor-product-badge">
-            <img style = "height: auto; width: 35px;" src="<?php echo esc_url( $badge_image_url );?>" alt="<?php echo esc_attr($badge_title); ?>">
+            <img style = "<?php echo esc_attr($badge_image_size_css); ?>" src="<?php echo esc_url( $badge_image_url );?>" alt="<?php echo esc_attr($badge_title); ?>">
         </div>
     </div>
 <?php endif; ?>

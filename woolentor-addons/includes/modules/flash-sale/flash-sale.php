@@ -215,6 +215,15 @@ class Woolentor_Flash_Sale{
         $discount_value = !empty($deal['discount_value']) ? $deal['discount_value'] : '';
 
         if( $deal && self::datetime_validity($deal) && $discount_value ){
+            echo '<style>
+                .woocommerce dt.variation-woolentor_cart_flash_sale_label,.wc-block-components-product-details__woolentor-cart-flash-sale-label .wc-block-components-product-details__name{
+                    display: none !important;
+                }
+                .woocommerce .variation-woolentor_cart_flash_sale_label{
+                    margin: 0 !important;
+                }
+            </style>';
+            
             $item_data[] = array(
                 'name'      => 'woolentor_cart_flash_sale_label',
                 'display'   => '<span class="woolentor-flashsale-label">'. esc_html__('Flash Sale!', 'woolentor') .'</span>',

@@ -5,6 +5,7 @@
     position: absolute;
     top: 15px;
     left: 15px;
+    z-index: 9;
 }
 .woolentor-product-badge-area.woolentor-product-badge-position-top_right{
     left: auto;

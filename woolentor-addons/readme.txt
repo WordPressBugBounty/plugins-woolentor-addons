@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, tarekht, aslamhasi
 Tags: Elementor, WooCommerce, WooCommerce Elementor, WooCommerce Builder, WooCommerce Product, Woo Builder, Variation Swatches, woocommerce blocks, Product Slider, Product Compare, Wishlist, Product Filter
 Requires at least: 4.7
 Tested up to: 6.8
-Stable tag: 3.1.5
+Stable tag: 3.1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -1119,6 +1119,11 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 
 == Changelog ==
 
+= Version: 3.1.6 - Date: 20-07-2025 =
+* Added : Dimension option added for image type badge.
+* Solved : Flash Sale Key showing issue in Mini Cart.
+* Compatibility : Latest WordPress and WooCommerce version.
+
 = Version: 3.1.5 - Date: 13-07-2025 =
 * Improved : Brand wise product filter support in Horizontal and Vertical Filter addon.
 * Solved : Compare module button showing issue if module is off.
@@ -1630,15 +1635,6 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 = Version: 2.3.0 - Date: 25-05-2022 =
 * Added : Module Settings Reset button.
 * Compatibility : With Latest WordPress Version.
-
-= Version: 2.2.9 - Date: 22-05-2022 =
-* Improved : Dashboard Elements Panel UI.
-* Tweak : jQuery UI library has been removed from template library.
-* Tweak : Pending product has been excluded from AJAX search module.
-* Solved : Unnecessary Content showing issue in Shopify Style Checkout page.
-* Solved :  Wishlist Icon Overlapping issue, if icon position is set Top On Image.
-* Solved : iframe dimension issue in Product Video gallery addon.
-* Solved : Compatibility with BuddyBoos Theme.
 
 == Installation ==
 This section describes how to install the ShopLentor - WooCommerce Addons for Elementor Page Builder plugin and get it working.

@@ -234,7 +234,14 @@ class WooLentorProductQuery{
             }           
         }
 
-        if ( !isset( $_GET['wlfilter'] ) ) {
+        // Module Support: Advanced Filter module query, If set Advanced Filter module query then do not apply current taxonomy query
+        $has_advanced_filter = false;
+        if( function_exists('wlpf_get_query_args_prefix') ){
+            $query_string = $_SERVER['QUERY_STRING' ];
+            $has_advanced_filter = is_string($query_string) && strpos($query_string, wlpf_get_query_args_prefix()) === 0;
+        }
+
+        if ( !isset( $_GET['wlfilter'] ) && !$has_advanced_filter ) {
 
             // Taxonomy Taxquery
             $termobj = get_queried_object();
