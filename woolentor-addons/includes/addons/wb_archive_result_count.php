@@ -135,6 +135,7 @@ class Woolentor_Wb_Archive_Result_Count_Widget extends Widget_Base {
                     'total'    => wp_count_posts( 'product' )->publish,
                     'per_page' => $settings['product_per_page'],
                     'current'  => 1,
+                    'orderby'  => '',
                 );
                 wc_get_template( 'loop/result-count.php', $args );
             echo '</div>';

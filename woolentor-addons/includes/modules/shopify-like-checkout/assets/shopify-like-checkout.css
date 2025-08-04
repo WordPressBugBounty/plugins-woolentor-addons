@@ -13,6 +13,13 @@
     text-decoration: none;
 }
 
+.woolentor-checkout__all_notices{
+    margin-top: 20px;
+}
+.woolentor-checkout__box .woolentor-checkout__all_notices ul.woocommerce-error li{
+    line-height: 20px;
+}
+
 .woolentor-checkout__container {
     max-width: 1200px;
     margin: 0 auto;

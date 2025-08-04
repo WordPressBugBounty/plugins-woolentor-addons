@@ -1084,10 +1084,12 @@ class Woolentor_Universal_Product_Widget extends Widget_Base {
                 'product_category_margin',
                 [
                     'label' => __( 'Margin', 'woolentor' ),
+                    'description'=>__( 'If select content style two then only work bottom and right margin','woolentor' ),
                     'type' => Controls_Manager::DIMENSIONS,
                     'size_units' => [ 'px', '%', 'em' ],
                     'selectors' => [
-                        '{{WRAPPER}} .ht-products .ht-product .ht-product-inner .ht-product-content .ht-product-content-inner .ht-product-categories' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .ht-products .ht-product .ht-product-inner .ht-product-content .ht-product-content-inner .ht-product-categories:not(.ht-product-brand)' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                        '{{WRAPPER}} .ht-products .ht-product.ht-product-category-right-bottom .ht-product-inner .ht-product-content .ht-product-content-inner .ht-product-categories:not(.ht-product-brand)'=>'bottom: {{BOTTOM}}{{UNIT}}; right: {{RIGHT}}{{UNIT}}; margin: 0 !important;',
                     ],
                 ]
             );

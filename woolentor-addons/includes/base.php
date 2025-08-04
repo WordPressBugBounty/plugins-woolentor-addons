@@ -390,8 +390,10 @@ final class Base {
 		$product_id = get_the_id();
 
         // Check current product is exists in the list.
-        if ( ( $key = array_search( $product_id, $products_list ) ) !== false ) {
-            unset( $products_list[$key] );
+        if( is_array( $products_list )){
+            if ( ( $key = array_search( $product_id, $products_list ) ) !== false ) {
+                unset( $products_list[$key] );
+            }
         }
 
         $timestamp = time();

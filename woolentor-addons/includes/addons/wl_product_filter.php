@@ -78,6 +78,21 @@ class Woolentor_Wl_Product_Filter_Widget extends Widget_Base {
                 ]
             );
 
+            $this->add_control(
+                'wl_order_by_values', 
+                [
+                    'label' => esc_html__( 'Order By Values', 'woolentor' ),
+                    'type' => Controls_Manager::SELECT2,
+                    'multiple' => true,
+                    'options' => function_exists('woolentor_order_by_opts') ? woolentor_order_by_opts() : [],
+                    'label_block' => true,
+                    'default' => ['none','ID','date','name','title','comment_count','rand','featured','_price','total_sales','_wc_average_rating'],
+                    'condition'=>[
+                        'wl_filter_type' => 'order_by'
+                    ]
+                ]
+            );
+
         $this->end_controls_section();
 
         // Additional Option
@@ -811,6 +826,7 @@ class Woolentor_Wl_Product_Filter_Widget extends Widget_Base {
         $currency_symbol = get_woocommerce_currency_symbol();
 
         $filter_type = $settings['wl_filter_type'];
+        $selected_order_by_values = $settings['wl_order_by_values'];
 
         $list_icon = !empty( $settings['list_icon']['value'] ) ? woolentor_render_icon( $settings, 'list_icon' ) : '';
 
@@ -986,7 +1002,9 @@ class Woolentor_Wl_Product_Filter_Widget extends Widget_Base {
                         <div class="wl_order_by_filter">
                             <select name="wl_order_by_sort">
                                 <?php
-                                    foreach ( woolentor_order_by_opts() as $key => $opt_data ) {
+                                    $order_by_values = !empty($selected_order_by_values) ? array_intersect_key(woolentor_order_by_opts(), array_flip($selected_order_by_values)) : woolentor_order_by_opts();
+
+                                    foreach ( $order_by_values as $key => $opt_data ) {
                                         echo '<option value="&wlorder_by='.esc_attr( $key ).'" '.selected( $key, $wlorder_by, false ).'>'.esc_html__( $opt_data, 'woolentor' ).'</option>';
                                     }
                                 ?>

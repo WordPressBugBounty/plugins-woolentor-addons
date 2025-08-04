@@ -1,9 +1,9 @@
 === ShopLentor – WooCommerce Builder for Elementor & Gutenberg +20 Modules – All in One Solution (formerly WooLentor) ===
-Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, tarekht, aslamhasib
+Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, aslamhasib
 Tags: Elementor, WooCommerce, WooCommerce Elementor, WooCommerce Builder, WooCommerce Product, Woo Builder, Variation Swatches, woocommerce blocks, Product Slider, Product Compare, Wishlist, Product Filter
 Requires at least: 4.7
 Tested up to: 6.8
-Stable tag: 3.1.6
+Stable tag: 3.1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -1119,6 +1119,15 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 
 == Changelog ==
 
+= Version: 3.1.7 - Date: 04-08-2025 =
+1. Added : Order By Item remove option in Product Filter and Horizotal Product filter addon.
+2. Solved : Recent View Counter data save issue.
+3. Solved : Category Spacing issue in Universal Product layout addon.
+4. Solved : Product Badge render issue with Advanced Product Filter module.
+5. Solved : Shopify Like Checkout Module Login Form Error message display issue.
+6. Solved : Orderby warning issue in result Count Addon.
+7. Compatibility : Latest WordPress and WooCommerce version.
+
 = Version: 3.1.6 - Date: 20-07-2025 =
 * Added : Dimension option added for image type badge.
 * Solved : Flash Sale Key showing issue in Mini Cart.
@@ -1626,15 +1635,6 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 * Solved : PHP Warning issue, if ShopLentor Pro is deactivated from FTP / cPanel.
 * Solved : Wishlist counter PHP warning.
 * Solved : Client say color change issue in WL Testimonial Widget.
-
-= Version: 2.3.1 - Date: 04-06-2022 =
-* Tweak : Elementor Dependency Notice added in Template Builder.
-* Solved : Module setting reset problem with switcher element.
-* Solved : Shipping Method showing issue in Shopify Style Checkout page.
-
-= Version: 2.3.0 - Date: 25-05-2022 =
-* Added : Module Settings Reset button.
-* Compatibility : With Latest WordPress Version.
 
 == Installation ==
 This section describes how to install the ShopLentor - WooCommerce Addons for Elementor Page Builder plugin and get it working.

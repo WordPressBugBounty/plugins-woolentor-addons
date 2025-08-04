@@ -315,10 +315,12 @@ function woolentor_set_views_count( $postid, $posttype ) {
         $products_list[$timestamp] = $postid;
     }else{
         // if the post has already been stored under the cookie
-        if ( ( $key = array_search( $postid, $products_list ) ) == false ) {            
-            $count++;
-            update_post_meta( $postid, $count_key, $count );
-            $products_list[$timestamp] = $postid;
+        if( is_array( $products_list )){
+            if ( ( $key = array_search( $postid, $products_list ) ) == false ) {            
+                $count++;
+                update_post_meta( $postid, $count_key, $count );
+                $products_list[$timestamp] = $postid;
+            }
         }
     }
     setcookie( $cookie_name, serialize( $products_list ), 0, COOKIEPATH, COOKIE_DOMAIN, false, false );
@@ -1236,12 +1238,22 @@ if( class_exists('WooCommerce') ){
         wc_set_loop_prop( 'total', $total );
         wc_set_loop_prop( 'per_page', $perpage );
         wc_set_loop_prop( 'current_page', $paged );
-        $geargs = array(
-            'total'    => wc_get_loop_prop( 'total' ),
-            'per_page' => wc_get_loop_prop( 'per_page' ),
-            'current'  => wc_get_loop_prop( 'current_page' ),
-        );
-        wc_get_template( 'loop/result-count.php', $geargs );
+
+        if( function_exists('woocommerce_result_count') ){
+            woocommerce_result_count();
+        }else{
+            $default_orderby = apply_filters( 'woocommerce_default_catalog_orderby', get_option( 'woocommerce_default_catalog_orderby', '' ) );
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+            $orderby = isset( $_GET['orderby'] ) ? wc_clean( wp_unslash( $_GET['orderby'] ) ) : $default_orderby;
+            
+            $geargs = array(
+                'total'    => wc_get_loop_prop( 'total' ),
+                'per_page' => wc_get_loop_prop( 'per_page' ),
+                'current'  => wc_get_loop_prop( 'current_page' ),
+                'orderby'  => $orderby,
+            );
+            wc_get_template( 'loop/result-count.php', $geargs );
+        }
     }
 
     // product shorting

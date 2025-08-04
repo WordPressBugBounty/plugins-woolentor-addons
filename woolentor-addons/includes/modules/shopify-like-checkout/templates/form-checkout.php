@@ -151,6 +151,7 @@ $labels = apply_filters( 'woolentor_slc_labels', $labels );
                         <span class="woolentor-checkout__breadcrumb-text"><?php echo esc_html($labels['payment']) ?></span>
                     </li>
                 </ul>
+                <?php do_action( 'woolentor_shopify_like_checkout_after_breadcrumb' ); ?>
             </div>
             <div class="woolentor-checkout__body">
                 <?php if( !is_user_logged_in() ): ?>

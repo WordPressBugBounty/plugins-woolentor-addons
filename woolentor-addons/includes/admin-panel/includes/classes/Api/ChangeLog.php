@@ -164,6 +164,25 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.1.7',
+                'date'    => '2025-08-04',
+                'changes' => [
+                    'New Features' => [
+                        'Order By Item remove option in Product Filter and Horizotal Product filter addon.',
+                    ],
+                    'Fixes' => [
+                        'Recent View Counter data save issue.',
+                        'Category Spacing issue in Universal Product layout addon.',
+                        'Product Badge render issue with Advanced Product Filter module.',
+                        'Shopify Like Checkout Module Login Form Error message display issue.',
+                        'Orderby warning issue in result Count Addon.',
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.'
+                    ],
+                ]
+            ],
+            [
                 'version' => '3.1.2',
                 'date'    => '2025-04-15',
                 'changes' => [

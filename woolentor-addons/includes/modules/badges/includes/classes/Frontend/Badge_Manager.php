@@ -31,6 +31,18 @@ class Badge_Manager {
     }
 
     /**
+     * Check if the current request is an AJAX request for product filtering
+     * @return bool
+     */
+    public function is_fire_ajax_request() {
+        if( defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_REQUEST['action'] ) && $_REQUEST['action'] === 'wlpf_ajax_filter' ){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
      * Add Wrapper For Product badge
      * @return void
      */
@@ -230,7 +242,7 @@ class Badge_Manager {
         $get_all_taxonomies = woolentor_get_taxonomies();
         $is_archive_page = ( is_tax('product_cat') && is_product_category() ) || ( is_tax('product_tag') && is_product_tag() ) || ( isset( $termobj->taxonomy ) && is_tax( $termobj->taxonomy ) && array_key_exists( $termobj->taxonomy, $get_all_taxonomies ) );
 
-        if ( !is_admin() && (is_shop() || is_single() || $is_archive_page) ){
+        if ( $this->is_fire_ajax_request() || (is_shop() || is_single() || $is_archive_page ) ){
             return $product_image.$this->product_badges();
         }else{
             return $product_image;

@@ -108,6 +108,21 @@ class Woolentor_Wl_Product_Horizontal_Filter_Widget extends Widget_Base {
                 ]
             );
 
+            $repeater->add_control(
+                'order_by_values', 
+                [
+                    'label' => esc_html__( 'Order By Values', 'woolentor' ),
+                    'type' => Controls_Manager::SELECT2,
+                    'multiple' => true,
+                    'options' => function_exists('woolentor_order_by_opts') ? woolentor_order_by_opts() : [],
+                    'label_block' => true,
+                    'default' => ['none','ID','date','name','title','comment_count','rand','featured','_price','total_sales','_wc_average_rating'],
+                    'condition'=>[
+                        'wl_filter_type' => 'order_by'
+                    ]
+                ]
+            );
+
             $repeater->add_responsive_control(
                 'wl_filter_min_width',
                 [
@@ -1020,8 +1035,10 @@ class Woolentor_Wl_Product_Horizontal_Filter_Widget extends Widget_Base {
                                                     <select name="wl_order_by_sort" id="woolentor-field-for-<?php echo esc_attr($filter_item['_id']); ?>" class="woolentor-onchange-single-item woolentor-single-select-<?php echo esc_attr($id); ?>" data-minimum-results-for-search="Infinity" data-placeholder="<?php echo esc_attr($filter_item['wl_filter_placeholder']); ?>">
                                                         <?php
                                                             if( !empty( $filter_item['wl_filter_placeholder'] ) ){echo '<option></option>';}
-                                                        
-                                                            foreach ( woolentor_order_by_opts() as $key => $opt_data ) {
+
+                                                            $order_by_values = !empty($filter_item['order_by_values']) ? array_intersect_key(woolentor_order_by_opts(), array_flip($filter_item['order_by_values'])) : woolentor_order_by_opts();
+
+                                                            foreach ( $order_by_values as $key => $opt_data ) {
                                                                 echo '<option value="&wlorder_by='.esc_attr( $key ).'" '.selected( $key, $wlorder_by, false ).'>'.esc_html__( $opt_data, 'woolentor' ).'</option>';
                                                             }
                                                         ?>
