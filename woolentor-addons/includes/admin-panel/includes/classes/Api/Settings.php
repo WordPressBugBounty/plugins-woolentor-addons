@@ -8,6 +8,7 @@ use WP_REST_Server;
 use WoolentorOptions\SanitizeTrail\Sanitize_Trait;
 
 if (!class_exists('\WoolentorOptions\Admin\Options_Field')) {
+    // require_once WOOLENTOROPT_INCLUDES . '/classes/Admin/Options_field.php';
     require_once dirname(__DIR__) . '/Admin/Options_field.php';
 }
 
@@ -226,6 +227,7 @@ class Settings extends WP_REST_Controller {
         // Get existing data from the database
         $option_name    = !empty($sub_section) ? $sub_section : $section;
         $existing_data  = get_option($option_name, []);
+        $existing_data  = is_array( $existing_data ) ? $existing_data : [];
 
         // Process the settings
         $processed_data = $this->process_settings($registered_settings, $settings_received, $existing_data);

@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, aslamhasib
 Tags: Elementor, WooCommerce, WooCommerce Elementor, WooCommerce Builder, WooCommerce Product, Woo Builder, Variation Swatches, woocommerce blocks, Product Slider, Product Compare, Wishlist, Product Filter
 Requires at least: 4.7
 Tested up to: 6.8
-Stable tag: 3.1.7
+Stable tag: 3.1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -1119,14 +1119,18 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 
 == Changelog ==
 
+= Version: 3.1.7 - Date: 17-08-2025 =
+* Added : Abandoned Cart Module.
+* Compatibility : Latest WordPress and WooCommerce version.
+
 = Version: 3.1.7 - Date: 04-08-2025 =
-1. Added : Order By Item remove option in Product Filter and Horizotal Product filter addon.
-2. Solved : Recent View Counter data save issue.
-3. Solved : Category Spacing issue in Universal Product layout addon.
-4. Solved : Product Badge render issue with Advanced Product Filter module.
-5. Solved : Shopify Like Checkout Module Login Form Error message display issue.
-6. Solved : Orderby warning issue in result Count Addon.
-7. Compatibility : Latest WordPress and WooCommerce version.
+* Added : Order By Item remove option in Product Filter and Horizotal Product filter addon.
+* Solved : Recent View Counter data save issue.
+* Solved : Category Spacing issue in Universal Product layout addon.
+* Solved : Product Badge render issue with Advanced Product Filter module.
+* Solved : Shopify Like Checkout Module Login Form Error message display issue.
+* Solved : Orderby warning issue in result Count Addon.
+* Compatibility : Latest WordPress and WooCommerce version.
 
 = Version: 3.1.6 - Date: 20-07-2025 =
 * Added : Dimension option added for image type badge.

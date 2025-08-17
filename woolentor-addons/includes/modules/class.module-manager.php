@@ -310,6 +310,19 @@ class Woolentor_Module_Manager{
                 'main_class' => '\Woolentor\Modules\StoreVacation\Store_Vacation',
                 'is_pro'     => false,
                 'manage_setting' => true
+            ],
+
+            'abandoned-cart' => [
+                'slug'   =>'abandoned-cart',
+                'title'  => esc_html('Abandoned Cart'),
+                'option' => [
+                    'key'     => 'enable',
+                    'section' => 'woolentor_abandoned_cart_settings',
+                    'default' => 'off'
+                ],
+                'main_class' => '\Woolentor\Modules\AbandonedCart\Abandoned_Cart',
+                'is_pro'     => false,
+                'manage_setting' => true
             ]
 
         ];

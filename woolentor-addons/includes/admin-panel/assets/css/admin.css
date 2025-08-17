@@ -553,6 +553,9 @@ a.woolentor-admin-settings-link {
   padding-bottom: 20px !important;
   margin-bottom: 0 !important;
 }
+.el-pager li{
+  margin: 0;
+}
 
 /* Normal  :1366px. */
 @media (min-width: 1200px) and (max-width: 1400px) {
