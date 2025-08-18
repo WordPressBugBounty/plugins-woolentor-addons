@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, aslamhasib
 Tags: Elementor, WooCommerce, WooCommerce Elementor, WooCommerce Builder, WooCommerce Product, Woo Builder, Variation Swatches, woocommerce blocks, Product Slider, Product Compare, Wishlist, Product Filter
 Requires at least: 4.7
 Tested up to: 6.8
-Stable tag: 3.1.8
+Stable tag: 3.1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -1119,7 +1119,10 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 
 == Changelog ==
 
-= Version: 3.1.7 - Date: 17-08-2025 =
+= Version: 3.1.9 - Date: 18-08-2025 =
+* Solved : Template library showing issue.
+
+= Version: 3.1.8 - Date: 17-08-2025 =
 * Added : Abandoned Cart Module.
 * Compatibility : Latest WordPress and WooCommerce version.
 
