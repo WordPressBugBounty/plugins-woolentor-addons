@@ -375,43 +375,56 @@ final class Base {
      *
      * @return void
      */
-    public function track_user_viewed_products(){
+
+     public function track_user_viewed_products(){
 
         global $post;
-
+    
         if ( is_null( $post ) || $post->post_type != 'product' || !is_product() ) {
             return;
         }
-
+    
         $products_list = woolentor_get_track_user_data();
         $user_id       = get_current_user_id();
         $cookie_name   = woolentor_get_cookie_name( 'viewed_products_list' );
-
-		$product_id = get_the_id();
-
-        // Check current product is exists in the list.
-        if( is_array( $products_list )){
-            if ( ( $key = array_search( $product_id, $products_list ) ) !== false ) {
-                unset( $products_list[$key] );
-            }
+    
+        $product_id = get_the_id();
+    
+        // Initialize products_list as array if it's not already
+        if (!is_array($products_list)) {
+            $products_list = [];
         }
-
+    
+        // Check current product exists in the list and remove it
+        if ( ( $key = array_search( $product_id, $products_list ) ) !== false ) {
+            unset( $products_list[$key] );
+        }
+    
         $timestamp = time();
         $products_list[$timestamp] = $product_id;
-
+    
+        // MEMORY FIX: Limit the size of the products list to prevent memory exhaustion
+        $max_products_limit = apply_filters( 'woolentor_max_viewed_products', 100 ); // Default limit: 100 products
+        
+        if ( count( $products_list ) > $max_products_limit ) {
+            // Sort by timestamp (keys) and keep only the most recent products
+            ksort( $products_list );
+            $products_list = array_slice( $products_list, -$max_products_limit, null, true );
+        }
+    
         // Set cookie or save user meta
         $cookie_duration = 5;
         $cookie_duration = time() + (86400 * $cookie_duration);
-
+    
         if ( $user_id ) {
             update_user_meta( $user_id, $cookie_name, $products_list );
         } else {
             setcookie( $cookie_name, serialize( $products_list ), $cookie_duration, COOKIEPATH, COOKIE_DOMAIN, false, true );
         }
-
+    
         // Set View Count
         woolentor_set_views_count( $product_id, 'product' );
-
+    
     }
 
    /**

@@ -213,7 +213,17 @@ class Email_Template extends WP_REST_Controller {
                 $templates = $this->get_default_email_templates();
             }
 
-            return rest_ensure_response( $templates );
+            $total = DB_Handler::instance()->get_total_email_templates();
+
+            $data = array(
+                'data' => [
+                    'templates' => $templates,
+                    'total' => (int) $total,
+                    'pages' => ceil( $total / $per_page )
+                ]
+            );
+
+            return rest_ensure_response( $data );
         } catch ( Exception $e ) {
             return new WP_Error(
                 'email_templates_error',

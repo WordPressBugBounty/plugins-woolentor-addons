@@ -433,6 +433,16 @@ class DB_Handler {
 
     }
 
+     /**
+     * Get total count of email templates
+     */
+    public function get_total_email_templates() {
+        $query = $this->wpdb->prepare(
+            "SELECT COUNT(*) FROM {$this->tables['email_templates']}",
+        );
+        return $this->wpdb->get_var( $query );
+    }
+
     /**
      * Get email template by ID
      */

@@ -1,9 +1,9 @@
-=== ShopLentor – WooCommerce Builder for Elementor & Gutenberg +20 Modules – All in One Solution (formerly WooLentor) ===
+=== ShopLentor – WooCommerce Builder for Elementor & Gutenberg +21 Modules – All in One Solution (formerly WooLentor) ===
 Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, aslamhasib
 Tags: Elementor, WooCommerce, WooCommerce Elementor, WooCommerce Builder, WooCommerce Product, Woo Builder, Variation Swatches, woocommerce blocks, Product Slider, Product Compare, Wishlist, Product Filter
 Requires at least: 4.7
 Tested up to: 6.8
-Stable tag: 3.1.9
+Stable tag: 3.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -1119,6 +1119,12 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 
 == Changelog ==
 
+= Version: 3.2.0 - Date: 26-08-2025 =
+* Added : Pagination in template list for abandoned cart module.
+* Added : Refresh button for abandon cart list and Analytics data.
+* Solved: Shopify like checkout Field height issue.
+* Compatibility : Latest WordPress and WooCommerce version.
+
 = Version: 3.1.9 - Date: 18-08-2025 =
 * Solved : Template library showing issue.
 
@@ -1631,17 +1637,6 @@ Elementor Pro is not required. But you can use ShopLentor with Elementor free & 
 * Added : Gutenberg blocks for the Shop, Archive, and Product pages.
 * Tweak : The compatibility of the Shopify Style Checkout module with WooFunnels' Order Bump feature.
 * Solved : A display issue with the share button when no products are available to compare.
-
-= Version: 2.3.2 - Date: 20-06-2022 =
-* Added : Support to display currency position with space in product filter widgets.
-* Added : Style option in wishlist table addon.
-* Tweak : Wishlist and Compare menu position change.
-* Solved : Shopify style checkout module compatibility with ShopLentor Pro checkout field manager module.
-* Solved : Tab labels change issue in Shopify Style Checkout page.
-* Solved : Repeater item adding issue in module setting.
-* Solved : PHP Warning issue, if ShopLentor Pro is deactivated from FTP / cPanel.
-* Solved : Wishlist counter PHP warning.
-* Solved : Client say color change issue in WL Testimonial Widget.
 
 == Installation ==
 This section describes how to install the ShopLentor - WooCommerce Addons for Elementor Page Builder plugin and get it working.

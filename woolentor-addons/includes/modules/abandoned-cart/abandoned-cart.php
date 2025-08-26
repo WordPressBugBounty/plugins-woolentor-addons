@@ -112,6 +112,9 @@ class Abandoned_Cart{
     private function add_hooks() {
         // Dynamic Scheduler
         Dynamic_Scheduler::instance();
+        if( self::$_enabled && ( !wp_next_scheduled( 'woolentor_abandoned_cart_check' ) || !wp_next_scheduled( 'woolentor_abandoned_cart_cleanup' ) || !wp_next_scheduled( 'woolentor_process_scheduled_emails' ) )){
+            Dynamic_Scheduler::instance()->schedule_events();
+        }
     }
 
     /**

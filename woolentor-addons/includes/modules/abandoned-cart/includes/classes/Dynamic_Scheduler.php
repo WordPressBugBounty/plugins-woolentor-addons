@@ -96,6 +96,12 @@ class Dynamic_Scheduler {
             if( !isset( $old_value['enable'] ) || $old_value['enable'] === 'off' || $old_value['enable'] === '' ){
                 $this->schedule_events();
             }
+
+            // If next scheduled event is not found, schedule it
+            if( !wp_next_scheduled( 'woolentor_abandoned_cart_check' ) || !wp_next_scheduled( 'woolentor_abandoned_cart_cleanup' ) || !wp_next_scheduled( 'woolentor_process_scheduled_emails' ) ){
+                $this->schedule_events();
+            }
+
         }else{
             $this->clear_all_schedules();
         }

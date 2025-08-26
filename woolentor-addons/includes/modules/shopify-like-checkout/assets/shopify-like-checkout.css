@@ -298,6 +298,7 @@
     padding: 26px 15px 8px 15px;
     word-break: normal;
     line-height: inherit;
+    height: inherit !important;
     font-size: 15px;
     -webkit-transition: all 0.2s;
     transition: all 0.2s;

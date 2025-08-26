@@ -264,6 +264,19 @@ class Cart_Data extends WP_REST_Controller {
             $carts = $db->get_abandoned_carts( $args );
             $total = $db->get_total_abandoned_carts();
 
+            $carts = array_map( function( $cart ) {
+                if( isset( $cart->user_id ) && $cart->user_id > 0 ) {
+                    $user = get_user_by( 'id', $cart->user_id );
+                    $cart->customer_name = $user->first_name ? $user->first_name . ' ' . $user->last_name : $user->display_name;
+                } else if( isset( $cart->customer_other_info ) && !empty( $cart->customer_other_info ) ) {
+                    $customer_info = maybe_unserialize( $cart->customer_other_info );
+                    $cart->customer_name = $customer_info['billing_first_name'] . ' ' . $customer_info['billing_last_name'];
+                } else {
+                    $cart->customer_name = esc_html__( 'Guest User', 'woolentor' );
+                }
+                return $cart;
+            }, $carts );
+
             $data = array(
                 'data' => [
                     'carts' => $carts,

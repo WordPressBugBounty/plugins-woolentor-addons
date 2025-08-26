@@ -402,70 +402,11 @@ class Checkout_Data_Manager {
         }
 
         // Enqueue inline script to capture checkout changes
-        wp_add_inline_script( 'woocommerce', $this->get_checkout_tracking_script() );
-    }
-
-    /**
-     * Get checkout tracking JavaScript
-     */
-    private function get_checkout_tracking_script() {
-        return "
-        jQuery(document).ready(function($) {
-            var checkoutDataTimer;
-            
-            // Function to save checkout data
-            function saveCheckoutData() {
-                var formData = $('form.checkout').serializeArray();
-                var checkoutData = {};
-                
-                // Convert form data to object
-                $.each(formData, function(i, field) {
-                    if(field.value && field.value.trim() !== '') {
-                        checkoutData[field.name] = field.value;
-                    }
-                });
-                
-                // Only send if we have meaningful data
-                if(Object.keys(checkoutData).length > 2) {
-                    $.ajax({
-                        url: wc_checkout_params.ajax_url,
-                        type: 'POST',
-                        data: {
-                            action: 'woolentor_save_checkout_data',
-                            checkout_data: checkoutData,
-                            nonce: '" . wp_create_nonce( 'woolentor_checkout_data' ) . "'
-                        },
-                        timeout: 5000,
-                        success: function(response) {
-                            console.log('WooLentor: Checkout data saved');
-                        },
-                        error: function() {
-                            console.log('WooLentor: Failed to save checkout data');
-                        }
-                    });
-                }
-            }
-            
-            // Debounced save function
-            function debouncedSave() {
-                clearTimeout(checkoutDataTimer);
-                checkoutDataTimer = setTimeout(saveCheckoutData, 2000);
-            }
-            
-            // Bind to checkout field changes
-            $(document.body).on('change blur', '.checkout input, .checkout select, .checkout textarea', debouncedSave);
-            
-            // Save on checkout update
-            $(document.body).on('update_checkout', function() {
-                setTimeout(saveCheckoutData, 1000);
-            });
-            
-            // Save before leaving page
-            $(window).on('beforeunload', function() {
-                saveCheckoutData();
-            });
-        });
-        ";
+        wp_enqueue_script( 'woolentor-abandoned-cart', \Woolentor\Modules\AbandonedCart\MODULE_ASSETS . '/js/frontend.js', array( 'jquery' ), WOOLENTOR_VERSION, true );
+        wp_localize_script( 'woolentor-abandoned-cart', 'woolentorAbancart', array(
+            'ajax_url' => admin_url( 'admin-ajax.php' ),
+            'nonce' => wp_create_nonce( 'woolentor_checkout_data' )
+        ) );
     }
 
     // ===========================================
