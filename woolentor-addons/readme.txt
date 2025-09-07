@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, aslamhasib
 Tags: Elementor, WooCommerce, WooCommerce Elementor, WooCommerce Builder, WooCommerce Product, Woo Builder, Variation Swatches, woocommerce blocks, Product Slider, Product Compare, Wishlist, Product Filter
 Requires at least: 4.7
 Tested up to: 6.8
-Stable tag: 3.2.0
+Stable tag: 3.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -1118,6 +1118,11 @@ Feel free to [Contact us](https://hasthemes.com/contact-us/)
 Elementor Pro is not required. But you can use ShopLentor with Elementor free & Pro.
 
 == Changelog ==
+
+= Version: 3.2.1 - Date: 07-09-2025 =
+* Added : Badge support in other page.
+* Solved : Post CSS Saving for contributor rule.
+* Compatibility : Latest WordPress and WooCommerce version.
 
 = Version: 3.2.0 - Date: 26-08-2025 =
 * Added : Pagination in template list for abandoned cart module.

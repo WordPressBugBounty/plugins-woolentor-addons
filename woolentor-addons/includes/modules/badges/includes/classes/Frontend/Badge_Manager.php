@@ -242,7 +242,7 @@ class Badge_Manager {
         $get_all_taxonomies = woolentor_get_taxonomies();
         $is_archive_page = ( is_tax('product_cat') && is_product_category() ) || ( is_tax('product_tag') && is_product_tag() ) || ( isset( $termobj->taxonomy ) && is_tax( $termobj->taxonomy ) && array_key_exists( $termobj->taxonomy, $get_all_taxonomies ) );
 
-        if ( $this->is_fire_ajax_request() || (is_shop() || is_single() || $is_archive_page ) ){
+        if ( $this->is_fire_ajax_request() || (is_shop() || is_single() || is_singular() || $is_archive_page ) ){
             return $product_image.$this->product_badges();
         }else{
             return $product_image;
