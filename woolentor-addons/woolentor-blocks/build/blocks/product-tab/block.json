@@ -1,12 +1,14 @@
 {
   "name": "woolentor/product-tab",
   "category": "woolentor-blocks",
-  "title": "WL : Product Tab",
-  "description": "Display product.",
+  "title": "WL: Product Tab",
+  "description": "Display product tab or product slider.",
   "keywords": [
     "woolentor",
     "product tab",
-    "woocommerce product"
+    "woocommerce product",
+    "slider",
+    "showcase"
   ],
   "attributes": {
     "blockUniqId": {

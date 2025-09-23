@@ -1,8 +1,8 @@
 {
   "name": "woolentor/product-image",
   "category": "woolentor-single-product",
-  "title": "WL : Product Image",
-  "description": "Display product image.",
+  "title": "WL: Product Image",
+  "description": "Display product image for single product page.",
   "keywords": [
     "woolentor",
     "image",

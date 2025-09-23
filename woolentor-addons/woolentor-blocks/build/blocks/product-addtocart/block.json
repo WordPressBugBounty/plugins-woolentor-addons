@@ -1,8 +1,8 @@
 {
   "name": "woolentor/product-addtocart",
   "category": "woolentor-single-product",
-  "title": "WL : Add To Cart",
-  "description": "Display product cart button.",
+  "title": "WL: Add To Cart",
+  "description": "Display product add to cart button.",
   "keywords": [
     "woolentor",
     "product add to cart",

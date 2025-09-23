@@ -1,13 +1,15 @@
 {
   "name": "woolentor/brand-logo",
   "category": "woolentor-blocks",
-  "title": "WL : Brand Logo",
-  "description": "Display brand logo.",
+  "title": "WL: Brand Logo",
+  "description": "Display brand logos carousel, slider & grid-wise.",
   "keywords": [
     "woolentor",
     "logo",
     "brand",
-    "brand logo"
+    "brand logo",
+    "carousel",
+    "slider"
   ],
   "supports": {
     "align": [

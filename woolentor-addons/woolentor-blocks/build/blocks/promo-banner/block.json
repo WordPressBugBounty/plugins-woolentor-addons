@@ -1,13 +1,14 @@
 {
   "name": "woolentor/promo-banner",
   "category": "woolentor-blocks",
-  "title": "WL : Promo Banner",
-  "description": "Display promo banner.",
+  "title": "WL: Promo Banner",
+  "description": "Display promotional banner.",
   "keywords": [
     "woolentor",
     "product banner",
     "woocommerce promo",
-    "promo banner"
+    "promo banner",
+    "promotional"
   ],
   "supports": {
     "align": [

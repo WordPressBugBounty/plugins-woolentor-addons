@@ -1,14 +1,15 @@
 {
   "name": "woolentor/breadcrumbs",
   "category": "woolentor-blocks",
-  "title": "WL : Breadcrumbs",
-  "description": "Display breadcrumbs.",
+  "title": "WL: Breadcrumbs",
+  "description": "Display breadcrumb navigation/menu.",
   "keywords": [
     "woolentor",
     "breadcrumbs",
     "navigation",
     "breadcrumb",
-    "breadcrumbs menu"
+    "breadcrumbs menu",
+    "menu"
   ],
   "attributes": {
     "blockUniqId": {

@@ -1,13 +1,15 @@
 {
   "name": "woolentor/product-tabs",
   "category": "woolentor-single-product",
-  "title": "WL : Product Tabs",
-  "description": "Display product tabs.",
+  "title": "WL: Product Tabs",
+  "description": "Display product information tabs.",
   "keywords": [
     "woolentor",
     "tabs",
     "product",
-    "product tabs"
+    "product tabs",
+    "single product",
+    "information"
   ],
   "example": {
     "attributes": {

@@ -1,8 +1,8 @@
 {
   "name": "woolentor/archive-title",
   "category": "woolentor-blocks",
-  "title": "WL : Archive Title",
-  "description": "Display archive title.",
+  "title": "WL: Archive Title",
+  "description": "Show dynamic archive page title.",
   "keywords": [
     "woolentor",
     "archive",

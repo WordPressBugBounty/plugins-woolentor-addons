@@ -1,14 +1,15 @@
 {
   "name": "woolentor/faq",
   "category": "woolentor-blocks",
-  "title": "WL : FAQ",
-  "description": "Display faq.",
+  "title": "WL: FAQ",
+  "description": "Display frequently asked questions.",
   "keywords": [
     "WooLentor",
     "faq",
     "accordion",
     "question",
-    "answer"
+    "answer",
+    "frequently"
   ],
   "supports": {
     "align": [

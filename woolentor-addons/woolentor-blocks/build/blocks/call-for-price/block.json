@@ -2,7 +2,7 @@
   "name": "woolentor/call-for-price",
   "category": "woolentor-single-product",
   "title": "WL: Call For Price",
-  "description": "Display call for price button in single product page.",
+  "description": "Display custom pricing inquiry button for single product page.",
   "keywords": [
     "woolentor",
     "product",

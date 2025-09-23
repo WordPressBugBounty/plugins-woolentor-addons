@@ -1,8 +1,8 @@
 {
   "name": "woolentor/product-description",
   "category": "woolentor-single-product",
-  "title": "WL : Description",
-  "description": "Display product description.",
+  "title": "WL: Description",
+  "description": "Display detailed descriptions for product.",
   "keywords": [
     "woolentor",
     "description",

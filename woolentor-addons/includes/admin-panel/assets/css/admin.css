@@ -117,15 +117,15 @@
 
   @media only screen and (min-width: 1200px) and (max-width: 1549px) {
     .woolentor-options-wrapper {
-      width: calc(100% - 350px);
+      width: calc(100% - 350px) !important;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (max-width: 767px) {
   .woolentor-options-wrapper {
-      width: 100%;
+      width: 100% !important;
   }
   .woolentor-options-sidebar {
-    width: 100%;
+    width: 100% !important;
   }
 }
 
@@ -567,10 +567,10 @@ a.woolentor-admin-settings-link {
     gap: 20px;
   }
   .woolentor-options-wrapper{
-    width: calc(100% - 200px);
+    width: calc(100% - 200px) !important;
   }
   .woolentor-options-sidebar {
-    width: 220px;
+    width: 220px !important;
   }
   .woolentor-rating {
     flex-direction: column;

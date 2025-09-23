@@ -2,7 +2,7 @@
   "name": "woolentor/shop-archive-default",
   "category": "woolentor-shop",
   "title": "WL: Product Archive Layout (Default)",
-  "description": "Display product grid on shop / archive page.",
+  "description": "Display products in a default grid layout for shop or archive pages",
   "keywords": [
     "woolentor",
     "shop",

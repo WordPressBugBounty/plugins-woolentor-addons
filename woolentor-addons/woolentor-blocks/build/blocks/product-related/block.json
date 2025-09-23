@@ -2,7 +2,7 @@
   "name": "woolentor/product-related",
   "category": "woolentor-single-product",
   "title": "WL: Related Product",
-  "description": "Display related product.",
+  "description": "Display related products grid.",
   "keywords": [
     "woolentor",
     "product",

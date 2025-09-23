@@ -2,7 +2,7 @@
   "name": "woolentor/product-qrcode",
   "category": "woolentor-single-product",
   "title": "WL: QR Code",
-  "description": "Display product QR Code.",
+  "description": "Generate and display QR code for product.",
   "keywords": [
     "woolentor",
     "code",

@@ -1,13 +1,14 @@
 {
   "name": "woolentor/product-price",
   "category": "woolentor-single-product",
-  "title": "WL : Product Price",
-  "description": "Display product price.",
+  "title": "WL: Product Price",
+  "description": "Display product price for single product page.",
   "keywords": [
     "woolentor",
     "product",
     "price",
-    "product price"
+    "product price",
+    "single product"
   ],
   "attributes": {
     "blockUniqId": {

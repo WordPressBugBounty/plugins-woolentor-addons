@@ -2,7 +2,7 @@
   "name": "woolentor/archive-result-count",
   "category": "woolentor-shop",
   "title": "WL: Archive Result Count",
-  "description": "Display archive result count in shop and archive page.",
+  "description": "Show the number of products available in your archive or shop page.",
   "keywords": [
     "woolentor",
     "archive",

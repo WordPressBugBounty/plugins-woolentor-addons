@@ -1,8 +1,8 @@
 {
   "name": "woolentor/store-feature",
   "category": "woolentor-blocks",
-  "title": "WL : Store Feature",
-  "description": "Display store feature.",
+  "title": "WL: Store Feature",
+  "description": "Highlight essential store features like shipping info, return policies, and more.",
   "keywords": [
     "woolentor",
     "shop feature",

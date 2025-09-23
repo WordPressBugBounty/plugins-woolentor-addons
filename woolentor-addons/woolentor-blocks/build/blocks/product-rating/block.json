@@ -1,8 +1,8 @@
 {
   "name": "woolentor/product-rating",
   "category": "woolentor-single-product",
-  "title": "WL : Rating",
-  "description": "Display product rating.",
+  "title": "WL: Rating",
+  "description": "Show product ratings and star reviews.",
   "keywords": [
     "woolentor",
     "rating",

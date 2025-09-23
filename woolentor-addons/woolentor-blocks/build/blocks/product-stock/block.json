@@ -1,7 +1,17 @@
 {
   "name": "woolentor/product-stock",
   "category": "woolentor-single-product",
-  "title": "Product Stock",
+  "title": "WL: Product Stock",
+  "description": "Product availability and stock level on single product page.",
+  "keywords": [
+    "woolentor",
+    "product",
+    "status",
+    "stock status",
+    "details",
+    "product details",
+    "single product stock"
+  ],
   "attributes": {
     "blockUniqId": {
       "type": "string",

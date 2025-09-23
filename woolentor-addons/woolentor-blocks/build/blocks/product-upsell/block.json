@@ -1,7 +1,14 @@
 {
   "name": "woolentor/product-upsell",
   "category": "woolentor-single-product",
-  "title": "Product Upsell",
+  "title": "WL: Product Upsell",
+  "description": "Display the upsell product on the product page.",
+  "keywords": [
+    "woolentor",
+    "product",
+    "upsell",
+    "product upsell"
+  ],
   "attributes": {
     "blockUniqId": {
       "type": "string",

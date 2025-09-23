@@ -2,7 +2,7 @@
   "name": "woolentor/product-sku",
   "category": "woolentor-single-product",
   "title": "WL: Product SKU",
-  "description": "Display product SKU in product details page.",
+  "description": "Display the product SKU (Stock Keeping Unit) on product detail pages.",
   "keywords": [
     "woolentor",
     "product",
