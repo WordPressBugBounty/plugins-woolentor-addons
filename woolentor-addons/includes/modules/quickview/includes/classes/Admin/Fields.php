@@ -70,6 +70,17 @@ class Fields {
                         'class'   => 'woolentor-action-field-left'
                     ],
                     [
+                        'id'    => 'preloader',
+                        'name'   => esc_html__( 'Custom Preloader', 'woolentor' ),
+                        'desc'    => wp_kses_post( 'Upload your own custom preloader to replace the default one. You can also generate a new preloader from an external source using <a href="' . esc_url( 'https://icons8.com/preloaders/' ) . '" target="_blank">Generate Now</a>.' ),
+                        'type'    => 'imageupload',
+                        'options' => [
+                            'button_label'        => esc_html__( 'Upload', 'woolentor' ),   
+                            'button_remove_label' => esc_html__( 'Remove', 'woolentor' ),   
+                        ],
+                        'class' => 'woolentor-action-field-left'
+                    ],
+                    [
                         'id'    => 'enable_on_mobile',
                         'name'   => esc_html__( 'Enable quick view on mobile', 'woolentor' ),
                         'desc'    => esc_html__( 'Enable this option to display a quick view on mobile devices.', 'woolentor' ),

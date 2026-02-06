@@ -11,8 +11,8 @@ class Fields {
     }
 
     public function admin_fields( $fields ){
-        if( woolentor_is_pro() && method_exists( '\WoolentorPro\Modules\CurrencySwitcher\Currency_Switcher', 'Fields') ){
-            array_splice( $fields['woolentor_others_tabs'], 11, 0, \WoolentorPro\Modules\CurrencySwitcher\Currency_Switcher::instance()->Fields() );
+        if( woolentor_is_pro() && method_exists( '\WoolentorPro\Modules\CurrencySwitcher\Admin\Fields', 'sitting_fields') ){
+            array_splice( $fields['woolentor_others_tabs'], 11, 0, \WoolentorPro\Modules\CurrencySwitcher\Admin\Fields::instance()->sitting_fields() );
         }else{
             array_splice( $fields['woolentor_others_tabs'], 11, 0, $this->currency_sitting_fields() );
         }
@@ -199,6 +199,17 @@ class Fields {
                         'default' => $wc_currency,
                         'class'   => 'woolentor-action-field-left wlcs-default-selection',
                         'condition'   => [ 'key'=>'enable','operator'=> '==', 'value' => 'on' ],
+                    ),
+
+                    array(
+                        'id'        => 'enable_geolocationp',
+                        'name'      => esc_html__( 'Enable Geolocation', 'woolentor-pro' ),
+                        'desc'      => esc_html__( 'Automatically detect and set currency based on customer location using WooCommerce geolocation. For best accuracy, enable "Geolocate" in WooCommerce → Settings → General → Default customer location.', 'woolentor-pro' ),
+                        'type'      => 'checkbox',
+                        'default'   => 'off',
+                        'condition' => [ 'key' => 'enable', 'operator' => '==', 'value' => 'on' ],
+                        'class'     => 'woolentor-action-field-left',
+                        'is_pro'  => true,
                     ),
 
                 )

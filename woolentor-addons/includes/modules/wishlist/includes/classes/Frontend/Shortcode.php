@@ -104,6 +104,18 @@ class Shortcode {
             'has_product'       => $has_product,
             'template_name'     => ( $has_product === true ) ? 'exist' : 'add',
         );
+
+        // sanitization before passing to template:
+        if (isset($atts['button_text'])) {
+            $atts['button_text'] = wp_kses_post($atts['button_text']);
+        }
+        if (isset($atts['button_exist_text'])) {
+            $atts['button_exist_text'] = wp_kses_post($atts['button_exist_text']);
+        }
+        if (isset($atts['button_added_text'])) {
+            $atts['button_added_text'] = wp_kses_post($atts['button_added_text']);
+        }
+
         $atts = shortcode_atts( $default_atts, $atts, $content );
         return Manage_Wishlist::instance()->button_html( $atts );
 

@@ -36,6 +36,8 @@ class Woo_Config {
 
             // For Universal Layout
             add_action('woolentor_universal_before_title', array( $this, 'loop_variation_form_html'), 0 );
+            // Common Hook for WooLentor Product Showcase Addon
+            add_action('woolentor_product_addon_before_title', array( $this, 'loop_variation_form_html'), 0 );
         }
 
         // after title
@@ -48,6 +50,8 @@ class Woo_Config {
             
             // For Universal Layout
             add_action('woolentor_universal_after_title', array( $this, 'loop_variation_form_html'), 0 );
+            // Common Hook for WooLentor Product Showcase Addon
+            add_action('woolentor_product_addon_after_title', array( $this, 'loop_variation_form_html'), 0 );
         }
 
         // before price
@@ -60,6 +64,8 @@ class Woo_Config {
 
             // For Universal Layout
             add_action('woolentor_universal_before_price', array( $this, 'loop_variation_form_html'), 0 );
+            // Common Hook for WooLentor Product Showcase Addon
+            add_action('woolentor_product_addon_before_price', array( $this, 'loop_variation_form_html'), 0 );
         }
 
         // after price
@@ -72,6 +78,8 @@ class Woo_Config {
 
             // For Universal Layout
             add_action('woolentor_universal_after_price', array( $this, 'loop_variation_form_html'), 0 );
+            // Common Hook for WooLentor Product Showcase Addon
+            add_action('woolentor_product_addon_after_price', array( $this, 'loop_variation_form_html'), 0 );
         }
 
         // custom position

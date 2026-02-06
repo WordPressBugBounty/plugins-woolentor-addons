@@ -907,6 +907,7 @@ class Woolentor_Wb_Product_Suggest_Price_Widget extends Widget_Base {
                     <div class="wl-suggest-form-input">
                         <input <?php echo $this->get_render_attribute_string( 'user_submit' ); ?> >
                     </div>
+                    <input type="hidden" name="send_to_mail" value="<?php echo esc_attr($settings['send_to_mail']); ?>">
                     <input type="hidden" name="action" value="woolentor_suggest_price_action">
                     <?php wp_nonce_field( 'woolentor_suggest_price_nonce', 'woolentor_suggest_price_nonce_field' ); ?>
                 </form>
@@ -924,6 +925,7 @@ class Woolentor_Wb_Product_Suggest_Price_Widget extends Widget_Base {
                         sendTo          = '<?php echo esc_js($settings['send_to_mail']); ?>',
                         messageSuccess  = '<?php echo esc_js($settings['message_success']); ?>',
                         messageError = '<?php echo esc_js($settings['message_error']); ?>',
+                        productID = '<?php echo esc_js($product->get_id()); ?>',
                         productTitle = '<?php echo esc_js($product->get_title()); ?>',
                         submitText   = $(formSubmitBtn).val(),
                         loadingText  = '<?php echo esc_js($settings['submit_button_loading_txt']); ?>',
@@ -950,7 +952,7 @@ class Woolentor_Wb_Product_Suggest_Price_Widget extends Widget_Base {
                         $.ajax({
                             url: formSelector.attr('action'),
                             type: 'POST',
-                            data: `send_to=${sendTo}&product_title=${productTitle}&msg_success=${messageSuccess}&msg_error=${messageError}&${formSelector.serialize()}`,
+                            data: `send_to=${sendTo}&product_id=${productID}&product_title=${productTitle}&msg_success=${messageSuccess}&msg_error=${messageError}&${formSelector.serialize()}`,
 
                             beforeSend: function (response) {
                                 $(tergetForm).siblings('.wlsendmessage').hide();

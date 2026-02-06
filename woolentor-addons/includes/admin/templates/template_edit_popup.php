@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             <div class="woolentor-template-edit-header">
                 <h3 class="woolentor-template-edit-setting-title">
                     <span class="woolentor-template-edit-setting-image dashicons dashicons-admin-generic"></span>
-                    {{{data.heading.head}}}
+                    {{data.heading.head}}
                 </h3>
                 <span class="woolentor-template-edit-cross">
                     <svg version="1.1" width="18" height="28" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 496.096 496.096" style="enable-background:new 0 0 496.096 496.096;" xml:space="preserve">
@@ -26,17 +26,17 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             <div class="woolentor-template-edit-body">
                 
                 <div class="woolentor-template-edit-field">
-                    <label class="woolentor-template-edit-label">{{{ data.heading.fields.name.title }}}</label>
+                    <label class="woolentor-template-edit-label">{{ data.heading.fields.name.title }}</label>
                     <input class="woolentor-template-edit-input" id="woolentor-template-title" type="text" name="woolentor-template-title" placeholder="{{ data.heading.fields.name.placeholder }}">
                 </div>
 
                 <div class="woolentor-template-edit-field">
-                    <label class="woolentor-template-edit-label">{{{data.heading.fields.type}}}</label>
+                    <label class="woolentor-template-edit-label">{{data.heading.fields.type}}</label>
                     <select class="woolentor-template-edit-input" name="woolentor-template-type" id="woolentor-template-type">
                         <# 
                             _.each( data.templatetype, function( item, key ) {
 
-                                #><option value="{{ key }}">{{{ item.label }}}</option><#
+                                #><option value="{{ key }}">{{ item.label }}</option><#
 
                             } );
                         #>
@@ -45,12 +45,12 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                 <# if( data.haselementor === 'yes' ){ #>
                     <div class="woolentor-template-edit-field woolentor-template-editor-field">
-                        <label class="woolentor-template-edit-label">{{{data.heading.fields.editor}}}</label>
+                        <label class="woolentor-template-edit-label">{{data.heading.fields.editor}}</label>
                         <select class="woolentor-template-edit-input" name="woolentor-template-editor" id="woolentor-template-editor">
                             <# 
                                 _.each( data.editor, function( item, key ) {
 
-                                    #><option value="{{ key }}">{{{ item }}}</option><#
+                                    #><option value="{{ key }}">{{ item }}</option><#
 
                                 } );
                             #>
@@ -63,7 +63,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                     <div class="woolentor-template-edit-set-default-field woolentor-template-edit-set-checkbox">
                         <input class="woolentor-template-edit-set-checkbox-input" type="checkbox" name="woolentor-template-default" id="woolentor-template-default">
                         <label class="woolentor-template-edit-set-checkbox-lable" for="woolentor-template-default">
-                            {{{data.heading.fields.setdefault}}}
+                            {{data.heading.fields.setdefault}}
                             <span class="woolenor-help-tip">
                                 <span class="woolentor-help-tip-trigger"><i class="dashicons dashicons-editor-help"></i></span>
                                 <span class="woolenor-help-text">It will override the WooCommerce default template with the template type you selected above.</span>
@@ -72,7 +72,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                     </div>
 
                     <div class="woolentor-template-edit-set-default-field woolentor-template-edit-set-design">
-                        <label>{{{data.heading.sampledata.visibility}}}</label>
+                        <label>{{data.heading.sampledata.visibility}}</label>
                         <span class="woolentor-template-edit-eye-icon dashicons dashicons-visibility"></span>
                     </div>
 
@@ -112,9 +112,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                                                 <span class="woolentor-template-edit-demo-image">
                                                     <img src="{{item.thumbnail}}" alt="{{ item.title }}">
                                                 </span>
-                                                <span class="woolentor-template-edit-demo-name">{{{data.heading.sampledata.gutenberg}}}</span>
+                                                <span class="woolentor-template-edit-demo-name">{{data.heading.sampledata.gutenberg}}</span>
                                                 <# if( item.isPro === 1 ){ #>
-                                                <span class="woolentor-template-edit-demo-name tmp-pro">{{{data.heading.sampledata.pro}}}</span>
+                                                <span class="woolentor-template-edit-demo-name tmp-pro">{{data.heading.sampledata.pro}}</span>
                                                 <# } #>
                                                 <a class="woolentor-template-edit-demo-eye thickbox" href="{{ item.thumbnail }}?TB_iframe=true&width=772&height=577"><span class="dashicons dashicons-visibility"></span></a>
                                                 <span class="woolentor-demo-template-name">{{ item.title }}</span>
@@ -145,9 +145,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                                                 <span class="woolentor-template-edit-demo-image">
                                                     <img src="{{item.thumbnail}}" alt="{{ item.title }}">
                                                 </span>
-                                                <span class="woolentor-template-edit-demo-name">{{{data.heading.sampledata.elementor}}}</span>
+                                                <span class="woolentor-template-edit-demo-name">{{data.heading.sampledata.elementor}}</span>
                                                 <# if( item.isPro === 1 ){ #>
-                                                <span class="woolentor-template-edit-demo-name tmp-pro">{{{data.heading.sampledata.pro}}}</span>
+                                                <span class="woolentor-template-edit-demo-name tmp-pro">{{data.heading.sampledata.pro}}</span>
                                                 <# } #>
                                                 <a class="woolentor-template-edit-demo-eye thickbox" href="{{ item.thumbnail }}?TB_iframe=true&width=772&height=577"><span class="dashicons dashicons-visibility"></span></a>
                                                 <span class="woolentor-demo-template-name">{{ item.title }}</span>
@@ -169,13 +169,13 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                 <div class="woolentor-template-button-group">
                     <div class="woolentor-template-button-item woolentor-editor-elementor {{ data.haselementor === 'yes' ? 'button-show' : '' }}">
-                        <button class="woolentor-tmp-elementor">{{{ data.heading.buttons.elementor.label }}}</button>
+                        <button class="woolentor-tmp-elementor">{{ data.heading.buttons.elementor.label }}</button>
                     </div>
                     <div class="woolentor-template-button-item woolentor-editor-gutenberg {{ data.haselementor === 'no' ? 'button-show' : '' }}">
-                        <button class="woolentor-tmp-gutenberg">{{{ data.heading.buttons.gutenberg.label }}}</button>
+                        <button class="woolentor-tmp-gutenberg">{{ data.heading.buttons.gutenberg.label }}</button>
                     </div>
                     <div class="woolentor-template-button-item">
-                        <button class="woolentor-tmp-save button button-primary disabled" disabled="disabled">{{{ data.heading.buttons.save.label }}}</button>
+                        <button class="woolentor-tmp-save button button-primary disabled" disabled="disabled">{{ data.heading.buttons.save.label }}</button>
                     </div>
                 </div>
 

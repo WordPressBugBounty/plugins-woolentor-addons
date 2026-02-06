@@ -50,7 +50,7 @@ class Currency_Switcher{
         require_once( MODULE_PATH. "/includes/classes/Widgets_And_Blocks.php" );
 
         // If Pro active
-        if( is_plugin_active('woolentor-addons-pro/woolentor_addons_pro.php') && defined( "WOOLENTOR_ADDONS_PL_PATH_PRO" ) ){
+        if( $this->is_pro() ){
             if( file_exists(WOOLENTOR_ADDONS_PL_PATH_PRO .'includes/modules/currency-switcher/currency-switcher.php')){
                 require_once( WOOLENTOR_ADDONS_PL_PATH_PRO .'includes/modules/currency-switcher/currency-switcher.php' );
             }

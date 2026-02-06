@@ -445,6 +445,55 @@ class Options_Field {
                 ),
 
                 array(
+                    'id'    => 'product_grid_modern',
+                    'name'   => esc_html__( 'Product Grid - Modern', 'woolentor' ),
+                    'type'    => 'element',
+                    'default' => 'on',
+                    'documentation' => esc_url('https://woolentor.com/doc/how-to-use-product-grid-modern-layout-in-gutenberg/'),
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
+                array(
+                    'id'    => 'product_grid_luxury',
+                    'name'   => esc_html__( 'Product Grid - Luxury', 'woolentor' ),
+                    'type'    => 'element',
+                    'default' => 'on',
+                    'documentation' => esc_url('https://woolentor.com/doc/how-to-use-product-grid-luxury-layout-in-gutenberg/'),
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
+                array(
+                    'id'    => 'product_grid_editorial',
+                    'name' => esc_html__( 'Product Grid - Editorial', 'woolentor' ),
+                    'type'    => 'element',
+                    'default' => 'on',
+                    'documentation' => esc_url('https://woolentor.com/doc/how-to-use-product-grid-editorial-layout-in-gutenberg/'),
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
+                array(
+                    'id'    => 'product_grid_magazine',
+                    'name' => esc_html__( 'Product Grid - Magazine', 'woolentor' ),
+                    'type'    => 'element',
+                    'default' => 'on',
+                    'documentation' => esc_url('https://woolentor.com/doc/how-to-use-product-grid-magazine-layout-in-gutenberg/'),
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
+
+                array(
                     'id'    => 'promo_banner',
                     'name'   => esc_html__( 'Promo Banner', 'woolentor' ),
                     'type'    => 'element',
@@ -1018,6 +1067,56 @@ class Options_Field {
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
+                ),
+                array(
+                    'id'    => 'product_grid_modern',
+                    'name' => esc_html__( 'Product Grid - Modern', 'woolentor' ),
+                    'type'    => 'element',
+                    'default' => 'on',
+                    'label_on' => __( 'ON', 'woolentor' ),
+                    'label_off' => __( 'OFF', 'woolentor' ),
+                    'documentation' => esc_url('https://woolentor.com/doc/how-to-use-product-grid-modern-layout-for-elementor/'),
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
+                array(
+                    'id'    => 'product_grid_luxury',
+                    'name' => esc_html__( 'Product Grid - Luxury', 'woolentor' ),
+                    'type'    => 'element',
+                    'default' => 'on',
+                    'documentation' => esc_url('https://woolentor.com/doc/how-to-use-product-grid-luxury-widget-for-elementor/'),
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
+                array(
+                    'id'    => 'product_grid_editorial',
+                    'name' => esc_html__( 'Product Grid - Editorial', 'woolentor' ),
+                    'type'    => 'element',
+                    'default' => 'on',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-grid-editorial-layout-for-elementor/'),
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
+                array(
+                    'id'    => 'product_grid_magazine',
+                    'name' => esc_html__( 'Product Grid - Magazine', 'woolentor' ),
+                    'type'    => 'element',
+                    'default' => 'on',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-grid-magazine-layout-for-elementor/'),
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
                 ),
                 array(
                     'id'    => 'universal_product',
@@ -3164,7 +3263,7 @@ class Options_Field {
                             'id'       => 'show_swatch_image_in_tooltip',
                             'name'      => esc_html__('Swatch Image as Tooltip', 'woolentor'),
                             'type'       => 'checkbox',
-                            'desc'       => esc_html__('If you check this options. When a watch type is "image" and has an image. The image will be shown into the tooltip.', 'woolentor'),
+                            'desc'       => esc_html__('If you check this options. When a swatch type is "image" and has an image. The image will be shown into the tooltip.', 'woolentor'),
                             'class'      => 'woolentor-action-field-left',
                             'condition'  => array(
                                 'key'=>'enable',
@@ -3749,11 +3848,22 @@ class Options_Field {
                 ),
 
                 array(
+                    'id'     => 'woolentor_google_address_autocomplete_settingp',
+                    'name'    => esc_html__( 'Google Address Autocomplete', 'woolentor' ),
+                    'type'     => 'module',
+                    'default'=> 'off',
+                    'require_settings' => true,
+                    'label_on' => __( 'ON', 'woolentor' ),
+                    'label_off' => __( 'OFF', 'woolentor' ),
+                    'is_pro' => true
+                ),
+
+                array(
                     'id'  => 'loadproductlimit',
                     'name' => esc_html__( 'Load Products in Elementor Addons', 'woolentor' ),
                     'desc'  => esc_html__( 'Set the number of products to load in Elementor Addons', 'woolentor' ),
                     'min'               => 1,
-                    'max'               => 100,
+                    'max'               => 1000,
                     'step'              => '1',
                     'type'              => 'number',
                     'default'           => '20',

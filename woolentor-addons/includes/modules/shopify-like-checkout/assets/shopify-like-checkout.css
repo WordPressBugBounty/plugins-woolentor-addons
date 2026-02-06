@@ -117,6 +117,10 @@
     margin-bottom: 20px;
     max-width: 100%;
 }
+.woolentor-checkout__logo h1 {
+    margin: 0;
+    font-size: 32px;
+}
 
 .woolentor-checkout__logo img{
     max-width: 100%;
@@ -202,9 +206,14 @@
 
 .woolentor-checkout__section-title,
 .woolentor-checkout__box #ship-to-different-address {
-    font-size: 17px;
+    font-size: 17px !important;
     font-weight: normal;
     margin-bottom: 0;
+}
+.woolentor-checkout__section-title{
+    margin-bottom: 0 !important;
+    border: none !important;
+    padding: 0 !important;
 }
 .woolentor-checkout__box #ship-to-different-address{
     margin-bottom: 15px;
@@ -295,7 +304,7 @@
     display: block;
     box-sizing: border-box;
     width: 100%;
-    padding: 26px 15px 8px 15px;
+    padding: 26px 15px 8px 15px !important;
     word-break: normal;
     line-height: inherit;
     height: inherit !important;
@@ -926,6 +935,7 @@
 .woolentor-checkout__box .woocommerce-checkout-review-order-table .cart-subtotal,
 .woolentor-checkout__box .woocommerce-checkout-review-order-table .order-total {
     border-top: 1px solid rgba(175, 175, 175, 0.34);
+    border-bottom: none;
 }
 
 .woocommerce-checkout-review-order-table .cart-subtotal th,
@@ -1161,6 +1171,9 @@
 
 .woolentor-checkout__box .checkout_coupon {
     display: block !important;
+    padding: 0;
+    border: none;
+    margin: 0 !important;
 }
 
 .woolentor-checkout__right-sidebar .woocommerce-message,

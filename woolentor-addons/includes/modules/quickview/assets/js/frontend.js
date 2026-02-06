@@ -40,6 +40,10 @@
             WooLentorQuickView.modalbody.html(''); /*clear content*/
             WooLentorQuickView.body.addClass('woolentor-quickview-loader');
 
+            if( woolentorQuickView?.optionData?.spinnerImageUrl.length > 0 ){
+                 WooLentorQuickView.body.css('--woolentor-quick-view-spinner-image', 'url(' + woolentorQuickView?.optionData?.spinnerImageUrl + ')');
+            }
+
             $this.addClass('loading');
             WooLentorQuickView.modal.addClass('loading');
 

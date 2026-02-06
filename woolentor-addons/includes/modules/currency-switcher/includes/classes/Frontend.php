@@ -14,7 +14,7 @@ class Frontend {
      */
     private function __construct() {
         $this->includes();
-        $this->init();
+        add_action( 'init', [ $this, 'init' ] );
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
         add_action( 'wp_ajax_woolentor_save_current_currency',[ $this, 'save_current_currency' ] );
         add_action( 'wp_ajax_nopriv_woolentor_save_current_currency', [ $this, 'save_current_currency' ] );

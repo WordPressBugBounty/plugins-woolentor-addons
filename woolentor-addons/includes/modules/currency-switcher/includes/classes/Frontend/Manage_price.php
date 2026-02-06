@@ -53,11 +53,13 @@ class Manage_Price {
 		$this->currency_code = woolentor_current_currency_code();
         $current_currency = woolentor_current_currency( $this->currency_code );
 		$this->currency_symbol = (isset( $current_currency['custom_currency_symbol'] ) && $current_currency['custom_currency_symbol'] !== '') ? $current_currency['custom_currency_symbol'] : get_woocommerce_currency_symbol( $this->currency_code );
-        $this->exchange_rate = (int)( $current_currency['currency_excrate'] > 0 ) ? $current_currency['currency_excrate'] : 1;
-        $this->exchange_fee = (int)( $current_currency['currency_excfee'] >= 0 ) ? $current_currency['currency_excfee'] : 0;
-        $this->decimal = isset( $current_currency['currency_decimal'] ) ? $current_currency['currency_decimal'] : '';
-        $this->symbol_position = isset( $current_currency['currency_position'] ) ? $current_currency['currency_position'] : '';
-        $this->disallowed_payment_method = isset( $current_currency['disallowed_payment_method'] ) ? $current_currency['disallowed_payment_method'] : '';
+        if( count($current_currency) > 0 ){
+            $this->exchange_rate = (int)( $current_currency['currency_excrate'] > 0 ) ? $current_currency['currency_excrate'] : 1;
+            $this->exchange_fee = (int)( $current_currency['currency_excfee'] >= 0 ) ? $current_currency['currency_excfee'] : 0;
+            $this->decimal = isset( $current_currency['currency_decimal'] ) ? $current_currency['currency_decimal'] : '';
+            $this->symbol_position = isset( $current_currency['currency_position'] ) ? $current_currency['currency_position'] : '';
+            $this->disallowed_payment_method = isset( $current_currency['disallowed_payment_method'] ) ? $current_currency['disallowed_payment_method'] : '';
+        }
     }
 
     /**

@@ -96,6 +96,7 @@ class WoolentorOptions_Base{
     public function init_plugin() {
         $this->includes();
         $this->init_hooks();
+        $this->container['api'] = new WoolentorOptions\Api();
     }
 
     public function includes() {
@@ -130,7 +131,7 @@ class WoolentorOptions_Base{
             $this->container['admin'] = new WoolentorOptions\Admin();
         }
 
-        $this->container['api'] = new WoolentorOptions\Api();
+        // $this->container['api'] = new WoolentorOptions\Api();
         $this->container['assets'] = new WoolentorOptions\Assets();
     }
 

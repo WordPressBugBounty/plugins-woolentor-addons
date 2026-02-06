@@ -449,7 +449,7 @@
             }
           ]
         ],
-        "selector": "{{WOOLENTOR_WRAPPER}} .wl-addto-cart[class*='wl-style-'] form.cart .wl-quantity-wrap .wl-quantity:is(.wl-qunatity-minus,.wl-qunatity-plus){ color: {{qntPlusMinusColor}}; }"
+        "selector": "{{WOOLENTOR_WRAPPER}} .wl-addto-cart[class*='wl-style-'] form.cart .wl-quantity-wrap .wl-quantity:is(.wl-quantity-minus,.wl-quantity-plus){ color: {{qntPlusMinusColor}}; }"
       }
     },
     "qntNumberColor": {
@@ -507,7 +507,7 @@
             }
           ]
         ],
-        "selector": "{{WOOLENTOR_WRAPPER}} .wl-addto-cart[class*='wl-style-'] form.cart .wl-quantity-wrap .wl-quantity:is(.wl-qunatity-minus,.wl-qunatity-plus):hover{ color: {{qntPlusMinusHoverColor}}; }"
+        "selector": "{{WOOLENTOR_WRAPPER}} .wl-addto-cart[class*='wl-style-'] form.cart .wl-quantity-wrap .wl-quantity:is(.wl-quantity-minus,.wl-quantity-plus):hover{ color: {{qntPlusMinusHoverColor}}; }"
       }
     },
     "qntBorder": {

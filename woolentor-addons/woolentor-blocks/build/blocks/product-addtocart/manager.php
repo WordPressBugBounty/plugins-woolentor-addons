@@ -26,11 +26,11 @@
                                 echo '<span class="label">'.esc_html( $settings['quantityText'] ).'</span>';
                             }
                             echo '<div class="wl-quantity-cal">';
-                            echo '<span class="wl-quantity wl-qunatity-minus" >'.$minus_icon.'</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                            echo '<span class="wl-quantity wl-quantity-minus" >'.$minus_icon.'</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     });
             
                     add_action( 'woocommerce_after_add_to_cart_quantity', function() use ($settings, $plus_icon) {
-                        echo '<span class="wl-quantity wl-qunatity-plus" >'.$plus_icon.'</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                        echo '<span class="wl-quantity wl-quantity-plus" >'.$plus_icon.'</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                         echo '</div>';
                         echo '</div>';
                         echo '<div class="wl-cart-wrap '.esc_attr($settings['buttonsPosition']).'">';
@@ -43,11 +43,11 @@
                 }else{
                     add_action( 'woocommerce_before_add_to_cart_quantity', function() use ($settings, $minus_icon) {
                         echo '<div class="wl-quantity-grouped-cal">';
-                            echo '<span class="wl-quantity wl-qunatity-minus" >'.$minus_icon.'</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                            echo '<span class="wl-quantity wl-quantity-minus" >'.$minus_icon.'</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     });
             
                     add_action( 'woocommerce_after_add_to_cart_quantity', function() use ($settings, $plus_icon) {
-                            echo '<span class="wl-quantity wl-qunatity-plus" >'.$plus_icon.'</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                            echo '<span class="wl-quantity wl-quantity-plus" >'.$plus_icon.'</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                         echo '</div>';
                     } );
                     add_action( 'woocommerce_before_add_to_cart_button', function() use ($settings) {

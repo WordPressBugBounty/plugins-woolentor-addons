@@ -64,6 +64,49 @@ class Blocks_List {
                 'active' => true,
                 'script' => 'slick',
             ],
+            'product_grid_modern' => [
+                'label'  => __('Product Grid Modern','woolentor'),
+                'name'   => 'woolentor/product-grid-modern',
+                'server_side_render' => true,
+                'type'   => 'common',
+                'active' => true,
+                'enqueue_assets' => function(){
+                    wp_enqueue_style( 'woolentor-product-grid-modern', WOOLENTOR_ADDONS_PL_URL . 'assets/css/product-grid/modern.css', [], WOOLENTOR_VERSION );
+                }
+            ],
+            'product_grid_luxury' => [
+                'label'  => __('Product Grid Luxury','woolentor'),
+                'name'   => 'woolentor/product-grid-luxury',
+                'server_side_render' => true,
+                'type'   => 'common',
+                'active' => true,
+                'enqueue_assets' => function(){
+                    wp_enqueue_style( 'woolentor-product-grid-modern', WOOLENTOR_ADDONS_PL_URL . 'assets/css/product-grid/modern.css', [], WOOLENTOR_VERSION );
+                    wp_enqueue_style( 'woolentor-product-grid-luxury', WOOLENTOR_ADDONS_PL_URL . 'assets/css/product-grid/luxury.css', [], WOOLENTOR_VERSION );
+                }
+            ],
+            'product_grid_editorial' => [
+                'label'  => __('Product Grid Editorial','woolentor'),
+                'name'   => 'woolentor/product-grid-editorial',
+                'server_side_render' => true,
+                'type'   => 'common',
+                'active' => true,
+                'enqueue_assets' => function(){
+                    wp_enqueue_style( 'woolentor-product-grid-modern', WOOLENTOR_ADDONS_PL_URL . 'assets/css/product-grid/modern.css', [], WOOLENTOR_VERSION );
+                    wp_enqueue_style( 'woolentor-product-grid-editorial', WOOLENTOR_ADDONS_PL_URL . 'assets/css/product-grid/editorial.css', [], WOOLENTOR_VERSION );
+                }
+            ],
+            'product_grid_magazine' => [
+                'label'  => __('Product Grid Magazine','woolentor'),
+                'name'   => 'woolentor/product-grid-magazine',
+                'server_side_render' => true,
+                'type'   => 'common',
+                'active' => true,
+                'enqueue_assets' => function(){
+                    wp_enqueue_style( 'woolentor-product-grid-modern', WOOLENTOR_ADDONS_PL_URL . 'assets/css/product-grid/modern.css', [], WOOLENTOR_VERSION );
+                    wp_enqueue_style( 'woolentor-product-grid-magazine', WOOLENTOR_ADDONS_PL_URL . 'assets/css/product-grid/magazine.css', [], WOOLENTOR_VERSION );
+                }
+            ],
             'promo_banner' => [
                 'label'  => __('Promo Banner','woolentor'),
                 'name'   => 'woolentor/promo-banner',

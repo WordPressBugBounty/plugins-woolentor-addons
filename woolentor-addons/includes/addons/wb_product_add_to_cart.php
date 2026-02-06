@@ -197,8 +197,8 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
                             'label'     => __( 'Minus Icon Color', 'woolentor' ),
                             'type'      => Controls_Manager::COLOR,
                             'selectors' => [
-                                '{{WRAPPER}} .wl-addto-cart.wl-style-2 form.cart .wl-quantity-wrap .wl-quantity.wl-qunatity-minus' => 'color: {{VALUE}}',
-                                '{{WRAPPER}} .wl-addto-cart.wl-style-4 form.cart .wl-quantity-wrap .wl-quantity.wl-qunatity-minus' => 'color: {{VALUE}}',
+                                '{{WRAPPER}} .wl-addto-cart.wl-style-2 form.cart .wl-quantity-wrap .wl-quantity.wl-quantity-minus' => 'color: {{VALUE}}',
+                                '{{WRAPPER}} .wl-addto-cart.wl-style-4 form.cart .wl-quantity-wrap .wl-quantity.wl-quantity-minus' => 'color: {{VALUE}}',
                             ],
                             'conditions' => [
                                 'relation' => 'or',
@@ -216,8 +216,8 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
                             'label'     => __( 'Plus Icon Color', 'woolentor' ),
                             'type'      => Controls_Manager::COLOR,
                             'selectors' => [
-                                '{{WRAPPER}} .wl-addto-cart.wl-style-2 form.cart .wl-quantity-wrap .wl-quantity.wl-qunatity-plus' => 'color: {{VALUE}}',
-                                '{{WRAPPER}} .wl-addto-cart.wl-style-4 form.cart .wl-quantity-wrap .wl-quantity.wl-qunatity-plus' => 'color: {{VALUE}}',
+                                '{{WRAPPER}} .wl-addto-cart.wl-style-2 form.cart .wl-quantity-wrap .wl-quantity.wl-quantity-plus' => 'color: {{VALUE}}',
+                                '{{WRAPPER}} .wl-addto-cart.wl-style-4 form.cart .wl-quantity-wrap .wl-quantity.wl-quantity-plus' => 'color: {{VALUE}}',
                             ],
                             'conditions' => [
                                 'relation' => 'or',
@@ -295,8 +295,8 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
                             'label'     => __( 'Minus Icon Color', 'woolentor' ),
                             'type'      => Controls_Manager::COLOR,
                             'selectors' => [
-                                '{{WRAPPER}} .wl-addto-cart.wl-style-2 form.cart .wl-quantity-wrap .wl-quantity.wl-qunatity-minus:hover' => 'color: {{VALUE}}',
-                                '{{WRAPPER}} .wl-addto-cart.wl-style-4 form.cart .wl-quantity-wrap .wl-quantity.wl-qunatity-minus:hover' => 'color: {{VALUE}}',
+                                '{{WRAPPER}} .wl-addto-cart.wl-style-2 form.cart .wl-quantity-wrap .wl-quantity.wl-quantity-minus:hover' => 'color: {{VALUE}}',
+                                '{{WRAPPER}} .wl-addto-cart.wl-style-4 form.cart .wl-quantity-wrap .wl-quantity.wl-quantity-minus:hover' => 'color: {{VALUE}}',
                             ],
                             'conditions' => [
                                 'relation' => 'or',
@@ -314,8 +314,8 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
                             'label'     => __( 'Plus Icon Color', 'woolentor' ),
                             'type'      => Controls_Manager::COLOR,
                             'selectors' => [
-                                '{{WRAPPER}} .wl-addto-cart.wl-style-2 form.cart .wl-quantity-wrap .wl-quantity.wl-qunatity-plus:hover' => 'color: {{VALUE}}',
-                                '{{WRAPPER}} .wl-addto-cart.wl-style-4 form.cart .wl-quantity-wrap .wl-quantity.wl-qunatity-plus:hover' => 'color: {{VALUE}}',
+                                '{{WRAPPER}} .wl-addto-cart.wl-style-2 form.cart .wl-quantity-wrap .wl-quantity.wl-quantity-plus:hover' => 'color: {{VALUE}}',
+                                '{{WRAPPER}} .wl-addto-cart.wl-style-4 form.cart .wl-quantity-wrap .wl-quantity.wl-quantity-plus:hover' => 'color: {{VALUE}}',
                             ],
                             'conditions' => [
                                 'relation' => 'or',
@@ -407,7 +407,7 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
             );
 
             $this->add_responsive_control(
-                'advance_qunatity_padding',
+                'advance_quantity_padding',
                 [
                     'label' => __( 'Padding', 'woolentor' ),
                     'type' => Controls_Manager::DIMENSIONS,
@@ -598,7 +598,9 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
                             'type'      => Controls_Manager::COLOR,
                             'selectors' => [
                                 '{{WRAPPER}} .wl-addto-cart.wl-style-2 form.cart .wl-cart-icon.compare' => 'color: {{VALUE}}',
+                                '{{WRAPPER}} .wl-addto-cart.wl-style-2 form.cart .wl-cart-icon.compare a' => 'color: {{VALUE}}',
                                 '{{WRAPPER}} .wl-addto-cart.wl-style-5 form.cart .wl-cart-icon.compare' => 'color: {{VALUE}}',
+                                '{{WRAPPER}} .wl-addto-cart.wl-style-5 form.cart .wl-cart-icon.compare a' => 'color: {{VALUE}}',
                             ],
                             'condition'=>[
                                 'hide_advance_cart_compare_icon' => '',
@@ -1203,11 +1205,11 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
                     echo '<span class="label">'.esc_html($settings['advance_cart_quantity_text']).'</span>';
                }
                echo '<div class="wl-quantity-cal">';
-               echo '<span class="wl-quantity wl-qunatity-minus">'.$minus_icon.'</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+               echo '<span class="wl-quantity wl-quantity-minus">'.$minus_icon.'</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             });
 
             add_action( 'woocommerce_after_add_to_cart_quantity', function() use ($settings, $plus_icon) {
-               echo '<span class="wl-quantity wl-qunatity-plus">'.$plus_icon.'</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+               echo '<span class="wl-quantity wl-quantity-plus">'.$plus_icon.'</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                echo '</div>';
                echo '</div>';
                echo '<div class="wl-cart-wrap '.esc_attr($settings['product_wishlist_compare_btn_position']).'">';
@@ -1220,11 +1222,11 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
         }else{
             add_action( 'woocommerce_before_add_to_cart_quantity', function() use ($settings, $minus_icon) {
                echo '<div class="wl-quantity-grouped-cal">';
-                echo '<span class="wl-quantity wl-qunatity-minus" >'.$minus_icon.'</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                echo '<span class="wl-quantity wl-quantity-minus" >'.$minus_icon.'</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             });
 
             add_action( 'woocommerce_after_add_to_cart_quantity', function() use ($settings, $plus_icon) {
-                echo '<span class="wl-quantity wl-qunatity-plus" >'.$plus_icon.'</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                echo '<span class="wl-quantity wl-quantity-plus" >'.$plus_icon.'</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                echo '</div>';
             } );
             add_action( 'woocommerce_before_add_to_cart_button', function() use ($settings) {
@@ -1364,7 +1366,7 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
         ?>
             <script type="text/javascript">
                 ;jQuery(document).ready(function($){ 
-                    $('.elementor-element-<?php echo esc_attr($id); ?> form.cart').on( 'click', 'span.wl-qunatity-plus, span.wl-qunatity-minus', function() {
+                    $('.elementor-element-<?php echo esc_attr($id); ?> form.cart').on( 'click', 'span.wl-quantity-plus, span.wl-quantity-minus', function() {
                         
                         // Get current quantity values
                         <?php if('grouped' != $poduct_type): ?>
@@ -1381,7 +1383,7 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
                         var step = parseFloat(qty.attr( 'step' ));
              
                         // Change the value if plus or minus
-                        if ( $( this ).is( '.wl-qunatity-plus' ) ) {
+                        if ( $( this ).is( '.wl-quantity-plus' ) ) {
                            if ( max && ( max <= val ) ) {
                               qty.val( max );
                            } 

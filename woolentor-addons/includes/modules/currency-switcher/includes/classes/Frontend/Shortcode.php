@@ -13,12 +13,18 @@ class Shortcode{
 
     /**
      * [currency_switcher] Currency Switcher Shortcode callable function
-     * @param  [type] $atts 
+     * @param  [type] $atts
      * @param  string $content
-     * @return [HTML] 
+     * @return [HTML]
      */
     public function currency_switcher( $atts, $content = '' ){
-       
+
+        // Check if currency switcher should be visible (can be hidden by geolocation settings)
+        $is_visible = apply_filters( 'woolentor_currency_switcher_visible', true );
+        if ( ! $is_visible ) {
+            return '';
+        }
+
         // Fetch option data
         $currency_list = woolentor_currency_list();
         $current_currency_code = woolentor_current_currency_code();

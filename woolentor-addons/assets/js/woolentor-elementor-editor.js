@@ -94,7 +94,7 @@
                                 widgetTitle = widgetTitleWrap.innerHTML,
                                 widgetObject = wooLentorElementorEditorMode.getWidgetInfo(widgetTitle, 'title'),
                                 actionURL = widgetObject?.action_url,
-                                widgetDescription = widgetObject?.description ? sprintf( widgetObject.description, widgetTitle ) : sprintf( wp.i18n.__('Use %s widget and dozens more pro features to extend your toolbox and build sites faster and better.', 'woolentor'), widgetTitle );
+                                widgetDescription = widgetObject?.description ? wp.i18n.sprintf( widgetObject.description, widgetTitle ) : wp.i18n.sprintf( wp.i18n.__('Use %s widget and dozens more pro features to extend your toolbox and build sites faster and better.', 'woolentor'), widgetTitle );
 
 
                             if ( icon.classList.contains('woolentor-pro-promotion') ) {

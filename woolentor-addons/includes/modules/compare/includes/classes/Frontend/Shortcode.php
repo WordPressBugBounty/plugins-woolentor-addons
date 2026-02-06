@@ -69,6 +69,14 @@ class Shortcode {
             'template_name'     => 'add',
         );
 
+        // sanitization before passing to template:
+        if (isset($atts['button_text'])) {
+            $atts['button_text'] = wp_kses_post($atts['button_text']);
+        }
+        if (isset($atts['button_added_text'])) {
+            $atts['button_added_text'] = wp_kses_post($atts['button_added_text']);
+        }
+
         $atts = shortcode_atts( $default_atts, $atts, $content );
         return Manage_Compare::instance()->button_html( $atts );
 

@@ -163,15 +163,17 @@ class Ajax_Search{
 							</select>
 						</div>
 						<?php endif; ?>
-						<div class="woolentor_widget_psa_input_field">
-							<input type="search" placeholder="<?php echo esc_attr__( $placeholder, 'woolentor' ); ?>" value="<?php echo get_search_query(); ?>" name="s" autocomplete="off" />
-							<input type="hidden" name="post_type" value="product" />
-							<span class="woolentor_widget_psa_clear_icon"><i class="sli sli-close"></i></span>
-							<span class="woolentor_widget_psa_loading_icon"><i class="sli sli-refresh"></i></span>
+						<div class="woolentor_widget_psa_input_area">
+							<div class="woolentor_widget_psa_input_field">
+								<input type="search" placeholder="<?php echo esc_attr__( $placeholder, 'woolentor' ); ?>" value="<?php echo get_search_query(); ?>" name="s" autocomplete="off" />
+								<input type="hidden" name="post_type" value="product" />
+								<span class="woolentor_widget_psa_clear_icon"><i class="sli sli-close"></i></span>
+								<span class="woolentor_widget_psa_loading_icon"><i class="sli sli-refresh"></i></span>
+							</div>
+							<button type="submit" value="<?php echo esc_attr_x( 'Search', 'submit button', 'woolentor' ); ?>" aria-label="<?php echo esc_attr__( 'Search', 'woolentor' );?>">
+								<i class="sli sli-magnifier"></i>
+							</button>
 						</div>
-						<button type="submit" value="<?php echo esc_attr_x( 'Search', 'submit button', 'woolentor' ); ?>" aria-label="<?php echo esc_attr__( 'Search', 'woolentor' );?>">
-							<i class="sli sli-magnifier"></i>
-						</button>
 					</div>
 	                <div id="woolentor_psa_results_wrapper"></div>
 	            </form>

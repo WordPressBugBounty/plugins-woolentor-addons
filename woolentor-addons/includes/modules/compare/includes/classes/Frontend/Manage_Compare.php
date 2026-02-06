@@ -142,7 +142,7 @@ class Manage_Compare {
      * @return [void]
      */
     public function pop_up_html(){
-        echo '<div class="htcompare-popup"><div class="htcompare-popup-content-area"><span class="htcompare-popup-close">&nbsp;</span>'.do_shortcode( '[evercompare_table]' ).'</div></div>';
+        echo '<div class="htcompare-popup" style="display:none;"><div class="htcompare-popup-content-area"><span class="htcompare-popup-close">&nbsp;</span>'.do_shortcode( '[evercompare_table]' ).'</div></div>';
     }
 
     /**

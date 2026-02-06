@@ -659,6 +659,10 @@ label.woolentor-control-title {
   margin: 0;
   line-height: 20px;
 }
+.woolentor-responsive-button-tooltip .components-popover__content {
+  background: transparent;
+  box-shadow: none;
+}
 
 /*
 * Field Controll
@@ -855,8 +859,105 @@ button.components-button.woolentor-icon-control-icon-button.is-secondary {
   margin-top: 5px;
 }
 
-/* 
-* Addons Style 
+/* Posttype - Control Field style */
+.woolentor-component-posttype-area,
+.woolentor-component-taxonomy-area {
+  margin-bottom: 16px;
+}
+
+.woolentor-component-posttype-area .woolentor-posttype-searching,
+.woolentor-component-taxonomy-area .woolentor-taxonomy-searching {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #757575;
+}
+
+.woolentor-component-posttype-area .woolentor-posttype-searching .components-spinner,
+.woolentor-component-taxonomy-area .woolentor-taxonomy-searching .components-spinner {
+  margin: 0;
+}
+
+.woolentor-component-posttype-area .woolentor-posttype-hint,
+.woolentor-component-taxonomy-area .woolentor-taxonomy-hint {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: #757575;
+  font-style: italic;
+}
+
+.woolentor-component-posttype-area .components-form-token-field .components-form-token-field__input-container,
+.woolentor-component-taxonomy-area .components-form-token-field .components-form-token-field__input-container {
+  border-color: #949494;
+  border-radius: 2px;
+}
+
+.woolentor-component-posttype-area .components-form-token-field .components-form-token-field__input-container:focus-within,
+.woolentor-component-taxonomy-area .components-form-token-field .components-form-token-field__input-container:focus-within {
+  border-color: var(--wp-admin-theme-color);
+  box-shadow: 0 0 0 1px var(--wp-admin-theme-color);
+}
+
+.woolentor-component-posttype-area .components-form-token-field .components-form-token-field__token,
+.woolentor-component-taxonomy-area .components-form-token-field .components-form-token-field__token {
+  background-color: var(--wp-admin-theme-color);
+  border-color: var(--wp-admin-theme-color);
+}
+
+.woolentor-component-posttype-area .components-form-token-field .components-form-token-field__token:hover,
+.woolentor-component-taxonomy-area .components-form-token-field .components-form-token-field__token:hover {
+  background-color: var(--wp-admin-theme-color-darker-10);
+  border-color: var(--wp-admin-theme-color-darker-10);
+}
+
+.woolentor-component-posttype-area .components-form-token-field .components-form-token-field__remove-token,
+.woolentor-component-taxonomy-area .components-form-token-field .components-form-token-field__remove-token {
+  color: #fff;
+}
+
+.woolentor-component-posttype-area.woolentor-posttype-single .components-select-control__input,
+.woolentor-component-taxonomy-area.woolentor-taxonomy-single .components-select-control__input {
+  min-height: 36px;
+}
+
+.woolentor-component-posttype-area.woolentor-posttype-multiple .components-form-token-field__input-container,
+.woolentor-component-taxonomy-area.woolentor-taxonomy-multiple .components-form-token-field__input-container {
+  min-height: 36px;
+}
+
+/* BoxShadowControl - Control Field style */
+.woolentor-box-shadow-preview {
+  margin-bottom: 20px;
+  padding: 20px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.woolentor-box-shadow-preview__box {
+  width: 80px;
+  height: 80px;
+  background: #fff;
+  border-radius: 4px;
+  transition: box-shadow 0.2s ease;
+}
+
+.woolentor-box-shadow-preview__label {
+  font-size: 11px;
+  color: #757575;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+
+/*
+* Addons Style
 */
 
 /* Product Tile */
@@ -975,6 +1076,25 @@ button.components-button.woolentor-icon-control-icon-button.is-secondary {
   box-sizing: inherit;
 }
 
+/* Product grid Modern */
+.woolentor-style-modern .woolentor-grid-card .woolentor-product-title,.woolentor-style-modern .woolentor-list-card .woolentor-product-title{
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.woolentor-style-modern .woolentor-product-category{
+  color: #999;
+}
+.woolentor-grid-card .woolentor-cart-btn, .woolentor-grid-card .woolentor-product-actions .button, .woolentor-grid-card .woolentor-product-actions .add_to_cart_button, .woolentor-list-card .woolentor-product-actions .woolentor-cart-btn, .woolentor-cart-btn, .woolentor-product-actions .button, .woolentor-product-actions .add_to_cart_button{
+  line-height: normal;
+}
+
+
 /*
 * OceanWP Theme
 */
@@ -986,4 +1106,109 @@ img.woo-entry-image-secondary,
 [class*="wp-block-woolentor-"]:not(.wp-block-woolentor-shop-archive-default)
   .woo-entry-image {
   display: none !important;
+}
+/* ===================================
+   Premium Control Styles
+   =================================== */
+
+/* Premium Notice */
+.woolentor-premium-notice {
+    margin-top: 8px !important;
+    margin-bottom: 12px !important;
+    border-left-color: #f0b849 !important;
+}
+
+.woolentor-premium-notice strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #1e1e1e;
+}
+
+.woolentor-premium-notice p {
+    margin: 0;
+    color: #50575e;
+}
+
+.woolentor-premium-notice a {
+    color: #d63638;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.woolentor-premium-notice a:hover {
+    text-decoration: underline;
+}
+
+/* Disabled premium controls */
+.woolentor-premium-disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+}
+
+.woolentor-premium-disabled::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: not-allowed;
+    z-index: 1;
+}
+
+/* Premium badge */
+.woolentor-premium-badge {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 2px 6px;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1;
+    color: #fff;
+    background: linear-gradient(135deg, #f0b849 0%, #d39e00 100%);
+    border-radius: 3px;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+/* Premium select options */
+.components-select-control__input option[disabled] {
+    color: #999;
+    font-style: italic;
+    background: #f5f5f5;
+}
+
+/* Hover effect for premium items */
+.woolentor-premium-control:hover .woolentor-premium-notice {
+    border-left-color: #d39e00 !important;
+}
+
+/* Notice animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.woolentor-premium-notice {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 782px) {
+    .woolentor-premium-notice {
+        font-size: 13px;
+    }
+    
+    .woolentor-premium-badge {
+        font-size: 9px;
+        padding: 1px 4px;
+    }
 }

@@ -52,6 +52,7 @@ class Sample_Data {
             [
                 'timeout'    => $timeout,
                 'user-agent' => 'WordPress/' . $wp_version . '; ' . home_url(),
+                'sslverify'  => false,
             ]
         );
 

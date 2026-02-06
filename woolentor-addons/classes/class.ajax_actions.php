@@ -37,6 +37,10 @@ class Woolentor_Ajax_Action{
         add_action( 'wp_ajax_woolentor_suggest_price_action', [$this, 'suggest_price'] );
         add_action( 'wp_ajax_nopriv_woolentor_suggest_price_action', [$this, 'suggest_price'] );
 
+        // Load more products for product grid
+        add_action( 'wp_ajax_woolentor_load_more_products', [$this, 'load_more_products'] );
+        add_action( 'wp_ajax_nopriv_woolentor_load_more_products', [$this, 'load_more_products'] );
+
     }
 
     /**
@@ -159,17 +163,45 @@ class Woolentor_Ajax_Action{
         }else{
 
             $sent_to        = $_POST['send_to'];
+            $send_to_mail   = $_POST['send_to_mail'];
             $product_title  = $_POST['product_title'];
             $msg_success    = $_POST['msg_success'];
             $msg_error      = $_POST['msg_error'];
             $name           = $_POST['wlname'];
-            $email          = trim($_POST['wlemail']);
-            $message        = $_POST['wlmessage'];
+            $email          = sanitize_email( trim( $_POST['wlemail'] ) );
+            $message        = wp_strip_all_tags($_POST['wlmessage']);
 
             if ( $email == '' ) {
                 $response['error'] = true;
                 $response['message'] = esc_html__('Email is required.','woolentor');
         
+                wp_send_json_error( $response );
+            }
+            if ( ! is_email( $email ) ) {
+                $response['error'] = true;
+                $response['message'] = esc_html__('Invalid email address.','woolentor');
+                
+                wp_send_json_error( $response );
+            }
+
+            if( $sent_to == '' ){
+                $response['error'] = true;
+                $response['message'] = esc_html__('Recipient is required','woolentor');
+                
+                wp_send_json_error( $response );
+            }
+
+            if( !is_email( $send_to_mail ) ){
+                $response['error'] = true;
+                $response['message'] = esc_html__('Invalid recipient','woolentor');
+                
+                wp_send_json_error( $response );
+            }
+
+            $allowed_recipient = $send_to_mail;
+            if ( $sent_to !== $allowed_recipient ) {
+                $response['error'] = true;
+                $response['message'] = esc_html__('Invalid recipient','woolentor');
                 wp_send_json_error( $response );
             }
 
@@ -179,13 +211,25 @@ class Woolentor_Ajax_Action{
         
                 wp_send_json_error( $response );
             }
+            if ( strlen( $message ) > 1000 ) { // Add reasonable limit
+                $message = substr( $message, 0, 1000 );
+            }
 
-            //php mailer variables
-            $subject = esc_html__("Suggest Price For - ".$product_title, "woolentor");
-            $headers = esc_html__('From: ','woolentor'). esc_html( $email ) . "\r\n" . esc_html__('Reply-To: ', 'woolentor') . esc_html( $email ) . "\r\n";
+            // Subject
+            $product_id = absint( $_POST['product_id'] ); // Require actual product
+            $product = wc_get_product( $product_id );
+            if ( ! $product ) {
+                wp_send_json_error( ['message' => 'Invalid product'] );
+            }
+            $subject = sprintf( 'Suggest Price For - %s', $product->get_name() );
 
+            // Header
+            $headers = [
+                'Reply-To: ' . $email
+            ];
+    
             // Here put your Validation and send mail
-            $mail_sent_status = wp_mail( $sent_to, $subject, wp_strip_all_tags($message), $headers );
+            $mail_sent_status = wp_mail( $allowed_recipient, $subject, $message, $headers );
 
             if( $mail_sent_status ) {
                 $response['error'] = false;
@@ -199,11 +243,50 @@ class Woolentor_Ajax_Action{
             wp_send_json_success( $response );
 
         }
+    }
 
+    /**
+     * Ajax Callback for Load more and Infinite scrool
+     *
+     * @return void
+     */
+    public function load_more_products() {
 
+        // Load dependencies
+        if ( ! class_exists( 'WooLentor_Product_Grid_Base' ) ) {
+            require_once WOOLENTOR_ADDONS_PL_PATH . 'includes/addons/product-grid/base/class.product-grid-base.php';
+        }
+
+        $product_grid_base = new WooLentor_Product_Grid_Base();
+
+        // Verify nonce
+        if ( ! isset( $_POST['nonce'] ) || ! (wp_verify_nonce( $_POST['nonce'], 'woolentor_psa_nonce' ) || wp_verify_nonce( $_POST['nonce'], 'woolentorblock-nonce' )) ) {
+            wp_send_json_error( array( 'message' => __( 'Security check failed', 'woolentor' ) ) );
+        }
+
+        // Get settings and page number
+        $page = isset( $_POST['page'] ) ? absint( $_POST['page'] ) : 2;
+
+        $setting_data = isset( $_POST['settings'] ) ? (is_string($_POST['settings']) ? stripslashes( $_POST['settings'] ) : '' ) : '';
+        $setting_data = json_decode( $setting_data, true );
+        $view_layout = isset( $_POST['viewlayout'] ) ? $_POST['viewlayout'] : '';
+
+        if(!empty($view_layout)){
+            $setting_data['layout'] = $view_layout;
+        }
+
+        $setting_data['paged'] = $page;
+
+        ob_start();
+        $product_grid_base->render_items( $setting_data, true );
+        $html = ob_get_clean();
+
+        wp_send_json_success( array(
+            'html' => $html,
+            'current_page' => $page
+        ));
 
     }
-    
 
 }
 

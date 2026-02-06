@@ -270,9 +270,9 @@ class Coupon_Manager {
      */
     public function cleanup_expired_coupons() {
         global $wpdb;
-        
+
         // Get expired auto-generated coupons
-        $expired_coupons = $wpdb->get_col(
+        $expired_coupons = $wpdb->get_col( $wpdb->prepare(
             "SELECT p.ID FROM {$wpdb->posts} p
             INNER JOIN {$wpdb->postmeta} pm1 ON p.ID = pm1.post_id
             INNER JOIN {$wpdb->postmeta} pm2 ON p.ID = pm2.post_id
@@ -283,7 +283,7 @@ class Coupon_Manager {
             AND pm2.meta_value < %s
             AND pm2.meta_value != ''",
             date( 'Y-m-d', current_time( 'timestamp' ) )
-        );
+        ));
         
         foreach( $expired_coupons as $coupon_id ) {
             // Check if coupon was used

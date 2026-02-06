@@ -12,6 +12,20 @@ function woolentor_is_woocommerce() {
 }
 
 /**
+ * Get the appropriate script handle based on WooCommerce version
+ *
+ * @param string $old_handle Old handle for WC < 10.3.0
+ * @param string $new_handle New handle for WC >= 10.3.0
+ * @return string The appropriate handle
+ */
+function woolentor_get_wc_script_handle( $old_handle, $new_handle ) {
+    if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '10.3.0', '>=' ) ) {
+        return $new_handle;
+    }
+    return $old_handle;
+}
+
+/**
  * [woolentor_is_pro]
  * @return [boolean]
  */
@@ -86,6 +100,33 @@ function woolentor_build_page_content( $page_id ){
 }
 
 /**
+ * Elementor Widget Upgrade Pro notice manager
+ *
+ * @param [type] $widget
+ * @param [type] $controls_manager
+ * @param [type] $widget_name
+ * @param [type] $option
+ * @param array $condition
+ * @return void
+ */
+function woolentor_upgrade_pro_notice_elementor( $widget, $controls_manager, $widget_name, $option, $condition = [] ) {
+
+    $url = 'https://woolentor.com/pricing/?utm_source=elementor-widget-panel&utm_medium='. $widget_name;
+
+    $widget->add_control(
+        $option .'_pro_notice',
+        [
+            'raw' => 'This option is available<br> in the <strong><a href="'. esc_url($url) .'" target="_blank" style="color: #93003c;">Pro version</a></strong>.',
+            'type' => $controls_manager,
+            'condition' => [
+                $option => $condition,
+            ],
+			'content_classes' => 'woolentor-pro-notice elementor-panel-alert elementor-panel-alert-info'
+        ]
+    );
+}
+
+/**
  * Get template content by id
  * @since 2.6.6
  * @param [type] $template_id
@@ -138,15 +179,31 @@ function woolentor_include_all($folder_name){
 
 /**
  * Single String Translate
- * @param mixed $name
- * @param mixed $value
- * @return mixed
+ * @param mixed $name String identifier
+ * @param mixed $value Default value
+ * @param string $context Translation context/group (must match registration context)
+ * @return mixed Translated string or original value
  */
-function woolentor_translator( $name, $value ){
+function woolentor_translator( $name, $value, $context = 'ShopLentor' ){
     if( method_exists('\WooLentor\MultiLanguage\Languages','translator') ) {
-        return \WooLentor\MultiLanguage\Languages::translator($name, $value);
+        return \WooLentor\MultiLanguage\Languages::translator( $name, $value, $context );
     }
     return $value;
+}
+
+/**
+ * Register a string for translation with WPML/Polylang
+ * Must be called before woolentor_translator() can find translations
+ *
+ * @param string $name Unique identifier for the string
+ * @param string $value The default string value to register
+ * @param string $group Group name for organization in translation interface
+ * @return void
+ */
+function woolentor_register_string( $name, $value, $group = 'ShopLentor' ){
+    if( method_exists('\WooLentor\MultiLanguage\Languages','register_string') ) {
+        \WooLentor\MultiLanguage\Languages::register_string( $name, $value, $group );
+    }
 }
 
 /**
@@ -618,20 +675,50 @@ function woolentor_post_name( $post_type = 'post', $args = [] ){
  * return array
  */
 function woolentor_elementor_template() {
-    $templates = '';
-    if( class_exists('\Elementor\Plugin') ){
-        $templates = \Elementor\Plugin::instance()->templates_manager->get_source( 'local' )->get_items();
-    }
-    $types = array();
+    $templates = woolentor_get_post_list();
     if ( empty( $templates ) ) {
         $template_lists = [ '0' => __( 'No saved templates found.', 'woolentor' ) ];
     } else {
         $template_lists = [ '0' => __( 'Select Template', 'woolentor' ) ];
         foreach ( $templates as $template ) {
-            $template_lists[ $template['template_id'] ] = $template['title'] . ' (' . $template['type'] . ')';
+            $template_lists[ $template['post_id'] ] = $template['title'] . ' (' . $template['type'] . ')';
         }
     }
     return $template_lists;
+}
+
+/**
+ * Get Post List
+ * return array
+ */
+function woolentor_get_post_list( $args = [] ) {
+
+    $defaults = [
+        'post_type'      => 'elementor_library',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'order'          => 'ASC',
+    ];
+
+    $query_args = wp_parse_args( $args, $defaults );
+
+    $all_posts = new \WP_Query( $query_args );
+
+    $templates = [];
+
+    if ( $all_posts->have_posts() ) {
+        foreach ( $all_posts->get_posts() as $post ) {
+            $post = get_post( $post->ID );
+            $tmpType = $query_args['post_type'] == 'elementor_library' ? get_post_meta( $post->ID, '_elementor_template_type', true ) : '';
+            $templates[] = [
+                'post_id' => $post->ID,
+                'title'   => $post->post_title,
+                'type'    => $tmpType,
+            ];
+        }
+    }
+
+    return $templates;
 }
 
 /*
@@ -1320,7 +1407,7 @@ if( class_exists('WooCommerce') ){
             $postsperpage = apply_filters( 'product_custom_limit', $limit );
             return $postsperpage;
         }
-        add_filter( 'loop_shop_per_page', 'woolentor_custom_number_of_posts' );
+        add_filter( 'loop_shop_per_page', 'woolentor_custom_number_of_posts', 99 );
     }
 
     // Customize rating html
@@ -1333,6 +1420,7 @@ if( class_exists('WooCommerce') ){
             $rating_whole = floor($average);
             $rating_fraction = $average - $rating_whole;
             $flug = 0;
+            $percentage = (($average / 5) * 100);
 
             $icon_svg = get_option('elementor_experiment-e_font_icon_svg','default');
             $icon_prefix = ( $icon_svg == 'active' || $block == 'yes' ) ? 'fa' : 'fas';
@@ -1345,7 +1433,7 @@ if( class_exists('WooCommerce') ){
                     <span class="ht-product-ratting">
                         <span class="ht-product-user-ratting">
                             <?php for($i = 1; $i <= 5; $i++){
-                                if( $i <= $rating_whole ){
+                                if($i <= $rating_whole || $percentage > 90){
                                     echo '<i class="'.esc_attr($icon_prefix).' fa-star"></i>';
                                 } else {
                                     if( $rating_fraction > 0 && $flug == 0 ){
@@ -1375,6 +1463,49 @@ if( class_exists('WooCommerce') ){
 
                 return $html;
         }
+    }
+
+    // Geneate product rating
+    function woolentor_wc_product_rating_generate( $product_obj = null ){
+        if ( get_option( 'woocommerce_enable_review_rating' ) === 'no' ) { return; }
+
+            if( $product_obj == null ){
+                global $product;
+                $product_obj = $product;
+            }
+
+            if ( $product_obj && is_a( $product_obj, 'WC_Product' ) ) {
+
+                $rating_count = $product_obj->get_rating_count();
+                $average      = $product_obj->get_average_rating();
+                $rating_whole = floor($average);
+                $rating_fraction = $average - $rating_whole;
+                $flug = 0;
+                $percentage = (($average / 5) * 100);
+
+                $html = '';
+
+                if ( $rating_count > 0 ) {
+                    ob_start();
+                    for($i = 1; $i <= 5; $i++){
+                        if( $i <= $rating_whole || $percentage > 90 ){
+                            echo '<svg class="star" viewBox="0 0 20 20"><path fill="currentColor" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>';
+                        } else {
+                            if( $rating_fraction > 0 && $flug == 0 ){
+                                echo '<svg class="star empty-half" viewBox="0 0 576 512"><path fill="currentColor" d="M288.1 353.6c10 0 19.9 2.3 29 7l74.4 37.9l-13-82.5c-3.2-20.2 3.5-40.7 17.9-55.2l59-59.1l-82.5-13.1c-20.2-3.2-37.7-15.9-47-34.1l-38-74.4v273.6zM457.4 489c-7.3 5.3-17 6.1-25 2l-144.3-73.4L143.8 491c-8 4.1-17.7 3.3-25-2s-11-14.2-9.6-23.2l25.2-159.9L20 191.4c-6.4-6.4-8.6-15.8-5.8-24.4s10.1-14.9 19.1-16.3l159.9-25.4l73.6-144.2c4.1-8 12.4-13.1 21.4-13.1s17.3 5.1 21.4 13.1L383 125.3l159.9 25.4c8.9 1.4 16.3 7.7 19.1 16.3s.5 18-5.8 24.4L441.7 305.9L467 465.8c1.4 8.9-2.3 17.9-9.6 23.2"/></svg>';
+                                $flug = 1;
+                            } else {
+                                echo '<svg class="star empty" viewBox="0 0 20 20"><path fill="currentColor" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>';
+                            }
+                        }
+                    }
+                    $html = ob_get_clean();
+                }
+
+                return $html;
+
+            }
+
     }
 
     // HTML Markup Render in footer
@@ -1455,6 +1586,31 @@ if( class_exists('WooCommerce') ){
             'min' => (int)$value_min,
             'max' => (int)$value_max,
         ];
+    }
+
+     /**
+     * Product Hover Image For Universal all addon and any addon if need.
+     *
+     * @return void
+     */
+    function woolentor_product_secondary_image($gallery_images_ids, $image_size) {
+
+		$hover_image_id = '';
+        if( !empty( $gallery_images_ids[0] ) ){
+            $hover_image_id = $gallery_images_ids[0];
+        }
+
+        if ( $hover_image_id != '' ) {
+            $img = wp_get_attachment_image( $hover_image_id, $image_size );
+            ?>
+                <div class="woolentor-product-secondary-img">
+                    <a href="<?php echo esc_url( get_permalink() ); ?>">
+                        <?php echo wp_kses_post($img); ?>
+                    </a>
+                </div>
+            <?php
+        }
+
     }
 
 }

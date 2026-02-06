@@ -1,3 +1,32 @@
+/* CSS For Widget Icon */
+.elementor-element .icon {
+    position: relative;
+}
+/* Normal Icon */
+.elementor-element .icon .woolentor-widget-icon::after {
+    content: "WL";
+    font-size: 12px;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    color: #fff;
+    padding: 3px 4px;
+    font-family: var(--e-a-font-family);
+}
+/* New Icon */
+.elementor-element .icon .woolentor-widget-new-icon::after {
+    content: "New";
+    font-size: 12px;
+    position: absolute;
+    right: -0.5px;
+    top: -0.5px;
+    background-color: #f56540;
+    color: #fff;
+    padding: 3px 4px;
+    font-family: var(--e-a-font-family);
+    border-radius: 0 2px 0 0;
+}
+
 /* CSS For Promosion Widget Button */
 .woolentor-elementor-pro-hide{
     display: none;

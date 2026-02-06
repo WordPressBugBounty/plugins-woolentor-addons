@@ -11,8 +11,13 @@
 	border: 1px solid #c8c6c6;
 	padding: 4px 0;
 }
+.woolentor_widget_psa_input_area {
+    width: 100%;
+    display: flex;
+}
 .woolentor_widget_psa_input_field{
 	width: 100%;
+	position: relative;
 }
 
 .pro-sidebar-search-form input {
@@ -189,10 +194,9 @@ span.woolentor_widget_psa_loading_icon {
 .woolentor_widget_psa_loading span.woolentor_widget_psa_loading_icon {
 	display: inline-block;
 	position: absolute;
-	line-height: 46px;
 	font-size: 20px;
-	right: 60px;
-	top: 0;
+	right: 5px;
+	top: 8px;
 	color: #c8c6c6;
 	cursor: pointer;
 }

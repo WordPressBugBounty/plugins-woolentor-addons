@@ -67,6 +67,16 @@ class Scripts {
 			$this->load_css();
 		}
 
+		/**
+		 * Localize data
+		 */
+		$localize_data = array(
+			'url' 		=> WOOLENTOR_BLOCK_URL,
+			'ajaxUrl' 	=> admin_url('admin-ajax.php'),
+			'security' 	=> wp_create_nonce('woolentorblock-nonce'),
+		);
+		wp_localize_script( 'woolentor-block-main', 'woolentorLocalizeData', $localize_data );
+
 	}
 
 	/**
@@ -120,6 +130,7 @@ class Scripts {
 				'prostatus'		=> is_admin() ? is_plugin_active('woolentor-addons-pro/woolentor_addons_pro.php') : false,
 				'templatelist'	=> is_admin() ? \Woolentor_Template_Library_Manager::get_gutenberg_templates_info() : array(),
 				'prolink'		=> 'https://woolentor.com/pricing/?utm_source=admin&utm_medium=gtlibrary',
+				'upgradeLink'	=> 'https://woolentor.com/pricing/'
 			);
 
 			// My Account MenuList
@@ -141,7 +152,7 @@ class Scripts {
 		if( function_exists('WC') ){
 			wp_enqueue_style('woocommerce-layout', \WC()->plugin_url() . '/assets/css/woocommerce-layout.css', false, \Automattic\Jetpack\Constants::get_constant('WC_VERSION'), 'all' );
 			if ( ! wp_script_is( 'wc-add-to-cart-variation', 'enqueued' ) ) {
-				wp_enqueue_script('wc-add-to-cart-variation', \WC()->plugin_url() . '/assets/js/frontend/add-to-cart-variation.js', array( 'jquery', 'wp-util', 'jquery-blockui' ), \Automattic\Jetpack\Constants::get_constant('WC_VERSION'), 'all' );
+				wp_enqueue_script('wc-add-to-cart-variation', \WC()->plugin_url() . '/assets/js/frontend/add-to-cart-variation.js', array( 'jquery', 'wp-util', woolentor_get_wc_script_handle('jquery-blockui','wc-jquery-blockui') ), \Automattic\Jetpack\Constants::get_constant('WC_VERSION'), 'all' );
 			}
 		}
 		wp_enqueue_style('wishsuite-frontend');

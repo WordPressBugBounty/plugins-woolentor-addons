@@ -33,15 +33,15 @@ class Assets {
         ];
 
         if ( current_theme_supports( 'wc-product-gallery-zoom' ) ) {
-            array_push( $script_list['woolentor-quickview']['deps'], 'zoom' );
+            array_push( $script_list['woolentor-quickview']['deps'], woolentor_get_wc_script_handle( 'zoom', 'wc-zoom' ) );
         }
 
         if ( current_theme_supports( 'wc-product-gallery-slider' ) ) {
-            array_push( $script_list['woolentor-quickview']['deps'],'flexslider' );
+            array_push( $script_list['woolentor-quickview']['deps'], woolentor_get_wc_script_handle( 'flexslider', 'wc-flexslider' ) );
         }
 
         if ( current_theme_supports( 'wc-product-gallery-lightbox' ) ) {
-            array_push( $script_list['woolentor-quickview']['deps'],'photoswipe-ui-default' );
+            array_push( $script_list['woolentor-quickview']['deps'], woolentor_get_wc_script_handle( 'photoswipe-ui-default', 'wc-photoswipe-ui-default' ) );
         }
 
         return $script_list;
@@ -94,6 +94,7 @@ class Assets {
         $option_data = [
             'enableAjaxCart'  => woolentor_get_option( 'enable_ajax_cart','woolentor_quickview_settings','on' ),
             'thumbnailLayout' => woolentor_get_option( 'thumbnail_layout','woolentor_quickview_settings','slider' ),
+            'spinnerImageUrl' => esc_url(woolentor_get_option( 'preloader','woolentor_quickview_settings', '' ))
         ];
         $localize_data = [
             'ajaxUrl'    => admin_url( 'admin-ajax.php' ),

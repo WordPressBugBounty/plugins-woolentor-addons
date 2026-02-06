@@ -72,32 +72,41 @@ class Manage_Data {
         ];
 
         $args = wp_parse_args( $args, $defaults );
-
+    
+        // Whitelist allowed columns and order directions
+        $allowed_orderby = array( 'id', 'user_id' ); // Add your actual columns
+        $allowed_order   = array( 'ASC', 'DESC' );
+    
+        $orderby = in_array( $args['orderby'], $allowed_orderby, true ) ? $args['orderby'] : 'id';
+        $order   = in_array( strtoupper( $args['order'] ), $allowed_order, true ) ? strtoupper( $args['order'] ) : 'ASC';
+    
         $last_changed = wp_cache_get_last_changed( 'wishsuite' );
         $key          = md5( serialize( array_diff_assoc( $args, $defaults ) ) );
         $cache_key    = "all:$key:$last_changed";
-
-        $sql = $args['number'] === -1 ? $wpdb->prepare(
+    
+        $limit  = (int) $args['number'];
+        $offset = (int) $args['offset'];
+    
+        if ( $limit === -1 ) {
+            $limit  = 10000;
+            $offset = 0;
+        }
+    
+        $sql = $wpdb->prepare(
             "SELECT * FROM {$wpdb->prefix}wishsuite_list
             WHERE user_id = %d
-            ORDER BY %s %s
+            ORDER BY $orderby $order
             LIMIT %d, %d",
-            $args['user_id'], $args['orderby'], $args['order'], 0, 10000
-        ) : $wpdb->prepare(
-            "SELECT * FROM {$wpdb->prefix}wishsuite_list
-            WHERE user_id = %d
-            ORDER BY %s %s
-            LIMIT %d, %d",
-            $args['user_id'], $args['orderby'], $args['order'], $args['offset'], $args['number']);
-
+            $args['user_id'], $offset, $limit
+        );
+    
         $items = wp_cache_get( $cache_key, 'wishsuite' );
-
+    
         if ( false === $items ) {
             $items = $wpdb->get_results( $sql, ARRAY_A );
-
             wp_cache_set( $cache_key, $items, 'wishsuite' );
         }
-
+    
         return $items;
     }
 

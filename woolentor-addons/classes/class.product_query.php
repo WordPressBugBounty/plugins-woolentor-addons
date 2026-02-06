@@ -33,8 +33,30 @@ class WooLentorProductQuery{
             //compatibility with woo shortcode
             add_filter('woocommerce_shortcode_products_query', [ $this, 'woocommerce_shortcode_products_query' ], 99, 3 );
 
+            // compatibility with product grid (Modern)
+            add_filter('woolentor_product_grid_query_settings', [ $this, 'woolentor_grid_products_query' ], 99, 2 );
+
         }
 
+    }
+
+    // Support Product Grid Widget
+    public function woolentor_grid_products_query($query_settings, $settings){
+
+        if( !empty( $query_settings['query_orderby'] ) ){
+            $query_settings['orderby'] = $query_settings['query_orderby'];
+        }else{
+            $query_settings['orderby'] = '';
+        }
+        if( !empty( $query_settings['query_order'] ) ){
+            $query_settings['order'] = $query_settings['query_order'];
+        }else{
+            $query_settings['orderby'] = '';
+        }
+
+
+        $query_settings = $this->woocommerce_shortcode_products_query($query_settings, $settings);
+        return $query_settings;
     }
 
     /**

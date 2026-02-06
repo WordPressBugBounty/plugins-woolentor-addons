@@ -202,6 +202,10 @@ class Menu {
             wp_dequeue_script('elementor-common');
             wp_deregister_script('elementor-common');
         }
+        if ( wp_script_is( 'import-export-customization-admin', 'enqueued' ) ) {
+            wp_dequeue_script('import-export-customization-admin');
+            wp_deregister_script('import-export-customization-admin');
+        }
         if ( wp_script_is( 'elementor-import-export-admin', 'enqueued' ) ) {
             wp_dequeue_script('elementor-import-export-admin');
             wp_deregister_script('elementor-import-export-admin');

@@ -319,7 +319,7 @@ class Assets_Management{
                 'elementorURL'     => admin_url( 'edit.php?post_type=elementor_library' ),
                 'version'          => WOOLENTOR_VERSION,
                 'pluginURL'        => plugin_dir_url( __FILE__ ),
-                'alldata'          => !empty( base::$template_info['templates'] ) ? base::$template_info['templates'] : array(),
+                'alldata'          => !empty( base::get_template_info()['templates'] ) ? base::get_template_info()['templates'] : array(),
                 'prolink'          => 'https://woolentor.com/pricing/?utm_source=admin&utm_medium=library',
                 'prolabel'         => esc_html__( 'Pro', 'woolentor' ),
                 'loadingimg'       => WOOLENTOR_ADDONS_PL_URL . 'includes/admin/assets/images/loading.gif',

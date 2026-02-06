@@ -2,7 +2,7 @@
     outline: 0;
 }
 body.woolentor-quickview-loader::before {
-    content: url("../images/spinner.gif");
+    content: var(--woolentor-quick-view-spinner-image, url(../images/spinner.gif));
     position: fixed;
     top: 0;
     bottom: 0;

@@ -1021,14 +1021,14 @@ class Woolentor_Wl_Product_Filter_Widget extends Widget_Base {
                                     foreach ( $terms as $term ){
                                         $link = $this->generate_term_link( $filter_type, $term, $current_url );
                                         echo '<li class="'.esc_attr($link['class']).'">';
-                                            echo sprintf('%1$s<a href="%2$s">%3$s <span>(%4$s)</span></a>', $list_icon, esc_url($link['link']), $term->name, $term->count ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                            echo sprintf('%1$s<a rel="nofollow" href="%2$s">%3$s <span>(%4$s)</span></a>', $list_icon, esc_url($link['link']), $term->name, $term->count ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
                                             $loterms = get_terms( [ 'taxonomy' => $filter_type, 'parent' => $term->term_id ] );
                                             if( !empty( $loterms ) && !is_wp_error( $loterms ) ){
                                                 echo '<ul class="wlchildren">';
                                                     foreach( $loterms as $key => $loterm ){
                                                         $clink = $this->generate_term_link( $filter_type, $loterm, $current_url );
-                                                        echo sprintf('<li class="%5$s">%1$s<a href="%2$s">%3$s <span>(%4$s)</span></a></li>', $list_icon, $clink['link'], $loterm->name, $loterm->count, $clink['class'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                        echo sprintf('<li class="%5$s">%1$s<a rel="nofollow" href="%2$s">%3$s <span>(%4$s)</span></a></li>', $list_icon, $clink['link'], $loterm->name, $loterm->count, $clink['class'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     }
                                                 echo '</ul>';
                                             }
@@ -1043,7 +1043,7 @@ class Woolentor_Wl_Product_Filter_Widget extends Widget_Base {
                                 echo '<ul>';
                                     foreach ( $terms as $term ){
                                         $link = $this->generate_term_link( $filter_type, $term, $current_url );
-                                        echo sprintf('<li class="%5$s">%4$s<a href="%1$s">%2$s <span>(%3$s)</span></a></li>', esc_url($link['link']), $term->name, $term->count, $list_icon, esc_attr($link['class']) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                        echo sprintf('<li class="%5$s">%4$s<a rel="nofollow" href="%1$s">%2$s <span>(%3$s)</span></a></li>', esc_url($link['link']), $term->name, $term->count, $list_icon, esc_attr($link['class']) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                     }
                                 echo '</ul>';
                             }
