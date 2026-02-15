@@ -854,6 +854,24 @@ class Woolentor_Wb_Product_Suggest_Price_Widget extends Widget_Base {
             $product = wc_get_product( $post->ID );
         }
 
+        // Generate a unique form token for this form instance
+        $form_token = wp_generate_password( 32, false, false );
+
+        // Get recipient email from widget settings (validated)
+        $recipient_email = ! empty( $settings['send_to_mail'] ) ? sanitize_email( $settings['send_to_mail'] ) : get_option( 'admin_email' );
+
+        // Store form data server-side (NOT exposed to client)
+        // This prevents attackers from manipulating the recipient
+        $transient_data = [
+            'recipient_email' => $recipient_email,
+            'product_id'      => $product->get_id(),
+            'msg_success'     => ! empty( $settings['message_success'] ) ? $settings['message_success'] : __( 'Thank you for contacting us', 'woolentor' ),
+            'msg_error'       => ! empty( $settings['message_error'] ) ? $settings['message_error'] : __( 'Something went wrong. Please try again.', 'woolentor' ),
+        ];
+
+        // Store for 1 hour (form session timeout)
+        set_transient( 'woolentor_suggest_price_' . $form_token, $transient_data, HOUR_IN_SECONDS );
+
         $this->add_render_attribute(
             [
 
@@ -862,6 +880,7 @@ class Woolentor_Wb_Product_Suggest_Price_Widget extends Widget_Base {
                     'name'        => 'wlname',
                     'id'          => 'wlname-' . esc_attr( $id ),
                     'placeholder' => $settings['name_placeholder_text'],
+                    'required'    => 'required',
                 ],
 
                 'user_email' => [
@@ -869,14 +888,17 @@ class Woolentor_Wb_Product_Suggest_Price_Widget extends Widget_Base {
                     'name'        => 'wlemail',
                     'id'          => 'wlemail-' . esc_attr( $id ),
                     'placeholder' => $settings['email_placeholder_text'],
+                    'required'    => 'required',
                 ],
 
                 'user_message' => [
                     'name'        => 'wlmessage',
                     'id'          => 'wlmessage-' . esc_attr( $id ),
-                    'rows'          => '4',
-                    'cols'          => '50',
+                    'rows'        => '4',
+                    'cols'        => '50',
                     'placeholder' => $settings['message_placeholder_text'],
+                    'required'    => 'required',
+                    'maxlength'   => '1000',
                 ],
 
                 'user_submit' => [
@@ -885,7 +907,7 @@ class Woolentor_Wb_Product_Suggest_Price_Widget extends Widget_Base {
                     'id'          => 'wlsubmit-' . esc_attr( $id ),
                     'value'       => $settings['submit_button_txt'],
                 ],
-                
+
             ]
         );
 
@@ -894,7 +916,7 @@ class Woolentor_Wb_Product_Suggest_Price_Widget extends Widget_Base {
                 <p class="wlsendmessage">&nbsp;</p>
                 <button id="wlopenform-<?php echo esc_attr( $id ); ?>" class="wlsugget-button wlopen"><?php echo esc_html( $settings['open_button_text'] ); ?></button>
                 <button id="wlcloseform-<?php echo esc_attr( $id ); ?>" class="wlsugget-button wlclose" style="display: none;"><?php echo esc_html( $settings['close_button_text'] ); ?></button>
-                <form id="wlsuggestform-<?php echo esc_attr( $id ); ?>" action="<?php echo admin_url('admin-ajax.php'); ?>" method="post">
+                <form id="wlsuggestform-<?php echo esc_attr( $id ); ?>" action="<?php echo esc_url( admin_url('admin-ajax.php') ); ?>" method="post">
                     <div class="wl-suggest-form-input">
                         <input <?php echo $this->get_render_attribute_string( 'user_name' ); ?> >
                     </div>
@@ -907,7 +929,9 @@ class Woolentor_Wb_Product_Suggest_Price_Widget extends Widget_Base {
                     <div class="wl-suggest-form-input">
                         <input <?php echo $this->get_render_attribute_string( 'user_submit' ); ?> >
                     </div>
-                    <input type="hidden" name="send_to_mail" value="<?php echo esc_attr($settings['send_to_mail']); ?>">
+                    <!-- Security: Only pass the token, NOT the recipient email -->
+                    <input type="hidden" name="form_token" value="<?php echo esc_attr( $form_token ); ?>">
+                    <input type="hidden" name="product_id" value="<?php echo esc_attr( $product->get_id() ); ?>">
                     <input type="hidden" name="action" value="woolentor_suggest_price_action">
                     <?php wp_nonce_field( 'woolentor_suggest_price_nonce', 'woolentor_suggest_price_nonce_field' ); ?>
                 </form>
@@ -917,20 +941,15 @@ class Woolentor_Wb_Product_Suggest_Price_Widget extends Widget_Base {
                 ;jQuery(document).ready(function($) {
                 "use strict";
 
-                    // Declaire Variable
+                    // Declare Variable
                     var openFormBtn = '#wlopenform-<?php echo esc_js($id); ?>',
                         closeFormBtn = '#wlcloseform-<?php echo esc_js($id); ?>',
                         tergetForm = 'form#wlsuggestform-<?php echo esc_js($id); ?>',
                         formSubmitBtn = '#wlsubmit-<?php echo esc_js($id); ?>',
-                        sendTo          = '<?php echo esc_js($settings['send_to_mail']); ?>',
-                        messageSuccess  = '<?php echo esc_js($settings['message_success']); ?>',
-                        messageError = '<?php echo esc_js($settings['message_error']); ?>',
-                        productID = '<?php echo esc_js($product->get_id()); ?>',
-                        productTitle = '<?php echo esc_js($product->get_title()); ?>',
                         submitText   = $(formSubmitBtn).val(),
                         loadingText  = '<?php echo esc_js($settings['submit_button_loading_txt']); ?>',
                         formSelector = $(tergetForm);
-                    
+
                     // Open Button
                     $( openFormBtn ).on('click', function(){
                         $(this).hide();
@@ -948,11 +967,11 @@ class Woolentor_Wb_Product_Suggest_Price_Widget extends Widget_Base {
                     // Submit Using Ajax
                     $(tergetForm).on('submit', function(e) {
                         e.preventDefault();
-                        
+
                         $.ajax({
                             url: formSelector.attr('action'),
                             type: 'POST',
-                            data: `send_to=${sendTo}&product_id=${productID}&product_title=${productTitle}&msg_success=${messageSuccess}&msg_error=${messageError}&${formSelector.serialize()}`,
+                            data: formSelector.serialize(),
 
                             beforeSend: function (response) {
                                 $(tergetForm).siblings('.wlsendmessage').hide();
@@ -968,6 +987,18 @@ class Woolentor_Wb_Product_Suggest_Price_Widget extends Widget_Base {
 
                             success: function (response) {
                                 $(tergetForm).siblings('.wlsendmessage').show().html(response?.data?.message);
+
+                                // Update form token for subsequent submissions (without page refresh)
+                                if (response?.data?.new_token) {
+                                    $(tergetForm).find('input[name="form_token"]').val(response.data.new_token);
+                                }
+
+                                // Clear form fields after successful submission
+                                if (response?.success && !response?.data?.error) {
+                                    $(tergetForm).find('input[name="wlname"]').val('');
+                                    $(tergetForm).find('input[name="wlemail"]').val('');
+                                    $(tergetForm).find('textarea[name="wlmessage"]').val('');
+                                }
                             },
 
                         });

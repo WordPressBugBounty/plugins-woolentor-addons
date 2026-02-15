@@ -57,7 +57,7 @@ class Woolentor_Wl_Currency_Switcher_Widget extends Widget_Base{
                 $this->add_control(
                     'show_flags',
                     [
-                        'label'         => __( 'Show Currency flags ?', 'woolentor' ),
+                        'label'         => __( 'Show Currency flags?', 'woolentor' ),
                         'type'          => Controls_Manager::SWITCHER,
                         'label_on'      => __( 'Yes', 'woolentor' ),
                         'label_off'     => __( 'No', 'woolentor' ),
@@ -86,7 +86,7 @@ class Woolentor_Wl_Currency_Switcher_Widget extends Widget_Base{
                 $this->add_control(
                     'show_flags_pro',
                     [
-                        'label'         => __( 'Show Currency flags ?', 'woolentor' ) .' <i class="eicon-pro-icon"></i>',
+                        'label'         => __( 'Show Currency flags?', 'woolentor' ) .' <i class="eicon-pro-icon"></i>',
                         'type'          => Controls_Manager::SWITCHER,
                         'label_on'      => __( 'Yes', 'woolentor' ),
                         'label_off'     => __( 'No', 'woolentor' ),

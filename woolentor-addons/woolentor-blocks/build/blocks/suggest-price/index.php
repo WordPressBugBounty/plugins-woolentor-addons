@@ -35,23 +35,45 @@ echo '<div class="'.esc_attr(implode(' ', $areaClasses )).'">';
 				if ( ! isset( $_POST['woolentor_suggest_price_nonce_field'] ) || ! wp_verify_nonce( $_POST['woolentor_suggest_price_nonce_field'], 'woolentor_suggest_price_action' ) ){
 					echo '<p class="wlsendmessage">'.esc_html__('Sorry, your nonce verification fail.','woolentor').'</p>';
 				}else{
-					$name     = $_POST['wlname'];
-					$email    = $_POST['wlemail'];
-					$message  = $_POST['wlmessage'];
+					$name    = sanitize_text_field( $_POST['wlname'] );
+					$email   = sanitize_email( trim( $_POST['wlemail'] ) );
+					$message = wp_strip_all_tags( $_POST['wlmessage'] );
 
-					//php mailer variables
-					$sentto  = $settings['sendToMail'];
-					$subject = esc_html__("Suggest Price For - ".$product->get_title(), 'woolentor');
-					$headers = esc_html__('From: ','woolentor'). esc_html( $email ) . "\r\n" . esc_html__('Reply-To: ', 'woolentor') . esc_html( $email ) . "\r\n";
+					// Validate email (sanitize_email strips CRLF, is_email confirms format)
+					if ( ! is_email( $email ) ) {
+						echo '<p class="wlsendmessage">'.esc_html__('Invalid email address.','woolentor').'</p>';
+					} else {
+						// Limit message length to prevent abuse
+						if ( strlen( $message ) > 1000 ) {
+							$message = substr( $message, 0, 1000 );
+						}
 
-					//Here put your Validation and send mail
-					$sent = wp_mail( $sentto, $subject, wp_strip_all_tags($message), $headers );
+						// Validate recipient
+						$sentto = ! empty( $settings['sendToMail'] ) ? sanitize_email( $settings['sendToMail'] ) : '';
+						if ( ! is_email( $sentto ) ) {
+							$sentto = get_option( 'admin_email' );
+						}
 
-					if( $sent ) {
-						echo '<p class="wlsendmessage">'.esc_html( $settings['messageSuccess'] ).'</p>';
-					}
-					else{
-						echo '<p class="wlsendmessage">'.esc_html($settings['messageError']).'</p>';
+						// Build subject from actual product name (not user input)
+						$subject = sprintf(
+							/* translators: %s: Product name */
+							esc_html__( 'Suggest Price For - %s', 'woolentor' ),
+							$product->get_name()
+						);
+
+						// Safe headers - Reply-To only (no From header)
+						$headers = [
+							'Reply-To: ' . $email
+						];
+
+						$sent = wp_mail( $sentto, $subject, $message, $headers );
+
+						if( $sent ) {
+							echo '<p class="wlsendmessage">'.esc_html( $settings['messageSuccess'] ).'</p>';
+						}
+						else{
+							echo '<p class="wlsendmessage">'.esc_html($settings['messageError']).'</p>';
+						}
 					}
 				}
 			}

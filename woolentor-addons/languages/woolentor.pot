@@ -1,10 +1,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: ShopLentor – WooCommerce Builder for Elementor & "
-"Gutenberg\n"
+"Project-Id-Version: ShopLentor – All-in-One WooCommerce Growth & Store "
+"Enhancement Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-01 05:45+0000\n"
+"POT-Creation-Date: 2026-02-15 08:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.8.1; wp-6.9.1-RC1-61563; php-8.2.30\n"
+"X-Loco-Version: 2.8.1; wp-6.9.2-alpha-61586; php-8.2.30\n"
 "X-Domain: woolentor"
 
 #: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:131
@@ -3118,7 +3118,7 @@ msgstr ""
 msgid "Email Field Placeholder"
 msgstr ""
 
-#: classes/class.ajax_actions.php:176
+#: classes/class.ajax_actions.php:226
 msgid "Email is required."
 msgstr ""
 
@@ -3822,6 +3822,10 @@ msgstr ""
 msgid "For (days)"
 msgstr ""
 
+#: classes/class.ajax_actions.php:175
+msgid "Form session expired. Please refresh and try again."
+msgstr ""
+
 #: includes/addons/wl_product_filter.php:262
 msgid "Form Style"
 msgstr ""
@@ -3868,10 +3872,6 @@ msgstr ""
 
 #: includes/modules/abandoned-cart/includes/classes/Admin/Fields.php:180
 msgid "From Reply To Email Address"
-msgstr ""
-
-#: woolentor-blocks/build/blocks/suggest-price/index.php:45
-msgid "From: "
 msgstr ""
 
 #: includes/modules/popup-builder/includes/class-repeater-helper.php:164
@@ -4670,9 +4670,14 @@ msgstr ""
 msgid "Invalid cart ID."
 msgstr ""
 
-#: classes/class.ajax_actions.php:182
-#: woolentor-blocks/src/blocks/suggest-price/index.php:43
+#: classes/class.ajax_actions.php:231
+#: woolentor-blocks/build/blocks/suggest-price/index.php:44
+#: woolentor-blocks/src/blocks/suggest-price/index.php:44
 msgid "Invalid email address."
+msgstr ""
+
+#: classes/class.ajax_actions.php:167
+msgid "Invalid form submission."
 msgstr ""
 
 #: settings-panel/includes/classes/Api/Custom_Actions.php:85
@@ -4692,8 +4697,8 @@ msgstr ""
 msgid "Invalid product ID"
 msgstr ""
 
-#: classes/class.ajax_actions.php:196 classes/class.ajax_actions.php:204
-msgid "Invalid recipient"
+#: classes/class.ajax_actions.php:195 classes/class.ajax_actions.php:202
+msgid "Invalid product."
 msgstr ""
 
 #: includes/modules/abandoned-cart/includes/classes/Frontend/Cart_Recovery.php:79
@@ -5246,7 +5251,7 @@ msgstr ""
 msgid "Message Field Placeholder"
 msgstr ""
 
-#: classes/class.ajax_actions.php:210
+#: classes/class.ajax_actions.php:239
 msgid "Message is required."
 msgstr ""
 
@@ -5388,6 +5393,22 @@ msgstr ""
 
 #: includes/addons/wb_product_suggest_price.php:130
 msgid "Name Field Placeholder"
+msgstr ""
+
+#: classes/class.ajax_actions.php:214
+msgid "Name is required."
+msgstr ""
+
+#. 1: Sender name, 2: Sender email, 3: Product name, 4: Message
+#: classes/class.ajax_actions.php:257
+#, php-format
+msgid ""
+"Name: %1$s\n"
+"Email: %2$s\n"
+"Product: %3$s\n"
+"\n"
+"Message:\n"
+"%4$s"
 msgstr ""
 
 #: includes/addons/wl_testimonial.php:970
@@ -7071,10 +7092,6 @@ msgstr ""
 msgid "Recently Viewed Products"
 msgstr ""
 
-#: classes/class.ajax_actions.php:189
-msgid "Recipient is required"
-msgstr ""
-
 #: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:123
 msgid "Recipients"
 msgstr ""
@@ -7187,10 +7204,6 @@ msgstr ""
 #: settings-panel/includes/templates/dashboard-freevspro.php:93
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:93
 msgid "Rename Label"
-msgstr ""
-
-#: woolentor-blocks/build/blocks/suggest-price/index.php:45
-msgid "Reply-To: "
 msgstr ""
 
 #: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:132
@@ -7599,7 +7612,7 @@ msgstr ""
 msgid "Seconds"
 msgstr ""
 
-#: classes/class.ajax_actions.php:264
+#: classes/class.ajax_actions.php:329
 msgid "Security check failed"
 msgstr ""
 
@@ -7978,7 +7991,7 @@ msgid ""
 msgstr ""
 
 #. Name of the plugin
-msgid "ShopLentor – WooCommerce Builder for Elementor & Gutenberg"
+msgid "ShopLentor – All-in-One WooCommerce Growth & Store Enhancement Plugin"
 msgstr ""
 
 #: includes/addons/product_flash_sale.php:177
@@ -8114,7 +8127,7 @@ msgstr ""
 
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:60
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:89
-msgid "Show Currency flags ?"
+msgid "Show Currency flags?"
 msgstr ""
 
 #: includes/addons/wl_archive_title.php:73
@@ -8603,6 +8616,11 @@ msgstr ""
 msgid "Something is wrong! try again"
 msgstr ""
 
+#: classes/class.ajax_actions.php:208
+#: includes/addons/wb_product_suggest_price.php:869
+msgid "Something went wrong. Please try again."
+msgstr ""
+
 #. 1: quantity in stock 2: current quantity
 #: includes/modules/backorder/backorder.php:185
 #, php-format
@@ -8648,10 +8666,13 @@ msgid ""
 "Sorry, this product is unavailable. Please choose a different combination."
 msgstr ""
 
-#: classes/class.ajax_actions.php:159
 #: woolentor-blocks/build/blocks/suggest-price/index.php:36
 #: woolentor-blocks/src/blocks/suggest-price/index.php:36
 msgid "Sorry, your nonce verification fail."
+msgstr ""
+
+#: classes/class.ajax_actions.php:159
+msgid "Sorry, your nonce verification failed."
 msgstr ""
 
 #: includes/addons/wl_product_horizontal_filter.php:44
@@ -8913,6 +8934,14 @@ msgstr ""
 #: includes/addons/wb_product_suggest_price.php:64
 #: woolentor-blocks/includes/classes/Blocks_List.php:258
 msgid "Suggest Price"
+msgstr ""
+
+#. %s: Product name
+#: classes/class.ajax_actions.php:250
+#: woolentor-blocks/build/blocks/suggest-price/index.php:60
+#: woolentor-blocks/src/blocks/suggest-price/index.php:60
+#, php-format
+msgid "Suggest Price For - %s"
 msgstr ""
 
 #: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:101
@@ -9213,6 +9242,14 @@ msgstr ""
 
 #: includes/addons/wb_product_suggest_price.php:305
 msgid "Textarea"
+msgstr ""
+
+#: includes/addons/wb_product_suggest_price.php:868
+msgid "Thank you for contacting us"
+msgstr ""
+
+#: classes/class.ajax_actions.php:207
+msgid "Thank you for contacting us."
 msgstr ""
 
 #: includes/addons/wb_product_suggest_price.php:178

@@ -1,13 +1,13 @@
-=== ShopLentor – All-in-One WooCommerce Builder Solution for Elementor & Gutenberg ===
+=== ShopLentor – All-in-One WooCommerce Growth & Store Enhancement Plugin ===
 Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, aslamhasib
 Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenberg blocks
 Requires at least: 4.7
 Tested up to: 6.9
-Stable tag: 3.3.2
+Stable tag: 3.3.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-All-in-one WooCommerce builder with 120+ widgets, 36+ modules, ready templates, wishlist, compare & quick view. Works with Elementor & Gutenberg.
+ShopLentor – More than a WooCommerce builder. A complete growth plugin to boost conversions, UX, and sales for your store.
 
 == Description ==
 
@@ -441,28 +441,30 @@ Why start from scratch? Import professionally designed layouts and customize to 
 🎯 **Developers** - Speed up WooCommerce development
 
 == 🌐 Social Media ==
-
 Stay connected with the ShopLentor community:
 
-* 👥 **[Facebook Community](https://www.facebook.com/groups/shoplentor/)** - Join our active community
-* 🎥 **[Video Channel](https://www.youtube.com/playlist?list=PLk25BQFrj7wH9zCECMNCtEvvUKkpV5TYA)** - Watch tutorials and demos
-* 💼 **[LinkedIn](https://www.linkedin.com/company/hasthemes)** - Follow for updates
-* 📸 **[Instagram](https://www.instagram.com/shoplentor/)** - See latest features
-* ⭐ **[Rate us on WordPress.org](https://wordpress.org/support/plugin/woolentor-addons/reviews/#new-post)** - Share your experience
+👥 **[Facebook Community](https://www.facebook.com/groups/shoplentor/)** - Join our active community
+🎥 **[Video Channel](https://www.youtube.com/playlist?list=PLk25BQFrj7wH9zCECMNCtEvvUKkpV5TYA)** - Watch tutorials and demos
+💼 **[LinkedIn](https://www.linkedin.com/company/hasthemes)** - Follow for updates
+📸 **[Instagram](https://www.instagram.com/shoplentor/)** - See latest features
+⭐ **[Rate us on WordPress.org](https://wordpress.org/support/plugin/woolentor-addons/reviews/#new-post)** - Share your experience
 
 == 🔧 Our Other Plugins ==
-
 Check out our other powerful WordPress plugins:
 
-* **[SupportGenix](https://supportgenix.com/?utm_source=org&utm_medium=readme)** - Advanced support ticket system
-* **[HT Mega](http://wphtmega.com/?utm_source=org&utm_medium=readme)** - Absolute Addons for Elementor
-* **[Whols](https://wpwhols.com/pricing/?utm_source=org&utm_medium=readme)** - WooCommerce wholesale solution
-* **[Pixelavo](https://pixelavo.com/?utm_source=org&utm_medium=readme)** - Image & video editing toolkit
-* **[Swatchly](https://wpswatchly.com/?utm_source=org&utm_medium=readme)** - WooCommerce variation swatches
-* **[HT Easy GA4](https://hasthemes.com/plugins/google-analytics-plugin-for-wordpress/?utm_source=org&utm_medium=readme)** - Google Analytics 4 integration
-* **[JustTables](https://hasthemes.com/wp/justtables/?utm_source=org&utm_medium=readme)** - WordPress table builder
+**[SupportGenix](https://supportgenix.com/?utm_source=org&utm_medium=readme)** - Advanced support ticket system
+**[HT Mega](http://wphtmega.com/?utm_source=org&utm_medium=readme)** - Absolute Addons for Elementor
+**[Whols](https://wpwhols.com/pricing/?utm_source=org&utm_medium=readme)** - WooCommerce wholesale solution
+**[Pixelavo](https://pixelavo.com/?utm_source=org&utm_medium=readme)** - Image & video editing toolkit
+**[Swatchly](https://wpswatchly.com/?utm_source=org&utm_medium=readme)** - WooCommerce variation swatches
+**[HT Easy GA4](https://hasthemes.com/plugins/google-analytics-plugin-for-wordpress/?utm_source=org&utm_medium=readme)** - Google Analytics 4 integration
+**[JustTables](https://hasthemes.com/wp/justtables/?utm_source=org&utm_medium=readme)** - WordPress table builder
 
 == Changelog ==
+
+= Version: 3.3.3 - Date: 15-02-2026 =
+* Solved: Permalink flash issue.
+* Compatibility : Latest WordPress and WooCommerce version.
 
 = Version: 3.3.2 - Date: 01-02-2026 =
 * Solved: Elementor promotional widget list rendering issue.

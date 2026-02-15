@@ -113,7 +113,7 @@ class Options_Field {
                     'header' => false,
                     'column' => 1,
                     'title' => __( 'Style Tabs', 'woolentor' ),
-                    'desc'  => __( 'Style Settings for Universal Product Layput', 'woolentor' ),
+                    'desc'  => __( 'Style Settings for Universal Product Layout', 'woolentor' ),
                 ],
             ],
 

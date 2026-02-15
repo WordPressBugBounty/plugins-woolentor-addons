@@ -153,96 +153,161 @@ class Woolentor_Ajax_Action{
             'error' => false,
         ];
 
+        // Verify nonce
         if ( !isset( $_POST['woolentor_suggest_price_nonce_field'] ) || !wp_verify_nonce( $_POST['woolentor_suggest_price_nonce_field'], 'woolentor_suggest_price_nonce' ) ){
-
             $response['error'] = true;
-            $response['message'] = esc_html__('Sorry, your nonce verification fail.','woolentor');
-
+            $response['message'] = esc_html__('Sorry, your nonce verification failed.','woolentor');
             wp_send_json_error( $response );
-
-        }else{
-
-            $sent_to        = $_POST['send_to'];
-            $send_to_mail   = $_POST['send_to_mail'];
-            $product_title  = $_POST['product_title'];
-            $msg_success    = $_POST['msg_success'];
-            $msg_error      = $_POST['msg_error'];
-            $name           = $_POST['wlname'];
-            $email          = sanitize_email( trim( $_POST['wlemail'] ) );
-            $message        = wp_strip_all_tags($_POST['wlmessage']);
-
-            if ( $email == '' ) {
-                $response['error'] = true;
-                $response['message'] = esc_html__('Email is required.','woolentor');
-        
-                wp_send_json_error( $response );
-            }
-            if ( ! is_email( $email ) ) {
-                $response['error'] = true;
-                $response['message'] = esc_html__('Invalid email address.','woolentor');
-                
-                wp_send_json_error( $response );
-            }
-
-            if( $sent_to == '' ){
-                $response['error'] = true;
-                $response['message'] = esc_html__('Recipient is required','woolentor');
-                
-                wp_send_json_error( $response );
-            }
-
-            if( !is_email( $send_to_mail ) ){
-                $response['error'] = true;
-                $response['message'] = esc_html__('Invalid recipient','woolentor');
-                
-                wp_send_json_error( $response );
-            }
-
-            $allowed_recipient = $send_to_mail;
-            if ( $sent_to !== $allowed_recipient ) {
-                $response['error'] = true;
-                $response['message'] = esc_html__('Invalid recipient','woolentor');
-                wp_send_json_error( $response );
-            }
-
-            if ( $message == '' ) {
-                $response['error'] = true;
-                $response['message'] = esc_html__('Message is required.','woolentor');
-        
-                wp_send_json_error( $response );
-            }
-            if ( strlen( $message ) > 1000 ) { // Add reasonable limit
-                $message = substr( $message, 0, 1000 );
-            }
-
-            // Subject
-            $product_id = absint( $_POST['product_id'] ); // Require actual product
-            $product = wc_get_product( $product_id );
-            if ( ! $product ) {
-                wp_send_json_error( ['message' => 'Invalid product'] );
-            }
-            $subject = sprintf( 'Suggest Price For - %s', $product->get_name() );
-
-            // Header
-            $headers = [
-                'Reply-To: ' . $email
-            ];
-    
-            // Here put your Validation and send mail
-            $mail_sent_status = wp_mail( $allowed_recipient, $subject, $message, $headers );
-
-            if( $mail_sent_status ) {
-                $response['error'] = false;
-                $response['message'] = esc_html( $msg_success );
-            }
-            else{
-                $response['error'] = true;
-                $response['message'] = esc_html( $msg_error );
-            }
-
-            wp_send_json_success( $response );
-
         }
+
+        // Get and validate form token (this links to server-stored recipient email)
+        $form_token = isset( $_POST['form_token'] ) ? sanitize_text_field( $_POST['form_token'] ) : '';
+        if ( empty( $form_token ) ) {
+            $response['error'] = true;
+            $response['message'] = esc_html__('Invalid form submission.','woolentor');
+            wp_send_json_error( $response );
+        }
+
+        // Retrieve recipient email from server-side storage (NOT from user input)
+        $stored_data = get_transient( 'woolentor_suggest_price_' . $form_token );
+        if ( false === $stored_data || !is_array( $stored_data ) ) {
+            $response['error'] = true;
+            $response['message'] = esc_html__('Form session expired. Please refresh and try again.','woolentor');
+            wp_send_json_error( $response );
+        }
+
+        // Get recipient from server-stored data (secure - not user controlled)
+        $allowed_recipient = isset( $stored_data['recipient_email'] ) ? sanitize_email( $stored_data['recipient_email'] ) : '';
+        $stored_product_id = isset( $stored_data['product_id'] ) ? absint( $stored_data['product_id'] ) : 0;
+
+        // Validate stored recipient
+        if ( empty( $allowed_recipient ) || ! is_email( $allowed_recipient ) ) {
+            // Fallback to admin email if stored email is invalid
+            $allowed_recipient = get_option( 'admin_email' );
+        }
+
+        // Get and validate product
+        $product_id = absint( $_POST['product_id'] ?? 0 );
+
+        // Verify product_id matches stored product_id (prevents manipulation)
+        if ( $product_id !== $stored_product_id ) {
+            $response['error'] = true;
+            $response['message'] = esc_html__('Invalid product.','woolentor');
+            wp_send_json_error( $response );
+        }
+
+        $product = wc_get_product( $product_id );
+        if ( ! $product ) {
+            $response['error'] = true;
+            $response['message'] = esc_html__('Invalid product.','woolentor');
+            wp_send_json_error( $response );
+        }
+
+        // Get user messages from widget settings (stored server-side)
+        $msg_success = isset( $stored_data['msg_success'] ) ? sanitize_text_field( $stored_data['msg_success'] ) : esc_html__('Thank you for contacting us.','woolentor');
+        $msg_error = isset( $stored_data['msg_error'] ) ? sanitize_text_field( $stored_data['msg_error'] ) : esc_html__('Something went wrong. Please try again.','woolentor');
+
+        // Validate sender's name
+        $name = isset( $_POST['wlname'] ) ? sanitize_text_field( $_POST['wlname'] ) : '';
+        if ( empty( $name ) ) {
+            $response['error'] = true;
+            $response['message'] = esc_html__('Name is required.','woolentor');
+            wp_send_json_error( $response );
+        }
+        // Limit name length
+        if ( strlen( $name ) > 100 ) {
+            $name = substr( $name, 0, 100 );
+        }
+
+        // Validate sender's email (sanitize to prevent CRLF injection)
+        $email = isset( $_POST['wlemail'] ) ? sanitize_email( trim( $_POST['wlemail'] ) ) : '';
+        if ( empty( $email ) ) {
+            $response['error'] = true;
+            $response['message'] = esc_html__('Email is required.','woolentor');
+            wp_send_json_error( $response );
+        }
+        if ( ! is_email( $email ) ) {
+            $response['error'] = true;
+            $response['message'] = esc_html__('Invalid email address.','woolentor');
+            wp_send_json_error( $response );
+        }
+
+        // Validate and sanitize message
+        $message = isset( $_POST['wlmessage'] ) ? wp_strip_all_tags( $_POST['wlmessage'] ) : '';
+        if ( empty( $message ) ) {
+            $response['error'] = true;
+            $response['message'] = esc_html__('Message is required.','woolentor');
+            wp_send_json_error( $response );
+        }
+        // Limit message length to prevent abuse
+        if ( strlen( $message ) > 1000 ) {
+            $message = substr( $message, 0, 1000 );
+        }
+
+        // Build subject from actual product name (not user input)
+        $subject = sprintf(
+            /* translators: %s: Product name */
+            esc_html__( 'Suggest Price For - %s', 'woolentor' ),
+            $product->get_name()
+        );
+
+        // Build email body with sender info
+        $email_body = sprintf(
+            /* translators: 1: Sender name, 2: Sender email, 3: Product name, 4: Message */
+            esc_html__( "Name: %1\$s\nEmail: %2\$s\nProduct: %3\$s\n\nMessage:\n%4\$s", 'woolentor' ),
+            $name,
+            $email,
+            $product->get_name(),
+            $message
+        );
+
+        // Set headers with Reply-To (sanitized email prevents header injection)
+        $headers = [
+            'Reply-To: ' . $name . ' <' . $email . '>'
+        ];
+
+        // Send email to the server-stored recipient (NOT user-controlled)
+        $mail_sent_status = wp_mail( $allowed_recipient, $subject, $email_body, $headers );
+
+        // Delete the old transient after use (one-time use token)
+        delete_transient( 'woolentor_suggest_price_' . $form_token );
+
+        if( $mail_sent_status ) {
+            $response['error'] = false;
+            $response['message'] = esc_html( $msg_success );
+
+            // Generate a new token for subsequent submissions (without page refresh)
+            $new_token = wp_generate_password( 32, false, false );
+
+            // Store the same data with new token
+            $new_transient_data = [
+                'recipient_email' => $allowed_recipient,
+                'product_id'      => $product_id,
+                'msg_success'     => $msg_success,
+                'msg_error'       => $msg_error,
+            ];
+            set_transient( 'woolentor_suggest_price_' . $new_token, $new_transient_data, HOUR_IN_SECONDS );
+
+            // Return new token to client for form update
+            $response['new_token'] = $new_token;
+
+        } else {
+            $response['error'] = true;
+            $response['message'] = esc_html( $msg_error );
+
+            // On error, regenerate token as well (old one is already deleted)
+            $new_token = wp_generate_password( 32, false, false );
+            $new_transient_data = [
+                'recipient_email' => $allowed_recipient,
+                'product_id'      => $product_id,
+                'msg_success'     => $msg_success,
+                'msg_error'       => $msg_error,
+            ];
+            set_transient( 'woolentor_suggest_price_' . $new_token, $new_transient_data, HOUR_IN_SECONDS );
+            $response['new_token'] = $new_token;
+        }
+
+        wp_send_json_success( $response );
     }
 
     /**

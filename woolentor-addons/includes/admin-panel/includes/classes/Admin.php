@@ -33,6 +33,9 @@ class Admin {
         if ( !class_exists( __NAMESPACE__ . '\Admin\Diagnostic_Data'  ) ) {
             require_once __DIR__ . '/Admin/Diagnostic_Data.php';
         }
+        if ( !class_exists( __NAMESPACE__ . '\Admin\Deactivation_Feedback'  ) ) {
+            require_once __DIR__ . '/Admin/Deactivation_Feedback.php';
+        }
     }
 
     /**
@@ -43,6 +46,7 @@ class Admin {
     public function init() {
         (new Admin\Menu())->init();
         (new Admin\Dashboard_Widget())->init();
+        (new Admin\Deactivation_Feedback())->init();
     }
 
     /**

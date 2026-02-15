@@ -367,6 +367,7 @@ final class Base {
      */
     public function plugin_deactivation_hook() {
         delete_metadata( 'user', 0, 'hastech-notice-id-wlagency-bundle-promo-banner', null, true );
+        update_option( 'woolentor_plugin_permalinks_flushed', 'no' );
     }
 
     /**

@@ -243,7 +243,7 @@ class Woolentor_Flash_Sale{
         $apply_only_for_registered_customers = !empty($deal['apply_discount_only_for_registered_customers']) ? $deal['apply_discount_only_for_registered_customers'] : '';
         $allowed_user_roles                  = !empty($deal['allowed_user_roles']) ? explode(',',  $deal['allowed_user_roles']) : array();
 
-        if( $apply_only_for_registered_customers ){
+        if( $apply_only_for_registered_customers == 'on' ){
             if( is_user_logged_in() && !$allowed_user_roles ){
                 $validity = true;
             }
