@@ -81,6 +81,9 @@
 
             $( 'body' ).append( content );
 
+            // Show sample demo after popup open
+            this.showSampleDemo();
+
         },
 
         // Slick Slider activation

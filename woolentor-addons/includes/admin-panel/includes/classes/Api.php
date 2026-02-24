@@ -15,6 +15,9 @@ class Api extends WP_REST_Controller {
         $this->includes();
 
         add_action( 'rest_api_init', [ $this, 'register_routes' ] );
+
+        // Diagnostic Data Collect and Send from Setup Wizard
+        add_action('woolentor_diagnostic_data_collect_and_send', [ $this, 'collect_and_send_data' ]);
     }
 
     /**
@@ -41,6 +44,24 @@ class Api extends WP_REST_Controller {
         if ( !class_exists( __NAMESPACE__ . '\Api\ChangeLog'  ) ) {
             require_once __DIR__ . '/Api/ChangeLog.php';
         }
+        if ( !class_exists( __NAMESPACE__ . '\Api\Onboarding'  ) ) {
+            require_once __DIR__ . '/Api/Onboarding.php';
+        }
+    }
+
+    /**
+     * Collect and Send Diagnostic Data
+     *
+     * @param string $nonce
+     * @return void
+     */
+    public function collect_and_send_data( $from_cron = false ) {
+        $diagnostic_file = WOOLENTOROPT_INCLUDES . '/classes/Admin/Diagnostic_Data.php';
+        if ( file_exists( $diagnostic_file ) ) {
+            require_once $diagnostic_file;
+            $diagnostic = \WoolentorOptions\Admin\Diagnostic_Data::get_instance();
+            $diagnostic->collect_and_send_data( '', $from_cron );
+        }
     }
 
     /**
@@ -55,6 +76,7 @@ class Api extends WP_REST_Controller {
         (new Api\Custom_Actions())->register_routes();
         (new Api\TemplateLibrary())->register_routes();
         (new Api\ChangeLog())->register_routes();
+        (new Api\Onboarding())->register_routes();
     }
 
 }

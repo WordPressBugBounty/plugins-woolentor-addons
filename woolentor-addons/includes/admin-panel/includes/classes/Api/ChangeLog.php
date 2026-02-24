@@ -164,6 +164,33 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.3.4',
+                'date'    => '2026-02-24',
+                'changes' => [
+                    'New Features' => [
+                        'Add setup wizard.',
+                    ],
+                    'Fixes' => [
+                        'Dashboard layout improvement in laptop screen.'
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.'
+                    ],
+                ],
+            ],
+            [
+                'version' => '3.3.3',
+                'date'    => '2026-02-15',
+                'changes' => [
+                    'Fixes' => [
+                        'Permalink flash issue.'
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
                 'version' => '3.3.2',
                 'date'    => '2026-02-01',
                 'changes' => [

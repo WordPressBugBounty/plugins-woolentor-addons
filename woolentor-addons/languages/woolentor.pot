@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: ShopLentor – All-in-One WooCommerce Growth & Store "
 "Enhancement Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-15 08:38+0000\n"
+"POT-Creation-Date: 2026-02-24 03:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -246,6 +246,8 @@ msgstr ""
 msgid "<i class=\"fa fa-shopping-cart\"></i>"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:336
+#: includes/admin-panel/includes/classes/Admin/Menu.php:336
 #: includes/modules/abandoned-cart/includes/classes/Admin/Fields.php:47
 msgid "Abandoned Cart"
 msgstr ""
@@ -486,6 +488,8 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:300
+#: includes/admin-panel/includes/classes/Admin/Menu.php:300
 #: includes/modules/advanced-coupon/includes/classes/Admin/Fields.php:36
 msgid "Advanced Coupon"
 msgstr ""
@@ -548,6 +552,11 @@ msgstr ""
 msgid "Ajax Add to Cart (In Product Detail Page)"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:242
+#: includes/admin-panel/includes/classes/Admin/Menu.php:242
+msgid "AJAX Search"
+msgstr ""
+
 #: settings-panel/includes/templates/dashboard-freevspro.php:109
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:109
 msgid "Ajax Search Widget"
@@ -596,7 +605,7 @@ msgstr ""
 msgid "All Archives"
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:486
+#: includes/admin/include/class.template-manager.php:489
 msgid "All Assigned Template has been imported"
 msgstr ""
 
@@ -609,12 +618,12 @@ msgstr ""
 msgid "All Categories (Parent Only)"
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:163
-#: includes/admin-panel/includes/classes/Admin/Menu.php:163
+#: settings-panel/includes/classes/Admin/Menu.php:169
+#: includes/admin-panel/includes/classes/Admin/Menu.php:169
 msgid "All Data Restored"
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:473
+#: includes/admin/include/class.template-manager.php:476
 msgid "All Data Saved"
 msgstr ""
 
@@ -634,8 +643,8 @@ msgstr ""
 msgid "All Products"
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:173
-#: includes/admin-panel/includes/classes/Admin/Menu.php:173
+#: settings-panel/includes/classes/Admin/Menu.php:179
+#: includes/admin-panel/includes/classes/Admin/Menu.php:179
 msgid "All settings has been reset successfully."
 msgstr ""
 
@@ -757,9 +766,9 @@ msgid "Are you cheating?"
 msgstr ""
 
 #: classes/class.assest_management.php:304
-#: includes/admin/include/class.template-manager.php:489
-#: settings-panel/includes/classes/Admin/Menu.php:166
-#: includes/admin-panel/includes/classes/Admin/Menu.php:166
+#: includes/admin/include/class.template-manager.php:492
+#: settings-panel/includes/classes/Admin/Menu.php:172
+#: includes/admin-panel/includes/classes/Admin/Menu.php:172
 msgid "Are you sure?"
 msgstr ""
 
@@ -811,7 +820,7 @@ msgstr ""
 msgid "Ascending order label"
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:485
+#: includes/admin/include/class.template-manager.php:488
 msgid "Assigned Template Importing.."
 msgstr ""
 
@@ -1025,6 +1034,8 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:125
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:125
+#: settings-panel/includes/classes/Admin/Menu.php:271
+#: includes/admin-panel/includes/classes/Admin/Menu.php:271
 msgid "Backorder"
 msgstr ""
 
@@ -1235,6 +1246,11 @@ msgstr ""
 
 #: includes/addons/wl_onepage_slider.php:473
 msgid "Boho Dreams"
+msgstr ""
+
+#: settings-panel/includes/classes/Admin/Menu.php:216
+#: includes/admin-panel/includes/classes/Admin/Menu.php:216
+msgid "Boost"
 msgstr ""
 
 #: includes/addons/wl_faq.php:288 includes/addons/wl_faq.php:409
@@ -1703,13 +1719,13 @@ msgid "Buy"
 msgstr ""
 
 #: classes/class.assest_management.php:336
-#: settings-panel/includes/classes/Admin/Menu.php:148
-#: includes/admin-panel/includes/classes/Admin/Menu.php:148
+#: settings-panel/includes/classes/Admin/Menu.php:154
+#: includes/admin-panel/includes/classes/Admin/Menu.php:154
 msgid "Buy Now"
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:147
-#: includes/admin-panel/includes/classes/Admin/Menu.php:147
+#: settings-panel/includes/classes/Admin/Menu.php:153
+#: includes/admin-panel/includes/classes/Admin/Menu.php:153
 msgid "BUY PRO"
 msgstr ""
 
@@ -1736,7 +1752,7 @@ msgid "Call For Price"
 msgstr ""
 
 #: classes/class.assest_management.php:303
-#: includes/admin/include/class.template-manager.php:492
+#: includes/admin/include/class.template-manager.php:495
 msgid "Cancel"
 msgstr ""
 
@@ -1817,6 +1833,8 @@ msgid ""
 "layout template"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:312
+#: includes/admin-panel/includes/classes/Admin/Menu.php:312
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:36
 msgid "Cart Reserved Timer"
 msgstr ""
@@ -1942,6 +1960,8 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:189
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:189
+#: settings-panel/includes/classes/Admin/Menu.php:343
+#: includes/admin-panel/includes/classes/Admin/Menu.php:343
 msgid "Checkout Fields Manager"
 msgstr ""
 
@@ -2302,6 +2322,8 @@ msgstr ""
 #: includes/addons/wb_product_add_to_cart.php:1294
 #: woolentor-blocks/build/blocks/product-addtocart/manager.php:115
 #: woolentor-blocks/src/blocks/product-addtocart/manager.php:115
+#: settings-panel/includes/classes/Admin/Menu.php:231
+#: includes/admin-panel/includes/classes/Admin/Menu.php:231
 #: includes/modules/compare/includes/classes/Admin/Fields.php:29
 #: includes/modules/compare/includes/classes/Admin/Fields.php:201
 #: includes/modules/compare/includes/classes/Admin/Fields.php:202
@@ -2328,6 +2350,11 @@ msgstr ""
 
 #: includes/modules/popup-builder/includes/admin/tmpl-popup-builder-modal.php:108
 msgid "Conditions"
+msgstr ""
+
+#: settings-panel/includes/classes/Admin/Menu.php:459
+#: includes/admin-panel/includes/classes/Admin/Menu.php:459
+msgid "Connect Google Analytics in one click, no coding needed."
 msgstr ""
 
 #: includes/modules/shopify-like-checkout/templates/form-checkout.php:58
@@ -2556,6 +2583,11 @@ msgstr ""
 msgid "Create an account?"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:444
+#: includes/admin-panel/includes/classes/Admin/Menu.php:444
+msgid "Create eye-catching notification bars and announcements."
+msgstr ""
+
 #: includes/addons/wl_product_filter.php:543
 msgid "Cross Icon"
 msgstr ""
@@ -2573,6 +2605,8 @@ msgstr ""
 msgid "Currency exchange rate updated successfully."
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:289
+#: includes/admin-panel/includes/classes/Admin/Menu.php:289
 #: includes/modules/currency-switcher/includes/classes/Widgets_And_Blocks.php:31
 #: includes/modules/currency-switcher/includes/classes/Widgets_And_Blocks.php:44
 #: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:22
@@ -2753,8 +2787,8 @@ msgstr ""
 msgid "Data not found."
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:154
-#: includes/admin-panel/includes/classes/Admin/Menu.php:154
+#: settings-panel/includes/classes/Admin/Menu.php:160
+#: includes/admin-panel/includes/classes/Admin/Menu.php:160
 msgid "Data Saved"
 msgstr ""
 
@@ -2934,8 +2968,8 @@ msgstr ""
 msgid "Disable"
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:158
-#: includes/admin-panel/includes/classes/Admin/Menu.php:158
+#: settings-panel/includes/classes/Admin/Menu.php:164
+#: includes/admin-panel/includes/classes/Admin/Menu.php:164
 msgid "Disable All"
 msgstr ""
 
@@ -3049,6 +3083,11 @@ msgstr ""
 msgid "e.g: woocommerce_after_single_product_summary"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:439
+#: includes/admin-panel/includes/classes/Admin/Menu.php:439
+msgid "Easy drag-and-drop contact form builder for WordPress."
+msgstr ""
+
 #: includes/modules/popup-builder/includes/admin/tmpl-popup-builder-modal.php:458
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:613
 msgid "Edge"
@@ -3065,12 +3104,12 @@ msgstr ""
 msgid "Edit Template"
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:463
+#: includes/admin/include/class.template-manager.php:466
 msgid "Edit With Elementor"
 msgstr ""
 
 #: includes/admin/include/class.template-manager.php:211
-#: includes/admin/include/class.template-manager.php:467
+#: includes/admin/include/class.template-manager.php:470
 msgid "Edit With Gutenberg"
 msgstr ""
 
@@ -3089,8 +3128,8 @@ msgstr ""
 msgid "Element Information"
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:445
-#: includes/admin/include/class.template-manager.php:479
+#: includes/admin/include/class.template-manager.php:448
+#: includes/admin/include/class.template-manager.php:482
 msgid "Elementor"
 msgstr ""
 
@@ -3106,11 +3145,15 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:153
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:153
+#: settings-panel/includes/classes/Admin/Menu.php:379
+#: includes/admin-panel/includes/classes/Admin/Menu.php:379
 msgid "Email Automation"
 msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:149
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:149
+#: settings-panel/includes/classes/Admin/Menu.php:374
+#: includes/admin-panel/includes/classes/Admin/Menu.php:374
 msgid "Email Customizer"
 msgstr ""
 
@@ -3210,8 +3253,8 @@ msgstr ""
 msgid "Enable AJAX add to cart"
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:157
-#: includes/admin-panel/includes/classes/Admin/Menu.php:157
+#: settings-panel/includes/classes/Admin/Menu.php:163
+#: includes/admin-panel/includes/classes/Admin/Menu.php:163
 msgid "Enable All"
 msgstr ""
 
@@ -3323,7 +3366,7 @@ msgstr ""
 msgid "Enter a different address"
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:454
+#: includes/admin/include/class.template-manager.php:457
 msgid "Enter a template name"
 msgstr ""
 
@@ -3503,8 +3546,8 @@ msgstr ""
 msgid "Explore the all features of ShopLentor Pro"
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:269
-#: includes/admin-panel/includes/classes/Admin/Menu.php:269
+#: settings-panel/includes/classes/Admin/Menu.php:560
+#: includes/admin-panel/includes/classes/Admin/Menu.php:560
 msgid "Extension"
 msgstr ""
 
@@ -3779,6 +3822,8 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:105
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:105
+#: settings-panel/includes/classes/Admin/Menu.php:265
+#: includes/admin-panel/includes/classes/Admin/Menu.php:265
 msgid "Flash Sale Countdown"
 msgstr ""
 
@@ -3928,6 +3973,11 @@ msgstr ""
 msgid "Good"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:414
+#: includes/admin-panel/includes/classes/Admin/Menu.php:414
+msgid "Google Address Autocomplete"
+msgstr ""
+
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:681
 msgid "Gradient (Pro)"
 msgstr ""
@@ -3980,6 +4030,11 @@ msgstr ""
 msgid "GTM Conversion Tracking"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:369
+#: includes/admin-panel/includes/classes/Admin/Menu.php:369
+msgid "GTM Tracking"
+msgstr ""
+
 #: includes/modules/abandoned-cart/includes/classes/Email/Coupon_Manager.php:118
 msgid "Guest"
 msgstr ""
@@ -3988,8 +4043,8 @@ msgstr ""
 msgid "Guest User"
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:446
-#: includes/admin/include/class.template-manager.php:480
+#: includes/admin/include/class.template-manager.php:449
+#: includes/admin/include/class.template-manager.php:483
 msgid "Gutenberg"
 msgstr ""
 
@@ -4015,6 +4070,11 @@ msgstr ""
 
 #: includes/helper-function.php:905
 msgid "H6"
+msgstr ""
+
+#: settings-panel/includes/classes/Admin/Menu.php:443
+#: includes/admin-panel/includes/classes/Admin/Menu.php:443
+msgid "HashBar"
 msgstr ""
 
 #. Author of the plugin
@@ -4352,12 +4412,22 @@ msgstr ""
 msgid "Hover Color"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:438
+#: includes/admin-panel/includes/classes/Admin/Menu.php:438
+msgid "HT Contact Form"
+msgstr ""
+
 #: includes/modules/post-duplicator/class.post-duplicator.php:30
 msgid "HT Duplicate"
 msgstr ""
 
 #: includes/modules/post-duplicator/class.post-duplicator.php:30
 msgid "HT Duplicator"
+msgstr ""
+
+#: settings-panel/includes/classes/Admin/Menu.php:458
+#: includes/admin-panel/includes/classes/Admin/Menu.php:458
+msgid "HT Easy GA4"
 msgstr ""
 
 #: includes/addons/product_flash_sale.php:242
@@ -4721,14 +4791,14 @@ msgstr ""
 msgid "Is Exactly Matched"
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:490
+#: includes/admin/include/class.template-manager.php:493
 msgid ""
 "It will import those templates that were created from the \"Templates\" menu "
 "of Elementor and assigned to corresponding WooCommerce pages."
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:167
-#: includes/admin-panel/includes/classes/Admin/Menu.php:167
+#: settings-panel/includes/classes/Admin/Menu.php:173
+#: includes/admin-panel/includes/classes/Admin/Menu.php:173
 msgid ""
 "It will reset all the settings to default, and all the changes you made will "
 "be deleted."
@@ -5076,6 +5146,11 @@ msgstr ""
 msgid "Main Video Area"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:434
+#: includes/admin-panel/includes/classes/Admin/Menu.php:434
+msgid "Manage wholesale pricing and user roles with ease."
+msgstr ""
+
 #: includes/addons/wb_customer_review.php:151
 msgid "Manager"
 msgstr ""
@@ -5339,6 +5414,11 @@ msgstr ""
 msgid "Module Setting page"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:208
+#: includes/admin-panel/includes/classes/Admin/Menu.php:208
+msgid "Modules"
+msgstr ""
+
 #: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:95
 msgid "Monday"
 msgstr ""
@@ -5357,6 +5437,8 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:177
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:177
+#: settings-panel/includes/classes/Admin/Menu.php:409
+#: includes/admin-panel/includes/classes/Admin/Menu.php:409
 msgid "Multi Step Checkout"
 msgstr ""
 
@@ -5384,7 +5466,7 @@ msgstr ""
 #: includes/addons/wb_customer_review.php:392
 #: includes/addons/product_tabs.php:163
 #: includes/addons/wl_category_grid.php:146
-#: includes/admin/include/class.template-manager.php:453
+#: includes/admin/include/class.template-manager.php:456
 #: settings-panel/includes/templates/dashboard-freevspro.php:260
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:260
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:554
@@ -5505,8 +5587,8 @@ msgstr ""
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:628
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:744
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:835
-#: settings-panel/includes/classes/Admin/Menu.php:169
-#: includes/admin-panel/includes/classes/Admin/Menu.php:169
+#: settings-panel/includes/classes/Admin/Menu.php:175
+#: includes/admin-panel/includes/classes/Admin/Menu.php:175
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:63
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:92
 msgid "No"
@@ -5595,10 +5677,10 @@ msgid "Nonce Varification fail"
 msgstr ""
 
 #: classes/class.ajax_actions.php:54
-#: includes/admin/include/class.template-manager.php:513
-#: includes/admin/include/class.template-manager.php:703
-#: includes/admin/include/class.template-manager.php:748
-#: includes/admin/include/class.template-manager.php:864
+#: includes/admin/include/class.template-manager.php:516
+#: includes/admin/include/class.template-manager.php:706
+#: includes/admin/include/class.template-manager.php:751
+#: includes/admin/include/class.template-manager.php:867
 #: includes/modules/sales-notification/real_notification.php:28
 #: includes/modules/variation-swatch/includes/ajax-actions.php:60
 #: includes/modules/compare/includes/classes/Ajax.php:31
@@ -5783,8 +5865,8 @@ msgstr ""
 msgid "Offer Tag Line"
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:174
-#: includes/admin-panel/includes/classes/Admin/Menu.php:174
+#: settings-panel/includes/classes/Admin/Menu.php:180
+#: includes/admin-panel/includes/classes/Admin/Menu.php:180
 msgid "OK"
 msgstr ""
 
@@ -5931,6 +6013,8 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:141
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:141
+#: settings-panel/includes/classes/Admin/Menu.php:363
+#: includes/admin-panel/includes/classes/Admin/Menu.php:363
 msgid "Order Bump"
 msgstr ""
 
@@ -5977,8 +6061,8 @@ msgstr ""
 msgid "Others"
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:149
-#: includes/admin-panel/includes/classes/Admin/Menu.php:149
+#: settings-panel/includes/classes/Admin/Menu.php:155
+#: includes/admin-panel/includes/classes/Admin/Menu.php:155
 msgid ""
 "Our free version is great, but it doesn't have all our advanced features. "
 "The best way to unlock all of the features in our plugin is by purchasing "
@@ -6137,6 +6221,8 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:157
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:157
+#: settings-panel/includes/classes/Admin/Menu.php:348
+#: includes/admin-panel/includes/classes/Admin/Menu.php:348
 msgid "Partial Payment"
 msgstr ""
 
@@ -6196,6 +6282,16 @@ msgstr ""
 #: includes/modules/wishlist/includes/classes/Admin/Fields.php:359
 #: includes/modules/wishlist/includes/classes/Admin/Fields.php:371
 msgid "Pinterest"
+msgstr ""
+
+#: settings-panel/includes/classes/Admin/Menu.php:448
+#: includes/admin-panel/includes/classes/Admin/Menu.php:448
+msgid "Pixelavo"
+msgstr ""
+
+#: settings-panel/includes/classes/Admin/Menu.php:449
+#: includes/admin-panel/includes/classes/Admin/Menu.php:449
+msgid "Pixelavo – Pixel & Conversion API + FREE AI Ad Tools"
 msgstr ""
 
 #: includes/modules/shopify-like-checkout/templates/form-checkout.php:68
@@ -6283,6 +6379,8 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:137
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:137
+#: settings-panel/includes/classes/Admin/Menu.php:283
+#: includes/admin-panel/includes/classes/Admin/Menu.php:283
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:34
 msgid "Popup Builder"
 msgstr ""
@@ -6345,7 +6443,7 @@ msgstr ""
 msgid "Post not found."
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:554
+#: includes/admin/include/class.template-manager.php:557
 msgid "Post request dose not found"
 msgstr ""
 
@@ -6361,6 +6459,8 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:161
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:161
+#: settings-panel/includes/classes/Admin/Menu.php:353
+#: includes/admin-panel/includes/classes/Admin/Menu.php:353
 msgid "Pre Orders"
 msgstr ""
 
@@ -6444,7 +6544,7 @@ msgid "Privacy Policy URL"
 msgstr ""
 
 #: classes/class.assest_management.php:324
-#: includes/admin/include/class.template-manager.php:481
+#: includes/admin/include/class.template-manager.php:484
 #: includes/admin/include/admin_field-manager.php:133
 #: includes/admin/include/admin_field-manager.php:335
 #: includes/admin/include/admin_field-manager.php:515
@@ -6452,8 +6552,8 @@ msgstr ""
 #: settings-panel/includes/templates/dashboard-freevspro.php:262
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:215
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:262
-#: settings-panel/includes/classes/Admin/Menu.php:145
-#: includes/admin-panel/includes/classes/Admin/Menu.php:145
+#: settings-panel/includes/classes/Admin/Menu.php:151
+#: includes/admin-panel/includes/classes/Admin/Menu.php:151
 #: includes/modules/popup-builder/includes/admin/tmpl-popup-builder-modal.php:244
 #: includes/modules/popup-builder/includes/admin/tmpl-popup-builder-modal.php:372
 #: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:324
@@ -6512,6 +6612,8 @@ msgstr ""
 msgid "Product Badge"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:306
+#: includes/admin-panel/includes/classes/Admin/Menu.php:306
 #: includes/modules/badges/includes/classes/Admin/Fields.php:35
 msgid "Product Badges"
 msgstr ""
@@ -6598,6 +6700,8 @@ msgstr ""
 #: woolentor-blocks/includes/classes/Blocks_List.php:336
 #: settings-panel/includes/templates/dashboard-freevspro.php:145
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:145
+#: settings-panel/includes/classes/Admin/Menu.php:384
+#: includes/admin-panel/includes/classes/Admin/Menu.php:384
 msgid "Product Filter"
 msgstr ""
 
@@ -6976,6 +7080,11 @@ msgstr ""
 msgid "Quick Action Button"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:404
+#: includes/admin-panel/includes/classes/Admin/Menu.php:404
+msgid "Quick Checkout"
+msgstr ""
+
 #: templates/product-grid/modern.php:282 templates/product-grid/modern.php:458
 #: templates/product-grid/magazine.php:333
 #: templates/product-grid/luxury.php:271
@@ -6988,6 +7097,8 @@ msgstr ""
 #: woolentor-blocks/build/blocks/universal-product/old_index.php:458
 #: woolentor-blocks/src/blocks/universal-product/old_index.php:409
 #: woolentor-blocks/src/blocks/universal-product/old_index.php:458
+#: settings-panel/includes/classes/Admin/Menu.php:236
+#: includes/admin-panel/includes/classes/Admin/Menu.php:236
 msgid "Quick View"
 msgstr ""
 
@@ -7076,6 +7187,10 @@ msgstr ""
 msgid "Reached maximum limit message"
 msgstr ""
 
+#: includes/admin/include/class.template-manager.php:481
+msgid "Ready Templates"
+msgstr ""
+
 #: includes/addons/product_image_accordion.php:66
 #: includes/addons/product_accordion.php:87
 #: includes/addons/product_curvy.php:122 includes/addons/product_tabs.php:79
@@ -7124,6 +7239,16 @@ msgstr ""
 msgid "Recovery report: "
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:463
+#: includes/admin-panel/includes/classes/Admin/Menu.php:463
+msgid "Recurio"
+msgstr ""
+
+#: settings-panel/includes/classes/Admin/Menu.php:464
+#: includes/admin-panel/includes/classes/Admin/Menu.php:464
+msgid "Recurio – Ultimate Subscription Plugin for WooCommerce"
+msgstr ""
+
 #: includes/modules/quickview/includes/templates/quickview-social-share.php:32
 #: includes/modules/quickview/includes/classes/Admin/Fields.php:288
 #: includes/modules/wishlist/includes/classes/Admin/Fields.php:362
@@ -7137,6 +7262,8 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:173
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:173
+#: settings-panel/includes/classes/Admin/Menu.php:399
+#: includes/admin-panel/includes/classes/Admin/Menu.php:399
 msgid "Redirect to Checkout"
 msgstr ""
 
@@ -7203,6 +7330,8 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:93
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:93
+#: settings-panel/includes/classes/Admin/Menu.php:248
+#: includes/admin-panel/includes/classes/Admin/Menu.php:248
 msgid "Rename Label"
 msgstr ""
 
@@ -7223,8 +7352,8 @@ msgid "Reserve Time (Minutes)"
 msgstr ""
 
 #: classes/class.assest_management.php:306
-#: settings-panel/includes/classes/Admin/Menu.php:161
-#: includes/admin-panel/includes/classes/Admin/Menu.php:161
+#: settings-panel/includes/classes/Admin/Menu.php:167
+#: includes/admin-panel/includes/classes/Admin/Menu.php:167
 msgid "Reset All Settings"
 msgstr ""
 
@@ -7236,14 +7365,14 @@ msgstr ""
 msgid "Reset to Default"
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:172
-#: includes/admin-panel/includes/classes/Admin/Menu.php:172
+#: settings-panel/includes/classes/Admin/Menu.php:178
+#: includes/admin-panel/includes/classes/Admin/Menu.php:178
 msgid "Reset!"
 msgstr ""
 
 #: classes/class.assest_management.php:305
-#: settings-panel/includes/classes/Admin/Menu.php:162
-#: includes/admin-panel/includes/classes/Admin/Menu.php:162
+#: settings-panel/includes/classes/Admin/Menu.php:168
+#: includes/admin-panel/includes/classes/Admin/Menu.php:168
 msgid "Resetting..."
 msgstr ""
 
@@ -7489,9 +7618,13 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:97
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:97
+#: settings-panel/includes/classes/Admin/Menu.php:253
+#: includes/admin-panel/includes/classes/Admin/Menu.php:253
 msgid "Sales Notification"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:318
+#: includes/admin-panel/includes/classes/Admin/Menu.php:318
 #: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:32
 msgid "Sales Report Email"
 msgstr ""
@@ -7505,10 +7638,6 @@ msgstr ""
 msgid "Same Height Grid %s"
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:478
-msgid "Sample Design"
-msgstr ""
-
 #: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:100
 msgid "Saturday"
 msgstr ""
@@ -7517,9 +7646,9 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:471
-#: settings-panel/includes/classes/Admin/Menu.php:152
-#: includes/admin-panel/includes/classes/Admin/Menu.php:152
+#: includes/admin/include/class.template-manager.php:474
+#: settings-panel/includes/classes/Admin/Menu.php:158
+#: includes/admin-panel/includes/classes/Admin/Menu.php:158
 #: includes/modules/popup-builder/includes/admin/tmpl-popup-builder-modal.php:516
 msgid "Save Settings"
 msgstr ""
@@ -7537,10 +7666,10 @@ msgid "Saved!"
 msgstr ""
 
 #: classes/class.assest_management.php:300
-#: includes/admin/include/class.template-manager.php:472
+#: includes/admin/include/class.template-manager.php:475
 #: includes/modules/variation-swatch/includes/Admin.php:52
-#: settings-panel/includes/classes/Admin/Menu.php:153
-#: includes/admin-panel/includes/classes/Admin/Menu.php:153
+#: settings-panel/includes/classes/Admin/Menu.php:159
+#: includes/admin-panel/includes/classes/Admin/Menu.php:159
 msgid "Saving..."
 msgstr ""
 
@@ -7666,7 +7795,7 @@ msgstr ""
 msgid "Select Deal"
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:457
+#: includes/admin/include/class.template-manager.php:460
 msgid "Select Editor"
 msgstr ""
 
@@ -7797,7 +7926,7 @@ msgstr ""
 msgid "Set button hover color."
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:458
+#: includes/admin/include/class.template-manager.php:461
 msgid "Set Default"
 msgstr ""
 
@@ -7849,6 +7978,16 @@ msgstr ""
 #: includes/admin-panel/includes/classes/Admin/Menu.php:60
 #: includes/admin-panel/includes/classes/Admin/Menu.php:61
 msgid "Settings"
+msgstr ""
+
+#: settings-panel/includes/classes/Api/Onboarding.php:102
+#: includes/admin-panel/includes/classes/Api/Onboarding.php:102
+msgid "Setup wizard completed successfully."
+msgstr ""
+
+#: settings-panel/includes/classes/Api/Onboarding.php:114
+#: includes/admin-panel/includes/classes/Api/Onboarding.php:114
+msgid "Setup wizard skipped."
 msgstr ""
 
 #: includes/addons/wl_testimonial.php:202
@@ -7956,6 +8095,8 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:101
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:101
+#: settings-panel/includes/classes/Admin/Menu.php:259
+#: includes/admin-panel/includes/classes/Admin/Menu.php:259
 msgid "Shopify Style Checkout"
 msgstr ""
 
@@ -8333,7 +8474,14 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:169
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:169
+#: settings-panel/includes/classes/Admin/Menu.php:389
+#: includes/admin-panel/includes/classes/Admin/Menu.php:389
 msgid "Side Mini Cart"
+msgstr ""
+
+#: settings-panel/includes/classes/Admin/Menu.php:212
+#: includes/admin-panel/includes/classes/Admin/Menu.php:212
+msgid "Sign Up"
 msgstr ""
 
 #: includes/admin/include/class.template-manager.php:269
@@ -8349,6 +8497,11 @@ msgstr ""
 msgid "Single Image"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:295
+#: includes/admin-panel/includes/classes/Admin/Menu.php:295
+msgid "Single Product AJAX Add To Cart"
+msgstr ""
+
 #: settings-panel/includes/templates/dashboard-freevspro.php:113
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:113
 msgid "Single Product Ajax Add To Cart"
@@ -8357,6 +8510,11 @@ msgstr ""
 #: settings-panel/includes/templates/dashboard-freevspro.php:15
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:15
 msgid "Single Product Individual Layout"
+msgstr ""
+
+#: settings-panel/includes/classes/Admin/Menu.php:394
+#: includes/admin-panel/includes/classes/Admin/Menu.php:394
+msgid "Single Product Sticky Add To Cart"
 msgstr ""
 
 #: includes/modules/popup-builder/includes/class-repeater-helper.php:13
@@ -8393,6 +8551,11 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_magazine.php:1308
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1810
 msgid "Size"
+msgstr ""
+
+#: settings-panel/includes/classes/Admin/Menu.php:358
+#: includes/admin-panel/includes/classes/Admin/Menu.php:358
+msgid "Size Chart"
 msgstr ""
 
 #: includes/addons/wb_product_sku.php:43
@@ -8533,6 +8696,8 @@ msgstr ""
 msgid "Slug"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:324
+#: includes/admin-panel/includes/classes/Admin/Menu.php:324
 #: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:34
 msgid "Smart Cross-sell Popup"
 msgstr ""
@@ -8604,10 +8769,10 @@ msgid ""
 "& adjust the wishlist button for the single product page."
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:607
-#: includes/admin/include/class.template-manager.php:722
-#: includes/admin/include/class.template-manager.php:773
-#: includes/admin/include/class.template-manager.php:904
+#: includes/admin/include/class.template-manager.php:610
+#: includes/admin/include/class.template-manager.php:725
+#: includes/admin/include/class.template-manager.php:776
+#: includes/admin/include/class.template-manager.php:907
 msgid "Some thing is worng !"
 msgstr ""
 
@@ -8806,6 +8971,8 @@ msgstr ""
 msgid "Store Features"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:330
+#: includes/admin-panel/includes/classes/Admin/Menu.php:330
 #: includes/modules/store-vacation/includes/classes/Admin/Fields.php:45
 msgid "Store Vacation"
 msgstr ""
@@ -8951,6 +9118,23 @@ msgstr ""
 #: settings-panel/includes/templates/dashboard-widget.php:100
 #: includes/admin-panel/includes/templates/dashboard-widget.php:100
 msgid "Support"
+msgstr ""
+
+#: settings-panel/includes/classes/Admin/Menu.php:428
+#: includes/admin-panel/includes/classes/Admin/Menu.php:428
+msgid "Support Genix"
+msgstr ""
+
+#: settings-panel/includes/classes/Admin/Menu.php:429
+#: includes/admin-panel/includes/classes/Admin/Menu.php:429
+msgid ""
+"Support Genix – Helpdesk, AI Chatbot, Knowledge Base & Customer Support "
+"Ticketing System"
+msgstr ""
+
+#: settings-panel/includes/classes/Admin/Menu.php:220
+#: includes/admin-panel/includes/classes/Admin/Menu.php:220
+msgid "Surprise"
 msgstr ""
 
 #: includes/modules/variation-swatch/includes/Admin/Attribute_Taxonomy_Metabox.php:85
@@ -9114,23 +9298,23 @@ msgstr ""
 msgid "Template created successfully"
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:897
+#: includes/admin/include/class.template-manager.php:900
 msgid "Template has been imported"
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:578
+#: includes/admin/include/class.template-manager.php:581
 msgid "Template has been inserted"
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:642
-#: includes/admin/include/class.template-manager.php:765
+#: includes/admin/include/class.template-manager.php:645
+#: includes/admin/include/class.template-manager.php:768
 msgid "Template has been updated"
 msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:43
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:43
-#: settings-panel/includes/classes/Admin/Menu.php:256
-#: includes/admin-panel/includes/classes/Admin/Menu.php:256
+#: settings-panel/includes/classes/Admin/Menu.php:547
+#: includes/admin-panel/includes/classes/Admin/Menu.php:547
 msgid "Template Library"
 msgstr ""
 
@@ -9138,7 +9322,7 @@ msgstr ""
 msgid "Template not published or does not exist"
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:460
+#: includes/admin/include/class.template-manager.php:463
 msgid "Template Settings"
 msgstr ""
 
@@ -9725,7 +9909,7 @@ msgid "Two"
 msgstr ""
 
 #: includes/admin/include/class.template-manager.php:96
-#: includes/admin/include/class.template-manager.php:456
+#: includes/admin/include/class.template-manager.php:459
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:545
 msgid "Type"
 msgstr ""
@@ -9881,10 +10065,10 @@ msgstr ""
 msgid "Upgrade to Premium Version"
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:280
-#: settings-panel/includes/classes/Admin/Menu.php:281
-#: includes/admin-panel/includes/classes/Admin/Menu.php:280
-#: includes/admin-panel/includes/classes/Admin/Menu.php:281
+#: settings-panel/includes/classes/Admin/Menu.php:571
+#: settings-panel/includes/classes/Admin/Menu.php:572
+#: includes/admin-panel/includes/classes/Admin/Menu.php:571
+#: includes/admin-panel/includes/classes/Admin/Menu.php:572
 msgid "Upgrade to Pro"
 msgstr ""
 
@@ -9934,6 +10118,11 @@ msgstr ""
 #: includes/modules/advanced-coupon/includes/classes/Admin/Fields.php:54
 #: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:90
 msgid "URL Coupons"
+msgstr ""
+
+#: settings-panel/includes/classes/Admin/Menu.php:204
+#: includes/admin-panel/includes/classes/Admin/Menu.php:204
+msgid "Usage"
 msgstr ""
 
 #: classes/class.widgets_control.php:804
@@ -10134,6 +10323,8 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:129
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:129
+#: settings-panel/includes/classes/Admin/Menu.php:277
+#: includes/admin-panel/includes/classes/Admin/Menu.php:277
 msgid "Variation Swatches"
 msgstr ""
 
@@ -10235,6 +10426,11 @@ msgstr ""
 msgid "weight"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:200
+#: includes/admin-panel/includes/classes/Admin/Menu.php:200
+msgid "Welcome"
+msgstr ""
+
 #: includes/addons/wl_faq.php:168
 msgid "What Curling Irons Are The Best Ones"
 msgstr ""
@@ -10256,6 +10452,8 @@ msgid ""
 msgstr ""
 
 #: classes/class.widgets_control.php:475
+#: settings-panel/includes/classes/Admin/Menu.php:433
+#: includes/admin-panel/includes/classes/Admin/Menu.php:433
 msgid "Whols"
 msgstr ""
 
@@ -10277,6 +10475,8 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:121
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:121
+#: settings-panel/includes/classes/Admin/Menu.php:226
+#: includes/admin-panel/includes/classes/Admin/Menu.php:226
 #: includes/modules/wishlist/includes/classes/Admin/Fields.php:29
 #: includes/modules/wishlist/includes/classes/Admin/Fields.php:213
 #: includes/modules/wishlist/includes/classes/Admin/Fields.php:214
@@ -10838,6 +11038,16 @@ msgstr ""
 msgid "Words To Live By"
 msgstr ""
 
+#: settings-panel/includes/classes/Admin/Menu.php:453
+#: includes/admin-panel/includes/classes/Admin/Menu.php:453
+msgid "WP Plugin Manager"
+msgstr ""
+
+#: settings-panel/includes/classes/Admin/Menu.php:454
+#: includes/admin-panel/includes/classes/Admin/Menu.php:454
+msgid "WP Plugin Manager – Deactivate plugins per page"
+msgstr ""
+
 #: includes/addons/wb_just_table.php:129
 msgid "Wrapper Background"
 msgstr ""
@@ -10879,7 +11089,7 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_magazine.php:1669
 #: includes/addons/product-grid/product_grid_magazine.php:1705
 #: includes/addons/product-grid/product_grid_magazine.php:1718
-#: includes/admin/include/class.template-manager.php:491
+#: includes/admin/include/class.template-manager.php:494
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:215
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:226
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:237
@@ -10889,8 +11099,8 @@ msgstr ""
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:627
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:743
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:834
-#: settings-panel/includes/classes/Admin/Menu.php:168
-#: includes/admin-panel/includes/classes/Admin/Menu.php:168
+#: settings-panel/includes/classes/Admin/Menu.php:174
+#: includes/admin-panel/includes/classes/Admin/Menu.php:174
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:62
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:91
 msgid "Yes"
@@ -10910,10 +11120,10 @@ msgstr ""
 msgid "You are not permitted to save CSS."
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:520
-#: includes/admin/include/class.template-manager.php:695
-#: includes/admin/include/class.template-manager.php:740
-#: includes/admin/include/class.template-manager.php:856
+#: includes/admin/include/class.template-manager.php:523
+#: includes/admin/include/class.template-manager.php:698
+#: includes/admin/include/class.template-manager.php:743
+#: includes/admin/include/class.template-manager.php:859
 msgid "You are unauthorize to adding template!"
 msgstr ""
 

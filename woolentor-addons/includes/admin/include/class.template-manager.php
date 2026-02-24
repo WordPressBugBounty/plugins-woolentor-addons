@@ -425,6 +425,9 @@ class Woolentor_Template_Manager{
 
         if( isset( $_GET['post_type'] ) && $_GET['post_type'] == 'woolentor-template' ){
 
+			// Thickbox.
+        	add_thickbox();
+
 			// CSS
             wp_enqueue_style( 'woolentor-template-edit-manager', WOOLENTOR_ADDONS_PL_URL . 'includes/admin/assets/css/template_edit_manager.css', [], WOOLENTOR_VERSION );
 			wp_enqueue_style('woolentor-sweetalert');
@@ -475,7 +478,7 @@ class Woolentor_Template_Manager{
 						]
 					],
 					'sampledata' => [
-						'visibility' => __('Sample Design','woolentor'),
+						'visibility' => __('Ready Templates','woolentor'),
 						'elementor'  => __('Elementor','woolentor'),
 						'gutenberg'  => __('Gutenberg','woolentor'),
 						'pro' 		 => __('Pro','woolentor'),

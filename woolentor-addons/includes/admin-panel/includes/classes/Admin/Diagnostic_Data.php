@@ -519,6 +519,55 @@ class Diagnostic_Data {
         return $notice;
     }
 
+    /**
+     * Collect and send diagnostic data directly from onboarding
+     */
+    public function collect_and_send_data( $nonce = '', $from_cron = false ) {
+        // Skip nonce and capability checks when running from WP Cron
+        // (already verified during wizard completion)
+        if ( ! $from_cron ) {
+            // Verify nonce if provided
+            if (!empty($nonce) && !wp_verify_nonce($nonce, 'woolentor-diagonstic-data-ajax-request')) {
+                return;
+            }
+
+            // Verify user capabilities
+            if (!current_user_can('manage_options')) {
+                return;
+            }
+        }
+
+        $data = $this->get_data();
+        if (empty($data)) {
+            return;
+        }
+
+        $data = $this->get_data();
+        if (empty($data)) {
+            return;
+        }
+        $site_url = wp_parse_url(home_url(), PHP_URL_HOST);
+        
+        $headers = array(
+            'user-agent' => $this->project_name . '/' . md5($site_url) . ';',
+            'Accept' => 'application/json',
+        );
+
+        wp_remote_post($this->data_center, array(
+            'method' => 'POST',
+            'timeout' => 45,
+            'redirection' => 5,
+            'httpversion' => '1.0',
+            'blocking' => false,
+            'headers' => $headers,
+            'body' => $data,
+            'cookies' => array()
+        ));
+
+        update_option('woolentor_diagnostic_data_agreed', 'yes');
+        update_option('woolentor_diagnostic_data_notice', 'no');
+    }
+
 }
 
 // Returns the instance.

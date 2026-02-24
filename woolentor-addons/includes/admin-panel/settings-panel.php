@@ -131,7 +131,6 @@ class WoolentorOptions_Base{
             $this->container['admin'] = new WoolentorOptions\Admin();
         }
 
-        // $this->container['api'] = new WoolentorOptions\Api();
         $this->container['assets'] = new WoolentorOptions\Assets();
     }
 

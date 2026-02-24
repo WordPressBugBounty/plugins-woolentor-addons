@@ -378,7 +378,12 @@ final class Base {
         if ( get_option( 'woolentor_do_activation_redirect', FALSE ) ) {
             delete_option('woolentor_do_activation_redirect');
             if( !isset( $_GET['activate-multi'] ) ){
-                wp_redirect( admin_url("admin.php?page=woolentor") );
+                if ( ! get_option( 'woolentor_setup_wizard_completed', false ) ) {
+                    wp_redirect( admin_url( 'admin.php?page=woolentor#/setup-wizard' ) );
+                } else {
+                    wp_redirect( admin_url( 'admin.php?page=woolentor' ) );
+                }
+                exit;
             }
         }
     }
