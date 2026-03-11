@@ -39,6 +39,7 @@ class Fields {
                 'section'  => 'woolentor_advanced_coupon_settings',
                 'option_id' => 'enable',
                 'documentation' => esc_url('https://woolentor.com/doc/advanced-coupon/'),
+                'preview' => esc_url('https://www.youtube.com/watch?v=IPsLYh6vFt8'),
                 'require_settings'  => true,
                 'setting_fields' => [
                     [

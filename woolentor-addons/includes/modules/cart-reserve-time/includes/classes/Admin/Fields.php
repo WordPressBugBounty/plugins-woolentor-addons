@@ -33,12 +33,13 @@ class Fields {
         $fields = [
             [
                 'id'   => 'woolentor_cart_reserve_timer_settings',
-                'name'  => esc_html__( 'Cart Reserved Timer', 'woolentor' ),
+                'name'  => esc_html__( 'Cart Reserve Timer', 'woolentor' ),
                 'type'   => 'module',
                 'default'=> 'off',
                 'section'  => 'woolentor_cart_reserve_timer_settings',
                 'option_id' => 'enable',
                 'documentation' => esc_url('https://woolentor.com/doc/cart-reserved-timer-reduce-cart-abandonment-in-woocommerce/'),
+                'preview' => esc_url('https://www.youtube.com/watch?v=CbqjpA6Mi3E'),
                 'require_settings'  => true,
                 'setting_fields' => [
                     [

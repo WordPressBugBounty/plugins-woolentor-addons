@@ -83,11 +83,45 @@
 
             // Hide the set default checkbox on edit popup.
             $(document).on('woolentor_template_edit_popup_open_ajax_success', this.OnEdit);
+
+            // List page: Condition button click handler.
+            $('body').on('click', '.wlpb-list-condition-btn', this.openModalFromList);
+        },
+
+        initModalTabs: function() {
+            const $tabList      = $('.wlpb-tab-nav li'),
+                $tabListLink    = $('.wlpb-tab-nav li a'),
+                $tabBorder      = $('.wlpb-tab-border'),
+                $tabPane        = $('.wlpb-tab-pane');
+
+            function tabBorderAnimation() {
+                const $tabActive = $('.wlpb-tab-nav li.wlpb-active');
+                if( $tabActive.length ){
+                    $tabBorder.stop().css({
+                        top: $tabActive.position().top,
+                        height: $tabActive.height()
+                    });
+                }
+            }
+
+            tabBorderAnimation();
+
+            $tabList.on('click', 'a', function (e) {
+                e.preventDefault();
+                const $tabTarget = $(this).attr('href');
+
+                $tabListLink.stop().parent('li').removeClass('wlpb-active');
+                $(this).stop().parent('li').addClass('wlpb-active');
+                tabBorderAnimation();
+
+                $tabPane.stop().removeClass('wlpb-active');
+                $($tabTarget).addClass('wlpb-active');
+            });
         },
 
         openModal: function(event) {
             if( $('.wlpb-modal').length ){
-                $('body').addClass('open-editor');
+                $('body').addClass('wlpb-setting-popup-open');
                 return;
             }
 
@@ -103,41 +137,48 @@
             });
 
             $('body').append(popupPlainMarkup);
-            $('body').addClass('open-editor');
-            
-            // Render and activate Tab.
-            const $tabList      = $('.wlpb-tab-nav li'),
-                $tabListLink    = $('.wlpb-tab-nav li a'),
-                $tabBorder      = $('.wlpb-tab-border'),
-                $tabPane        = $('.wlpb-tab-pane');
+            $('body').addClass('wlpb-setting-popup-open');
 
-            function tabBorderAnimation() {
-                const $tabActive = $('.wlpb-tab-nav li.wlpb-active');
-                $tabBorder.stop().css({
-                    top: $tabActive.position().top,
-                    height: $tabActive.height()
-                });
-            }
-
-            tabBorderAnimation();
-
-            $tabList.on('click', 'a', function (e) {
-                e.preventDefault();
-                const $tabTarget = $(this).attr('href');
-        
-                $tabListLink.stop().parent('li').removeClass('wlpb-active');
-                $(this).stop().parent('li').addClass('wlpb-active');
-                tabBorderAnimation();
-        
-                $tabPane.stop().removeClass('wlpb-active');
-                $($tabTarget).addClass('wlpb-active');
-            });
-
+            popupBuilderAdmin.initModalTabs();
             $(document).trigger('wlpb_module_popup_open');
+        },
+
+        openModalFromList: function(event) {
+            event.preventDefault();
+            var $btn = $(this),
+                popupId = $btn.data('popup_id');
+
+            $.ajax({
+                url: wlpb_params.ajax_url,
+                type: 'POST',
+                data: {
+                    'action': 'wlpb_render_popup_modal',
+                    'popup_id': popupId,
+                    'nonce': wlpb_params.nonce
+                },
+                beforeSend: function(){
+                    $btn.addClass('updating-message');
+                    $('.wlpb-modal').remove();
+                },
+                success: function(response){
+                    $btn.removeClass('updating-message');
+                    if( response.success ){
+                        $('body').addClass('wlpb-setting-popup-open');
+                        $('body').append(response.data);
+                        popupBuilderAdmin.initModalTabs();
+                        $(document).trigger('wlpb_module_popup_open');
+                    }
+                },
+                error: function(errorThrown){
+                    $btn.removeClass('updating-message');
+                    console.log(errorThrown);
+                }
+            });
         },
 
         closeModal: function (event) {
             $('body').removeClass('open-editor');
+            $('body').removeClass('wlpb-setting-popup-open'); // Post List page
         },
 
         generateSubName: function (event) {

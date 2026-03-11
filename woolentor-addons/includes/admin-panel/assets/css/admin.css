@@ -96,11 +96,13 @@
     border: none;
     box-shadow: none;
     padding: 0;
+    min-height: inherit;
   }
   input[type=checkbox]:focus, input[type=color]:focus, input[type=date]:focus, input[type=datetime-local]:focus, input[type=datetime]:focus, input[type=email]:focus, input[type=month]:focus, input[type=number]:focus, input[type=password]:focus, input[type=radio]:focus, input[type=search]:focus, input[type=tel]:focus, input[type=text]:focus, input[type=time]:focus, input[type=url]:focus, input[type=week]:focus, select:focus, textarea:focus {
     border: none;
     box-shadow: none;
     outline: none;
+    min-height: inherit;
   }
 
   #wpbody-content>.notice, #wpbody-content>.error {
@@ -113,6 +115,9 @@
   .woolentor-options-wrapper {
     width: calc(100% - 425px);
     margin-right: auto;
+  }
+  .woolentor-options-wrapper-full{
+    height: 100vh;
   }
 
   @media only screen and (min-width: 1281px) and (max-width: 1549px) {
@@ -282,6 +287,9 @@
 }
 .woolentor-card-field-label {
   width: 55%;
+}
+.woolentor-admin-option-field.woolentor-filed-type-html {
+  padding: 0 !important;
 }
 /* .woolentor-opt-field-dimensions .woolentor-card-field-label {
   width: 45%;
@@ -524,7 +532,7 @@ a.woolentor-admin-btn:hover {
   border-color: rgb(221, 51, 51) !important;
   color: #FFFFFF !important;
 }
-a.woolentor-admin-settings-link {
+a.woolentor-admin-settings-link, span.woolentor-admin-settings-link {
   line-height: 1;
   box-shadow: none;
   outline: none;
@@ -653,6 +661,34 @@ a.woolentor-admin-settings-link {
   font-size: 16px;
 }
 
+/* Enable Disabled Status in Module settings */
+/* .woolentor-filed-type-module .el-button, .woolentor-filed-type-abandon-cart .el-button{
+  position: relative;
+}
+.woolentor-filed-type-module .el-button::before, .woolentor-filed-type-abandon-cart .el-button::before{
+    content: "Disabled";
+    right: 20px;
+    position: absolute;
+    font-size: 12px;
+    padding: 3px 7px;
+    background: #f4f4f5;
+    border-radius: 4px;
+    color: #a8abb2;
+    line-height: 14px;
+    font-weight: 400;
+}
+.woolentor-filed-type-module .el-button.is-active:before, .woolentor-filed-type-abandon-cart .el-button.is-active:before {
+    content: "Enabled";
+    background: #d9ecff;
+    color: #409eff;
+} */
+
+/* Ajax Select  Field */
+.woolentor-field-ajaxselect .el-select--large .el-select__input{
+  padding: 0 !important;
+  min-height: inherit !important;
+}
+
 /* Normal  :1366px. */
 @media (min-width: 1200px) and (max-width: 1400px) {
 }
@@ -696,7 +732,7 @@ a.woolentor-admin-settings-link {
   .woolentor-pro-banner-summary{
     text-align: left;
   }
-  .woolentoropt-wrap a{
+  .woolentor-admin-sidebar a{
     align-self: self-start;
   }
 
@@ -740,6 +776,9 @@ a.woolentor-admin-settings-link {
   .el-dialog.woolentor-module-setting-popup{
     width: 60%;
   }
+  .subscribe-form-wrapper{
+    margin-top: 20px;
+  }
 }
 
 /* Tablet desktop :768px. */
@@ -763,7 +802,7 @@ a.woolentor-admin-settings-link {
   .woolentor-pro-banner-summary{
     text-align: left;
   }
-  .woolentoropt-wrap a{
+  .woolentor-options-sidebar .woolentoropt-wrap a{
     align-self: self-start;
   }
   .el-dialog.template-import-dialog{
@@ -771,6 +810,9 @@ a.woolentor-admin-settings-link {
   }
   .el-dialog.woolentor-module-setting-popup{
     width: 70%;
+  }
+  .el-dialog.woolentor-video-preview-popup{
+    width: 90vw;
   }
 }
 
@@ -835,18 +877,11 @@ a.woolentor-admin-settings-link {
   .el-dialog.template-import-dialog{
     width: 80%;
   }
-  .template-import-actions{
-    display: flex;
-    flex-direction: column;
-  }
-  .template-import-dialog .el-button{
-    margin-left: 0;
-  }
-  .template-import-dialog .el-button+.el-button{
-    margin-top: 10px;
-  }
   .el-dialog.woolentor-module-setting-popup{
     width: 80%;
+  }
+  .el-dialog.woolentor-video-preview-popup{
+    width: 90vw;
   }
 }
 
@@ -860,15 +895,5 @@ a.woolentor-admin-settings-link {
   .video-content{
     min-height: 250px !important;
   }
-  .template-import-actions{
-    display: flex;
-    flex-direction: row;
-  }
-  .template-import-dialog .el-button+.el-button{
-    margin-left: 10px;
-  }
-  .template-import-dialog .el-button+.el-button{
-    margin-top: 0;
-  }
-  
+
 }

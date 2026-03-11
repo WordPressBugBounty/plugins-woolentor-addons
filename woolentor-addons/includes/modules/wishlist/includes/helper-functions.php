@@ -1,22 +1,4 @@
 <?php
-/**
- * [wishsuite_get_post_list]
- * @param  string $post_type
- * @return [array]
- */
-function wishsuite_get_post_list( $post_type = 'page' ){
-    $options = array();
-    $options['0'] = __('Select','wishsuite');
-    $perpage = -1;
-    $all_post = array( 'posts_per_page' => $perpage, 'post_type'=> $post_type );
-    $post_terms = get_posts( $all_post );
-    if ( ! empty( $post_terms ) && ! is_wp_error( $post_terms ) ){
-        foreach ( $post_terms as $term ) {
-            $options[ $term->ID ] = $term->post_title;
-        }
-        return $options;
-    }
-}
 
 /**
  * [wishsuite_locate_template]

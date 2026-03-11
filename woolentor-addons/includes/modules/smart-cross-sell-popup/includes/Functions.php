@@ -12,6 +12,7 @@ function woolentor_smart_cross_sell_get_settings(){
     $settings = get_option( 'woolentor_smart_cross_sell_popup_settings', [] );
     return wp_parse_args( $settings, [
         'enable'        => 'off',
+        'trigger_type'  => 'add_to_cart',
         'popup_title'   => esc_html__( 'You May Also Like', 'woolentor' ),
         'product_limit' => '4',
         'popup_width'   => '500px',

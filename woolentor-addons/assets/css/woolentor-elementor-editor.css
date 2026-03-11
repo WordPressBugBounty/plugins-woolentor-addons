@@ -61,3 +61,15 @@ a.woolentor-pro-dialog-button-action{
     color: #D73361;
     font-size: 14px;
 }
+
+/**
+ * Woolentor Select Control
+ */
+.elementor-control-type-woolentor-select .select2-search--inline .select2-search__field {
+    min-width: 100% !important;
+    width: 95% !important;
+}
+.elementor-control-type-woolentor-select .select2-selection__rendered:has(.select2-selection__choice) .select2-search__field {
+    min-width: 0 !important;
+    width: 75% !important;
+}

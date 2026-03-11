@@ -19,6 +19,8 @@ class Fields {
             $fields['woolentor_elements_tabs'][] = [
                 'id'  => 'wl_quickview_product_image',
                 'name' => esc_html__( 'Quick view .. image', 'woolentor' ),
+                'documentation' => esc_url('https://woolentor.com/doc/quick-view-image/'),
+                'preview' => esc_url('https://www.youtube.com/watch?v=PwpT3ce1VMU'),
                 'type'  => 'element',
                 'default' => 'on'
             ];
@@ -49,6 +51,7 @@ class Fields {
                 'section'  => 'woolentor_quickview_settings',
                 'option_id' => 'enable',
                 'documentation' => esc_url('https://woolentor.com/doc/quick-view/'),
+                'preview' => esc_url('https://www.youtube.com/watch?v=--1etmIVlOo'),
                 'require_settings'  => true,
                 'setting_fields' => [
                     

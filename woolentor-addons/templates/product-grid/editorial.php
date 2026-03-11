@@ -85,8 +85,8 @@ $list_image_aspect_ratio = $settings['list_image_aspect_ratio'];
 $show_view_details = $settings['show_view_details'];
 $view_details_text = $settings['view_details_text'];
 $show_secondary_image = $settings['show_secondary_image'];
-$show_quick_view = $settings['show_quick_view'];
 $show_badges = $settings['show_badges'];
+$show_quick_view = ($settings['show_quick_view'] && true === woolentor_has_quickview());
 $show_wishlist = ($settings['show_wishlist'] && true === woolentor_has_wishlist_plugin());
 $show_compare = ($settings['show_compare'] && true === woolentor_exist_compare_plugin());
 

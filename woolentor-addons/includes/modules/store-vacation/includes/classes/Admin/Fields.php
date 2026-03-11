@@ -49,6 +49,7 @@ class Fields {
                 'option_id'=> 'enable',
                 'require_settings' => true,
                 'documentation' => esc_url('https://woolentor.com/doc/setup-the-store-vacation-module-in-woocommerce/'),
+                'preview' => esc_url('https://www.youtube.com/watch?v=lR1AbWAnQT0'),
                 'setting_fields' => array(
                     
                     array(

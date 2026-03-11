@@ -38,6 +38,7 @@ class Fields {
                 'section'  => 'woolentor_badges_settings',
                 'option_id' => 'enable',
                 'documentation' => esc_url('https://woolentor.com/doc/product-badges-module/'),
+                'preview' => esc_url('https://www.youtube.com/watch?v=BK7jGM5gWJw'),
                 'require_settings'  => true,
                 'setting_fields' => [
                     [
@@ -240,9 +241,11 @@ class Fields {
                                 'id'        => 'products',
                                 'name'       => esc_html__( 'Select Products', 'woolentor' ),
                                 'desc'        => esc_html__( 'Select individual products in which the badge will be show.', 'woolentor' ),
-                                'type'        => 'multiselect',
+                                'type'        => 'ajaxselect',
                                 'convertnumber' => true,
-                                'options'     => woolentor_post_name( 'product' ),
+                                'post_type'   => 'product',
+                                'multiple'    => true,
+                                'placeholder' => esc_html__( 'Search products...', 'woolentor' ),
                                 'condition'   => [ 'key'=>'badge_condition', 'operator'=>'==', 'value'=>'selected_product' ],
                                 'class'       => 'woolentor-action-field-left'
                             ],

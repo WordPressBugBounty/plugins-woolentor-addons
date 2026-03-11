@@ -923,10 +923,10 @@ class Woolentor_Wb_Archive_Product_Widget extends Widget_Base {
 
     }
 
-    public function woolentor_custom_product_limit( $limit = 3 ) {
-        $limit = ( $this->get_settings_for_display('columns')*$this->get_settings_for_display('row') );
-        return $limit;
-    }
+    // public function woolentor_custom_product_limit( $limit = 3 ) {
+    //     $limit = ( $this->get_settings_for_display('columns')*$this->get_settings_for_display('row') );
+    //     return $limit;
+    // }
 
     protected function render( $instance = [] ) {
 
@@ -943,7 +943,7 @@ class Woolentor_Wb_Archive_Product_Widget extends Widget_Base {
 
         $settings = $this->get_settings();
         $settings['editor_mode'] = Plugin::instance()->editor->is_edit_mode();
-        add_filter( 'product_custom_limit', array( $this, 'woolentor_custom_product_limit' ) );
+        // add_filter( 'product_custom_limit', array( $this, 'woolentor_custom_product_limit' ) );
         $shortcode = new \Archive_Products_Render( $settings, 'products', $filterable );
         $content = $shortcode->get_content();
         $not_found_content = woolentor_products_not_found_content();

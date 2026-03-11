@@ -523,6 +523,7 @@ class Settings extends WP_REST_Controller {
 
             case 'multiselect':
             case 'multicheckbox':
+            case 'ajaxselect':
                 return $this->sanitize_multiple_field($setting_value, $errors, $setting);
 
             case 'file':

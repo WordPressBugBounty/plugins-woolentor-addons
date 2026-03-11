@@ -31,13 +31,14 @@ class Fields {
         $fields = [
             array(
                 'id'     => 'woolentor_smart_cross_sell_popup_settings',
-                'name'    => esc_html__( 'Smart Cross-sell Popup', 'woolentor' ),
+                'name'    => esc_html__( 'Cross-sell Popup', 'woolentor' ),
                 'type'     => 'module',
                 'default'  => 'off',
                 'section'  => 'woolentor_smart_cross_sell_popup_settings',
                 'option_id'=> 'enable',
                 'require_settings' => true,
                 'documentation' => esc_url('https://woolentor.com/doc/smart-cross-sell-popup-module-in-woocommerce/'),
+                'preview' => esc_url('https://www.youtube.com/watch?v=rch6Y13AiCg'),
                 'setting_fields' => array(
                     
                     array(
@@ -73,7 +74,7 @@ class Fields {
                         'type'    => 'number',
                         'default' => '4',
                         'min'     => 1,
-                        'max'     => 4,
+                        'max'     => 100,
                         'class'   => 'woolentor-action-field-left',
                     ),
     

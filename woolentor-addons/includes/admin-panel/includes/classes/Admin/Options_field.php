@@ -31,17 +31,34 @@ class Options_Field {
                     'footer' => false,
                 ]
             ],
-            'woo_template' => [
-                'id'    => 'woolentor_woo_template_tabs',
-                'title' => esc_html__( 'WooCommerce Template', 'woolentor' ),
-                'icon'  => 'wli wli-store',
+            'modules' => [
+                'id'    => 'woolentor_others_tabs',
+                'title' => esc_html__( 'Modules', 'woolentor' ),
+                'icon'  => 'wli wli-grid',
                 'show_in_nav' => true,
                 'content' => [
                     'header' => false,
-                    'column' => 1,
-                    'title' => __( 'Your Widget List', 'woolentor' ),
-                    'desc'  => __( 'Freely use these elements to create your site. You can enable which you are not using, and, all associated assets will be disable to improve your site loading speed.', 'woolentor' ),
-                ]
+                    'column' => 3,
+                    'title' => __( 'ShopLentor Module', 'woolentor' ),
+                    'desc'  => __( 'You can enable or disable all modules by one click.', 'woolentor' ),
+                ],
+            ],
+            'elements' => [
+                'id'    => 'woolentor_elements_tabs',
+                'title' => __( 'Elementor Widgets', 'woolentor' ),
+                'icon'  => 'wli wli-images',
+                'show_in_nav' => true,
+                'content' => [
+                    'notice' => [
+                        'condition' => !did_action( 'elementor/loaded' ),
+                        'type' => 'warning',
+                        'message' => __( 'If you want to use these widgets, you need to install and activate the Elementor plugin.', 'woolentor' ),
+                    ],
+                    'header' => true,
+                    'column' => 3,
+                    'title' => __( 'ShopLentor Elementor Widgets', 'woolentor' ),
+                    'desc'  => __( 'You can enable or disable all widgets by one click.', 'woolentor' ),
+                ],
             ],
             'gutenberg' => [
                 'id'    => 'woolentor_gutenberg_tabs',
@@ -80,29 +97,17 @@ class Options_Field {
                     ]
                 ]
             ],
-            'elements' => [
-                'id'    => 'woolentor_elements_tabs',
-                'title' => __( 'Elements', 'woolentor' ),
-                'icon'  => 'wli wli-images',
+            'woo_template' => [
+                'id'    => 'woolentor_woo_template_tabs',
+                'title' => esc_html__( 'Other Settings', 'woolentor' ),
+                'icon'  => 'wli wli-store',
                 'show_in_nav' => true,
                 'content' => [
-                    'header' => true,
-                    'column' => 3,
-                    'title' => __( 'ShopLentor Element', 'woolentor' ),
-                    'desc'  => __( 'You can enable or disable all options by one click.', 'woolentor' ),
-                ],
-            ],
-            'modules' => [
-                'id'    => 'woolentor_others_tabs',
-                'title' => esc_html__( 'Modules', 'woolentor' ),
-                'icon'  => 'wli wli-grid',
-                'show_in_nav' => true,
-                'content' => [
-                    'header' => true,
-                    'column' => 3,
-                    'title' => __( 'ShopLentor Module', 'woolentor' ),
-                    'desc'  => __( 'You can enable or disable all options by one click.', 'woolentor' ),
-                ],
+                    'header' => false,
+                    'column' => 1,
+                    'title' => __( 'ShopLentor Other Settings', 'woolentor' ),
+                    'desc'  => __( 'ShopLentor Other Settings', 'woolentor' ),
+                ]
             ],
             'style' => [
                 'id'    => 'woolentor_style_tabs',
@@ -183,23 +188,34 @@ class Options_Field {
                 array(
                     'id'    => 'enablecustomlayout',
                     'name'   => esc_html__( 'Enable / Disable Template Builder', 'woolentor' ),
-                    'desc'    => esc_html__( 'You can enable/disable template builder from here.', 'woolentor' ),
+                    'desc'    => esc_html__( 'Turn on to override default WooCommerce pages with custom templates.', 'woolentor' ),
                     'type'    => 'checkbox',
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
                 ),
 
+                // array(
+                //     'id'  => 'shoppageproductlimit',
+                //     'name' => esc_html__( 'Product Limit', 'woolentor' ),
+                //     'desc'  => esc_html__( 'Number of products displayed per page on Shop and Archive pages.', 'woolentor' ),
+                //     'min'               => 1,
+                //     'max'               => 100,
+                //     'step'              => '1',
+                //     'type'              => 'number',
+                //     'default'           => '2',
+                //     'sanitize_callback' => 'floatval',
+                //     'condition' => [
+                //         'key'=>'enablecustomlayout',
+                //         'operator'=>'==',
+                //         'value' => 'on'
+                //     ]
+                // ),
+
                 array(
-                    'id'  => 'shoppageproductlimit',
-                    'name' => esc_html__( 'Product Limit', 'woolentor' ),
-                    'desc'  => esc_html__( 'You can handle the product limit for the Shop page', 'woolentor' ),
-                    'min'               => 1,
-                    'max'               => 100,
-                    'step'              => '1',
-                    'type'              => 'number',
-                    'default'           => '2',
-                    'sanitize_callback' => 'floatval',
+                    'id'          => 'template_assignment_info',
+                    'type'        => 'html',
+                    'html'        => wp_kses_post( '<div style="background:#f0f6ff;border-left:4px solid #409eff;padding:12px 16px;border-radius:4px;font-size:13px;line-height:1.6;color:#475569;"><strong style="color:#1e3a5f;">' . esc_html__( 'Tip:', 'woolentor' ) . '</strong> ' . esc_html__( 'The template settings below are optional. You can also assign default templates directly from the', 'woolentor' ) . ' <a href="' . esc_url( admin_url( 'edit.php?post_type=woolentor-template' ) ) . '" style="color:#409eff;text-decoration:underline;">' . esc_html__( 'Template Builder', 'woolentor' ) . '</a> ' . esc_html__( 'page by enabling the "Default" toggle for any template.', 'woolentor' ) . '</div>' ),
                     'condition' => [
                         'key'=>'enablecustomlayout',
                         'operator'=>'==',
@@ -210,7 +226,7 @@ class Options_Field {
                 array(
                     'id'    => 'singleproductpage',
                     'name'   => esc_html__( 'Single Product Template', 'woolentor' ),
-                    'desc'    => esc_html__( 'You can select a custom template for the product details page layout', 'woolentor' ),
+                    'desc'    => esc_html__( 'Applied to individual product detail pages (e.g. yoursite.com/product/hoodie).', 'woolentor' ),
                     'type'    => 'select',
                     'default' => '0',
                     'placeholder' => esc_html__( 'Select Template', 'woolentor' ),
@@ -236,7 +252,7 @@ class Options_Field {
                 array(
                     'id'    => 'productarchivepage',
                     'name'   => esc_html__( 'Product Shop Page Template', 'woolentor' ),
-                    'desc'    => esc_html__( 'You can select a custom template for the Shop page layout', 'woolentor' ),
+                    'desc'    => esc_html__( 'Applied to your main Shop page only (e.g. yoursite.com/shop).', 'woolentor' ),
                     'type'    => 'select',
                     'default' => '0',
                     'placeholder' => esc_html__( 'Select Template', 'woolentor' ),
@@ -262,7 +278,7 @@ class Options_Field {
                 array(
                     'id'    => 'productallarchivepage',
                     'name'   => esc_html__( 'Product Archive Page Template', 'woolentor' ),
-                    'desc'    => esc_html__( 'You can select a custom template for the Product Archive page layout', 'woolentor' ),
+                    'desc'    => esc_html__( 'Applied to product category, tag, and other taxonomy listing pages.', 'woolentor' ),
                     'type'    => 'select',
                     'default' => '0',
                     'placeholder' => esc_html__( 'Select Template', 'woolentor' ),
@@ -288,7 +304,7 @@ class Options_Field {
                 array(
                     'id'    => 'productcartpagep',
                     'name'   => esc_html__( 'Cart Page Template', 'woolentor' ),
-                    'desc'    => esc_html__( 'You can select a template for the Cart page layout', 'woolentor' ),
+                    'desc'    => esc_html__( 'Replaces the default WooCommerce cart page design.', 'woolentor' ),
                     'type'    => 'select',
                     'default' => '0',
                     'placeholder' => esc_html__( 'Select Template', 'woolentor' ),
@@ -307,7 +323,7 @@ class Options_Field {
                 array(
                     'id'    => 'productcheckoutpagep',
                     'name'   => esc_html__( 'Checkout Page Template', 'woolentor' ),
-                    'desc'    => esc_html__( 'You can select a template for the Checkout page layout', 'woolentor' ),
+                    'desc'    => esc_html__( 'Replaces the default WooCommerce checkout page design.', 'woolentor' ),
                     'type'    => 'select',
                     'placeholder' => esc_html__( 'Select Template', 'woolentor' ),
                     'default' => '0',
@@ -326,7 +342,7 @@ class Options_Field {
                 array(
                     'id'    => 'productthankyoupagep',
                     'name'   => esc_html__( 'Thank You Page Template', 'woolentor' ),
-                    'desc'    => esc_html__( 'Select a template for the Thank you page layout', 'woolentor' ),
+                    'desc'    => esc_html__( 'Shown after a successful order is placed.', 'woolentor' ),
                     'type'    => 'select',
                     'default' => '0',
                     'placeholder' => esc_html__( 'Select Template', 'woolentor' ),
@@ -345,7 +361,7 @@ class Options_Field {
                 array(
                     'id'    => 'productmyaccountpagep',
                     'name'   => esc_html__( 'My Account Page Template', 'woolentor' ),
-                    'desc'    => esc_html__( 'Select a template for the My Account page layout', 'woolentor' ),
+                    'desc'    => esc_html__( 'Applied to the My Account dashboard for logged-in customers.', 'woolentor' ),
                     'type'    => 'select',
                     'default' => '0',
                     'placeholder' => esc_html__( 'Select Template', 'woolentor' ),
@@ -364,7 +380,7 @@ class Options_Field {
                 array(
                     'id'    => 'productmyaccountloginpagep',
                     'name'   => esc_html__( 'My Account Login page Template', 'woolentor' ),
-                    'desc'    => esc_html__( 'Select a template for the Login page layout', 'woolentor' ),
+                    'desc'    => esc_html__( 'Applied to the My Account page when the customer is not logged in.', 'woolentor' ),
                     'type'    => 'select',
                     'default' => '0',
                     'placeholder' => esc_html__( 'Select Template', 'woolentor' ),
@@ -383,7 +399,7 @@ class Options_Field {
                 array(
                     'id'    => 'productquickviewp',
                     'name'   => esc_html__( 'Quick View Template', 'woolentor' ),
-                    'desc'    => esc_html__( 'Select a template for the product\'s quick view layout', 'woolentor' ),
+                    'desc'    => esc_html__( 'Applied to the product quick view popup/modal.', 'woolentor' ),
                     'type'    => 'select',
                     'default' => '0',
                     'placeholder' => esc_html__( 'Select Template', 'woolentor' ),
@@ -440,6 +456,8 @@ class Options_Field {
                 array(
                     'id'    => 'product_tab',
                     'name'   => esc_html__( 'Product Tab', 'woolentor' ),
+                    'documentation' => esc_url('https://woolentor.com/doc/product-tab-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=exCDj9WqSgM'),
                     'type'    => 'element',
                     'default' => 'on'
                 ),
@@ -450,6 +468,7 @@ class Options_Field {
                     'type'    => 'element',
                     'default' => 'on',
                     'documentation' => esc_url('https://woolentor.com/doc/how-to-use-product-grid-modern-layout-in-gutenberg/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=6H3roeMrlxA'),
                     'badge'   => [
                         'is_active' => true,
                         'type'      => 'new',
@@ -462,6 +481,7 @@ class Options_Field {
                     'type'    => 'element',
                     'default' => 'on',
                     'documentation' => esc_url('https://woolentor.com/doc/how-to-use-product-grid-luxury-layout-in-gutenberg/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=i_wjB0PPDyw'),
                     'badge'   => [
                         'is_active' => true,
                         'type'      => 'new',
@@ -474,6 +494,7 @@ class Options_Field {
                     'type'    => 'element',
                     'default' => 'on',
                     'documentation' => esc_url('https://woolentor.com/doc/how-to-use-product-grid-editorial-layout-in-gutenberg/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=nsQXotvjWJ0'),
                     'badge'   => [
                         'is_active' => true,
                         'type'      => 'new',
@@ -486,6 +507,7 @@ class Options_Field {
                     'type'    => 'element',
                     'default' => 'on',
                     'documentation' => esc_url('https://woolentor.com/doc/how-to-use-product-grid-magazine-layout-in-gutenberg/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=U52YF1KoRuk'),
                     'badge'   => [
                         'is_active' => true,
                         'type'      => 'new',
@@ -497,6 +519,8 @@ class Options_Field {
                     'id'    => 'promo_banner',
                     'name'   => esc_html__( 'Promo Banner', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/promo-banner-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=MNE7QWsWNBU'),
                     'default' => 'on'
                 ),
 
@@ -504,6 +528,8 @@ class Options_Field {
                     'id'    => 'special_day_offer',
                     'name'   => esc_html__( 'Special Day Offer', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/special-day-offer-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=wIYJ14TF4q4'),
                     'default' => 'on'
                 ),
 
@@ -511,6 +537,8 @@ class Options_Field {
                     'id'    => 'image_marker',
                     'name'   => esc_html__( 'Image Marker', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/image-marker-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=S-trNrU8nvU'),
                     'default' => 'on'
                 ),
 
@@ -518,6 +546,8 @@ class Options_Field {
                     'id'    => 'store_feature',
                     'name'   => esc_html__( 'Store Feature', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/store-feature-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=f-BXAXe_OqY'),
                     'default' => 'on'
                 ),
 
@@ -525,6 +555,8 @@ class Options_Field {
                     'id'    => 'brand_logo',
                     'name'   => esc_html__( 'Brand Logo', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/brand-logo-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=SIT7awLeHNU'),
                     'default' => 'on'
                 ),
 
@@ -532,6 +564,8 @@ class Options_Field {
                     'id'    => 'category_grid',
                     'name'   => esc_html__( 'Category Grid', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/category-grid-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=LoyT22SrntU'),
                     'default' => 'on'
                 ),
 
@@ -539,6 +573,8 @@ class Options_Field {
                     'id'    => 'faq',
                     'name'   => esc_html__( 'FAQ', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/faq-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=RnSf2T9Ese8'),
                     'default' => 'on'
                 ),
 
@@ -546,6 +582,8 @@ class Options_Field {
                     'id'    => 'product_curvy',
                     'name'   => esc_html__( 'Product Curvy', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-curvy-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=wE5kYcnlqVQ'),
                     'default' => 'on'
                 ),
 
@@ -553,6 +591,8 @@ class Options_Field {
                     'id'    => 'archive_title',
                     'name'   => esc_html__( 'Archive Title', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/archive-title-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=Pb47VgwYBCs'),
                     'default' => 'on'
                 ),
 
@@ -560,6 +600,8 @@ class Options_Field {
                     'id'    => 'breadcrumbs',
                     'name'   => esc_html__( 'Breadcrumbs', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/breadcrumbs-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=Bv7dhXcFdHg'),
                     'default' => 'on'
                 ),
                 array(
@@ -596,6 +638,8 @@ class Options_Field {
                     'id'    => 'shop_archive_product',
                     'name'   => esc_html__( 'Product Archive (Default)', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-archive-layout-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=OFuE-kFxJ7c'),
                     'default' => 'on'
                 ),
                 array(
@@ -634,6 +678,8 @@ class Options_Field {
                     'id'    => 'product_title',
                     'name'   => esc_html__('Product Title','woolentor'),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-title-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=gl6yzCOlKJw'),
                     'default' => 'on'
                 ),
 
@@ -641,6 +687,8 @@ class Options_Field {
                     'id'    => 'product_price',
                     'name'   => esc_html__('Product Price','woolentor'),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-price-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=M_Fv9h6pdJI'),
                     'default' => 'on'
                 ),
 
@@ -648,6 +696,8 @@ class Options_Field {
                     'id'    => 'product_addtocart',
                     'name'   => esc_html__('Product Add To Cart','woolentor'),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-add-to-cart-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=rzzLagPZfwM'),
                     'default' => 'on'
                 ),
 
@@ -655,6 +705,8 @@ class Options_Field {
                     'id'    => 'product_short_description',
                     'name'   => esc_html__('Product Short Description','woolentor'),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-short-description-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=_UHRQt0R4aw'),
                     'default' => 'on'
                 ),
 
@@ -662,6 +714,8 @@ class Options_Field {
                     'id'    => 'product_description',
                     'name'   => esc_html__('Product Description','woolentor'),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-description-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=OUMcBgr8SvA'),
                     'default' => 'on'
                 ),
 
@@ -669,6 +723,8 @@ class Options_Field {
                     'id'    => 'product_rating',
                     'name'   => esc_html__('Product Rating','woolentor'),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-rating-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=UQXZBgsZ0jQ'),
                     'default' => 'on'
                 ),
 
@@ -676,6 +732,8 @@ class Options_Field {
                     'id'    => 'product_image',
                     'name'   => esc_html__('Product Image','woolentor'),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-image-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=XRaE__xWRfM'),
                     'default' => 'on'
                 ),
                 array(
@@ -688,6 +746,8 @@ class Options_Field {
                 array(
                     'id'    => 'product_meta',
                     'name'   => esc_html__('Product Meta','woolentor'),
+                    'documentation' => esc_url('https://woolentor.com/doc/product-meta-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=WubH4PGleJg'),
                     'type'    => 'element',
                     'default' => 'on'
                 ),
@@ -696,6 +756,8 @@ class Options_Field {
                     'id'    => 'product_additional_info',
                     'name'   => esc_html__('Product Additional Info','woolentor'),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-additional-information-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=olPgzM66D-w'),
                     'default' => 'on'
                 ),
 
@@ -703,6 +765,8 @@ class Options_Field {
                     'id'    => 'product_tabs',
                     'name'   => esc_html__('Product Tabs','woolentor'),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-tabs-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=bDf-T0hmnx8'),
                     'default' => 'on'
                 ),
 
@@ -710,6 +774,8 @@ class Options_Field {
                     'id'    => 'product_stock',
                     'name'   => esc_html__('Product Stock','woolentor'),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-stock-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=38hVFz4tlYY'),
                     'default' => 'on'
                 ),
 
@@ -717,12 +783,16 @@ class Options_Field {
                     'id'    => 'product_qrcode',
                     'name'   => esc_html__('Product QR Code','woolentor'),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-qr-code-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=p7hUjaq559Y'),
                     'default' => 'on'
                 ),
 
                 array(
                     'id'    => 'product_related',
                     'name'   => esc_html__('Product Related','woolentor'),
+                    'documentation' => esc_url('https://woolentor.com/doc/related-product-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=cwy3pTRTxd8'),
                     'type'    => 'element',
                     'default' => 'on'
                 ),
@@ -731,6 +801,8 @@ class Options_Field {
                     'id'    => 'product_upsell',
                     'name'   => esc_html__('Product Upsell','woolentor'),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-upsell-block/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=mppRcUAz4-A'),
                     'default' => 'on'
                 ),
 
@@ -1067,6 +1139,8 @@ class Options_Field {
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
+                    'documentation' => esc_url('https://woolentor.com/doc/product-tab/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=AVQcwl6BnHk'),
                 ),
                 array(
                     'id'    => 'product_grid_modern',
@@ -1076,6 +1150,7 @@ class Options_Field {
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
                     'documentation' => esc_url('https://woolentor.com/doc/how-to-use-product-grid-modern-layout-for-elementor/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=6H3roeMrlxA'),
                     'badge'   => [
                         'is_active' => true,
                         'type'      => 'new',
@@ -1088,6 +1163,7 @@ class Options_Field {
                     'type'    => 'element',
                     'default' => 'on',
                     'documentation' => esc_url('https://woolentor.com/doc/how-to-use-product-grid-luxury-widget-for-elementor/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=TzgSVzlEN5M'),
                     'badge'   => [
                         'is_active' => true,
                         'type'      => 'new',
@@ -1100,6 +1176,7 @@ class Options_Field {
                     'type'    => 'element',
                     'default' => 'on',
                     'documentation' => esc_url('https://woolentor.com/doc/product-grid-editorial-layout-for-elementor/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=SnGnT1wo2nQ'),
                     'badge'   => [
                         'is_active' => true,
                         'type'      => 'new',
@@ -1112,6 +1189,7 @@ class Options_Field {
                     'type'    => 'element',
                     'default' => 'on',
                     'documentation' => esc_url('https://woolentor.com/doc/product-grid-magazine-layout-for-elementor/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=DTLA_8d7-uY'),
                     'badge'   => [
                         'is_active' => true,
                         'type'      => 'new',
@@ -1121,6 +1199,8 @@ class Options_Field {
                 array(
                     'id'    => 'universal_product',
                     'name' => wp_kses_post( 'Universal Product (<a href="'.esc_url(admin_url( 'admin.php?page=woolentor#/style' )).'">Style Settings</a>)' ),
+                    'documentation' => esc_url('https://woolentor.com/doc/universal-product/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=wXNK-_fM80Y'),
                     'type'    => 'element',
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
@@ -1129,8 +1209,10 @@ class Options_Field {
 
                 array(
                     'id'    => 'product_curvy',
-                    'name'   => esc_html__( 'WL: Product Curvy', 'woolentor' ),
+                    'name'   => esc_html__( 'Product Curvy', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-curvy/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=opMct3F2KqI'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1138,8 +1220,10 @@ class Options_Field {
 
                 array(
                     'id'    => 'product_image_accordion',
-                    'name'   => esc_html__( 'WL: Product Image Accordion', 'woolentor' ),
+                    'name'   => esc_html__( 'Product Image Accordion', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-image-accordion/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=61vSXYv4fcI'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1147,8 +1231,10 @@ class Options_Field {
 
                 array(
                     'id'    => 'product_accordion',
-                    'name'   => esc_html__( 'WL: Product Accordion', 'woolentor' ),
+                    'name'   => esc_html__( 'Product Accordion', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-accordion/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=mtPUcniYJgo'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1159,6 +1245,8 @@ class Options_Field {
                     'name'   => esc_html__( 'Recently Viewed Products', 'woolentor' ),
                     'type'    => 'element',
                     'default' => 'on',
+                    'documentation' => esc_url('https://woolentor.com/doc/recently-viewed-products/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=CbgtIX-tpRM'),
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
                 ),
@@ -1167,6 +1255,8 @@ class Options_Field {
                     'id'    => 'add_banner',
                     'name'   => esc_html__( 'Ads Banner', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/add-banner/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=jQt2f7J0uXE'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1176,6 +1266,8 @@ class Options_Field {
                     'id'    => 'special_day_offer',
                     'name'   => esc_html__( 'Special Day Offer', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/special-day-offer/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=vhCGVk-k248'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1185,6 +1277,8 @@ class Options_Field {
                     'id'    => 'wb_customer_review',
                     'name'   => esc_html__( 'Customer Review', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/customer-review/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=OVzYxFVF08M'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1194,6 +1288,8 @@ class Options_Field {
                     'id'    => 'wb_image_marker',
                     'name'   => esc_html__( 'Image Marker', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/image-marker/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=VeYUS5vMxQk'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1203,6 +1299,8 @@ class Options_Field {
                     'id'    => 'wl_category',
                     'name'   => esc_html__( 'Category List', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/category-list/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=UL0Hb_DdE3o'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1212,6 +1310,8 @@ class Options_Field {
                     'id'    => 'wl_category_grid',
                     'name'   => esc_html__( 'Category Grid', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/category-grid/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=N5SpHiCbw4s'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1221,6 +1321,8 @@ class Options_Field {
                     'id'    => 'wl_onepage_slider',
                     'name'   => esc_html__( 'One Page Slider', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/one-page-slider/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=xARUNzxu0ZI'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1230,6 +1332,8 @@ class Options_Field {
                     'id'    => 'wl_testimonial',
                     'name'   => esc_html__( 'Testimonial', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/testimonial/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=ewrsdzv1pfY'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1237,8 +1341,10 @@ class Options_Field {
 
                 array(
                     'id'    => 'wl_store_features',
-                    'name'   => esc_html__( 'Store Features', 'woolentor' ),
+                    'name'   => esc_html__( 'Store Feature', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/store-features/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=4dpNBI7psEA'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1248,6 +1354,8 @@ class Options_Field {
                     'id'    => 'wl_faq',
                     'name'   => esc_html__( 'FAQ', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/faq/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=E7nMbdSkKGc'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1257,6 +1365,8 @@ class Options_Field {
                     'id'    => 'wl_brand',
                     'name'   => esc_html__( 'Brand Logo', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/brand-logo/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=PXIFHXisGPo'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1274,7 +1384,7 @@ class Options_Field {
 
                 array(
                     'id'    => 'wl_product_filterable_gridp',
-                    'name'   => esc_html__( 'Product Filterable Grid', 'woolentor' ),
+                    'name'   => esc_html__( 'Filterable Product Grid', 'woolentor' ),
                     'type'    => 'element',
                     'default' => 'off',
                     'label_on' => __( 'ON', 'woolentor' ),
@@ -1301,8 +1411,10 @@ class Options_Field {
 
                 array(
                     'id'    => 'wb_archive_product',
-                    'name'   => esc_html__( 'Product Archive', 'woolentor' ),
+                    'name'   => esc_html__( 'Product Archive (Default)', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-archive-layout-default/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=1UdDbgjIV_4'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1311,6 +1423,8 @@ class Options_Field {
                 array(
                     'id'    => 'wb_archive_result_count',
                     'name'   => esc_html__( 'Archive Result Count', 'woolentor' ),
+                    'documentation' => esc_url('https://woolentor.com/doc/archive-result-count/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=dFkEhH0b1c4'),
                     'type'    => 'element',
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
@@ -1321,6 +1435,8 @@ class Options_Field {
                     'id'    => 'wb_archive_catalog_ordering',
                     'name'   => esc_html__( 'Archive Catalog Ordering', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/archive-catalog-ordering/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=_I39NZP57eI'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1330,6 +1446,8 @@ class Options_Field {
                     'id'    => 'wl_archive_title',
                     'name'   => esc_html__( 'Archive Title', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/archive-title/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=JwA8f14UfWY'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1339,6 +1457,8 @@ class Options_Field {
                     'id'    => 'wl_product_filter',
                     'name'   => esc_html__( 'Product Filter', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/add-product-filters-to-your-woocommerce-store/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=-AXka-sc8hY'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1348,6 +1468,8 @@ class Options_Field {
                     'id'    => 'wl_product_horizontal_filter',
                     'name'   => esc_html__( 'Product Horizontal Filter', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/add-product-filters-to-your-woocommerce-store/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=-AXka-sc8hY'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1355,7 +1477,7 @@ class Options_Field {
 
                 array(
                     'id'    => 'wl_advance_product_filterp',
-                    'name'   => esc_html__( 'Advanced Product Filter', 'woolentor' ),
+                    'name'   => esc_html__( 'Advance Product Filter', 'woolentor' ),
                     'type'    => 'element',
                     'default' => 'off',
                     'label_on' => __( 'ON', 'woolentor' ),
@@ -1384,6 +1506,8 @@ class Options_Field {
                     'id'    => 'wb_product_title',
                     'name'   => esc_html__( 'Product Title', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-title/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=qA6DguMeDDY'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1393,6 +1517,8 @@ class Options_Field {
                     'id'    => 'wb_product_add_to_cart',
                     'name'   => esc_html__( 'Add to Cart Button', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/add-to-cart-button/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=MBNTg-tH_1A'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1402,6 +1528,8 @@ class Options_Field {
                     'id'    => 'wl_breadcrumbs',
                     'name'   => esc_html__( 'Breadcrumbs', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/breadcrumbs/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=sfHrl7xgPgI'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1411,6 +1539,8 @@ class Options_Field {
                     'id'    => 'wb_product_additional_information',
                     'name'   => esc_html__( 'Additional Information', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-additional-information/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=XsGXr90GjQA'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1420,6 +1550,8 @@ class Options_Field {
                     'id'    => 'wb_product_data_tab',
                     'name'   => esc_html__( 'Product Data Tab', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-data-tabs/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=AVQcwl6BnHk'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1429,6 +1561,8 @@ class Options_Field {
                     'id'    => 'wb_product_related',
                     'name'   => esc_html__( 'Related Product', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/related-product/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=mWq8ZRZ56co'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1438,6 +1572,8 @@ class Options_Field {
                     'id'    => 'wb_product_description',
                     'name'   => esc_html__( 'Product Description', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-description/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=1CSMPwsD-FI'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1447,6 +1583,8 @@ class Options_Field {
                     'id'    => 'wb_product_short_description',
                     'name'   => esc_html__( 'Product Short Description', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-short-description/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=Blc3GMhggFQ'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1456,6 +1594,8 @@ class Options_Field {
                     'id'    => 'wb_product_price',
                     'name'   => esc_html__( 'Product Price', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-price/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=76tA749BERU'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1465,6 +1605,8 @@ class Options_Field {
                     'id'    => 'wb_product_rating',
                     'name'   => esc_html__( 'Product Rating', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-rating/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=0NBFs3ZP6zM'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1483,6 +1625,8 @@ class Options_Field {
                     'id'    => 'wb_product_image',
                     'name'   => esc_html__( 'Product Image', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-image/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=iIWGMSLnVHQ'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1492,6 +1636,8 @@ class Options_Field {
                     'id'    => 'wl_product_video_gallery',
                     'name'   => esc_html__( 'Product Video Gallery', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-video-gallery/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=ZyMw4OrNeTM'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1501,6 +1647,8 @@ class Options_Field {
                     'id'    => 'wb_product_upsell',
                     'name'   => esc_html__( 'Product Upsell', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-upsell/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=FxHxIxIpVUI'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1510,6 +1658,8 @@ class Options_Field {
                     'id'    => 'wb_product_stock',
                     'name'   => esc_html__( 'Product Stock Status', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-stock/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=dcrMWpoyWq4'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1519,6 +1669,8 @@ class Options_Field {
                     'id'    => 'wb_product_meta',
                     'name'   => esc_html__( 'Product Meta Info', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-meta/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=8zkH_PzF5XM'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1528,6 +1680,8 @@ class Options_Field {
                     'id'    => 'wb_product_sku',
                     'name'   => esc_html__( 'Product SKU', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-sku/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=tY-NzT-T0EY'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1537,6 +1691,8 @@ class Options_Field {
                     'id'    => 'wb_product_tags',
                     'name'   => esc_html__( 'Product Tags', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-tags/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=8otXv4rj_Kc'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1546,6 +1702,8 @@ class Options_Field {
                     'id'    => 'wb_product_categories',
                     'name'   => esc_html__( 'Product Categories', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-categories/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=d-l7ovME6Ms'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1555,6 +1713,8 @@ class Options_Field {
                     'id'    => 'wb_product_call_for_price',
                     'name'   => esc_html__( 'Call for Price', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/call-for-price/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=JwlgntE3-OY'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1564,6 +1724,8 @@ class Options_Field {
                     'id'    => 'wb_product_suggest_price',
                     'name'   => esc_html__( 'Suggest Price', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/suggest-price/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=EhPiMCJjCJ0'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -1573,6 +1735,8 @@ class Options_Field {
                     'id'    => 'wb_product_qr_code',
                     'name'   => esc_html__( 'QR Code', 'woolentor' ),
                     'type'    => 'element',
+                    'documentation' => esc_url('https://woolentor.com/doc/product-qr-code/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=4GO_DUzVA5Q'),
                     'default' => 'on',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
@@ -2003,7 +2167,7 @@ class Options_Field {
                     'option_id'=> 'enablerenamelabel',
                     'require_settings'=> true,
                     'documentation' => esc_url('https://woolentor.com/doc/change-woocommerce-text/'),
-                    // 'preview' => esc_url('https://woolentor.com/doc/change-woocommerce-text/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=KzLsYsy6ifY'),
                     'setting_fields' => array(
                         
                         array(
@@ -2099,6 +2263,7 @@ class Options_Field {
                     'option_id'=> 'enableresalenotification',
                     'require_settings'=> true,
                     'documentation' => esc_url('https://woolentor.com/doc/sales-notification-for-woocommerce/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=CNH8c6N6tLQ'),
                     'setting_fields' => array(
 
                         array(
@@ -2630,6 +2795,7 @@ class Options_Field {
                     'option_id'=> 'enable',
                     'require_settings'  => true,
                     'documentation' => esc_url('https://woolentor.com/doc/how-to-make-woocommerce-checkout-like-shopify/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=z12cq8XmgPQ'),
                     'setting_fields' => array(
 
                         array(
@@ -2799,6 +2965,7 @@ class Options_Field {
                     'option_id'=> 'enable',
                     'require_settings'  => true,
                     'documentation' => esc_url('https://woolentor.com/doc/enable-sales-countdown-timer-in-woocommerce/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=NgAy52726F8'),
                     'setting_fields' => array(
 
                         array(
@@ -2895,9 +3062,10 @@ class Options_Field {
                                     'id'        => 'products',
                                     'name'       => esc_html__( 'Select Products', 'woolentor' ),
                                     'desc'        => esc_html__( 'Select individual products in which the discount will be applied.', 'woolentor' ),
-                                    'type'        => 'multiselect',
-                                    'options'     => woolentor_post_name( 'product' ),
-                                    'convertnumber' => true,
+                                    'type'        => 'ajaxselect',
+                                    'post_type'   => 'product',
+                                    'multiple'    => true,
+                                    'placeholder' => esc_html__( 'Search products...', 'woolentor' ),
                                     'condition' => [
                                         'key' => 'status|apply_on_all_products',
                                         'operator' => '==|==',
@@ -2909,9 +3077,10 @@ class Options_Field {
                                 array(
                                     'id'        => 'exclude_products',
                                     'name'       => esc_html__( 'Exclude Products', 'woolentor' ),
-                                    'type'        => 'multiselect',
-                                    'options'     => woolentor_post_name( 'product' ),
-                                    'convertnumber' => true,
+                                    'type'        => 'ajaxselect',
+                                    'post_type'   => 'product',
+                                    'multiple'    => true,
+                                    'placeholder' => esc_html__( 'Search products...', 'woolentor' ),
                                     'condition' => [
                                         'key' => 'status',
                                         'operator' => '==',
@@ -3056,6 +3225,7 @@ class Options_Field {
                     'option_id'=> 'enable',
                     'require_settings'  => true,
                     'documentation' => esc_url('https://woolentor.com/doc/how-to-enable-woocommerce-backorder/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=1Va0tZpLr9Q'),
                     'setting_fields' => array(
                     
                         array(
@@ -3104,6 +3274,7 @@ class Options_Field {
                     'option_id'=> 'enable',
                     'require_settings'  => true,
                     'documentation' => esc_url('https://woolentor.com/doc/variation-swatches/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=-C4aT5A6laM'),
                     'setting_fields' => array(
 
                         array(
@@ -3620,6 +3791,7 @@ class Options_Field {
                     'section'  => 'woolentor_popup_builder_settings',
                     'option_id'=> 'enable',
                     'documentation' => esc_url('https://woolentor.com/doc/popup-builder/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=mijUgJK0iDc'),
                     'require_settings'  => true,
                     'setting_fields' => array(
 
@@ -3677,18 +3849,20 @@ class Options_Field {
                     'default' => 'off',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
-                    'documentation' => esc_url('https://woolentor.com/doc/how-to-use-woocommerce-ajax-search/')
+                    'documentation' => esc_url('https://woolentor.com/doc/how-to-use-woocommerce-ajax-search/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=abvxPlZouhA'),
                 ),
 
                 array(
                     'id'     => 'ajaxcart_singleproduct',
-                    'name'    => esc_html__( 'Single Product Ajax Add To Cart', 'woolentor' ),
+                    'name'    => esc_html__( 'Product AJAX Cart', 'woolentor' ),
                     'desc'    => esc_html__( 'AJAX Add to Cart on Single Product page', 'woolentor' ),
                     'type'     => 'element',
                     'default'  => 'off',
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
-                    'documentation' => esc_url('https://woolentor.com/doc/single-product-ajax-add-to-cart/')
+                    'documentation' => esc_url('https://woolentor.com/doc/single-product-ajax-add-to-cart/'),
+                    'preview' => esc_url('https://www.youtube.com/watch?v=gv_nApswTqc'),
                 ),
 
                 array(
@@ -3785,7 +3959,7 @@ class Options_Field {
 
                 array(
                     'id'   => 'gtm_conversion_trackingp',
-                    'name'   => esc_html__( 'GTM Conversion Tracking', 'woolentor' ),
+                    'name'   => esc_html__( 'GTM Tracking', 'woolentor' ),
                     'desc'   => esc_html__( 'GTM Conversion Tracking Module', 'woolentor' ),
                     'type'   => 'module',
                     'default'=> 'off',
@@ -3797,7 +3971,7 @@ class Options_Field {
                 
                 array(
                     'id'   => 'single_product_sticky_add_to_cartp',
-                    'name'   => esc_html__( 'Single Product Sticky Add To Cart', 'woolentor' ),
+                    'name'   => esc_html__( 'Product Sticky Cart', 'woolentor' ),
                     'desc'   => esc_html__( 'Sticky Add to Cart on Single Product page', 'woolentor' ),
                     'type'   => 'element',
                     'default'=> 'off',
@@ -3849,7 +4023,7 @@ class Options_Field {
 
                 array(
                     'id'     => 'woolentor_google_address_autocomplete_settingp',
-                    'name'    => esc_html__( 'Google Address Autocomplete', 'woolentor' ),
+                    'name'    => esc_html__( 'Address Autocomplete', 'woolentor' ),
                     'type'     => 'module',
                     'default'=> 'off',
                     'require_settings' => true,
@@ -3857,19 +4031,6 @@ class Options_Field {
                     'label_off' => __( 'OFF', 'woolentor' ),
                     'is_pro' => true
                 ),
-
-                array(
-                    'id'  => 'loadproductlimit',
-                    'name' => esc_html__( 'Load Products in Elementor Addons', 'woolentor' ),
-                    'desc'  => esc_html__( 'Set the number of products to load in Elementor Addons', 'woolentor' ),
-                    'min'               => 1,
-                    'max'               => 1000,
-                    'step'              => '1',
-                    'type'              => 'number',
-                    'default'           => '20',
-                    'sanitize_callback' => 'floatval',
-                    'column'            => 1,
-                )
 
             ),
 

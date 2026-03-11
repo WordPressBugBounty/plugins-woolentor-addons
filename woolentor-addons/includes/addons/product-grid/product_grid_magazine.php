@@ -221,6 +221,7 @@ class Woolentor_Product_Grid_Magazine_Widget extends WooLentor_Product_Grid_Base
                 'label_off' => esc_html__( 'Hide', 'woolentor' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
+                'description' => esc_html__( 'This option will not work if the Quick View module is not active.', 'woolentor' ),
             ]
         );
 
@@ -233,6 +234,7 @@ class Woolentor_Product_Grid_Magazine_Widget extends WooLentor_Product_Grid_Base
                 'label_off' => esc_html__( 'Hide', 'woolentor' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
+                'description' => esc_html__( 'This option will not work if the Wishlist module is not active.', 'woolentor' ),
             ]
         );
 
@@ -245,6 +247,7 @@ class Woolentor_Product_Grid_Magazine_Widget extends WooLentor_Product_Grid_Base
                 'label_off' => esc_html__( 'Hide', 'woolentor' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
+                'description' => esc_html__( 'This option will not work if the Compare module is not active.', 'woolentor' ),
             ]
         );
 

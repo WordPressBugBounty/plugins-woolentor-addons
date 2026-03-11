@@ -36,6 +36,9 @@ class Admin {
         if ( !class_exists( __NAMESPACE__ . '\Admin\Deactivation_Feedback'  ) ) {
             require_once __DIR__ . '/Admin/Deactivation_Feedback.php';
         }
+        if ( !class_exists( __NAMESPACE__ . '\Admin\Newsletter_Data'  ) ) {
+            require_once __DIR__ . '/Admin/Newsletter_Data.php';
+        }
     }
 
     /**

@@ -209,7 +209,21 @@ class Woolentor_Product_Tabs_Widget extends Widget_Base {
                     ]
                 ]
             );
-            
+
+            $this->add_control(
+                'default_active_tab',
+                [
+                    'label' => esc_html__( 'Default Active Tab', 'woolentor' ),
+                    'type' => Controls_Manager::SELECT,
+                    'default' => '',
+                    'options' => [ '' => esc_html__( 'First Tab', 'woolentor' ) ] + woolentor_taxonomy_list(),
+                    'condition' => [
+                        'producttab' => 'yes',
+                    ],
+                    'description' => esc_html__('Select default active tab. If selected tab is not in the selected categories, fallback to first tab.', 'woolentor'),
+                ]
+            );
+
             $this->add_control(
                 'proslider',
                 [
@@ -1378,6 +1392,8 @@ class Woolentor_Product_Tabs_Widget extends Widget_Base {
                     <ul class="ht-tab-menus">
                         <?php
                             $m=0;
+                            $default_active_tab = $settings['default_active_tab'];
+                            $found_active = false;
                             if( is_array( $product_cats ) && count( $product_cats ) > 0 ){
 
                                 // Category retrive
@@ -1389,6 +1405,14 @@ class Woolentor_Product_Tabs_Widget extends Widget_Base {
                                     'slug'       => $product_cats,
                                 );
                                 $prod_categories = get_terms( $catargs);
+
+                                // If default active tab is not in the selected categories, fallback to first tab
+                                if( !empty($default_active_tab) ){
+                                    $tab_slugs = wp_list_pluck( $prod_categories, 'slug' );
+                                    if( !in_array( $default_active_tab, $tab_slugs ) ){
+                                        $default_active_tab = '';
+                                    }
+                                }
 
                                 foreach( $prod_categories as $prod_cats ){
                                     $m++;
@@ -1412,8 +1436,15 @@ class Woolentor_Product_Tabs_Widget extends Widget_Base {
                                     $fetchproduct = new \WP_Query( $args );
 
                                     if( $fetchproduct->have_posts() ){
+                                            $is_active = false;
+                                            if( !empty($default_active_tab) ){
+                                                $is_active = ( $prod_cats->slug == $default_active_tab );
+                                            } elseif( !$found_active ){
+                                                $is_active = ( $m == 1 );
+                                            }
+                                            if( $is_active ){ $found_active = true; }
                                         ?>
-                                            <li><a class="<?php if($m==1){ echo 'htactive';}?>" href="#woolentortab<?php echo esc_attr($tabuniqid.$m);?>">
+                                            <li><a class="<?php if( $is_active ){ echo 'htactive';}?>" href="#woolentortab<?php echo esc_attr($tabuniqid.$m);?>">
                                                 <?php echo esc_html( $prod_cats->name );?>
                                             </a></li>
                                         <?php
@@ -1429,6 +1460,8 @@ class Woolentor_Product_Tabs_Widget extends Widget_Base {
                 
             <?php
                 $j=0;
+                $default_active_tab = $settings['default_active_tab'];
+                $pane_found_active = false;
                 $tabcatargs = array(
                     'taxonomy'   => 'product_cat',
                     'orderby'    => 'name',
@@ -1437,6 +1470,15 @@ class Woolentor_Product_Tabs_Widget extends Widget_Base {
                     'slug'       => $product_cats,
                 );
                 $tabcat_fach = get_terms( $tabcatargs );
+
+                // If default active tab is not in the selected categories, fallback to first tab
+                if( !empty($default_active_tab) ){
+                    $pane_tab_slugs = wp_list_pluck( $tabcat_fach, 'slug' );
+                    if( !in_array( $default_active_tab, $pane_tab_slugs ) ){
+                        $default_active_tab = '';
+                    }
+                }
+
                 foreach( $tabcat_fach as $cats ):
                     $j++;
                     $field_name = is_numeric($product_cats[0])?'term_id':'slug';
@@ -1459,8 +1501,15 @@ class Woolentor_Product_Tabs_Widget extends Widget_Base {
                     $products = new \WP_Query( $args );
 
                     if( $products->have_posts() ):
+                        $pane_is_active = false;
+                        if( !empty($default_active_tab) ){
+                            $pane_is_active = ( $cats->slug == $default_active_tab );
+                        } elseif( !$pane_found_active ){
+                            $pane_is_active = ( $j == 1 );
+                        }
+                        if( $pane_is_active ){ $pane_found_active = true; }
                     ?>
-                    <div class="ht-tab-pane <?php if($j==1){echo 'htactive';} ?>" id="<?php echo esc_attr('woolentortab'.$tabuniqid.$j);?>">
+                    <div class="ht-tab-pane <?php if( $pane_is_active ){echo 'htactive';} ?>" id="<?php echo esc_attr('woolentortab'.$tabuniqid.$j);?>">
                         
                         <div class="ht-row">
                             <div class="<?php echo esc_attr( $collumval );?>">

@@ -136,6 +136,7 @@ class Menu {
             'licenseEmail'  => get_option( 'WooLentorPro_lic_email', get_bloginfo( 'admin_email' ) ),
             'assetsUrl'     => WOOLENTOROPT_ASSETS,
             'isPro'         => woolentor_is_pro() ? 'yes' : 'no',
+            'isSubscribed'  => get_option( 'woolentor_newsletter_subscribed', false ) ? true : false,
             'tabs'          => $option_field->get_settings_tabs(),
             'settings'      => $option_field->get_registered_settings(),
             'options'       => woolentor_opt_get_options( $option_field->get_registered_settings() ),
@@ -336,84 +337,7 @@ class Menu {
                     'name' => __( 'Abandoned Cart', 'woolentor' ),
                     'is_pro' => false,
                     'section' => 'woolentor_abandoned_cart_settings'
-                ],
-
-                [
-                    'id' => 'woolentor_checkout_field_settingsp',
-                    'name' => __( 'Checkout Fields Manager', 'woolentor' ),
-                    'is_pro' => true,
-                ],
-                [
-                    'id' => 'partial_paymentp',
-                    'name' => __( 'Partial Payment', 'woolentor' ),
-                    'is_pro' => true,
-                ],
-                [
-                    'id' => 'pre_ordersp',
-                    'name' => __( 'Pre Orders', 'woolentor' ),
-                    'is_pro' => true,
-                ],
-                [
-                    'id' => 'size_chartp',
-                    'name' => __( 'Size Chart', 'woolentor' ),
-                    'is_pro' => true
-                ],
-                [
-                    'id' => 'order_bump',
-                    'name' => __( 'Order Bump', 'woolentor' ),
-                    'is_pro' => true
-                ],
-
-                [
-                    'id' => 'gtm_conversion_trackingp',
-                    'name' => __( 'GTM Tracking', 'woolentor' ),
-                    'is_pro' => true
-                ],
-                [
-                    'id' => 'email_customizerp',
-                    'name' => __( 'Email Customizer', 'woolentor' ),
-                    'is_pro' => true
-                ],
-                [
-                    'id' => 'email_automationp',
-                    'name' => __( 'Email Automation', 'woolentor' ),
-                    'is_pro' => true
-                ],
-                [
-                    'id' => 'product_filterp',
-                    'name' => __( 'Product Filter', 'woolentor' ),
-                    'is_pro' => true
-                ],
-                [
-                    'id' => 'mini_side_cartp',
-                    'name' => __( 'Side Mini Cart', 'woolentor' ),
-                    'is_pro' => true
-                ],
-                [
-                    'id' => 'single_product_sticky_add_to_cartp',
-                    'name' => __( 'Single Product Sticky Add To Cart', 'woolentor' ),
-                    'is_pro' => true
-                ],
-                [
-                    'id' => 'redirect_add_to_cartp',
-                    'name' => __( 'Redirect to Checkout', 'woolentor' ),
-                    'is_pro' => true
-                ],
-                [
-                    'id' => 'quick_checkoutp',
-                    'name' => __( 'Quick Checkout', 'woolentor' ),
-                    'is_pro' => true
-                ],
-                [
-                    'id' => 'multi_step_checkoutp',
-                    'name' => __( 'Multi Step Checkout', 'woolentor' ),
-                    'is_pro' => true
-                ],
-                [
-                    'id' => 'woolentor_google_address_autocomplete_settingp',
-                    'name' => __( 'Google Address Autocomplete', 'woolentor' ),
-                    'is_pro' => true
-                ],
+                ]
             ],
             'module_presets' => [
                 'starter' => [ 'wishlist', 'compare', 'woolentor_quickview_settings', 'ajaxsearch', 'ajaxcart_singleproduct', 'woolentor_swatch_settings' ],
@@ -467,6 +391,173 @@ class Menu {
             'coupon_code' => 'WELCOME',
             'admin_email' => get_bloginfo( 'admin_email' ),
         ];
+
+        if( woolentor_is_pro() ){
+            $onboarding_data['modules'][] = [
+                'id' => 'billing_enable',
+                'name' => __( 'Checkout Fields Manager', 'woolentor' ),
+                'is_pro' => true,
+                'section' => 'woolentor_checkout_fields'
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'enable',
+                'name' => __( 'Partial Payment', 'woolentor' ),
+                'is_pro' => true,
+                'section' => 'woolentor_partial_payment_settings'
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'enable',
+                'name' => __( 'Pre Orders', 'woolentor' ),
+                'is_pro' => true,
+                'section' => 'woolentor_pre_order_settings'
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'enable',
+                'name' => __( 'Size Chart', 'woolentor' ),
+                'is_pro' => true,
+                'section' => 'woolentor_size_chart_settings'
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'enable',
+                'name' => __( 'Order Bump', 'woolentor' ),
+                'is_pro' => true,
+                'section' => 'woolentor_order_bump_settings'
+            ];
+
+            $onboarding_data['modules'][] = [
+                'id' => 'enable',
+                'name' => __( 'GTM Tracking', 'woolentor' ),
+                'is_pro' => true,
+                'section' => 'woolentor_gtm_convertion_tracking_settings'
+                ];
+            $onboarding_data['modules'][] = [
+                'id' => 'enable',
+                'name' => __( 'Email Customizer', 'woolentor' ),
+                'is_pro' => true,
+                'section' => 'woolentor_email_customizer_settings'
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'enable',
+                'name' => __( 'Email Automation', 'woolentor' ),
+                'is_pro' => true,
+                'section' => 'woolentor_email_automation_settings'
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'enable',
+                'name' => __( 'Product Filter', 'woolentor' ),
+                'is_pro' => true,
+                'section' => 'woolentor_product_filter_settings'
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'mini_side_cart',
+                'name' => __( 'Side Mini Cart', 'woolentor' ),
+                'is_pro' => true
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'single_product_sticky_add_to_cart',
+                'name' => __( 'Product Sticky Cart', 'woolentor' ),
+                'is_pro' => true
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'redirect_add_to_cart',
+                'name' => __( 'Redirect to Checkout', 'woolentor' ),
+                'is_pro' => true
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'enable',
+                'name' => __( 'Quick Checkout', 'woolentor' ),
+                'is_pro' => true,
+                'section' => 'woolentor_quick_checkout_settings'
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'multi_step_checkout',
+                'name' => __( 'Multi Step Checkout', 'woolentor' ),
+                'is_pro' => true
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'enable',
+                'name' => __( 'Address Autocomplete', 'woolentor' ),
+                'is_pro' => true,
+                'section' => 'woolentor_google_address_autocomplete_settings'
+            ];
+        }else{
+            $onboarding_data['modules'][] = [
+                'id' => 'woolentor_checkout_field_settingsp',
+                'name' => __( 'Checkout Fields Manager', 'woolentor' ),
+                'is_pro' => true,
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'partial_paymentp',
+                'name' => __( 'Partial Payment', 'woolentor' ),
+                'is_pro' => true,
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'pre_ordersp',
+                'name' => __( 'Pre Orders', 'woolentor' ),
+                'is_pro' => true,
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'size_chartp',
+                'name' => __( 'Size Chart', 'woolentor' ),
+                'is_pro' => true
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'order_bump',
+                'name' => __( 'Order Bump', 'woolentor' ),
+                'is_pro' => true
+            ];
+
+            $onboarding_data['modules'][] = [
+                'id' => 'gtm_conversion_trackingp',
+                'name' => __( 'GTM Tracking', 'woolentor' ),
+                'is_pro' => true
+                ];
+            $onboarding_data['modules'][] = [
+                'id' => 'email_customizerp',
+                'name' => __( 'Email Customizer', 'woolentor' ),
+                'is_pro' => true
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'email_automationp',
+                'name' => __( 'Email Automation', 'woolentor' ),
+                'is_pro' => true
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'product_filterp',
+                'name' => __( 'Product Filter', 'woolentor' ),
+                'is_pro' => true
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'mini_side_cartp',
+                'name' => __( 'Side Mini Cart', 'woolentor' ),
+                'is_pro' => true
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'single_product_sticky_add_to_cartp',
+                'name' => __( 'Product Sticky Cart', 'woolentor' ),
+                'is_pro' => true
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'redirect_add_to_cartp',
+                'name' => __( 'Redirect to Checkout', 'woolentor' ),
+                'is_pro' => true
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'quick_checkoutp',
+                'name' => __( 'Quick Checkout', 'woolentor' ),
+                'is_pro' => true
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'multi_step_checkoutp',
+                'name' => __( 'Multi Step Checkout', 'woolentor' ),
+                'is_pro' => true
+            ];
+            $onboarding_data['modules'][] = [
+                'id' => 'woolentor_google_address_autocomplete_settingp',
+                'name' => __( 'Address Autocomplete', 'woolentor' ),
+                'is_pro' => true
+            ];
+        }
 
         return $onboarding_data;
     }

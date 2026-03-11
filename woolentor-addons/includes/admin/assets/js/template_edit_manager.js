@@ -30,6 +30,7 @@
         init: function() {
             this.renderPopup();
             this.slickSlider();
+            this.initProModal();
 
             $('#woolentor-template-type').on('change', function() {
                 var selectedEditor = $('#woolentor-template-editor').val() ? $('#woolentor-template-editor').val() : 'gutenberg';
@@ -460,6 +461,26 @@
                 }
             })
 
+        },
+
+        initProModal: function() {
+            // Pro modal click handlers
+            $(document).on('click', '.woolentor-pro-tab', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $('.woolentor-pro-modal').fadeIn(200).addClass('show');
+            });
+
+            $(document).on('click', '.woolentor-pro-modal-dismiss, .woolentor-pro-modal-overlay', function() {
+                $('.woolentor-pro-modal').fadeOut(200).removeClass('show');
+            });
+
+            // Close modal on escape key
+            $(document).on('keyup', function(e) {
+                if (e.key === "Escape") {
+                    $('.woolentor-pro-modal').fadeOut(200).removeClass('show');
+                }
+            });
         }
 
 

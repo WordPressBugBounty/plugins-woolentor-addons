@@ -17,9 +17,63 @@ Table of contents:
 	display: none
 }
 
-/* Hide the default switcher */
-label[id^="woolentor-default-tmp-status-popup-"]{
+/* Condition button in list table */
+.wlpb-list-condition-btn{
+    cursor: pointer;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 5px;
+    background: #007EFF !important;
+    color: #fff !important;
+    border-color: #007EFF !important;
+    border-radius: 4px !important;
+    font-size: 12px;
+    padding: 2px 10px !important;
+    line-height: 24px;
+    transition: background 0.2s ease;
+}
+.wlpb-list-condition-btn:hover{
+    background: #0063cc !important;
+    border-color: #0063cc !important;
+    color: #fff !important;
+}
+.wlpb-list-condition-btn:focus{
+    box-shadow: 0 0 0 1px #fff, 0 0 0 3px #007EFF !important;
+    outline: none;
+}
+.wlpb-list-condition-btn .dashicons{
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+}
+.wlpb-list-condition-btn.updating-message{
+    pointer-events: none;
+    opacity: 0.8;
+}
+.wlpb-list-condition-btn.updating-message::before{
+    color: #fff !important;
+}
+.wlpb-list-condition-btn.updating-message .dashicons{
     display: none;
+}
+.post-type-woolentor-template .wp-list-table *::before,
+.post-type-woolentor-template .wp-list-table *::after {
+    box-sizing: unset;
+}
+
+.wlpb-modal{
+    transform: scale(1.1);
+    opacity:0;
+    visibility:hidden;
+    z-index: 0;
+}
+
+.wlpb-setting-popup-open .wlpb-modal{
+    transform: scale(1);
+    opacity:1;
+    visibility:visible;
+    z-index: 9999;
 }
 
 .wlpb-modal .woolentor-template-edit-body {

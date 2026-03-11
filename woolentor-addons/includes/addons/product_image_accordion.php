@@ -79,10 +79,11 @@ class Woolentor_Product_Image_Accordion_Widget extends Widget_Base {
                 'woolentor_product_id',
                 [
                     'label' => __( 'Select Product', 'woolentor' ),
-                    'type' => Controls_Manager::SELECT2,
+                    'type' => 'woolentor-select',
                     'label_block' => true,
                     'multiple' => true,
-                    'options' => woolentor_post_name( 'product' ),
+                    'ajax_search' => true,
+                    'post_type' => 'product',
                     'condition' => [
                         'woolentor_product_grid_product_filter' => 'show_byid',
                     ]

@@ -49,6 +49,7 @@ class Fields {
                 'default'=> 'off',
                 'section'  => 'woolentor_abandoned_cart_settings',
                 'documentation' => esc_url('https://woolentor.com/doc/how-to-recover-abandoned-carts-in-woocommerce-with-shoplentor/'),
+                'preview' => esc_url('https://www.youtube.com/watch?v=iTsUN6U4bMs'),
                 'placeholders' => \Woolentor\Modules\AbandonedCart\Email\Placeholder_Manager::instance()->get_supported_placeholders(),
                 'option_id' => 'enable',
                 'require_settings'  => true,

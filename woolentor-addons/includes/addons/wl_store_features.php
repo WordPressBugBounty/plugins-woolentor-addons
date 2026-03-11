@@ -30,7 +30,7 @@ class Woolentor_Wl_Store_Features_Widget extends Widget_Base {
     }
 
     public function get_keywords(){
-        return ['feature','store'];
+        return ['feature','store','Store Feature','Store Features'];
     }
 
     protected function register_controls() {

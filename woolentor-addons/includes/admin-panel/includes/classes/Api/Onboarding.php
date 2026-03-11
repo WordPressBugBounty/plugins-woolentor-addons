@@ -97,6 +97,11 @@ class Onboarding extends WP_REST_Controller {
             wp_schedule_single_event( time(), 'woolentor_diagnostic_data_collect_and_send', [ true ] );
         }
 
+        // Schedule newsletter subscription in background if email provided
+        if ( !empty( $email ) ) {
+            wp_schedule_single_event( time(), 'woolentor_newsletter_subscribe_send', [ $email ] );
+        }
+
         return new WP_REST_Response( [
             'success' => true,
             'message' => __( 'Setup wizard completed successfully.', 'woolentor' ),

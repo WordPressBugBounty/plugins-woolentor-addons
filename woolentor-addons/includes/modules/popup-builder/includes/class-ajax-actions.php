@@ -23,6 +23,9 @@ class Ajax_Actions{
         // Save popup data.
         add_action( 'wp_ajax_wlpb_save_popup_settings', array( $this, 'save_popup_settings' ) );
         add_action( 'wp_ajax_nopriv_wlpb_save_popup_settings', array( $this, 'save_popup_settings' ) );
+
+        // Render popup modal for list page.
+        add_action( 'wp_ajax_wlpb_render_popup_modal', array( $this, 'render_popup_modal' ) );
     }
 
     public function wlpb_generate_sub_name_cb(){
@@ -110,6 +113,36 @@ class Ajax_Actions{
         $status = update_post_meta( $popup_id, '_wlpb_popup_seetings', $post_data );
 
         wp_send_json_success( $status );
+    }
+
+    /**
+     * Render popup modal HTML for the list page.
+     */
+    public function render_popup_modal(){
+        check_ajax_referer( 'wlpb_nonce', 'nonce' );
+
+        $popup_id = isset( $_POST['popup_id'] ) ? intval( $_POST['popup_id'] ) : 0;
+        if( !$popup_id ){
+            wp_send_json_error();
+        }
+
+        global $post;
+        $original_post = $post;
+        $post = get_post( $popup_id );
+        setup_postdata( $post );
+
+        ob_start();
+        include( MODULE_PATH . '/includes/admin/tmpl-popup-builder-modal.php' );
+        $output = ob_get_clean();
+
+        wp_reset_postdata();
+        $post = $original_post;
+
+        // Strip <script> wrapper to get just the modal HTML
+        $output = preg_replace( '/^\s*<script[^>]*>/i', '', $output );
+        $output = preg_replace( '/<\/script>\s*$/i', '', $output );
+
+        wp_send_json_success( $output );
     }
 
 }

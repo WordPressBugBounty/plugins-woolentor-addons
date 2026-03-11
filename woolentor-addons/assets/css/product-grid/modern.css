@@ -592,6 +592,7 @@
     visibility: visible !important;
     opacity: 1 !important;
     overflow: visible;
+    margin-right: 0;
 }
 
 .woolentor-style-modern .woolentor-quickview-btn svg path,

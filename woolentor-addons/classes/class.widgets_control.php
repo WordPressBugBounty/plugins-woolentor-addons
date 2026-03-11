@@ -26,9 +26,18 @@ class Widgets_Control{
         // Register custom category
         add_action( 'elementor/elements/categories_registered', [ $this, 'add_category' ] );
 
+        // Register custom controls
+        add_action( 'elementor/controls/register', [ $this, 'register_custom_controls' ] );
+
         // Init Widgets
         add_action( 'elementor/widgets/register', [ $this, 'init_widgets' ] );
 
+    }
+
+    // Register custom controls
+    public function register_custom_controls( $controls_manager ) {
+        require_once WOOLENTOR_ADDONS_PL_PATH . 'includes/custom-control/woolentor-select.php';
+        $controls_manager->register( new \WooLentor\CustomControl\Woolentor_Select() );
     }
 
     // Add custom category.
@@ -437,6 +446,13 @@ class Widgets_Control{
             ]
 
         ];
+
+        if( woolentor_get_option( 'ajaxsearch', 'woolentor_others_tabs', 'off' ) == 'on' ){
+            $widget_list['common']['ajax_search_form'] = [
+                'title'    => esc_html__('Ajax Search Form','woolentor'),
+                'is_pro'   => $is_pro
+            ];
+        }
 
         if( woolentor_get_option('enable', 'woolentor_flash_sale_settings') == 'on' ){
             $widget_list['common']['product_flash_sale'] = [

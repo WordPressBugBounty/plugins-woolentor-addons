@@ -80,7 +80,7 @@ $view_details_text = $settings['view_details_text'];
 $add_to_cart_text = $settings['add_to_cart_text'];
 $show_secondary_image = $settings['show_secondary_image'];
 $show_badges = $settings['show_badges'];
-$show_quick_view = $settings['show_quick_view'];
+$show_quick_view = ($settings['show_quick_view'] && true === woolentor_has_quickview());
 $show_wishlist = ($settings['show_wishlist'] && true === woolentor_has_wishlist_plugin());
 $show_compare = ($settings['show_compare'] && true === woolentor_exist_compare_plugin());
 

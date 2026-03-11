@@ -76,8 +76,8 @@ $show_grid_description = $settings['show_grid_description'];
 $show_list_description = $settings['show_list_description'];
 $grid_description_length = absint($settings['grid_description_length']);
 $list_description_length = absint($settings['list_description_length']);
-$show_quick_view = $settings['show_quick_view'];
 $show_badges = $settings['show_badges'];
+$show_quick_view = ($settings['show_quick_view'] && true === woolentor_has_quickview());
 $show_wishlist = ($settings['show_wishlist'] && true === woolentor_has_wishlist_plugin());
 $show_compare = ($settings['show_compare'] && true === woolentor_exist_compare_plugin());
 

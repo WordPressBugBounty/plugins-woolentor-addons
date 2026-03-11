@@ -32,6 +32,7 @@ class Fields {
                 'label_on' => __( 'ON', 'woolentor' ),
                 'label_off' => __( 'OFF', 'woolentor' ),
                 'documentation' => esc_url('https://woolentor.com/doc/wishlist-for-woocommerce/'),
+                'preview' => esc_url('https://www.youtube.com/watch?v=T7wIEYJqFP0'),
                 'setting_tabs'=>[
                     [
                         'id'     => 'general',
@@ -246,7 +247,7 @@ class Fields {
                                 'name'   => __( 'Wishlist page', 'woolentor' ),
                                 'type'    => 'select',
                                 'default' => '0',
-                                'options' => wishsuite_get_post_list(),
+                                'options' => woolentor_post_name( 'page', ['limit'=>-1] ),
                                 'desc'    => wp_kses_post('Select a wishlist page for wishlist table. It should contain the shortcode <code>[wishsuite_table]</code>'),
                             ),
             

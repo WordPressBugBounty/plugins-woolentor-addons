@@ -52,9 +52,11 @@ class Woolentor_Wb_Just_Table_Widget extends Widget_Base {
                 'table_id',
                 [
                     'label' => __( 'Select Table', 'woolentor' ),
-                    'type' => Controls_Manager::SELECT,
+                    'type' => 'woolentor-select',
+                    'post_type' => 'jt-product-table',
                     'default' => '0',
-                    'options' => woolentor_post_name('jt-product-table'),
+                    'ajax_search' => true,
+                    'placeholder' => esc_html__('Search tables...', 'woolentor'),
                 ]
             );
 

@@ -41,6 +41,10 @@ class Woolentor_Ajax_Action{
         add_action( 'wp_ajax_woolentor_load_more_products', [$this, 'load_more_products'] );
         add_action( 'wp_ajax_nopriv_woolentor_load_more_products', [$this, 'load_more_products'] );
 
+        // Custom select control AJAX search
+        add_action( 'wp_ajax_woolentor_select_search', [$this, 'select_search'] );
+        add_action( 'wp_ajax_woolentor_select_get_titles', [$this, 'select_get_titles'] );
+
     }
 
     /**
@@ -351,6 +355,67 @@ class Woolentor_Ajax_Action{
             'current_page' => $page
         ));
 
+    }
+
+    /**
+     * AJAX search for woolentor-select control
+     */
+    public function select_search() {
+        if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'woolentor_select_control' ) ) {
+            wp_send_json_error( [ 'message' => __( 'Nonce verification failed.', 'woolentor' ) ] );
+        }
+
+        $search_term = isset( $_POST['s'] ) ? sanitize_text_field( $_POST['s'] ) : '';
+        $post_type   = isset( $_POST['post_type'] ) ? sanitize_text_field( $_POST['post_type'] ) : 'product';
+
+        if ( empty( $search_term ) ) {
+            wp_send_json_success( [ 'results' => [] ] );
+        }
+
+        $query = new \WP_Query( [
+            's'              => $search_term,
+            'post_type'      => $post_type,
+            'post_status'    => 'publish',
+            'posts_per_page' => 20,
+            'fields'         => 'ids',
+        ] );
+
+        $results = [];
+        if ( $query->have_posts() ) {
+            foreach ( $query->posts as $post_id ) {
+                $results[] = [
+                    'id'   => $post_id,
+                    'text' => get_the_title( $post_id ),
+                ];
+            }
+        }
+
+        wp_send_json_success( [ 'results' => $results ] );
+    }
+
+    /**
+     * AJAX get titles for woolentor-select control (saved selections)
+     */
+    public function select_get_titles() {
+        if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'woolentor_select_control' ) ) {
+            wp_send_json_error( [ 'message' => __( 'Nonce verification failed.', 'woolentor' ) ] );
+        }
+
+        $ids       = isset( $_POST['ids'] ) ? array_map( 'absint', (array) $_POST['ids'] ) : [];
+        $post_type = isset( $_POST['post_type'] ) ? sanitize_text_field( $_POST['post_type'] ) : 'product';
+
+        $results = [];
+        foreach ( $ids as $id ) {
+            $post = get_post( $id );
+            if ( $post && $post->post_type === $post_type && $post->post_status === 'publish' ) {
+                $results[] = [
+                    'id'   => $id,
+                    'text' => $post->post_title,
+                ];
+            }
+        }
+
+        wp_send_json_success( [ 'results' => $results ] );
     }
 
 }

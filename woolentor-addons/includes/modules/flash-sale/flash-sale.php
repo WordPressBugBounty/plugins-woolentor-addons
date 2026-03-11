@@ -17,6 +17,7 @@ class Woolentor_Flash_Sale{
 
         // Enqueue scripts
         add_action('wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+        add_action('wp_enqueue_scripts', [ $this, 'enqueue_cart_label_css' ] );
 
         // Alter display price
         add_filter( 'woocommerce_get_price_html', [ $this, 'flash_sale_display_price' ], 10, 2 );
@@ -85,7 +86,21 @@ class Woolentor_Flash_Sale{
             wp_enqueue_style( 'woolentor-flash-sale-module' );
 
         }
-        
+
+    }
+
+    /**
+     * Enqueue cart label hide CSS on all WooCommerce pages (for mini cart support).
+     */
+    public function enqueue_cart_label_css(){
+        $inline_css = '.woocommerce dt.variation-woolentor_cart_flash_sale_label,
+            .wc-block-components-product-details__woolentor-cart-flash-sale-label .wc-block-components-product-details__name{
+                display: none !important;
+            }
+            .woocommerce .variation-woolentor_cart_flash_sale_label{
+                margin: 0 !important;
+            }';
+        wp_add_inline_style( 'woocommerce-general', $inline_css );
     }
 
     /**
@@ -215,15 +230,6 @@ class Woolentor_Flash_Sale{
         $discount_value = !empty($deal['discount_value']) ? $deal['discount_value'] : '';
 
         if( $deal && self::datetime_validity($deal) && $discount_value ){
-            echo '<style>
-                .woocommerce dt.variation-woolentor_cart_flash_sale_label,.wc-block-components-product-details__woolentor-cart-flash-sale-label .wc-block-components-product-details__name{
-                    display: none !important;
-                }
-                .woocommerce .variation-woolentor_cart_flash_sale_label{
-                    margin: 0 !important;
-                }
-            </style>';
-            
             $item_data[] = array(
                 'name'      => 'woolentor_cart_flash_sale_label',
                 'display'   => '<span class="woolentor-flashsale-label">'. esc_html__('Flash Sale!', 'woolentor') .'</span>',
@@ -337,7 +343,7 @@ class Woolentor_Flash_Sale{
             return false;
         }
 
-        if( $apply_on_all_products ){
+        if( $apply_on_all_products == 'on'){
             return true;
         } elseif( $applicable_categories || $applicable_products ) {
             $current_product_categories = wc_get_product_term_ids( $product->get_id(), 'product_cat' );

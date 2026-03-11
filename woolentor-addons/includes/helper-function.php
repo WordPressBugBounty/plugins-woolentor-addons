@@ -113,16 +113,21 @@ function woolentor_upgrade_pro_notice_elementor( $widget, $controls_manager, $wi
 
     $url = 'https://woolentor.com/pricing/?utm_source=elementor-widget-panel&utm_medium='. $widget_name;
 
+    $control_args = [
+        'raw' => 'This option is available<br> in the <strong><a href="'. esc_url($url) .'" target="_blank" style="color: #93003c;">Pro version</a></strong>.',
+        'type' => $controls_manager,
+        'content_classes' => 'woolentor-pro-notice elementor-panel-alert elementor-panel-alert-info'
+    ];
+
+    if( !empty($condition) ){
+        $control_args['condition'] = [
+            $option => $condition,
+        ];
+    }
+
     $widget->add_control(
         $option .'_pro_notice',
-        [
-            'raw' => 'This option is available<br> in the <strong><a href="'. esc_url($url) .'" target="_blank" style="color: #93003c;">Pro version</a></strong>.',
-            'type' => $controls_manager,
-            'condition' => [
-                $option => $condition,
-            ],
-			'content_classes' => 'woolentor-pro-notice elementor-panel-alert elementor-panel-alert-info'
-        ]
+        $control_args
     );
 }
 
@@ -657,7 +662,7 @@ function woolentor_get_post_types( $args = [] ) {
 function woolentor_post_name( $post_type = 'post', $args = [] ){
     $options = [];
     $options['0'] = __('Select','woolentor');
-    $perpage = !empty( $args['limit'] ) ? $args['limit'] : woolentor_get_option( 'loadproductlimit', 'woolentor_others_tabs', '20' );
+    $perpage = !empty( $args['limit'] ) ? $args['limit'] : 20;
     $all_post = array( 'posts_per_page' => $perpage, 'post_type'=> $post_type );
     $post_terms = get_posts( $all_post );
     if ( ! empty( $post_terms ) && ! is_wp_error( $post_terms ) ){
@@ -1401,14 +1406,14 @@ if( class_exists('WooCommerce') ){
     }
 
     // Change Product Per page
-    if( woolentor_get_option( 'enablecustomlayout', 'woolentor_woo_template_tabs', 'on' ) == 'on' ){
-        function woolentor_custom_number_of_posts() {
-            $limit = woolentor_get_option( 'shoppageproductlimit', 'woolentor_woo_template_tabs', 2 );
-            $postsperpage = apply_filters( 'product_custom_limit', $limit );
-            return $postsperpage;
-        }
-        add_filter( 'loop_shop_per_page', 'woolentor_custom_number_of_posts', 99 );
-    }
+    // if( woolentor_get_option( 'enablecustomlayout', 'woolentor_woo_template_tabs', 'on' ) == 'on' ){
+    //     function woolentor_custom_number_of_posts() {
+    //         $limit = woolentor_get_option( 'shoppageproductlimit', 'woolentor_woo_template_tabs', 2 );
+    //         $postsperpage = apply_filters( 'product_custom_limit', $limit );
+    //         return $postsperpage;
+    //     }
+    //     add_filter( 'loop_shop_per_page', 'woolentor_custom_number_of_posts', 99 );
+    // }
 
     // Customize rating html
     if( !function_exists('woolentor_wc_get_rating_html') ){
@@ -1831,9 +1836,14 @@ function woolentor_add_to_wishlist_button( $normalicon = '<i class="fa fa-heart-
  * @return [bool]
  */
 function woolentor_has_quickview(){
-    $status = woolentor_get_option( 'enable', 'woolentor_quickview_settings', 'on' );
-
-    if( $status == 'on' ){
+    // $status = woolentor_get_option( 'enable', 'woolentor_quickview_settings', 'on' );
+    // if( $status == 'on' ){
+    //     return true;
+    // }else{
+    //     return apply_filters('woolentor_has_quickview', false);
+    // }
+    
+    if( class_exists('\Woolentor\Modules\QuickView\Frontend\Button_Manager') ){
         return true;
     }else{
         return apply_filters('woolentor_has_quickview', false);

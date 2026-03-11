@@ -124,10 +124,12 @@ abstract class WooLentor_Product_Grid_Base_Widget extends Widget_Base {
             'include_products',
             [
                 'label' => esc_html__( 'Select Products', 'woolentor' ),
-                'type' => Controls_Manager::SELECT2,
+                'type' => 'woolentor-select',
                 'multiple' => true,
-                'options' => woolentor_post_name( 'product' ),
+                'ajax_search' => true,
+                'post_type' => 'product',
                 'label_block' => true,
+                'placeholder' => esc_html__('Search products...', 'woolentor'),
                 'condition' => [
                     'query_type' => 'manual',
                 ],
@@ -199,10 +201,12 @@ abstract class WooLentor_Product_Grid_Base_Widget extends Widget_Base {
             'exclude_products',
             [
                 'label' => esc_html__( 'Exclude Products', 'woolentor' ),
-                'type' => Controls_Manager::SELECT2,
+                'type' => 'woolentor-select',
                 'multiple' => true,
-                'options' => woolentor_post_name( 'product' ),
+                'ajax_search' => true,
+                'post_type' => 'product',
                 'label_block' => true,
+                'placeholder' => esc_html__('Search products...', 'woolentor'),
                 'separator' => 'before',
             ]
         );
@@ -481,6 +485,7 @@ abstract class WooLentor_Product_Grid_Base_Widget extends Widget_Base {
                 'label_off' => esc_html__( 'Hide', 'woolentor' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
+                'description' => esc_html__( 'This option will not work if the Quick View module is not active.', 'woolentor' ),
             ]
         );
 
@@ -493,6 +498,7 @@ abstract class WooLentor_Product_Grid_Base_Widget extends Widget_Base {
                 'label_off' => esc_html__( 'Hide', 'woolentor' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
+                'description' => esc_html__( 'This option will not work if the Wishlist module is not active.', 'woolentor' ),
             ]
         );
 
@@ -505,6 +511,7 @@ abstract class WooLentor_Product_Grid_Base_Widget extends Widget_Base {
                 'label_off' => esc_html__( 'Hide', 'woolentor' ),
                 'return_value' => 'yes',
                 'default' => 'yes',
+                'description' => esc_html__( 'This option will not work if the Compare module is not active.', 'woolentor' ),
             ]
         );
 

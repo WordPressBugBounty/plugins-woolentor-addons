@@ -192,17 +192,17 @@
 .woolentor-product-grid-editorial .woolentor-quick-action,.woolentor-product-grid-editorial a.woolentor-quick-action  {
     width: 44px;
     height: 44px;
-    background: rgba(255, 255, 255, 0.95);
-    border: none;
-    border-radius: 50%;
-    display: flex;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: none !important;
+    border-radius: 50% !important;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
-    color: var(--woolentor-editorial-text-primary);
-    padding: 0;
+    color: var(--woolentor-editorial-text-primary) !important;
+    padding: 0 !important;
 }
 
 .woolentor-product-grid-editorial .woolentor-quick-action a {

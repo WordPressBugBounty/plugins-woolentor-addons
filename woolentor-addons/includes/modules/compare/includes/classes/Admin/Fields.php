@@ -32,6 +32,7 @@ class Fields {
                 'label_on' => __( 'ON', 'woolentor' ),
                 'label_off' => __( 'OFF', 'woolentor' ),
                 'documentation' => esc_url('https://woolentor.com/doc/woocommerce-product-compare/'),
+                'preview' => esc_url('https://www.youtube.com/watch?v=YCc-AEPBnTE'),
                 'active_tab'=> 'button',
                 'setting_tabs'=>[
 
@@ -284,7 +285,7 @@ class Fields {
                                 'desc' => wp_kses_post('Select a compare page for compare table. It should contain the shortcode <code>[evercompare_table]</code>'),
                                 'type'    => 'select',
                                 'default' => '0',
-                                'options' => ever_compare_get_post_list()
+                                'options' => woolentor_post_name( 'page', ['limit'=>-1] )
                             ),
             
                             array(

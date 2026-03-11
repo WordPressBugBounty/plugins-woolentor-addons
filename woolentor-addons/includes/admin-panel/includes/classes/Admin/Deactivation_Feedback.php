@@ -152,7 +152,8 @@ class Deactivation_Feedback {
             'plugins_count'      => $this->get_plugins_count(),
             'ip_address'         => $ip_address,
             'country_name'       => $this->get_country_from_ip( $ip_address ),
-            'plugin_list'       => $this->get_active_plugins(),
+            'plugin_list'        => $this->get_active_plugins(),
+            'install_time'       => get_option( 'woolentor_installed' ),
         ];
 
         return $data;

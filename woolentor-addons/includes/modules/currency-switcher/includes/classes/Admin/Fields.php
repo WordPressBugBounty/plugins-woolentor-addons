@@ -50,6 +50,7 @@ class Fields {
                 'option_id'=> 'enable',
                 'require_settings'  => true,
                 'documentation' => esc_url('https://woolentor.com/doc/currency-switcher-for-woocommerce/'),
+                'preview' => esc_url('https://www.youtube.com/watch?v=JBW4qRI51uk'),
                 'setting_fields' => array(
                     
                     array(

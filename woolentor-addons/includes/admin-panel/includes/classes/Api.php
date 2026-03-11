@@ -18,6 +18,9 @@ class Api extends WP_REST_Controller {
 
         // Diagnostic Data Collect and Send from Setup Wizard
         add_action('woolentor_diagnostic_data_collect_and_send', [ $this, 'collect_and_send_data' ]);
+
+        // Newsletter Subscribe from Setup Wizard
+        add_action('woolentor_newsletter_subscribe_send', [ $this, 'send_newsletter_subscription' ]);
     }
 
     /**
@@ -47,6 +50,9 @@ class Api extends WP_REST_Controller {
         if ( !class_exists( __NAMESPACE__ . '\Api\Onboarding'  ) ) {
             require_once __DIR__ . '/Api/Onboarding.php';
         }
+        if ( !class_exists( __NAMESPACE__ . '\Api\Ajax_Select'  ) ) {
+            require_once __DIR__ . '/Api/Ajax_Select.php';
+        }
     }
 
     /**
@@ -65,6 +71,21 @@ class Api extends WP_REST_Controller {
     }
 
     /**
+     * Send Newsletter Subscription from Setup Wizard
+     *
+     * @param string $email
+     * @return void
+     */
+    public function send_newsletter_subscription( $email = '' ) {
+        $newsletter_file = WOOLENTOROPT_INCLUDES . '/classes/Admin/Newsletter_Data.php';
+        if ( file_exists( $newsletter_file ) ) {
+            require_once $newsletter_file;
+            $newsletter = \WoolentorOptions\Admin\Newsletter_Data::get_instance();
+            $newsletter->subscribe_from_wizard( $email );
+        }
+    }
+
+    /**
      * Register the API routes
      *
      * @return void
@@ -77,6 +98,7 @@ class Api extends WP_REST_Controller {
         (new Api\TemplateLibrary())->register_routes();
         (new Api\ChangeLog())->register_routes();
         (new Api\Onboarding())->register_routes();
+        (new Api\Ajax_Select())->register_routes();
     }
 
 }

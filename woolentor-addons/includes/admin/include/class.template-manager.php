@@ -94,7 +94,8 @@ class Woolentor_Template_Manager{
 		unset( $columns['author'] );
 
 		$columns['type'] 		= esc_html__('Type', 'woolentor');
-		$columns['setdefault'] 	= esc_html__('Default', 'woolentor');
+		$current_tab 			= isset( $_GET['tabs'] ) ? sanitize_key( $_GET['tabs'] ) : '';
+		$columns['setdefault'] 	= ( $current_tab === 'popup' ) ? esc_html__('Condition', 'woolentor') : esc_html__('Default', 'woolentor');
 		$columns['author'] 		= esc_html( $column_author );
 		$columns['date'] 		= esc_html( $column_date );
 
@@ -131,10 +132,14 @@ class Woolentor_Template_Manager{
 			echo isset( self::get_template_type()[$tmpType] ) ? '<a class="column-tmptype" href="edit.php?post_type='.self::CPTTYPE.'&template_type='.$tmpType.'&tabs='.$tmpTypeGroup.'">'.self::get_template_type()[$tmpType]['label'].'</a>' : '-'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}elseif( $column_name === 'setdefault' ){
 
-			$value = $this->get_template_id( self::get_template_type()[$tmpType]['optionkey'] );
-			$checked = checked( $value, $post_id, false );
+			if( $tmpType === 'popup' ){
+				echo '<button type="button" class="button button-primary wlpb-list-condition-btn" data-popup_id="'.esc_attr( $post_id ).'"><span class="dashicons dashicons-admin-generic"></span>'.esc_html__('Condition','woolentor').'</button>';
+			} else {
+				$value = $this->get_template_id( self::get_template_type()[$tmpType]['optionkey'] );
+				$checked = checked( $value, $post_id, false );
 
-			echo '<label class="woolentor-default-tmp-status-switch" id="woolentor-default-tmp-status-'.esc_attr( $tmpType ).'-'.esc_attr( $post_id ).'"><input class="woolentor-status-'.esc_attr( $tmpType ).'" id="woolentor-default-tmp-status-'.esc_attr( $tmpType ).'-'.esc_attr( $post_id ).'" type="checkbox" value="'.esc_attr( $post_id ).'" '.$checked.'/><span><span>'.esc_html__('NO','woolentor').'</span><span>'.esc_html__('YES','woolentor').'</span></span><a>&nbsp;</a></label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo '<label class="woolentor-default-tmp-status-switch" id="woolentor-default-tmp-status-'.esc_attr( $tmpType ).'-'.esc_attr( $post_id ).'"><input class="woolentor-status-'.esc_attr( $tmpType ).'" id="woolentor-default-tmp-status-'.esc_attr( $tmpType ).'-'.esc_attr( $post_id ).'" type="checkbox" value="'.esc_attr( $post_id ).'" '.$checked.'/><span><span>'.esc_html__('NO','woolentor').'</span><span>'.esc_html__('YES','woolentor').'</span></span><a>&nbsp;</a></label>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			}
 
 		}
 
@@ -269,7 +274,41 @@ class Woolentor_Template_Manager{
 				'label' => __('Single','woolentor')
 			],
 		];
-		return apply_filters( 'woolentor_template_menu_tabs', $tabs );
+		
+		// Show locked pro tabs when pro is not active
+		if( !defined('WOOLENTOR_VERSION_PRO') ){
+			$tabs['cart'] = [
+				'label' => __('Cart','woolentor'),
+				'is_pro' => true
+			];
+			$tabs['checkout'] = [
+				'label' => __('Checkout','woolentor'),
+				'is_pro' => true
+			];
+			$tabs['myaccount'] = [
+				'label' => __('My Account','woolentor'),
+				'is_pro' => true
+			];
+			$tabs['quickview'] = [
+				'label' => __('Quick View','woolentor'),
+				'is_pro' => true
+			];
+		}
+
+		$tabs = apply_filters( 'woolentor_template_menu_tabs', $tabs );
+
+		// Reorder: free tabs first, pro (locked) tabs last
+		$free_tabs = [];
+		$pro_tabs = [];
+		foreach( $tabs as $key => $tab ){
+			if( !empty( $tab['is_pro'] ) ){
+				$pro_tabs[$key] = $tab;
+			} else {
+				$free_tabs[$key] = $tab;
+			}
+		}
+
+		return array_merge( $free_tabs, $pro_tabs );
 
 	}
 
@@ -355,6 +394,9 @@ class Woolentor_Template_Manager{
 	public function print_popup() {
 		if( isset( $_GET['post_type'] ) && $_GET['post_type'] == 'woolentor-template' ){
 			include_once( WOOLENTOR_ADDONS_PL_PATH. 'includes/admin/templates/template_edit_popup.php' );
+			if( !defined('WOOLENTOR_VERSION_PRO') ){
+				include_once( WOOLENTOR_ADDONS_PL_PATH. 'includes/admin/templates/template_pro_popup.php' );
+			}
 		}
     }
 
@@ -378,7 +420,12 @@ class Woolentor_Template_Manager{
 					<?php
 						foreach( self::get_tabs() as $tabkey => $tab ){
 							$active_class = ( $current_type == $tabkey ? 'nav-tab-active' : '' );
-							echo '<a class="nav-tab '.esc_attr($active_class).'" href="edit.php?post_type='.esc_attr(self::CPTTYPE).'&template_type='.esc_attr($tabkey).'&tabs='.esc_attr($tabkey).'">'.esc_html($tab['label']).'</a>';
+
+							if( !empty($tab['is_pro']) ){
+								echo '<a class="nav-tab woolentor-pro-tab '.esc_attr($active_class).'" href="#">'.esc_html($tab['label']).'<span class="woolentor-pro-badge">'.esc_html__('Pro', 'woolentor').'</span></a>';
+							}else{
+								echo '<a class="nav-tab '.esc_attr($active_class).'" href="edit.php?post_type='.esc_attr(self::CPTTYPE).'&template_type='.esc_attr($tabkey).'&tabs='.esc_attr($tabkey).'">'.esc_html($tab['label']).'</a>';
+							}
 						}
 					?>
 				</div>

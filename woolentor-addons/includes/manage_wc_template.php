@@ -33,6 +33,9 @@ class Woolentor_Manage_WC_Template{
         // Product Archive Page
         add_action( 'woolentor_woocommerce_archive_product_content', [ $this, 'set_shop_page_builder_content' ] );
 
+        // Prevent 404 on paginated shop/archive pages when custom template is active
+        add_filter( 'pre_handle_404', [ $this, 'prevent_pagination_404' ], 10, 2 );
+
     }
 
     /**
@@ -115,6 +118,55 @@ class Woolentor_Manage_WC_Template{
             ] );
         }
 
+    }
+
+    /**
+     * Prevent 404 on paginated shop/archive pages when our custom template is active.
+     * WordPress main query uses WooCommerce's posts_per_page which may differ from widget's setting,
+     * causing WordPress to return 404 on pages that our widget query knows exist.
+     */
+    public function prevent_pagination_404( $preempt, $wp_query ) {
+        if ( $preempt ) {
+            return $preempt;
+        }
+
+        // Only handle paginated WooCommerce shop/archive pages
+        if ( ! $wp_query->is_main_query() ) {
+            return $preempt;
+        }
+
+        $paged = $wp_query->get( 'paged' );
+        if ( ! $paged || $paged <= 1 ) {
+            return $preempt;
+        }
+
+        // Check if we're on a WooCommerce shop or product taxonomy page with our custom template
+        $is_wc_archive = false;
+
+        if ( function_exists( 'is_shop' ) && is_shop() && false !== self::has_template( 'productarchivepage' ) ) {
+            $is_wc_archive = true;
+        } elseif ( function_exists( 'is_product_taxonomy' ) && is_product_taxonomy() ) {
+            $archive_template = self::get_template_id( 'productallarchivepage' );
+            $shop_template    = self::get_template_id( 'productarchivepage' );
+            if ( '0' !== $archive_template || '0' !== $shop_template ) {
+                $is_wc_archive = true;
+            }
+        }
+
+        if ( ! $is_wc_archive ) {
+            return $preempt;
+        }
+
+        // Check if products exist for this page with a minimal query
+        $total_products = wp_count_posts( 'product' );
+        $published = isset( $total_products->publish ) ? $total_products->publish : 0;
+
+        if ( $published > 0 ) {
+            // Products exist — don't 404, let the widget handle pagination
+            return true;
+        }
+
+        return $preempt;
     }
 
     /**

@@ -36,7 +36,7 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
     }
 
     public function get_keywords(){
-        return ['add to cart','cart','button','buy now'];
+        return ['add to cart','cart','button','buy now', 'add to cart button'];
     }
 
     protected function register_controls() {

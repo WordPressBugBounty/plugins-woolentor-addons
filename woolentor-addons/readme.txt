@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, aslamhasib
 Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenberg blocks
 Requires at least: 4.7
 Tested up to: 6.9
-Stable tag: 3.3.4
+Stable tag: 3.3.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -462,10 +462,18 @@ Check out our other powerful WordPress plugins:
 
 == Changelog ==
 
+= Version: 3.3.5 - Date: 11-03-2026 =
+* Added: Product AJAX search Elementor addon.
+* Added: AJAX Search product field added and converted all setting with AJAX.
+* Added: Elementor Custom control added for product search field.
+* Improved: Template library improvement with popup Redesign.
+* Solved: Enable all and disable all button not working issue in setup wizard module step.
+* Compatibility: Latest WordPress and WooCommerce version.
+
 = Version: 3.3.4 - Date: 24-02-2026 =
 * Added: Setup Wizard.
 * Solved: Dashboard layout improvement in laptop screen.
-* Compatibility : Latest WordPress and WooCommerce version.
+* Compatibility: Latest WordPress and WooCommerce version.
 
 = Version: 3.3.3 - Date: 15-02-2026 =
 * Solved: Permalink flash issue.

@@ -164,6 +164,26 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.3.5',
+                'date'    => '2026-03-11',
+                'changes' => [
+                    'New Features' => [
+                        'Product AJAX search Elementor addon.',
+                        'Add AJAX Search product field added and converted all setting with AJAX.',
+                        'Add Elementor Custom control added for product search field.',
+                    ],
+                    'Improved' => [
+                        'Template library improvement with popup Redesign.',
+                    ],
+                    'Fixes' => [
+                        'Enable all and disable all button not working issue in setup wizard module step.',
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
                 'version' => '3.3.4',
                 'date'    => '2026-02-24',
                 'changes' => [
