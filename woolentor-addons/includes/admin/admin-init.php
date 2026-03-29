@@ -32,6 +32,13 @@ class Woolentor_Admin_Init{
     public function include(){
         require_once( WOOLENTOR_ADDONS_PL_PATH .'includes/api.php');
         require_once('include/admin_field-manager.php');
+
+        // Elementor Template Library integration
+        if ( did_action( 'elementor/loaded' ) ) {
+            require_once('include/class.library-source.php');
+            require_once('include/class.elementor-template-library.php');
+            \Woolentor\ElementorTemplate\Elementor_Library_Manage::instance();
+        }
     }
 
 

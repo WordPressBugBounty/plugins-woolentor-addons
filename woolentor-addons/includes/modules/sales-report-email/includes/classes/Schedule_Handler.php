@@ -31,7 +31,7 @@ class Schedule_Handler {
         // Add custom schedule
         $schedules['woolentor_custom_minutes'] = array(
             'interval' => $minutes * 60,
-            'display' => sprintf(__('Every %d minutes', 'woolentor'), $minutes)
+            'display' => sprintf('Every %d minutes', $minutes)
         );
 
         return $schedules;

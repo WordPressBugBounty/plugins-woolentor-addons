@@ -85,8 +85,83 @@ class Woolentor_Flash_Sale{
             wp_enqueue_script( 'woolentor-flash-sale-module');
             wp_enqueue_style( 'woolentor-flash-sale-module' );
 
+            // Countdown custom styles
+            $customize_style = woolentor_get_option('customize_countdown_style', 'woolentor_flash_sale_settings', 'off');
+            if( $customize_style === 'on' ){
+
+                $custom_css = self::build_countdown_css($customize_style);
+
+                if( $custom_css ){
+                    wp_add_inline_style( 'woolentor-flash-sale-module', $custom_css );
+                }
+            }
+
         }
 
+    }
+
+    /**
+     * Build the custom inline CSS for countdown timer styling.
+     *
+     * Extracted from enqueue_scripts() to allow unit testing of CSS generation
+     * logic without requiring a WordPress environment.
+     *
+     * @param string $customize_style  'on' to generate styles, anything else returns empty string.
+     */
+    public static function build_countdown_css( $customize_style ) {
+        if ( $customize_style !== 'on' ) {
+            return '';
+        }
+
+        $number_bg_color = woolentor_get_option('countdown_number_bg_color', 'woolentor_flash_sale_settings', '');
+        $number_color    = woolentor_get_option('countdown_number_color', 'woolentor_flash_sale_settings', '');
+        $label_color     = woolentor_get_option('countdown_label_color', 'woolentor_flash_sale_settings', '');
+        $title_bg_color  = woolentor_get_option('countdown_title_bg_color', 'woolentor_flash_sale_settings', '');
+        $title_color     = woolentor_get_option('countdown_title_color', 'woolentor_flash_sale_settings', '');
+
+        $css = '';
+
+        if ( $number_bg_color ) {
+            $css .= "
+                .woolentor-flash-product-countdown .woolentor-countdown .woolentor-count{
+                    background-color: {$number_bg_color} !important;
+                }
+            ";
+        }
+
+        if ( $number_color ) {
+            $css .= "
+                .woolentor-flash-product-countdown .woolentor-countdown .woolentor-count{
+                    color: {$number_color} !important;
+                }
+            ";
+        }
+
+        if ( $label_color ) {
+            $css .= "
+                .woolentor-flash-product-countdown .woolentor-countdown .woolentor-label{
+                    color: {$label_color} !important;
+                }
+            ";
+        }
+
+        if ( $title_bg_color ) {
+            $css .= "
+                .woolentor-flash-product-countdown .woolentor-flash-product-offer-timer-text{
+                    background-color: {$title_bg_color} !important;
+                }
+            ";
+        }
+
+        if ( $title_color ) {
+            $css .= "
+                .woolentor-flash-product-countdown .woolentor-flash-product-offer-timer-text{
+                    color: {$title_color} !important;
+                }
+            ";
+        }
+
+        return $css;
     }
 
     /**
@@ -549,4 +624,6 @@ class Woolentor_Flash_Sale{
 
 }
 
-Woolentor_Flash_Sale::instance();
+if ( ! defined( 'WOOLENTOR_TESTING' ) ) {
+    Woolentor_Flash_Sale::instance();
+}

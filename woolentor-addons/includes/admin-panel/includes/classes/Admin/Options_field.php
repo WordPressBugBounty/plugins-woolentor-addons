@@ -3211,7 +3211,91 @@ class Options_Field {
                             ],
                             'class'   => 'woolentor-action-field-left'
                         ),
-                        
+
+                        array(
+                            'id'    => 'customize_countdown_style',
+                            'name'   => esc_html__( 'Customize Countdown Style', 'woolentor' ),
+                            'desc'    => esc_html__( 'Enable to customize the countdown timer appearance.', 'woolentor' ),
+                            'type'    => 'checkbox',
+                            'default' => 'off',
+                            'condition' => [
+                                'key' => 'enable_countdown_on_product_details_page',
+                                'operator' => '==',
+                                'value' => 'on'
+                            ],
+                            'class'   => 'woolentor-action-field-left'
+                        ),
+
+                        array(
+                            'id'  => 'countdown_number_bg_color',
+                            'name' => esc_html__( 'Countdown Background Color', 'woolentor' ),
+                            'desc'  => esc_html__( 'Set the background color of the countdown numbers.', 'woolentor' ),
+                            'type'  => 'color',
+                            'condition' => [
+                                'key' => 'enable_countdown_on_product_details_page|customize_countdown_style',
+                                'operator' => '==|==',
+                                'value' => 'on|on'
+                            ],
+                            'class' => 'woolentor-action-field-left',
+                            'size' => 'large',
+                        ),
+
+                        array(
+                            'id'  => 'countdown_number_color',
+                            'name' => esc_html__( 'Countdown Number Color', 'woolentor' ),
+                            'desc'  => esc_html__( 'Set the text color of the countdown numbers.', 'woolentor' ),
+                            'type'  => 'color',
+                            'condition' => [
+                                'key' => 'enable_countdown_on_product_details_page|customize_countdown_style',
+                                'operator' => '==|==',
+                                'value' => 'on|on'
+                            ],
+                            'class' => 'woolentor-action-field-left',
+                            'size' => 'large',
+                        ),
+
+                        array(
+                            'id'  => 'countdown_label_color',
+                            'name' => esc_html__( 'Countdown Label Color', 'woolentor' ),
+                            'desc'  => esc_html__( 'Set the text color of the countdown labels (Days, Hours, etc).', 'woolentor' ),
+                            'type'  => 'color',
+                            'condition' => [
+                                'key' => 'enable_countdown_on_product_details_page|customize_countdown_style',
+                                'operator' => '==|==',
+                                'value' => 'on|on'
+                            ],
+                            'class' => 'woolentor-action-field-left',
+                            'size' => 'large',
+                        ),
+
+                        array(
+                            'id'  => 'countdown_title_bg_color',
+                            'name' => esc_html__( 'Title Background Color', 'woolentor' ),
+                            'desc'  => esc_html__( 'Set the background color of the countdown title.', 'woolentor' ),
+                            'type'  => 'color',
+                            'condition' => [
+                                'key' => 'enable_countdown_on_product_details_page|customize_countdown_style',
+                                'operator' => '==|==',
+                                'value' => 'on|on'
+                            ],
+                            'class' => 'woolentor-action-field-left',
+                            'size' => 'large',
+                        ),
+
+                        array(
+                            'id'  => 'countdown_title_color',
+                            'name' => esc_html__( 'Title Text Color', 'woolentor' ),
+                            'desc'  => esc_html__( 'Set the text color of the countdown title.', 'woolentor' ),
+                            'type'  => 'color',
+                            'condition' => [
+                                'key' => 'enable_countdown_on_product_details_page|customize_countdown_style',
+                                'operator' => '==|==',
+                                'value' => 'on|on'
+                            ],
+                            'class' => 'woolentor-action-field-left',
+                            'size' => 'large',
+                        ),
+
                     )
 
                 ),

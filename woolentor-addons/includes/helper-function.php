@@ -681,10 +681,9 @@ function woolentor_post_name( $post_type = 'post', $args = [] ){
  */
 function woolentor_elementor_template() {
     $templates = woolentor_get_post_list();
-    if ( empty( $templates ) ) {
-        $template_lists = [ '0' => __( 'No saved templates found.', 'woolentor' ) ];
-    } else {
-        $template_lists = [ '0' => __( 'Select Template', 'woolentor' ) ];
+
+    $template_lists = [];
+    if ( !empty( $templates ) ) {
         foreach ( $templates as $template ) {
             $template_lists[ $template['post_id'] ] = $template['title'] . ' (' . $template['type'] . ')';
         }
@@ -749,9 +748,12 @@ function woolentor_wltemplate_list( $type = [] ){
     $templates = new WP_Query( $args );
 
     if( $templates->have_posts() ){
+        $template_lists = [ '0' => __( 'Select Template', 'woolentor' ) ];
         foreach ( $templates->get_posts() as $post ) {
             $template_lists[ $post->ID ] = $post->post_title;
         }
+    }else{
+        $template_lists = [ '0' => __( 'No saved templates found.', 'woolentor' ) ];
     }
     wp_reset_query();
     return $template_lists;

@@ -1,1 +1,1 @@
-<span class="woolentor-quickview-btn-area"><a href="<?php echo esc_url( $button_url ); ?>" class="<?php echo esc_attr($button_class); ?>" data-product_id="<?php echo esc_attr( $product_id ); ?>"><?php echo $button_text; ?></a></span>
+<span class="woolentor-quickview-btn-area"><a href="<?php echo esc_url( $button_url ); ?>" class="<?php echo esc_attr($button_class); ?>" data-product_id="<?php echo esc_attr( $product_id ); ?>"><?php echo wp_kses_post($button_text); ?></a></span>

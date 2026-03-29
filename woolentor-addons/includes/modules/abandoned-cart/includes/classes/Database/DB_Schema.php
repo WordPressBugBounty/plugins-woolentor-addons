@@ -124,8 +124,8 @@ class DB_Schema {
         $templates = array();
 
         $templates[] = array(
-            'name' => __( 'First Reminder', 'woolentor' ),
-            'subject' => __( 'You left something in your cart!', 'woolentor' ),
+            'name' => 'First Reminder',
+            'subject' => 'You left something in your cart!',
             'body' => "Hi {customer_first_name}, 
                 You left items in your cart on {cart_abandonment_date}. 
 
@@ -144,8 +144,8 @@ class DB_Schema {
         );
 
         $templates[] = array(
-            'name' => __( 'Second Reminder', 'woolentor' ),
-            'subject' => __( 'Still interested? Your cart is waiting!', 'woolentor' ),
+            'name' => 'Second Reminder',
+            'subject' => 'Still interested? Your cart is waiting!',
             'body' => "Hi {customer_first_name}, 
                 You left items in your cart on {cart_abandonment_date}. 
 
@@ -166,8 +166,8 @@ class DB_Schema {
         );
 
         $templates[] = array(
-            'name' => __( 'Third Reminder', 'woolentor' ),
-            'subject' => __( 'Your cart is still here!', 'woolentor' ),
+            'name' => 'Third Reminder',
+            'subject' => 'Your cart is still here!',
             'body' => "Hi {customer_first_name}, 
                 You left items in your cart on {cart_abandonment_date}. 
 

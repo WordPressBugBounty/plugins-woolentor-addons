@@ -308,6 +308,16 @@ class Woolentor_Wl_Product_Horizontal_Filter_Widget extends Widget_Base {
             );
 
             $this->add_control(
+                'pro_show_filter_reset_btton',
+                [
+                    'label' => sprintf( esc_html__( 'Show Reset Button %s', 'woolentor' ), '<i class="eicon-pro-icon"></i>' ),
+                    'type' => Controls_Manager::SWITCHER,
+                    'default'=>'yes',
+                    'classes' => 'woolentor-disable-control'
+                ]
+            );
+
+            $this->add_control(
                 'form_field_placeholder',
                 [
                     'label' => esc_html__( 'Search Form Placeholder', 'woolentor' ),

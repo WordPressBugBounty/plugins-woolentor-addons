@@ -59,6 +59,9 @@ class Shortcode {
             'template_name'  => 'button',
         ];
         $atts = shortcode_atts( $default_atts, $atts, $content );
+        if (isset($atts['button_text'])) {
+            $atts['button_text'] = wp_kses_post( $atts['button_text'] );
+        }
         return Button_Manager::instance()->button_html( $atts );
 
     }

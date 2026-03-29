@@ -538,6 +538,8 @@ class Widgets_Control{
                 'icon'  => 'woolentor-pro-promotion eicon-user-preferences',
                 'action_url' => $action_url,
                 'description' => __( 'Use %s widget and numerous advanced features to enhance the functionality of your shop/archive page template filter widget.', 'woolentor' ),
+                'module_description' => __( 'This widget requires the Product Filter module to be enabled. Go to ShopLentor > Settings > Modules to enable it.', 'woolentor' ),
+                'module_disabled' => woolentor_get_option('enable', 'woolentor_product_filter_settings') == 'on' ? false : true,
             ],
             [
                 'name'  => 'woolentor-product-archive-custom',

@@ -28,13 +28,13 @@ class Dynamic_Scheduler {
         // Add custom schedule
         $schedules['woolentor_abandoned_cart_custom_minutes'] = [
             'interval' => $minutes * MINUTE_IN_SECONDS,
-            'display' => sprintf(__('Every %d minutes', 'woolentor'), $minutes)
+            'display' => sprintf('Every %d minutes', $minutes)
         ];
 
         // Add custom schedule for email processing
         $schedules['woolentor_email_processing'] = [
             'interval' => 1 * MINUTE_IN_SECONDS,
-            'display' => __('Every 1 minute', 'woolentor')
+            'display' => 'Every 1 minute'
         ];
 
         return $schedules;

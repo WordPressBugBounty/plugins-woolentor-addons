@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, aslamhasib
 Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenberg blocks
 Requires at least: 4.7
 Tested up to: 6.9
-Stable tag: 3.3.5
+Stable tag: 3.3.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -461,6 +461,14 @@ Check out our other powerful WordPress plugins:
 **[JustTables](https://hasthemes.com/wp/justtables/?utm_source=org&utm_medium=readme)** - WordPress table builder
 
 == Changelog ==
+
+= Version: 3.3.6 - Date: 29-03-2026 =
+* Added: Countdown Style option in Flash Sale module.
+* Added: Template library for Elementor editor mode.
+* Solved: Product review form showing issue in Elementor editor mode.
+* Solved: TaxDomain early register notice issue with Abandon cart module.
+* Solved: Template 0 selected issue in ShopLentor > Settings > Others Settings select field if template list not found.
+* Compatibility: Latest WordPress and WooCommerce version.
 
 = Version: 3.3.5 - Date: 11-03-2026 =
 * Added: Product AJAX search Elementor addon.
@@ -975,24 +983,6 @@ Check out our other powerful WordPress plugins:
 * Solved : All Category showing issue in category grid block.
 * Compatibility with the latest WooCommerce version.
 * Compatibility With latest Elementor Version.
-
-= Version: 2.5.1 - Date: 06-12-2022 =
-* Added :  WooLentor Builder Template Import option from template library.
-* Added : Parent Category Showing option in Category grid addon.
-* Added : Parent Category Showing option in Category List addon.
-* Solved : Lighthouse validation issue in (Universal Product, Product Filter and Product Filter module)
-* Solved : Add to cart product duplicate entity issue with single product Ajax add to cart module.
-* Compatibility With latest Elementor Version.
-
-= Version: 2.5.0 - Date: 27-11-2022 =
-* Added :  Single product Review Form Block.
-* Added : Slider option has been added in Brand logo block.
-* Improved : Sample Template import process and default title random generate change to template title.
-* Improved : Elementor dependency has been added in template import process.
-* Improved : Sample template name show in template edit manager popup.
-* Solved : Gutenberg Block ColorPalette reset button showing issue.
-* Solved : Add to cart icon showing issue has been foxed in Product Tab block.
-* Compatibility with the latest WooCommerce version.
 
 == Installation ==
 This section describes how to install the ShopLentor - WooCommerce Addons for Elementor Page Builder plugin and get it working.

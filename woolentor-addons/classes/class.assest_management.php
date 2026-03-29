@@ -393,6 +393,7 @@ class Assets_Management{
             array(
                 'hasPro'     => is_plugin_active('woolentor-addons-pro/woolentor_addons_pro.php') ? true : false,
                 'proWidgets' => Widgets_Control::promotional_widget_list(),
+                'settingsURL' => admin_url('admin.php?page=woolentor#/modules'),
             )
         );
     }

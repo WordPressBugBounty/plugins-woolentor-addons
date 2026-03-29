@@ -20,10 +20,21 @@
         addPromutionWidget: function(){
             elementor.hooks.addFilter("panel/elements/regionViews", function (panel) {
 
-                if ( woolentorSetting.hasPro || _.isEmpty( woolentorSetting.proWidgets ) ) return panel;
+                var proWidgets = woolentorSetting.proWidgets;
+
+                if ( _.isEmpty( proWidgets ) ) return panel;
+
+                // When Pro is active, only show widgets whose required module is disabled
+                if ( woolentorSetting.hasPro ) {
+                    proWidgets = proWidgets.filter(function( widget ){
+                        return widget.module_disabled === true;
+                    });
+                    if ( _.isEmpty( proWidgets ) ) return panel;
+                }
 
                 let freeCategoryIndex,
-                    proCategory     = "woolentor_addons_pro",
+                    proCategoryIndex,
+                    proCategory     = "woolentor-addons-pro",
                     elementsView    = panel.elements.view,
                     categoriesPannelView  = panel.categories.view,
                     widgets         = panel.elements.options.collection,
@@ -31,13 +42,13 @@
                     woolentorProcategroy = [];
 
 
-                    _.each(woolentorSetting.proWidgets, function (widget, index) {
-                        widgets.add({ 
-                            name: widget.name, 
-                            title: widget.title, 
-                            icon: widget.icon, 
-                            categories: [proCategory], 
-                            editable: !1 
+                    _.each(proWidgets, function (widget, index) {
+                        widgets.add({
+                            name: widget.name,
+                            title: widget.title,
+                            icon: widget.icon,
+                            categories: [proCategory],
+                            editable: !1
                         });
                     });
 
@@ -49,28 +60,43 @@
                         name: "woolentor-addons"
                     });
 
-                    if( freeCategoryIndex === 0 ){
-                        allCategories.add({ 
-                            name: proCategory, 
-                            title: wp.i18n.__("ShopLentor Pro",'woolentor'), 
-                            icon: "woolentor-category-icon", 
-                            defaultActive: 1, 
-                            sort: !0, 
-                            hideIfEmpty: !0, 
-                            items: woolentorProcategroy, 
-                            promotion: !1 
-                        }, { at: freeCategoryIndex + 1 });
-                    }else{
-                        freeCategoryIndex && allCategories.add({ 
-                            name: proCategory, 
-                            title: wp.i18n.__("ShopLentor Pro",'woolentor'), 
-                            icon: "woolentor-category-icon", 
-                            defaultActive: 1, 
-                            sort: !0, 
-                            hideIfEmpty: !0, 
-                            items: woolentorProcategroy, 
-                            promotion: !1 
-                        }, { at: freeCategoryIndex + 1 });
+                    proCategoryIndex = allCategories.findIndex({
+                        name: "woolentor-addons-pro"
+                    });
+
+
+                    if( proCategoryIndex !== -1 && woolentorSetting.hasPro ){
+                        // Pro active: keep category position, just add widgets
+                        let existingCategory = allCategories.at( proCategoryIndex );
+                        let existingItems = existingCategory.get("items");
+                        if ( existingItems && existingItems.length !== undefined ) {
+                            _.each(woolentorProcategroy, function( widget ){
+                                existingItems.push( widget );
+                            });
+                        } else {
+                            existingCategory.set("items", woolentorProcategroy);
+                        }
+                    } else {
+                        // Pro deactive: remove existing empty category and re-add below free
+                        if( proCategoryIndex !== -1 ){
+                            allCategories.remove( allCategories.at( proCategoryIndex ) );
+                            freeCategoryIndex = allCategories.findIndex({
+                                name: "woolentor-addons"
+                            });
+                        }
+
+                        if( freeCategoryIndex !== -1 ){
+                            allCategories.add({
+                                name: proCategory,
+                                title: wp.i18n.__("ShopLentor Pro",'woolentor'),
+                                icon: "woolentor-category-icon",
+                                defaultActive: 1,
+                                sort: !0,
+                                hideIfEmpty: !0,
+                                items: woolentorProcategroy,
+                                promotion: !1
+                            }, { at: freeCategoryIndex + 1 });
+                        }
                     }
 
                 return panel;
@@ -81,10 +107,10 @@
         handleDialogBox: function(){
 
             parent.document.addEventListener("mousedown", function (e) {
-        
+
                 let allWidgets = parent.document.querySelectorAll(".elementor-element--promotion");
-                
-                if ( allWidgets.length > 0 && !woolentorSetting.hasPro ) {
+
+                if ( allWidgets.length > 0 ) {
                     for ( let i = 0; i < allWidgets.length; i++ ) {
                         if ( allWidgets[i].contains( e.target ) ) {
 
@@ -93,8 +119,12 @@
                                 widgetTitleWrap = allWidgets[i].querySelector(".title-wrapper > .title"),
                                 widgetTitle = widgetTitleWrap.innerHTML,
                                 widgetObject = wooLentorElementorEditorMode.getWidgetInfo(widgetTitle, 'title'),
-                                actionURL = widgetObject?.action_url,
-                                widgetDescription = widgetObject?.description ? wp.i18n.sprintf( widgetObject.description, widgetTitle ) : wp.i18n.sprintf( wp.i18n.__('Use %s widget and dozens more pro features to extend your toolbox and build sites faster and better.', 'woolentor'), widgetTitle );
+                                isModuleDependent = woolentorSetting.hasPro && widgetObject && widgetObject.module_disabled,
+                                actionURL = isModuleDependent ? woolentorSetting.settingsURL : widgetObject?.action_url,
+                                buttonLabel = isModuleDependent ? wp.i18n.__('Enable Module', 'woolentor') : wp.i18n.__('Upgrade Now', 'woolentor'),
+                                widgetDescription = isModuleDependent && widgetObject.module_description
+                                    ? widgetObject.module_description
+                                    : ( widgetObject?.description ? wp.i18n.sprintf( widgetObject.description, widgetTitle ) : wp.i18n.sprintf( wp.i18n.__('Use %s widget and dozens more pro features to extend your toolbox and build sites faster and better.', 'woolentor'), widgetTitle ) );
 
 
                             if ( icon.classList.contains('woolentor-pro-promotion') ) {
@@ -105,7 +135,7 @@
                                 if (promotionDialog.querySelector("a.woolentor-pro-dialog-button-action") === null) {
 
                                     let buttonElement = document.createElement("a"),
-                                        buttonText = document.createTextNode( wp.i18n.__('Upgrade Now', 'woolentor') );
+                                        buttonText = document.createTextNode( buttonLabel );
 
                                     buttonElement.classList.add(
                                         "dialog-button",
@@ -116,16 +146,20 @@
                                     );
 
                                     buttonElement.setAttribute("href", actionURL);
-                                    buttonElement.setAttribute("target", "_blank");
+                                    buttonElement.setAttribute("target", isModuleDependent ? "_self" : "_blank");
                                     buttonElement.appendChild(buttonText);
 
                                     promotionDialog.querySelector(".dialog-buttons-action").insertAdjacentHTML("afterend", buttonElement.outerHTML);
                                     promotionDialog.querySelector(".woolentor-pro-dialog-button-action").style.backgroundColor = "#93003f";
-                                    promotionDialog.querySelector(".woolentor-pro-dialog-button-action").style.textAlign = "center"; 
+                                    promotionDialog.querySelector(".woolentor-pro-dialog-button-action").style.textAlign = "center";
                                     promotionDialog.querySelector(".elementor-button.go-pro.dialog-buttons-action").classList.add('woolentor-elementor-pro-hide');
 
                                 } else {
-                                    promotionDialog.querySelector(".woolentor-pro-dialog-button-action").style.textAlign = "center"; 
+                                    let existingButton = promotionDialog.querySelector(".woolentor-pro-dialog-button-action");
+                                    existingButton.setAttribute("href", actionURL);
+                                    existingButton.setAttribute("target", isModuleDependent ? "_self" : "_blank");
+                                    existingButton.textContent = buttonLabel;
+                                    existingButton.style.textAlign = "center";
                                     promotionDialog.querySelector(".elementor-button.go-pro.dialog-buttons-action").classList.add('woolentor-elementor-pro-hide');
                                 }
                             } else {
@@ -147,5 +181,5 @@
     };
 
     wooLentorElementorEditorMode.init();
-  
+
 })(jQuery);

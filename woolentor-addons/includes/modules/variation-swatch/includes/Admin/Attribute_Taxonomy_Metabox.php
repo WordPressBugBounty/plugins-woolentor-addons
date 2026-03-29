@@ -328,9 +328,14 @@ class Attribute_Taxonomy_Metabox{
 	public function save_term_meta( $term_id ){
 		$post_data = wp_unslash($_POST);
 
+		// If nonce field doesn't exist (e.g. quick edit), skip saving swatch meta
+		if ( empty( $post_data['swatchly_term_meta_nonce'] ) ) {
+			return;
+		}
+
 		$nonce = sanitize_text_field($post_data['swatchly_term_meta_nonce']);
         if ( !wp_verify_nonce( $nonce, 'swatchly_save_term_meta_nonce' ) ) {
-            die( esc_html__( 'No naughty business please!', 'woolentor' ) );
+            return;
         }
 
 		$tooltip        		= isset($post_data['swatchly_tooltip']) ? sanitize_text_field($post_data['swatchly_tooltip']) : '';

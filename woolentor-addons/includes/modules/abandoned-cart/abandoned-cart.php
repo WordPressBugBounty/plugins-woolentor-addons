@@ -110,10 +110,16 @@ class Abandoned_Cart{
      * Add WordPress hooks
      */
     private function add_hooks() {
-        // Dynamic Scheduler
+        // Dynamic Scheduler — register cron_schedules filter immediately
         Dynamic_Scheduler::instance();
-        if( self::$_enabled && ( !wp_next_scheduled( 'woolentor_abandoned_cart_check' ) || !wp_next_scheduled( 'woolentor_abandoned_cart_cleanup' ) || !wp_next_scheduled( 'woolentor_process_scheduled_emails' ) )){
-            Dynamic_Scheduler::instance()->schedule_events();
+
+        // Defer scheduling to 'init' so custom cron intervals are fully registered
+        if( self::$_enabled ){
+            add_action( 'init', function(){
+                if( !wp_next_scheduled( 'woolentor_abandoned_cart_check' ) || !wp_next_scheduled( 'woolentor_abandoned_cart_cleanup' ) || !wp_next_scheduled( 'woolentor_process_scheduled_emails' ) ){
+                    Dynamic_Scheduler::instance()->schedule_events();
+                }
+            });
         }
     }
 

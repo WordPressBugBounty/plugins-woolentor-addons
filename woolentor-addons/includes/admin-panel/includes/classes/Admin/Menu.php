@@ -322,7 +322,7 @@ class Menu {
                 ],
                 [
                     'id' => 'enable',
-                    'name' => __( 'Smart Cross-sell Popup', 'woolentor' ),
+                    'name' => __( 'Cross-sell Popup', 'woolentor' ),
                     'is_pro' => false,
                     'section' => 'woolentor_smart_cross_sell_popup_settings'
                 ],
