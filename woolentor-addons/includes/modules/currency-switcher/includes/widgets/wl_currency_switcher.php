@@ -53,6 +53,33 @@ class Woolentor_Wl_Currency_Switcher_Widget extends Widget_Base{
                     ]
                 ]
             );
+
+            $this->add_control(
+                'show_currency_name',
+                [
+                    'label'         => __( 'Show Currency Name?', 'woolentor' ),
+                    'type'          => Controls_Manager::SWITCHER,
+                    'label_on'      => __( 'Yes', 'woolentor' ),
+                    'label_off'     => __( 'No', 'woolentor' ),
+                    'return_value'  => 'yes',
+                    'default'       => 'yes',
+                    'separator'     => 'before',
+                ]
+            );
+
+            $this->add_control(
+                'show_currency_symbol',
+                [
+                    'label'         => __( 'Show Currency Symbol?', 'woolentor' ),
+                    'type'          => Controls_Manager::SWITCHER,
+                    'label_on'      => __( 'Yes', 'woolentor' ),
+                    'label_off'     => __( 'No', 'woolentor' ),
+                    'return_value'  => 'yes',
+                    'default'       => 'yes',
+                    'separator'     => 'after',
+                ]
+            );
+
             if( woolentor_is_pro() ){
                 $this->add_control(
                     'show_flags',
@@ -82,6 +109,7 @@ class Woolentor_Wl_Currency_Switcher_Widget extends Widget_Base{
                         ],
                     ]
                 );
+                
             }else{
                 $this->add_control(
                     'show_flags_pro',
@@ -121,6 +149,44 @@ class Woolentor_Wl_Currency_Switcher_Widget extends Widget_Base{
             }
 
         $this->end_controls_section(); // General Settings
+
+        $this->start_controls_section(
+            'section_selected_currency',
+            [
+                'label' => __( 'Selected Currency', 'woolentor' ),
+                'condition' => [
+                    'currency_style' => 'dropdown',
+                ]
+            ]
+        );
+            
+            $this->add_control(
+                'selected_show_currency_name',
+                [
+                    'label'         => __( 'Show Currency Name?', 'woolentor' ),
+                    'type'          => Controls_Manager::SWITCHER,
+                    'label_on'      => __( 'Yes', 'woolentor' ),
+                    'label_off'     => __( 'No', 'woolentor' ),
+                    'return_value'  => 'yes',
+                    'default'       => 'yes',
+                    'separator'     => 'before',
+                ]
+            );
+
+            $this->add_control(
+                'selected_show_currency_symbol',
+                [
+                    'label'         => __( 'Show Currency Symbol?', 'woolentor' ),
+                    'type'          => Controls_Manager::SWITCHER,
+                    'label_on'      => __( 'Yes', 'woolentor' ),
+                    'label_off'     => __( 'No', 'woolentor' ),
+                    'return_value'  => 'yes',
+                    'default'       => 'yes',
+                    'separator'     => 'before',
+                ]
+            );
+
+        $this->end_controls_section(); // Selected Currency
 
         // Currency Style Controls.
         $this->start_controls_section(
@@ -189,6 +255,36 @@ class Woolentor_Wl_Currency_Switcher_Widget extends Widget_Base{
                     'type' => Controls_Manager::COLOR,
                     'selectors' => [
                         '{{WRAPPER}} .woolentor-currency-dropdown ul li:not(.active-currency):hover' => 'background-color: {{VALUE}};',
+                    ],
+                ]
+            );
+
+            $this->add_control(
+                'currency_dropdown_width',
+                [
+                    'label' => esc_html__( 'Dropdown Width', 'woolentor' ),
+                    'type' => Controls_Manager::SLIDER,
+                    'size_units' => [ 'px', '%', 'em', 'rem' ],
+                    'range' => [
+                        'px' => [
+                            'min' => 0,
+                            'max' => 1000,
+                            'step' => 1,
+                        ],
+                        '%' => [
+                            'min' => 0,
+                            'max' => 100,
+                        ],
+                    ],
+                    'default' => [
+                        'unit' => '%',
+                        'size' => 100,
+                    ],
+                    'selectors' => [
+                        '{{WRAPPER}} .woolentor-currency-dropdown' => 'width: {{SIZE}}{{UNIT}};',
+                    ],
+                    'condition' => [
+                        'currency_style' => 'dropdown',
                     ],
                 ]
             );
@@ -262,6 +358,36 @@ class Woolentor_Wl_Currency_Switcher_Widget extends Widget_Base{
                     ],
                 ]
             );
+
+            $this->add_control(
+                'selected_currency_area_width',
+                [
+                    'label' => esc_html__( 'Area Width', 'woolentor' ),
+                    'type' => Controls_Manager::SLIDER,
+                    'size_units' => [ 'px', '%', 'em', 'rem' ],
+                    'range' => [
+                        'px' => [
+                            'min' => 0,
+                            'max' => 1000,
+                            'step' => 1,
+                        ],
+                        '%' => [
+                            'min' => 0,
+                            'max' => 100,
+                        ],
+                    ],
+                    'default' => [
+                        'unit' => '%',
+                        'size' => 100,
+                    ],
+                    'selectors' => [
+                        '{{WRAPPER}} .woolentor-selected-currency-wrap' => 'width: {{SIZE}}{{UNIT}};',
+                    ],
+                    'condition' => [
+                        'currency_style' => 'dropdown',
+                    ],
+                ]
+            );
         
         $this->end_controls_section(); // End Style Controls.
 
@@ -272,6 +398,10 @@ class Woolentor_Wl_Currency_Switcher_Widget extends Widget_Base{
 
         $shortcode_attributes = [
             'style' => $settings['currency_style'],
+            'show_currency_name' => $settings['show_currency_name'],
+            'show_currency_symbol' => $settings['show_currency_symbol'],
+            'selected_show_currency_name' => $settings['selected_show_currency_name'],
+            'selected_show_currency_symbol' => $settings['selected_show_currency_symbol'],
         ];
 
         if( woolentor_is_pro() ){

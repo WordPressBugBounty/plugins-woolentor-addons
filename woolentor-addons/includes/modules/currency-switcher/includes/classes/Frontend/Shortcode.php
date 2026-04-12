@@ -38,7 +38,11 @@ class Shortcode{
         $default_atts = array(
             'style' => 'dropdown',
             'flags' => 'yes',
-            'flag_style' => 'circle' // square || circle
+            'flag_style' => 'circle', // square || circle
+            'show_currency_name' => 'yes',
+            'show_currency_symbol' => 'yes',
+            'selected_show_currency_name' => 'yes',
+            'selected_show_currency_symbol' => 'yes'
         );
 
         $atts = shortcode_atts( $default_atts, $atts, $content );
@@ -85,7 +89,10 @@ class Shortcode{
                                         ) 
                                         : '';
 
-                                    echo sprintf('<li %4$s data-value="%1$s">%5$s %2$s (%3$s)</li>', $currency['currency'], $wc_currencie_list[$currency['currency']], $currency_symbol, $active_currency, $flag ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                    $currency_name = ( $atts['show_currency_name'] === 'yes' ) ? $wc_currencie_list[$currency['currency']] : '';
+                                    $currency_symbol = ( $atts['show_currency_symbol'] === 'yes' ) ? "(".$currency_symbol.")" : '';
+
+                                    echo sprintf('<li %4$s data-value="%1$s">%5$s %2$s %3$s</li>', $currency['currency'], $currency_name, $currency_symbol, $active_currency, $flag ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                 }
                             ?>
                         </ul>
@@ -93,7 +100,11 @@ class Shortcode{
                 <?php else: ?>
                     <div class="woolentor-selected-currency-wrap">
                         <span class="woolentor-selected-currency">
-                            <?php echo sprintf('%3$s %1$s (%2$s)', $wc_currencie_list[$current_currency_code], $current_currency_symbol, $current_currency_flag); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                            <?php 
+                                $selected_currency_name = ( $atts['selected_show_currency_name'] === 'yes' ) ? $wc_currencie_list[$current_currency_code] : '';
+                                $selected_currency_symbol = ( $atts['selected_show_currency_symbol'] === 'yes' ) ? "(".$current_currency_symbol.")" : '';
+                                echo sprintf('%3$s %1$s %2$s', $selected_currency_name, $selected_currency_symbol, $current_currency_flag); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                            ?>
                         </span>
                         <span class="woolentor-currency-dropdown-arrow"></span>
                     </div>
@@ -111,7 +122,10 @@ class Shortcode{
                                         ) 
                                         : '';
 
-                                    echo sprintf('<li %4$s data-value="%1$s">%5$s %2$s (%3$s)</li>', $currency['currency'], $wc_currencie_list[$currency['currency']], $currency_symbol, $hide_currency, $flag); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                    $currency_name = ( $atts['show_currency_name'] === 'yes' ) ? $wc_currencie_list[$currency['currency']] : '';
+                                    $currency_symbol = ( $atts['show_currency_symbol'] === 'yes' ) ? "(".$currency_symbol.")" : '';
+
+                                    echo sprintf('<li %4$s data-value="%1$s">%5$s %2$s %3$s</li>', $currency['currency'], $currency_name, $currency_symbol, $hide_currency, $flag); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                 }
                             ?>
                         </ul>

@@ -125,7 +125,7 @@
   function evercompareCopyToClipboard(element, button) {
     var $tempdata = $("<input>");
     $("body").append($tempdata);
-    $tempdata.val($(element).text()).select();
+    $tempdata.val($(element).data("sharelink")).select();
     document.execCommand("copy");
     $tempdata.remove();
     $(button).text($(button).data("copytext"));

@@ -492,25 +492,7 @@ class Manage_Wishlist {
      * @return [string] 
      */
     public function field_name( $field, $custom = false ){
-
-        if( empty( $field ) ){
-            return;
-        }
-
-        if( $custom === true ){
-            return $field;
-        }
-
-        $default = wishsuite_get_default_fields();
-
-        $str = substr( $field, 0, 3 );
-        if( 'pa_' === $str ){
-            $field_name = wc_attribute_label( $field );
-        }else{
-            $field_name = $default[$field];
-        }
-        return $field_name;
-
+        return wishsuite_field_name( $field, $custom );
     }
 
     /**

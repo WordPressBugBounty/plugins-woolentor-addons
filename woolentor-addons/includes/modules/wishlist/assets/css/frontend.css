@@ -159,8 +159,8 @@ a.wishsuite-button.loading img{
 /* Table Loader */
 .wishsuite-table-content {
     position: relative;
-    overflow-y: auto;
-    overflow: visible;
+    overflow-x: auto;
+    overflow-y: visible;
 }
 .wishsuite-table-content.loading:before{
     position: absolute;

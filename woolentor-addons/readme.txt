@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, aslamhasib
 Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenberg blocks
 Requires at least: 4.7
 Tested up to: 6.9
-Stable tag: 3.3.7
+Stable tag: 3.3.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -461,6 +461,18 @@ Check out our other powerful WordPress plugins:
 **[JustTables](https://hasthemes.com/wp/justtables/?utm_source=org&utm_medium=readme)** - WordPress table builder
 
 == Changelog ==
+
+= Version: 3.3.8 - Date: 12-04-2026 =
+* Added: Show Currency Name and Show Currency Symbol option added in currency Switcher Elementor addon and Gutenberg block.
+* Added: Dropdown and currency selected area width control option in Elementor addon and Gutenberg block.
+* Added: Link Share button style option added in Compare table elementor addon.
+* Added: Shopify like Checkout module Theme Header and Footer enable/disable option and logo area enable/disable option if theme header footer enable.
+* Improved: Template library design for batter UI.
+* Improved: Currency Switcher field with search input.
+* Solved: Wishlist table setting heading saving issue if column is empty.
+* Solved: Compare table setting heading saving issue if column is empty.
+* Solved: Lighthouse accessibility audit failures issue with slick slider.
+* Compatibility: Latest WordPress and WooCommerce version.
 
 = Version: 3.3.6 - Date: 29-03-2026 =
 * Added: Countdown Style option in Flash Sale module.
@@ -977,7 +989,7 @@ Check out our other powerful WordPress plugins:
 = Version: 2.5.2 - Date: 27-12-2022 =
 * Added : Title background Color change option has been added in category grid addon.
 * Added : Aria Label attribute added in all quick-view anchor tag.
-* Solved :  Template data Import issue has been fixed. 
+* Solved : Template data Import issue has been fixed.
 * Solved : Template Builder Wide fetching issue.
 * Solved : Custom payment Button showing issue in cart page with WooCommerce Stripe Gateway plugin. 
 * Solved : All Category showing issue in category grid block.

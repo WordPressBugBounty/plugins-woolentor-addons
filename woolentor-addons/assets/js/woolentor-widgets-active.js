@@ -83,8 +83,8 @@
 
             slider_elem.not('.slick-initialized').slick({
                 arrows: arrows,
-                prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-angle-left"></i></button>',
-                nextArrow: '<button type="button" class="slick-next"><i class="fa fa-angle-right"></i></button>',
+                prevArrow: '<button type="button" class="slick-prev" aria-label="Previous slide"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
+                nextArrow: '<button type="button" class="slick-next" aria-label="Next slide"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
                 dots: dots,
                 infinite: infinite,
                 autoplay: autoplay,
@@ -112,6 +112,10 @@
                     }
                 ]
             });
+
+            // A11y fix: Slick adds role="listbox" to .slick-track which is semantically
+            // incorrect for a carousel and triggers a Lighthouse accessibility failure.
+            slider_elem.find('.slick-track').removeAttr('role');
         };
     };
 
@@ -142,9 +146,13 @@
         $slider.slick({
             dots: true,
             arrows: true,
-            prevArrow: '<button class="slick-prev"><i class="sli sli-arrow-left"></i></button>',
-            nextArrow: '<button class="slick-next"><i class="sli sli-arrow-right"></i></button>',
+            prevArrow: '<button type="button" class="slick-prev" aria-label="Previous image"><i class="sli sli-arrow-left" aria-hidden="true"></i></button>',
+            nextArrow: '<button type="button" class="slick-next" aria-label="Next image"><i class="sli sli-arrow-right" aria-hidden="true"></i></button>',
         });
+
+        // A11y fix: Slick adds role="listbox" to .slick-track which is semantically
+        // incorrect for a carousel and triggers a Lighthouse accessibility failure.
+        $slider.find('.slick-track').removeAttr('role');
     }
     if( $(".ht-product-image-slider").length > 0 ) {
         productImageThumbnailsSlider( $(".ht-product-image-slider") );

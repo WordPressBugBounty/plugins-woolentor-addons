@@ -88,6 +88,19 @@ class Custom_Actions extends WP_REST_Controller {
         }
 
         try {
+            // Validate callback against allowlist to prevent arbitrary function execution
+            $allowed_callbacks = apply_filters('woolentor_allowed_custom_action_callbacks', [
+                'woolentor_currency_exchange_rate',
+            ]);
+
+            if (!in_array($callback, $allowed_callbacks, true)) {
+                return new WP_Error(
+                    'invalid_callback',
+                    __('Callback not permitted', 'woolentor'),
+                    ['status' => 403]
+                );
+            }
+
             // Check if callback exists and is callable
             if (!is_callable($callback)) {
                 throw new \Exception(__('Invalid callback function', 'woolentor'));

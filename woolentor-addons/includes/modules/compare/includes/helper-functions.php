@@ -45,6 +45,34 @@ function ever_compare_get_template( $tmp_name = '', $args = null, $echo = true )
 
 }
 
+/**
+ * [ever_compare_field_name]
+ * @param  [string] $field
+ * @param  [bool] $custom
+ * @return [string]
+ */
+function ever_compare_field_name( $field = '', $custom = false ){
+
+    if( empty( $field ) ){
+        return;
+    }
+
+    if( $custom === true ){
+        return $field;
+    }
+
+    $default = ever_compare_get_default_fields();
+
+    $str = substr( $field, 0, 3 );
+    if( 'pa_' === $str ){
+        $field_name = wc_attribute_label( $field );
+    }else{
+        $field_name = !empty( $default[$field] ) ? $default[$field] : '';
+    }
+    return $field_name;
+
+}
+
 
 /**
  * Get default fields List
@@ -104,7 +132,7 @@ function ever_compare_table_heading(){
     $new_list = array();
     $field_list = count( ever_compare_table_active_heading() ) > 0 ? ever_compare_table_active_heading() : ever_compare_get_default_fields();
     foreach ( $field_list as $key => $value ) {
-        $new_list[$key] = class_exists( '\EverCompare\Frontend\Manage_Compare' ) ? \EverCompare\Frontend\Manage_Compare::instance()->field_name( $key ) : '';
+        $new_list[$key] = ever_compare_field_name( $key );
     }
     return $new_list;
 }

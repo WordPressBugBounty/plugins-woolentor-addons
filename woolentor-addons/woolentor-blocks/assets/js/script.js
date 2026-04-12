@@ -99,9 +99,9 @@
           .slick({
             arrows: arrows,
             prevArrow:
-              '<button type="button" class="slick-prev"><i class="fa fa-angle-left"></i></button>',
+              '<button type="button" class="slick-prev" aria-label="Previous slide"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
             nextArrow:
-              '<button type="button" class="slick-next"><i class="fa fa-angle-right"></i></button>',
+              '<button type="button" class="slick-next" aria-label="Next slide"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
             dots: dots,
             infinite: true,
             autoplay: autoplay,
@@ -129,6 +129,10 @@
               },
             ],
           });
+
+        // A11y fix: Slick adds role="listbox" to .slick-track which is semantically
+        // incorrect for a carousel and triggers a Lighthouse accessibility failure.
+        $($block).find(".slick-track").removeAttr("role");
       }
     },
 
@@ -153,9 +157,9 @@
             fade: false,
             asNavFor: ".woolentor-thumbnails",
             prevArrow:
-              '<button class="woolentor-slick-large-prev"><i class="sli sli-arrow-left"></i></button>',
+              '<button type="button" class="woolentor-slick-large-prev" aria-label="Previous image"><i class="sli sli-arrow-left" aria-hidden="true"></i></button>',
             nextArrow:
-              '<button class="woolentor-slick-large-next"><i class="sli sli-arrow-right"></i></button>',
+              '<button type="button" class="woolentor-slick-large-next" aria-label="Next image"><i class="sli sli-arrow-right" aria-hidden="true"></i></button>',
           });
         $($sliderwrap)
           .find(".woolentor-thumbnails")
@@ -170,10 +174,13 @@
             vertical: settings["thumbnailslider"].slidertype,
             focusOnSelect: true,
             prevArrow:
-              '<button class="woolentor-slick-prev"><i class="sli sli-arrow-left"></i></button>',
+              '<button type="button" class="woolentor-slick-prev" aria-label="Previous thumbnail"><i class="sli sli-arrow-left" aria-hidden="true"></i></button>',
             nextArrow:
-              '<button class="woolentor-slick-next"><i class="sli sli-arrow-right"></i></button>',
+              '<button type="button" class="woolentor-slick-next" aria-label="Next thumbnail"><i class="sli sli-arrow-right" aria-hidden="true"></i></button>',
           });
+
+        // A11y fix: remove semantically incorrect role="listbox" Slick adds to .slick-track.
+        $($sliderwrap).find(".slick-track").removeAttr("role");
       }
     },
 
@@ -284,10 +291,13 @@
         dots: true,
         arrows: true,
         prevArrow:
-          '<button class="slick-prev"><i class="sli sli-arrow-left"></i></button>',
+          '<button type="button" class="slick-prev" aria-label="Previous image"><i class="sli sli-arrow-left" aria-hidden="true"></i></button>',
         nextArrow:
-          '<button class="slick-next"><i class="sli sli-arrow-right"></i></button>',
+          '<button type="button" class="slick-next" aria-label="Next image"><i class="sli sli-arrow-right" aria-hidden="true"></i></button>',
       });
+
+      // A11y fix: remove semantically incorrect role="listbox" Slick adds to .slick-track.
+      $slider.find(".slick-track").removeAttr("role");
     },
 
     thumbnailsimagescontroller: function () {

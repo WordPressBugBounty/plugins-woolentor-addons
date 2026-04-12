@@ -192,7 +192,7 @@ class Manage_Compare {
         ?>
             <div class="ever-compare-shareable-link <?php echo esc_attr( $button_pos );?>">
                 <button class="evercompare-copy-link" data-copytext="<?php echo esc_attr( $aftercopy_buttonText ); ?>" data-btntext="<?php echo esc_attr( $buttonText ); ?>"><?php echo esc_html($buttonText); ?></button>
-                <p style="display: none;" class="evercompare-share-link"><?php echo $shareablelink; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+                <p style="display: none;" class="evercompare-share-link" data-sharelink="<?php echo esc_url( $shareablelink ); ?>">&nbsp;</p>
             </div>
         <?php
 
@@ -634,25 +634,7 @@ class Manage_Compare {
      * @return [string] 
      */
     public function field_name( $field = '', $custom = false ){
-
-        if( empty( $field ) ){
-            return;
-        }
-
-        if( $custom === true ){
-            return $field;
-        }
-
-        $default = ever_compare_get_default_fields();
-
-        $str = substr( $field, 0, 3 );
-        if( 'pa_' === $str ){
-            $field_name = wc_attribute_label( $field );
-        }else{
-            $field_name = !empty( $default[$field] ) ? $default[$field] : '';
-        }
-        return $field_name;
-
+        return ever_compare_field_name( $field, $custom );
     }
 
 

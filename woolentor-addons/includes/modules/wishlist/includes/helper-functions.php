@@ -63,6 +63,34 @@ function wishsuite_add_to_cart( $product, $quentity ){
 }
 
 /**
+ * [wishsuite_field_name]
+ * @param  [string] $field
+ * @param  [bool] $custom
+ * @return [string]
+ */
+function wishsuite_field_name( $field, $custom = false ){
+
+    if( empty( $field ) ){
+        return;
+    }
+
+    if( $custom === true ){
+        return $field;
+    }
+
+    $default = wishsuite_get_default_fields();
+
+    $str = substr( $field, 0, 3 );
+    if( 'pa_' === $str ){
+        $field_name = wc_attribute_label( $field );
+    }else{
+        $field_name = $default[$field];
+    }
+    return $field_name;
+
+}
+
+/**
  * Get default fields List
  * return array
  */
@@ -110,7 +138,7 @@ function wishsuite_table_heading(){
 
     $field_list = count( wishsuite_table_active_heading() ) > 0 ? wishsuite_table_active_heading() : $active_default_fields;
     foreach ( $field_list as $key => $value ) {
-        $new_list[$key] = class_exists( '\WishSuite\Frontend\Manage_Wishlist' ) ? \WishSuite\Frontend\Manage_Wishlist::instance()->field_name( $key ) : '';
+        $new_list[$key] = wishsuite_field_name( $key );
     }
     return $new_list;
 }

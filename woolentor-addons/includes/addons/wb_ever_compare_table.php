@@ -82,7 +82,7 @@ class Woolentor_Wb_Ever_Compare_Table_Widget extends Widget_Base {
             );
 
             $this->add_group_control(
-                \Elementor\Group_Control_Typography::get_type(),
+                Group_Control_Typography::get_type(),
                 [
                     'name' => 'heading_typography',
                     'label' => __( 'Typography', 'woolentor' ),
@@ -192,6 +192,130 @@ class Woolentor_Wb_Ever_Compare_Table_Widget extends Widget_Base {
                 ]
             );
 
+        $this->end_controls_section();
+
+        // Link Share Button Style
+        $this->start_controls_section(
+            'link_share_button_style_section',
+            [
+                'label' => __( 'Link Share Button', 'woolentor' ),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+            $this->add_group_control(
+                Group_Control_Typography::get_type(),
+                [
+                    'name' => 'share_button_typography',
+                    'label' => __( 'Typography', 'woolentor' ),
+                    'selector' => '{{WRAPPER}} .ever-compare-shareable-link .evercompare-copy-link',
+                ]
+            );
+
+            $this->add_control(
+                'share_button_padding',
+                [
+                    'label' => esc_html__( 'Padding', 'woolentor' ),
+                    'type' => Controls_Manager::DIMENSIONS,
+                    'size_units' => [ 'px', '%', 'em', 'rem' ],
+                    'selectors' => [
+                        '{{WRAPPER}} .ever-compare-shareable-link .evercompare-copy-link' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    ],
+                ]
+            );
+
+            $this->start_controls_tabs('share_button_style_tabs');
+
+                $this->start_controls_tab(
+                    'share_button_normal_tab',
+                    [
+                        'label' => __( 'Normal', 'woolentor' ),
+                    ]
+                );
+
+                    $this->add_control(
+                        'share_button_normal_color',
+                        [
+                            'label' => __( 'Color', 'woolentor' ),
+                            'type' => Controls_Manager::COLOR,
+                            'selectors' => [
+                                '{{WRAPPER}} .ever-compare-shareable-link .evercompare-copy-link' => 'color: {{VALUE}}',
+                            ],
+                        ]
+                    );
+
+                    $this->add_group_control(
+                        Group_Control_Background::get_type(),
+                        [
+                            'name' => 'share_button_normal_background',
+                            'label' => __( 'Background', 'woolentor' ),
+                            'types' => [ 'classic', 'gradient' ],
+                            'selector' => '{{WRAPPER}} .ever-compare-shareable-link .evercompare-copy-link',
+                            'exclude' =>['image'],
+                            'fields_options'=>[
+                                'background'=>[
+                                    'label'=>__( 'Background', 'woolentor' )
+                                ]
+                            ]
+                        ]
+                    );
+
+                    $this->add_group_control(
+                        Group_Control_Border::get_type(),
+                        [
+                            'name' => 'share_button_normal_border',
+                            'selector' => '{{WRAPPER}} .ever-compare-shareable-link .evercompare-copy-link',
+                        ]
+                    );
+
+                $this->end_controls_tab();
+
+                $this->start_controls_tab(
+                    'share_button_hover_tab',
+                    [
+                        'label' => __( 'Hover', 'woolentor' ),
+                    ]
+                );
+
+                    $this->add_control(
+                        'share_button_hover_color',
+                        [
+                            'label' => __( 'Color', 'woolentor' ),
+                            'type' => Controls_Manager::COLOR,
+                            'selectors' => [
+                                '{{WRAPPER}} .ever-compare-shareable-link .evercompare-copy-link:hover' => 'color: {{VALUE}}',
+                            ],
+                        ]
+                    );
+
+                    $this->add_group_control(
+                        Group_Control_Background::get_type(),
+                        [
+                            'name' => 'share_button_hover_background',
+                            'label' => __( 'Background', 'woolentor' ),
+                            'types' => [ 'classic', 'gradient' ],
+                            'selector' => '{{WRAPPER}} .ever-compare-shareable-link .evercompare-copy-link:hover',
+                            'exclude' =>['image'],
+                            'fields_options'=>[
+                                'background'=>[
+                                    'label'=>__( 'Background', 'woolentor' )
+                                ]
+                            ]
+                        ]
+                    );
+                    
+                    $this->add_group_control(
+                        Group_Control_Border::get_type(),
+                        [
+                            'name' => 'share_button_hover_border',
+                            'selector' => '{{WRAPPER}} .ever-compare-shareable-link .evercompare-copy-link:hover',
+                        ]
+                    );
+
+                $this->end_controls_tab();
+
+            $this->end_controls_tabs();
+        
         $this->end_controls_section();
 
     }

@@ -1,7 +1,7 @@
 {
 	"name": "woolentor/currency-switcher",
     "category": "woolentor-blocks",
-    "title": "WL : Currency Switcher",
+    "title": "WL: Currency Switcher",
     "description":"Display currency list added from Module.",
     "keywords": ["woolentor","currency","multi currency","WooCommerce currency"],
     "attributes": {
@@ -41,6 +41,14 @@
             "type":"string",
             "default":"dropdown"
         },
+        "showCurrencyName":{
+            "type": "boolean",
+            "default": true
+        },
+        "showCurrencySymbol":{
+            "type": "boolean",
+            "default": true
+        },
         "showFlags":{
             "type": "boolean",
             "default": true
@@ -48,6 +56,15 @@
         "flagStyle":{
             "type":"string",
             "default":"circle"
+        },
+
+        "selectedShowCurrencyName":{
+            "type": "boolean",
+            "default": true
+        },
+        "selectedShowCurrencySymbol":{
+            "type": "boolean",
+            "default": true
         },
 
         "currencyColor":{
@@ -92,6 +109,27 @@
             "type":"string",
             "style" : {
                 "selector":"{{WOOLENTOR_WRAPPER}} .woolentor-currency-dropdown ul li:not(.active-currency):hover{ background-color:{{currencyHoverBgColor}}; }"
+            }
+        },
+        "currencyDropdownWidth":{
+            "type": "number",
+            "style" : {
+                "selector":"{{WOOLENTOR_WRAPPER}} .woolentor-currency-dropdown { width: {{currencyDropdownWidth}}px; }"
+            }
+        },
+        "selectedCurrencyWidth":{
+            "type": "number",
+            "style" : {
+                "dependency": [
+                    [
+                        {
+                            "key": "currencyStyle", 
+                            "condition": "==", 
+                            "value": "dropdown"
+                        }
+                    ]
+                ],
+                "selector":"{{WOOLENTOR_WRAPPER}} .woolentor-selected-currency-wrap { width: {{selectedCurrencyWidth}}px; }"
             }
         },
 

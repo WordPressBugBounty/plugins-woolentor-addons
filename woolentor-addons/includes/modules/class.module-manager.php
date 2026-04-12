@@ -163,9 +163,9 @@ class Woolentor_Module_Manager{
                     'section' => 'woolentor_shopify_checkout_settings',
                     'default' => 'off'
                 ],
-                'main_class' => '',
+                'main_class' => '\Woolentor\Modules\ShopifyLikeCheckout\Shopify_Like_Checkout',
                 'is_pro'     => false,
-                'manage_setting' => false
+                'manage_setting' => true
             ],
             'variation-swatch' => [
                 'slug'   =>'variation-swatch',

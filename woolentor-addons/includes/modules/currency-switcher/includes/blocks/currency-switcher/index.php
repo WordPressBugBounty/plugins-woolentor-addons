@@ -13,9 +13,13 @@ $areaClasses = array( $uniqClass, 'woolentor-currency-switcher-area' );
 echo '<div class="'.esc_attr(implode(' ', $areaClasses )).'">';
     $shortcode_attributes = [
         'style' => $settings['currencyStyle'],
+        'show_currency_name' => $settings['showCurrencyName'] ? 'yes' : 'no',
+        'show_currency_symbol' => $settings['showCurrencySymbol'] ? 'yes' : 'no',
+        'selected_show_currency_name' => $settings['selectedShowCurrencyName'] ? 'yes' : 'no',
+        'selected_show_currency_symbol' => $settings['selectedShowCurrencySymbol'] ? 'yes' : 'no',
     ];
     if( woolentor_is_pro() ){
-        $shortcode_attributes['flags']      = $settings['showFlags'];
+        $shortcode_attributes['flags']      = $settings['showFlags'] ? 'yes' : 'no';
         $shortcode_attributes['flag_style'] = $settings['flagStyle'];
     }
     echo woolentor_do_shortcode( 'woolentor_currency_switcher', $shortcode_attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
