@@ -172,6 +172,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} h2.wl_hoz_filter_title{ color:{{titleColor}}; }"
       }
     },
+    "titleTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "filterAreaTitle",
+              "condition": "!=",
+              "value": ""
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} h2.wl_hoz_filter_title"
+      }
+    },
     "titleSize": {
       "type": "string",
       "style": {
@@ -185,7 +200,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} h2.wl_hoz_filter_title{ font-size:{{titleSize}}!important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of titleSize, we will remove it later"
     },
     "titleBorder": {
       "type": "object",
@@ -263,6 +280,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-horizontal-filter-wrap .woolentor-filter-field-wrap .woolentor-filter-single-item label{ color:{{labelColor}}; }"
       }
     },
+    "labelTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "showFilterLabel",
+              "condition": "==",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-horizontal-filter-wrap .woolentor-filter-field-wrap .woolentor-filter-single-item label"
+      }
+    },
     "labelSize": {
       "type": "string",
       "style": {
@@ -276,7 +308,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-horizontal-filter-wrap .woolentor-filter-field-wrap .woolentor-filter-single-item label{ font-size:{{labelSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of labelSize, we will remove it later"
     },
     "labelBorder": {
       "type": "object",
@@ -369,6 +403,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-horizontal-filter-wrap .woolentor-filter-header-top-area .woolentor-search-input-box .input-box{ background-color:{{inputBoxBGColor}}!important; }"
       }
     },
+    "inputBoxTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "showSearchForm",
+              "condition": "==",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-horizontal-filter-wrap .woolentor-filter-header-top-area .woolentor-search-input-box .input-box"
+      }
+    },
     "inputBoxSize": {
       "type": "string",
       "style": {
@@ -382,7 +431,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-horizontal-filter-wrap .woolentor-filter-header-top-area .woolentor-search-input-box .input-box{ font-size:{{inputBoxSize}}!important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of inputBoxSize, we will remove it later"
     },
     "inputBoxBorder": {
       "type": "object",
@@ -593,6 +644,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-horizontal-filter-wrap .woolentor-search-filter-custom .filter-icon{ color:{{filteButtonColor}}; }"
       }
     },
+    "filteButtonTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "showFilterButton",
+              "condition": "==",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-horizontal-filter-wrap .woolentor-search-filter-custom .filter-icon"
+      }
+    },
     "filteButtonSize": {
       "type": "string",
       "style": {
@@ -606,7 +672,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-horizontal-filter-wrap .woolentor-search-filter-custom .filter-icon{ font-size:{{filteButtonSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of filteButtonSize, we will remove it later"
     },
     "filteButtonBGColor": {
       "type": "string",

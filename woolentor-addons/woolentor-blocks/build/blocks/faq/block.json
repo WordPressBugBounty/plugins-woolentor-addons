@@ -63,11 +63,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .htwoolentor-faq-head-text{ color: {{faqTitleColor}}; }"
       }
     },
+    "titleTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .htwoolentor-faq-head-text"
+      }
+    },
     "titleSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .htwoolentor-faq-head-text{ font-size: {{titleSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before titleTypography"
     },
     "titleBorderType": {
       "type": "string",
@@ -173,11 +181,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .htwoolentor-faq-content{ color: {{contentColor}}; }"
       }
     },
+    "contentTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .htwoolentor-faq-content,{{WOOLENTOR_WRAPPER}} .htwoolentor-faq-content p"
+      }
+    },
     "contentSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .htwoolentor-faq-content,{{WOOLENTOR_WRAPPER}} .htwoolentor-faq-content p{ font-size: {{contentSize}}!important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before contentTypography"
     },
     "contentPadding": {
       "type": "object",

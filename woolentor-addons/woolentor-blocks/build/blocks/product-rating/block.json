@@ -68,11 +68,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} a.woocommerce-review-link{ color: {{linkColor}} !important; }"
       }
     },
+    "linkTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} a.woocommerce-review-link"
+      }
+    },
     "linkSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} a.woocommerce-review-link{ font-size: {{linkSize}} !important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of linkSize, we will remove it later"
     },
     "contentAlignment": {
       "type": "string",

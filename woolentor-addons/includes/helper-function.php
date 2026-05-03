@@ -1560,8 +1560,9 @@ if( class_exists('WooCommerce') ){
     /**
      * [woolentor_minmax_price_limit]
      * @return [array] Price Limit
+     * @todo Remove in future. and use new function `woolentor_minmax_price_limit()` instead of this.
      */
-    function woolentor_minmax_price_limit() {
+    function woolentor_minmax_price_limit_old() {
         global $wpdb;
 
         $value_min_cache_key  = 'woolentor_min_value_price';
@@ -1589,10 +1590,104 @@ if( class_exists('WooCommerce') ){
             wp_cache_set( $value_max_cache_key, $value_max );
         }
 
-        return [
-            'min' => (int)$value_min,
-            'max' => (int)$value_max,
-        ];
+        return apply_filters( 
+            'woolentor_minmax_price_limit', 
+            [
+                'min' => (int)$value_min,
+                'max' => (int)$value_max,
+            ]
+        );
+    }
+
+    /**
+     * [woolentor_minmax_price_limit]
+     * @return [array] Price Limit
+     */
+    function woolentor_minmax_price_limit() {
+        global $wpdb;
+
+        if ( ! woolentor_is_woocommerce() ) {
+            return array(
+                'min' => 0,
+                'max' => 0,
+            );
+        }
+
+        $use_contextual = apply_filters( 'woolentor_minmax_price_limit_use_contextual_taxonomy', true );
+
+        $tax_query = array();
+        if ( $use_contextual && class_exists( 'WooLentorProductQuery', false ) ) {
+            $tax_query = WooLentorProductQuery::instance()->get_tax_query();
+        }
+
+        $tax_query = apply_filters( 'woolentor_minmax_price_limit_tax_query', $tax_query );
+
+        $cache_suffix = 'global';
+        if ( ! empty( $tax_query ) && is_array( $tax_query ) ) {
+            $cache_suffix = md5( wp_json_encode( $tax_query ) );
+        }
+
+        $cache_group         = 'woolentor_price_bounds';
+        $value_min_cache_key = 'woolentor_min_value_price_' . $cache_suffix;
+        $value_max_cache_key = 'woolentor_max_value_price_' . $cache_suffix;
+
+        $value_min = wp_cache_get( $value_min_cache_key, $cache_group );
+        $value_max = wp_cache_get( $value_max_cache_key, $cache_group );
+
+        if ( false !== $value_min && false !== $value_max ) {
+            return apply_filters(
+                'woolentor_minmax_price_limit',
+                array(
+                    'min' => (int) $value_min,
+                    'max' => (int) $value_max,
+                ),
+                $tax_query
+            );
+        }
+
+        $price_meta_clause = $wpdb->prepare(
+            "( {$wpdb->posts}.ID = pm.post_id AND pm.meta_key = %s AND pm.meta_value REGEXP '^[0-9]+(\\.[0-9]+)?$' )",
+            '_price'
+        );
+
+        if ( empty( $tax_query ) ) {
+            // All published products with a valid _price row (catalog-wide).
+            $sql = "SELECT MIN( CAST( pm.meta_value AS DECIMAL(10, 2) ) ), MAX( CAST( pm.meta_value AS DECIMAL(10, 2) ) )
+				FROM {$wpdb->posts}
+				INNER JOIN {$wpdb->postmeta} pm ON {$price_meta_clause}
+				WHERE {$wpdb->posts}.post_type = 'product'
+				AND {$wpdb->posts}.post_status = 'publish'";
+            // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- No external fragments; $price_meta_clause uses prepare().
+            $row = $wpdb->get_row( $sql, ARRAY_N );
+        } else {
+            $tax_sql       = new WP_Tax_Query( $tax_query );
+            $sql_fragments = $tax_sql->get_sql( $wpdb->posts, 'ID' );
+
+            $sql = "SELECT MIN( CAST( pm.meta_value AS DECIMAL(10, 2) ) ), MAX( CAST( pm.meta_value AS DECIMAL(10, 2) ) )
+				FROM {$wpdb->posts}
+				INNER JOIN {$wpdb->postmeta} pm ON {$price_meta_clause}
+				{$sql_fragments['join']}
+				WHERE {$wpdb->posts}.post_type = 'product'
+				AND {$wpdb->posts}.post_status = 'publish'
+				{$sql_fragments['where']}";
+            // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Tax SQL from WP_Tax_Query; price clause prepared above.
+            $row = $wpdb->get_row( $sql, ARRAY_N );
+        }
+
+        $value_min = ( isset( $row[0] ) && null !== $row[0] && '' !== $row[0] ) ? $row[0] : 0;
+        $value_max = ( isset( $row[1] ) && null !== $row[1] && '' !== $row[1] ) ? $row[1] : 0;
+
+        wp_cache_set( $value_min_cache_key, $value_min, $cache_group );
+        wp_cache_set( $value_max_cache_key, $value_max, $cache_group );
+
+        return apply_filters(
+            'woolentor_minmax_price_limit',
+            array(
+                'min' => (int) $value_min,
+                'max' => (int) $value_max,
+            ),
+            $tax_query
+        );
     }
 
      /**
@@ -1784,14 +1879,17 @@ function woolentor_add_to_wishlist_button( $normalicon = '<i class="fa fa-heart-
             'btn_class' => $button_class
         ];
         
-        add_filter( 'wishsuite_button_arg', function( $button_arg ) use ( $button_args ) {
-            if( strpos( $button_arg['button_class'], 'wishlist' ) == false ){
+        $wishsuite_filter = function( $button_arg ) use ( $button_args ) {
+            if( strpos( $button_arg['button_class'], 'wishlist' ) === false ){
                 $button_arg['button_class'] .= $button_args['btn_class'];
             }
             return $button_arg;
-        }, 90, 1 );
+        };
 
+        add_filter( 'wishsuite_button_arg', $wishsuite_filter, 90, 1 );
         $output .= do_shortcode('[wishsuite_button]');
+        remove_filter( 'wishsuite_button_arg', $wishsuite_filter, 90 );
+
         return $output;
 
     }elseif( class_exists('TInvWL_Public_AddToWishlist') ){

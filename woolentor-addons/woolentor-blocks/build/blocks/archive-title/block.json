@@ -70,11 +70,100 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-archive-title{ color:{{titleColor}}!important; }"
       }
     },
+    "titleTypography": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": {
+          "desktop": {
+            "value": "",
+            "unit": "px"
+          },
+          "tablet": {
+            "value": "",
+            "unit": "px"
+          },
+          "mobile": {
+            "value": "",
+            "unit": "px"
+          }
+        },
+        "lineHeight": {
+          "desktop": {
+            "value": "",
+            "unit": "em"
+          },
+          "tablet": {
+            "value": "",
+            "unit": "em"
+          },
+          "mobile": {
+            "value": "",
+            "unit": "em"
+          }
+        },
+        "letterSpacing": {
+          "desktop": {
+            "value": "",
+            "unit": "px"
+          },
+          "tablet": {
+            "value": "",
+            "unit": "px"
+          },
+          "mobile": {
+            "value": "",
+            "unit": "px"
+          }
+        },
+        "wordSpacing": {
+          "desktop": {
+            "value": "",
+            "unit": "px"
+          },
+          "tablet": {
+            "value": "",
+            "unit": "px"
+          },
+          "mobile": {
+            "value": "",
+            "unit": "px"
+          }
+        },
+        "fontWeight": "",
+        "textTransform": "",
+        "fontStyle": "",
+        "textDecoration": ""
+      },
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "showTitle",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-archive-title"
+      }
+    },
     "titleSize": {
       "type": "string",
       "style": {
+        "dependency": [
+          [
+            {
+              "key": "showTitle",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-archive-title{ font-size:{{titleSize}}!important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of titleSize, we will remove it later"
     },
     "titleMargin": {
       "type": "object",
@@ -96,11 +185,91 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-archive-desc{ color:{{descColor}}!important; }"
       }
     },
+    "descTypography": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": {
+          "desktop": {
+            "value": "",
+            "unit": "px"
+          },
+          "tablet": {
+            "value": "",
+            "unit": "px"
+          },
+          "mobile": {
+            "value": "",
+            "unit": "px"
+          }
+        },
+        "lineHeight": {
+          "desktop": {
+            "value": "",
+            "unit": "em"
+          },
+          "tablet": {
+            "value": "",
+            "unit": "em"
+          },
+          "mobile": {
+            "value": "",
+            "unit": "em"
+          }
+        },
+        "letterSpacing": {
+          "desktop": {
+            "value": "",
+            "unit": "px"
+          },
+          "tablet": {
+            "value": "",
+            "unit": "px"
+          },
+          "mobile": {
+            "value": "",
+            "unit": "px"
+          }
+        },
+        "wordSpacing": {
+          "desktop": {
+            "value": "",
+            "unit": "px"
+          },
+          "tablet": {
+            "value": "",
+            "unit": "px"
+          },
+          "mobile": {
+            "value": "",
+            "unit": "px"
+          }
+        },
+        "fontWeight": "",
+        "textTransform": "",
+        "fontStyle": "",
+        "textDecoration": ""
+      },
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-archive-desc"
+      }
+    },
     "descSize": {
       "type": "string",
       "style": {
+        "dependency": [
+          [
+            {
+              "key": "showDescription",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-archive-desc{ font-size:{{descSize}}!important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of descSize, we will remove it later"
     },
     "descMargin": {
       "type": "object",

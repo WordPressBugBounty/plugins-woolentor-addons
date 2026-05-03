@@ -82,6 +82,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .up-sells > h2{ color: {{headingColor}}!important; }"
       }
     },
+    "headingTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "hideTitle",
+              "condition": "!=",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .up-sells > h2"
+      }
+    },
     "headingSize": {
       "type": "string",
       "style": {
@@ -95,7 +110,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .up-sells > h2{ font-size: {{headingSize}}!important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before headingTypography"
     },
     "headingMargin": {
       "type": "object",

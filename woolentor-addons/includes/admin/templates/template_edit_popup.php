@@ -110,13 +110,13 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                                             <# } #>
                                             <span class="woolentor-template-edit-demo-content">
                                                 <span class="woolentor-template-edit-demo-image">
-                                                    <img src="{{item.thumbnail}}" alt="{{ item.title }}">
+                                                    <img src="{{item.fullimage || item.thumbnail}}" alt="{{ item.title }}">
                                                 </span>
                                                 <span class="woolentor-template-edit-demo-name">{{data.heading.sampledata.gutenberg}}</span>
                                                 <# if( item.isPro === 1 ){ #>
                                                 <span class="woolentor-template-edit-demo-name tmp-pro">{{data.heading.sampledata.pro}}</span>
                                                 <# } #>
-                                                <a class="woolentor-template-edit-demo-eye thickbox" href="{{ item.thumbnail }}?TB_iframe=true&width=772&height=577"><span class="dashicons dashicons-visibility"></span></a>
+                                                <a class="woolentor-template-edit-demo-eye thickbox" href="{{ item.fullimage || item.thumbnail }}?TB_iframe=true&width=772&height=577"><span class="dashicons dashicons-visibility"></span></a>
                                                 <span class="woolentor-demo-template-name">{{ item.title }}</span>
                                             </span>
                                         </label>
@@ -143,13 +143,13 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                                             <# } #>
                                             <span class="woolentor-template-edit-demo-content">
                                                 <span class="woolentor-template-edit-demo-image">
-                                                    <img src="{{item.thumbnail}}" alt="{{ item.title }}">
+                                                    <img src="{{item.fullimage || item.thumbnail}}" alt="{{ item.title }}">
                                                 </span>
                                                 <span class="woolentor-template-edit-demo-name">{{data.heading.sampledata.elementor}}</span>
                                                 <# if( item.isPro === 1 ){ #>
                                                 <span class="woolentor-template-edit-demo-name tmp-pro">{{data.heading.sampledata.pro}}</span>
                                                 <# } #>
-                                                <a class="woolentor-template-edit-demo-eye thickbox" href="{{ item.thumbnail }}?TB_iframe=true&width=772&height=577"><span class="dashicons dashicons-visibility"></span></a>
+                                                <a class="woolentor-template-edit-demo-eye thickbox" href="{{ item.fullimage || item.thumbnail }}?TB_iframe=true&width=772&height=577"><span class="dashicons dashicons-visibility"></span></a>
                                                 <span class="woolentor-demo-template-name">{{ item.title }}</span>
                                             </span>
                                         </label>

@@ -782,6 +782,22 @@ abstract class WooLentor_Product_Grid_Base_Widget extends Widget_Base {
             ]
         );
 
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'card_hover_box_shadow',
+                'selector' => '{{WRAPPER}}[class*="woolentor-card-hover-"]:not(.woolentor-card-hover-none) .woolentor-product-card:hover',
+                'fields_options' => [
+                    'box_shadow_type' => [
+                        'label' => esc_html__( 'Hover Box Shadow', 'woolentor' )
+                    ],
+                ],
+                'condition' => [
+                    'card_hover_effect' => 'lift'
+                ],
+            ]
+        );
+
         woolentor_upgrade_pro_notice_elementor($this, Controls_Manager::RAW_HTML, 'woolentor-product-grid-modern', 'card_hover_effect', ['wlpro_f1','wlpro_f2']);
     }
 

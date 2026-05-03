@@ -106,6 +106,14 @@ class Woolentor_Wl_Breadcrumbs_Widget extends Widget_Base {
                 ]
             );
 
+            $this->add_group_control(
+                Group_Control_Typography::get_type(),
+                [
+                    'name' => 'text_typography',
+                    'selector' => '{{WRAPPER}} .woolentor-breadcrumb .woocommerce-breadcrumb',
+                ]
+            );
+
             $this->add_control(
                 'link_color',
                 [

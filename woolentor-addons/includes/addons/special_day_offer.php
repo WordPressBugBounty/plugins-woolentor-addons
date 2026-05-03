@@ -86,6 +86,7 @@ class Woolentor_Special_Day_Offer_Widget extends Widget_Base {
                     'label' => __( 'Title', 'woolentor' ),
                     'type' => Controls_Manager::TEXT,
                     'placeholder' => __( 'Banner Title', 'woolentor' ),
+                    'default' => __( 'Limited Time Only', 'woolentor' ),
                 ]
             );
 
@@ -95,6 +96,7 @@ class Woolentor_Special_Day_Offer_Widget extends Widget_Base {
                     'label' => __( 'Subtitle', 'woolentor' ),
                     'type' => Controls_Manager::TEXT,
                     'placeholder' => __( 'Banner Sub Title', 'woolentor' ),
+                    'default' => __( 'Up To 50% Off', 'woolentor' ),
                 ]
             );
 
@@ -104,6 +106,7 @@ class Woolentor_Special_Day_Offer_Widget extends Widget_Base {
                     'label' => __( 'Description', 'woolentor' ),
                     'type' => Controls_Manager::TEXTAREA,
                     'placeholder' => __( 'Banner Description', 'woolentor' ),
+                    'default' => __( 'Happy New Year', 'woolentor' ),
                 ]
             );
 
@@ -113,6 +116,7 @@ class Woolentor_Special_Day_Offer_Widget extends Widget_Base {
                     'label' => __( 'Offer Amount', 'woolentor' ),
                     'type' => Controls_Manager::TEXT,
                     'placeholder' => __( '50%', 'woolentor' ),
+                    'default' => __( '50%', 'woolentor' ),
                 ]
             );
 
@@ -122,6 +126,7 @@ class Woolentor_Special_Day_Offer_Widget extends Widget_Base {
                     'label' => __( 'Offer Tag Line', 'woolentor' ),
                     'type' => Controls_Manager::TEXT,
                     'placeholder' => __( 'Off', 'woolentor' ),
+                    'default' => __( 'Off', 'woolentor' ),
                 ]
             );
 
@@ -146,8 +151,51 @@ class Woolentor_Special_Day_Offer_Widget extends Widget_Base {
                     'label' => __( 'Button Text', 'woolentor' ),
                     'type' => Controls_Manager::TEXT,
                     'placeholder' => __( 'Button Text', 'woolentor' ),
+                    'default' => __( 'Shop Now', 'woolentor' ),
                 ]
             );
+
+            $this->add_control(
+                'banner_overlay',
+                [
+                    'label' => esc_html__( 'Banner Overlay', 'woolentor' ),
+                    'type' => Controls_Manager::SWITCHER,
+                    'label_on' => esc_html__( 'Yes', 'woolentor' ),
+                    'label_off' => esc_html__( 'No', 'woolentor' ),
+                    'return_value' => 'yes',
+                    'default' => 'no',
+                    'prefix_class' => 'wlspcial-banner-overlay-',
+                ]
+            );
+
+            $this->add_control(
+                'banner_overlay_color',
+                [
+                    'label' => __( 'Overlay Color', 'woolentor' ),
+                    'type' => Controls_Manager::COLOR,
+                    'default' => 'rgba(0, 0, 0, 0.4)',
+                    'selectors' => [
+                        '{{WRAPPER}} .wlspcial-banner .banner-thumb::before' => 'background: {{VALUE}}',
+                    ],
+                    'condition' => [
+                        'banner_overlay' => 'yes',
+                    ],
+                ]
+            );
+
+            $this->add_control(
+                'hover_banner_overlay_color',
+                [
+                    'label' => __( 'Hover Overlay Color', 'woolentor' ),
+                    'type' => Controls_Manager::COLOR,
+                    'default' => '#ffffff',
+                    'selectors' => [
+                        '{{WRAPPER}} .wlspcial-banner .banner-thumb a::before' => 'background: {{VALUE}}',
+                        '{{WRAPPER}} .wlspcial-banner .banner-thumb a::after' => 'background: {{VALUE}}',
+                    ]
+                ]
+            );
+            
 
             $this->add_control(
                 'banner_badge_toggle',

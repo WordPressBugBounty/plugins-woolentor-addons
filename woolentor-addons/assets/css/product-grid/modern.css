@@ -197,6 +197,7 @@
     position: relative;
     transition: var(--woolentor-transition);
     border: 1px solid var(--woolentor-gray-200);
+    overflow: hidden;
 }
 
 /* Product Item Container */

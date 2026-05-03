@@ -23,9 +23,11 @@ if ( $product && !is_a( $product, 'WC_Product' ) ) {
 }
 
 $gallery_images_ids = $product->get_gallery_image_ids() ? $product->get_gallery_image_ids() : array();
+$product_thumbnail = get_option( 'woocommerce_placeholder_image', 0 );
 if ( $product->get_image_id() ){
-	array_unshift( $gallery_images_ids, $product->get_image_id() );
+	$product_thumbnail = $product->get_image_id();
 }
+array_unshift( $gallery_images_ids, $product_thumbnail );
 
 echo '<div class="'.esc_attr(implode(' ', $areaClasses )).'">';
 

@@ -157,11 +157,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .product-item .product-inner .content .title a:hover{ color: {{titleHoverColor}}; }"
       }
     },
+    "titleTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .product-item .product-inner .content .title"
+      }
+    },
     "titleSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .product-item .product-inner .content .title{ font-size: {{titleSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before titleTypography"
     },
     "titleAlign": {
       "type": "string",
@@ -204,11 +212,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .product-item .product-inner .content .price,{{WOOLENTOR_WRAPPER}} .product-item .product-inner .content .price .amount{ color: {{priceColor}}; }"
       }
     },
+    "priceTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .product-item .product-inner .content .price, {{WOOLENTOR_WRAPPER}} .product-item .product-inner .content .price .amount"
+      }
+    },
     "priceSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .product-item .product-inner .content .price,{{WOOLENTOR_WRAPPER}} .product-item .product-inner .content .price .amount{ font-size: {{priceSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before priceTypography"
     },
     "pricePadding": {
       "type": "object",
@@ -338,11 +354,19 @@
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .product-item .product-inner span.onsale{ background-color: {{badgeBGColor}}; }"
       }
     },
+    "badgeTypography": {
+      "type": "object",
+      "style": {
+        "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .product-item .product-inner span.onsale"
+      }
+    },
     "badgeSize": {
       "type": "string",
       "style": {
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .product-item .product-inner span.onsale{ font-size: {{badgeSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before badgeTypography"
     },
     "badgePadding": {
       "type": "object",

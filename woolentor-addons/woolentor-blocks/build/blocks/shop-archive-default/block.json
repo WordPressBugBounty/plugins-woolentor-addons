@@ -243,11 +243,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} ul.products li.product .woocommerce-loop-product__title:hover,{{WOOLENTOR_WRAPPER}} ul.products li.product .title a:hover { color: {{titleHoverColor}}!important; }"
       }
     },
+    "titleTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} ul.products li.product .woocommerce-loop-product__title,{{WOOLENTOR_WRAPPER}} ul.products li.product .title a"
+      }
+    },
     "titleSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} ul.products li.product .woocommerce-loop-product__title,{{WOOLENTOR_WRAPPER}} ul.products li.product .title a { font-size: {{titleSize}}!important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before titleTypography"
     },
     "titleMargin": {
       "type": "object",
@@ -269,11 +277,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} ul.products li.product .price,{{WOOLENTOR_WRAPPER}} ul.products li.product .price ins,{{WOOLENTOR_WRAPPER}} ul.products li.product .price ins .amount,{{WOOLENTOR_WRAPPER}} ul.products li.product .price .amount{ color: {{salePriceColor}}!important; }"
       }
     },
+    "salePriceTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} ul.products li.product .price"
+      }
+    },
     "salePriceSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} ul.products li.product .price{ font-size: {{salePriceSize}}!important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before salePriceTypography"
     },
     "regularPriceColor": {
       "type": "string",
@@ -281,11 +297,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} ul.products li.product .price del,{{WOOLENTOR_WRAPPER}} ul.products li.product .price del .amount,{{WOOLENTOR_WRAPPER}} .price del .amount{ color: {{regularPriceColor}}!important; }"
       }
     },
+    "regularPriceTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} ul.products li.product .price del .amount,{{WOOLENTOR_WRAPPER}} ul.products li.product .price del"
+      }
+    },
     "regularPriceSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} ul.products li.product .price del .amount,{{WOOLENTOR_WRAPPER}} ul.products li.product .price del{ font-size: {{regularPriceSize}}!important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before regularPriceTypography"
     },
     "ratingColor": {
       "type": "string",
@@ -390,11 +414,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} ul.products li.product .button{ border-radius: {{cartBtnBorderRadius}}; }"
       }
     },
+    "cartBtnTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} ul.products li.product .button"
+      }
+    },
     "cartBtnSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} ul.products li.product .button{ font-size: {{cartBtnSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before cartBtnTypography"
     },
     "cartBtnPadding": {
       "type": "object",

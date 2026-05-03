@@ -59,11 +59,19 @@
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} #reviews #review_form #respond #comment{ color: {{commentBoxColor}} !important; }"
       }
     },
+    "commentBoxTypography": {
+      "type": "object",
+      "style": {
+        "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} #reviews #review_form #respond #comment"
+      }
+    },
     "commentBoxSize": {
       "type": "string",
       "style": {
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} #reviews #review_form #respond #comment{ font-size: {{commentBoxSize}} !important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before commentBoxTypography"
     },
     "commentBoxBorder": {
       "type": "object",
@@ -83,11 +91,19 @@
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} #review_form #respond .form-submit input{ background-color: {{submitBtnBGColor}} !important; }"
       }
     },
+    "submitBtnTypography": {
+      "type": "object",
+      "style": {
+        "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} #review_form #respond .form-submit input"
+      }
+    },
     "submitBtnSize": {
       "type": "string",
       "style": {
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} #review_form #respond .form-submit input{ font-size: {{submitBtnSize}} !important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before submitBtnTypography"
     },
     "submitBtnHoverColor": {
       "type": "string",

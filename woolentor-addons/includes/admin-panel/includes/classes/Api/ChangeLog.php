@@ -164,6 +164,32 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.3.9',
+                'date'    => '2026-05-03',
+                'changes' => [
+                    'New Features' => [
+                        'Animation control and box-shadow control option in Modern, Editorial and Luxury Elementor addon.',
+                        'Overlay control and overlay color option added in Special day offer banner Elementor addon.',
+                        'Typography option has been added in WL: Breadcrumbs Elementor widget.',
+                        'Typography option in Gutenberg all Block.',
+                        'Minimum and Maximum price range calculate dynamically base on category archive page value.',
+                        'Coupon field height control option in cart table (list style) (Pro)'
+                    ],
+                    'Improved' => [
+                        'Template library design for batter UI.',
+                        'Currency Switcher field with search input.',
+                        'Description hide show toggle issue in Cart table List style Elementor addon. (pro)'
+                    ],
+                    'Fixes' => [
+                        'Wishlist icon render issue with cart table list style addon.',
+                        'Elementor widget product expanding grid spacing issue.',
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
                 'version' => '3.3.8',
                 'date'    => '2026-04-12',
                 'changes' => [

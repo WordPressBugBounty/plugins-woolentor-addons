@@ -74,11 +74,19 @@
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .product_meta a:hover{ color: {{linkHoverColor}}; }"
       }
     },
+    "textTypography": {
+      "type": "object",
+      "style": {
+        "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .product_meta"
+      }
+    },
     "textSize": {
       "type": "string",
       "style": {
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .product_meta{ font-size: {{textSize}} !important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of textSize, we will remove it later"
     },
     "textMargin": {
       "type": "object",

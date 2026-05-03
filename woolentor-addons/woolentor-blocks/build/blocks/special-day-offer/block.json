@@ -83,11 +83,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .banner-content h2 { color: {{titleColor}}; }"
       }
     },
+    "titleTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .banner-content h2"
+      }
+    },
     "titleSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .banner-content h2 { font-size: {{titleSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before titleTypography"
     },
     "titleMargin": {
       "type": "object",
@@ -123,11 +131,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .banner-content h6 { color: {{titleSubColor}}; }"
       }
     },
+    "titleSubTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .banner-content h6"
+      }
+    },
     "titleSubSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .banner-content h6 { font-size: {{titleSubSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before titleSubTypography"
     },
     "subTitleMargin": {
       "type": "object",
@@ -203,11 +219,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .banner-content p{ color: {{desColor}}; }"
       }
     },
+    "desTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .banner-content p"
+      }
+    },
     "desSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .banner-content p{ font-size: {{desSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before desTypography"
     },
     "desMargin": {
       "type": "object",
@@ -243,11 +267,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .banner-content h5{ color: {{offerColor}}; }"
       }
     },
+    "offerTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .banner-content h5"
+      }
+    },
     "offerSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .banner-content h5{ font-size: {{offerSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before offerTypography"
     },
     "offerMargin": {
       "type": "object",
@@ -269,11 +301,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .banner-content h5 span{ color: {{offerTagColor}}; }"
       }
     },
+    "offerTagTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .banner-content h5 span"
+      }
+    },
     "offerTagSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .banner-content h5 span{ font-size: {{offerTagSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before offerTagTypography"
     },
     "offerTagMargin": {
       "type": "object",
@@ -313,11 +353,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .banner-content a:hover{ background-color: {{buttonHoverBGColor}}; }"
       }
     },
+    "buttonTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .banner-content a"
+      }
+    },
     "buttonSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .banner-content a{ font-size: {{buttonSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before buttonTypography"
     },
     "buttonPadding": {
       "type": "object",

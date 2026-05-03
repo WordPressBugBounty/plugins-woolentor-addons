@@ -96,6 +96,7 @@ if ( ! class_exists( 'WooLentorBlocks' ) ) :
 			WooLentorBlocks\Manage_Styles::instance();
 			WooLentorBlocks\Actions::instance();
 			WooLentorBlocks\Blocks_init::instance();
+			WooLentorBlocks\Google_Fonts::instance();
 			if( class_exists('\WooLentorBlocks\Block_Patterns_init') ){
 				\WooLentorBlocks\Block_Patterns_init::instance();
 			}

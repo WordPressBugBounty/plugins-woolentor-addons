@@ -62,11 +62,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woocommerce-product-details__short-description, {{WOOLENTOR_WRAPPER}} .woocommerce-product-details__short-description p{ color: {{textColor}} !important; }"
       }
     },
+    "textTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .woocommerce-product-details__short-description, {{WOOLENTOR_WRAPPER}} .woocommerce-product-details__short-description p"
+      }
+    },
     "textSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .woocommerce-product-details__short-description, {{WOOLENTOR_WRAPPER}} .woocommerce-product-details__short-description p{ font-size: {{textSize}} !important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before textTypography"
     },
     "textAlignment": {
       "type": "string",

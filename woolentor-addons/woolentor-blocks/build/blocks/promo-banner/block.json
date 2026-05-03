@@ -106,11 +106,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-banner .banner_title { color: {{titleColor}}; }"
       }
     },
+    "titleTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-banner .banner_title"
+      }
+    },
     "titleSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-banner .banner_title { font-size: {{titleSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before titleTypography"
     },
     "titlePadding": {
       "type": "object",
@@ -146,11 +154,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-banner .banner_subtitle { color: {{subTitleColor}}; }"
       }
     },
+    "subTitleTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-banner .banner_subtitle"
+      }
+    },
     "subTitleSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-banner .banner_subtitle { font-size: {{subTitleSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before subTitleTypography"
     },
     "subTitlePadding": {
       "type": "object",
@@ -186,11 +202,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-banner .banner_button{ color: {{buttonColor}}; border-color: {{buttonColor}}; }"
       }
     },
+    "buttonTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-banner .banner_button"
+      }
+    },
     "buttonSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-banner .banner_button{ font-size: {{buttonSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before buttonTypography"
     },
     "buttonPadding": {
       "type": "object",

@@ -47,11 +47,20 @@
         "selector": "{{WOOLENTOR_WRAPPER}}.product_title { color: {{titleColor}} !important; }"
       }
     },
+    "titleTypography": {
+      "type": "object",
+      "default": "",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}}.product_title"
+      }
+    },
     "titleSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}}.product_title { font-size: {{titleSize}} !important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of titleSize, we will remove it later"
     },
     "titleAlignment": {
       "type": "string",

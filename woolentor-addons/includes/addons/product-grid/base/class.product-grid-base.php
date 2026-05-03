@@ -535,18 +535,18 @@ class WooLentor_Product_Grid_Base {
             case 'load_more':
                 if ( $current_page < $total_pages ) {
                     echo '<button class="woolentor-ajax-loader"><span class="spinner"></span></button>';
-                    echo '<button class="woolentor-load-more-btn" data-complete-loadtxt="'.esc_attr( $settings['load_more_complete_text'] ).'" data-grid-id="'.$settings['grid_id'].'" data-page="' . ( $current_page + 1 ) . '" data-max-pages="' . $total_pages . '">';
+                    echo '<button class="woolentor-load-more-btn" data-complete-loadtxt="'.esc_attr( $settings['load_more_complete_text'] ).'" data-grid-id="'.esc_attr( $settings['grid_id'] ).'" data-page="' . ( $current_page + 1 ) . '" data-max-pages="' . $total_pages . '">';
                     echo esc_html( $settings['load_more_text'] );
                     echo '</button>';
                 }else{
-                    echo '<button class="woolentor-load-more-btn" data-complete-loadtxt="'.esc_attr( $settings['load_more_complete_text'] ).'" data-grid-id="'.$settings['grid_id'].'" data-page="' . ( $current_page + 1 ) . '" data-max-pages="' . $total_pages . '" disabled="true">';
+                    echo '<button class="woolentor-load-more-btn" data-complete-loadtxt="'.esc_attr( $settings['load_more_complete_text'] ).'" data-grid-id="'.esc_attr( $settings['grid_id'] ).'" data-page="' . ( $current_page + 1 ) . '" data-max-pages="' . $total_pages . '" disabled="true">';
                     echo esc_html( $settings['load_more_complete_text'] );
                     echo '</button>';
                 }
                 break;
 
             case 'infinite':
-                echo '<div class="woolentor-infinite-scroll" data-grid-id="'.$settings['grid_id'].'" data-page="' . ( $current_page + 1 ) . '" data-max-pages="' . $total_pages . '">';
+                echo '<div class="woolentor-infinite-scroll" data-grid-id="'.esc_attr( $settings['grid_id'] ).'" data-page="' . ( $current_page + 1 ) . '" data-max-pages="' . $total_pages . '">';
                 echo '<button class="woolentor-ajax-loader"><span class="spinner"></span></button>';
                 echo '</div>';
                 break;

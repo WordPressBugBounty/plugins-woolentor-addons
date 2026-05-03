@@ -102,6 +102,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} h2.wl_filter_title{ color:{{titleColor}}; }"
       }
     },
+    "titleTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "filterAreaTitle",
+              "condition": "!=",
+              "value": ""
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} h2.wl_filter_title"
+      }
+    },
     "titleSize": {
       "type": "string",
       "style": {
@@ -115,7 +130,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} h2.wl_filter_title{ font-size:{{titleSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of titleSize, we will remove it later"
     },
     "titleBorder": {
       "type": "object",
@@ -208,6 +225,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-filter-wrap form.wl_product_search_form,{{WOOLENTOR_WRAPPER}} .woolentor-filter-wrap input[type='search']{ background-color:{{inputBoxBGColor}}!important; }"
       }
     },
+    "inputBoxTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "filterType",
+              "condition": "==",
+              "value": "search_form"
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-filter-wrap form.wl_product_search_form input[type='search']"
+      }
+    },
     "inputBoxSize": {
       "type": "string",
       "style": {
@@ -221,7 +253,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-filter-wrap form.wl_product_search_form input[type='search']{ font-size:{{inputBoxSize}}!important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of inputBoxSize, we will remove it later"
     },
     "inputBoxBorder": {
       "type": "object",
@@ -663,6 +697,24 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-filter-wrap .wl_sort_by_filter select,{{WOOLENTOR_WRAPPER}} .woolentor-filter-wrap .wl_order_by_filter select{ color:{{selectBoxTextColor}}!important; }"
       }
     },
+    "selectBoxTextTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "filterType",
+              "condition": "==",
+              "value": [
+                "sort_by",
+                "order_by"
+              ]
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-filter-wrap .wl_sort_by_filter select,{{WOOLENTOR_WRAPPER}} .woolentor-filter-wrap .wl_order_by_filter select"
+      }
+    },
     "selectBoxTextSize": {
       "type": "string",
       "style": {
@@ -679,7 +731,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-filter-wrap .wl_sort_by_filter select,{{WOOLENTOR_WRAPPER}} .woolentor-filter-wrap .wl_order_by_filter select{ font-size:{{selectBoxTextSize}}!important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of selectBoxTextSize, we will remove it later"
     },
     "selectBoxBGColor": {
       "type": "string",
@@ -737,6 +791,26 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-filter-wrap ul li,{{WOOLENTOR_WRAPPER}} .woolentor-filter-wrap ul li a{ color:{{listItemColor}}!important; }"
       }
     },
+    "listItemTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "filterType",
+              "condition": "!=",
+              "value": [
+                "search_form",
+                "price_by",
+                "sort_by",
+                "order_by"
+              ]
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-filter-wrap ul li,{{WOOLENTOR_WRAPPER}} .woolentor-filter-wrap ul li a"
+      }
+    },
     "listItemSize": {
       "type": "string",
       "style": {
@@ -755,7 +829,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-filter-wrap ul li,{{WOOLENTOR_WRAPPER}} .woolentor-filter-wrap ul li a{ font-size:{{listItemSize}}!important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of listItemSize, we will remove it later"
     },
     "listItemPadding": {
       "type": "object",

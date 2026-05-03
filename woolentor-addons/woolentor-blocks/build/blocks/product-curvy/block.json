@@ -149,11 +149,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-grid{ row-gap: {{itemMarginBottom}}px; }"
       }
     },
+    "titleTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .product-content .product-content-top .title"
+      }
+    },
     "titleSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .product-content .product-content-top .title{ font-size: {{titleSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of titleSize, we will remove it later"
     },
     "titleColor": {
       "type": "string",
@@ -193,11 +201,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .product-content .product-content-top .product-price del,{{WOOLENTOR_WRAPPER}} .product-content .product-content-top .product-price span.price del{ color: {{regulerPriceColor}}!important; }"
       }
     },
+    "contentTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .product-content .product-content-top p"
+      }
+    },
     "contentSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .product-content .product-content-top p{ font-size: {{contentSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of contentSize, we will remove it later"
     },
     "cotentColor": {
       "type": "string",

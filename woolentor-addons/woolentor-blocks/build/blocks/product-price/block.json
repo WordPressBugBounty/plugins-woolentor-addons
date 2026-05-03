@@ -55,11 +55,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .price { color: {{priceColor}} !important; }"
       }
     },
+    "priceTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .price"
+      }
+    },
     "priceSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .price { font-size: {{priceSize}} !important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of priceSize, we will remove it later"
     },
     "priceMargin": {
       "type": "object",
@@ -81,11 +89,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .price del { color: {{oldPriceColor}} !important; }"
       }
     },
+    "oldPriceTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .price del"
+      }
+    },
     "oldPriceSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .price del { font-size: {{oldPriceSize}} !important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of oldPriceSize, we will remove it later"
     }
   }
 }

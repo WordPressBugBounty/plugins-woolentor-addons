@@ -58,11 +58,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .wl-call-forprice a{ color:{{buttonColor}}!important; }"
       }
     },
+    "buttonTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .wl-call-forprice a"
+      }
+    },
     "buttonFontSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .wl-call-forprice a{ font-size:{{buttonFontSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before buttonTypography"
     },
     "buttonPadding": {
       "type": "object",

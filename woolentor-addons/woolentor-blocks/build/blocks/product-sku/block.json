@@ -45,11 +45,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}}"
       }
     },
+    "skuTypography": {
+      "type": "object",
+      "style": {
+        "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .woolentor_product_sku_info span"
+      }
+    },
     "skuFontSize": {
       "type": "string",
       "style": {
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .woolentor_product_sku_info span{ font-size:{{skuFontSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before skuTypography"
     },
     "skuContentAlignment": {
       "type": "string",

@@ -148,11 +148,19 @@
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .woolentor-product-gallery-video span.onsale,{{WOOLENTOR_WRAPPER}} .woolentor-product-gallery-video .ht-product-label{ background-color: {{badgeBGColor}}; }"
       }
     },
+    "badgeTypography": {
+      "type": "object",
+      "style": {
+        "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .woolentor-product-gallery-video span.onsale,{{WOOLENTOR_WRAPPER}} .woolentor-product-gallery-video .ht-product-label"
+      }
+    },
     "badgeSize": {
       "type": "string",
       "style": {
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .woolentor-product-gallery-video span.onsale,{{WOOLENTOR_WRAPPER}} .woolentor-product-gallery-video .ht-product-label{ font-size: {{badgeSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before badgeTypography"
     },
     "badgePadding": {
       "type": "object",

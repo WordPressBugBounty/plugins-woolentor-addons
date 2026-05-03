@@ -26,6 +26,19 @@ echo '<div class="'.esc_attr(implode(' ', $areaClasses )).'">';
 			<?php
 			do_action( 'woocommerce_product_meta_end' );
 		echo '</div>';
+	}else{
+		if( $block['is_editor'] ){
+			?>
+				<div class="woolentor_product_tags_info">
+					<span class="tagged_as">
+						<?php if($settings['showTitle'] === true ): ?>
+							<span class="tags-title"><?php echo sprintf( esc_html( _n( 'Tag:', 'Tags:', 1, 'woolentor' ) ) ); ?></span> 
+						<?php endif; ?>
+						<?php esc_html_e('N/A', 'woolentor'); ?>
+					</span>
+				</div>
+			<?php
+		}
 	}
 
 echo '</div>';

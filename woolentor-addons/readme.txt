@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, aslamhasib
 Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenberg blocks
 Requires at least: 4.7
 Tested up to: 6.9
-Stable tag: 3.3.8
+Stable tag: 3.3.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -461,6 +461,16 @@ Check out our other powerful WordPress plugins:
 **[JustTables](https://hasthemes.com/wp/justtables/?utm_source=org&utm_medium=readme)** - WordPress table builder
 
 == Changelog ==
+
+= Version: 3.3.9 - Date: 03-05-2026 =
+* Added: Animation control and box-shadow control option in Modern, Editorial and Luxury Elementor addon.
+* Added: Overlay control and overlay color option added in Special day offer banner Elementor addon.
+* Added: Typography option has been added in WL: Breadcrumbs Elementor widget.
+* Added: Typography option in Gutenberg all Block.
+* Added: Minimum and Maximum price range calculate dynamically base on category archive page value.
+* Solved: Wishlist icon render issue with cart table list style addon. 
+* Solved: Elementor widget product expanding grid spacing issue.
+* Compatibility: Latest WordPress and WooCommerce version.
 
 = Version: 3.3.8 - Date: 12-04-2026 =
 * Added: Show Currency Name and Show Currency Symbol option added in currency Switcher Elementor addon and Gutenberg block.
@@ -979,22 +989,6 @@ Check out our other powerful WordPress plugins:
 * Solved : Tab Alignment Issue in WL Product Tab addon.
 * Solved : Wishlist Product Limit issue in wishlist table.
 * Solved : Compare Product Limit issue in compare table.
-
-= Version: 2.5.3 - Date: 08-1-2023 =
-* Added : Hidden item showing option in Universal Product layout.
-* Added : Out Of Stock item hide / show option in Universal Product layout.
-* Added : Recently Viewed Product Gutenberg Block.
-* Solved : Number of item showing issue in category grid block.
-
-= Version: 2.5.2 - Date: 27-12-2022 =
-* Added : Title background Color change option has been added in category grid addon.
-* Added : Aria Label attribute added in all quick-view anchor tag.
-* Solved : Template data Import issue has been fixed.
-* Solved : Template Builder Wide fetching issue.
-* Solved : Custom payment Button showing issue in cart page with WooCommerce Stripe Gateway plugin. 
-* Solved : All Category showing issue in category grid block.
-* Compatibility with the latest WooCommerce version.
-* Compatibility With latest Elementor Version.
 
 == Installation ==
 This section describes how to install the ShopLentor - WooCommerce Addons for Elementor Page Builder plugin and get it working.

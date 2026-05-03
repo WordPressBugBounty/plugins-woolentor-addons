@@ -59,14 +59,22 @@
     "textColor": {
       "type": "string",
       "style": {
-        "selector": "{{WOOLENTOR_WRAPPER}} .woocommerce_product_description{ color: {{textColor}} !important; }"
+        "selector": "{{WOOLENTOR_WRAPPER}} .woocommerce_product_description,{{WOOLENTOR_WRAPPER}} .woocommerce_product_description p{ color: {{textColor}} !important; }"
+      }
+    },
+    "textTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .woocommerce_product_description,{{WOOLENTOR_WRAPPER}} .woocommerce_product_description p"
       }
     },
     "textSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .woocommerce_product_description{ font-size: {{textSize}} !important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of textSize, we will remove it later"
     },
     "textAlignment": {
       "type": "string",

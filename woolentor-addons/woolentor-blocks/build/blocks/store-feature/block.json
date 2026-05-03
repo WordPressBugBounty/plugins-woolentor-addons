@@ -95,11 +95,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}}.ht-feature-wrap .ht-feature-content h4 { color: {{titleColor}}; }"
       }
     },
+    "titleTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}}.ht-feature-wrap .ht-feature-content h4"
+      }
+    },
     "titleSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}}.ht-feature-wrap .ht-feature-content h4 { font-size: {{titleSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before titleTypography"
     },
     "titleMargin": {
       "type": "object",
@@ -121,11 +129,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}}.ht-feature-wrap .ht-feature-content p { color: {{subTitleColor}}; }"
       }
     },
+    "subTitleTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}}.ht-feature-wrap .ht-feature-content p"
+      }
+    },
     "subTitleSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}}.ht-feature-wrap .ht-feature-content p { font-size: {{subTitleSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before subTitleTypography"
     },
     "subTitleMargin": {
       "type": "object",

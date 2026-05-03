@@ -148,11 +148,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .wlb_image_pointer .wlb_pointer_box h4 { color: {{markerTitleColor}}; }"
       }
     },
+    "markerTitleTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .wlb_image_pointer .wlb_pointer_box h4"
+      }
+    },
     "markerTitleSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .wlb_image_pointer .wlb_pointer_box h4 { font-size: {{markerTitleSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before markerTitleTypography"
     },
     "markerTitleMargin": {
       "type": "object",
@@ -174,11 +182,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .wlb_image_pointer .wlb_pointer_box p { color: {{markerDescriptionColor}}; }"
       }
     },
+    "markerDescriptionTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .wlb_image_pointer .wlb_pointer_box p"
+      }
+    },
     "markerDescriptionSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .wlb_image_pointer .wlb_pointer_box p { font-size: {{markerDescriptionSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before markerDescriptionTypography"
     },
     "markerDescriptionMargin": {
       "type": "object",

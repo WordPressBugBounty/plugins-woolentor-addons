@@ -86,11 +86,19 @@
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .woocommerce-tabs .woocommerce-Tabs-panel,.woocommerce {{WOOLENTOR_WRAPPER}} .woocommerce-tabs ul.wc-tabs li{ border-color: {{tabMenuBorderColor}} !important; }"
       }
     },
+    "tabMenuTypography": {
+      "type": "object",
+      "style": {
+        "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .woocommerce-tabs ul.wc-tabs li a"
+      }
+    },
     "tabMenuSize": {
       "type": "string",
       "style": {
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .woocommerce-tabs ul.wc-tabs li a{ font-size: {{tabMenuSize}} !important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before tabMenuTypography"
     },
     "tabMenuBorderRadius": {
       "type": "object",
@@ -136,11 +144,19 @@
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .woocommerce-Tabs-panel h2{ color: {{tabContentHeadingColor}} !important; }"
       }
     },
+    "tabContentHeadingTypography": {
+      "type": "object",
+      "style": {
+        "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .woocommerce-Tabs-panel h2"
+      }
+    },
     "tabContentHeadingSize": {
       "type": "string",
       "style": {
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .woocommerce-Tabs-panel h2{ font-size: {{tabContentHeadingSize}} !important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before tabContentHeadingTypography"
     },
     "tabContentHeadingMargin": {
       "type": "object",
@@ -162,11 +178,19 @@
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .woocommerce-Tabs-panel,.woocommerce {{WOOLENTOR_WRAPPER}} .woocommerce-Tabs-panel p{ color: {{tabContentColor}} !important; }"
       }
     },
+    "tabContentTypography": {
+      "type": "object",
+      "style": {
+        "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .woocommerce-tabs .woocommerce-Tabs-panel"
+      }
+    },
     "tabContentSize": {
       "type": "string",
       "style": {
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .woocommerce-tabs .woocommerce-Tabs-panel{ font-size: {{tabContentSize}} !important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before tabContentTypography"
     }
   }
 }

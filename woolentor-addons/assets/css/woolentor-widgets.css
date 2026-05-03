@@ -2579,6 +2579,21 @@ span.woolentor-tip,
 }
 
 /* Special Day Banner */
+.wlspcial-banner .banner-thumb {
+  position: relative;
+}
+.wlspcial-banner-overlay-yes .wlspcial-banner .banner-thumb::before {
+  background: rgba(0, 0, 0, 0.4) none repeat scroll 0 0;
+  content: "";
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+  
 .wlspcial-banner .banner-thumb a {
   overflow: hidden;
   position: relative;
@@ -5679,7 +5694,6 @@ h2.wl_filter_title {
 
 .wl_horizontal-hover-accordion {
   width: 100%;
-  max-width: 1080px;
   height: 600px;
   overflow: hidden;
 }
@@ -7669,6 +7683,9 @@ form.woolentor-header-search-form {
   .woolentor-banner-img,
   .woolentor-content {
     float: none;
+  }
+  .woolentor-content {
+    padding-left: 0;
   }
   .product-tab-list .nav a {
     margin-bottom: 10px;

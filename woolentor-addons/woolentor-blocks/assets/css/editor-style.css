@@ -955,6 +955,12 @@ button.components-button.woolentor-icon-control-icon-button.is-secondary {
   font-weight: 500;
 }
 
+.woolentor-typography-control .components-base-control__label{
+  text-transform: none !important;
+  font-size: 12px;
+  font-weight: 400;
+}
+
 
 /*
 * Addons Style

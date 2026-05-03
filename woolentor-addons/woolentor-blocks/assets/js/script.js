@@ -375,7 +375,7 @@
 
     CartTableHandler: function () {
       // Product Details Slide Toggle
-      $('body').on("click", '.woolentor-cart-product-details-toggle', function (e) {
+      $('body').on("click", '[class*="woolentorblock-"] .woolentor-cart-product-details-toggle', function (e) {
           e.preventDefault();
           
           const $target = $(this).data('target');

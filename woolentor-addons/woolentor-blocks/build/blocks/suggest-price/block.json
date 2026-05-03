@@ -93,11 +93,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .wl-suggest-form-input input[type*='text']::-webkit-input-placeholder{ color:{{inputPlaceholderColor}}; }{{WOOLENTOR_WRAPPER}} .wl-suggest-form-input input[type*='text']::-moz-placeholder{ color:{{inputPlaceholderColor}}; } {{WOOLENTOR_WRAPPER}} .wl-suggest-form-input input[type*='email']::-webkit-input-placeholder{ color:{{inputPlaceholderColor}}; } {{WOOLENTOR_WRAPPER}} .wl-suggest-form-input input[type*='email']::-moz-placeholder{ color:{{inputPlaceholderColor}}; }"
       }
     },
+    "inputTextTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .wl-suggest-form-input input"
+      }
+    },
     "inputTextSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .wl-suggest-form-input input{ font-size:{{inputTextSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before inputTextTypography"
     },
     "inputBGColor": {
       "type": "string",
@@ -165,11 +173,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .wl-suggest-form-input textarea::-webkit-input-placeholder{ color:{{textareaPlaceholderColor}}; }{{WOOLENTOR_WRAPPER}} .wl-suggest-form-input textarea::-moz-placeholder{ color:{{textareaPlaceholderColor}}; } {{WOOLENTOR_WRAPPER}} .wl-suggest-form-input textarea:-ms-input-placeholder{ color:{{textareaPlaceholderColor}}; }"
       }
     },
+    "textareaTextTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .wl-suggest-form-input textarea"
+      }
+    },
     "textareaTextSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .wl-suggest-form-input textarea{ font-size:{{textareaTextSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before textareaTextTypography"
     },
     "textareaBGColor": {
       "type": "string",
@@ -231,11 +247,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .wl-suggest-form-input input[type='submit']{ color:{{submitButtonColor}}; }"
       }
     },
+    "submitButtonTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .wl-suggest-form-input input[type='submit']"
+      }
+    },
     "submitButtonSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .wl-suggest-form-input input[type='submit']{ font-size:{{submitButtonSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before submitButtonTypography"
     },
     "submitButtonBGColor": {
       "type": "string",
@@ -329,11 +353,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .wlsugget-button.wlopen{ color:{{openButtonColor}}; }"
       }
     },
+    "openButtonTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .wlsugget-button.wlopen"
+      }
+    },
     "openButtonSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .wlsugget-button.wlopen{ font-size:{{openButtonSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before openButtonTypography"
     },
     "openButtonBGColor": {
       "type": "string",
@@ -427,11 +459,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .wlsugget-button.wlclose{ color:{{closeButtonColor}}; }"
       }
     },
+    "closeButtonTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .wlsugget-button.wlclose"
+      }
+    },
     "closeButtonSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .wlsugget-button.wlclose{ font-size:{{closeButtonSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before closeButtonTypography"
     },
     "closeButtonBGColor": {
       "type": "string",

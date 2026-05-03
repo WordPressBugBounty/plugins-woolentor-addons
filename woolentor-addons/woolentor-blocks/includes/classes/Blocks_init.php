@@ -106,7 +106,7 @@ class Blocks_init {
                 $this->enqueue_block_assets( $block );
             });
             register_block_type( $block_dir . $block_name .'/block.json' );
-            return $block;
+            // return $block;
         }else{
             register_block_type( $block['name'], $block );
         }

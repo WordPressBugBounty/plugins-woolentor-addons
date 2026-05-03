@@ -45,11 +45,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}}"
       }
     },
+    "categoriesTypography": {
+      "type": "object",
+      "style": {
+        "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .woolentor_product_categories_info"
+      }
+    },
     "categoriesFontSize": {
       "type": "string",
       "style": {
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .woolentor_product_categories_info{ font-size:{{categoriesFontSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of categoriesFontSize, we will remove it later"
     },
     "categoriesContentAlignment": {
       "type": "string",

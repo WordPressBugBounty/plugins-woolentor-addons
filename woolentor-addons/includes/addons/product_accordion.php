@@ -793,7 +793,7 @@ class Woolentor_Product_Accordion_Widget extends Widget_Base {
     
         ?>    
         <div class=" ht-row ht-products woocommerce product">
-            <div class="wl_product-accordion <?php if($settings['product_content_style']=='1'){echo esc_attr('wl_product-accordion-two'); } ?>">
+            <div class="ht-col-lg-12 wl_product-accordion <?php if($settings['product_content_style']=='1'){echo esc_attr('wl_product-accordion-two'); } ?>">
                 
                 <?php
                     if( $products->have_posts() ):

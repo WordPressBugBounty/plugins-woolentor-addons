@@ -442,11 +442,20 @@ class Coupon_Manager {
                 break;
         }
         
-        $sql = "SELECT p.* FROM {$wpdb->posts} p " .
+        // $sql = "SELECT p.* FROM {$wpdb->posts} p " .
+        //        implode( ' ', $joins ) . " " .
+        //        "WHERE " . implode( ' AND ', $where_clauses ) . " " .
+        //        "ORDER BY p.{$args['orderby']} {$args['order']} " .
+        //        "LIMIT {$args['per_page']} OFFSET {$offset}";
+
+        $sql = $wpdb->prepare( "SELECT * FROM {$wpdb->posts} p " .
                implode( ' ', $joins ) . " " .
                "WHERE " . implode( ' AND ', $where_clauses ) . " " .
                "ORDER BY p.{$args['orderby']} {$args['order']} " .
-               "LIMIT {$args['per_page']} OFFSET {$offset}";
+               "LIMIT %d OFFSET %d",
+               $args['per_page'],
+               $offset
+            );
         
         return $wpdb->get_results( $sql );
     }

@@ -96,6 +96,7 @@ class Woolentor_Add_Banner_Widget extends Widget_Base {
                 [
                     'label' => __( 'Banner Title', 'woolentor' ),
                     'type' => Controls_Manager::TEXTAREA,
+                    'default' => __( 'Wood Chair For Home.', 'woolentor' ),
                 ]
             );
 
@@ -104,6 +105,7 @@ class Woolentor_Add_Banner_Widget extends Widget_Base {
                 [
                     'label' => __( 'Banner Sub Title', 'woolentor' ),
                     'type' => Controls_Manager::TEXTAREA,
+                    'default' => __( 'Up to 50% Off', 'woolentor' ),
                 ]
             );
 
@@ -112,6 +114,7 @@ class Woolentor_Add_Banner_Widget extends Widget_Base {
                 [
                     'label' => __( 'Button Text', 'woolentor' ),
                     'type' => Controls_Manager::TEXT,
+                    'default' => __( 'Shop Now', 'woolentor' ),
                 ]
             );
 

@@ -335,6 +335,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-item .woolentor-badge:not(.woolentor-category-badge){ color: {{badge_color}}; }"
       }
     },
+    "badgeTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "show_badges",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-item .woolentor-badge:not(.woolentor-category-badge)"
+      }
+    },
     "badge_typography": {
       "type": "string",
       "style": {
@@ -348,7 +363,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-item .woolentor-badge:not(.woolentor-category-badge){ font-size: {{badge_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of badge_typography, we will remove it later"
     },
     "badge_background_color": {
       "type": "string",
@@ -440,6 +457,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-product-title a:hover{ color: {{title_hover_color}}; }"
       }
     },
+    "titleTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "show_title",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-product-title"
+      }
+    },
     "title_typography": {
       "type": "string",
       "style": {
@@ -453,7 +485,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-product-title{ font-size: {{title_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of title_typography, we will remove it later"
     },
     "title_margin": {
       "type": "object",
@@ -545,6 +579,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-rating-text{ color: {{review_counter_color}}; }"
       }
     },
+    "review_counterTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "show_rating",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-rating-text"
+      }
+    },
     "review_counter_typography": {
       "type": "string",
       "style": {
@@ -558,7 +607,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-rating-text{ font-size: {{review_counter_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of review_counter_typography, we will remove it later"
     },
     "review_margin": {
       "type": "object",
@@ -605,6 +656,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-category-badge{ background-color: {{category_badge_bg_color}}; }"
       }
     },
+    "category_badgeTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "show_category_badge",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-category-badge"
+      }
+    },
     "category_badge_typography": {
       "type": "string",
       "style": {
@@ -618,7 +684,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-category-badge{ font-size: {{category_badge_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of category_badge_typography, we will remove it later"
     },
     "category_badge_border_radius": {
       "type": "object",
@@ -671,11 +739,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-product-subtitle{ color: {{description_color}}; }"
       }
     },
+    "descriptionTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-product-subtitle"
+      }
+    },
     "description_typography": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-product-subtitle{ font-size: {{description_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of description_typography, we will remove it later"
     },
     "description_margin": {
       "type": "object",
@@ -713,6 +789,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-product-price ins{ color: {{sale_price_color}}; }"
       }
     },
+    "priceTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "show_price",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-product-price,{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-product-price del"
+      }
+    },
     "price_typography": {
       "type": "string",
       "style": {
@@ -726,7 +817,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-product-price,{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-product-price del{ font-size: {{price_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of priceTypography, we will remove it later"
     },
     "category_color": {
       "type": "string",
@@ -786,6 +879,21 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-product-category-badge:hover{ background-color: {{category_bg_hover_color}}; }"
+      }
+    },
+    "categoryTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "show_categories",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-product-category-badge"
       }
     },
     "category_typography": {
@@ -908,6 +1016,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card a.woolentor-cart-btn:hover,{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-cart-btn::before{ background-color: {{cart_button_background_hover_color}}!important;background: {{cart_button_background_hover_color}}!important; }"
       }
     },
+    "cart_action_buttonTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "show_add_to_cart",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card a.woolentor-cart-btn"
+      }
+    },
     "cart_action_button_typography": {
       "type": "string",
       "style": {
@@ -921,7 +1044,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card a.woolentor-cart-btn{ font-size: {{cart_action_button_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of cart_action_button_typography, we will remove it later"
     },
     "cart_action_button_size": {
       "type": "string",
@@ -1055,6 +1180,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-view-details:hover{ color: {{view_details_hover_color}}; }"
       }
     },
+    "view_detailsTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "show_view_details",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-view-details"
+      }
+    },
     "view_details_typography": {
       "type": "string",
       "style": {
@@ -1068,7 +1208,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-view-details{ font-size: {{view_details_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of view_details_typography, we will remove it later"
     },
     "view_details_margin": {
       "type": "object",
@@ -1115,6 +1257,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-sale-indicator{ background-color: {{discount_badge_bg_color}}; }"
       }
     },
+    "discount_badgeTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "show_discount_offer_badge",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-sale-indicator"
+      }
+    },
     "discount_badge_typography": {
       "type": "string",
       "style": {
@@ -1128,7 +1285,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-sale-indicator{ font-size: {{discount_badge_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of discount_badge_typography, we will remove it later"
     },
     "discount_badge_width": {
       "type": "string",
@@ -1235,6 +1394,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-new-badge-indicator{ background-color: {{new_badge_bg_color}}; }"
       }
     },
+    "new_badgeTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "show_new_badge",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-new-badge-indicator"
+      }
+    },
     "new_badge_typography": {
       "type": "string",
       "style": {
@@ -1248,7 +1422,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-luxury-card .woolentor-new-badge-indicator{ font-size: {{new_badge_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of new_badge_typography, we will remove it later"
     },
     "new_badge_border": {
       "type": "object",
@@ -1326,9 +1502,23 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-pagination{ justify-content: {{pagination_position}}; }"
       }
     },
+    "paginationTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "enable_pagination",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-pagination ul li a,{{WOOLENTOR_WRAPPER}} .woolentor-pagination ul li span,{{WOOLENTOR_WRAPPER}} .woolentor-load-more-btn"
+      }
+    },
     "pagination_typography": {
       "type": "string",
-      "default": "center",
       "style": {
         "dependency": [
           [
@@ -1340,7 +1530,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-pagination ul li a,{{WOOLENTOR_WRAPPER}} .woolentor-pagination ul li span,{{WOOLENTOR_WRAPPER}} .woolentor-load-more-btn{ font-size: {{pagination_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of pagination_typography, we will remove it later"
     },
     "pagination_border": {
       "type": "object",

@@ -337,6 +337,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-item .woolentor-badge{ color: {{badge_color}}; }"
       }
     },
+    "badgeTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "show_badges",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-item .woolentor-badge"
+      }
+    },
     "badge_typography": {
       "type": "string",
       "style": {
@@ -350,7 +365,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-item .woolentor-badge{ font-size: {{badge_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of badge_typography, we will remove it later"
     },
     "badge_background_color": {
       "type": "string",
@@ -442,6 +459,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-title a:hover{ color: {{title_hover_color}}; }"
       }
     },
+    "titleTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "show_title",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-style-modern .woolentor-grid-card .woolentor-product-title,{{WOOLENTOR_WRAPPER}} .woolentor-style-modern .woolentor-list-card .woolentor-product-title"
+      }
+    },
     "title_typography": {
       "type": "string",
       "style": {
@@ -455,7 +487,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-style-modern .woolentor-grid-card .woolentor-product-title,{{WOOLENTOR_WRAPPER}} .woolentor-style-modern .woolentor-list-card .woolentor-product-title{ font-size: {{title_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of title_typography, we will remove it later"
     },
     "title_margin": {
       "type": "object",
@@ -547,6 +581,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-grid-modern .woolentor-review-count,{{WOOLENTOR_WRAPPER}} .woolentor-product-rating .rating-info{ color: {{review_counter_color}}; }"
       }
     },
+    "review_counterTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "show_rating",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-grid-modern .woolentor-review-count,{{WOOLENTOR_WRAPPER}} .woolentor-product-rating .rating-info"
+      }
+    },
     "review_counter_typography": {
       "type": "string",
       "style": {
@@ -560,7 +609,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-grid-modern .woolentor-review-count,{{WOOLENTOR_WRAPPER}} .woolentor-product-rating .rating-info{ font-size: {{review_counter_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of review_counter_typography, we will remove it later"
     },
     "review_margin": {
       "type": "object",
@@ -607,6 +658,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-categories .woolentor-product-category:hover{ color: {{category_hover_color}}; }"
       }
     },
+    "categoryTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "show_categories",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-categories .woolentor-product-category"
+      }
+    },
     "category_typography": {
       "type": "string",
       "style": {
@@ -620,7 +686,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-categories .woolentor-product-category{ font-size: {{category_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of category_typography, we will remove it later"
     },
     "category_margin": {
       "type": "object",
@@ -643,11 +711,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-description p{ color: {{description_color}}; }"
       }
     },
+    "descriptionTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-description p"
+      }
+    },
     "description_typography": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-description p{ font-size: {{description_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of description_typography, we will remove it later"
     },
     "description_margin": {
       "type": "object",
@@ -685,6 +761,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-price ins{ color: {{sale_price_color}}; }"
       }
     },
+    "priceTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "show_price",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-price,{{WOOLENTOR_WRAPPER}} .woolentor-product-price del"
+      }
+    },
     "price_typography": {
       "type": "string",
       "style": {
@@ -698,7 +789,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-price,{{WOOLENTOR_WRAPPER}} .woolentor-product-price del{ font-size: {{price_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of price_typography, we will remove it later"
     },
     "cart_action_button_text_color": {
       "type": "string",
@@ -760,6 +853,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-actions .woolentor-cart-btn:hover,{{WOOLENTOR_WRAPPER}} .woolentor-product-actions .add_to_cart_button:hover{ background-color: {{cart_button_background_hover_color}}!important;background: {{cart_button_background_hover_color}}!important; }"
       }
     },
+    "cart_action_buttonTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "show_add_to_cart",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-grid-card .woolentor-product-actions .woolentor-cart-btn,{{WOOLENTOR_WRAPPER}} .woolentor-list-card .woolentor-product-actions .woolentor-cart-btn"
+      }
+    },
     "cart_action_button_typography": {
       "type": "string",
       "style": {
@@ -773,7 +881,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-grid-card .woolentor-product-actions .woolentor-cart-btn,{{WOOLENTOR_WRAPPER}} .woolentor-list-card .woolentor-product-actions .woolentor-cart-btn{ font-size: {{cart_action_button_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of cart_action_button_typography, we will remove it later"
     },
     "cart_action_button_size": {
       "type": "string",
@@ -878,6 +988,21 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-pagination{ justify-content: {{pagination_position}}; }"
       }
     },
+    "paginationTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "enable_pagination",
+              "condition": "===",
+              "value": true
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-pagination ul li a,{{WOOLENTOR_WRAPPER}} .woolentor-pagination ul li span,{{WOOLENTOR_WRAPPER}} .woolentor-load-more-btn"
+      }
+    },
     "pagination_typography": {
       "type": "string",
       "default": "center",
@@ -892,7 +1017,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-pagination ul li a,{{WOOLENTOR_WRAPPER}} .woolentor-pagination ul li span,{{WOOLENTOR_WRAPPER}} .woolentor-load-more-btn{ font-size: {{pagination_typography}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of pagination_typography, we will remove it later"
     },
     "pagination_border": {
       "type": "object",

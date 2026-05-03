@@ -734,7 +734,7 @@ class Woolentor_Product_Image_Accordion_Widget extends Widget_Base {
 
         ?>     
         <div class=" ht-row ht-products woocommerce product">
-            <div class="wl_horizontal-hover-accordion">
+            <div class="ht-col-lg-12 wl_horizontal-hover-accordion">
                 <ul class="accordion-ul">
 
                 <?php

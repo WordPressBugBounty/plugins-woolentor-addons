@@ -96,20 +96,37 @@
                 "selector":"{{WOOLENTOR_WRAPPER}} .wishsuite-counter-area.wishsuite-has-text{ color:{{counterTextColor}}; }"
             }
         },
-        "counterTextSize":{
-            "type":"string",
-            "style" : {
+        "counterTextTypography": {
+            "type": "object",
+            "style": {
                 "dependency": [
                     [
                         {
-                            "key": "counterAfterText", 
-                            "condition": "!=", 
+                            "key": "counterAfterText",
+                            "condition": "!=",
                             "value": ""
                         }
                     ]
                 ],
-                "selector":"{{WOOLENTOR_WRAPPER}} .wishsuite-counter-area.wishsuite-has-text{ font-size:{{counterTextSize}}; }"
+                "selector": "{{WOOLENTOR_WRAPPER}} .wishsuite-counter-area.wishsuite-has-text"
             }
+        },
+        "counterTextSize": {
+            "type": "string",
+            "style": {
+                "dependency": [
+                    [
+                        {
+                            "key": "counterAfterText",
+                            "condition": "!=",
+                            "value": ""
+                        }
+                    ]
+                ],
+                "selector": "{{WOOLENTOR_WRAPPER}} .wishsuite-counter-area.wishsuite-has-text{ font-size:{{counterTextSize}}; }"
+            },
+            "deprecated": true,
+            "_comment": "legacy font size before counterTextTypography"
         }
 
     }

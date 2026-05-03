@@ -26,7 +26,7 @@ if ( ! class_exists( 'WooLentor_Product_Grid_Base' ) ) {
 $product_grid_base = WooLentor_Product_Grid_Base::instance();
 
 // Block unique class
-$uniqClass = 'woolentorblock-' . $settings['blockUniqId'];
+$uniqClass = 'woolentorblock-' . sanitize_html_class( $settings['blockUniqId'] );
 $areaClasses = array( $uniqClass );
 
 // Add custom className if provided

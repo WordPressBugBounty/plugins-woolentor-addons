@@ -241,7 +241,7 @@
                 $('body.post-type-woolentor-template').removeClass('woolentor-tmp-new-add');
 
             }else{
-                $('#woolentor-template-title').attr( 'value', '' );
+                $('#woolentor-template-title').attr( 'value', woolentorTemplateAdmin.generateTitle() );
                 $("#woolentor-template-type").removeAttr('disabled');
                 document.querySelector("#woolentor-template-type option[value='single']").selected = "true";
                 $('#woolentor-template-default').prop('checked', false);
@@ -264,6 +264,12 @@
             // Fire custom event.
             $(document).trigger('woolentor_template_edit_popup_open');
 
+        },
+
+        // Generate Title
+        generateTitle: function(){
+            let title = 'New Template - ' + new Date().getTime();
+            return title;
         },
 
         // Close Popup

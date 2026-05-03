@@ -227,11 +227,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .ht-single-testimonial-wrap [class*='ht-client-info'] h4 { color: {{nameColor}}!important; }{{WOOLENTOR_WRAPPER}} .ht-single-testimonial-wrap [class*='ht-client-info'] span::before,{{WOOLENTOR_WRAPPER}} .ht-single-testimonial-wrap [class*='ht-client-info'] h4::before{ background-color: {{nameColor}}!important; }"
       }
     },
+    "nameTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .ht-single-testimonial-wrap [class*='ht-client-info'] h4"
+      }
+    },
     "nameSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .ht-single-testimonial-wrap [class*='ht-client-info'] h4 { font-size: {{nameSize}}!important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before nameTypography"
     },
     "namePadding": {
       "type": "object",
@@ -251,11 +259,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .ht-single-testimonial-wrap [class*='ht-client-info'] span { color: {{designationColor}}!important; }"
       }
     },
+    "designationTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .ht-single-testimonial-wrap [class*='ht-client-info'] span"
+      }
+    },
     "designationSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .ht-single-testimonial-wrap [class*='ht-client-info'] span { font-size: {{designationSize}}!important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before designationTypography"
     },
     "designationPadding": {
       "type": "object",
@@ -275,11 +291,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .ht-single-testimonial-wrap [class*='ht-client-content'] p { color: {{messageColor}}!important; }"
       }
     },
+    "messageTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .ht-single-testimonial-wrap [class*='ht-client-content'] p"
+      }
+    },
     "messageSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .ht-single-testimonial-wrap [class*='ht-client-content'] p { font-size: {{messageSize}}!important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before messageTypography"
     },
     "messagePadding": {
       "type": "object",

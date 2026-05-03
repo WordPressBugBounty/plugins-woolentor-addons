@@ -4,7 +4,7 @@
     "name": "woolentor/ever-compare-table",
     "category": "woolentor-blocks",
     "title": "WL: EverCompare",
-    "description":"Display compare table.",
+    "description":"Display product compare table.",
     "keywords": ["woolentor","compare","table","ever","compare table"],
     "render": "file:./index.php",
     "supports": {
@@ -62,11 +62,19 @@
                 "selector":"{{WOOLENTOR_WRAPPER}} .htcolumn-field-name{ color:{{headingColor}}; }"
             }
         },
+        "headingTypography": {
+            "type": "object",
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .htcolumn-field-name"
+            }
+        },
         "headingSize":{
             "type":"string",
             "style" : {
                 "selector":"{{WOOLENTOR_WRAPPER}} .htcolumn-field-name{ font-size:{{headingSize}}; }"
-            }
+            },
+            "deprecated": true,
+            "_comment": "legacy font size before headingTypography"
         },
         "eventBackgroundColor":{
             "type":"string",
@@ -126,11 +134,19 @@
             }
         },
 
+        "shareBtnTypography": {
+            "type": "object",
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .ever-compare-shareable-link .evercompare-copy-link"
+            }
+        },
         "shareBtnSize":{
             "type":"string",
             "style" : {
                 "selector":"{{WOOLENTOR_WRAPPER}} .ever-compare-shareable-link .evercompare-copy-link{ font-size:{{shareBtnSize}}; }"
-            }
+            },
+            "deprecated": true,
+            "_comment": "legacy font size before shareBtnTypography"
         },
         "shareBtnPadding": {
             "type": "object",

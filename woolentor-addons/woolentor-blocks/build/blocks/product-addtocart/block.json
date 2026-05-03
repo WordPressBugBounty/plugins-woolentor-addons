@@ -97,11 +97,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .cart button{ color: {{textColor}} !important; }"
       }
     },
+    "textTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .cart button"
+      }
+    },
     "textSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .cart button{ font-size: {{textSize}} !important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of textSize, we will remove it later"
     },
     "buttonPadding": {
       "type": "object",
@@ -415,6 +423,25 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .wl-addto-cart[class*='wl-style-'] form.cart .wl-cart-wrap .wl-cart-icon:hover,{{WOOLENTOR_WRAPPER}} .wl-addto-cart[class*='wl-style-'] form.cart .wl-cart-icon:hover{ border-radius: {{buttonsHoverBorderRadius}} !important; }"
       }
     },
+    "qntTextTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "layoutStyle",
+              "condition": "==",
+              "value": [
+                "2",
+                "3",
+                "5"
+              ]
+            }
+          ]
+        ],
+        "selector": "{{WOOLENTOR_WRAPPER}} .wl-addto-cart[class*='wl-style-'] form.cart .wl-quantity-wrap .label"
+      }
+    },
     "qntTextSize": {
       "type": "string",
       "style": {
@@ -432,7 +459,9 @@
           ]
         ],
         "selector": "{{WOOLENTOR_WRAPPER}} .wl-addto-cart[class*='wl-style-'] form.cart .wl-quantity-wrap .label{ font-size: {{qntTextSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of qntTextSize, we will remove it later"
     },
     "qntPlusMinusColor": {
       "type": "string",

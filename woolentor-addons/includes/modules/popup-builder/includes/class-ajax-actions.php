@@ -22,7 +22,7 @@ class Ajax_Actions{
 
         // Save popup data.
         add_action( 'wp_ajax_wlpb_save_popup_settings', array( $this, 'save_popup_settings' ) );
-        add_action( 'wp_ajax_nopriv_wlpb_save_popup_settings', array( $this, 'save_popup_settings' ) );
+        // add_action( 'wp_ajax_nopriv_wlpb_save_popup_settings', array( $this, 'save_popup_settings' ) );
 
         // Render popup modal for list page.
         add_action( 'wp_ajax_wlpb_render_popup_modal', array( $this, 'render_popup_modal' ) );

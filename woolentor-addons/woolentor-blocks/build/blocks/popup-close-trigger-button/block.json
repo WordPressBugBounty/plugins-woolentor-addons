@@ -92,11 +92,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} .wlpb-trigger-button .wlpb-trigger-button-text{ color:{{textColor}}; }"
       }
     },
+    "buttonTextTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .wlpb-trigger-button .wlpb-trigger-button-text"
+      }
+    },
     "fontSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .wlpb-trigger-button .wlpb-trigger-button-text{ font-size:{{fontSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before buttonTextTypography"
     },
     "borderRadius": {
       "type": "object",

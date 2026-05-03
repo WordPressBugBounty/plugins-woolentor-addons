@@ -51,11 +51,19 @@
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} [class^='stock']{ color: {{textColor}}!important; }"
       }
     },
+    "textTypography": {
+      "type": "object",
+      "style": {
+        "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} [class^='stock']"
+      }
+    },
     "textSize": {
       "type": "string",
       "style": {
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} [class^='stock']{ font-size: {{textSize}}!important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before textTypography"
     },
     "contentAlignment": {
       "type": "string",

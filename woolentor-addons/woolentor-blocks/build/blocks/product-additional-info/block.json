@@ -75,6 +75,21 @@
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} h2 { color: {{headingColor}}; }"
       }
     },
+    "headingTypography": {
+      "type": "object",
+      "style": {
+        "dependency": [
+          [
+            {
+              "key": "showHeading",
+              "condition": "==",
+              "value": true
+            }
+          ]
+        ],
+        "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} h2"
+      }
+    },
     "headingSize": {
       "type": "string",
       "style": {
@@ -88,7 +103,9 @@
           ]
         ],
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} h2 { font-size: {{headingSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of headingSize, we will remove it later"
     },
     "headingMargin": {
       "type": "object",
@@ -119,11 +136,19 @@
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .shop_attributes th { color: {{tableHeadingColor}}; }"
       }
     },
+    "tableHeadingTypography": {
+      "type": "object",
+      "style": {
+        "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .shop_attributes th"
+      }
+    },
     "tableHeadingSize": {
       "type": "string",
       "style": {
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .shop_attributes th { font-size: {{tableHeadingSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of tableHeadingSize, we will remove it later"
     },
     "tableContentColor": {
       "type": "string",
@@ -131,11 +156,19 @@
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .shop_attributes td { color: {{tableContentColor}}; }"
       }
     },
+    "tableContentTypography": {
+      "type": "object",
+      "style": {
+        "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .shop_attributes td"
+      }
+    },
     "tableContentSize": {
       "type": "string",
       "style": {
         "selector": ".woocommerce {{WOOLENTOR_WRAPPER}} .shop_attributes td { font-size: {{tableContentSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "old name of tableContentSize, we will remove it later"
     }
   }
 }

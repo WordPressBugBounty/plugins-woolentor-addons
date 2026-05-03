@@ -44,11 +44,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}}"
       }
     },
+    "orderingTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}}.woolentor_archive_catalog_ordering .woocommerce-ordering select"
+      }
+    },
     "orderingSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}}.woolentor_archive_catalog_ordering .woocommerce-ordering select{ font-size:{{orderingSize}}!important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before orderingTypography"
     },
     "orderingColor": {
       "type": "string",

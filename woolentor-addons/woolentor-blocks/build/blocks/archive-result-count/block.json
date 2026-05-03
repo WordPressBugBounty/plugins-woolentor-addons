@@ -47,11 +47,19 @@
       "type": "number",
       "default": 16
     },
+    "resultCountTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}}.woolentor_archive_result_count .woocommerce-result-count"
+      }
+    },
     "resultCountSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}}.woolentor_archive_result_count .woocommerce-result-count{ font-size:{{resultCountSize}}!important; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before resultCountTypography"
     },
     "resultCountColor": {
       "type": "string",

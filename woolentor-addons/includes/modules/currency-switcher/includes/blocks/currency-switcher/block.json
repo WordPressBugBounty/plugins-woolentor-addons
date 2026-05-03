@@ -73,11 +73,19 @@
                 "selector":"{{WOOLENTOR_WRAPPER}} .woolentor-currency-dropdown ul li:not(.active-currency){ color:{{currencyColor}}; }"
             }
         },
+        "currencyTypography": {
+            "type": "object",
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-currency-dropdown ul li:not(.active-currency)"
+            }
+        },
         "currencySize":{
             "type":"string",
             "style" : {
                 "selector":"{{WOOLENTOR_WRAPPER}} .woolentor-currency-dropdown ul li:not(.active-currency){ font-size:{{currencySize}}; }"
-            }
+            },
+            "deprecated": true,
+            "_comment": "legacy font size before currencyTypography"
         },
         "currencyBorder":{
             "type":"object",
@@ -154,11 +162,19 @@
                 ]
             }
         },
+        "currenctCurrencyTypography": {
+            "type": "object",
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-selected-currency-wrap span.woolentor-selected-currency,{{WOOLENTOR_WRAPPER}} .woolentor-currency-dropdown.list-style ul li.active-currency"
+            }
+        },
         "currenctCurrencySize":{
             "type":"string",
             "style" : {
                 "selector":"{{WOOLENTOR_WRAPPER}} .woolentor-selected-currency-wrap span.woolentor-selected-currency,{{WOOLENTOR_WRAPPER}} .woolentor-currency-dropdown.list-style ul li.active-currency{ font-size:{{currenctCurrencySize}}; }"
-            }
+            },
+            "deprecated": true,
+            "_comment": "legacy font size before currenctCurrencyTypography"
         },
         "currenctCurrencyBorder":{
             "type":"object",

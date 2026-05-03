@@ -54,11 +54,19 @@
         "selector": "{{WOOLENTOR_WRAPPER}} {text-align:{{contentAlignment}}; }"
       }
     },
+    "textTypography": {
+      "type": "object",
+      "style": {
+        "selector": "{{WOOLENTOR_WRAPPER}} .woocommerce-breadcrumb"
+      }
+    },
     "textSize": {
       "type": "string",
       "style": {
         "selector": "{{WOOLENTOR_WRAPPER}} .woocommerce-breadcrumb{font-size:{{textSize}}; }"
-      }
+      },
+      "deprecated": true,
+      "_comment": "legacy font size before textTypography"
     },
     "textColor": {
       "type": "string",
