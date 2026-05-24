@@ -220,9 +220,22 @@ class Settings extends WP_REST_Controller {
         }
 
         // Get registered settings for the section/subsection
-        $registered_settings = !empty($sub_section) 
-            ? $this->settings[$section][$this->get_section_index($section, $sub_section)]['setting_fields'] 
-            : $this->settings[$section];
+        if ( ! empty( $sub_section ) ) {
+            $idx   = $this->get_section_index( $section, $sub_section );
+            $field = isset( $this->settings[ $section ][ $idx ] ) ? $this->settings[ $section ][ $idx ] : [];
+            if ( ! empty( $field['setting_tabs'] ) ) {
+                $registered_settings = [];
+                foreach ( $field['setting_tabs'] as $tab ) {
+                    if ( ! empty( $tab['fields'] ) ) {
+                        $registered_settings = array_merge( $registered_settings, $tab['fields'] );
+                    }
+                }
+            } else {
+                $registered_settings = ! empty( $field['setting_fields'] ) ? $field['setting_fields'] : [];
+            }
+        } else {
+            $registered_settings = $this->settings[ $section ];
+        }
         
         // Get existing data from the database
         $option_name    = !empty($sub_section) ? $sub_section : $section;

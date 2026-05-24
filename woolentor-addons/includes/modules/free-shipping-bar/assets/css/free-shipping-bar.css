@@ -1,0 +1,134 @@
+/**
+ * WooLentor – Free Shipping Bar
+ */
+
+/* ── Wrapper ─────────────────────────────────────────────────────────────── */
+#wl-free-shipping-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    background-color: #1a1a2e;
+    color: #ffffff;
+    padding: 8px 48px 8px 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+/* Position helpers */
+#wl-free-shipping-bar.wl-fsb-top {
+    top: 0;
+}
+
+#wl-free-shipping-bar.wl-fsb-bottom {
+    bottom: 0;
+}
+
+/* Hidden state */
+#wl-free-shipping-bar.wl-fsb-hidden {
+    display: none;
+}
+
+/* ── Inner layout ────────────────────────────────────────────────────────── */
+.wl-fsb-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+}
+
+/* ── Message ─────────────────────────────────────────────────────────────── */
+.wl-fsb-message {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+}
+
+/* ── Progress track ─────────────────────────────────────────────────────── */
+.wl-fsb-progress-track {
+    width: 100%;
+    max-width: 500px;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+/* ── Progress fill ───────────────────────────────────────────────────────── */
+.wl-fsb-progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #4ade80;
+    border-radius: 99px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Success state ───────────────────────────────────────────────────────── */
+#wl-free-shipping-bar.wl-fsb-complete .wl-fsb-progress-fill {
+    background-color: #4ade80;
+}
+
+#wl-free-shipping-bar.wl-fsb-complete .wl-fsb-message {
+    color: #d1fae5;
+}
+
+/* ── Close button ────────────────────────────────────────────────────────── */
+.wl-fsb-close {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 4px;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.wl-fsb-close:hover,
+.wl-fsb-close:focus {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.15);
+    outline: none;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+    #wl-free-shipping-bar {
+        padding: 8px 40px 8px 12px;
+    }
+
+    .wl-fsb-message {
+        font-size: 12px;
+    }
+
+    .wl-fsb-progress-track {
+        max-width: 100%;
+    }
+}
+
+/*
+ * Body padding is applied via inline style by free-shipping-bar.js,
+ * calculated from the bar's actual rendered height + admin bar height.
+ * These rules exist only as a fallback in case JS is delayed.
+ */
+body.wl-fsb-top-active {
+    padding-top: 56px;
+}
+
+body.wl-fsb-bottom-active {
+    padding-bottom: 56px;
+}

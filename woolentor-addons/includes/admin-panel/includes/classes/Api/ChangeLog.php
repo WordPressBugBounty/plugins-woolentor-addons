@@ -164,6 +164,21 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.4.0',
+                'date'    => '2026-05-24',
+                'changes' => [
+                    'New Features' => [
+                        'Free Shipping Bar Module'
+                    ],
+                    'Fixes' => [
+                        'Minor Issues'
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
                 'version' => '3.3.9',
                 'date'    => '2026-05-03',
                 'changes' => [
@@ -189,6 +204,7 @@ class ChangeLog extends WP_REST_Controller {
                     ],
                 ],
             ],
+
             [
                 'version' => '3.3.8',
                 'date'    => '2026-04-12',

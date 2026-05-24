@@ -132,7 +132,19 @@ function woolentor_opt_get_options( $registered_settings = [] ) {
 function woolentor_process_sub_section_fields( $setting ) {
     $sub_options = [];
 
-    foreach ( $setting['setting_fields'] as $sub_setting ) {
+    // Collect fields from either flat setting_fields or tabbed setting_tabs
+    if ( ! empty( $setting['setting_tabs'] ) ) {
+        $fields = [];
+        foreach ( $setting['setting_tabs'] as $tab ) {
+            if ( ! empty( $tab['fields'] ) ) {
+                $fields = array_merge( $fields, $tab['fields'] );
+            }
+        }
+    } else {
+        $fields = ! empty( $setting['setting_fields'] ) ? $setting['setting_fields'] : [];
+    }
+
+    foreach ( $fields as $sub_setting ) {
         // Skip non-data fields
         if( in_array( $sub_setting['type'], ['title', 'html'], true ) ) {
             continue;
