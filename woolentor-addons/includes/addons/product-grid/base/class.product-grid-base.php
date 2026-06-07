@@ -443,7 +443,7 @@ class WooLentor_Product_Grid_Base {
         $current_page = isset( $settings['paged'] ) ? $settings['paged'] : max( 1, get_query_var( 'paged' ) );
 
         $show_from = ($settings['posts_per_page'] * $current_page) - $settings['posts_per_page'];
-        $show_from = $show_from === 0 ? 1 : $show_from;
+        $show_from = $show_from === 0 ? 1 : $show_from + 1;
         $show_to = $settings['posts_per_page'] * $current_page;
         $show_to = $show_to > $found_product ? $found_product : $show_to;
 

@@ -164,6 +164,23 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.4.1',
+                'date'    => '2026-06-07',
+                'changes' => [
+                    'New Features' => [
+                        'Shortcode for free shipping bar module. Usage: [woolentor_free_shipping_bar]'
+                    ],
+                    'Fixes' => [
+                        'Analytics data fetching API error in Free Shipping Bar module.',
+                        'Free Shipping Bar Module CSS Issue with grid view.',
+                        'Sales Report To Email Module report generate issue with HOP feature.'
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
                 'version' => '3.4.0',
                 'date'    => '2026-05-24',
                 'changes' => [

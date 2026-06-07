@@ -118,10 +118,6 @@ class Assets_Management{
                 'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/modules/flash-sale/assets/css/flash-sale.css',
                 'version' => WOOLENTOR_VERSION,
             ],
-            'woolentor-free-shipping-bar' => [
-                'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/modules/free-shipping-bar/assets/css/free-shipping-bar.css',
-                'version' => WOOLENTOR_VERSION,
-            ],
             'woolentor-store-feature' => [
                 'src'     => WOOLENTOR_ADDONS_PL_URL . 'assets/css/store-feature.css',
                 'version' => WOOLENTOR_VERSION
@@ -232,11 +228,6 @@ class Assets_Management{
                 'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/modules/flash-sale/assets/js/flash-sale.js',
                 'version' => WOOLENTOR_VERSION,
                 'deps'    => [ 'jquery', 'countdown-min' ]
-            ],
-            'woolentor-free-shipping-bar' => [
-                'src'     => WOOLENTOR_ADDONS_PL_URL . 'includes/modules/free-shipping-bar/assets/js/free-shipping-bar.js',
-                'version' => WOOLENTOR_VERSION,
-                'deps'    => [],
             ],
 
             'woolentor-jquery-interdependencies' => [

@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, aslamhasib
 Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenberg blocks
 Requires at least: 4.7
 Tested up to: 7.0
-Stable tag: 3.4.0
+Stable tag: 3.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -461,6 +461,13 @@ Check out our other powerful WordPress plugins:
 **[JustTables](https://hasthemes.com/wp/justtables/?utm_source=org&utm_medium=readme)** - WordPress table builder
 
 == Changelog ==
+
+= Version: 3.4.1 - Date: 07-06-2026 =
+* Added: Shortcode for free shipping bar module. Usage: [woolentor_free_shipping_bar]
+* Solved: Analytics data fetching API error in Free Shipping Bar module.
+* Solved: Free Shipping Bar Module CSS Issue with grid view.
+* Solved: Sales Report To Email Module report generate issue with HOP feature.
+* Compatibility: Latest WordPress and WooCommerce version.
 
 = Version: 3.4.0 - Date: 24-05-2026 =
 * Added: Free Shipping Bar Module

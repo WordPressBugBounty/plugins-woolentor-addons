@@ -27,11 +27,11 @@ class Free_Shipping_Bar {
      * @return void
      */
     public function define_constants() {
-        define( 'Woolentor\Modules\FreeShippingBar\MODULE_FILE',          __FILE__ );
-        define( 'Woolentor\Modules\FreeShippingBar\MODULE_PATH',          __DIR__ );
+        define( 'Woolentor\Modules\FreeShippingBar\MODULE_FILE', __FILE__ );
+        define( 'Woolentor\Modules\FreeShippingBar\MODULE_PATH', __DIR__ );
         define( 'Woolentor\Modules\FreeShippingBar\MODULE_INCLUDES_PATH', __DIR__ . '/includes' );
-        define( 'Woolentor\Modules\FreeShippingBar\MODULE_URL',           plugins_url( '', MODULE_FILE ) );
-        define( 'Woolentor\Modules\FreeShippingBar\MODULE_ASSETS',        MODULE_URL . '/assets' );
+        define( 'Woolentor\Modules\FreeShippingBar\MODULE_URL', plugins_url( '', MODULE_FILE ) );
+        define( 'Woolentor\Modules\FreeShippingBar\MODULE_ASSETS', MODULE_URL . '/assets' );
 
     }
 
@@ -42,9 +42,6 @@ class Free_Shipping_Bar {
      */
     public function include() {
         require_once MODULE_INCLUDES_PATH . '/classes/Admin.php';
-        require_once MODULE_INCLUDES_PATH . '/classes/Frontend/Bar_Renderer.php';
-        require_once MODULE_INCLUDES_PATH . '/classes/Frontend/Shipping_Handler.php';
-        require_once MODULE_INCLUDES_PATH . '/classes/Frontend/Ajax_Handler.php';
         require_once MODULE_INCLUDES_PATH . '/classes/Frontend.php';
     }
 
@@ -81,7 +78,7 @@ class Free_Shipping_Bar {
             $pro_file = WOOLENTOR_ADDONS_PL_PATH_PRO . 'includes/modules/free-shipping-bar/free-shipping-bar.php';
             if ( file_exists( $pro_file ) ) {
                 require_once $pro_file;
-                \WoolentorPro\Modules\FreeShippingBar\Free_Shipping_Bar_Pro::instance();
+                \WoolentorPro\Modules\FreeShippingBar\Free_Shipping_Bar_Pro::instance(self::$_enabled);
             }
         }
     }

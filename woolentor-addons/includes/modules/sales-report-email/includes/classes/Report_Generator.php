@@ -6,6 +6,12 @@ namespace Woolentor\Modules\EmailReports;
  */
 class Report_Generator {
 
+    /** @var array|null */
+    private $current_orders_cache = null;
+
+    /** @var array|null */
+    private $previous_orders_cache = null;
+
     /**
      * Generate report data
      */
@@ -103,101 +109,112 @@ class Report_Generator {
     }
 
     /**
+     * Fetch orders for an arbitrary date range via the WooCommerce order data store.
+     * Works on both legacy (wp_posts) and HPOS (wp_wc_orders) storage.
+     */
+    private function get_orders_for_period( $start_date, $end_date ) {
+        return wc_get_orders( [
+            'type'       => 'shop_order',
+            'status'     => [ 'wc-completed', 'wc-processing' ],
+            'limit'      => -1,
+            'date_query' => [
+                [
+                    'after'     => $start_date,
+                    'before'    => $end_date,
+                    'inclusive' => true,
+                ],
+            ],
+        ] );
+    }
+
+    private function get_current_orders() {
+        if ( $this->current_orders_cache === null ) {
+            $this->current_orders_cache = $this->get_orders_for_period(
+                $this->get_period_start(),
+                $this->get_period_end()
+            );
+        }
+        return $this->current_orders_cache;
+    }
+
+    private function get_previous_orders() {
+        if ( $this->previous_orders_cache === null ) {
+            $this->previous_orders_cache = $this->get_orders_for_period(
+                $this->get_previous_period_start(),
+                $this->get_period_start()
+            );
+        }
+        return $this->previous_orders_cache;
+    }
+
+    /**
      * Get sales data
      */
-    private function get_sales_data($previous_period = false) {
-        global $wpdb;
-        
-        $start_date = $previous_period ? $this->get_previous_period_start() : $this->get_period_start();
-        $end_date = $previous_period ? $this->get_period_start() : $this->get_period_end();
-
-        $query = $wpdb->prepare(
-            "SELECT SUM(meta_value) as total_sales 
-            FROM {$wpdb->postmeta} pm
-            JOIN {$wpdb->posts} p ON p.ID = pm.post_id
-            WHERE meta_key = '_order_total'
-            AND p.post_type = 'shop_order'
-            AND p.post_status IN ('wc-completed', 'wc-processing')
-            AND p.post_date >= %s
-            AND p.post_date < %s",
-            $start_date,
-            $end_date
-        );
-
-        return (float) $wpdb->get_var($query);
+    private function get_sales_data( $previous_period = false ) {
+        $orders = $previous_period ? $this->get_previous_orders() : $this->get_current_orders();
+        $total  = 0.0;
+        foreach ( $orders as $order ) {
+            $total += (float) $order->get_total();
+        }
+        return $total;
     }
 
     /**
      * Get orders data
      */
-    private function get_orders_data($previous_period = false) {
-        global $wpdb;
-        
-        $start_date = $previous_period ? $this->get_previous_period_start() : $this->get_period_start();
-        $end_date = $previous_period ? $this->get_period_start() : $this->get_period_end();
-
-        $query = $wpdb->prepare(
-            "SELECT COUNT(*) as total_orders 
-            FROM {$wpdb->posts}
-            WHERE post_type = 'shop_order'
-            AND post_status IN ('wc-completed', 'wc-processing')
-            AND post_date >= %s
-            AND post_date < %s",
-            $start_date,
-            $end_date
-        );
-
-        return (int) $wpdb->get_var($query);
+    private function get_orders_data( $previous_period = false ) {
+        $orders = $previous_period ? $this->get_previous_orders() : $this->get_current_orders();
+        return count( $orders );
     }
 
     /**
      * Get top products
      */
     private function get_top_products() {
-        global $wpdb;
-        
-        $query = $wpdb->prepare(
-            "SELECT 
-                p.ID,
-                p.post_title,
-                SUM(oim.meta_value) as quantity,
-                SUM(oim_total.meta_value) as revenue
-            FROM {$wpdb->prefix}woocommerce_order_items oi
-            JOIN {$wpdb->prefix}woocommerce_order_itemmeta oim 
-                ON oi.order_item_id = oim.order_item_id
-            JOIN {$wpdb->prefix}woocommerce_order_itemmeta oim_total 
-                ON oi.order_item_id = oim_total.order_item_id
-            JOIN {$wpdb->posts} o 
-                ON oi.order_id = o.ID
-            JOIN {$wpdb->posts} p 
-                ON oim.meta_value = p.ID
-            WHERE oim.meta_key = '_product_id'
-            AND oim_total.meta_key = '_line_total'
-            AND o.post_type = 'shop_order'
-            AND o.post_status IN ('wc-completed', 'wc-processing')
-            AND o.post_date >= %s
-            AND o.post_date < %s
-            GROUP BY p.ID
-            ORDER BY quantity DESC
-            LIMIT 5",
-            $this->get_period_start(),
-            $this->get_period_end()
-        );
+        $aggregated = [];
 
-        $results = $wpdb->get_results($query);
+        foreach ( $this->get_current_orders() as $order ) {
+            foreach ( $order->get_items() as $item ) {
+                $product_id = (int) $item->get_product_id();
+                if ( ! $product_id ) {
+                    continue;
+                }
+                if ( ! isset( $aggregated[ $product_id ] ) ) {
+                    $aggregated[ $product_id ] = [ 'quantity' => 0, 'revenue' => 0.0 ];
+                }
+                $aggregated[ $product_id ]['quantity'] += (int) $item->get_quantity();
+                $aggregated[ $product_id ]['revenue']  += (float) $item->get_total();
+            }
+        }
 
-        // Calculate percentage changes
-        foreach($results as $product) {
-            // Get previous period data for this product
-            $previous_data = $this->get_product_previous_data($product->ID);
-            $product->quantity_change = $this->calculate_percentage_change(
+        uasort( $aggregated, function ( $a, $b ) {
+            return $b['quantity'] <=> $a['quantity'];
+        } );
+
+        $results = [];
+        foreach ( array_slice( $aggregated, 0, 5, true ) as $product_id => $data ) {
+            $product = wc_get_product( $product_id );
+            if ( ! $product ) {
+                continue;
+            }
+
+            $previous_data = $this->get_product_previous_data( $product_id );
+
+            $obj                  = new \stdClass();
+            $obj->ID              = $product_id;
+            $obj->post_title      = $product->get_name();
+            $obj->quantity        = $data['quantity'];
+            $obj->revenue         = $data['revenue'];
+            $obj->quantity_change = $this->calculate_percentage_change(
                 $previous_data->quantity ?? 0,
-                $product->quantity
+                $obj->quantity
             );
-            $product->revenue_change = $this->calculate_percentage_change(
+            $obj->revenue_change  = $this->calculate_percentage_change(
                 $previous_data->revenue ?? 0,
-                $product->revenue
+                $obj->revenue
             );
+
+            $results[] = $obj;
         }
 
         return $results;
@@ -206,33 +223,23 @@ class Report_Generator {
     /**
      * Get product data for previous period
      */
-    private function get_product_previous_data($product_id) {
-        global $wpdb;
-        
-        $query = $wpdb->prepare(
-            "SELECT 
-                SUM(oim.meta_value) as quantity,
-                SUM(oim_total.meta_value) as revenue
-            FROM {$wpdb->prefix}woocommerce_order_items oi
-            JOIN {$wpdb->prefix}woocommerce_order_itemmeta oim 
-                ON oi.order_item_id = oim.order_item_id
-            JOIN {$wpdb->prefix}woocommerce_order_itemmeta oim_total 
-                ON oi.order_item_id = oim_total.order_item_id
-            JOIN {$wpdb->posts} o 
-                ON oi.order_id = o.ID
-            WHERE oim.meta_key = '_product_id'
-            AND oim.meta_value = %d
-            AND oim_total.meta_key = '_line_total'
-            AND o.post_type = 'shop_order'
-            AND o.post_status IN ('wc-completed', 'wc-processing')
-            AND o.post_date >= %s
-            AND o.post_date < %s",
-            $product_id,
-            $this->get_previous_period_start(),
-            $this->get_period_start()
-        );
+    private function get_product_previous_data( $product_id ) {
+        $quantity = 0;
+        $revenue  = 0.0;
 
-        return $wpdb->get_row($query);
+        foreach ( $this->get_previous_orders() as $order ) {
+            foreach ( $order->get_items() as $item ) {
+                if ( (int) $item->get_product_id() === (int) $product_id ) {
+                    $quantity += (int) $item->get_quantity();
+                    $revenue  += (float) $item->get_total();
+                }
+            }
+        }
+
+        $obj           = new \stdClass();
+        $obj->quantity = $quantity;
+        $obj->revenue  = $revenue;
+        return $obj;
     }
 
     /**

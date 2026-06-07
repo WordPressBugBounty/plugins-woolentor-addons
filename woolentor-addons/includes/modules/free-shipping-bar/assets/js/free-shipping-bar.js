@@ -68,6 +68,10 @@
     var trackEl     = bar.querySelector( '.wl-fsb-progress-track' );
     var closeBtn    = bar.querySelector( '.wl-fsb-close' );
 
+    // True when the bar is placed via shortcode / widget / block and must remain
+    // in the document flow rather than being repositioned as a fixed overlay.
+    var isInline    = bar.classList.contains( 'wl-fsb-inline' );
+
     // -------------------------------------------------------------------------
     // Device targeting
     // -------------------------------------------------------------------------
@@ -263,12 +267,16 @@
 
     function showBar() {
         bar.classList.remove( 'wl-fsb-hidden' );
-        applyBodyOffset();
+        if ( ! isInline ) {
+            applyBodyOffset();
+        }
     }
 
     function hideBar() {
         bar.classList.add( 'wl-fsb-hidden' );
-        removeBodyOffset();
+        if ( ! isInline ) {
+            removeBodyOffset();
+        }
     }
 
     // -------------------------------------------------------------------------
@@ -367,16 +375,20 @@
         if ( ! isDeviceAllowed() ) return;
         if ( isDismissed() )       return;
 
-        // Append bar directly to body (above/below everything)
-        document.body.appendChild( bar );
-        positionBar();
+        if ( ! isInline ) {
+            // Append bar directly to body (above/below everything)
+            document.body.appendChild( bar );
+            positionBar();
+        }
 
         // Initial paint with server-side cart total
         updateBar( cfg.cartTotal || 0 );
 
         // Remove 'hidden' without triggering applyBodyOffset yet — measure after visible
         bar.classList.remove( 'wl-fsb-hidden' );
-        applyBodyOffset();
+        if ( ! isInline ) {
+            applyBodyOffset();
+        }
 
         // Proxy WooCommerce jQuery cart events to native
         proxyCartEvents();
@@ -401,10 +413,12 @@
             if ( ! isDeviceAllowed() ) {
                 hideBar();
             } else if ( ! isDismissed() ) {
-                // Admin bar switches between 46px (mobile) and 32px (desktop) at 783px.
-                // setBarTop() repositions the bar; showBar() re-shows it if it was
-                // hidden by the device check and calls applyBodyOffset() internally.
-                setBarTop();
+                if ( ! isInline ) {
+                    // Admin bar switches between 46px (mobile) and 32px (desktop) at 783px.
+                    // setBarTop() repositions the bar; showBar() re-shows it if it was
+                    // hidden by the device check and calls applyBodyOffset() internally.
+                    setBarTop();
+                }
                 showBar();
             }
         } );
@@ -418,7 +432,7 @@
         // The 300 ms timeout is a fallback for themes that defer header setup
         // past the load event (e.g. lazy-initialised sliders, builder scripts).
         function reapplyIfVisible() {
-            if ( ! bar.classList.contains( 'wl-fsb-hidden' ) ) {
+            if ( ! isInline && ! bar.classList.contains( 'wl-fsb-hidden' ) ) {
                 setBarTop();
                 applyBodyOffset();
             }

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: ShopLentor – All-in-One WooCommerce Growth & Store "
 "Enhancement Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-24 05:04+0000\n"
+"POT-Creation-Date: 2026-06-07 06:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.8.4; wp-7.0.1-alpha-62395; php-8.2.30\n"
+"X-Loco-Version: 2.8.5; wp-7.0.1-alpha-62466; php-8.2.30\n"
 "X-Domain: woolentor"
 
 #: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:131
@@ -297,11 +297,11 @@ msgstr ""
 msgid "Activate WooCommerce"
 msgstr ""
 
-#: classes/class.assest_management.php:348
+#: classes/class.assest_management.php:339
 msgid "Activating.."
 msgstr ""
 
-#: classes/class.assest_management.php:349 includes/addons/wl_faq.php:464
+#: classes/class.assest_management.php:340 includes/addons/wl_faq.php:464
 #: includes/addons/wl_faq.php:760 includes/addons/wb_product_data_tab.php:187
 #: includes/addons/wb_archive_product.php:758
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:2098
@@ -423,8 +423,8 @@ msgstr ""
 msgid "Add to Collection"
 msgstr ""
 
-#: includes/helper-function.php:1808 includes/helper-function.php:1809
-#: includes/helper-function.php:1832
+#: includes/helper-function.php:1834 includes/helper-function.php:1835
+#: includes/helper-function.php:1858
 #: woolentor-blocks/includes/helper-functions.php:598
 #: woolentor-blocks/includes/helper-functions.php:599
 #: woolentor-blocks/includes/helper-functions.php:615
@@ -699,7 +699,7 @@ msgstr ""
 msgid "All Features"
 msgstr ""
 
-#: classes/class.assest_management.php:337
+#: classes/class.assest_management.php:328
 msgid "All Items have been Loaded"
 msgstr ""
 
@@ -842,7 +842,7 @@ msgstr ""
 msgid "Are you cheating?"
 msgstr ""
 
-#: classes/class.assest_management.php:313
+#: classes/class.assest_management.php:304
 #: includes/admin/include/class.template-manager.php:539
 #: settings-panel/includes/classes/Admin/Menu.php:173
 #: includes/admin-panel/includes/classes/Admin/Menu.php:173
@@ -1857,7 +1857,7 @@ msgstr ""
 msgid "Buy"
 msgstr ""
 
-#: classes/class.assest_management.php:345
+#: classes/class.assest_management.php:336
 #: settings-panel/includes/classes/Admin/Menu.php:155
 #: includes/admin-panel/includes/classes/Admin/Menu.php:155
 msgid "Buy Now"
@@ -1895,7 +1895,7 @@ msgstr ""
 msgid "Callback not permitted"
 msgstr ""
 
-#: classes/class.assest_management.php:312
+#: classes/class.assest_management.php:303
 #: includes/admin/include/class.template-manager.php:542
 msgid "Cancel"
 msgstr ""
@@ -2286,7 +2286,7 @@ msgstr ""
 #: woolentor-blocks/src/blocks/popup-close-trigger-button/index.php:18
 #: includes/modules/popup-builder/includes/class-shortcodes.php:23
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:48
-#: includes/modules/free-shipping-bar/includes/classes/Frontend/Bar_Renderer.php:312
+#: includes/modules/free-shipping-bar/includes/classes/Frontend/Shortcode.php:70
 #: includes/modules/abandoned-cart/includes/classes/Frontend/Unsubscribe_Manager.php:432
 msgid "Close"
 msgstr ""
@@ -2496,7 +2496,7 @@ msgstr ""
 msgid "Columns"
 msgstr ""
 
-#: includes/helper-function.php:1753 includes/addons/product_flash_sale.php:138
+#: includes/helper-function.php:1779 includes/addons/product_flash_sale.php:138
 #: includes/addons/product_image_accordion.php:151
 #: includes/addons/product_accordion.php:172
 #: includes/addons/product_curvy.php:207 includes/addons/product_tabs.php:165
@@ -2507,7 +2507,7 @@ msgstr ""
 msgid "Common Settings"
 msgstr ""
 
-#: includes/helper-function.php:1832
+#: includes/helper-function.php:1858
 #: woolentor-blocks/includes/helper-functions.php:615
 #: includes/addons/wb_product_add_to_cart.php:1294
 #: woolentor-blocks/build/blocks/product-addtocart/manager.php:115
@@ -3021,7 +3021,7 @@ msgstr ""
 msgid "Data Saved"
 msgstr ""
 
-#: includes/helper-function.php:1750 includes/addons/product_flash_sale.php:135
+#: includes/helper-function.php:1776 includes/addons/product_flash_sale.php:135
 #: includes/addons/wb_product_upsell.php:66
 #: includes/addons/wb_archive_product.php:127
 #: includes/addons/product_image_accordion.php:148
@@ -3082,7 +3082,7 @@ msgstr ""
 msgid "Default icon"
 msgstr ""
 
-#: includes/helper-function.php:1360
+#: includes/helper-function.php:1386
 msgid "Default sorting"
 msgstr ""
 
@@ -3985,7 +3985,7 @@ msgstr ""
 msgid "FAQ Title"
 msgstr ""
 
-#: includes/helper-function.php:1755 templates/product-grid/magazine.php:45
+#: includes/helper-function.php:1781 templates/product-grid/magazine.php:45
 #: templates/product-grid/magazine.php:46
 #: includes/addons/product-grid/product_grid_magazine.php:1684
 #: includes/addons/product-grid/product_grid_magazine.php:1696
@@ -4235,7 +4235,7 @@ msgstr ""
 msgid "Free Shipping Bar"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Frontend/Bar_Renderer.php:299
+#: includes/modules/free-shipping-bar/includes/classes/Frontend/Shortcode.php:55
 msgid "Free shipping progress"
 msgstr ""
 
@@ -4517,7 +4517,7 @@ msgstr ""
 msgid "Here"
 msgstr ""
 
-#: includes/helper-function.php:1535 includes/helper-function.php:1553
+#: includes/helper-function.php:1561 includes/helper-function.php:1579
 msgid "here"
 msgstr ""
 
@@ -4912,7 +4912,7 @@ msgstr ""
 msgid "Icon Width"
 msgstr ""
 
-#: includes/helper-function.php:1749 includes/addons/product_flash_sale.php:134
+#: includes/helper-function.php:1775 includes/addons/product_flash_sale.php:134
 #: includes/addons/product_image_accordion.php:147
 #: includes/addons/product_accordion.php:168
 #: includes/addons/wl_category.php:152 includes/addons/product_curvy.php:203
@@ -5020,7 +5020,7 @@ msgstr ""
 msgid "Image/Icon"
 msgstr ""
 
-#: classes/class.assest_management.php:344
+#: classes/class.assest_management.php:335
 msgid "Import"
 msgstr ""
 
@@ -5028,15 +5028,15 @@ msgstr ""
 msgid "Import Previously Assigned Templates"
 msgstr ""
 
-#: classes/class.assest_management.php:343
+#: classes/class.assest_management.php:334
 msgid "Import to Builder"
 msgstr ""
 
-#: classes/class.assest_management.php:341
+#: classes/class.assest_management.php:332
 msgid "Import to Library"
 msgstr ""
 
-#: classes/class.assest_management.php:342
+#: classes/class.assest_management.php:333
 msgid "Import to Page"
 msgstr ""
 
@@ -5054,7 +5054,7 @@ msgstr ""
 msgid "In Stock Text"
 msgstr ""
 
-#: classes/class.assest_management.php:336
+#: classes/class.assest_management.php:327
 msgid "in this package"
 msgstr ""
 
@@ -5133,7 +5133,7 @@ msgstr ""
 msgid "Install WooCommerce"
 msgstr ""
 
-#: classes/class.assest_management.php:347
+#: classes/class.assest_management.php:338
 msgid "Installing.."
 msgstr ""
 
@@ -5940,7 +5940,7 @@ msgstr ""
 msgid "N/A"
 msgstr ""
 
-#: includes/helper-function.php:1751 includes/addons/product_flash_sale.php:136
+#: includes/helper-function.php:1777 includes/addons/product_flash_sale.php:136
 #: includes/addons/wl_testimonial.php:82 includes/addons/wl_testimonial.php:576
 #: includes/addons/product_image_accordion.php:149
 #: includes/addons/product_accordion.php:170
@@ -6122,7 +6122,7 @@ msgstr ""
 msgid "No products found."
 msgstr ""
 
-#: includes/helper-function.php:2031
+#: includes/helper-function.php:2057
 #: includes/addons/product-grid/base/class.product-grid-base.php:564
 msgid "No products were found matching your selection."
 msgstr ""
@@ -6189,7 +6189,7 @@ msgstr ""
 msgid "Nonce verification failed."
 msgstr ""
 
-#: includes/helper-function.php:1748 includes/addons/product_flash_sale.php:133
+#: includes/helper-function.php:1774 includes/addons/product_flash_sale.php:133
 #: includes/addons/product_image_accordion.php:146
 #: includes/addons/product_accordion.php:167
 #: includes/addons/product_curvy.php:202
@@ -6276,7 +6276,7 @@ msgstr ""
 msgid "Not that bad"
 msgstr ""
 
-#: classes/class.assest_management.php:338
+#: classes/class.assest_management.php:329
 msgid "Nothing Found"
 msgstr ""
 
@@ -6989,7 +6989,7 @@ msgstr ""
 msgid "Pre Orders"
 msgstr ""
 
-#: classes/class.assest_management.php:346
+#: classes/class.assest_management.php:337
 #: includes/admin/include/admin_field-manager.php:352
 #: includes/admin/include/admin_field-manager.php:534
 #: includes/admin/include/templates/library/templates.php:140
@@ -7069,7 +7069,7 @@ msgstr ""
 msgid "Privacy Policy URL"
 msgstr ""
 
-#: classes/class.assest_management.php:333
+#: classes/class.assest_management.php:324
 #: includes/admin/include/class.template-manager.php:425
 #: includes/admin/include/class.template-manager.php:531
 #: includes/admin/include/admin_field-manager.php:133
@@ -7111,7 +7111,7 @@ msgstr ""
 msgid "Product Add To Cart"
 msgstr ""
 
-#: includes/helper-function.php:1810
+#: includes/helper-function.php:1836
 #: woolentor-blocks/includes/helper-functions.php:600
 #: includes/modules/wishlist/includes/classes/Admin/Fields.php:223
 #: includes/modules/wishlist/includes/classes/Admin/Fields.php:224
@@ -7368,7 +7368,7 @@ msgstr ""
 msgid "Product Per Page"
 msgstr ""
 
-#: classes/class.widgets_control.php:384 includes/helper-function.php:1756
+#: classes/class.widgets_control.php:384 includes/helper-function.php:1782
 #: includes/addons/product_flash_sale.php:467
 #: includes/addons/product_image_accordion.php:412
 #: includes/addons/product_accordion.php:481
@@ -7677,7 +7677,7 @@ msgstr ""
 msgid "Qunantity Text Color"
 msgstr ""
 
-#: includes/helper-function.php:1754 includes/addons/product_flash_sale.php:139
+#: includes/helper-function.php:1780 includes/addons/product_flash_sale.php:139
 #: includes/addons/wb_product_upsell.php:71
 #: includes/addons/wb_archive_product.php:132
 #: includes/addons/product_image_accordion.php:152
@@ -7931,7 +7931,7 @@ msgstr ""
 msgid "Reserve Time (Minutes)"
 msgstr ""
 
-#: classes/class.assest_management.php:315
+#: classes/class.assest_management.php:306
 #: settings-panel/includes/classes/Admin/Menu.php:168
 #: includes/admin-panel/includes/classes/Admin/Menu.php:168
 msgid "Reset All Settings"
@@ -7950,7 +7950,7 @@ msgstr ""
 msgid "Reset!"
 msgstr ""
 
-#: classes/class.assest_management.php:314
+#: classes/class.assest_management.php:305
 #: settings-panel/includes/classes/Admin/Menu.php:169
 #: includes/admin-panel/includes/classes/Admin/Menu.php:169
 msgid "Resetting..."
@@ -8228,7 +8228,7 @@ msgstr ""
 msgid "Saturday"
 msgstr ""
 
-#: classes/class.assest_management.php:308
+#: classes/class.assest_management.php:299
 msgid "Save Changes"
 msgstr ""
 
@@ -8243,7 +8243,7 @@ msgstr ""
 msgid "Save Swatches"
 msgstr ""
 
-#: classes/class.assest_management.php:310
+#: classes/class.assest_management.php:301
 msgid "Saved All Data"
 msgstr ""
 
@@ -8251,7 +8251,7 @@ msgstr ""
 msgid "Saved!"
 msgstr ""
 
-#: classes/class.assest_management.php:309
+#: classes/class.assest_management.php:300
 #: includes/admin/include/class.template-manager.php:522
 #: includes/modules/variation-swatch/includes/Admin.php:52
 #: settings-panel/includes/classes/Admin/Menu.php:160
@@ -8610,7 +8610,7 @@ msgstr ""
 msgid "Set the image size for badge image."
 msgstr ""
 
-#: includes/helper-function.php:1535 includes/helper-function.php:1553
+#: includes/helper-function.php:1561 includes/helper-function.php:1579
 msgid "Set the initial stock amount from"
 msgstr ""
 
@@ -9461,7 +9461,7 @@ msgstr ""
 msgid "Social share button title"
 msgstr ""
 
-#: includes/helper-function.php:1548
+#: includes/helper-function.php:1574
 msgid "Sold"
 msgstr ""
 
@@ -9589,23 +9589,23 @@ msgstr ""
 msgid "Sort By"
 msgstr ""
 
-#: includes/helper-function.php:1362
+#: includes/helper-function.php:1388
 msgid "Sort by average rating"
 msgstr ""
 
-#: includes/helper-function.php:1363
+#: includes/helper-function.php:1389
 msgid "Sort by latest"
 msgstr ""
 
-#: includes/helper-function.php:1361
+#: includes/helper-function.php:1387
 msgid "Sort by popularity"
 msgstr ""
 
-#: includes/helper-function.php:1365
+#: includes/helper-function.php:1391
 msgid "Sort by price: high to low"
 msgstr ""
 
-#: includes/helper-function.php:1364
+#: includes/helper-function.php:1390
 msgid "Sort by price: low to high"
 msgstr ""
 
@@ -9646,7 +9646,7 @@ msgstr ""
 msgid "Special Day offer banner"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Frontend/Bar_Renderer.php:215
+#: includes/modules/free-shipping-bar/includes/classes/Frontend/Bar_Renderer.php:237
 #: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:169
 msgid "Spend {amount} more to get FREE shipping!"
 msgstr ""
@@ -10491,7 +10491,7 @@ msgstr ""
 msgid "Timer Message"
 msgstr ""
 
-#: includes/helper-function.php:1752 includes/addons/wl_faq.php:68
+#: includes/helper-function.php:1778 includes/addons/wl_faq.php:68
 #: includes/addons/wl_faq.php:342 includes/addons/product_flash_sale.php:137
 #: includes/addons/product_flash_sale.php:773
 #: includes/addons/wl_product_horizontal_filter.php:264
@@ -10643,7 +10643,7 @@ msgstr ""
 msgid "Top Products"
 msgstr ""
 
-#: includes/helper-function.php:1758
+#: includes/helper-function.php:1784
 msgid "Top Rated"
 msgstr ""
 
@@ -10666,7 +10666,7 @@ msgstr ""
 msgid "Top Right (Pro)"
 msgstr ""
 
-#: includes/helper-function.php:1757
+#: includes/helper-function.php:1783
 msgid "Top Seller"
 msgstr ""
 
@@ -11948,7 +11948,7 @@ msgstr ""
 msgid "YES"
 msgstr ""
 
-#: classes/class.assest_management.php:311 includes/addons/wl_faq.php:113
+#: classes/class.assest_management.php:302 includes/addons/wl_faq.php:113
 #: includes/addons/wl_faq.php:192 includes/addons/wl_faq.php:205
 #: includes/addons/special_day_offer.php:163
 #: includes/addons/wl_testimonial.php:217
@@ -12348,8 +12348,11 @@ msgstr ""
 msgid "🌟 Enhance Your %1$s Experience as a Valued Contributor!"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Frontend/Bar_Renderer.php:216
 #: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:177
+msgid "🎉 You have unlocked FREE shipping!"
+msgstr ""
+
+#: includes/modules/free-shipping-bar/includes/classes/Frontend/Bar_Renderer.php:238
 msgid "🎉 You've unlocked FREE shipping!"
 msgstr ""
 

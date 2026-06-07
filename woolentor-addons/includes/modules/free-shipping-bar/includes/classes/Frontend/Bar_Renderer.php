@@ -11,6 +11,22 @@ class Bar_Renderer {
     use Singleton;
 
     /**
+     * Set to true once the bar HTML has been output so the wp_footer hook
+     * skips rendering a duplicate when the shortcode is also on the page.
+     */
+    private static $rendered = false;
+
+    /**
+     * Mark the bar as already rendered. Called by Shortcode::render() so that
+     * the wp_footer hook knows not to output a second copy.
+     *
+     * @return void
+     */
+    public static function mark_rendered() {
+        self::$rendered = true;
+    }
+
+    /**
      * Constructor
      */
     private function __construct() {
@@ -23,8 +39,8 @@ class Bar_Renderer {
      * @return void
      */
     private function init_hooks() {
-        add_action( 'wp_enqueue_scripts', [$this, 'enqueue_scripts']);
-        add_action( 'wp_footer', [$this, 'render_bar']);
+        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+        add_action( 'wp_footer', [ $this, 'render_bar' ] );
     }
 
     // -------------------------------------------------------------------------
@@ -162,7 +178,8 @@ class Bar_Renderer {
     // -------------------------------------------------------------------------
 
     /**
-     * Enqueue frontend CSS and JS.
+     * Enqueue frontend CSS and JS (called from wp_enqueue_scripts hook).
+     * Skips if the current page is not in the configured display list.
      *
      * @return void
      */
@@ -171,6 +188,11 @@ class Bar_Renderer {
             return;
         }
 
+        $this->enqueue_assets();
+    }
+
+    public function enqueue_assets() {
+        
         $threshold = self::get_threshold();
         if ( $threshold <= 0 ) {
             return;
@@ -226,6 +248,15 @@ class Bar_Renderer {
         $localize_data = apply_filters( 'woolentor_fsb_localize_data', $localize_data );
 
         wp_localize_script( 'woolentor-free-shipping-bar', 'wlFSB', $localize_data );
+
+        /**
+         * Fires after free bar assets are enqueued.
+         *
+         * Pro and third-party extensions hook here to enqueue their own assets.
+         * This fires in both the normal wp_enqueue_scripts path and the late
+         * shortcode / widget / block path, so a single hook covers all contexts.
+         */
+        do_action( 'woolentor_fsb_enqueue_assets' );
     }
 
     /**
@@ -280,6 +311,10 @@ class Bar_Renderer {
      * @return void
      */
     public function render_bar() {
+        if ( self::$rendered ) {
+            return;
+        }
+
         if ( ! self::should_show_on_page() ) {
             return;
         }
@@ -288,29 +323,10 @@ class Bar_Renderer {
             return;
         }
 
-        /**
-         * Allow Pro to inject extra CSS classes on the bar wrapper (skins, animations).
-         *
-         * @param array $classes Default wrapper classes.
-         */
-        $classes    = apply_filters( 'woolentor_fsb_bar_classes', [ 'wl-fsb-wrap', 'wl-fsb-hidden' ] );
-        $class_attr = implode( ' ', array_map( 'sanitize_html_class', $classes ) );
-        ?>
-        <div id="wl-free-shipping-bar" class="<?php echo esc_attr( $class_attr ); ?>" role="complementary" aria-label="<?php esc_attr_e( 'Free shipping progress', 'woolentor' ); ?>">
-            <div class="wl-fsb-inner">
-                <p class="wl-fsb-message"></p>
-                <div class="wl-fsb-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                    <div class="wl-fsb-progress-fill"></div>
-                </div>
-                <?php
-                /**
-                 * Allow Pro to append extra HTML inside the inner wrapper (countdown timer, etc.).
-                 */
-                do_action( 'woolentor_fsb_bar_inner_html' );
-                ?>
-            </div>
-            <button class="wl-fsb-close" aria-label="<?php esc_attr_e( 'Close', 'woolentor' ); ?>">&times;</button>
-        </div>
-        <?php
+        $shortcode_atts = [
+            'inline'      => 'no'
+        ];
+
+        echo woolentor_do_shortcode( 'woolentor_free_shipping_bar', $shortcode_atts ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 }

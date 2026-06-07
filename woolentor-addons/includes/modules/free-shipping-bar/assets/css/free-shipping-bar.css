@@ -132,3 +132,19 @@ body.wl-fsb-top-active {
 body.wl-fsb-bottom-active {
     padding-bottom: 56px;
 }
+
+/* ── Inline mode (shortcode / widget / block) ────────────────────────────── */
+/*
+ * When the bar is placed via shortcode it must render in the normal document
+ * flow at the exact position the shortcode appears — not as a fixed overlay.
+ * JS detects this class and skips all fixed-positioning and body-offset logic.
+ */
+#wl-free-shipping-bar.wl-fsb-inline {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    z-index: auto;
+    width: 100%;
+}

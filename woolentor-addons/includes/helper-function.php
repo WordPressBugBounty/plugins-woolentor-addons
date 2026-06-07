@@ -1350,6 +1350,32 @@ if( class_exists('WooCommerce') ){
         }
     }
 
+    // Get product count
+    function woolentor_get_product_count() {
+        $cache_key = 'woolentor_catalog_product_count';
+        $total     = wp_cache_get( $cache_key );
+        if ( false === $total ) {
+            $visibility_terms = wc_get_product_visibility_term_ids();
+            $count_query      = new \WP_Query( [
+                'post_type'      => 'product',
+                'post_status'    => 'publish',
+                'posts_per_page' => -1,
+                'fields'         => 'ids',
+                'no_found_rows'  => false,
+                'tax_query'      => [ [
+                    'taxonomy' => 'product_visibility',
+                    'field'    => 'term_taxonomy_id',
+                    'terms'    => $visibility_terms['exclude-from-catalog'],
+                    'operator' => 'NOT IN',
+                ] ],
+            ] );
+            $total = $count_query->found_posts;
+            wp_cache_set( $cache_key, $total );
+            wp_reset_postdata();
+        }
+        return $total;
+    }
+
     // product shorting
     function woolentor_product_shorting( $getorderby ){
         ?>

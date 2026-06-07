@@ -140,10 +140,16 @@ class Woolentor_Wb_Archive_Result_Count_Widget extends Widget_Base {
                 wc_get_template( 'loop/result-count.php', $args );
             echo '</div>';
         } else{
-            $total    = wc_get_loop_prop( 'total' );
+            $total = wc_get_loop_prop( 'total' );
+            if ( !$total ) {
+                $total = woolentor_get_product_count();
+            }
+
             $par_page = !empty( $settings['product_per_page'] ) ? $settings['product_per_page'] : wc_get_loop_prop('per_page');
+
             echo '<div class="woolentor_archive_result_count">';
-                $page = absint( empty( $_GET['product-page'] ) ? 1 : $_GET['product-page'] );
+                // $page = absint( empty( $_GET['product-page'] ) ? 1 : $_GET['product-page'] );
+                $page = absint( empty( $_GET['product-page'] ) ? max( 1, get_query_var( 'paged' ) ) : $_GET['product-page'] );
                 woolentor_product_result_count( $total, $par_page, $page );
             echo '</div>';
         }
