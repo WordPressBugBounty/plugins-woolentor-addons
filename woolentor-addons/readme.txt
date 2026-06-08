@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, aslamhasib
 Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenberg blocks
 Requires at least: 4.7
 Tested up to: 7.0
-Stable tag: 3.4.1
+Stable tag: 3.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -461,6 +461,10 @@ Check out our other powerful WordPress plugins:
 **[JustTables](https://hasthemes.com/wp/justtables/?utm_source=org&utm_medium=readme)** - WordPress table builder
 
 == Changelog ==
+
+= Version: 3.4.2 - Date: 08-06-2026 =
+* Solved: Shopify Like checkout email field showing issue with WooPay.
+* Compatibility: Latest WordPress and WooCommerce version.
 
 = Version: 3.4.1 - Date: 07-06-2026 =
 * Added: Shortcode for free shipping bar module. Usage: [woolentor_free_shipping_bar]

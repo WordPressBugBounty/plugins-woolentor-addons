@@ -15,7 +15,12 @@ $slc = woolentor_shopify_like_checkout();
 		<?php
 			$fields = $checkout->get_checkout_fields( 'billing' );
 			if( array_key_exists('billing_email', $fields) ){
-				$slc->woocommerce_form_field( 'billing_email', $fields['billing_email'], $checkout->get_value( 'billing_email' ) );
+				$email_field_args = $fields['billing_email'];
+				if( class_exists('WC_Payments') && method_exists('WC_Payments', 'woopay_fields_before_billing_details') ){
+					$email_field_args['class'] = [ 'form-row-wide woopay-billing-email' ];
+					$email_field_args['input_class'] = [ 'woopay-billing-email-input' ];
+				}
+				$slc->woocommerce_form_field( 'billing_email', $email_field_args, $checkout->get_value( 'billing_email' ) );
 			}
 		?>
 	</div>
