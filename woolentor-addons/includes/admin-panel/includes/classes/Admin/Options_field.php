@@ -1837,6 +1837,25 @@ class Options_Field {
                     'label_off' => __( 'OFF', 'woolentor' ),
                     'is_pro' => true,
                 ),
+                array(
+                    'id'  => 'wl_cart_table_listp',
+                    'name' => esc_html__( 'Product Cart Table (List Style)', 'woolentor' ),
+                    'type'  => 'element',
+                    'default' => 'off',
+                    'is_pro' => true,
+                ),
+                array(
+                    'id'  => 'cart_table_aurap',
+                    'name' => esc_html__( 'Cart Table – Aura', 'woolentor' ),
+                    'type'  => 'element',
+                    'default' => 'off',
+                    'is_pro' => true,
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
 
                 array(
                     'id'    => 'wl_cart_totalp',
@@ -1849,6 +1868,19 @@ class Options_Field {
                 ),
 
                 array(
+                    'id'  => 'cart_total_aurap',
+                    'name' => esc_html__( 'Cart Total – Aura', 'woolentor' ),
+                    'type'  => 'element',
+                    'default' => 'off',
+                    'is_pro' => true,
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
+
+                array(
                     'id'    => 'wl_cartempty_messagep',
                     'name'   => esc_html__( 'Empty Cart Message', 'woolentor' ),
                     'type'    => 'element',
@@ -1856,6 +1888,18 @@ class Options_Field {
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
                     'is_pro' => true,
+                ),
+                array(
+                    'id'  => 'cart_empty_aurap',
+                    'name' => esc_html__( 'Empty Cart Message – Aura', 'woolentor' ),
+                    'type'  => 'element',
+                    'default' => 'off',
+                    'is_pro' => true,
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
                 ),
 
                 array(
@@ -1886,6 +1930,18 @@ class Options_Field {
                     'label_on' => __( 'ON', 'woolentor' ),
                     'label_off' => __( 'OFF', 'woolentor' ),
                     'is_pro' => true,
+                ),
+                array(
+                    'id'  => 'cart_cross_sells_aurap',
+                    'name' => esc_html__( 'Cart Cross Sells – Aura', 'woolentor' ),
+                    'type'  => 'element',
+                    'default' => 'off',
+                    'is_pro' => true,
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
                 ),
 
                 array(

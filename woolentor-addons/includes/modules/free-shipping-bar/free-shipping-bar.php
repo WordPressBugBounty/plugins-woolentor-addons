@@ -32,7 +32,8 @@ class Free_Shipping_Bar {
         define( 'Woolentor\Modules\FreeShippingBar\MODULE_INCLUDES_PATH', __DIR__ . '/includes' );
         define( 'Woolentor\Modules\FreeShippingBar\MODULE_URL', plugins_url( '', MODULE_FILE ) );
         define( 'Woolentor\Modules\FreeShippingBar\MODULE_ASSETS', MODULE_URL . '/assets' );
-
+        define( 'Woolentor\Modules\FreeShippingBar\WIDGETS_PATH', MODULE_INCLUDES_PATH . '/widgets' );
+        define( 'Woolentor\Modules\FreeShippingBar\BLOCKS_PATH', MODULE_INCLUDES_PATH . '/blocks' );
     }
 
     /**
@@ -43,6 +44,10 @@ class Free_Shipping_Bar {
     public function include() {
         require_once MODULE_INCLUDES_PATH . '/classes/Admin.php';
         require_once MODULE_INCLUDES_PATH . '/classes/Frontend.php';
+
+        if ( self::$_enabled ) {
+            require_once MODULE_INCLUDES_PATH . '/classes/Widgets_And_Blocks.php';
+        }
     }
 
     /**
@@ -63,9 +68,11 @@ class Free_Shipping_Bar {
             return;
         }
 
-        if ( $this->is_request( 'frontend' ) ) {
+        if ( $this->is_request( 'frontend' ) || $this->is_request( 'block' ) ) {
             Frontend::instance();
         }
+
+        Widgets_And_Blocks::instance();
     }
 
     /**

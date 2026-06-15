@@ -67,6 +67,9 @@ trait ModuleBase {
 
             case 'frontend' :
                 return ( ! is_admin() || defined( 'DOING_AJAX' ) || ( ! empty( $_REQUEST['action'] ) && 'elementor' === $_REQUEST['action'] ) ) && ! defined( 'DOING_CRON' );
+
+            case 'block' :
+                return ( function_exists('woolentorBlocks_edit_mode') && woolentorBlocks_edit_mode() );
         }
     }
 

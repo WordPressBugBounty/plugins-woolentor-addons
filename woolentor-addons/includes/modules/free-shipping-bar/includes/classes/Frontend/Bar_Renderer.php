@@ -40,6 +40,7 @@ class Bar_Renderer {
      */
     private function init_hooks() {
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+        add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_scripts' ] );
         add_action( 'wp_footer', [ $this, 'render_bar' ] );
     }
 

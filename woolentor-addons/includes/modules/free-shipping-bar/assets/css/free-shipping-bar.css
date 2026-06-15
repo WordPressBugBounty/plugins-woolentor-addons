@@ -2,12 +2,16 @@
  * WooLentor – Free Shipping Bar
  */
 
+.wp-embed-responsive .wp-block {
+    outline: 0;
+}
+
 /* ── Wrapper ─────────────────────────────────────────────────────────────── */
 #wl-free-shipping-bar {
     position: fixed;
     left: 0;
     right: 0;
-    z-index: 999999;
+    z-index: 999;
     background-color: #1a1a2e;
     color: #ffffff;
     padding: 8px 48px 8px 16px;
@@ -147,4 +151,78 @@ body.wl-fsb-bottom-active {
     right: auto;
     z-index: auto;
     width: 100%;
+}
+
+/* ── Widget layout ─────────────────────────────────────────────────── */
+.wl-fsb-widget {
+    position: relative;
+}
+
+.wl-fsb-widget .wl-fsb-inner {
+    max-width: 100%;
+}
+
+.wl-fsb-widget {
+    background-color: #ffffff;
+    border-radius: 8px 8px 8px 8px;
+    padding: 16px 20px 16px 20px;
+}
+
+.wl-fsb-widget .wl-fsb-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.wl-fsb-widget .wl-fsb-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+}
+
+.wl-fsb-widget .wl-fsb-icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+    color: inherit;
+}
+
+.wl-fsb-widget .wl-fsb-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.wl-fsb-widget .wl-fsb-text {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.wl-fsb-widget .wl-fsb-message,
+.wl-fsb-widget .wl-fsb-countdown {
+    color: #333;
+    text-align: left;
+}
+
+.wl-fsb-widget .wl-fsb-close {
+    color: #333;
+    background: #ddd;
+}
+
+/* Hide countdown when widget sets wl-fsb-no-countdown */
+.wl-fsb-no-countdown .wl-fsb-countdown {
+    display: none !important;
+}
+
+/* Gutenberg Block */
+.wp-block-woolentor-free-shipping-bar .wl-fsb-text p {
+    margin: 0;
 }

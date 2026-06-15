@@ -1,0 +1,448 @@
+{
+    "name": "woolentor/free-shipping-bar",
+    "category": "woolentor-blocks",
+    "title": "WL: Free Shipping Bar",
+    "description": "Display a free shipping progress bar.",
+    "keywords": [
+        "woolentor",
+        "free shipping",
+        "shipping bar",
+        "progress bar",
+        "WooCommerce"
+    ],
+    "attributes": {
+        "blockUniqId": {
+            "type": "string",
+            "default": ""
+        },
+        "areaPadding": {
+            "type": "object",
+            "default": {
+                "device": "desktop"
+            },
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} { padding: {{areaPadding}} !important; }"
+            }
+        },
+        "areaMargin": {
+            "type": "object",
+            "default": {
+                "device": "desktop"
+            },
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} { margin: {{areaMargin}} !important; }"
+            }
+        },
+        "areaBGProperty": {
+            "type": "object",
+            "default": {
+                "imageId": null,
+                "imageUrl": "",
+                "position": "",
+                "attachment": "",
+                "repeat": "",
+                "size": ""
+            },
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}}"
+            }
+        },
+        "dismissible": {
+            "type": "boolean",
+            "default": false
+        },
+        "showIcon": {
+            "type": "boolean",
+            "default": true
+        },
+        "icon": {
+            "type": "string"
+        },
+        "customMessage": {
+            "type": "string",
+            "default": "You're {amount} away from complimentary express shipping."
+        },
+        "customSuccessMessage": {
+            "type": "string",
+            "default": ""
+        },
+        "showCountdown": {
+            "type": "boolean",
+            "default": true
+        },
+        "barBgColor": {
+            "type": "string",
+            "default": "#ffffff",
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-wrap { background-color: {{barBgColor}}; }"
+            }
+        },
+        "barBorder": {
+            "type": "object",
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-wrap"
+            }
+        },
+        "barBorderRadius": {
+            "type": "object",
+            "default": {
+                "top": "8",
+                "right": "8",
+                "bottom": "8",
+                "left": "8",
+                "unit": "px",
+                "link": "yes"
+            },
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-wrap { border-radius: {{barBorderRadius}}; }"
+            }
+        },
+        "barPadding": {
+            "type": "object",
+            "default": {
+                "top": "16",
+                "right": "20",
+                "bottom": "16",
+                "left": "20",
+                "unit": "px",
+                "link": "no"
+            },
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-wrap { padding: {{barPadding}}; }"
+            }
+        },
+        "contentAlignment": {
+            "type": "string",
+            "default": "flex-start",
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-content { justify-content: {{contentAlignment}}; } {{WOOLENTOR_WRAPPER}} .wl-fsb-text { align-items: {{contentAlignment}}; }"
+            }
+        },
+        "contentGap": {
+            "type": "number",
+            "default": 12,
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-content { gap: {{contentGap}}px; }"
+            }
+        },
+        "iconSize": {
+            "type": "number",
+            "default": 20,
+            "style": {
+                "dependency": [
+                    [
+                        {
+                            "key": "showIcon",
+                            "condition": "==",
+                            "value": true
+                        }
+                    ]
+                ],
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-icon { width: {{iconSize}}px; height: {{iconSize}}px; } {{WOOLENTOR_WRAPPER}} .wl-fsb-icon i { font-size: {{iconSize}}px; }"
+            }
+        },
+        "iconColor": {
+            "type": "string",
+            "default": "#2d5a3d",
+            "style": {
+                "dependency": [
+                    [
+                        {
+                            "key": "showIcon",
+                            "condition": "==",
+                            "value": true
+                        }
+                    ]
+                ],
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-icon { color: {{iconColor}}; }"
+            }
+        },
+        "iconBgColor": {
+            "type": "string",
+            "default": "#e8f5e9",
+            "style": {
+                "dependency": [
+                    [
+                        {
+                            "key": "showIcon",
+                            "condition": "==",
+                            "value": true
+                        }
+                    ]
+                ],
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-icon { background-color: {{iconBgColor}}; }"
+            }
+        },
+        "iconBorderRadius": {
+            "type": "object",
+            "default": {
+                "top": "50",
+                "right": "50",
+                "bottom": "50",
+                "left": "50",
+                "unit": "%",
+                "link": "yes"
+            },
+            "style": {
+                "dependency": [
+                    [
+                        {
+                            "key": "showIcon",
+                            "condition": "==",
+                            "value": true
+                        }
+                    ]
+                ],
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-icon { border-radius: {{iconBorderRadius}}; }"
+            }
+        },
+        "iconPadding": {
+            "type": "object",
+            "default": {
+                "top": "10",
+                "right": "10",
+                "bottom": "10",
+                "left": "10",
+                "unit": "px",
+                "link": "yes"
+            },
+            "style": {
+                "dependency": [
+                    [
+                        {
+                            "key": "showIcon",
+                            "condition": "==",
+                            "value": true
+                        }
+                    ]
+                ],
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-icon { padding: {{iconPadding}}; }"
+            }
+        },
+        "messageColor": {
+            "type": "string",
+            "default": "#333333",
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-message { color: {{messageColor}}; }"
+            }
+        },
+        "messageTypography": {
+            "type": "object",
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-message"
+            }
+        },
+        "messageAlignment": {
+            "type": "string",
+            "default": "left",
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-message { text-align: {{messageAlignment}}; }"
+            }
+        },
+        "trackBgColor": {
+            "type": "string",
+            "default": "#f0f0f0",
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-progress-track { background-color: {{trackBgColor}}; }"
+            }
+        },
+        "trackHeight": {
+            "type": "number",
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-progress-track { height: {{trackHeight}}px; }"
+            }
+        },
+        "trackMaxWidth": {
+            "type": "string",
+            "default": "100%",
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-progress-track { max-width: {{trackMaxWidth}}; }"
+            }
+        },
+        "trackBorderRadius": {
+            "type": "object",
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-progress-track { border-radius: {{trackBorderRadius}}; }"
+            }
+        },
+        "fillBgColor": {
+            "type": "string",
+            "default": "#2d5a3d",
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-progress-fill { background-color: {{fillBgColor}}; }"
+            }
+        },
+        "fillBorderRadius": {
+            "type": "object",
+            "style": {
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-progress-fill { border-radius: {{fillBorderRadius}}; }"
+            }
+        },
+        "countdownColor": {
+            "type": "string",
+            "style": {
+                "dependency": [
+                    [
+                        {
+                            "key": "showCountdown",
+                            "condition": "==",
+                            "value": true
+                        }
+                    ]
+                ],
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-countdown { color: {{countdownColor}}; }"
+            }
+        },
+        "countdownTypography": {
+            "type": "object",
+            "style": {
+                "dependency": [
+                    [
+                        {
+                            "key": "showCountdown",
+                            "condition": "==",
+                            "value": true
+                        }
+                    ]
+                ],
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-countdown"
+            }
+        },
+        "countdownTimerColor": {
+            "type": "string",
+            "style": {
+                "dependency": [
+                    [
+                        {
+                            "key": "showCountdown",
+                            "condition": "==",
+                            "value": true
+                        }
+                    ]
+                ],
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-countdown .wl-fsb-timer { color: {{countdownTimerColor}}; }"
+            }
+        },
+        "countdownTimerTypography": {
+            "type": "object",
+            "style": {
+                "dependency": [
+                    [
+                        {
+                            "key": "showCountdown",
+                            "condition": "==",
+                            "value": true
+                        }
+                    ]
+                ],
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-countdown .wl-fsb-timer"
+            }
+        },
+        "countdownMargin": {
+            "type": "object",
+            "style": {
+                "dependency": [
+                    [
+                        {
+                            "key": "showCountdown",
+                            "condition": "==",
+                            "value": true
+                        }
+                    ]
+                ],
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-countdown { margin: {{countdownMargin}}; }"
+            }
+        },
+        "countdownAlignment": {
+            "type": "string",
+            "default": "left",
+            "style": {
+                "dependency": [
+                    [
+                        {
+                            "key": "showCountdown",
+                            "condition": "==",
+                            "value": true
+                        }
+                    ]
+                ],
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-countdown { text-align: {{countdownAlignment}}; }"
+            }
+        },
+        "closeBtnColor": {
+            "type": "string",
+            "style": {
+                "dependency": [
+                    [
+                        {
+                            "key": "dismissible",
+                            "condition": "==",
+                            "value": true
+                        }
+                    ]
+                ],
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-close { color: {{closeBtnColor}}; }"
+            }
+        },
+        "closeBtnBg": {
+            "type": "string",
+            "style": {
+                "dependency": [
+                    [
+                        {
+                            "key": "dismissible",
+                            "condition": "==",
+                            "value": true
+                        }
+                    ]
+                ],
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-close { background-color: {{closeBtnBg}}; }"
+            }
+        },
+        "closeBtnHoverColor": {
+            "type": "string",
+            "style": {
+                "dependency": [
+                    [
+                        {
+                            "key": "dismissible",
+                            "condition": "==",
+                            "value": true
+                        }
+                    ]
+                ],
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-close:hover { color: {{closeBtnHoverColor}}; }"
+            }
+        },
+        "closeBtnHoverBg": {
+            "type": "string",
+            "style": {
+                "dependency": [
+                    [
+                        {
+                            "key": "dismissible",
+                            "condition": "==",
+                            "value": true
+                        }
+                    ]
+                ],
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-close:hover { background-color: {{closeBtnHoverBg}}; }"
+            }
+        },
+        "closeBtnSize": {
+            "type": "number",
+            "style": {
+                "dependency": [
+                    [
+                        {
+                            "key": "dismissible",
+                            "condition": "==",
+                            "value": true
+                        }
+                    ]
+                ],
+                "selector": "{{WOOLENTOR_WRAPPER}} .wl-fsb-close { font-size: {{closeBtnSize}}px; }"
+            }
+        }
+    }
+}

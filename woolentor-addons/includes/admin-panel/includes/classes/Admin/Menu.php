@@ -386,6 +386,11 @@ class Menu {
                     'slug' => 'recurio',
                     'name' => __( 'Recurio', 'woolentor' ),
                     'desc' => __( 'Recurio – Ultimate Subscription Plugin for WooCommerce', 'woolentor' ) 
+                ],
+                [ 
+                    'slug' => 'cookieray',
+                    'name' => __( 'CookieRay', 'woolentor' ),
+                    'desc' => __( 'CookieRay – Cookie Banner for Cookie Consent (GDPR/CCPA Compliant)', 'woolentor' ) 
                 ]
             ],
             'coupon_code' => 'WELCOME',

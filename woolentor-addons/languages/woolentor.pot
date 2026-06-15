@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: ShopLentor – All-in-One WooCommerce Growth & Store "
 "Enhancement Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-07 06:00+0000\n"
+"POT-Creation-Date: 2026-06-14 06:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -254,7 +254,7 @@ msgstr ""
 msgid "<i class=\"fa fa-shopping-cart\"></i>"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:185
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:212
 msgid "A/B Testing (Pro)"
 msgstr ""
 
@@ -312,7 +312,7 @@ msgstr ""
 msgid "Active Slider Background"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:280
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:307
 msgid "Add a Slide, Pulse, or Glow animation to the progress fill."
 msgstr ""
 
@@ -320,7 +320,7 @@ msgstr ""
 msgid "Add Currency"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:290
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:317
 msgid "Add custom CSS rules for the bar."
 msgstr ""
 
@@ -346,7 +346,7 @@ msgstr ""
 msgid "Add New Badge"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:511
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:538
 msgid "Add New Bar"
 msgstr ""
 
@@ -472,11 +472,11 @@ msgstr ""
 msgid "Added button text"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:500
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:527
 msgid "Additional Bars"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:495
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:522
 msgid "Additional Bars (Pro)"
 msgstr ""
 
@@ -537,11 +537,11 @@ msgstr ""
 msgid "Advanced Coupon"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:398
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:425
 msgid "Advanced Display Targeting (Pro)"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:264
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:291
 msgid "Advanced Styles & Skins (Pro)"
 msgstr ""
 
@@ -645,6 +645,8 @@ msgstr ""
 #: includes/addons/wb_product_tags.php:60
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1091
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1895
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:438
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:545
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:55
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:201
 msgid "Alignment"
@@ -688,7 +690,7 @@ msgstr ""
 msgid "All Data Saved"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:99
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:126
 msgid "All Devices"
 msgstr ""
 
@@ -717,7 +719,7 @@ msgstr ""
 msgid "All Singular"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:416
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:443
 msgid "All Visitors"
 msgstr ""
 
@@ -756,7 +758,7 @@ msgstr ""
 msgid "An item of your cart is in high demand."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:527
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:554
 msgid "Analytics"
 msgstr ""
 
@@ -772,7 +774,7 @@ msgstr ""
 msgid "Anna Miller"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:222
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:249
 msgid "Appearance"
 msgstr ""
 
@@ -930,11 +932,11 @@ msgstr ""
 msgid "Auto convert Dropdowns to Label Swatch"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:319
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:346
 msgid "Auto Detect"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:378
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:405
 msgid ""
 "Automatically show the threshold that matches the customer's WooCommerce "
 "shipping zone — no manual configuration needed."
@@ -1053,6 +1055,8 @@ msgstr ""
 #: includes/addons/wl_category_grid.php:530
 #: includes/addons/wl_category_grid.php:998
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:980
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:718
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:741
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:174
 msgid "Background"
 msgstr ""
@@ -1117,6 +1121,10 @@ msgstr ""
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1817
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:2073
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:2116
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:191
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:294
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:581
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:667
 #: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:80
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:318
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:172
@@ -1127,7 +1135,7 @@ msgstr ""
 msgid "Background Color"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:228
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:255
 msgid "Background colour for the shipping bar."
 msgstr ""
 
@@ -1286,19 +1294,23 @@ msgstr ""
 msgid "Banner Title"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:227
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:254
 msgid "Bar Background Color"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:516
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:183
+msgid "Bar Card"
+msgstr ""
+
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:543
 msgid "Bar Name"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:72
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:99
 msgid "Bar Position"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:269
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:296
 msgid "Bar Skin"
 msgstr ""
 
@@ -1352,11 +1364,11 @@ msgstr ""
 msgid "Best Selling Products"
 msgstr ""
 
-#: includes/modules/shopify-like-checkout/includes/templates/form-billing.php:28
+#: includes/modules/shopify-like-checkout/includes/templates/form-billing.php:33
 msgid "Billing &amp; Shipping"
 msgstr ""
 
-#: includes/modules/shopify-like-checkout/includes/templates/form-billing.php:30
+#: includes/modules/shopify-like-checkout/includes/templates/form-billing.php:35
 msgid "Billing address"
 msgstr ""
 
@@ -1581,6 +1593,10 @@ msgstr ""
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1611
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1855
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1939
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:210
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:306
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:644
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:679
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:216
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:333
 #: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:133
@@ -1601,7 +1617,7 @@ msgstr ""
 #: includes/addons/wl_product_video_gallery.php:73
 #: includes/addons/add_banner.php:69
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:403
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:78
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:105
 #: includes/modules/compare/includes/classes/Admin/Fields.php:531
 #: includes/modules/compare/includes/classes/Admin/Fields.php:549
 #: includes/modules/compare/includes/classes/Admin/Fields.php:567
@@ -1947,7 +1963,7 @@ msgstr ""
 msgid "Cart deleted successfully."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:301
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:328
 msgid "Cart Drawer / Mini-Cart (Pro)"
 msgstr ""
 
@@ -2087,6 +2103,9 @@ msgstr[1] ""
 #: includes/addons/wb_product_tags.php:68
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1099
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1903
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:365
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:446
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:553
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:402
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:415
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:63
@@ -2139,7 +2158,7 @@ msgstr ""
 msgid "Choose a Payment Gateway"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:270
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:297
 msgid ""
 "Choose a pre-built visual skin: Minimal, Gradient, Announcement, or Bold."
 msgstr ""
@@ -2203,7 +2222,7 @@ msgstr ""
 msgid "Choose open/entrance animation."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:73
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:100
 msgid "Choose where the bar appears on the page."
 msgstr ""
 
@@ -2211,7 +2230,7 @@ msgstr ""
 msgid "Choose which content should be presented on the popup window."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:95
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:122
 msgid "Choose which devices should display the bar."
 msgstr ""
 
@@ -2286,7 +2305,8 @@ msgstr ""
 #: woolentor-blocks/src/blocks/popup-close-trigger-button/index.php:18
 #: includes/modules/popup-builder/includes/class-shortcodes.php:23
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:48
-#: includes/modules/free-shipping-bar/includes/classes/Frontend/Shortcode.php:70
+#: includes/modules/free-shipping-bar/includes/classes/Frontend/Shortcode.php:103
+#: includes/modules/free-shipping-bar/includes/classes/Frontend/Shortcode.php:140
 #: includes/modules/abandoned-cart/includes/classes/Frontend/Unsubscribe_Manager.php:432
 msgid "Close"
 msgstr ""
@@ -2304,6 +2324,7 @@ msgid "Close Animation"
 msgstr ""
 
 #: includes/addons/wb_product_suggest_price.php:701
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:694
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:465
 msgid "Close Button"
 msgstr ""
@@ -2455,6 +2476,10 @@ msgstr ""
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:2019
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:2062
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:2105
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:281
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:417
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:708
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:731
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:203
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:306
 #: includes/modules/compare/includes/classes/Admin/Fields.php:478
@@ -2463,11 +2488,11 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:236
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:263
 msgid "Colour for the message text inside the bar."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:244
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:271
 msgid "Colour of the progress bar fill."
 msgstr ""
 
@@ -2575,6 +2600,7 @@ msgid "Content Align"
 msgstr ""
 
 #: includes/addons/add_banner.php:63
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:357
 msgid "Content Alignment"
 msgstr ""
 
@@ -2606,6 +2632,10 @@ msgstr ""
 #: includes/addons/product_accordion.php:267
 #: includes/addons/product_curvy.php:259
 msgid "Content Display"
+msgstr ""
+
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:349
+msgid "Content Layout"
 msgstr ""
 
 #: includes/addons/product_accordion.php:284
@@ -2671,14 +2701,16 @@ msgid "Count Me In"
 msgstr ""
 
 #: includes/addons/product_flash_sale.php:169
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:466
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:480
 msgid "Countdown"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:342
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:369
 msgid "Countdown End Date & Time"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:351
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:378
 msgid "Countdown Message"
 msgstr ""
 
@@ -2686,7 +2718,7 @@ msgstr ""
 msgid "Countdown Style"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:328
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:355
 msgid "Countdown Timer (Pro)"
 msgstr ""
 
@@ -2787,7 +2819,7 @@ msgstr ""
 msgid "Coupon URL"
 msgstr ""
 
-#: includes/modules/shopify-like-checkout/includes/templates/form-billing.php:57
+#: includes/modules/shopify-like-checkout/includes/templates/form-billing.php:62
 msgid "Create an account?"
 msgstr ""
 
@@ -2796,7 +2828,7 @@ msgstr ""
 msgid "Create eye-catching notification bars and announcements."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:501
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:528
 msgid ""
 "Create multiple independent bars each with its own threshold, targeting, "
 "schedule, and style. The highest-priority matching bar is shown."
@@ -2875,7 +2907,7 @@ msgstr ""
 msgid "Custom checkout Page Builder"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:289
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:316
 msgid "Custom CSS"
 msgstr ""
 
@@ -2909,6 +2941,7 @@ msgstr ""
 msgid "Custom Label"
 msgstr ""
 
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:156
 #: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:49
 msgid "Custom Message"
 msgstr ""
@@ -2958,6 +2991,10 @@ msgstr ""
 #: includes/modules/wishlist/includes/classes/Admin/Fields.php:400
 #: includes/modules/wishlist/includes/classes/Admin/Fields.php:468
 msgid "Custom style"
+msgstr ""
+
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:168
+msgid "Custom Success Message"
 msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:1626
@@ -3060,7 +3097,7 @@ msgstr ""
 #: includes/admin/include/class.template-manager.php:98
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:273
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:330
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:273
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:300
 #: includes/modules/quickview/includes/classes/Admin/Fields.php:160
 #: includes/modules/compare/includes/classes/Admin/Fields.php:223
 #: includes/modules/compare/includes/classes/Admin/Fields.php:252
@@ -3178,7 +3215,7 @@ msgstr ""
 msgid "Desktop "
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:100
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:127
 msgid "Desktop Only"
 msgstr ""
 
@@ -3268,6 +3305,10 @@ msgstr ""
 msgid "Dismiss this notice."
 msgstr ""
 
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:64
+msgid "Dismissible"
+msgstr ""
+
 #: includes/addons/product-grid/product_grid_magazine.php:124
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:376
 msgid "Display"
@@ -3285,11 +3326,11 @@ msgid ""
 "if the user role condition does not match."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:84
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:111
 msgid "Display On Pages"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:67
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:94
 msgid "Display Settings"
 msgstr ""
 
@@ -3485,7 +3526,7 @@ msgstr ""
 msgid "Enable"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:57
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:84
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:47
 #: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:46
 #: includes/modules/shopify-like-checkout/includes/classes/Admin/Fields.php:49
@@ -3514,7 +3555,7 @@ msgstr ""
 msgid "Enable / disable URL Coupons."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:190
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:217
 msgid "Enable A/B Testing"
 msgstr ""
 
@@ -3531,11 +3572,11 @@ msgstr ""
 msgid "Enable All"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:483
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:510
 msgid "Enable Analytics"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:333
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:360
 msgid "Enable Countdown Timer"
 msgstr ""
 
@@ -3543,7 +3584,7 @@ msgstr ""
 msgid "Enable different timer settings for individual products."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:377
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:404
 msgid "Enable Geo-Targeting"
 msgstr ""
 
@@ -3560,7 +3601,7 @@ msgstr ""
 msgid "Enable Multi Color"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:58
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:85
 msgid "Enable or disable the Free Shipping Bar."
 msgstr ""
 
@@ -3580,7 +3621,7 @@ msgstr ""
 msgid "Enable quick view on mobile"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:448
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:475
 msgid "Enable Schedule"
 msgstr ""
 
@@ -3655,7 +3696,7 @@ msgstr ""
 msgid "End Date"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:466
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:493
 msgid "End Date & Time"
 msgstr ""
 
@@ -3833,7 +3874,7 @@ msgstr ""
 msgid "Exclude Products Without Image"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:431
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:458
 msgid "Exclude Specific Page IDs"
 msgstr ""
 
@@ -4170,11 +4211,11 @@ msgstr ""
 msgid "Font Size"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:251
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:278
 msgid "Font Size (px)"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:252
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:279
 msgid ""
 "Font size in pixels for the bar message. Leave empty to use the theme "
 "default."
@@ -4197,9 +4238,9 @@ msgstr ""
 msgid "Form Style"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:343
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:458
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:467
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:370
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:485
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:494
 msgid "Format: YYYY-MM-DD HH:MM"
 msgstr ""
 
@@ -4231,11 +4272,16 @@ msgstr ""
 msgid "Free shipping"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:41
+#: includes/modules/free-shipping-bar/includes/classes/Widgets_And_Blocks.php:32
+#: includes/modules/free-shipping-bar/includes/classes/Widgets_And_Blocks.php:45
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:32
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:45
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:67
 msgid "Free Shipping Bar"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Frontend/Shortcode.php:55
+#: includes/modules/free-shipping-bar/includes/classes/Frontend/Shortcode.php:82
+#: includes/modules/free-shipping-bar/includes/classes/Frontend/Shortcode.php:130
 msgid "Free shipping progress"
 msgstr ""
 
@@ -4274,10 +4320,11 @@ msgstr ""
 msgid "Gap"
 msgstr ""
 
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:57
 #: includes/modules/popup-builder/includes/admin/tmpl-popup-builder-modal.php:110
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:40
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:40
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:52
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:79
 msgid "General"
 msgstr ""
 
@@ -4295,11 +4342,11 @@ msgstr ""
 msgid "Generate Bulk Coupon"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:386
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:413
 msgid "Geo Fallback Threshold"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:372
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:399
 msgid "Geo-Targeting (Pro)"
 msgstr ""
 
@@ -4501,6 +4548,7 @@ msgstr ""
 #: includes/addons/wl_product_filter.php:607
 #: includes/addons/wb_product_add_to_cart.php:853
 #: includes/addons/product-grid/product_grid_luxury.php:596
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:593
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:432
 #: includes/modules/compare/includes/classes/Admin/Fields.php:414
 #: includes/modules/badges/includes/classes/Admin/Fields.php:172
@@ -4572,6 +4620,8 @@ msgstr ""
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:485
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:498
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:511
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:81
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:121
 msgid "Hide"
 msgstr ""
 
@@ -4601,7 +4651,7 @@ msgstr ""
 msgid "Hide Empty Category"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:143
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:170
 msgid "Hide Other Shipping Methods"
 msgstr ""
 
@@ -4629,7 +4679,7 @@ msgstr ""
 msgid "Hide the \"Cart\" menu and \"Return to cart\" button."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:432
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:459
 msgid "Hide the bar on these specific pages (comma-separated IDs)."
 msgstr ""
 
@@ -4750,6 +4800,7 @@ msgstr ""
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1527
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1798
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:2055
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:727
 msgid "Hover"
 msgstr ""
 
@@ -4850,7 +4901,14 @@ msgstr ""
 #: includes/addons/wl_faq.php:613 includes/addons/wl_store_features.php:68
 #: includes/addons/wl_store_features.php:84
 #: includes/addons/wl_product_filter.php:166
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:108
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:130
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:245
 msgid "Icon"
+msgstr ""
+
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:383
+msgid "Icon & Text Gap"
 msgstr ""
 
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:311
@@ -5067,7 +5125,7 @@ msgstr ""
 msgid "Include"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:422
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:449
 msgid "Include Specific Page IDs"
 msgstr ""
 
@@ -5383,6 +5441,9 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_magazine.php:1542
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1095
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1899
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:361
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:442
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:549
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:414
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:59
 #: includes/modules/compare/includes/classes/Admin/Fields.php:305
@@ -5602,7 +5663,7 @@ msgstr ""
 msgid "Manual Selection"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:114
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:141
 msgid "Manual Threshold Amount"
 msgstr ""
 
@@ -5703,6 +5764,7 @@ msgstr ""
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1414
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1737
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1967
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:532
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:448
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:229
 #: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:112
@@ -5745,6 +5807,7 @@ msgid "Max price"
 msgstr ""
 
 #: includes/addons/wl_product_horizontal_filter.php:156
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:616
 msgid "Max Width"
 msgstr ""
 
@@ -5761,6 +5824,8 @@ msgid "Menu Order"
 msgstr ""
 
 #: includes/addons/wb_product_suggest_price.php:166
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:149
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:409
 msgid "Message"
 msgstr ""
 
@@ -5772,11 +5837,11 @@ msgstr ""
 msgid "Message is required."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:175
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:202
 msgid "Message shown when the customer has unlocked free shipping."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:167
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:194
 msgid ""
 "Message shown while the customer has not yet reached the threshold. Use "
 "{amount} as a placeholder for the remaining amount."
@@ -5792,7 +5857,7 @@ msgstr ""
 msgid "Message to show high demand status."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:161
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:188
 msgid "Messages"
 msgstr ""
 
@@ -5847,7 +5912,7 @@ msgstr ""
 msgid "Mobile"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:101
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:128
 msgid "Mobile Only"
 msgstr ""
 
@@ -5875,7 +5940,7 @@ msgstr ""
 msgid "Module"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:137
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:164
 msgid "Module (apply automatically)"
 msgstr ""
 
@@ -5917,7 +5982,7 @@ msgstr ""
 msgid "MultiCurrency"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:507
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:534
 msgid ""
 "Multiple bars is a Pro feature. Upgrade to create additional bars with "
 "advanced targeting, scheduling, and custom styles."
@@ -6007,6 +6072,8 @@ msgid "NEW"
 msgstr ""
 
 #: includes/custom-metabox.php:63
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:38
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:51
 msgid "New"
 msgstr ""
 
@@ -6073,6 +6140,8 @@ msgstr ""
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:858
 #: settings-panel/includes/classes/Admin/Menu.php:176
 #: includes/admin-panel/includes/classes/Admin/Menu.php:176
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:67
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:94
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:63
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:76
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:90
@@ -6197,7 +6266,7 @@ msgstr ""
 #: includes/addons/product_tabs.php:160
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:776
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:817
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:283
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:310
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:115
 #: includes/modules/quickview/includes/classes/Admin/Fields.php:159
 #: includes/modules/compare/includes/classes/Admin/Fields.php:222
@@ -6251,6 +6320,7 @@ msgstr ""
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1496
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1766
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:2012
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:704
 msgid "Normal"
 msgstr ""
 
@@ -6599,7 +6669,7 @@ msgstr ""
 msgid "Overlay Color"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:115
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:142
 msgid ""
 "Override the free-shipping minimum amount detected from your WooCommerce "
 "shipping zones. Leave at 0 to auto-detect."
@@ -6690,6 +6760,8 @@ msgstr ""
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1623
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1867
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1953
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:222
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:326
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:456
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:248
 #: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:100
@@ -6778,7 +6850,7 @@ msgstr ""
 msgid "Perfect"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:478
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:505
 msgid "Performance Tracking (Pro)"
 msgstr ""
 
@@ -7179,7 +7251,7 @@ msgstr ""
 msgid "Product category does not exists."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:403
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:430
 msgid "Product Category Targeting"
 msgstr ""
 
@@ -7552,16 +7624,24 @@ msgstr ""
 msgid "Products reviews"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:279
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:306
 msgid "Progress Bar Animation"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:243
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:659
+msgid "Progress Fill"
+msgstr ""
+
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:270
 msgid "Progress Fill Color"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:166
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:193
 msgid "Progress Message"
+msgstr ""
+
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:573
+msgid "Progress Track"
 msgstr ""
 
 #: includes/base.php:294 woolentor-blocks/includes/classes/Blocks_List.php:111
@@ -7694,7 +7774,7 @@ msgstr ""
 msgid "Random Products"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:191
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:218
 msgid ""
 "Randomly show visitors one of two message variants and track which one "
 "drives more free-shipping conversions."
@@ -7909,7 +7989,7 @@ msgstr ""
 msgid "Rename Labels?"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:307
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:334
 msgid ""
 "Render a real-time mini progress bar inside slide-out cart drawers for "
 "Flatsome, Astra, OceanWP, and Storefront themes."
@@ -7956,7 +8036,7 @@ msgstr ""
 msgid "Resetting..."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:413
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:440
 msgid ""
 "Restrict the bar to specific user roles — all visitors, guests only, logged-"
 "in users, or customers who have made a purchase."
@@ -8039,6 +8119,9 @@ msgstr ""
 #: includes/addons/wb_product_tags.php:72
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1103
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1907
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:369
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:450
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:557
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:416
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:67
 #: includes/modules/compare/includes/classes/Admin/Fields.php:307
@@ -8263,7 +8346,7 @@ msgstr ""
 msgid "Scale (Pro)"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:443
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:470
 msgid "Scheduled Display (Pro)"
 msgstr ""
 
@@ -8301,7 +8384,7 @@ msgstr ""
 msgid "Search Form Placeholder"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:88
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:115
 msgid "Search pages..."
 msgstr ""
 
@@ -8488,7 +8571,7 @@ msgstr ""
 msgid "Select the categories in which products the badge will be show."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:89
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:116
 msgid "Select the pages where the bar should appear."
 msgstr ""
 
@@ -8512,7 +8595,7 @@ msgstr ""
 msgid "Select when to show the popup."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:316
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:343
 msgid ""
 "Select your active theme so the bar hooks into the correct cart drawer "
 "action."
@@ -8687,7 +8770,7 @@ msgstr ""
 msgid "Shipping Address."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:126
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:153
 msgid "Shipping Application"
 msgstr ""
 
@@ -8707,7 +8790,7 @@ msgstr ""
 msgid "Shipping methods"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:131
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:158
 msgid "Shipping Mode"
 msgstr ""
 
@@ -8719,7 +8802,7 @@ msgstr ""
 msgid "Shipping restrict type"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:109
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:136
 msgid "Shipping Threshold"
 msgstr ""
 
@@ -8853,6 +8936,8 @@ msgstr ""
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:484
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:497
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:510
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:80
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:120
 msgid "Show"
 msgstr ""
 
@@ -8864,7 +8949,11 @@ msgstr ""
 msgid "Show \"View Details\" Link"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:334
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:70
+msgid "Show a close button so visitors can dismiss the bar."
+msgstr ""
+
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:361
 msgid ""
 "Show a live countdown clock inside the bar to create urgency around your "
 "free-shipping offer."
@@ -8892,7 +8981,7 @@ msgstr ""
 msgid "Show Badge"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:306
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:333
 msgid "Show Bar in Cart Drawer"
 msgstr ""
 
@@ -8954,8 +9043,16 @@ msgstr ""
 msgid "Show Count"
 msgstr ""
 
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:78
+msgid "Show Countdown"
+msgstr ""
+
 #: includes/addons/product_flash_sale.php:175
 msgid "Show Countdown Timer"
+msgstr ""
+
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:91
+msgid "Show Countdown?"
 msgstr ""
 
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:87
@@ -9021,6 +9118,10 @@ msgstr ""
 msgid "Show First Item"
 msgstr ""
 
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:118
+msgid "Show Icon"
+msgstr ""
+
 #: includes/addons/wl_archive_title.php:85
 #: includes/addons/product-grid/product_grid_magazine.php:131
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:383
@@ -9051,7 +9152,7 @@ msgstr ""
 msgid "Show on Browsers"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:94
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:121
 msgid "Show On Device"
 msgstr ""
 
@@ -9155,15 +9256,15 @@ msgstr ""
 msgid "Show Stock Status"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:404
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:431
 msgid "Show the bar only on pages that belong to specific product categories."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:423
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:450
 msgid "Show the bar only on these specific pages (comma-separated IDs)."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:449
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:476
 msgid ""
 "Show the bar only within a defined date/time window — perfect for weekend "
 "promotions or flash sales."
@@ -9171,6 +9272,10 @@ msgstr ""
 
 #: includes/modules/shopify-like-checkout/includes/classes/Admin/Fields.php:130
 msgid "Show the Company Name Field."
+msgstr ""
+
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:84
+msgid "Show the countdown timer if enabled in module settings."
 msgstr ""
 
 #: includes/modules/shopify-like-checkout/includes/classes/Admin/Fields.php:122
@@ -9209,12 +9314,18 @@ msgstr ""
 msgid "Show wishlist, compare and quick view buttons on hover"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:209
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:236
 msgid "Shown to the other ~50% of visitors. Use {amount} as a placeholder."
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:200
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:227
 msgid "Shown to ~50% of visitors. Use {amount} as a placeholder."
+msgstr ""
+
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:173
+msgid ""
+"Shown when the customer has reached the free shipping threshold. Leave empty "
+"to use the module setting."
 msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:1712
@@ -9296,6 +9407,8 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_magazine.php:1160
 #: includes/addons/product-grid/product_grid_magazine.php:1311
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1833
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:256
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:755
 msgid "Size"
 msgstr ""
 
@@ -9646,8 +9759,9 @@ msgstr ""
 msgid "Special Day offer banner"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Frontend/Bar_Renderer.php:237
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:169
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:160
+#: includes/modules/free-shipping-bar/includes/classes/Frontend/Bar_Renderer.php:238
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:196
 msgid "Spend {amount} more to get FREE shipping!"
 msgstr ""
 
@@ -9671,7 +9785,7 @@ msgstr ""
 msgid "Start Date"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:457
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:484
 msgid "Start Date & Time"
 msgstr ""
 
@@ -9844,7 +9958,7 @@ msgid "Subtotal"
 msgstr ""
 
 #: includes/addons/wb_product_suggest_price.php:176
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:174
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:201
 msgid "Success Message"
 msgstr ""
 
@@ -10034,7 +10148,7 @@ msgstr ""
 msgid "Tags:"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:365
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:392
 msgid "Targeting"
 msgstr ""
 
@@ -10176,9 +10290,10 @@ msgstr ""
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1534
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1773
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1805
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:491
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:184
 #: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:69
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:235
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:262
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:181
 #: includes/modules/badges/includes/classes/Admin/Fields.php:95
 msgid "Text Color"
@@ -10355,7 +10470,7 @@ msgstr ""
 msgid "Theme"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:315
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:342
 msgid "Theme / Cart Drawer Hook"
 msgstr ""
 
@@ -10442,7 +10557,7 @@ msgstr ""
 msgid "Three"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:387
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:414
 msgid "Threshold used when no matching shipping zone is found."
 msgstr ""
 
@@ -10483,12 +10598,17 @@ msgstr ""
 msgid "Time"
 msgstr ""
 
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:511
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:190
 msgid "Timer Color"
 msgstr ""
 
 #: includes/modules/cart-reserve-time/includes/classes/Admin/Fields.php:72
 msgid "Timer Message"
+msgstr ""
+
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:524
+msgid "Timer Typography"
 msgstr ""
 
 #: includes/helper-function.php:1778 includes/addons/wl_faq.php:68
@@ -10604,7 +10724,7 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_magazine.php:1424
 #: includes/addons/product-grid/product_grid_magazine.php:1519
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:401
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:77
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:104
 #: includes/modules/compare/includes/classes/Admin/Fields.php:529
 #: includes/modules/compare/includes/classes/Admin/Fields.php:547
 #: includes/modules/compare/includes/classes/Admin/Fields.php:565
@@ -10682,7 +10802,7 @@ msgstr ""
 msgid "Total price is Less than X ammount"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:484
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:511
 msgid ""
 "Track bar impressions (views) and conversions (threshold reached). View per-"
 "bar stats directly in the admin panel."
@@ -10825,6 +10945,8 @@ msgstr ""
 #: includes/addons/wl_category_grid.php:790
 #: includes/addons/wb_product_tags.php:52
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:1923
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:430
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:503
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:197
 #: includes/modules/store-vacation/includes/widgets/wl_vacation_notice.php:92
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:215
@@ -10896,7 +11018,7 @@ msgstr ""
 msgid "Upgrade Now"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:506
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:533
 #: includes/modules/abandoned-cart/includes/classes/Admin/Fields.php:108
 #: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:73
 #: includes/modules/badges/includes/classes/Admin/Fields.php:61
@@ -11104,7 +11226,11 @@ msgstr ""
 msgid "Use Shortcode / Widget"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:352
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:161
+msgid "Use {amount} as placeholder. Leave empty to use the module setting."
+msgstr ""
+
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:379
 msgid ""
 "Use {timer} as a placeholder for the clock (e.g. \"Offer ends in {timer}!\")."
 msgstr ""
@@ -11125,7 +11251,7 @@ msgstr ""
 msgid "User role restriction"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:412
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:439
 msgid "User Role Targeting"
 msgstr ""
 
@@ -11169,11 +11295,11 @@ msgstr ""
 msgid "Valued Customer"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:199
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:226
 msgid "Variant A — Progress Message"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:208
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:235
 msgid "Variant B — Progress Message"
 msgstr ""
 
@@ -11302,7 +11428,7 @@ msgstr ""
 msgid "WhatsApp"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:144
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:171
 msgid ""
 "When free shipping is applied by the module, hide all other shipping methods "
 "(flat rate, etc.)."
@@ -11544,6 +11670,10 @@ msgstr ""
 
 #: classes/class.widgets_control.php:531
 msgid "WL: Filterable Product Grid"
+msgstr ""
+
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:16
+msgid "WL: Free Shipping Bar"
 msgstr ""
 
 #: includes/addons/wb_image_marker.php:13
@@ -11856,7 +11986,7 @@ msgstr ""
 msgid "WooCommerce (Pro)"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:136
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:163
 msgid "WooCommerce (use WC shipping methods)"
 msgstr ""
 
@@ -11876,7 +12006,7 @@ msgstr ""
 msgid "WooCommerce Template Builder"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:132
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:159
 msgid ""
 "WooCommerce: rely on your WC shipping zone configuration to apply free "
 "shipping. Module: the bar automatically applies free shipping when the "
@@ -11981,6 +12111,8 @@ msgstr ""
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:857
 #: settings-panel/includes/classes/Admin/Menu.php:175
 #: includes/admin-panel/includes/classes/Admin/Menu.php:175
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:66
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:93
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:62
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:75
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:89
@@ -12211,6 +12343,10 @@ msgstr ""
 msgid "You May Also Like"
 msgstr ""
 
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:159
+msgid "You're {amount} away from complimentary express shipping."
+msgstr ""
+
 #: includes/modules/abandoned-cart/includes/classes/Frontend/Cart_Recovery.php:114
 msgid "Your cart has been restored successfully."
 msgstr ""
@@ -12348,11 +12484,12 @@ msgstr ""
 msgid "🌟 Enhance Your %1$s Experience as a Valued Contributor!"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:177
+#: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:204
 msgid "🎉 You have unlocked FREE shipping!"
 msgstr ""
 
-#: includes/modules/free-shipping-bar/includes/classes/Frontend/Bar_Renderer.php:238
+#: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:172
+#: includes/modules/free-shipping-bar/includes/classes/Frontend/Bar_Renderer.php:239
 msgid "🎉 You've unlocked FREE shipping!"
 msgstr ""
 

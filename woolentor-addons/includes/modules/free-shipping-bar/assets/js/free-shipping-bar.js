@@ -48,29 +48,19 @@
      * @param  {boolean} isComplete
      * @return {string}
      */
-    function buildMessage( remaining, isComplete ) {
+    function buildMessage( remaining, isComplete, bar ) {
         if ( isComplete ) {
+            if ( bar && bar.dataset.msgSuccess ) {
+                return bar.dataset.msgSuccess;
+            }
             return cfg.msgSuccess || '🎉 You\'ve unlocked FREE shipping!';
         }
         var template = cfg.msgInitial || 'Spend {amount} more to get FREE shipping!';
+        if ( bar && bar.dataset.msgInitial ) {
+            template = bar.dataset.msgInitial;
+        }
         return template.replace( '{amount}', formatPrice( remaining ) );
     }
-
-    // -------------------------------------------------------------------------
-    // DOM references
-    // -------------------------------------------------------------------------
-
-    var bar         = document.getElementById( 'wl-free-shipping-bar' );
-    if ( ! bar ) return;
-
-    var msgEl       = bar.querySelector( '.wl-fsb-message' );
-    var fillEl      = bar.querySelector( '.wl-fsb-progress-fill' );
-    var trackEl     = bar.querySelector( '.wl-fsb-progress-track' );
-    var closeBtn    = bar.querySelector( '.wl-fsb-close' );
-
-    // True when the bar is placed via shortcode / widget / block and must remain
-    // in the document flow rather than being repositioned as a fixed overlay.
-    var isInline    = bar.classList.contains( 'wl-fsb-inline' );
 
     // -------------------------------------------------------------------------
     // Device targeting
@@ -87,31 +77,20 @@
     }
 
     // -------------------------------------------------------------------------
-    // Positioning + body offset
+    // Admin bar height
     // -------------------------------------------------------------------------
 
-    // Returns the current height of the WP admin bar (0 when not logged in).
     function getAdminBarHeight() {
         var el = document.getElementById( 'wpadminbar' );
         return el ? el.offsetHeight : 0;
     }
 
-    // Sets bar.style.top so it sits flush below the admin bar (top position only).
-    // Must be called after positionBar() and whenever the window resizes.
-    function setBarTop() {
-        if ( cfg.position !== 'bottom' ) {
-            bar.style.top = getAdminBarHeight() + 'px';
-        }
-    }
+    // -------------------------------------------------------------------------
+    // Fixed-header detection
+    // -------------------------------------------------------------------------
 
-    // ── Fixed-header detection ────────────────────────────────────
-    // Tracks elements whose `top` we adjusted so we can restore them.
     var _fixedEls = [];
 
-    // Scans for position:fixed elements near the top of the page and pushes
-    // them below the bar. Called when there is no WP admin bar (guest users),
-    // because body.paddingTop / html.marginTop do not move fixed elements —
-    // they are anchored to the viewport, not the document.
     function offsetFixedHeaders( barH ) {
         _fixedEls = [];
         var seen = [];
@@ -125,14 +104,13 @@
 
         for ( var i = 0; i < candidates.length; i++ ) {
             var el = candidates[ i ];
-            if ( el === bar || seen.indexOf( el ) !== -1 ) continue;
+            if ( seen.indexOf( el ) !== -1 ) continue;
             seen.push( el );
 
             var cs = window.getComputedStyle( el );
             if ( cs.position !== 'fixed' ) continue;
 
             var origTop = parseFloat( cs.top ) || 0;
-            // Skip elements that are already below the bar
             if ( el.getBoundingClientRect().top > barH + 60 ) continue;
 
             el.style.top = ( origTop + barH ) + 'px';
@@ -140,7 +118,6 @@
         }
     }
 
-    // Restores the original `top` values of any elements we shifted.
     function restoreFixedHeaders() {
         for ( var i = 0; i < _fixedEls.length; i++ ) {
             _fixedEls[ i ].el.style.top = _fixedEls[ i ].origTop + 'px';
@@ -148,18 +125,12 @@
         _fixedEls = [];
     }
 
-    // ── Body / document offset ────────────────────────────────────
-    // Pushes page content so it is never hidden under the bar.
-    // Always resets first so it is safe to call multiple times (e.g. resize).
-    //
-    //  Admin bar present → WP already applies `html { margin-top }`.
-    //    We only add `body.paddingTop` to cover our bar's extra height.
-    //
-    //  No admin bar (guest) → Use `html.marginTop` for in-flow / sticky
-    //    headers, PLUS directly shift any position:fixed headers found near
-    //    the top of the page.
-    function applyBodyOffset() {
-        restoreFixedHeaders(); // always start clean before recalculating
+    // -------------------------------------------------------------------------
+    // Body / document offset (per-bar)
+    // -------------------------------------------------------------------------
+
+    function applyBodyOffset( bar ) {
+        restoreFixedHeaders();
 
         var barH   = bar.offsetHeight;
         var adminH = getAdminBarHeight();
@@ -167,19 +138,13 @@
         if ( cfg.position === 'bottom' ) {
             document.body.style.paddingBottom = barH + 'px';
         } else if ( adminH > 0 ) {
-            // Admin bar present: WP already sets html { margin-top: adminH } which
-            // shifts <body> below the admin bar. We only need barH of additional
-            // padding to clear our bar — adding adminH here would double-count it.
             document.body.style.paddingTop = barH + 'px';
         } else {
-            // No admin bar: html.marginTop handles in-flow + sticky elements;
-            // offsetFixedHeaders handles position:fixed headers.
             document.documentElement.style.marginTop = barH + 'px';
             offsetFixedHeaders( barH );
         }
     }
 
-    // Removes all offsets when the bar is dismissed or hidden.
     function removeBodyOffset() {
         document.body.style.paddingTop           = '';
         document.body.style.paddingBottom        = '';
@@ -187,41 +152,68 @@
         restoreFixedHeaders();
     }
 
-    function positionBar() {
+    // -------------------------------------------------------------------------
+    // Positioning (per-bar)
+    // -------------------------------------------------------------------------
+
+    function setBarTop( bar ) {
+        if ( cfg.position !== 'bottom' ) {
+            bar.style.top = getAdminBarHeight() + 'px';
+        }
+    }
+
+    function positionBar( bar ) {
+        bar.classList.remove( 'wl-fsb-top', 'wl-fsb-bottom' );
         if ( cfg.position === 'bottom' ) {
             bar.classList.add( 'wl-fsb-bottom' );
         } else {
             bar.classList.add( 'wl-fsb-top' );
-            setBarTop();
+            setBarTop( bar );
         }
     }
 
     // -------------------------------------------------------------------------
-    // Core update logic
+    // Core update logic (per-bar)
     // -------------------------------------------------------------------------
 
-    /**
-     * Update the bar UI based on the current cart total.
-     *
-     * @param {number} cartTotal
-     */
-    function updateBar( cartTotal ) {
+    function updateBar( bar, cartTotal ) {
+        var msgEl   = bar.querySelector( '.wl-fsb-message' );
+        var fillEl  = bar.querySelector( '.wl-fsb-progress-fill' );
+        var trackEl = bar.querySelector( '.wl-fsb-progress-track' );
+
         var threshold  = parseFloat( cfg.threshold );
         var total      = parseFloat( cartTotal ) || 0;
         var remaining  = Math.max( 0, threshold - total );
         var pct        = Math.min( 100, ( total / threshold ) * 100 );
         var isComplete = remaining === 0;
 
-        msgEl.innerHTML = buildMessage( remaining, isComplete );
-
-        fillEl.style.width = pct.toFixed( 2 ) + '%';
-        trackEl.setAttribute( 'aria-valuenow', Math.round( pct ) );
+        if ( msgEl )   msgEl.innerHTML = buildMessage( remaining, isComplete, bar );
+        if ( fillEl )  fillEl.style.width = pct.toFixed( 2 ) + '%';
+        if ( trackEl ) trackEl.setAttribute( 'aria-valuenow', Math.round( pct ) );
 
         bar.classList.toggle( 'wl-fsb-complete', isComplete );
     }
 
     // -------------------------------------------------------------------------
-    // AJAX: fetch fresh cart total from the server
+    // Show / hide (per-bar)
+    // -------------------------------------------------------------------------
+
+    function showBar( bar ) {
+        bar.classList.remove( 'wl-fsb-hidden' );
+        if ( ! bar.classList.contains( 'wl-fsb-inline' ) ) {
+            applyBodyOffset( bar );
+        }
+    }
+
+    function hideBar( bar ) {
+        bar.classList.add( 'wl-fsb-hidden' );
+        if ( ! bar.classList.contains( 'wl-fsb-inline' ) ) {
+            removeBodyOffset();
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // AJAX: fetch fresh cart total
     // -------------------------------------------------------------------------
 
     function fetchCartTotal( callback ) {
@@ -262,25 +254,7 @@
     }
 
     // -------------------------------------------------------------------------
-    // Show / hide
-    // -------------------------------------------------------------------------
-
-    function showBar() {
-        bar.classList.remove( 'wl-fsb-hidden' );
-        if ( ! isInline ) {
-            applyBodyOffset();
-        }
-    }
-
-    function hideBar() {
-        bar.classList.add( 'wl-fsb-hidden' );
-        if ( ! isInline ) {
-            removeBodyOffset();
-        }
-    }
-
-    // -------------------------------------------------------------------------
-    // WooCommerce cart events
+    // WooCommerce cart events (global, run once)
     // -------------------------------------------------------------------------
 
     var _refreshTimer = null;
@@ -292,13 +266,7 @@
         }, 150 );
     }
 
-    /**
-     * WooCommerce fires jQuery-based events on document.body after classic cart
-     * updates. Block cart uses the wp.data store (wc/store/cart). We listen to
-     * both plus MutationObserver fallbacks so the bar refreshes in all setups.
-     */
     function proxyCartEvents() {
-        // ── Classic cart: jQuery events ───────────────────────────────────────
         var jqEvents = [
             'added_to_cart',
             'removed_from_cart',
@@ -315,9 +283,6 @@
             } );
         }
 
-        // ── Classic cart: MutationObserver fallback ───────────────────────────
-        // Watches the parent of .cart_totals — when WC replaces the element via
-        // fragments the parent sees an added/removed child.
         var cartTotalsEl = document.querySelector( '.cart_totals' );
         if ( cartTotalsEl && cartTotalsEl.parentNode ) {
             new MutationObserver( function ( mutations ) {
@@ -330,9 +295,6 @@
             } ).observe( cartTotalsEl.parentNode, { childList: true, subtree: false } );
         }
 
-        // ── Block cart: wp.data store subscription ────────────────────────────
-        // WC Blocks updates its Redux-like store on every cart REST API response.
-        // Subscribing lets us detect quantity changes without any jQuery events.
         if ( window.wp && window.wp.data ) {
             var prevBlockTotal = null;
             window.wp.data.subscribe( function () {
@@ -342,9 +304,6 @@
                 var totals = selector.getCartTotals();
                 if ( ! totals ) return;
 
-                // total_price is the grand total string in minor units (e.g. "18000").
-                // Used purely as a change-detection key; the actual displayed value
-                // comes from our own AJAX endpoint.
                 var current = totals.total_price;
                 if ( prevBlockTotal !== null && prevBlockTotal !== current ) {
                     triggerRefresh();
@@ -353,9 +312,6 @@
             } );
         }
 
-        // ── Block cart: MutationObserver fallback ─────────────────────────────
-        // Catches DOM rerenders of the block order-summary when the store
-        // subscription hasn't fired yet (e.g. optimistic UI updates).
         var blockSummary = document.querySelector(
             '.wc-block-cart__totals, .wp-block-woocommerce-cart-order-summary-block'
         );
@@ -368,73 +324,79 @@
     }
 
     // -------------------------------------------------------------------------
-    // Bootstrap
+    // Per-bar initialisation
     // -------------------------------------------------------------------------
 
-    function init() {
-        if ( ! isDeviceAllowed() ) return;
-        if ( isDismissed() )       return;
+    function initBar( bar ) {
+        var isInline = bar.classList.contains( 'wl-fsb-inline' );
+        var closeBtn = bar.querySelector( '.wl-fsb-close' );
 
         if ( ! isInline ) {
-            // Append bar directly to body (above/below everything)
             document.body.appendChild( bar );
-            positionBar();
+            positionBar( bar );
         }
 
-        // Initial paint with server-side cart total
-        updateBar( cfg.cartTotal || 0 );
+        updateBar( bar, cfg.cartTotal || 0 );
+        showBar( bar );
 
-        // Remove 'hidden' without triggering applyBodyOffset yet — measure after visible
-        bar.classList.remove( 'wl-fsb-hidden' );
-        if ( ! isInline ) {
-            applyBodyOffset();
-        }
-
-        // Proxy WooCommerce jQuery cart events to native
-        proxyCartEvents();
-
-        // Re-fetch cart total on any cart change
-        document.addEventListener( 'wl_fsb_cart_changed', function () {
-            fetchCartTotal( function ( freshTotal ) {
-                updateBar( freshTotal );
-            } );
-        } );
-
-        // Close button
         if ( closeBtn ) {
             closeBtn.addEventListener( 'click', function () {
                 setDismissed();
-                hideBar();
+                hideBar( bar );
             } );
         }
+    }
 
-        // Re-check on resize (device targeting + bar height + admin bar height can change)
+    // -------------------------------------------------------------------------
+    // Bootstrap all bars
+    // -------------------------------------------------------------------------
+
+    function initAllBars() {
+        if ( ! isDeviceAllowed() ) return;
+        if ( isDismissed() )       return;
+
+        var bars = document.querySelectorAll( '.wl-fsb-wrap' );
+        for ( var i = 0; i < bars.length; i++ ) {
+            initBar( bars[ i ] );
+        }
+
+        proxyCartEvents();
+
+        document.addEventListener( 'wl_fsb_cart_changed', function () {
+            fetchCartTotal( function ( freshTotal ) {
+                var allBars = document.querySelectorAll( '.wl-fsb-wrap' );
+                for ( var j = 0; j < allBars.length; j++ ) {
+                    updateBar( allBars[ j ], freshTotal );
+                }
+            } );
+        } );
+
         window.addEventListener( 'resize', function () {
             if ( ! isDeviceAllowed() ) {
-                hideBar();
-            } else if ( ! isDismissed() ) {
-                if ( ! isInline ) {
-                    // Admin bar switches between 46px (mobile) and 32px (desktop) at 783px.
-                    // setBarTop() repositions the bar; showBar() re-shows it if it was
-                    // hidden by the device check and calls applyBodyOffset() internally.
-                    setBarTop();
+                var allBars = document.querySelectorAll( '.wl-fsb-wrap' );
+                for ( var k = 0; k < allBars.length; k++ ) {
+                    hideBar( allBars[ k ] );
                 }
-                showBar();
+            } else if ( ! isDismissed() ) {
+                var allBars = document.querySelectorAll( '.wl-fsb-wrap' );
+                for ( var k = 0; k < allBars.length; k++ ) {
+                    var b = allBars[ k ];
+                    if ( ! b.classList.contains( 'wl-fsb-inline' ) ) {
+                        setBarTop( b );
+                    }
+                    showBar( b );
+                }
             }
         } );
 
-        // Re-apply offsets after all scripts have run.
-        //
-        // Themes often initialise their sticky/fixed header via JS on 'load' or
-        // asynchronously — meaning the header is still position:relative when our
-        // DOMContentLoaded init() fires. By the time 'load' fires, all scripts
-        // have executed and the header is in its final fixed state.
-        // The 300 ms timeout is a fallback for themes that defer header setup
-        // past the load event (e.g. lazy-initialised sliders, builder scripts).
         function reapplyIfVisible() {
-            if ( ! isInline && ! bar.classList.contains( 'wl-fsb-hidden' ) ) {
-                setBarTop();
-                applyBodyOffset();
+            var allBars = document.querySelectorAll( '.wl-fsb-wrap' );
+            for ( var i = 0; i < allBars.length; i++ ) {
+                var b = allBars[ i ];
+                if ( ! b.classList.contains( 'wl-fsb-inline' ) && ! b.classList.contains( 'wl-fsb-hidden' ) ) {
+                    setBarTop( b );
+                    applyBodyOffset( b );
+                }
             }
         }
 
@@ -444,9 +406,58 @@
 
     // Run after DOM is ready
     if ( document.readyState === 'loading' ) {
-        document.addEventListener( 'DOMContentLoaded', init );
+        document.addEventListener( 'DOMContentLoaded', initAllBars );
     } else {
-        init();
+        initAllBars();
     }
+
+    // -------------------------------------------------------------------------
+    // Elementor scoped handler
+    // -------------------------------------------------------------------------
+
+    var WoolentorFreeShippingBarHandler = function ( $scope, $ ) {
+        var bar = null;
+        if( $scope?.detail?.uniqid && $scope?.detail?.uniqid.length !== 0 ) {
+            var el = jQuery('.woolentorblock-'+$scope.detail.uniqid);
+            bar = el.find( '.wl-fsb-wrap' )[0];
+        }else{
+            bar = $scope.find( '.wl-fsb-wrap' )[ 0 ];
+        };
+        if ( ! bar ) return;
+        if ( ! cfg || ! cfg.threshold || parseFloat( cfg.threshold ) <= 0 ) return;
+        initBar( bar );
+    };
+
+    jQuery(window).on('elementor/frontend/init', function () {
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/woolentor_free_shipping_bar.default', WoolentorFreeShippingBarHandler);
+    });
+
+    // Gutenberg Editor Mode — cache the AJAX result so re-selecting the block
+    // never fires a second request; null means not yet fetched.
+    var _editorCartTotal = null;
+
+    document.addEventListener( "wooLentorFreeShippingBar", function ( event ) {
+        if ( _editorCartTotal !== null ) {
+            cfg.cartTotal = _editorCartTotal;
+            WoolentorFreeShippingBarHandler( event );
+            return;
+        }
+
+        var done = false;
+        function doInit() {
+            if ( done ) return;
+            done = true;
+            WoolentorFreeShippingBarHandler( event );
+        }
+
+        fetchCartTotal( function ( freshTotal ) {
+            _editorCartTotal = freshTotal;
+            cfg.cartTotal    = freshTotal;
+            doInit();
+        } );
+
+        // Fallback: if the AJAX call stalls, init with the preview value anyway.
+        setTimeout( doInit, 3000 );
+    }, false );
 
 } )();

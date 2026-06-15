@@ -26,6 +26,32 @@ class Fields{
         } else {
             array_splice($fields['woolentor_others_tabs'], 20, 0, $this->setting_fields());
         }
+
+        $fields['woolentor_elements_tabs'][] = [
+            'id'    => 'wl_free_shipping_bar',
+            'name'   => esc_html__( 'Free Shipping Bar', 'woolentor' ),
+            'type'    => 'element',
+            'default' => 'on',
+            'badge'   => [
+                'is_active' => true,
+                'type'      => 'new',
+                'label'     => esc_html__('New','woolentor')
+            ]
+        ];
+
+        // Block
+        $fields['woolentor_gutenberg_tabs'][] = [
+            'id'  => 'free_shipping_bar',
+            'name' => esc_html__( 'Free Shipping Bar', 'woolentor' ),
+            'type'  => 'element',
+            'default' => 'on',
+            'badge'   => [
+                'is_active' => true,
+                'type'      => 'new',
+                'label'     => esc_html__('New','woolentor')
+            ]
+        ];
+        
         return $fields;
     }
 
@@ -42,6 +68,7 @@ class Fields{
                 'type'             => 'moduledrawer',
                 'default'          => 'off',
                 'section'          => 'woolentor_free_shipping_bar_settings',
+                'documentation'    => esc_url('https://woolentor.com/doc/how-to-set-up-the-free-shipping-bar-in-shoplentor-for-woocommerce/'),
                 'option_id'        => 'enable',
                 'require_settings' => true,
                 'setting_tabs'     => [
