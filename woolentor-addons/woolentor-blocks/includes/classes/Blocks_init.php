@@ -189,7 +189,9 @@ class Blocks_init {
             if( is_array( $block ) ){
                 $block_name = str_replace('woolentor/', '', trim(preg_replace('/\(.+\)/', '', $block['name'])));
                 if( $block['active'] === true && woolentorBlocks_get_option( $block_key, 'woolentor_gutenberg_tabs', 'on' ) === 'on' ){
-                    $this->register_block( $block );
+                    if( ! \WP_Block_Type_Registry::get_instance()->is_registered( $block['name'] ) ){
+                        $this->register_block( $block );
+                    }
                     self::$blocksList[$block['type']][] = $block_name;
                 }
             }

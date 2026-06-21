@@ -164,6 +164,23 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.4.4',
+                'date'    => '2026-06-21',
+                'changes' => [
+                    'New Features' => [
+                        'Express Checkout Button Widget for Elementor (Pro)',
+                        'Express Checkout Button Gutenberg Block. (Pro)',
+                        'Muti-Bar render issue. (Pro)'
+                    ],
+                    'Fixes' => [
+                        'Minor Issues.',
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
                 'version' => '3.4.3',
                 'date'    => '2026-06-15',
                 'changes' => [

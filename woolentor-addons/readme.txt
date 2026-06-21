@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, aslamhasib
 Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenberg blocks
 Requires at least: 4.7
 Tested up to: 7.0
-Stable tag: 3.4.3
+Stable tag: 3.4.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -461,6 +461,10 @@ Check out our other powerful WordPress plugins:
 **[JustTables](https://hasthemes.com/wp/justtables/?utm_source=org&utm_medium=readme)** - WordPress table builder
 
 == Changelog ==
+
+= Version: 3.4.4 - Date: 21-06-2026 =
+* Solved: Minor issues.
+* Compatibility: Latest WordPress and WooCommerce version.
 
 = Version: 3.4.3 - Date: 15-06-2026 =
 * Added: Free Shipping Bar Widget in Elementor.

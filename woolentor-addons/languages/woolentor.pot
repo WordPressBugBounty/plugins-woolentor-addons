@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: ShopLentor – All-in-One WooCommerce Growth & Store "
 "Enhancement Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-14 06:24+0000\n"
+"POT-Creation-Date: 2026-06-21 06:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -494,10 +494,10 @@ msgstr ""
 msgid "Additional Settings"
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:479
-#: settings-panel/includes/classes/Admin/Menu.php:557
-#: includes/admin-panel/includes/classes/Admin/Menu.php:479
-#: includes/admin-panel/includes/classes/Admin/Menu.php:557
+#: settings-panel/includes/classes/Admin/Menu.php:484
+#: settings-panel/includes/classes/Admin/Menu.php:562
+#: includes/admin-panel/includes/classes/Admin/Menu.php:484
+#: includes/admin-panel/includes/classes/Admin/Menu.php:562
 msgid "Address Autocomplete"
 msgstr ""
 
@@ -2139,10 +2139,10 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:189
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:189
-#: settings-panel/includes/classes/Admin/Menu.php:398
-#: settings-panel/includes/classes/Admin/Menu.php:486
-#: includes/admin-panel/includes/classes/Admin/Menu.php:398
-#: includes/admin-panel/includes/classes/Admin/Menu.php:486
+#: settings-panel/includes/classes/Admin/Menu.php:403
+#: settings-panel/includes/classes/Admin/Menu.php:491
+#: includes/admin-panel/includes/classes/Admin/Menu.php:403
+#: includes/admin-panel/includes/classes/Admin/Menu.php:491
 msgid "Checkout Fields Manager"
 msgstr ""
 
@@ -2680,6 +2680,16 @@ msgstr ""
 
 #: includes/modules/shopify-like-checkout/includes/templates/form-checkout.php:61
 msgid "Continue to shipping"
+msgstr ""
+
+#: settings-panel/includes/classes/Admin/Menu.php:392
+#: includes/admin-panel/includes/classes/Admin/Menu.php:392
+msgid "CookieRay"
+msgstr ""
+
+#: settings-panel/includes/classes/Admin/Menu.php:393
+#: includes/admin-panel/includes/classes/Admin/Menu.php:393
+msgid "CookieRay – Cookie Banner for Cookie Consent (GDPR/CCPA Compliant)"
 msgstr ""
 
 #: includes/modules/compare/includes/classes/Admin/Fields.php:330
@@ -3449,19 +3459,19 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:153
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:153
-#: settings-panel/includes/classes/Admin/Menu.php:441
-#: settings-panel/includes/classes/Admin/Menu.php:522
-#: includes/admin-panel/includes/classes/Admin/Menu.php:441
-#: includes/admin-panel/includes/classes/Admin/Menu.php:522
+#: settings-panel/includes/classes/Admin/Menu.php:446
+#: settings-panel/includes/classes/Admin/Menu.php:527
+#: includes/admin-panel/includes/classes/Admin/Menu.php:446
+#: includes/admin-panel/includes/classes/Admin/Menu.php:527
 msgid "Email Automation"
 msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:149
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:149
-#: settings-panel/includes/classes/Admin/Menu.php:435
-#: settings-panel/includes/classes/Admin/Menu.php:517
-#: includes/admin-panel/includes/classes/Admin/Menu.php:435
-#: includes/admin-panel/includes/classes/Admin/Menu.php:517
+#: settings-panel/includes/classes/Admin/Menu.php:440
+#: settings-panel/includes/classes/Admin/Menu.php:522
+#: includes/admin-panel/includes/classes/Admin/Menu.php:440
+#: includes/admin-panel/includes/classes/Admin/Menu.php:522
 msgid "Email Customizer"
 msgstr ""
 
@@ -3887,8 +3897,8 @@ msgstr ""
 msgid "Explore the all features of ShopLentor Pro"
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:651
-#: includes/admin-panel/includes/classes/Admin/Menu.php:651
+#: settings-panel/includes/classes/Admin/Menu.php:656
+#: includes/admin-panel/includes/classes/Admin/Menu.php:656
 msgid "Extension"
 msgstr ""
 
@@ -4423,10 +4433,10 @@ msgstr ""
 msgid "GTM Conversion Tracking"
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:429
-#: settings-panel/includes/classes/Admin/Menu.php:512
-#: includes/admin-panel/includes/classes/Admin/Menu.php:429
-#: includes/admin-panel/includes/classes/Admin/Menu.php:512
+#: settings-panel/includes/classes/Admin/Menu.php:434
+#: settings-panel/includes/classes/Admin/Menu.php:517
+#: includes/admin-panel/includes/classes/Admin/Menu.php:434
+#: includes/admin-panel/includes/classes/Admin/Menu.php:517
 msgid "GTM Tracking"
 msgstr ""
 
@@ -5971,10 +5981,10 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:177
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:177
-#: settings-panel/includes/classes/Admin/Menu.php:474
-#: settings-panel/includes/classes/Admin/Menu.php:552
-#: includes/admin-panel/includes/classes/Admin/Menu.php:474
-#: includes/admin-panel/includes/classes/Admin/Menu.php:552
+#: settings-panel/includes/classes/Admin/Menu.php:479
+#: settings-panel/includes/classes/Admin/Menu.php:557
+#: includes/admin-panel/includes/classes/Admin/Menu.php:479
+#: includes/admin-panel/includes/classes/Admin/Menu.php:557
 msgid "Multi Step Checkout"
 msgstr ""
 
@@ -6577,10 +6587,10 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:141
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:141
-#: settings-panel/includes/classes/Admin/Menu.php:422
-#: settings-panel/includes/classes/Admin/Menu.php:506
-#: includes/admin-panel/includes/classes/Admin/Menu.php:422
-#: includes/admin-panel/includes/classes/Admin/Menu.php:506
+#: settings-panel/includes/classes/Admin/Menu.php:427
+#: settings-panel/includes/classes/Admin/Menu.php:511
+#: includes/admin-panel/includes/classes/Admin/Menu.php:427
+#: includes/admin-panel/includes/classes/Admin/Menu.php:511
 msgid "Order Bump"
 msgstr ""
 
@@ -6800,10 +6810,10 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:157
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:157
-#: settings-panel/includes/classes/Admin/Menu.php:404
-#: settings-panel/includes/classes/Admin/Menu.php:491
-#: includes/admin-panel/includes/classes/Admin/Menu.php:404
-#: includes/admin-panel/includes/classes/Admin/Menu.php:491
+#: settings-panel/includes/classes/Admin/Menu.php:409
+#: settings-panel/includes/classes/Admin/Menu.php:496
+#: includes/admin-panel/includes/classes/Admin/Menu.php:409
+#: includes/admin-panel/includes/classes/Admin/Menu.php:496
 msgid "Partial Payment"
 msgstr ""
 
@@ -7054,10 +7064,10 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:161
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:161
-#: settings-panel/includes/classes/Admin/Menu.php:410
-#: settings-panel/includes/classes/Admin/Menu.php:496
-#: includes/admin-panel/includes/classes/Admin/Menu.php:410
-#: includes/admin-panel/includes/classes/Admin/Menu.php:496
+#: settings-panel/includes/classes/Admin/Menu.php:415
+#: settings-panel/includes/classes/Admin/Menu.php:501
+#: includes/admin-panel/includes/classes/Admin/Menu.php:415
+#: includes/admin-panel/includes/classes/Admin/Menu.php:501
 msgid "Pre Orders"
 msgstr ""
 
@@ -7308,10 +7318,10 @@ msgstr ""
 #: woolentor-blocks/includes/classes/Blocks_List.php:336
 #: settings-panel/includes/templates/dashboard-freevspro.php:145
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:145
-#: settings-panel/includes/classes/Admin/Menu.php:447
-#: settings-panel/includes/classes/Admin/Menu.php:527
-#: includes/admin-panel/includes/classes/Admin/Menu.php:447
-#: includes/admin-panel/includes/classes/Admin/Menu.php:527
+#: settings-panel/includes/classes/Admin/Menu.php:452
+#: settings-panel/includes/classes/Admin/Menu.php:532
+#: includes/admin-panel/includes/classes/Admin/Menu.php:452
+#: includes/admin-panel/includes/classes/Admin/Menu.php:532
 msgid "Product Filter"
 msgstr ""
 
@@ -7523,10 +7533,10 @@ msgstr ""
 msgid "Product sticky Add to cart"
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:458
-#: settings-panel/includes/classes/Admin/Menu.php:537
-#: includes/admin-panel/includes/classes/Admin/Menu.php:458
-#: includes/admin-panel/includes/classes/Admin/Menu.php:537
+#: settings-panel/includes/classes/Admin/Menu.php:463
+#: settings-panel/includes/classes/Admin/Menu.php:542
+#: includes/admin-panel/includes/classes/Admin/Menu.php:463
+#: includes/admin-panel/includes/classes/Admin/Menu.php:542
 msgid "Product Sticky Cart"
 msgstr ""
 
@@ -7717,10 +7727,10 @@ msgstr ""
 msgid "Quick Action Button"
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:468
-#: settings-panel/includes/classes/Admin/Menu.php:547
-#: includes/admin-panel/includes/classes/Admin/Menu.php:468
-#: includes/admin-panel/includes/classes/Admin/Menu.php:547
+#: settings-panel/includes/classes/Admin/Menu.php:473
+#: settings-panel/includes/classes/Admin/Menu.php:552
+#: includes/admin-panel/includes/classes/Admin/Menu.php:473
+#: includes/admin-panel/includes/classes/Admin/Menu.php:552
 msgid "Quick Checkout"
 msgstr ""
 
@@ -7909,10 +7919,10 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:173
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:173
-#: settings-panel/includes/classes/Admin/Menu.php:463
-#: settings-panel/includes/classes/Admin/Menu.php:542
-#: includes/admin-panel/includes/classes/Admin/Menu.php:463
-#: includes/admin-panel/includes/classes/Admin/Menu.php:542
+#: settings-panel/includes/classes/Admin/Menu.php:468
+#: settings-panel/includes/classes/Admin/Menu.php:547
+#: includes/admin-panel/includes/classes/Admin/Menu.php:468
+#: includes/admin-panel/includes/classes/Admin/Menu.php:547
 msgid "Redirect to Checkout"
 msgstr ""
 
@@ -9334,10 +9344,10 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:169
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:169
-#: settings-panel/includes/classes/Admin/Menu.php:453
-#: settings-panel/includes/classes/Admin/Menu.php:532
-#: includes/admin-panel/includes/classes/Admin/Menu.php:453
-#: includes/admin-panel/includes/classes/Admin/Menu.php:532
+#: settings-panel/includes/classes/Admin/Menu.php:458
+#: settings-panel/includes/classes/Admin/Menu.php:537
+#: includes/admin-panel/includes/classes/Admin/Menu.php:458
+#: includes/admin-panel/includes/classes/Admin/Menu.php:537
 msgid "Side Mini Cart"
 msgstr ""
 
@@ -9412,10 +9422,10 @@ msgstr ""
 msgid "Size"
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:416
-#: settings-panel/includes/classes/Admin/Menu.php:501
-#: includes/admin-panel/includes/classes/Admin/Menu.php:416
-#: includes/admin-panel/includes/classes/Admin/Menu.php:501
+#: settings-panel/includes/classes/Admin/Menu.php:421
+#: settings-panel/includes/classes/Admin/Menu.php:506
+#: includes/admin-panel/includes/classes/Admin/Menu.php:421
+#: includes/admin-panel/includes/classes/Admin/Menu.php:506
 msgid "Size Chart"
 msgstr ""
 
@@ -10207,8 +10217,8 @@ msgstr ""
 
 #: settings-panel/includes/templates/dashboard-freevspro.php:43
 #: includes/admin-panel/includes/templates/dashboard-freevspro.php:43
-#: settings-panel/includes/classes/Admin/Menu.php:638
-#: includes/admin-panel/includes/classes/Admin/Menu.php:638
+#: settings-panel/includes/classes/Admin/Menu.php:643
+#: includes/admin-panel/includes/classes/Admin/Menu.php:643
 msgid "Template Library"
 msgstr ""
 
@@ -11025,10 +11035,10 @@ msgstr ""
 msgid "Upgrade to Premium Version"
 msgstr ""
 
-#: settings-panel/includes/classes/Admin/Menu.php:662
-#: settings-panel/includes/classes/Admin/Menu.php:663
-#: includes/admin-panel/includes/classes/Admin/Menu.php:662
-#: includes/admin-panel/includes/classes/Admin/Menu.php:663
+#: settings-panel/includes/classes/Admin/Menu.php:667
+#: settings-panel/includes/classes/Admin/Menu.php:668
+#: includes/admin-panel/includes/classes/Admin/Menu.php:667
+#: includes/admin-panel/includes/classes/Admin/Menu.php:668
 msgid "Upgrade to Pro"
 msgstr ""
 
