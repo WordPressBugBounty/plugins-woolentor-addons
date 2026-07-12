@@ -22,7 +22,6 @@ class Ajax_Actions{
 
         // Save popup data.
         add_action( 'wp_ajax_wlpb_save_popup_settings', array( $this, 'save_popup_settings' ) );
-        // add_action( 'wp_ajax_nopriv_wlpb_save_popup_settings', array( $this, 'save_popup_settings' ) );
 
         // Render popup modal for list page.
         add_action( 'wp_ajax_wlpb_render_popup_modal', array( $this, 'render_popup_modal' ) );
@@ -72,7 +71,11 @@ class Ajax_Actions{
         if( !isset($post_data['popup_id']) ){
             return;
         }
-        $popup_id    = sanitize_text_field($post_data['popup_id']);
+        $popup_id    = absint($post_data['popup_id']);
+
+        if( !$popup_id || 'woolentor-template' !== get_post_type( $popup_id ) || !current_user_can( 'edit_post', $popup_id ) ){
+            wp_send_json_error();
+        }
 
         // Remove these elements form $post_data array, because these are not popup settings.
         unset($post_data['action']);
@@ -122,7 +125,7 @@ class Ajax_Actions{
         check_ajax_referer( 'wlpb_nonce', 'nonce' );
 
         $popup_id = isset( $_POST['popup_id'] ) ? intval( $_POST['popup_id'] ) : 0;
-        if( !$popup_id ){
+        if( !$popup_id || 'woolentor-template' !== get_post_type( $popup_id ) || !current_user_can( 'edit_post', $popup_id ) ){
             wp_send_json_error();
         }
 

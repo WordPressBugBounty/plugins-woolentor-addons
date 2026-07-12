@@ -326,6 +326,13 @@ class Widgets_Control{
                     'title'    => esc_html__('Product Grid - Magazine','woolentor'),
                     'is_pro'   => false,
                     'location' => ($is_pro ? WOOLENTOR_ADDONS_PL_PATH_PRO : WOOLENTOR_ADDONS_PL_PATH) . 'includes/addons/product-grid/'
+                ],
+
+                // Pack Widgets — Home Page Sections
+                'hero_banner' => [
+                    'title'    => esc_html__('Hero Banner - 2026','woolentor'),
+                    'is_pro'   => false,
+                    'location' => ( $is_pro ? WOOLENTOR_ADDONS_PL_PATH_PRO : WOOLENTOR_ADDONS_PL_PATH ) . 'includes/addons/pack-widgets/elementor/hero-banner/',
                 ]
 
             ],

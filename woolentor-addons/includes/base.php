@@ -124,6 +124,9 @@ final class Base {
         // Manage Page Action
         \WooLentor_Page_Action::instance()->init();
 
+        // Style Pack Manager
+        Style_Pack_Manager::instance();
+
     }
 
     /**
@@ -522,6 +525,9 @@ final class Base {
 
         // Modules Manager
         require_once( WOOLENTOR_ADDONS_PL_PATH. 'includes/modules/class.module-manager.php' );
+
+        // Style Pack Manager
+        require_once( WOOLENTOR_ADDONS_PL_PATH . 'includes/addons/pack-widgets/class.style-pack-manager.php' );
 
 
     }

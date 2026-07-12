@@ -108,27 +108,113 @@ function woolentor_build_page_content( $page_id ){
  * @param [type] $option
  * @param array $condition
  * @return void
+ * Backward-compatible alias — delegates to woolentor_upgrade_pro_notice() in alert mode.
+ *
+ * @deprecated Use woolentor_upgrade_pro_notice() with $args['mode'] = 'alert' instead.
  */
 function woolentor_upgrade_pro_notice_elementor( $widget, $controls_manager, $widget_name, $option, $condition = [] ) {
-
-    $url = 'https://woolentor.com/pricing/?utm_source=elementor-widget-panel&utm_medium='. $widget_name;
-
-    $control_args = [
-        'raw' => 'This option is available<br> in the <strong><a href="'. esc_url($url) .'" target="_blank" style="color: #93003c;">Pro version</a></strong>.',
-        'type' => $controls_manager,
-        'content_classes' => 'woolentor-pro-notice elementor-panel-alert elementor-panel-alert-info'
-    ];
+    $args['mode'] = 'alert';
+    $control_id = $option .'_pro_notice';
+    $pre_condition = [];
 
     if( !empty($condition) ){
-        $control_args['condition'] = [
+        $pre_condition = [
             $option => $condition,
         ];
     }
+    
+    woolentor_upgrade_pro_notice( $widget, $control_id, $pre_condition, $args );
+}
 
-    $widget->add_control(
-        $option .'_pro_notice',
-        $control_args
-    );
+/**
+ * Add a pro-gating notice control inside an Elementor widget panel.
+ * Reusable across any widget — supports simple AND conditions and complex nested OR/AND conditions.
+ *
+ * Three display modes via $args['mode']:
+ *   'visual' (default) — centred lock icon + heading + description + "Upgrade to Pro" button.
+ *   'compact' — inline purple "🔒 PRO ONLY" badge + short description, no button.
+ *   Also triggered by $args['compact'] => true for backward compat.
+ *   'alert' — Elementor's built-in info alert style ("This option is available in Pro").
+ *
+ * Condition auto-detection:
+ *   Simple flat array → uses Elementor 'condition' key (AND logic).
+ *   Array with 'relation'/'terms' → uses Elementor 'conditions' key (OR/AND nested logic).
+ *
+ * @param \Elementor\Widget_Base $widget      Widget instance ($this inside a widget).
+ * @param string                 $control_id  Unique RAW_HTML control key for this notice.
+ * @param array                  $condition   Elementor condition — flat or nested.
+ * @param array                  $args        Options: mode, title, message, url, compact.
+ */
+function woolentor_upgrade_pro_notice( $widget, $control_id, $condition = [], $args = [] ) {
+    $widget_name = $widget->get_name();
+    $url = ! empty( $args['url'] )
+        ? $args['url']
+        : 'https://woolentor.com/pricing/?utm_source=elementor-widget-panel&utm_medium=' . $widget_name;
+
+    // Resolve display mode — 'compact' => true is kept for backward compat.
+    $mode = ! empty( $args['mode'] ) ? $args['mode'] : 'visual';
+    if ( 'visual' === $mode && ! empty( $args['compact'] ) ) {
+        $mode = 'compact';
+    }
+
+    switch ( $mode ) {
+
+        case 'compact':
+            $message = ! empty( $args['message'] )
+                ? $args['message']
+                : __( 'These settings apply to this variant in ShopLentor Pro. You can configure them here and they will be ready once you upgrade.', 'woolentor' );
+            $html = '<div style="padding:10px 0 6px;">'
+                . '<span style="display:inline-block;background:#6547f5;color:#fff;font-size:10px;'
+                . 'font-weight:700;padding:2px 8px;border-radius:2px;margin-bottom:6px;letter-spacing:.5px;">'
+                . '&#x1F512; PRO ONLY</span>'
+                . '<p style="font-size:11px;color:#888;margin:0;line-height:1.5;">' . esc_html( $message ) . '</p>'
+                . '</div>';
+            $control_args = [
+                'type' => \Elementor\Controls_Manager::RAW_HTML,
+                'raw'  => $html,
+            ];
+            break;
+
+        case 'alert':
+            $message = ! empty( $args['message'] )
+                ? $args['message']
+                : 'This option is available<br> in the <strong><a href="' . esc_url( $url ) . '" target="_blank" style="color:#93003c;">Pro version</a></strong>.';
+            $control_args = [
+                'type' => \Elementor\Controls_Manager::RAW_HTML,
+                'raw' => $message,
+                'content_classes' => 'woolentor-pro-notice elementor-panel-alert elementor-panel-alert-info',
+            ];
+            break;
+
+        default: // 'visual'
+            $title   = ! empty( $args['title'] ) ? $args['title'] : __( 'Pro Variant', 'woolentor' );
+            $message = ! empty( $args['message'] )
+                ? $args['message']
+                : __( 'This is a Pro variant. In the Elementor editor you can preview its design. Upgrade to ShopLentor Pro to fully customize and publish it on your live site.', 'woolentor' );
+            $html = '<div style="padding:16px 0;text-align:center;">'
+                . '<div style="font-size:28px;margin-bottom:8px;">&#x1F512;</div>'
+                . '<div style="font-weight:700;font-size:13px;margin-bottom:6px;">' . esc_html( $title ) . '</div>'
+                . '<p style="font-size:11px;color:#888;margin-bottom:14px;line-height:1.5;">' . esc_html( $message ) . '</p>'
+                . '<a href="' . esc_url( $url ) . '" target="_blank" rel="noopener noreferrer" '
+                . 'style="display:inline-block;background:#6547f5;color:#fff;padding:7px 16px;'
+                . 'border-radius:3px;font-size:11px;font-weight:600;text-decoration:none;">'
+                . esc_html__( 'Upgrade to Pro', 'woolentor' )
+                . '</a>'
+                . '</div>';
+            $control_args = [
+                'type' => \Elementor\Controls_Manager::RAW_HTML,
+                'raw'  => $html,
+            ];
+            break;
+    }
+
+    if ( ! empty( $condition ) ) {
+        // Nested OR/AND structure → 'conditions' (plural); simple flat array → 'condition'.
+        $key = isset( $condition['relation'] ) || isset( $condition['terms'] ) ? 'conditions' : 'condition';
+        $control_args[ $key ] = $condition;
+    }
+
+    $widget->add_control( $control_id, $control_args );
 }
 
 /**

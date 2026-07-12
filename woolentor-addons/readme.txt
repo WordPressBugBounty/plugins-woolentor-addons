@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, aslamhasib
 Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenberg blocks
 Requires at least: 4.7
 Tested up to: 7.0
-Stable tag: 3.4.4
+Stable tag: 3.4.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -461,6 +461,13 @@ Check out our other powerful WordPress plugins:
 **[JustTables](https://hasthemes.com/wp/justtables/?utm_source=org&utm_medium=readme)** - WordPress table builder
 
 == Changelog ==
+
+= Version: 3.4.5 - Date: 12-07-2026 =
+* Added: Hero Banner Widget in Elementor (6 Variations).
+* Solved: Popup Builder settings saving issue.
+* Solved: Variation Swatches specific product configure saving issues.
+* Solved: Add to cart elementor widget throw error in few environments.
+* Compatibility: Latest WordPress and WooCommerce version.
 
 = Version: 3.4.4 - Date: 21-06-2026 =
 * Solved: Minor issues.

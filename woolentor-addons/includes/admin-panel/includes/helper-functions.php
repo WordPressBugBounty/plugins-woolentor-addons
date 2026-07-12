@@ -45,12 +45,12 @@ function woolentor_opt_get_option( $key, $section, $default = false ){
  */
 function woolentor_opt_get_template_id( $template_key, $section, $default = false, $callback = false ){
 
-    $language_code = \WooLentor\MultiLanguage\Languages::$language_code;
+    $language_code = (string) \WooLentor\MultiLanguage\Languages::$language_code;
 
     $option_value = ( $callback && is_callable( $callback ) ) ? $callback( $template_key, $section, '0' ) : woolentor_get_option( $template_key, $section, '0' );
     $option_value = maybe_unserialize( $option_value );
     $template_id = $default;
-    if( is_array( $option_value ) && array_key_exists( $language_code, $option_value['lang'] ) ){
+    if( is_array( $option_value ) && isset( $option_value['lang'] ) && is_array( $option_value['lang'] ) && array_key_exists( $language_code, $option_value['lang'] ) ){
         $template_id = ( $option_value['lang'][$language_code]['template_id'] != '0' ) ? $option_value['lang'][$language_code]['template_id'] : $option_value['lang']['en']['template_id'];
     }else{
         if( is_array( $option_value ) ){

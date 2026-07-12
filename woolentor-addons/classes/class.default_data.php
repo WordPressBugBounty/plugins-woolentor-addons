@@ -33,6 +33,7 @@ class WooLentor_Default_Data{
     function __construct(){
         add_action( 'init', [ $this, 'init'] );
         add_action('elementor/element/before_section_start', [$this, 'theme_hook_reactive'], 10, 2);
+        add_action( 'woocommerce_single_variation', [ $this, 'ensure_preview_product_for_variation' ], 1 );
     }
 
     /**
@@ -136,6 +137,18 @@ class WooLentor_Default_Data{
 		return empty( $product ) ? null : $product;
 
 	}
+
+    /**
+     * Ensure a preview product exists before WooCommerce renders variation controls.
+     *
+     * @return void
+     */
+    public function ensure_preview_product_for_variation() {
+        global $product;
+        if ( empty( $product ) && ! empty( self::$product_id ) ) {
+            $product = wc_get_product( self::$product_id );
+        }
+    }
 
     /**
      * [theme_hook_reactive]

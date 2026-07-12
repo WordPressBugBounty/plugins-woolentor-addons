@@ -36,6 +36,12 @@ class Woolentor_Manage_WC_Template{
         // Prevent 404 on paginated shop/archive pages when custom template is active
         add_filter( 'pre_handle_404', [ $this, 'prevent_pagination_404' ], 10, 2 );
 
+        // Ensure Elementor atomic widget CSS is generated for WooLentor templates
+        add_action( 'template_redirect', [ $this, 'enqueue_atomic_styles_for_template' ] );
+
+        // Clear atomic CSS cache when a woolentor-template is saved in Elementor editor
+        add_action( 'save_post', [ $this, 'clear_atomic_css_cache_on_template_save' ] );
+
     }
 
     /**
@@ -402,6 +408,38 @@ class Woolentor_Manage_WC_Template{
     }
 
     /**
+     * Detect the active WooLentor free template for the current WooCommerce page.
+     * Returns [ 'id' => int, 'part' => string ] or [ 'id' => 0, 'part' => '' ].
+     * Single source of truth used by both change_page_template() and enqueue_atomic_styles_for_template().
+     */
+    private function get_active_template() {
+        $id   = 0;
+        $part = '';
+
+        if ( ! class_exists( 'WooCommerce' ) ) {
+            return compact( 'id', 'part' );
+        }
+
+        if ( is_singular( 'product' ) ) {
+            if ( self::has_template( 'singleproductpage', '_selectproduct_layout' ) ) {
+                $single_id = self::get_template_id( 'singleproductpage', '_selectproduct_layout' );
+                if ( ! empty( $single_id ) ) {
+                    $id   = $single_id;
+                    $part = 'singleproduct';
+                }
+            }
+        } else {
+            $archive_id = $this->archive_template_id();
+            if ( ! empty( $archive_id ) ) {
+                $id   = $archive_id;
+                $part = 'shop';
+            }
+        }
+
+        return compact( 'id', 'part' );
+    }
+
+    /**
      * Template Change
      *
      * @param [type] $template
@@ -409,28 +447,9 @@ class Woolentor_Manage_WC_Template{
      */
     public function change_page_template( $template ){
 
-        $template_part = '';
-        $template_id = 0;
-
-        if ( class_exists( 'WooCommerce' ) ) {
-
-            if ( is_singular( 'product' ) ) {
-                if ( self::has_template( 'singleproductpage', '_selectproduct_layout' ) ) {
-                    $single_product_page_id = self::get_template_id( 'singleproductpage', '_selectproduct_layout' );
-                    if( !empty( $single_product_page_id ) ) {
-                        $template_id = $single_product_page_id;
-                        $template_part = 'singleproduct';
-                    }
-                }
-            }else{
-                $archive_template_id = $this->archive_template_id();
-                if( !empty( $archive_template_id )){
-                    $template_id = $archive_template_id;
-                    $template_part = 'shop';
-                }
-            }
-
-        }
+        $active        = $this->get_active_template();
+        $template_id   = $active['id'];
+        $template_part = $active['part'];
 
         if( !empty( $template_id ) ){
             $template_path = $this->get_page_template_path( $template_part, $template_id );
@@ -456,6 +475,46 @@ class Woolentor_Manage_WC_Template{
             }
             return false;
         }
+    }
+
+    /**
+     * Trigger Elementor's atomic CSS pipeline for the active free WooLentor template.
+     * Reuses get_active_template() so the page-type conditions stay in one place.
+     */
+    public function enqueue_atomic_styles_for_template() {
+        if ( ! class_exists( '\Elementor\Plugin' ) ) {
+            return;
+        }
+
+        $template_id = (int) $this->get_active_template()['id'];
+        if ( ! $template_id ) {
+            return;
+        }
+
+        add_action( 'wp_enqueue_scripts', function() use ( $template_id ) {
+            do_action( 'elementor/post/render', $template_id );
+            \Elementor\Plugin::instance()->frontend->enqueue_styles();
+        }, 15 );
+    }
+
+    /**
+     * Clear Elementor's atomic CSS cache for a woolentor-template post when it is saved
+     * in the Elementor editor. Without this, css-files-manager skips regeneration if the
+     * cache-validity option says "valid" but the CSS file does not exist on disk yet
+     * (the dead-trap scenario on a site that just received the pipeline fix above).
+     */
+    public function clear_atomic_css_cache_on_template_save( $post_id ) {
+        if ( ! class_exists( '\Elementor\Plugin' ) ) {
+            return;
+        }
+
+        if ( get_post_type( $post_id ) !== 'woolentor-template' ) {
+            return;
+        }
+
+        // Invalidate the atomic cache for this post so the next frontend request
+        // unconditionally calls $get_css() and writes the CSS file to disk.
+        do_action( 'elementor/atomic-widgets/styles/clear', [ 'local', $post_id ] );
     }
 
     // Get Template width

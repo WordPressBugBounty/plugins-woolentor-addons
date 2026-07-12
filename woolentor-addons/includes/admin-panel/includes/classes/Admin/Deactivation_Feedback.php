@@ -48,7 +48,7 @@ class Deactivation_Feedback {
             return;
         }
         
-        if(!current_user_can( 'administrator' )) {
+        if(!current_user_can( 'activate_plugins' )) {
             wp_send_json_error('Permission denied');
             return;
         }

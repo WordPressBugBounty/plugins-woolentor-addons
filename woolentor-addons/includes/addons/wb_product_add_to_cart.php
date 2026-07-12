@@ -1309,7 +1309,10 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
         $id = $this->get_id();
 
         if( Plugin::instance()->editor->is_edit_mode() ){
-            $product = wc_get_product( woolentor_get_last_product_id() );
+            global $product;
+            if ( empty( $product ) && ! empty( woolentor_get_last_product_id() ) ) {
+                $product = wc_get_product( woolentor_get_last_product_id() );
+            }
         }else{
             global $product;
         }

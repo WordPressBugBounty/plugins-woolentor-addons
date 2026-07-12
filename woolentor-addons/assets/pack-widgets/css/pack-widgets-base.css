@@ -1,0 +1,238 @@
+/**
+ * Pack Widgets — Base Stylesheet
+ *
+ * Contains:
+ *  1. Design tokens (CSS custom properties) scoped per [data-wl-pack="{slug}"]
+ *  2. Common component styles shared by all pack widgets (slider nav, dots…)
+ *
+ * @package WooLentor
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Common — Slider navigation (arrows + dots)
+   Used by any pack widget that activates WLPackSlider in pack-widgets.js.
+   Arrow/dot elements are injected by JS with classes .wl-pack-nav / .wl-pack-dots.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-wl-pack] .wl-pack-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #111;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+[data-wl-pack] .wl-pack-nav:hover {
+    background: var(--wl-pack-primary);
+    color: #fff;
+    border-color: var(--wl-pack-primary);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-50%) scale(1.06);
+}
+
+[data-wl-pack] .wl-pack-nav-prev { left: 16px; }
+[data-wl-pack] .wl-pack-nav-next { right: 16px; }
+[data-wl-pack] .wl-pack-nav svg  { display: block; flex-shrink: 0; }
+
+[data-wl-pack] .wl-pack-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex !important;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+[data-wl-pack] .wl-pack-dots li button {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.45);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 0;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+[data-wl-pack] .wl-pack-dots li.slick-active button {
+    background: #fff;
+    transform: scale(1.3);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Modern — Clean white base · Electric blue accent · Sora + Inter
+   ═══════════════════════════════════════════════════════════════════════════ */
+[data-wl-pack="modern"] {
+    /* Colors */
+    --wl-pack-primary:        #2563EB;
+    --wl-pack-secondary:      #080A0F;
+    --wl-pack-accent:         #22D3EE;
+    --wl-pack-bg:             #FFFFFF;
+    --wl-pack-bg-alt:         #F5F7FA;
+    --wl-pack-text:           #080A0F;
+    --wl-pack-text-muted:     #6B7280;
+    --wl-pack-border:         #E5E7EB;
+
+    /* Typography */
+    --wl-pack-font-heading:   'Sora', sans-serif;
+    --wl-pack-font-body:      'Inter', sans-serif;
+    --wl-pack-text-xs:        11px;
+    --wl-pack-text-sm:        13px;
+    --wl-pack-text-base:      16px;
+    --wl-pack-text-lg:        18px;
+    --wl-pack-text-xl:        24px;
+    --wl-pack-text-2xl:       36px;
+    --wl-pack-text-hero:      68px;
+
+    /* Spacing */
+    --wl-pack-space-section:  96px;
+    --wl-pack-space-gap:      24px;
+
+    /* Shape */
+    --wl-pack-radius:         10px;
+    --wl-pack-radius-card:    20px;
+
+    /* Buttons */
+    --wl-pack-btn-bg:         #2563EB;
+    --wl-pack-btn-text:       #FFFFFF;
+    --wl-pack-btn-radius:     14px;
+    --wl-pack-btn-border:     transparent;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Luxury — Dark obsidian base · Gold accents · Sora typography
+   ═══════════════════════════════════════════════════════════════════════════ */
+[data-wl-pack="luxury"] {
+    /* Colors */
+    --wl-pack-primary:        #C9A86A;
+    --wl-pack-secondary:      #07080C;
+    --wl-pack-accent:         #B8966A;
+    --wl-pack-bg:             #F8F6F1;
+    --wl-pack-bg-alt:         #07080C;
+    --wl-pack-text:           #171717;
+    --wl-pack-text-muted:     #8B8175;
+    --wl-pack-border:         #E7E2D9;
+
+    /* Typography */
+    --wl-pack-font-heading:   'Sora', sans-serif;
+    --wl-pack-font-body:      'Inter', sans-serif;
+    --wl-pack-text-xs:        11px;
+    --wl-pack-text-sm:        13px;
+    --wl-pack-text-base:      16px;
+    --wl-pack-text-lg:        18px;
+    --wl-pack-text-xl:        24px;
+    --wl-pack-text-2xl:       36px;
+    --wl-pack-text-hero:      72px;
+
+    /* Spacing */
+    --wl-pack-space-section:  120px;
+    --wl-pack-space-gap:      32px;
+
+    /* Shape */
+    --wl-pack-radius:         16px;
+    --wl-pack-radius-card:    24px;
+
+    /* Buttons */
+    --wl-pack-btn-bg:         #07080C;
+    --wl-pack-btn-text:       #FFFFFF;
+    --wl-pack-btn-radius:     999px;
+    --wl-pack-btn-border:     transparent;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Editorial — Warm cream base · Clay/terracotta accents · Newsreader serif
+   ═══════════════════════════════════════════════════════════════════════════ */
+[data-wl-pack="editorial"] {
+    /* Colors */
+    --wl-pack-primary:        #9A6B4F;
+    --wl-pack-secondary:      #111111;
+    --wl-pack-accent:         #7A523B;
+    --wl-pack-bg:             #F7F2EA;
+    --wl-pack-bg-alt:         #FFFCF7;
+    --wl-pack-text:           #111111;
+    --wl-pack-text-muted:     #6F6A64;
+    --wl-pack-border:         #E7D8C5;
+
+    /* Typography */
+    --wl-pack-font-heading:   'Newsreader', 'Times New Roman', Georgia, serif;
+    --wl-pack-font-body:      'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --wl-pack-text-xs:        11px;
+    --wl-pack-text-sm:        13px;
+    --wl-pack-text-base:      16px;
+    --wl-pack-text-lg:        18px;
+    --wl-pack-text-xl:        24px;
+    --wl-pack-text-2xl:       40px;
+    --wl-pack-text-hero:      80px;
+
+    /* Spacing */
+    --wl-pack-space-section:  100px;
+    --wl-pack-space-gap:      24px;
+
+    /* Shape */
+    --wl-pack-radius:         4px;
+    --wl-pack-radius-card:    6px;
+
+    /* Buttons */
+    --wl-pack-btn-bg:         #111111;
+    --wl-pack-btn-text:       #FFFFFF;
+    --wl-pack-btn-radius:     4px;
+    --wl-pack-btn-border:     transparent;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Magazine — White base · Signal red accent · Barlow Condensed bold type
+   ═══════════════════════════════════════════════════════════════════════════ */
+[data-wl-pack="magazine"] {
+    /* Colors */
+    --wl-pack-primary:        #EF233C;
+    --wl-pack-secondary:      #0F1115;
+    --wl-pack-accent:         #FFD60A;
+    --wl-pack-bg:             #FFFFFF;
+    --wl-pack-bg-alt:         #F8F9FB;
+    --wl-pack-text:           #050505;
+    --wl-pack-text-muted:     #667085;
+    --wl-pack-border:         #D9DEE7;
+
+    /* Typography */
+    --wl-pack-font-heading:   'Barlow Condensed', 'Arial Narrow', sans-serif;
+    --wl-pack-font-body:      'Inter', 'Helvetica Neue', Arial, sans-serif;
+    --wl-pack-text-xs:        11px;
+    --wl-pack-text-sm:        13px;
+    --wl-pack-text-base:      16px;
+    --wl-pack-text-lg:        18px;
+    --wl-pack-text-xl:        24px;
+    --wl-pack-text-2xl:       36px;
+    --wl-pack-text-hero:      80px;
+
+    /* Spacing */
+    --wl-pack-space-section:  80px;
+    --wl-pack-space-gap:      20px;
+
+    /* Shape */
+    --wl-pack-radius:         8px;
+    --wl-pack-radius-card:    12px;
+
+    /* Buttons */
+    --wl-pack-btn-bg:         #EF233C;
+    --wl-pack-btn-text:       #FFFFFF;
+    --wl-pack-btn-radius:     6px;
+    --wl-pack-btn-border:     transparent;
+}

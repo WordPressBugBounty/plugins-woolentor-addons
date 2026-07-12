@@ -118,6 +118,11 @@ class Ajax_Actions{
             ));
         }
 
+        // check current user privilege
+        if ( !current_user_can( 'edit_products' ) ) {
+            wp_die( -1 );
+        }
+
         $product_id = absint($_REQUEST['product_id']);
         $product    = wc_get_product($product_id);
         if ( $product && !$product->is_type('variable') ) {

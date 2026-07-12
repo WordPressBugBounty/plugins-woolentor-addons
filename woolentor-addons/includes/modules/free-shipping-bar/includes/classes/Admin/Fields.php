@@ -321,33 +321,6 @@ class Fields{
                                 'class'   => 'woolentor-action-field-left',
                             ],
 
-                            // Cart Drawer (Pro preview)
-                            [
-                                'id'      => 'cart_drawer_heading',
-                                'type'    => 'title',
-                                'heading' => esc_html__('Cart Drawer / Mini-Cart (Pro)', 'woolentor'),
-                                'size'    => 'woolentor_style_seperator',
-                            ],
-                            [
-                                'id'      => 'enable_cart_drawer',
-                                'name'    => esc_html__('Show Bar in Cart Drawer', 'woolentor'),
-                                'desc'    => esc_html__('Render a real-time mini progress bar inside slide-out cart drawers for Flatsome, Astra, OceanWP, and Storefront themes.', 'woolentor'),
-                                'type'    => 'checkbox',
-                                'default' => 'off',
-                                'is_pro'  => true,
-                                'class'   => 'woolentor-action-field-left',
-                            ],
-                            [
-                                'id'      => 'cart_drawer_theme',
-                                'name'    => esc_html__('Theme / Cart Drawer Hook', 'woolentor'),
-                                'desc'    => esc_html__('Select your active theme so the bar hooks into the correct cart drawer action.', 'woolentor'),
-                                'type'    => 'select',
-                                'default' => 'auto',
-                                'options' => ['auto' => esc_html__('Auto Detect', 'woolentor')],
-                                'is_pro'  => true,
-                                'class'   => 'woolentor-action-field-left',
-                            ],
-
                             // Countdown Timer (Pro preview)
                             [
                                 'id'      => 'countdown_heading',

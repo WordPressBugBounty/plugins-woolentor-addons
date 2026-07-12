@@ -164,6 +164,26 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.4.5',
+                'date'    => '2026-07-12',
+                'changes' => [
+                    'New Features' => [
+                        'Hero Banner Widget in Elementor (6 Variations)',
+                        'Hero Banner Widget in Elementor (12 Variations) (Pro)'
+                    ],
+                    'Fixes' => [
+                        'Popup Builder settings saving issue.',
+                        'Variation Swatches specific product configure saving issues.',
+                        'Add to cart elementor widget throw error in few environments.',
+                        'Email Automation task and template create issue. (Pro)',
+                        'Order Bump status change issue. (Pro)',
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
                 'version' => '3.4.4',
                 'date'    => '2026-06-21',
                 'changes' => [

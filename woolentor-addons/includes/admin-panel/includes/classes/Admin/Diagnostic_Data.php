@@ -168,6 +168,10 @@ class Diagnostic_Data {
             wp_send_json_error( $errormessage );
         }
 
+        if ( 'yes' !== $this->is_capable_user() ) {
+            wp_send_json_error( array( 'message' => __( 'Permission denied', 'woolentor' ) ) );
+        }
+
         $agreed = ( isset( $_POST['agreed'] ) ? sanitize_key( $_POST['agreed'] ) : 'no' );
         $agreed = ( ( 'yes' === $agreed ) ? 'yes' : 'no' );
 
