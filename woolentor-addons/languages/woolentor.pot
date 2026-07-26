@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: ShopLentor – All-in-One WooCommerce Growth & Store "
 "Enhancement Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 12:30+0000\n"
+"POT-Creation-Date: 2026-07-26 09:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.8.5; wp-7.0.1-RC1-62613; php-8.2.31\n"
+"X-Loco-Version: 2.8.7; wp-7.0.3-alpha-62793; php-8.2.32\n"
 "X-Domain: woolentor"
 
 #: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:131
@@ -66,14 +66,14 @@ msgid ""
 msgstr ""
 
 #. %d: number of carts deleted
-#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:514
+#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:524
 msgid "%d cart deleted successfully."
 msgid_plural "%d carts deleted successfully."
 msgstr[0] ""
 msgstr[1] ""
 
 #. %d: number of carts unsubscribed
-#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:553
+#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:563
 msgid "%d cart unsubscribed successfully."
 msgid_plural "%d carts unsubscribed successfully."
 msgstr[0] ""
@@ -264,7 +264,7 @@ msgstr ""
 msgid "Abandoned Cart"
 msgstr ""
 
-#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:314
+#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:324
 msgid "Abandoned cart not found."
 msgstr ""
 
@@ -364,7 +364,7 @@ msgstr ""
 
 #: includes/addons/wl_recently_viewed_products.php:606
 #: includes/addons/wb_wishsuite_table.php:347
-#: woolentor-blocks/includes/classes/Api/Api.php:258
+#: woolentor-blocks/includes/classes/Api/Api.php:262
 #: includes/modules/wishlist/includes/classes/Admin/Fields.php:281
 msgid "Add To Cart"
 msgstr ""
@@ -1954,7 +1954,7 @@ msgstr ""
 msgid "Cart Currency: "
 msgstr ""
 
-#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:465
+#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:475
 msgid "Cart deleted successfully."
 msgstr ""
 
@@ -3998,7 +3998,7 @@ msgstr ""
 msgid "Failed to create template"
 msgstr ""
 
-#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:470
+#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:480
 msgid "Failed to delete cart."
 msgstr ""
 
@@ -4434,7 +4434,7 @@ msgstr ""
 msgid "Guest"
 msgstr ""
 
-#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:275
+#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:285
 msgid "Guest User"
 msgstr ""
 
@@ -5199,7 +5199,7 @@ msgstr ""
 msgid "Installing.."
 msgstr ""
 
-#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:566
+#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:576
 msgid "Invalid bulk action."
 msgstr ""
 
@@ -5208,7 +5208,7 @@ msgstr ""
 msgid "Invalid callback function"
 msgstr ""
 
-#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:454
+#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:464
 msgid "Invalid cart ID."
 msgstr ""
 
@@ -6163,7 +6163,7 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:497
+#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:507
 msgid "No cart IDs provided."
 msgstr ""
 
@@ -6261,8 +6261,8 @@ msgid "Nonce Varification Faild !"
 msgstr ""
 
 #: classes/class.ajax_actions.php:365 classes/class.ajax_actions.php:401
-#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:197
-#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:228
+#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:207
+#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:238
 #: includes/modules/abandoned-cart/includes/classes/Api/Email_Template.php:103
 #: includes/modules/abandoned-cart/includes/classes/Api/Email_Template.php:134
 msgid "Nonce verification failed."
@@ -7885,7 +7885,7 @@ msgstr ""
 msgid "Recover Your Cart"
 msgstr ""
 
-#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:357
+#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:367
 msgid "Recovery email sent successfully."
 msgstr ""
 
@@ -8440,7 +8440,7 @@ msgstr ""
 msgid "Search Templates:"
 msgstr ""
 
-#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:603
+#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:613
 msgid "Search term is required."
 msgstr ""
 
@@ -11012,7 +11012,7 @@ msgid "Universal Product"
 msgstr ""
 
 #: includes/addons/product_flash_sale.php:53
-#: woolentor-blocks/includes/classes/Api/Api.php:485
+#: woolentor-blocks/includes/classes/Api/Api.php:501
 msgid "Unnamed Deal"
 msgstr ""
 
@@ -12334,8 +12334,8 @@ msgstr ""
 msgid "You do not have permissions to access this resource."
 msgstr ""
 
-#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:185
-#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:216
+#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:195
+#: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:226
 #: includes/modules/abandoned-cart/includes/classes/Api/Email_Template.php:91
 #: includes/modules/abandoned-cart/includes/classes/Api/Email_Template.php:122
 msgid "You do not have permissions to manage settings."

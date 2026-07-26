@@ -122,10 +122,12 @@ class Config {
     }
 
     /**
-     * Get order statuses
+     * Order statuses that should NOT be treated as a completed purchase.
+     * Any other status (on-hold, etc.) is considered a completed checkout
+     * for abandoned-cart purposes, since the customer has already placed the order.
      */
-    public static function get_order_statuses() {
-        return array( 'completed', 'processing' );
+    public static function get_excluded_order_statuses() {
+        return array( 'pending', 'failed', 'cancelled', 'trash', 'checkout-draft' );
     }
 
     /**

@@ -146,8 +146,12 @@ class Api
             [
                 'methods' => WP_REST_Server::READABLE,
                 'args' => [
-                    'optionSection' => [],
-                    'optionKey' => [],
+                    'optionSection' => [
+                        'sanitize_callback' => 'sanitize_key',
+                    ],
+                    'optionKey' => [
+                        'sanitize_callback' => 'sanitize_key',
+                    ],
                 ],
                 'callback' => [$this, 'get_options_data'],
                 'permission_callback' => [$this, 'permission_check'],
@@ -470,8 +474,20 @@ class Api
             return rest_ensure_response([]);
         }
 
-        $option_section = isset($request['optionSection']) ? $request['optionSection'] : '';
-        $option_key     = isset($request['optionKey']) ? $request['optionKey'] : '';
+        // Allow-list of WooLentor options this endpoint may expose, and the
+        // sub-keys within each option that are safe to return. Prevents the
+        // 'optionSection'/'optionKey' request params from being used to read
+        // arbitrary wp_options rows (IDOR).
+        $allowed_sections = [
+            'woolentor_flash_sale_settings' => [ 'deals' ],
+        ];
+
+        $option_section = isset($request['optionSection']) ? sanitize_key( $request['optionSection'] ) : '';
+        $option_key     = isset($request['optionKey']) ? sanitize_key( $request['optionKey'] ) : '';
+
+        if ( ! isset( $allowed_sections[ $option_section ] ) || ! in_array( $option_key, $allowed_sections[ $option_section ], true ) ) {
+            return rest_ensure_response([]);
+        }
 
         $getData = woolentorBlocks_get_option( $option_key, $option_section );
         $data = [];

@@ -57,6 +57,16 @@ class Cart_Data extends WP_REST_Controller {
                             'default' => 'all',
                             'sanitize_callback' => 'sanitize_text_field',
                         ),
+                        'orderby' => array(
+                            'default' => 'created_at',
+                            'sanitize_callback' => 'sanitize_key',
+                            'enum' => array( 'id', 'user_id', 'user_email', 'session_id', 'cart_total', 'created_at', 'modified_at', 'abandoned_at', 'recovered_at', 'status' ),
+                        ),
+                        'order' => array(
+                            'default' => 'DESC',
+                            'sanitize_callback' => 'sanitize_text_field',
+                            'enum' => array( 'ASC', 'DESC', 'asc', 'desc' ),
+                        ),
                     ),
                 ),
             )

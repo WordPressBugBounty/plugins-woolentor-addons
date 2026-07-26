@@ -164,6 +164,24 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.4.6',
+                'date'    => '2026-07-26',
+                'changes' => [
+                    'New Features' => [
+                        'Product Grid Editorial and Magazine Style Load More Button style option has been added. (Pro)',
+                        'Checkout Notices Elementor Widget for checkout notice show in any position. (Pro)'
+                    ],
+                    'Fixes' => [
+                        'Abandon cart data fetching issue.',
+                        'Option data fetching issue with the Flash-Sale countdown block.',
+                        'Abandonment cart module email sending and Analytics data showing issue.'
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
                 'version' => '3.4.5',
                 'date'    => '2026-07-12',
                 'changes' => [

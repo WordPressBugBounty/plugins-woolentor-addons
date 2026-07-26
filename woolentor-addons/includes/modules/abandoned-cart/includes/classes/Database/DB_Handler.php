@@ -75,11 +75,14 @@ class DB_Handler {
             $where_sql = "WHERE " . implode( ' AND ', $where_clauses );
         }
 
+        $orderby = $this->sanitize_orderby( $args['orderby'], array( 'id', 'user_id', 'user_email', 'session_id', 'cart_total', 'created_at', 'modified_at', 'abandoned_at', 'recovered_at', 'status' ), 'created_at' );
+        $order = $this->sanitize_order( $args['order'] );
+
         $prepare_values = array_merge($values, [$args['per_page'], $offset]);
         $query = $this->wpdb->prepare(
             "SELECT * FROM {$this->tables['carts']}
             {$where_sql}
-            ORDER BY {$args['orderby']} {$args['order']}
+            ORDER BY {$orderby} {$order}
             LIMIT %d OFFSET %d",
             ...$prepare_values
         );
@@ -95,6 +98,20 @@ class DB_Handler {
             "SELECT COUNT(*) FROM {$this->tables['carts']} WHERE status IN ('abandoned', 'recovered')",
         );
         return $this->wpdb->get_var( $query );
+    }
+
+    /**
+     * Whitelist an ORDER BY column against known-good column names.
+     */
+    private function sanitize_orderby( $orderby, array $allowed_columns, $default ) {
+        return in_array( $orderby, $allowed_columns, true ) ? $orderby : $default;
+    }
+
+    /**
+     * Whitelist an ORDER BY direction to ASC or DESC.
+     */
+    private function sanitize_order( $order ) {
+        return strtoupper( $order ) === 'ASC' ? 'ASC' : 'DESC';
     }
 
     /**
@@ -116,10 +133,7 @@ class DB_Handler {
      */
     public function get_total_recovered_carts() {
         return $this->wpdb->get_var(
-            $this->wpdb->prepare(
-                "SELECT COUNT(*) FROM {$this->tables['carts']} WHERE status = %s",
-                'recovered'
-            )
+            "SELECT COUNT(*) FROM {$this->tables['carts']} WHERE status IN ('recovered', 'completed')"
         );
     }
 
@@ -128,10 +142,7 @@ class DB_Handler {
      */
     public function get_total_recovered_value() {
         $value = $this->wpdb->get_var(
-            $this->wpdb->prepare(
-                "SELECT SUM(cart_total) FROM {$this->tables['carts']} WHERE status = %s",
-                'recovered'
-            )
+            "SELECT SUM(cart_total) FROM {$this->tables['carts']} WHERE status IN ('recovered', 'completed')"
         );
         return $value ? $value : 0;
     }
@@ -192,6 +203,42 @@ class DB_Handler {
         
         return $this->wpdb->get_row( $this->wpdb->prepare(
             "SELECT * FROM {$this->tables['carts']} WHERE {$where_sql} ORDER BY modified_at DESC LIMIT 1",
+            $values
+        ));
+    }
+
+    /**
+     * Get ALL outstanding (not yet completed) carts matching a user ID, email, or session ID.
+     * Used when marking carts completed after an order, so every outstanding cart the
+     * customer left behind gets cancelled - not just the most recently modified one.
+     */
+    public function get_outstanding_carts_by_user( $user_id = null, $email = null, $session_id = null ) {
+        if( !$user_id && !$email && !$session_id ) {
+            return array();
+        }
+
+        $match_clauses = array();
+        $values = array();
+
+        if( $user_id ) {
+            $match_clauses[] = "user_id = %d";
+            $values[] = $user_id;
+        }
+
+        if( $email ) {
+            $match_clauses[] = "user_email = %s";
+            $values[] = $email;
+        }
+
+        if( $session_id ) {
+            $match_clauses[] = "session_id = %s";
+            $values[] = $session_id;
+        }
+
+        $where_sql = "(" . implode( ' OR ', $match_clauses ) . ") AND status IN ('pending', 'abandoned', 'recovered')";
+
+        return $this->wpdb->get_results( $this->wpdb->prepare(
+            "SELECT * FROM {$this->tables['carts']} WHERE {$where_sql}",
             $values
         ));
     }
@@ -419,11 +466,14 @@ class DB_Handler {
             $where_sql = "WHERE " . implode( ' AND ', $where_clauses );
         }
 
+        $orderby = $this->sanitize_orderby( $args['orderby'], array( 'id', 'name', 'subject', 'status', 'created_at', 'modified_at' ), 'created_at' );
+        $order = $this->sanitize_order( $args['order'] );
+
         $prepare_values = array_merge($values, [$args['per_page'], $offset]);
         $query = $this->wpdb->prepare(
             "SELECT * FROM {$this->tables['email_templates']}
             {$where_sql}
-            ORDER BY {$args['orderby']} {$args['order']}
+            ORDER BY {$orderby} {$order}
             LIMIT %d OFFSET %d",
             ...$prepare_values
         );
@@ -811,8 +861,8 @@ class DB_Handler {
 
         $recovered_count = $this->wpdb->get_var(
             $this->wpdb->prepare(
-                "SELECT COUNT(*) FROM {$this->tables['carts']} 
-                WHERE status = 'recovered' 
+                "SELECT COUNT(*) FROM {$this->tables['carts']}
+                WHERE status IN ('recovered', 'completed')
                 AND DATE(recovered_at) BETWEEN %s AND %s",
                 $start_date,
                 $end_date
@@ -831,8 +881,8 @@ class DB_Handler {
 
         $recovered_value = $this->wpdb->get_var(
             $this->wpdb->prepare(
-                "SELECT SUM(cart_total) FROM {$this->tables['carts']} 
-                WHERE status = 'recovered' 
+                "SELECT SUM(cart_total) FROM {$this->tables['carts']}
+                WHERE status IN ('recovered', 'completed')
                 AND DATE(recovered_at) BETWEEN %s AND %s",
                 $start_date,
                 $end_date
@@ -871,12 +921,12 @@ class DB_Handler {
         // Get recovered carts data
         $recovered_data = $this->wpdb->get_results(
             $this->wpdb->prepare(
-                "SELECT 
+                "SELECT
                     DATE(recovered_at) as date,
                     COUNT(*) as count,
                     SUM(cart_total) as value
-                FROM {$this->tables['carts']} 
-                WHERE status IN ('recovered')
+                FROM {$this->tables['carts']}
+                WHERE status IN ('recovered', 'completed')
                 AND recovered_at IS NOT NULL
                 AND DATE(recovered_at) BETWEEN %s AND %s
                 GROUP BY DATE(recovered_at)
@@ -944,32 +994,32 @@ class DB_Handler {
             
         // Get daily trend data for the last 7 days
         $daily_trend = $this->wpdb->get_results( $this->wpdb->prepare( "
-            SELECT 
+            SELECT
                 DATE(created_at) as date,
                 COUNT(*) as abandoned,
-                SUM(CASE WHEN status = 'recovered' THEN 1 ELSE 0 END) as recovered
+                SUM(CASE WHEN status IN ('recovered', 'completed') THEN 1 ELSE 0 END) as recovered
             FROM {$this->tables['carts']}
-            WHERE created_at >= %s AND created_at <= %s AND status IN ('abandoned', 'recovered')
+            WHERE created_at >= %s AND created_at <= %s AND status IN ('abandoned', 'recovered', 'completed')
             GROUP BY DATE(created_at)
             ORDER BY date ASC
         ", $start_date, $end_date . ' 23:59:59' ), ARRAY_A );
 
         // Get hourly abandonment pattern
-        $hourly_pattern = $this->wpdb->get_results( "
-            SELECT 
+        $hourly_pattern = $this->wpdb->get_results( $this->wpdb->prepare( "
+            SELECT
                 HOUR(created_at) as hour,
                 COUNT(*) as count
             FROM {$this->tables['carts']}
-            WHERE created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)
+            WHERE created_at >= %s AND created_at <= %s AND status IN ('abandoned', 'recovered')
             GROUP BY HOUR(created_at)
             ORDER BY hour ASC
-        ", ARRAY_A );
+        ", $start_date, $end_date . ' 23:59:59' ), ARRAY_A );
 
         // Get monthly revenue recovery for the last 6 months
         $monthly_revenue = $this->wpdb->get_results( "
-            SELECT 
+            SELECT
                 DATE_FORMAT(created_at, '%Y-%m') as month,
-                SUM(CASE WHEN status = 'recovered' THEN cart_total ELSE 0 END) as revenue
+                SUM(CASE WHEN status IN ('recovered', 'completed') THEN cart_total ELSE 0 END) as revenue
             FROM {$this->tables['carts']}
             WHERE created_at >= DATE_SUB(NOW(), INTERVAL 6 MONTH)
             GROUP BY DATE_FORMAT(created_at, '%Y-%m')

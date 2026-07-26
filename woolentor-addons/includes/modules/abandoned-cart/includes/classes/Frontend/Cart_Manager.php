@@ -48,6 +48,10 @@ class Cart_Manager {
         // Mark as recovered when order is created
         add_action( 'woocommerce_new_order', array( $this, 'handle_order_completed' ), 10, 1 );
         add_action( 'woocommerce_thankyou', array( $this, 'handle_order_completed' ), 10, 1 );
+
+        // Safety net for gateways that confirm payment asynchronously (e.g. bank transfer,
+        // delayed webhooks), where the order status changes after the above hooks have fired.
+        add_action( 'woocommerce_order_status_changed', array( $this, 'handle_order_completed' ), 10, 1 );
     }
 
     /**
@@ -289,40 +293,41 @@ class Cart_Manager {
         }
 
         $order_status = $order->get_status();
-        $statuses = Config::get_order_statuses();
+        $excluded_statuses = Config::get_excluded_order_statuses();
 
-        if( is_array( $statuses ) && !empty( $statuses ) && !in_array( $order_status, $statuses ) ) {
+        if( is_array( $excluded_statuses ) && in_array( $order_status, $excluded_statuses ) ) {
             return;
         }
 
-        if( isset( WC()->session ) ){
+        $user_id = $order->get_user_id();
+        $user_email = $order->get_billing_email();
 
-            $user_id = $order->get_user_id();
-            $user_email = $order->get_billing_email();
+        $has_session = isset( WC()->session ) && WC()->session;
+        $session_id = $has_session ? $this->get_session_id() : null;
 
-            // Try to find cart by session ID first
-            $session_id = $this->get_session_id();
-            $cart = null;
+        // Mark every outstanding cart that matches this customer as completed - not just
+        // the most recently modified one - so no leftover abandoned-cart row keeps
+        // sending reminder emails after the customer has already placed an order.
+        $carts = $this->db->get_outstanding_carts_by_user(
+            $user_id ?: null,
+            $user_email ?: null,
+            $session_id ?: null
+        );
 
-            if( $session_id ) {
-                $cart = $this->get_existing_cart( $session_id );
-            }
+        if( empty( $carts ) ) {
+            return;
+        }
 
-            // Fallback: find by user ID or email
-            if( !$cart ) {
-                $cart = $user_id ? $this->db->get_cart_by_user( $user_id ) : $this->db->get_cart_by_user( null, $user_email );
-            }
+        foreach( $carts as $cart ) {
+            $this->db->update_cart( $cart->id, array(
+                'status' => 'completed',
+                'recovered_at' => current_time( 'mysql' )
+            ));
+        }
 
-            if( $cart && in_array( $cart->status, array( 'pending', 'abandoned', 'recovered' ) ) ) {
-                $this->db->update_cart( $cart->id, array(
-                    'status' => 'completed',
-                    'recovered_at' => current_time( 'mysql' )
-                ));
-
-                // Clear the session to prevent tracking the same cart again
-                WC()->session->__unset( self::SESSION_KEY );
-                
-            }
+        // Clear the session to prevent tracking the same cart again
+        if( $session_id && $has_session ) {
+            WC()->session->__unset( self::SESSION_KEY );
         }
     }
 
