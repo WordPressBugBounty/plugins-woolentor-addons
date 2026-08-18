@@ -443,9 +443,13 @@ function woolentor_get_cookie_name( $name ) {
 
 /**
  * [woolentor_set_views_count]
+ *
+ * Not called by the plugin itself, the view counter it maintains is not read anywhere.
+ * Kept for backward compatibility with third party code.
+ *
  * @param  [int] $postid
  * @param  [string] $posttype
- * @return [null] 
+ * @return [null]
  */
 function woolentor_set_views_count( $postid, $posttype ) {
 
@@ -456,6 +460,10 @@ function woolentor_set_views_count( $postid, $posttype ) {
     $products_list  = isset( $_COOKIE[$cookie_name] ) ? unserialize( $_COOKIE[ $cookie_name ], ['allowed_classes' => false] ) : [];
     $timestamp      = time();
 
+    if( ! is_array( $products_list ) ){
+        $products_list = [];
+    }
+
     if( $count == '' ){
         $count = 1;
         delete_post_meta( $postid, $count_key );
@@ -463,15 +471,24 @@ function woolentor_set_views_count( $postid, $posttype ) {
         $products_list[$timestamp] = $postid;
     }else{
         // if the post has already been stored under the cookie
-        if( is_array( $products_list )){
-            if ( ( $key = array_search( $postid, $products_list ) ) == false ) {            
-                $count++;
-                update_post_meta( $postid, $count_key, $count );
-                $products_list[$timestamp] = $postid;
-            }
+        if ( array_search( $postid, $products_list ) === false ) {
+            $count++;
+            update_post_meta( $postid, $count_key, $count );
+            $products_list[$timestamp] = $postid;
         }
     }
-    setcookie( $cookie_name, serialize( $products_list ), 0, COOKIEPATH, COOKIE_DOMAIN, false, false );
+
+    // This list only exists to avoid counting the same visitor twice, so it does not need
+    // full history. Cap it, otherwise the cookie grows until requests fail with a 400.
+    $max_products_limit = apply_filters( 'woolentor_max_counted_products', 20 );
+    if ( count( $products_list ) > $max_products_limit ) {
+        ksort( $products_list );
+        $products_list = array_slice( $products_list, -$max_products_limit, null, true );
+    }
+
+    $cookie_duration = time() + ( 86400 * 5 );
+
+    setcookie( $cookie_name, serialize( $products_list ), $cookie_duration, COOKIEPATH, COOKIE_DOMAIN, false, true );
 
 }
 
@@ -2213,7 +2230,13 @@ if( !function_exists('woolentor_get_user_roles') ){
  * @return array
  */
 if( !function_exists('woolentor_block_filter_generate_term_link') ){
-    function woolentor_block_filter_generate_term_link( $filter_type, $term, $current_url ) {
+    function woolentor_block_filter_generate_term_link( $filter_type, $term, $current_url = false ) {
+
+        // remove_query_arg() only falls back to the current request when it is given false.
+        // A null reaches strstr() inside add_query_arg(), which is deprecated on PHP 8.1+.
+        if ( empty( $current_url ) ) {
+            $current_url = false;
+        }
 
         $filter_name = $filter_type;
         $str = substr( $filter_type, 0, 3 );

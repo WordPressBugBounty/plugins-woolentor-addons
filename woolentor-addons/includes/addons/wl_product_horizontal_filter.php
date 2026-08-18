@@ -30,7 +30,7 @@ class Woolentor_Wl_Product_Horizontal_Filter_Widget extends Widget_Base {
     }
 
     public function get_script_depends() {
-        return ['select2-min'];
+        return ['select2-min','woolentor-widgets-scripts'];
     }
 
     public function get_keywords(){
@@ -961,7 +961,7 @@ class Woolentor_Wl_Product_Horizontal_Filter_Widget extends Widget_Base {
         }
 
         ?>
-            <div class="woolentor-horizontal-filter-wrap">
+            <div class="woolentor-horizontal-filter-wrap" data-filter-url="<?php echo esc_url( $current_url ); ?>">
                 <!-- Heaer Box Area Start -->
                 <div class="woolentor-heaer-box-area">
 
@@ -1182,112 +1182,24 @@ class Woolentor_Wl_Product_Horizontal_Filter_Widget extends Widget_Base {
                                     }
                                 ?>
                             </div>
-                            <div class="woolentor-select-drop woolentor-single-select-drop-<?php echo esc_attr($id); ?>"></div>
-                            <div class="woolentor-select-drop woolentor-multiple-select-drop-<?php echo esc_attr($id); ?>"></div>
+                            <div class="woolentor-select-drop woolentor-single-select-drop woolentor-single-select-drop-<?php echo esc_attr($id); ?>"></div>
+                            <div class="woolentor-select-drop woolentor-multiple-select-drop woolentor-multiple-select-drop-<?php echo esc_attr($id); ?>"></div>
                         </div>
                     </div>
                 </div>
                 <!-- Heaer Box Area End -->
             </div>
 
-            <script type="text/javascript">
-                ;jQuery(document).ready(function($) {
-                    'use strict';
-
-                    var id = '<?php echo esc_js($id); ?>',
-                        isEditorMode = '<?php echo esc_js(woolentor_is_preview_mode()); ?>';
-
-                    // Localize Text
-                    var selectTxt = '<?php echo esc_html__( 'select', 'woolentor' ); ?>',
-                        ofTxt = '<?php echo esc_html__( 'of', 'woolentor' ); ?>';
-
-                    // Filter Toggle
-                    $('#filter-toggle-'+id).on('click', function(e){
-                        e.preventDefault()
-                        $('#filter-item-'+id).slideToggle()
-                    })
-
-
-                    $('.woolentor-single-select-'+id).select2({
-                        dropdownParent: $('.woolentor-single-select-drop-'+id),
-                    });
-                    $('.woolentor-multiple-select-'+id).select2({
-                        // closeOnSelect : false,
-                        allowHtml: true,
-                        allowClear: true,
-                        dropdownParent: $('.woolentor-multiple-select-drop-'+id),
-                    });
-
-                    $('.woolentor-filter-single-item select').on('change', function (e) {
-                        var output = $(this).siblings('span.select2').find('ul');
-                        var total = e.currentTarget.length;
-                        var count = output.find('li').length - 0;
-                        if(count >= 3) {
-                            output.html("<li>"+count+" "+ofTxt+" "+total+" "+selectTxt+"</li>")
-                        } 
-                    });
-
-                    // Filter product
-                    var current_url = '<?php echo esc_js($current_url).'?wlfilter=1'; ?>';
-                    $('.woolentor-filter-single-item select.woolentor-onchange-single-item').on('change', function () {
-                        var sort_key = $(this).val();
-                        if ( sort_key && ( isEditorMode != true ) ) {
-                            window.location = current_url + sort_key;
-                        }
-                        return false;
-                    });
-
-                    // Price Filter
-                    $('.woolentor-filter-single-item select.woolentor-price-filter').on( 'change', function(){
-                        var selected = $(this).find('option:selected'),
-                            min_price = selected.data('min_price'),
-                            max_price = selected.data('max_price'),
-                            location  = min_price + max_price;
-
-                        if ( location && ( isEditorMode != true ) ) {
-                            window.location = current_url + location;
-                        }
-
-                    });
-
-                    // Texanomies Filter
-                    var previouslySelected = [];
-                    $('.woolentor-filter-single-item select.woolentor-onchange-multiple-item').on('change', function () {
-                        // Get newly selected elements
-                        var currentlySelected = $(this).val();
-                        if( currentlySelected != null ){
-
-                             if( currentlySelected.length == 0 && ( isEditorMode != true ) ){
-                                window.location = current_url;
-                            }else{
-                                var newSelections = currentlySelected.filter(function (element) {
-                                    return previouslySelected.indexOf(element) == -1;
-                                });
-                                previouslySelected = currentlySelected;
-                                if (newSelections.length) {
-                                    // If there are multiple new selections, we'll take the last in the list
-                                    var lastSelected = newSelections.reverse()[0];
-                                }
-                                if ( lastSelected && ( isEditorMode != true ) ) {
-                                    window.location = lastSelected;
-                                }
-                            }
-                            
-                        }else{
-                            if(isEditorMode != true){
-                                window.location = current_url;
-                            }
-                        }
-                        return false;
-                    });
-
-
-                });
-            </script>
         <?php
     }
 
-    protected function generate_term_link( $filter_type, $term, $current_url ) {
+    protected function generate_term_link( $filter_type, $term, $current_url = false ) {
+
+        // remove_query_arg() only falls back to the current request when it is given false.
+        // A null reaches strstr() inside add_query_arg(), which is deprecated on PHP 8.1+.
+        if ( empty( $current_url ) ) {
+            $current_url = false;
+        }
 
         $filter_name = $filter_type;
         $str = substr( $filter_type, 0, 3 );

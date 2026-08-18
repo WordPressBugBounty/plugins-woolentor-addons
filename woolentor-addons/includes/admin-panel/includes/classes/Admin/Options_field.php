@@ -1142,7 +1142,7 @@ class Options_Field {
                     'documentation' => esc_url('https://woolentor.com/doc/product-tab/'),
                     'preview' => esc_url('https://www.youtube.com/watch?v=AVQcwl6BnHk'),
                 ),
-                
+
                 array(
                     'id'    => 'hero_banner',
                     'name'   => esc_html__( 'Hero Banner - 2026', 'woolentor' ),
@@ -1154,7 +1154,7 @@ class Options_Field {
                         'label'     => esc_html__('New','woolentor')
                     ]
                 ),
-
+                
                 array(
                     'id'    => 'product_grid_modern',
                     'name' => esc_html__( 'Product Grid - Modern', 'woolentor' ),

@@ -27,7 +27,10 @@ a.wishsuite-addtocart.added::after{
 
 .wishsuite-loader {
     position: absolute;
-    left: 5px;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 a.wishsuite-button::after,.woocommerce a.button.wishsuite-button::after{
     display: none;
@@ -45,12 +48,23 @@ a.wishsuite-btn.loading,.woocommerce a.button.wishsuite-btn.loading{
     top: 10px;
     left: 10px !important;
     margin: 0 !important;
+    min-width: 35px;
+    min-height: 35px;
+    justify-content: center;
 }
 
 .wishsuite-button img {
     display: inline-block !important;
     width: 25px !important;
-    margin: 0 10px 0 0 !important;
+    margin: 0 !important;
+}
+
+/* Wraps a custom icon plus its loader so the loader has a box to centre itself in. */
+.wishsuite-custom-icon-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 a.wishsuite-button.loading img{
     opacity: 0.5;
@@ -59,7 +73,35 @@ a.wishsuite-button.loading img{
 .wishsuite-button {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    gap: 10px;
     position: relative;
+    /* Themes commonly stack an overlay on the product thumbnail, which swallowed the click. */
+    z-index: 10 !important;
+}
+
+.wishsuite-btn-text {
+    margin: 0 !important;
+}
+
+/* Solid heart: hidden by default, shown once the product is in the wishlist. */
+.wishsuite-button .heart-solid {
+    opacity: 0;
+    transition: opacity 200ms ease-out;
+}
+.wishsuite-button.added .wishsuite-solid-added .heart-solid,
+.wishsuite-button.wishsuite-btn-exist .wishsuite-solid-added .heart-solid {
+    opacity: 1;
+}
+.wishsuite-button.added .wishsuite-solid-added .heart,
+.wishsuite-button.wishsuite-btn-exist .wishsuite-solid-added .heart {
+    opacity: 0;
+}
+/* The added state normally swaps the heart for the check circle. With the solid heart on, the
+   filled heart is the added state, so the check has to go or the two overlap. */
+.wishsuite-button.added .wishsuite-solid-added .check,
+.wishsuite-button.wishsuite-btn-exist .wishsuite-solid-added .check {
+    opacity: 0;
 }
 
 .wishsuite-button:focus {
@@ -550,4 +592,89 @@ nav.wishsuite-pagination ul .page-numbers.current {
     .wishsuite-table-content td:nth-of-type(19):before { content: attr(data-label); }
     .wishsuite-table-content td:nth-of-type(20):before { content: attr(data-label); }
 
+}
+/* ---------------------------------------------
+ * Copy shareable wishlist link button + tooltip
+ * --------------------------------------------- */
+.wishsuite-social-share .wishsuite-copy-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    line-height: 1;
+    color: inherit;
+}
+
+.wishsuite-social-share .wishsuite-copy-link:hover,
+.wishsuite-social-share .wishsuite-copy-link:focus {
+    background: transparent;
+    outline: none;
+}
+
+.wishsuite-social-share .wishsuite-copy-link .wishsuite-link-icon {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    transition: all 200ms ease-out;
+}
+
+.wishsuite-social-share .wishsuite-copy-link:hover .wishsuite-link-icon {
+    opacity: 0.7;
+}
+
+.wishsuite-social-share .wishsuite-copy-link::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-6px);
+    padding: 4px 8px;
+    border-radius: 3px;
+    background: #333;
+    color: #fff;
+    font-size: 11px;
+    line-height: 1.4;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 150ms ease-out, visibility 150ms ease-out;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.wishsuite-social-share .wishsuite-copy-link::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-1px);
+    border: 4px solid transparent;
+    border-top-color: #333;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 150ms ease-out, visibility 150ms ease-out;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.wishsuite-social-share .wishsuite-copy-link:hover::after,
+.wishsuite-social-share .wishsuite-copy-link:hover::before,
+.wishsuite-social-share .wishsuite-copy-link.wishsuite-copied::after,
+.wishsuite-social-share .wishsuite-copy-link.wishsuite-copied::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+.wishsuite-social-share .wishsuite-copy-link.wishsuite-copied::after {
+    background: #46b450;
+}
+
+.wishsuite-social-share .wishsuite-copy-link.wishsuite-copied::before {
+    border-top-color: #46b450;
 }

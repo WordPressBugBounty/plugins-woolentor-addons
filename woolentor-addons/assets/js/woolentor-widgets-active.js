@@ -218,8 +218,83 @@
     /*
     * Single Product Video Gallery tab
     */
-    var WidgetProductVideoGallery = function thumbnailsvideogallery(){
-        woolentor_tabs( $(".woolentor-product-video-tabs"), '.video-cus-tab-pane' );
+    var WidgetProductVideoGallery = function ( $scope, $ ){
+        var $tabs    = $scope.find('.woolentor-product-video-tabs'),
+            $gallery = $scope.find('.woolentor-product-gallery-video').eq(0);
+
+        woolentor_tabs( $tabs, '.video-cus-tab-pane' );
+
+        if ( ! $gallery.length ) {
+            return;
+        }
+
+        var defaultData = { srcfull: '', src: '', srcset: '' };
+
+        // show_variation fires on the add to cart widget's form, which lives outside this
+        // widget, so the listener has to be delegated from document. Namespacing it per
+        // instance keeps it from stacking when Elementor re-renders the widget.
+        var ns = '.wlvideogallery' + ( $scope.data('id') || '' );
+
+        var currentPane = function(){
+            return $gallery.find('.video-cus-tab-pane.htactive');
+        };
+
+        $(document).off( 'show_variation' + ns ).on( 'show_variation' + ns, '.single_variation_wrap', function ( event, variation ) {
+
+            // Active first tab. Selected by position rather than by #wlvideo-1, the markup
+            // repeats those ids for every widget instance on the page.
+            $gallery.find('.video-cus-tab-pane').removeClass('htactive').eq(0).addClass('htactive');
+            $tabs.find('li').children('a').removeClass('htactive');
+            $tabs.find('li').eq(0).children('a').addClass('htactive');
+
+            var $currentTab   = currentPane(),
+                $currentImage = $currentTab.find('img');
+
+            // Remember the original image so reset_variations can restore it
+            if ( ! defaultData.src && $currentImage.length ) {
+                defaultData.srcfull = $currentImage.attr('src');
+                defaultData.src     = $currentImage.attr('src');
+                defaultData.srcset  = $currentImage.attr('srcset');
+            }
+
+            if ( $currentImage.length === 0 ) {
+                $currentTab.children('.embed-responsive').css({ "display": "none" });
+                $currentTab.prepend('<img class="attachment-woocommerce_single size-woocommerce_single" src="' + variation.image.full_src + '" />');
+                $currentImage = $currentTab.children('img');
+            }
+
+            if ( $currentTab.children('.embed-responsive').length > 0 ) {
+                $currentTab.children('.embed-responsive').css({ "display": "none" });
+                $currentTab.children('img').css({ "display": "block" });
+            }
+
+            if ( $currentImage.length && $.fn.wc_set_variation_attr ) {
+                $currentImage.wc_set_variation_attr( 'src', variation.image.full_src );
+                $currentImage.wc_set_variation_attr( 'srcset', variation.image.srcset );
+                $currentImage.wc_set_variation_attr( 'src', variation.image.src );
+            }
+
+        });
+
+        // Bound once here. The original nested this inside show_variation, which stacked a
+        // fresh handler every time a variation was picked.
+        $(document).off( 'click' + ns ).on( 'click' + ns, '.variations .reset_variations', function(){
+
+            var $currentTab   = currentPane(),
+                $currentImage = $currentTab.children('img');
+
+            if ( $currentTab.children('.embed-responsive').length > 0 ) {
+                $currentTab.children('.embed-responsive').css({ "display": "block" });
+                $currentTab.children('img').css({ "display": "none" });
+            }
+
+            if ( $currentImage.length && $.fn.wc_set_variation_attr ) {
+                $currentImage.wc_set_variation_attr( 'src', defaultData.srcfull );
+                $currentImage.wc_set_variation_attr( 'srcset', defaultData.srcset );
+            }
+
+        });
+
     }
 
     /**
@@ -241,6 +316,197 @@
             });
         }
         
+    };
+
+
+    /**
+     * WoolentorProductStock
+     *
+     * show_variation fires on the add to cart widget's form, outside this widget, so the
+     * listener is delegated from document and namespaced per instance to avoid stacking
+     * on re-render. Only the element written to is scoped.
+     */
+    var WoolentorProductStock = function ( $scope, $ ){
+        var $status = $scope.find('.woolentor-variable-product-status').eq(0);
+
+        if ( ! $status.length ) {
+            return;
+        }
+
+        var ns = '.wlproductstock' + ( $scope.data('id') || '' );
+
+        $(document).off( 'show_variation' + ns ).on( 'show_variation' + ns, '.single_variation_wrap', function ( event, variation ) {
+            $status.html( ( variation && variation.availability_html ) ? variation.availability_html : '' );
+        });
+
+        $(document).off( 'click' + ns ).on( 'click' + ns, '.variations .reset_variations', function(){
+            $status.html('');
+        });
+
+    };
+
+
+    /**
+     * WoolentorProductAccordion
+     *
+     * Scoped through $scope, the widget wrapper Elementor passes to element_ready, so no
+     * generated per instance class has to be printed into the markup.
+     */
+    var WoolentorProductAccordion = function ( $scope, $ ){
+        var $accordion = $scope.find('.wl_product-accordion').eq(0);
+
+        if ( ! $accordion.length ) {
+            return;
+        }
+
+        $accordion.find('.wl_product-accordion-body').hide();
+        $accordion.find('.wl_product-accordion-card.active').children('.wl_product-accordion-body').slideDown();
+
+        $accordion.on('click', '.wl_product-accordion-head', function(e) {
+            e.preventDefault();
+
+            var $card = $(this).parent('.wl_product-accordion-card');
+
+            if ( $card.hasClass('active') ) {
+                $card.removeClass('active').children('.wl_product-accordion-body').slideUp();
+            } else {
+                $card.addClass('active').children('.wl_product-accordion-body').slideDown();
+                $card.siblings('.wl_product-accordion-card').removeClass('active')
+                     .children('.wl_product-accordion-body').slideUp();
+            }
+        });
+
+    };
+
+
+    /**
+     * WoolentorHorizontalFilter
+     *
+     * Everything is resolved from $scope, so no per instance id has to be interpolated
+     * into the script. The filter url comes from a data attribute and the preview flag
+     * from the localized settings.
+     */
+    var WoolentorHorizontalFilter = function ( $scope, $ ){
+        var $wrap = $scope.find('.woolentor-horizontal-filter-wrap').eq(0);
+
+        if ( ! $wrap.length ) {
+            return;
+        }
+
+        // The pro plugin registers a widget of the same name with its own markup and its own
+        // inline script. data-filter-url is only present on the markup this handler owns, so
+        // without it we must leave the widget alone rather than re-initialise select2 over it.
+        var filter_url = $wrap.attr('data-filter-url');
+
+        if ( typeof filter_url === 'undefined' ) {
+            return;
+        }
+
+        var current_url = filter_url + '?wlfilter=1';
+
+        var i18n = ( typeof woolentor_addons !== 'undefined' && woolentor_addons.i18n ) ? woolentor_addons.i18n : {},
+            selectTxt = i18n.select || 'select',
+            ofTxt     = i18n.of || 'of';
+
+        // Never navigate away while the widget is being edited or previewed.
+        var isPreviewMode = function(){
+            return ( typeof woolentor_addons !== 'undefined' && !! woolentor_addons.is_preview_mode );
+        };
+
+        var goTo = function( url ){
+            if ( url && ! isPreviewMode() ) {
+                window.location = url;
+            }
+        };
+
+        // Filter Toggle
+        $wrap.on('click', '.filter-icon', function(e){
+            e.preventDefault();
+            $wrap.find('.filter-item').slideToggle();
+        });
+
+        if ( $.fn.select2 ) {
+            var $singleDrop = $wrap.find('.woolentor-single-select-drop').eq(0),
+                $multiDrop  = $wrap.find('.woolentor-multiple-select-drop').eq(0);
+
+            // select2 only dereferences dropdownParent when the dropdown opens, so handing it
+            // an empty set fails later with an unhelpful error rather than here.
+            if ( $singleDrop.length ) {
+                $wrap.find('select.woolentor-onchange-single-item').select2({
+                    dropdownParent: $singleDrop,
+                });
+            }
+
+            if ( $multiDrop.length ) {
+                $wrap.find('select.woolentor-onchange-multiple-item').select2({
+                    // closeOnSelect : false,
+                    allowHtml: true,
+                    allowClear: true,
+                    dropdownParent: $multiDrop,
+                });
+            }
+        }
+
+        $wrap.on('change', '.woolentor-filter-single-item select', function (e) {
+            var output = $(this).siblings('span.select2').find('ul');
+            var total = e.currentTarget.length;
+            var count = output.find('li').length - 0;
+            if( count >= 3 ) {
+                output.html("<li>" + count + " " + ofTxt + " " + total + " " + selectTxt + "</li>");
+            }
+        });
+
+        // Filter product
+        $wrap.on('change', '.woolentor-filter-single-item select.woolentor-onchange-single-item', function () {
+            goTo( current_url + $(this).val() );
+            return false;
+        });
+
+        // Price Filter
+        $wrap.on('change', '.woolentor-filter-single-item select.woolentor-price-filter', function(){
+            var selected  = $(this).find('option:selected'),
+                min_price = selected.data('min_price'),
+                max_price = selected.data('max_price'),
+                location  = min_price + max_price;
+
+            if ( location ) {
+                goTo( current_url + location );
+            }
+        });
+
+        // Texanomies Filter
+        var previouslySelected = [];
+        $wrap.on('change', '.woolentor-filter-single-item select.woolentor-onchange-multiple-item', function () {
+
+            var currentlySelected = $(this).val();
+
+            if( currentlySelected != null ){
+
+                if( currentlySelected.length == 0 ){
+                    goTo( current_url );
+                }else{
+                    var newSelections = currentlySelected.filter(function (element) {
+                        return previouslySelected.indexOf(element) == -1;
+                    });
+                    previouslySelected = currentlySelected;
+
+                    var lastSelected;
+                    if (newSelections.length) {
+                        // If there are multiple new selections, we'll take the last in the list
+                        lastSelected = newSelections.reverse()[0];
+                    }
+                    if ( lastSelected ) {
+                        goTo( lastSelected );
+                    }
+                }
+
+            }else{
+                goTo( current_url );
+            }
+
+            return false;
+        });
+
     };
 
 
@@ -603,6 +869,142 @@
         WooLentorViewModeManager('.woolentor-product-grid-magazine','magazine');
     }
 
+    /**
+     * Add To Cart widget quantity plus/minus.
+     *
+     * Delegated from document so it survives Elementor editor re-renders, and scoped to the
+     * widget class so it cannot double fire alongside the Gutenberg block handler, which
+     * binds the same markup in woolentor-blocks.
+     */
+    var WooLentorAddToCartQuantity = function(){
+        var widgetSelector = '.elementor-widget-wl-product-add-to-cart .wl-addto-cart form.cart ';
+
+        $(document).on( 'click', widgetSelector + 'span.wl-quantity-plus, ' + widgetSelector + 'span.wl-quantity-minus', function(){
+
+            var $this = $( this ),
+                // Grouped products render every row inside its own .wl-quantity-grouped-cal,
+                // so the container tells us which layout we are in without knowing the product type.
+                $grouped = $this.closest( '.wl-quantity-grouped-cal' ),
+                isGrouped = $grouped.length > 0,
+                // :visible matters on variable products, the form can hold more than one qty input.
+                qty = isGrouped ? $grouped.find( '.qty:visible' ) : $this.closest( 'form.cart' ).find( '.qty:visible' ),
+                min_val = isGrouped ? 0 : 1;
+
+            if( ! qty.length ){
+                return;
+            }
+
+            var val  = parseFloat( qty.val() );
+            var max  = parseFloat( qty.attr( 'max' ) );
+            var min  = parseFloat( qty.attr( 'min' ) );
+            var step = parseFloat( qty.attr( 'step' ) );
+
+            if( isNaN( val ) ){
+                val = isGrouped ? 0 : min_val;
+            }
+            if( isNaN( step ) ){
+                step = 1;
+            }
+
+            if ( $this.is( '.wl-quantity-plus' ) ) {
+                if ( max && ( max <= val ) ) {
+                    qty.val( max );
+                } else {
+                    qty.val( val + step );
+                }
+            } else {
+                if ( min && ( min >= val ) ) {
+                    qty.val( min );
+                } else if ( val > min_val ) {
+                    qty.val( val - step );
+                }
+            }
+
+            qty.trigger( 'change' );
+
+        });
+    }
+
+    WooLentorAddToCartQuantity();
+
+    /**
+     * Suggest Price form.
+     *
+     * Pure event binding, so a delegated handler is enough and it survives Elementor editor
+     * re-renders. Scoped to the widget class because the Gutenberg suggest-price block emits
+     * the same .wl-suggest-price markup with its own script, and an unscoped delegate would
+     * submit that form twice.
+     */
+    var WooLentorSuggestPrice = function(){
+        var root = '.elementor-widget-wl-product-suggest-price .wl-suggest-price';
+
+        $(document).on('click', root + ' .wlopen', function(){
+            var $wrap = $(this).closest('.wl-suggest-price');
+            $(this).hide();
+            $wrap.find('.wlclose').show();
+            $wrap.find('.wlsuggest-form').slideDown('slow');
+        });
+
+        $(document).on('click', root + ' .wlclose', function(){
+            var $wrap = $(this).closest('.wl-suggest-price');
+            $(this).hide();
+            $wrap.find('.wlopen').show();
+            $wrap.find('.wlsuggest-form').slideUp('slow');
+        });
+
+        $(document).on('submit', root + ' .wlsuggest-form', function(e){
+            e.preventDefault();
+
+            var $form    = $(this),
+                $wrap    = $form.closest('.wl-suggest-price'),
+                $submit  = $form.find('.wlsuggest-submit'),
+                $message = $wrap.find('.wlsendmessage'),
+                // Read before it is swapped for the loading text, so it can be restored.
+                submitText  = $submit.val(),
+                loadingText = $form.data('loading-text') || submitText;
+
+            $.ajax({
+                url: $form.attr('action'),
+                type: 'POST',
+                data: $form.serialize(),
+
+                beforeSend: function () {
+                    $message.hide();
+                    $submit.removeClass('added').addClass('loading').val(loadingText);
+                },
+
+                complete: function () {
+                    $submit.addClass('added').removeClass('loading').val(submitText);
+                    $wrap.find('.wlopen').show();
+                    $wrap.find('.wlclose').hide();
+                    $form.slideUp('slow');
+                },
+
+                success: function (response) {
+                    var data = ( response && response.data ) ? response.data : {};
+
+                    $message.show().html( data.message );
+
+                    // Update form token for subsequent submissions (without page refresh)
+                    if ( data.new_token ) {
+                        $form.find('input[name="form_token"]').val( data.new_token );
+                    }
+
+                    // Clear form fields after successful submission
+                    if ( response && response.success && ! data.error ) {
+                        $form.find('input[name="wlname"]').val('');
+                        $form.find('input[name="wlemail"]').val('');
+                        $form.find('textarea[name="wlmessage"]').val('');
+                    }
+                },
+
+            });
+
+        });
+    }
+
+    WooLentorSuggestPrice();
+
     /*
     * Run this code under Elementor.
     */
@@ -631,6 +1033,9 @@
 
         elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-brand-logo.default', WidgetProductSliderHandler );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-faq.default', WoolentorAccordion );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/woolentor-accordion-product.default', WoolentorProductAccordion );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-single-product-stock.default', WoolentorProductStock );
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-product-horizontal-filter.default', WoolentorHorizontalFilter );
 
         elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-category-grid.default', WidgetProductSliderHandler );
         elementorFrontend.hooks.addAction( 'frontend/element_ready/wl-testimonial.default', WidgetProductSliderHandler );

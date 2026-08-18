@@ -35,6 +35,12 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
         ];
     }
 
+    public function get_script_depends(){
+        return [
+            'woolentor-widgets-scripts'
+        ];
+    }
+
     public function get_keywords(){
         return ['add to cart','cart','button','buy now', 'add to cart button'];
     }
@@ -87,10 +93,8 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
                 'label' => __( 'Settings', 'woolentor' ),
                 'tab' => Controls_Manager::TAB_CONTENT,
                 'conditions' => [
-                    'relation' => 'or',
                     'terms' => [
-                        ['name' => 'single_product_advance_layout_style', 'operator' => '===', 'value' => 'wl-style-2'],
-                        ['name' => 'single_product_advance_layout_style', 'operator' => '===', 'value' => 'wl-style-4'],
+                        ['name' => 'single_product_advance_layout_style', 'operator' => '!==', 'value' => 'wl-style-1'],
                     ]
                 ],
             )
@@ -102,6 +106,7 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
                     'label'   => __( 'Quantity Text', 'woolentor' ),
                     'type'    => Controls_Manager::TEXT,
                     'default' => 'Quantity',
+                    // Only these layouts display .wl-quantity-wrap .label, the rest hide it in CSS.
                     'conditions' => [
                         'relation' => 'or',
                         'terms' => [
@@ -123,7 +128,15 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
                         'library' => 'solid',
                     ],
                     'label_block' => true,
-                    'fa4compatibility' => 'quantityplusicon'
+                    'fa4compatibility' => 'quantityplusicon',
+                    // Only these layouts display .wl-quantity-wrap .wl-quantity, the rest hide it in CSS.
+                    'conditions' => [
+                        'relation' => 'or',
+                        'terms' => [
+                            ['name' => 'single_product_advance_layout_style', 'operator' => '===', 'value' => 'wl-style-2'],
+                            ['name' => 'single_product_advance_layout_style', 'operator' => '===', 'value' => 'wl-style-4'],
+                        ]
+                    ],
                 ]
             );
 
@@ -138,7 +151,15 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
                         'library' => 'solid',
                     ],
                     'label_block' => true,
-                    'fa4compatibility' => 'qunantityminusicon'
+                    'fa4compatibility' => 'qunantityminusicon',
+                    // Only these layouts display .wl-quantity-wrap .wl-quantity, the rest hide it in CSS.
+                    'conditions' => [
+                        'relation' => 'or',
+                        'terms' => [
+                            ['name' => 'single_product_advance_layout_style', 'operator' => '===', 'value' => 'wl-style-2'],
+                            ['name' => 'single_product_advance_layout_style', 'operator' => '===', 'value' => 'wl-style-4'],
+                        ]
+                    ],
                 ]
             );
 
@@ -1306,7 +1327,6 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
 
     protected function render() {
         $settings = $this->get_settings();
-        $id = $this->get_id();
 
         if( Plugin::instance()->editor->is_edit_mode() ){
             global $product;
@@ -1365,48 +1385,6 @@ class Woolentor_Wb_Product_Add_To_Cart_Widget extends Widget_Base {
             <?php
                 endif;
         }
-
-        ?>
-            <script type="text/javascript">
-                ;jQuery(document).ready(function($){ 
-                    $('.elementor-element-<?php echo esc_attr($id); ?> form.cart').on( 'click', 'span.wl-quantity-plus, span.wl-quantity-minus', function() {
-                        
-                        // Get current quantity values
-                        <?php if('grouped' != $poduct_type): ?>
-                            var qty = $( this ).closest( 'form.cart' ).find( '.qty' );
-                            var val = parseFloat(qty.val());
-                            var min_val = 1;
-                        <?php else: ?>
-                            var qty = $( this ).closest( '.wl-quantity-grouped-cal' ).find( '.qty' );
-                            var val = !qty.val() ? 0 : parseFloat(qty.val());
-                            var min_val = 0;
-                        <?php endif; ?> 
-                        var max  = parseFloat(qty.attr( 'max' ));
-                        var min  = parseFloat(qty.attr( 'min' ));
-                        var step = parseFloat(qty.attr( 'step' ));
-             
-                        // Change the value if plus or minus
-                        if ( $( this ).is( '.wl-quantity-plus' ) ) {
-                           if ( max && ( max <= val ) ) {
-                              qty.val( max );
-                           } 
-                           else{
-                               qty.val( val + step );
-                            }
-                        } 
-                        else {
-                           if ( min && ( min >= val ) ) {
-                              qty.val( min );
-                           } 
-                           else if ( val > min_val ) {
-                              qty.val( val - step );
-                           }
-                        }
-                         
-                    });
-                });        
-            </script>
-        <?php
 
     }
 

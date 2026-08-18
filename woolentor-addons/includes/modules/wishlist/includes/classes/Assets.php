@@ -80,6 +80,7 @@ class Assets {
         $localize_data = array(
             'ajaxurl'     => admin_url( 'admin-ajax.php' ),
             'wsnonce'     => wp_create_nonce('wishSuite_nonce'),
+            'cookie_name' => \WishSuite\Frontend\Manage_Wishlist::instance()->get_cookie_name(),
             'option_data' => $option_data,
         );
 
@@ -115,6 +116,10 @@ class Assets {
             $btn_hover_color    = wishsuite_generate_css('button_hover_color','wishsuite_style_settings_tabs','color');
             $btn_hover_bg_color = wishsuite_generate_css('hover_background_color','wishsuite_style_settings_tabs','background-color');
 
+            // Heart fill colours, so the default SVG icon can follow the button colours.
+            $heart_color        = wishsuite_generate_css('heart_icon_color','wishsuite_style_settings_tabs','fill');
+            $heart_active_color = wishsuite_generate_css('heart_icon_active_color','wishsuite_style_settings_tabs','fill');
+
             $button_custom_css = "
                 .wishsuite-button{
                     {$btn_padding}
@@ -123,11 +128,32 @@ class Assets {
                     {$btn_bg_color}
                     {$btn_border_radius}
                 }
-                .wishsuite-button:hover{
+                .wishsuite-button:hover,
+                .wishsuite-button:focus{
                     {$btn_hover_color}
                     {$btn_hover_bg_color}
                 }
             ";
+
+            if( $heart_color ){
+                $button_custom_css .= "
+                    .wishsuite-button .heart,
+                    .wishsuite-button .heart-solid path{
+                        {$heart_color}
+                    }
+                ";
+            }
+
+            if( $heart_active_color ){
+                $button_custom_css .= "
+                    .wishsuite-button.added .heart,
+                    .wishsuite-button.added .heart-solid path,
+                    .wishsuite-button.wishsuite-btn-exist .heart,
+                    .wishsuite-button.wishsuite-btn-exist .heart-solid path{
+                        {$heart_active_color}
+                    }
+                ";
+            }
         }
 
         // Wishlist table style

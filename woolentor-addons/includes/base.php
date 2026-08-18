@@ -442,8 +442,10 @@ final class Base {
         $timestamp = time();
         $products_list[$timestamp] = $product_id;
     
-        // MEMORY FIX: Limit the size of the products list to prevent memory exhaustion
-        $max_products_limit = apply_filters( 'woolentor_max_viewed_products', 100 ); // Default limit: 100 products
+        // MEMORY FIX: Limit the size of the products list to prevent memory exhaustion.
+        // Kept small on purpose: for logged out visitors this list is stored in a cookie that
+        // is sent with every request to the site, including admin-ajax, REST and wp-admin.
+        $max_products_limit = apply_filters( 'woolentor_max_viewed_products', 20 ); // Default limit: 20 products
         
         if ( count( $products_list ) > $max_products_limit ) {
             // Sort by timestamp (keys) and keep only the most recent products
@@ -460,10 +462,7 @@ final class Base {
         } else {
             setcookie( $cookie_name, serialize( $products_list ), $cookie_duration, COOKIEPATH, COOKIE_DOMAIN, false, true );
         }
-    
-        // Set View Count
-        woolentor_set_views_count( $product_id, 'product' );
-    
+
     }
 
    /**

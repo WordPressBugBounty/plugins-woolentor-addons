@@ -449,14 +449,20 @@ class WooLentor_Product_Grid_Base {
 
         $order_by = isset( $_GET['orderby'] ) ? $_GET['orderby'] : 'menu_order';
 
-        $result_count_formate = 'Showing <strong>%1$s-%2$s</strong> of <strong>%3$s</strong> products';
+        /* translators: 1: first product number on this page, 2: last product number on this page, 3: total number of products */
+        $result_count_formate = _n(
+            'Showing <strong>%1$s-%2$s</strong> of <strong>%3$s</strong> product',
+            'Showing <strong>%1$s-%2$s</strong> of <strong>%3$s</strong> products',
+            $found_product,
+            'woolentor'
+        );
 
         $switcher_tab_style = isset( $settings['switcher_tab_style'] ) ? $settings['switcher_tab_style'] : 'one';
         $default_view = isset( $settings['default_view_mode'] ) ? $settings['default_view_mode'] : 'grid';
         $grid_active_class = ( $default_view === 'grid' ) ? 'woolentor-active' : '';
         $list_active_class = ( $default_view === 'list' ) ? 'woolentor-active' : '';
-        $switcher_tab_grid_text = isset( $settings['switcher_tab_grid_text'] ) ? $settings['switcher_tab_grid_text'] : 'Grid View';
-        $switcher_tab_list_text = isset( $settings['switcher_tab_list_text'] ) ? $settings['switcher_tab_list_text'] : 'Editorial View';
+        $switcher_tab_grid_text = isset( $settings['switcher_tab_grid_text'] ) ? $settings['switcher_tab_grid_text'] : esc_html__( 'Grid View', 'woolentor' );
+        $switcher_tab_list_text = isset( $settings['switcher_tab_list_text'] ) ? $settings['switcher_tab_list_text'] : esc_html__( 'Editorial View', 'woolentor' );
         ?>
         <div class="woolentor-product-filters woolentor-style-<?php echo esc_attr( $switcher_tab_style ); ?>">
 
@@ -475,7 +481,7 @@ class WooLentor_Product_Grid_Base {
                 <div class="woolentor-filter-row">
 
                     <div class="woolentor-results-info">
-                        <?php echo sprintf( $result_count_formate, $show_from, $show_to, $found_product); ?>
+                        <?php echo wp_kses_post( sprintf( $result_count_formate, $show_from, $show_to, $found_product ) ); ?>
                     </div>
 
                     <div class="woolentor-view-controls">

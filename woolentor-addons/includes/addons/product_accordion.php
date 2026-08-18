@@ -688,8 +688,7 @@ class Woolentor_Product_Accordion_Widget extends Widget_Base {
         $custom_order_ck    = $this->get_settings_for_display('woolentor_custom_order');
         $orderby            = $this->get_settings_for_display('orderby');
         $order              = $this->get_settings_for_display('order');
-        $tabuniqid          = $this->get_id();
-       
+
         // Query Argument
         $args = array(
             'post_type'             => 'product',
@@ -818,11 +817,11 @@ class Woolentor_Product_Accordion_Widget extends Widget_Base {
                 ?>                           
 
                             <div class="wl_product-accordion-card <?php if( $i ==1){echo esc_attr('active'); } ?>">
-                                <div class="wl_product-accordion-head <?php echo esc_attr($tabuniqid); ?>">
+                                <div class="wl_product-accordion-head">
                                     <span class="wl_product-accordion-head-text"><?php the_title(); ?></span>
                                     <span class="wl_product-accordion-head-indicator"><i class="fa fa-caret-down"></i><i class="fa fa-caret-up"></i></span>
                                 </div>
-                                <div class="wl_product-accordion-body <?php echo esc_attr($tabuniqid); ?> ">
+                                <div class="wl_product-accordion-body">
                                     <div class="wl_product-accordion-content">
                                         <div class="card-body">
                                             <div class="product-thumbnail">
@@ -879,30 +878,6 @@ class Woolentor_Product_Accordion_Widget extends Widget_Base {
             </div>
         </div>
 
-        <script>
-            ;jQuery(document).ready(function($) {
-                'use strict';
-                    (function HTProductAccordionFunction() {
-                    var HTProductAccordionHead = $('.wl_product-accordion-head.<?php echo esc_js($tabuniqid); ?>'),
-                        HTProductAccordionBody = $('.wl_product-accordion-body.<?php echo esc_js($tabuniqid); ?>');
-                    HTProductAccordionBody.hide()
-                    $('.wl_product-accordion-card.active').find('.wl_product-accordion-body.<?php echo esc_js($tabuniqid); ?>').slideDown();
-                    HTProductAccordionHead.on('click', function(e) {
-                        e.preventDefault();
-                        var $this = $(this);
-
-                        if ($this.parent('.wl_product-accordion-card').hasClass('active')) {
-                            $this.parent('.wl_product-accordion-card').removeClass('active').find('.wl_product-accordion-body.<?php echo esc_js($tabuniqid); ?>').slideUp();
-                        } else {
-                            $this.parent('.wl_product-accordion-card').addClass('active').find('.wl_product-accordion-body.<?php echo esc_js($tabuniqid); ?>').slideDown();
-                            $this.parent().siblings('.wl_product-accordion-card').removeClass('active').find('.wl_product-accordion-body.<?php echo esc_js($tabuniqid); ?>').slideUp();
-                        }
-                    })
-                    })();
-
-            });
-        </script>
-               
         <?php
 
     }

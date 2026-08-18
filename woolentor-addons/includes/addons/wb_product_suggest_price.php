@@ -31,6 +31,12 @@ class Woolentor_Wb_Product_Suggest_Price_Widget extends Widget_Base {
         ];
     }
 
+    public function get_script_depends(){
+        return [
+            'woolentor-widgets-scripts',
+        ];
+    }
+
     public function get_keywords(){
         return ['suggest price','price'];
     }
@@ -905,6 +911,7 @@ class Woolentor_Wb_Product_Suggest_Price_Widget extends Widget_Base {
                     'type'        => 'submit',
                     'name'        => 'wlsubmit-' . esc_attr( $id ),
                     'id'          => 'wlsubmit-' . esc_attr( $id ),
+                    'class'       => 'wlsuggest-submit',
                     'value'       => $settings['submit_button_txt'],
                 ],
 
@@ -916,7 +923,7 @@ class Woolentor_Wb_Product_Suggest_Price_Widget extends Widget_Base {
                 <p class="wlsendmessage">&nbsp;</p>
                 <button id="wlopenform-<?php echo esc_attr( $id ); ?>" class="wlsugget-button wlopen"><?php echo esc_html( $settings['open_button_text'] ); ?></button>
                 <button id="wlcloseform-<?php echo esc_attr( $id ); ?>" class="wlsugget-button wlclose" style="display: none;"><?php echo esc_html( $settings['close_button_text'] ); ?></button>
-                <form id="wlsuggestform-<?php echo esc_attr( $id ); ?>" action="<?php echo esc_url( admin_url('admin-ajax.php') ); ?>" method="post">
+                <form id="wlsuggestform-<?php echo esc_attr( $id ); ?>" class="wlsuggest-form" action="<?php echo esc_url( admin_url('admin-ajax.php') ); ?>" method="post" data-loading-text="<?php echo esc_attr( $settings['submit_button_loading_txt'] ); ?>">
                     <div class="wl-suggest-form-input">
                         <input <?php echo $this->get_render_attribute_string( 'user_name' ); ?> >
                     </div>
@@ -937,76 +944,6 @@ class Woolentor_Wb_Product_Suggest_Price_Widget extends Widget_Base {
                 </form>
             </div>
 
-            <script type="text/javascript">
-                ;jQuery(document).ready(function($) {
-                "use strict";
-
-                    // Declare Variable
-                    var openFormBtn = '#wlopenform-<?php echo esc_js($id); ?>',
-                        closeFormBtn = '#wlcloseform-<?php echo esc_js($id); ?>',
-                        tergetForm = 'form#wlsuggestform-<?php echo esc_js($id); ?>',
-                        formSubmitBtn = '#wlsubmit-<?php echo esc_js($id); ?>',
-                        submitText   = $(formSubmitBtn).val(),
-                        loadingText  = '<?php echo esc_js($settings['submit_button_loading_txt']); ?>',
-                        formSelector = $(tergetForm);
-
-                    // Open Button
-                    $( openFormBtn ).on('click', function(){
-                        $(this).hide();
-                        $(this).siblings( closeFormBtn ).show();
-                        $(this).siblings( tergetForm ).slideDown('slow');
-                    });
-
-                    // Close Button
-                    $( closeFormBtn ).on('click', function(){
-                        $(this).hide();
-                        $(this).siblings( openFormBtn ).show();
-                        $(this).siblings( tergetForm ).slideUp('slow');
-                    });
-
-                    // Submit Using Ajax
-                    $(tergetForm).on('submit', function(e) {
-                        e.preventDefault();
-
-                        $.ajax({
-                            url: formSelector.attr('action'),
-                            type: 'POST',
-                            data: formSelector.serialize(),
-
-                            beforeSend: function (response) {
-                                $(tergetForm).siblings('.wlsendmessage').hide();
-                                $(formSubmitBtn).removeClass('added').addClass('loading').val(loadingText);
-                            },
-
-                            complete: function (response) {
-                                $(formSubmitBtn).addClass('added').removeClass('loading').val(submitText);
-                                $(tergetForm).siblings( openFormBtn ).show();
-                                $(tergetForm).siblings( closeFormBtn ).hide();
-                                $(tergetForm).slideUp('slow');
-                            },
-
-                            success: function (response) {
-                                $(tergetForm).siblings('.wlsendmessage').show().html(response?.data?.message);
-
-                                // Update form token for subsequent submissions (without page refresh)
-                                if (response?.data?.new_token) {
-                                    $(tergetForm).find('input[name="form_token"]').val(response.data.new_token);
-                                }
-
-                                // Clear form fields after successful submission
-                                if (response?.success && !response?.data?.error) {
-                                    $(tergetForm).find('input[name="wlname"]').val('');
-                                    $(tergetForm).find('input[name="wlemail"]').val('');
-                                    $(tergetForm).find('textarea[name="wlmessage"]').val('');
-                                }
-                            },
-
-                        });
-
-                    });
-
-                });
-            </script>
 
         <?php
 

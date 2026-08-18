@@ -45,9 +45,15 @@ class Shortcode {
         $myaccount_url =  get_permalink( get_option('woocommerce_myaccount_page_id') );
 
         // Fetch option data
+        // A field saved empty in the panel returns '', not the default, which used to render a
+        // button with no label at all.
         $button_text        = woolentor_get_option( 'button_text','wishsuite_settings_tabs', 'Wishlist' );
+        $button_text        = empty( $button_text ) ? __( 'Wishlist', 'woolentor' ) : $button_text;
         $button_added_text  = woolentor_get_option( 'added_button_text','wishsuite_settings_tabs', 'Product Added' );
+        $button_added_text  = empty( $button_added_text ) ? __( 'Product Added', 'woolentor' ) : $button_added_text;
         $button_exist_text  = woolentor_get_option( 'exist_button_text','wishsuite_settings_tabs', 'Product already added' );
+        $button_exist_text  = empty( $button_exist_text ) ? __( 'Product already added', 'woolentor' ) : $button_exist_text;
+        $hide_button_text   = ( 'on' === woolentor_get_option( 'hide_button_text', 'wishsuite_settings_tabs', 'off' ) );
         $shop_page_btn_position     = woolentor_get_option( 'shop_btn_position', 'wishsuite_settings_tabs', 'after_cart_btn' );
         $product_page_btn_position  = woolentor_get_option( 'product_btn_position', 'wishsuite_settings_tabs', 'after_cart_btn' );
         $button_style               = woolentor_get_option( 'button_style', 'wishsuite_style_settings_tabs', 'default' );
@@ -59,6 +65,7 @@ class Shortcode {
             $has_product   = false;
         }else{
             $button_text = woolentor_get_option( 'button_text','wishsuite_settings_tabs', 'Wishlist' );
+            $button_text = empty( $button_text ) ? __( 'Wishlist', 'woolentor' ) : $button_text;
             $page_url = wishsuite_get_page_url();
         }
 
@@ -81,16 +88,27 @@ class Shortcode {
         $button_icon        = $this->icon_generate();
         $added_button_icon  = $this->icon_generate('added');
         
-        if( !empty( $button_text ) ){
+        // Kept as plain text for the aria-label, so an icon only button still announces itself
+        // to screen readers.
+        $button_text_label  = $button_text;
+        $button_exist_label = $button_exist_text;
+
+        if( !empty( $button_text ) && ! $hide_button_text ){
             $button_text = '<span class="wishsuite-btn-text">'.$button_text.'</span>';
-        }
-        
-        if( !empty( $button_exist_text ) ){
-            $button_exist_text = '<span class="wishsuite-btn-text">'.$button_exist_text.'</span>';
+        } else {
+            $button_text = '';
         }
 
-        if( !empty( $button_added_text ) ){
+        if( !empty( $button_exist_text ) && ! $hide_button_text ){
+            $button_exist_text = '<span class="wishsuite-btn-text">'.$button_exist_text.'</span>';
+        } else {
+            $button_exist_text = '';
+        }
+
+        if( !empty( $button_added_text ) && ! $hide_button_text ){
             $button_added_text = '<span class="wishsuite-btn-text">'.$button_added_text.'</span>';
+        } else {
+            $button_added_text = '';
         }
 
         // Shortcode atts
@@ -101,24 +119,45 @@ class Shortcode {
             'button_text'       => $button_icon.$button_text,
             'button_added_text' => $added_button_icon.$button_added_text,
             'button_exist_text' => $added_button_icon.$button_exist_text,
+            'button_text_label' => $button_text_label,
+            'button_exist_label'=> $button_exist_label,
             'has_product'       => $has_product,
             'template_name'     => ( $has_product === true ) ? 'exist' : 'add',
         );
 
-        // sanitization before passing to template:
-        if (isset($atts['button_text'])) {
-            $atts['button_text'] = wp_kses_post($atts['button_text']);
-        }
-        if (isset($atts['button_exist_text'])) {
-            $atts['button_exist_text'] = wp_kses_post($atts['button_exist_text']);
-        }
-        if (isset($atts['button_added_text'])) {
-            $atts['button_added_text'] = wp_kses_post($atts['button_added_text']);
-        }
-
         $atts = shortcode_atts( $default_atts, $atts, $content );
+
+        // Sanitized after the merge: doing it before only ever touched caller supplied atts,
+        // never the defaults, so it was effectively a no-op. wp_kses_post() would strip the
+        // icon SVG, hence the widened allow list.
+        $allowed_html = $this->get_allowed_button_html();
+        $atts['button_text']        = wp_kses( $atts['button_text'], $allowed_html );
+        $atts['button_added_text']  = wp_kses( $atts['button_added_text'], $allowed_html );
+        $atts['button_exist_text']  = wp_kses( $atts['button_exist_text'], $allowed_html );
+        $atts['button_text_label']  = sanitize_text_field( $atts['button_text_label'] );
+        $atts['button_exist_label'] = sanitize_text_field( $atts['button_exist_label'] );
+
         return Manage_Wishlist::instance()->button_html( $atts );
 
+    }
+
+    /**
+     * [get_allowed_button_html] wp_kses allow list that keeps the button icon SVG intact.
+     * @return [array]
+     */
+    private function get_allowed_button_html(){
+        $svg_args = array(
+            'svg' => array(
+                'class' => true, 'id' => true, 'xmlns' => true, 'width' => true, 'height' => true,
+                'viewbox' => true, 'fill' => true, 'stroke' => true, 'stroke-width' => true,
+                'stroke-linecap' => true, 'stroke-linejoin' => true, 'style' => true,
+                'enable-background' => true,
+            ),
+            'g'    => array( 'class' => true, 'id' => true, 'fill' => true ),
+            'path' => array( 'class' => true, 'd' => true, 'fill' => true ),
+        );
+
+        return array_merge( wp_kses_allowed_html( 'post' ), $svg_args );
     }
 
     /**
@@ -180,6 +219,7 @@ class Shortcode {
             $has_product   = false;
         }else{
             $button_text = woolentor_get_option( 'button_text','wishsuite_settings_tabs', 'Wishlist' );
+            $button_text = empty( $button_text ) ? __( 'Wishlist', 'woolentor' ) : $button_text;
             $page_url = wishsuite_get_page_url();
         }
 
@@ -213,15 +253,34 @@ class Shortcode {
             $button_icon = woolentor_get_option( $type.'button_custom_icon','wishsuite_style_settings_tabs', '' );
         }else{
             if( $button_icon_type !== 'none' ){
+                $solid_added  = ( 'on' === woolentor_get_option( 'use_solid_heart', 'wishsuite_style_settings_tabs', 'off' ) );
+                $svg_class    = 'wishsuite-default-icon'.( $solid_added ? ' wishsuite-solid-added' : '' );
+                $default_icon = str_replace( '<svg ', '<svg class="'.esc_attr( $svg_class ).'" ', $default_icon );
                 return $default_icon;
             }
         }
 
-        if( !empty( $button_icon ) ){
-            $button_icon = '<img src="'.esc_url( $button_icon ).'" alt="'.esc_attr( $button_text ).'">';
+        if( empty( $button_icon ) ){
+            // Icon type "none", or "custom" with nothing uploaded: no wrapper, so the loader
+            // keeps positioning itself against the button.
+            return $default_loader;
         }
 
-        return $button_icon.$default_loader;
+        // Explicit width/height so the icon does not shift the layout while it loads, which
+        // PageSpeed reports as a CLS problem. Deliberately no getimagesize() fallback for a
+        // remote URL: that would be a blocking HTTP request per button, i.e. per product in a
+        // shop loop.
+        $attachment_id = attachment_url_to_postid( $button_icon );
+        if( $attachment_id ){
+            $button_icon = wp_get_attachment_image( $attachment_id, 'full', false, array(
+                'alt'   => $button_text,
+                'class' => 'wishsuite-custom-icon',
+            ) );
+        } else {
+            $button_icon = '<img class="wishsuite-custom-icon" src="'.esc_url( $button_icon ).'" alt="'.esc_attr( $button_text ).'">';
+        }
+
+        return '<span class="wishsuite-custom-icon-wrap">'.$button_icon.$default_loader.'</span>';
 
     }
 

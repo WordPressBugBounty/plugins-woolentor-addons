@@ -48,7 +48,7 @@ class Manage_Data {
                 return new \WP_Error( 'failed-to-insert', __( 'Failed to insert data', 'wishsuite' ) );
             }
 
-            $this->purge_cache();
+            $this->purge_cache( $data['user_id'], $data['product_id'] );
 
             return $wpdb->insert_id;
         }
@@ -145,7 +145,7 @@ class Manage_Data {
             [ '%d', '%d' ]
         );
 
-        $this->purge_cache( $user_id );
+        $this->purge_cache( $user_id, $product_id );
 
         return $updated;
 
@@ -200,7 +200,7 @@ class Manage_Data {
     public function delete( $user_id, $product_id ) {
         global $wpdb;
 
-        $this->purge_cache( $user_id );
+        $this->purge_cache( $user_id, $product_id );
 
         return $wpdb->delete(
             $wpdb->prefix . 'wishsuite_list',
@@ -218,11 +218,13 @@ class Manage_Data {
      * @param  [int] $user_id
      * @return [type] 
      */
-    public function purge_cache( $user_id = null ) {
+    public function purge_cache( $user_id = null, $product_id = null ) {
         $group = 'wishsuite';
 
-        if ( $user_id ) {
-            wp_cache_delete( 'wishsuite-product-' . $user_id, $group );
+        if ( $user_id && $product_id ) {
+            // Must match the key read_single_item() writes, otherwise a quantity update stays
+            // stale for the rest of the request (and longer with a persistent object cache).
+            wp_cache_delete( 'wishsuite-product-' . $user_id . $product_id, $group );
         }
 
         wp_cache_delete( 'count', $group );

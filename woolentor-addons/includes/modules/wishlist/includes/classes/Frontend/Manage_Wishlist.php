@@ -6,7 +6,13 @@ use WooLentor\Traits\Singleton;
  */
 class Manage_Wishlist {
     use Singleton;
-    
+
+    /**
+     * [products_data_cache] Per request cache for get_products_data().
+     * @var array
+     */
+    private $products_data_cache = array();
+
     /**
      * Initialize the class
      */
@@ -16,6 +22,78 @@ class Manage_Wishlist {
         // Remove wishlist item after add to cart.
         add_action( 'woocommerce_add_to_cart', [ $this, 'remove_wishlist_after_add_to_cart' ], 10, 6 );
 
+        // Keep the wishlist page out of every speculative/proxy cache. See the two methods below.
+        add_filter( 'wp_speculation_rules_href_exclude_paths', [ $this, 'exclude_from_speculative_loading' ] );
+        add_action( 'template_redirect', [ $this, 'wishlist_page_no_cache' ] );
+
+    }
+
+    /**
+     * [get_wishlist_page_id] The page holding the wishlist table.
+     * @return [int]
+     */
+    public function get_wishlist_page_id(){
+        return absint( woolentor_get_option( 'wishlist_page', 'wishsuite_table_settings_tabs' ) );
+    }
+
+    /**
+     * [exclude_from_speculative_loading] Stop the browser prefetching the wishlist page.
+     *
+     * WordPress ships Speculative Loading, which prefetches internal links on hover/pointerdown.
+     * The wishlist button links to the wishlist page, so the browser fetches that page while the
+     * visitor is still adding the product. The prefetched copy is rendered before the wishlist
+     * cookie exists, i.e. empty, and it is what the browser then shows when the visitor follows
+     * the link, until they reload by hand.
+     *
+     * Logged in visitors never see it: WP::send_headers() sends `no-store` for them, which makes
+     * the prefetched response ineligible for reuse. Guests get no Cache-Control at all.
+     *
+     * @param  [array] $paths
+     * @return [array]
+     */
+    public function exclude_from_speculative_loading( $paths ){
+        $page_id = $this->get_wishlist_page_id();
+
+        if ( $page_id ) {
+            $path = wp_parse_url( get_permalink( $page_id ), PHP_URL_PATH );
+            if ( $path ) {
+                $paths[] = $path;
+            }
+        }
+
+        return $paths;
+    }
+
+    /**
+     * [wishlist_page_no_cache] Mark the wishlist page as personalised.
+     *
+     * Covers the prefetchers and page caches that the speculation rules filter above cannot
+     * reach: third party prefetch scripts, proxies and full page cache plugins. `no-store` is
+     * deliberately not sent, so the page stays eligible for the back/forward cache; the pageshow
+     * handler in frontend.js keeps that case correct.
+     *
+     * @return [void]
+     */
+    public function wishlist_page_no_cache(){
+        $page_id = $this->get_wishlist_page_id();
+
+        if ( ! $page_id || ! is_page( $page_id ) ) {
+            return;
+        }
+
+        // Core already sends its own nocache headers, including no-store, for logged in users.
+        if ( is_user_logged_in() ) {
+            return;
+        }
+
+        if ( ! headers_sent() ) {
+            header( 'Cache-Control: private, no-cache, must-revalidate, max-age=0' );
+        }
+
+        // Honoured by WP Rocket, LiteSpeed, W3TC, WP Super Cache and Batcache.
+        if ( ! defined( 'DONOTCACHEPAGE' ) ) {
+            define( 'DONOTCACHEPAGE', true );
+        }
     }
 
     /**
@@ -39,23 +117,149 @@ class Manage_Wishlist {
 
         }else{
 
-            $cookie_name = $this->get_cookie_name();
+            $items = $this->get_guest_items();
+            $product_id = absint( $id );
 
-            if ( $this->is_product_in_wishlist( $id ) ) {
-                $add_status = false;
+            if( $product_id && ! isset( $items[ $product_id ] ) ){
+                $items[ $product_id ] = 1;
             }
 
-            $products = $this->get_wishlist_products();
-            $products[] = $id;
-
-            setcookie( $cookie_name, wp_json_encode( $products ), 0, COOKIEPATH, COOKIE_DOMAIN, false, false );
-            $_COOKIE[$cookie_name] = wp_json_encode( $products );
+            $this->save_guest_items( $items );
             $add_status = true;
 
         }
 
+        $this->products_data_cache = array();
+
         return $add_status;
 
+    }
+
+    /**
+     * [get_guest_cookie_lifetime] Guest wishlist cookie lifetime, in days.
+     * @return [int]
+     */
+    public function get_guest_cookie_lifetime() {
+        $days = (int) apply_filters( 'wishsuite_guest_cookie_lifetime_days', 30 );
+        return $days > 0 ? $days : 30;
+    }
+
+    /**
+     * [get_guest_items] Read the guest wishlist cookie as a product_id => quantity map.
+     *
+     * The cookie historically held a plain list of IDs ( [12,15] ). It now holds a map
+     * ( {"12":2,"15":1} ) so quantities survive a page refresh. Both shapes are accepted so
+     * visitors with an existing cookie don't lose their wishlist.
+     *
+     * @return [array]
+     */
+    public function get_guest_items() {
+        $cookie_name = $this->get_cookie_name();
+
+        if ( empty( $_COOKIE[ $cookie_name ] ) ) {
+            return array();
+        }
+
+        $decoded = json_decode( wp_unslash( $_COOKIE[ $cookie_name ] ), true );
+
+        if ( ! is_array( $decoded ) ) {
+            return array();
+        }
+
+        // Detect the legacy list shape ( sequential 0..n keys ) vs the id => qty map.
+        $is_list = true;
+        $index   = 0;
+        foreach ( $decoded as $cookie_key => $cookie_value ) {
+            if ( $cookie_key !== $index++ ) {
+                $is_list = false;
+                break;
+            }
+        }
+
+        $items = array();
+
+        if ( $is_list ) {
+            foreach ( $decoded as $cookie_value ) {
+                $product_id = absint( $cookie_value );
+                if ( $product_id ) {
+                    $items[ $product_id ] = 1;
+                }
+            }
+        } else {
+            foreach ( $decoded as $cookie_key => $cookie_value ) {
+                $product_id = absint( $cookie_key );
+                if ( $product_id ) {
+                    $items[ $product_id ] = max( 1, absint( $cookie_value ) );
+                }
+            }
+        }
+
+        return $items;
+    }
+
+    /**
+     * [save_guest_items] Persist the guest wishlist map to the cookie.
+     * @param  [array] $items product_id => quantity
+     * @return [void]
+     */
+    public function save_guest_items( $items ) {
+        $cookie_name = $this->get_cookie_name();
+
+        if ( empty( $items ) ) {
+            // Expire it rather than writing an empty session cookie.
+            setcookie( $cookie_name, '', time() - HOUR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, false, false );
+            unset( $_COOKIE[ $cookie_name ] );
+            return;
+        }
+
+        $encoded = wp_json_encode( $items );
+
+        // A 0 expiry made this a session cookie, so guest wishlists were lost as soon as the
+        // browser closed. Give it an explicit lifetime instead.
+        $expiration = time() + ( $this->get_guest_cookie_lifetime() * DAY_IN_SECONDS );
+
+        setcookie( $cookie_name, $encoded, $expiration, COOKIEPATH, COOKIE_DOMAIN, false, false );
+        $_COOKIE[ $cookie_name ] = $encoded;
+    }
+
+    /**
+     * [update_product_quantity] Persist a wishlist item quantity.
+     * @param  [int] $id
+     * @param  [int] $quantity
+     * @return [mixed]
+     */
+    public function update_product_quantity( $id, $quantity ){
+        $product_id = absint( $id );
+        $quantity   = absint( $quantity );
+
+        if ( ! $product_id || $quantity < 1 ) {
+            return false;
+        }
+
+        $user_id = get_current_user_id();
+
+        if ( $user_id ) {
+            $updated = \WishSuite\Manage_Data::instance()->update([
+                'user_id'    => $user_id,
+                'product_id' => $product_id,
+                'quantity'   => $quantity,
+            ]);
+        } else {
+            // Guests are stored in the cookie only, so the quantity lives there too.
+            $items = $this->get_guest_items();
+
+            if ( ! isset( $items[ $product_id ] ) ) {
+                return false;
+            }
+
+            $items[ $product_id ] = $quantity;
+            $this->save_guest_items( $items );
+            $updated = true;
+        }
+
+        $this->products_data_cache = array();
+
+        return $updated;
     }
 
     /**
@@ -72,32 +276,20 @@ class Manage_Wishlist {
             $delete_status = $deleted;
         }else{
 
-            $cookie_name = $this->get_cookie_name();
+            $items      = $this->get_guest_items();
+            $product_id = absint( $id );
 
-            $products = $this->get_wishlist_products();
-
-            if( in_array( $id, $products ) ){
-
-                foreach ( $products as $prod_key => $product_id ) {
-                    if ( intval( $id ) == $product_id ) {
-                        unset( $products[ $prod_key ] );
-                    }
-                }
-
-                if ( empty( $products ) ) {
-                    setcookie( $cookie_name, false, 0, COOKIEPATH, COOKIE_DOMAIN, false, false );
-                    $_COOKIE[$cookie_name] = false;
-                } else {
-                    setcookie( $cookie_name, wp_json_encode( $products ), 0, COOKIEPATH, COOKIE_DOMAIN, false, false );
-                    $_COOKIE[$cookie_name] = wp_json_encode( $products );
-                }
+            if( isset( $items[ $product_id ] ) ){
+                unset( $items[ $product_id ] );
+                $this->save_guest_items( $items );
                 $delete_status = true;
-
             }else{
                 $delete_status = false;
             }
 
         }
+
+        $this->products_data_cache = array();
 
         return $delete_status;
     }
@@ -255,13 +447,9 @@ class Manage_Wishlist {
             }
             return $ids;
         }else{
-            $cookie_name = $this->get_cookie_name();
-            // return isset( $_COOKIE[ $cookie_name ] ) ? array_map( 'sanitize_text_field', json_decode( wp_unslash( $_COOKIE[ $cookie_name ] ), true ) ) : array();
-            if( isset( $_COOKIE[ $cookie_name ] ) && is_array( json_decode( wp_unslash( $_COOKIE[ $cookie_name ] ), true ) ) ){
-                return array_map( 'sanitize_text_field', json_decode( wp_unslash( $_COOKIE[ $cookie_name ] ), true ) );
-            }else{
-                return array();
-            }
+            // Returned as strings to stay compatible with the strict in_array() check in
+            // is_product_in_wishlist().
+            return array_map( 'strval', array_keys( $this->get_guest_items() ) );
         }
 
     }
@@ -287,19 +475,45 @@ class Manage_Wishlist {
      */
     public function get_products_data( $limit = -1, $page = 1 ) {
 
+        // The table shortcode, the counter, the pagination and the share block all ask for the
+        // same data within one request. The share parameters belong in the key because they
+        // change the result for the very same limit/page pair.
+        $cache_key = $limit . '|' . $page
+            . '|' . ( isset( $_GET['wishsuitepids'] ) ? sanitize_text_field( wp_unslash( $_GET['wishsuitepids'] ) ) : '' )
+            . '|' . ( isset( $_GET['wishsuiteqty'] ) ? sanitize_text_field( wp_unslash( $_GET['wishsuiteqty'] ) ) : '' );
+
+        if ( isset( $this->products_data_cache[ $cache_key ] ) ) {
+            return $this->products_data_cache[ $cache_key ];
+        }
+
         $ids = $this->get_wishlist_products();
 
+        $shared_qty_map = array();
         $shareablebtn = woolentor_get_option( 'enable_social_share','wishsuite_table_settings_tabs','on' );
         if ( ( $shareablebtn === 'on' ) && isset( $_GET['wishsuitepids'] ) ) {
-            $query_perametter_ids = sanitize_text_field( $_GET['wishsuitepids'] );
+            $query_perametter_ids = sanitize_text_field( wp_unslash( $_GET['wishsuitepids'] ) );
             if( !empty( $query_perametter_ids ) ){
                 $ids = explode( ',', $query_perametter_ids );
+
+                // Quantities travel alongside the ids, in the same order, so a shared wishlist
+                // arrives with the quantities its owner chose.
+                if ( ! empty( $_GET['wishsuiteqty'] ) ) {
+                    $shared_qty = explode( ',', sanitize_text_field( wp_unslash( $_GET['wishsuiteqty'] ) ) );
+                    foreach ( $ids as $id_index => $shared_id ) {
+                        if ( isset( $shared_qty[ $id_index ] ) && absint( $shared_qty[ $id_index ] ) > 0 ) {
+                            $shared_qty_map[ absint( $shared_id ) ] = absint( $shared_qty[ $id_index ] );
+                        }
+                    }
+                }
             }
         }
 
         if ( empty( $ids ) ) {
             return array();
         }
+
+        // Guest quantities live in the cookie, logged in ones in the wishlist table.
+        $guest_items = is_user_logged_in() ? array() : $this->get_guest_items();
 
         $args = array(
             'include' => $ids,
@@ -324,11 +538,19 @@ class Manage_Wishlist {
             $rating_count   = $product->get_rating_count();
             $average        = $product->get_average_rating();
 
-            $get_row = \WishSuite\Manage_Data::instance()->read_single_item( get_current_user_id(), $product->get_id() );
-            if( is_object( $get_row ) && $get_row->quantity ){
-                $min_value = $get_row->quantity;
-            }else{
-                $min_value = $product->get_min_purchase_quantity();
+            $current_product_id = $product->get_id();
+
+            if ( isset( $shared_qty_map[ $current_product_id ] ) ) {
+                $min_value = $shared_qty_map[ $current_product_id ];
+            } elseif ( ! empty( $guest_items[ $current_product_id ] ) ) {
+                $min_value = $guest_items[ $current_product_id ];
+            } else {
+                $get_row = \WishSuite\Manage_Data::instance()->read_single_item( get_current_user_id(), $current_product_id );
+                if( is_object( $get_row ) && $get_row->quantity ){
+                    $min_value = $get_row->quantity;
+                }else{
+                    $min_value = $product->get_min_purchase_quantity();
+                }
             }
             $quantity_args = array(
                 'input_value' => $min_value,
@@ -347,6 +569,7 @@ class Manage_Wishlist {
                 'rating'        => wc_get_rating_html( $average, $rating_count ),
                 'add_to_cart'   => $this->add_to_cart_html( $product, $min_value ) ? $this->add_to_cart_html( $product, $min_value ) : $data_none,
                 'quantity'      => woocommerce_quantity_input( $quantity_args, $product, false ),
+                'quantity_value'=> $min_value,
                 'dimensions'    => wc_format_dimensions( $product->get_dimensions( false ) ),
                 'description'   => $product->get_short_description() ? $product->get_short_description() : $data_none,
                 'weight'        => $product->get_weight() ? $product->get_weight() : $data_none,
@@ -369,8 +592,10 @@ class Manage_Wishlist {
                     $products_data[ $product->get_id() ][ $field_id ] = implode( ', ', $products_data[ $product->get_id() ][ $field_id ] );
                 }
             }
-            
+
         }
+
+        $this->products_data_cache[ $cache_key ] = $products_data;
 
         return $products_data;
     }
@@ -396,6 +621,13 @@ class Manage_Wishlist {
             $fields = $fields_settings;
         }else{
             $fields = $default_show;
+        }
+
+        // A shared wishlist belongs to whoever sent it, so the visitor viewing it has nothing
+        // of their own to remove.
+        $shareablebtn = woolentor_get_option( 'enable_social_share', 'wishsuite_table_settings_tabs', 'on' );
+        if ( ( 'on' === $shareablebtn ) && isset( $_GET['wishsuitepids'] ) ) {
+            unset( $fields['remove'] );
         }
 
         return $fields;
@@ -565,10 +797,20 @@ class Manage_Wishlist {
             return;
         }
 
-        $ids = $this->get_wishlist_products();
+        // Built from the rendered rows so the shared link carries the same quantities the
+        // visitor is looking at.
+        $products = $this->get_products_data();
+        $ids      = array();
+        $qtys     = array();
+
+        foreach ( $products as $shared_id => $shared_product ) {
+            $ids[]  = $shared_id;
+            $qtys[] = ! empty( $shared_product['quantity_value'] ) ? absint( $shared_product['quantity_value'] ) : 1;
+        }
 
         $atts = [
             'products_ids' => $ids,
+            'products_qty' => $qtys,
         ];
         $social_share_attr = apply_filters( 'wishsuite_social_share_arg', $atts );
         wishsuite_get_template( 'wishsuite-social-share.php', $social_share_attr, true );

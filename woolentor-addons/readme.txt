@@ -3,7 +3,7 @@ Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, aslamhasib
 Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenberg blocks
 Requires at least: 4.7
 Tested up to: 7.0
-Stable tag: 3.4.6
+Stable tag: 3.4.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -461,6 +461,20 @@ Check out our other powerful WordPress plugins:
 **[JustTables](https://hasthemes.com/wp/justtables/?utm_source=org&utm_medium=readme)** - WordPress table builder
 
 == Changelog ==
+
+= Version: 3.4.7 - Date: 18-08-2026 =
+* Added: Quantity text change option added in Single product Add to cart button.
+* Added optional "Solid heart when added" icon style, with separate color pickers for default/added heart states in wishlist module.
+* Added: selected quantity now carried through wishlist share links in wishlist module.
+* Added: "Hide Button Text" option for an icon-only button in wishlist module.
+* Added: Shareable link generate feature added in wishlist module.
+* Solved: z-index on the wishlist button to stop header overlap.
+* Solved: button keeps a discernible aria-label even when text is hidden.
+* Solved: Product view count store issue.
+* Solved: Quantity increase and decrease issue in Single product Add to cart button.
+* Solved: Few text Translate issue with the Product grid addon.
+* Solved: Remove inline JavaScript print issue in few Elementor addons.
+* Compatibility: Latest WordPress and WooCommerce version.
 
 = Version: 3.4.6 - Date: 26-07-2026 =
 * Solved: Abandon cart data fetching issue.
@@ -1015,19 +1029,6 @@ Check out our other powerful WordPress plugins:
 * Solved : Has been solved missed return value from add to cart filter in backorder module.
 * Solved : PHP Undefined Function issue if WooCommerce is Deactivate.
 * Compatibility : Universal Product Layout compatibility with kadence theme.
-
-= Version: 2.5.4 - Date: 23-01-2023 =
-* Added : Category description showing option has been added in WL Category Grid
-* Added : Show city, Show state, Show Country option has been added in sales notification module.
-* Added : Purchased by and price label change option has been added in sales notification module.
-* Added : Cross Icon color option in Product Filter addon.
-* Tweak : HTML tags allow in Archive Title Addon and Block.
-* Tweak : Template builder Custom Meta box move to Gutenberg Meta Box Control.
-* Compatibility : Polylag and WPML Support in wishlist and compare Module.
-* Solved : Class Attribute adding issue form advance settings of the block  "Additional CSS class(es)"
-* Solved : Tab Alignment Issue in WL Product Tab addon.
-* Solved : Wishlist Product Limit issue in wishlist table.
-* Solved : Compare Product Limit issue in compare table.
 
 == Installation ==
 This section describes how to install the ShopLentor - WooCommerce Addons for Elementor Page Builder plugin and get it working.

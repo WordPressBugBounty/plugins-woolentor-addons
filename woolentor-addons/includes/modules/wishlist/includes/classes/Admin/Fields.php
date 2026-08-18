@@ -207,14 +207,27 @@ class Fields {
                             ),
 
                             array(
+                                'id'      => 'hide_button_text',
+                                'name'    => __( 'Hide Button Text', 'woolentor' ),
+                                'desc'    => __( 'Show only the icon on the wishlist button. The text is kept as an aria-label for screen readers.', 'woolentor' ),
+                                'type'    => 'checkbox',
+                                'default' => 'off',
+                            ),
+
+                            array(
                                 'id'        => 'button_text',
                                 'name'       => __( 'Button Text', 'woolentor' ),
                                 'desc'        => __( 'Enter your wishlist button text.', 'woolentor' ),
                                 'type'        => 'text',
                                 'default'     => __( 'Wishlist', 'woolentor' ),
                                 'placeholder' => __( 'Wishlist', 'woolentor' ),
+                                'condition'   => array(
+                                    'key'      => 'hide_button_text',
+                                    'operator' => '!=',
+                                    'value'    => 'on'
+                                ),
                             ),
-            
+
                             array(
                                 'id'        => 'added_button_text',
                                 'name'       => __( 'Product added text', 'woolentor' ),
@@ -222,8 +235,13 @@ class Fields {
                                 'type'        => 'text',
                                 'default'     => __( 'Product Added', 'woolentor' ),
                                 'placeholder' => __( 'Product Added', 'woolentor' ),
+                                'condition'   => array(
+                                    'key'      => 'hide_button_text',
+                                    'operator' => '!=',
+                                    'value'    => 'on'
+                                ),
                             ),
-            
+
                             array(
                                 'id'        => 'exist_button_text',
                                 'name'       => __( 'Already exists in the wishlist text', 'woolentor' ),
@@ -231,6 +249,11 @@ class Fields {
                                 'type'        => 'text',
                                 'default'     => __( 'Product already added', 'woolentor' ),
                                 'placeholder' => __( 'Product already added', 'woolentor' ),
+                                'condition'   => array(
+                                    'key'      => 'hide_button_text',
+                                    'operator' => '!=',
+                                    'value'    => 'on'
+                                ),
                             ),
 
                         ]
@@ -336,6 +359,19 @@ class Fields {
                             ),
             
                             array(
+                                'id'      => 'enable_copy_link',
+                                'name'    => esc_html__( 'Enable copy link button', 'woolentor' ),
+                                'type'    => 'checkbox',
+                                'default' => 'off',
+                                'desc'    => esc_html__( 'Add a button that copies the shareable wishlist link to the clipboard.', 'woolentor' ),
+                                'condition' => [
+                                    'key' => 'enable_social_share',
+                                    'operator' => '==',
+                                    'value' => 'on'
+                                ]
+                            ),
+
+                            array(
                                 'id'        => 'social_share_button_title',
                                 'name'       => esc_html__( 'Social share button title', 'woolentor' ),
                                 'desc'        => esc_html__( 'Enter your social share button title.', 'woolentor' ),
@@ -401,6 +437,36 @@ class Fields {
                                 ]
                             ),
             
+                            array(
+                                'id'      => 'use_solid_heart',
+                                'name'    => __( 'Use solid heart when added', 'woolentor' ),
+                                'desc'    => __( 'Fill the default heart icon once the product is in the wishlist.', 'woolentor' ),
+                                'type'    => 'checkbox',
+                                'default' => 'off',
+                            ),
+
+                            array(
+                                'id'      => 'heart_icon_color',
+                                'name'    => __( 'Heart icon color', 'woolentor' ),
+                                'type'    => 'color',
+                                'condition' => [
+                                    'key' => 'button_style',
+                                    'operator' => '==',
+                                    'value' => 'custom'
+                                ]
+                            ),
+
+                            array(
+                                'id'      => 'heart_icon_active_color',
+                                'name'    => __( 'Heart icon color (added)', 'woolentor' ),
+                                'type'    => 'color',
+                                'condition' => [
+                                    'key' => 'button_style',
+                                    'operator' => '==',
+                                    'value' => 'custom'
+                                ]
+                            ),
+
                             array(
                                 'id'    => 'button_icon_type',
                                 'name'   => __( 'Button icon type', 'woolentor' ),

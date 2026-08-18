@@ -164,6 +164,34 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.4.7',
+                'date'    => '2026-08-18',
+                'changes' => [
+                    'New Features' => [
+                        'Quantity text change option added in Single product Add to cart button.',
+                        'Optional "Solid heart when added" icon style, with separate color pickers for default/added heart states in wishlist module.',
+                        'selected quantity now carried through wishlist share links in wishlist module.',
+                        'Hide Button Text option for an icon-only button in wishlist module.',
+                        'Shareable link generate feature added in wishlist module.',
+                        'Multi-Step Checkout page addon animation control and offset control option. (Pro)'
+                    ],
+                    'Fixes' => [
+                        'z-index on the wishlist button to stop header overlap.',
+                        'button keeps a discernible aria-label even when text is hidden.',
+                        'Product view count store issue.',
+                        'Quantity increase and decrease issue in Single product Add to cart button.',
+                        'Few text Translate issue with the Product grid addon.',
+                        'Remove inline JavaScript print issue in few Elementor addons.',
+                        'Step navigation and Field Error animation issue. (Pro)',
+                        'Invalid date showing issue in license info page. (Pro)',
+                        'Price filter wrapper class name typo issue. (Pro)'
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
                 'version' => '3.4.6',
                 'date'    => '2026-07-26',
                 'changes' => [

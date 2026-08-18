@@ -286,6 +286,13 @@ class Assets_Management{
         $localizeargs = array(
             'woolentorajaxurl' => admin_url( 'admin-ajax.php' ),
             'ajax_nonce'       => wp_create_nonce( 'woolentor_psa_nonce' ),
+            // Real boolean. Widgets that navigate the window must not do so inside the
+            // Elementor editor or a template preview.
+            'is_preview_mode'  => (bool) woolentor_is_preview_mode(),
+            'i18n'             => array(
+                'select' => esc_html__( 'select', 'woolentor' ),
+                'of'     => esc_html__( 'of', 'woolentor' ),
+            ),
         );
         wp_localize_script( 'woolentor-widgets-scripts', 'woolentor_addons', $localizeargs );
 

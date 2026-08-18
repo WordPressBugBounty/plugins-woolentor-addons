@@ -25,6 +25,12 @@ class Woolentor_Wb_Product_Stock_Widget extends Widget_Base {
         return 'https://woolentor.com/documentation/';
     }
 
+    public function get_script_depends(){
+        return [
+            'woolentor-widgets-scripts',
+        ];
+    }
+
     public function get_style_depends(){
         return [
             'woolentor-widgets',
@@ -101,19 +107,6 @@ class Woolentor_Wb_Product_Stock_Widget extends Widget_Base {
         if( "variable" == $poduct_type){
             ?>
                 <div class="woolentor-variable-product-status" id="woolentor-stock-status-<?php echo esc_attr($id); ?>"></div>
-                <script>
-                    ;jQuery(document).ready(function($) {
-                        'use strict';
-                        let widgetUniqid = '<?php echo esc_js($id); ?>';
-                        $( '.single_variation_wrap' ).on( 'show_variation', function ( event, variation ) {
-                            $('#woolentor-stock-status-'+widgetUniqid).html(variation?.availability_html);
-                        });
-
-                        $('.variations').find('.reset_variations').on('click', function(e){
-                            $('#woolentor-stock-status-'+widgetUniqid).html('');
-                        });
-                    });
-                </script>
             <?php
         }
         

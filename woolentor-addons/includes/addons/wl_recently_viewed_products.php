@@ -53,6 +53,8 @@ class Woolentor_Wl_Recently_Viewed_Products_Widget extends Widget_Base {
                     'type'    => Controls_Manager::NUMBER,
                     'default' => 4,
                     'step'    => 1,
+                    'max'     => 20,
+                    'min'     => 1,
                 ]
             );
 
