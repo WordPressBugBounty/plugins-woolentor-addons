@@ -1,0 +1,505 @@
+/**
+ * Offer Banner — Magazine pack.
+ * All three variants live in this file so the browser caches one stylesheet
+ * regardless of which variant a page uses.
+ *
+ * The grid, card stacking, overlay and hover-zoom mechanics live in
+ * pack-widgets-base.css under .wl-ob-*. Only this pack's colours, type and
+ * spacing belong here.
+ *
+ * Each variant was designed by a different designer with its own palette, so
+ * each redeclares the --wl-pack-* colour tokens on its own root. v1 matches the
+ * pack defaults and needs no override.
+ *
+ * Font families are deliberately NOT overridden — type comes from the theme and
+ * the Style tab's typography controls.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — Cyber-yellow stamp pair
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v1 needs no palette override — the magazine pack defaults already are its
+   colours: signal red #EF233C, cyber yellow #FFD60A, ink #0F1115.
+
+   This variant's homepage carries no banner card grid, so the treatment is
+   taken from its own `.pick-card` shelf: a yellow stamp on the photograph, a
+   yellow category line, a heavy condensed uppercase headline, a solid yellow
+   button, and a card that lifts and picks up a yellow hairline. */
+.wl-ob-magazine-v1 {
+    --wl-ob-cols: 2;
+}
+
+.wl-ob-magazine-v1 .wl-ob-grid {
+    gap: 26px;
+}
+
+.wl-ob-magazine-v1 .wl-ob-card {
+    --wl-ob-img-zoom: 1.05;
+    min-height: 400px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--wl-pack-secondary);
+    transition: transform 0.22s ease, border-color 0.22s ease;
+}
+
+.wl-ob-magazine-v1 .wl-ob-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 214, 10, 0.4);
+}
+
+.wl-ob-magazine-v1 .wl-ob-img {
+    transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wl-ob-magazine-v1 .wl-ob-overlay {
+    background: linear-gradient(to top,
+        rgba(5, 5, 5, 0.92) 0%,
+        rgba(5, 5, 5, 0.55) 42%,
+        rgba(5, 5, 5, 0.12) 100%);
+}
+
+/* The stamp is a hard yellow rectangle, not a pill — this pack does not round
+   anything it wants read as a label. */
+.wl-ob-magazine-v1 .wl-ob-badge {
+    top: 18px;
+    left: 18px;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 6px;
+    padding: 7px 12px;
+    border-radius: 6px;
+    background: var(--wl-pack-accent);
+}
+
+.wl-ob-magazine-v1 .wl-ob-badge-value,
+.wl-ob-magazine-v1 .wl-ob-badge-label {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wl-pack-text);
+}
+
+.wl-ob-magazine-v1 .wl-ob-badge-label {
+    opacity: 0.72;
+}
+
+.wl-ob-magazine-v1 .wl-ob-body {
+    padding: 28px;
+}
+
+.wl-ob-magazine-v1 .wl-ob-eyebrow {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: var(--wl-pack-accent);
+    margin-bottom: 10px;
+}
+
+.wl-ob-magazine-v1 .wl-ob-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+/* Red is this pack's one loud note — an <em> in the headline picks it up. */
+.wl-ob-magazine-v1 .wl-ob-title em {
+    font-style: normal;
+    color: var(--wl-pack-primary);
+}
+
+.wl-ob-magazine-v1 .wl-ob-sub {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.72);
+    max-width: 340px;
+    margin-bottom: 20px;
+}
+
+.wl-ob-magazine-v1 .wl-ob-cta {
+    gap: 8px;
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 6px;
+    background: var(--wl-pack-accent);
+    color: var(--wl-pack-text);
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.wl-ob-magazine-v1 .wl-ob-card:hover .wl-ob-cta {
+    background: #fff;
+}
+
+@media (max-width: 767px) {
+    .wl-ob-magazine-v1 .wl-ob-card {
+        min-height: 340px;
+    }
+
+    .wl-ob-magazine-v1 .wl-ob-body {
+        padding: 22px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — Campaign offer pair
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v2 — Coral · Forest green · Near-black.
+   The two tones come from each card's Card Tone setting: default is coral, alternate is dark. */
+.wl-ob-magazine-v2 {
+    --wl-pack-primary:    #D95846;
+    --wl-pack-secondary:  #151719;
+    --wl-pack-accent:     #5A9761;
+    --wl-pack-bg:         #F8F8F4;
+    --wl-pack-bg-alt:     #FFFFFF;
+    --wl-pack-text:       #111315;
+    --wl-pack-text-muted: #8D969C;
+    --wl-pack-border:     #DDE2E5;
+
+    --wl-ob-cols:         2;
+    --wl-ob-body-justify: center;
+}
+
+.wl-ob-magazine-v2 .wl-ob-grid {
+    gap: 22px;
+}
+
+.wl-ob-magazine-v2 .wl-ob-card {
+    min-height: 480px;
+    border-radius: 24px;
+    color: #fff;
+}
+
+/* The gradient sweeps in from the left rather than up from the bottom, so the
+   photograph stays visible down the right-hand side of the card. */
+.wl-ob-magazine-v2 .wl-ob-overlay {
+    background: linear-gradient(105deg,
+        var(--wl-pack-primary) 0%,
+        rgba(217, 88, 70, 0.88) 46%,
+        rgba(217, 88, 70, 0.22) 100%);
+}
+
+.wl-ob-magazine-v2 .wl-ob-card--alt .wl-ob-overlay {
+    background: linear-gradient(105deg,
+        var(--wl-pack-secondary) 0%,
+        rgba(21, 23, 25, 0.88) 46%,
+        rgba(21, 23, 25, 0.20) 100%);
+}
+
+/* The copy stops well short of the right edge so it never runs over the photo. */
+.wl-ob-magazine-v2 .wl-ob-body {
+    padding: 48px 50px;
+    max-width: 74%;
+}
+
+.wl-ob-magazine-v2 .wl-ob-badge {
+    top: 32px;
+    right: 32px;
+    left: auto;
+    width: 108px;
+    height: 108px;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.32);
+    text-align: center;
+}
+
+.wl-ob-magazine-v2 .wl-ob-badge-value {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 0.8;
+    color: #fff;
+}
+
+.wl-ob-magazine-v2 .wl-ob-badge-label {
+    font-family: var(--wl-pack-font-body);
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-top: 4px;
+}
+
+.wl-ob-magazine-v2 .wl-ob-eyebrow {
+    padding: 7px 13px;
+    border-radius: 999px;
+    background: #fff;
+    color: #B94234;
+    font-family: var(--wl-pack-font-body);
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    margin-bottom: 18px;
+}
+
+.wl-ob-magazine-v2 .wl-ob-card--alt .wl-ob-eyebrow {
+    background: var(--wl-pack-primary);
+    color: #fff;
+}
+
+.wl-ob-magazine-v2 .wl-ob-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(36px, 3.8vw, 54px);
+    font-weight: 800;
+    line-height: 0.88;
+    letter-spacing: -0.5px;
+    color: #fff;
+}
+
+.wl-ob-magazine-v2 .wl-ob-title em {
+    font-style: normal;
+}
+
+/* On the coral card the accent word cannot be coral, so it stays white; on the
+   dark card it takes the coral. */
+.wl-ob-magazine-v2 .wl-ob-card--alt .wl-ob-title em {
+    color: var(--wl-pack-primary);
+}
+
+.wl-ob-magazine-v2 .wl-ob-sub {
+    font-family: var(--wl-pack-font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 300px;
+    margin: 14px 0 20px;
+}
+
+.wl-ob-magazine-v2 .wl-ob-features {
+    gap: 9px;
+    margin-bottom: 26px;
+}
+
+.wl-ob-magazine-v2 .wl-ob-feature {
+    gap: 10px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.wl-ob-magazine-v2 .wl-ob-feature svg {
+    stroke: #fff;
+}
+
+.wl-ob-magazine-v2 .wl-ob-card--alt .wl-ob-feature svg {
+    stroke: var(--wl-pack-accent);
+}
+
+.wl-ob-magazine-v2 .wl-ob-foot {
+    gap: 12px;
+}
+
+.wl-ob-magazine-v2 .wl-ob-cta {
+    gap: 8px;
+    padding: 13px 22px;
+    border: 0;
+    border-radius: 6px;
+    background: #fff;
+    color: var(--wl-pack-text);
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    font-weight: 700;
+    line-height: 1.4;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.wl-ob-magazine-v2 .wl-ob-card--alt .wl-ob-cta {
+    background: var(--wl-pack-primary);
+    color: #fff;
+}
+
+.wl-ob-magazine-v2 .wl-ob-card:hover .wl-ob-cta {
+    background: var(--wl-pack-secondary);
+    color: #fff;
+}
+
+/* An inset ring rather than a border, so the chip and the button stay the same
+   height however the button's padding is restyled. */
+.wl-ob-magazine-v2 .wl-ob-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 12px 16px;
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.4);
+    font-family: var(--wl-pack-font-body);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: #fff;
+}
+
+.wl-ob-magazine-v2 .wl-ob-note {
+    margin-top: 16px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    letter-spacing: 0.2px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.62);
+}
+
+/* The disc would collide with the copy once the card narrows, so the copy takes
+   the full width and the disc shrinks. */
+@media (max-width: 1024px) {
+    .wl-ob-magazine-v2 .wl-ob-body {
+        padding: 36px 34px;
+        max-width: 100%;
+    }
+
+    .wl-ob-magazine-v2 .wl-ob-badge {
+        top: 22px;
+        right: 22px;
+        width: 84px;
+        height: 84px;
+    }
+
+    .wl-ob-magazine-v2 .wl-ob-badge-value {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-ob-magazine-v2 .wl-ob-card {
+        min-height: 440px;
+    }
+
+    .wl-ob-magazine-v2 .wl-ob-body {
+        padding: 28px 24px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — Warm paper pair
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v3 — Warm paper · Espresso · Terracotta · Sage */
+.wl-ob-magazine-v3 {
+    --wl-pack-primary:    #B86545;
+    --wl-pack-secondary:  #242424;
+    --wl-pack-accent:     #7C856A;
+    --wl-pack-bg:         #F5F0E8;
+    --wl-pack-bg-alt:     #FFF9EF;
+    --wl-pack-text:       #242424;
+    --wl-pack-text-muted: #A79D92;
+    --wl-pack-border:     #A79D92;
+
+    --wl-ob-cols:         2;
+}
+
+.wl-ob-magazine-v3 .wl-ob-grid {
+    gap: clamp(16px, 1.8vw, 26px);
+}
+
+.wl-ob-magazine-v3 .wl-ob-card {
+    --wl-ob-img-zoom: 1.05;
+    /* 16:11 through the shared ratio spacer — see pack-widgets-base.css. */
+    --wl-ob-ratio: calc(100% * 11 / 16);
+    border-radius: 18px;
+    background: #3B2F2A;
+}
+
+.wl-ob-magazine-v3 .wl-ob-img {
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.wl-ob-magazine-v3 .wl-ob-overlay {
+    background: linear-gradient(to top,
+        rgba(30, 24, 20, 0.86) 0%,
+        rgba(30, 24, 20, 0.34) 40%,
+        rgba(30, 24, 20, 0) 68%);
+}
+
+.wl-ob-magazine-v3 .wl-ob-body {
+    padding: clamp(28px, 3.2vw, 50px);
+    max-width: 460px;
+}
+
+.wl-ob-magazine-v3 .wl-ob-eyebrow {
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: #fff;
+    opacity: 0.85;
+    margin-bottom: 14px;
+}
+
+.wl-ob-magazine-v3 .wl-ob-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(30px, 3.4vw, 46px);
+    font-weight: 600;
+    line-height: 1.02;
+    color: #fff;
+    max-width: 300px;
+    margin-bottom: 30px;
+}
+
+.wl-ob-magazine-v3 .wl-ob-sub {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-base);
+    line-height: 1.55;
+    color: rgba(245, 240, 232, 0.92);
+    max-width: 34ch;
+    margin-bottom: 26px;
+}
+
+.wl-ob-magazine-v3 .wl-ob-cta {
+    padding: 13px 30px;
+    border: 0;
+    border-radius: 100px;
+    background: #fff;
+    color: var(--wl-pack-secondary);
+    font-family: var(--wl-pack-font-body);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.wl-ob-magazine-v3 .wl-ob-card:hover .wl-ob-cta {
+    background: var(--wl-pack-primary);
+    color: #fff;
+}
+
+@media (max-width: 767px) {
+    .wl-ob-magazine-v3 .wl-ob-card {
+        --wl-ob-ratio: calc(100% * 12 / 16);
+    }
+
+    .wl-ob-magazine-v3 .wl-ob-title {
+        margin-bottom: 22px;
+    }
+
+    .wl-ob-magazine-v3 .wl-ob-sub {
+        margin-bottom: 20px;
+    }
+}

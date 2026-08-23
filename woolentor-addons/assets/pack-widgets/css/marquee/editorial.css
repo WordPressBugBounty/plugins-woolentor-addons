@@ -1,0 +1,228 @@
+/**
+ * Marquee — Editorial pack.
+ * All three variants live in this file so the browser caches one stylesheet
+ * regardless of which variant a page uses.
+ *
+ * The scrolling mechanism — track, keyframes, direction, pause, separators,
+ * edge fade and the reduced-motion fallback — lives in pack-widgets-base.css
+ * under .wl-pack-marquee*. Only this pack's colours, type and spacing belong here.
+ *
+ * Each variant was designed by a different designer with its own palette, so
+ * each redeclares the --wl-pack-* colour tokens on its own root. v1 matches the
+ * pack defaults and needs no override.
+ *
+ * Font families are deliberately NOT overridden — type comes from the theme and
+ * the Style tab's typography controls.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Shared — Editorial
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-mq-editorial .wl-mq-item {
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.wl-mq-editorial .wl-mq-image {
+    display: block;
+    width: auto;
+    object-fit: contain;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — Labelled partner strip
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v1 needs no palette override — the editorial pack defaults already are its
+   colours: clay #9A6B4F, cream ground, sand rules, cocoa text. */
+
+.wl-mq-editorial-v1 {
+    padding: 70px 0;
+    background: var(--wl-pack-bg-alt);
+    border-top: 1px solid var(--wl-pack-border);
+    border-bottom: 1px solid var(--wl-pack-border);
+}
+
+.wl-mq-editorial-v1 .wl-mq-label {
+    display: block;
+    margin-bottom: 14px;
+    text-align: center;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    /* Fallback first for browsers without color-mix(). */
+    color: var(--wl-pack-text-muted);
+    color: color-mix(in srgb, var(--wl-pack-text-muted) 70%, transparent);
+}
+
+.wl-mq-editorial-v1 .wl-mq-item {
+    padding: 0 52px;
+    white-space: nowrap;
+    user-select: none;
+}
+
+/* Names sit far back — the strip is texture, not a list to read. */
+.wl-mq-editorial-v1 .wl-mq-text {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: -.015em;
+    line-height: 1.2;
+    color: var(--wl-pack-text);
+    opacity: .28;
+    transition: opacity .22s ease;
+}
+
+.wl-mq-editorial-v1 .wl-mq-item:hover .wl-mq-text,
+.wl-mq-editorial-v1 .wl-mq-item.is-highlighted .wl-mq-text {
+    opacity: .6;
+}
+
+.wl-mq-editorial-v1 .wl-mq-image {
+    height: 30px;
+    opacity: .35;
+    transition: opacity .22s ease;
+}
+
+.wl-mq-editorial-v1 .wl-mq-item:hover .wl-mq-image {
+    opacity: .7;
+}
+
+.wl-mq-editorial-v1 .wl-pack-marquee-sep {
+    color: var(--wl-pack-border);
+    opacity: .5;
+}
+
+@media (max-width: 767px) {
+    .wl-mq-editorial-v1 {
+        padding: 44px 0;
+    }
+
+    .wl-mq-editorial-v1 .wl-mq-item {
+        padding: 0 28px;
+    }
+
+    .wl-mq-editorial-v1 .wl-mq-text {
+        font-size: 20px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — Kinetic campaign band
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v2 — Near-black ground · Sky-blue star · White italic serif */
+.wl-mq-editorial-v2 {
+    --wl-pack-primary:    #3EA3D4;
+    --wl-pack-accent:     #F4B79A;
+    --wl-pack-bg:         #071119;
+    --wl-pack-text:       #FFFFFF;
+    --wl-pack-text-muted: rgba(255, 255, 255, .6);
+    --wl-pack-border:     rgba(255, 255, 255, .12);
+
+    background: var(--wl-pack-bg);
+    border-top: 1px solid var(--wl-pack-border);
+    border-bottom: 1px solid var(--wl-pack-border);
+}
+
+.wl-mq-editorial-v2 .wl-pack-marquee-track {
+    padding: 24px 0;
+}
+
+.wl-mq-editorial-v2 .wl-mq-item {
+    padding: 0 28px;
+}
+
+.wl-mq-editorial-v2 .wl-mq-text {
+    font-family: var(--wl-pack-font-heading);
+    font-style: italic;
+    font-size: clamp(20px, 2vw, 30px);
+    font-weight: 500;
+    line-height: 1.25;
+    white-space: nowrap;
+    color: var(--wl-pack-text);
+}
+
+.wl-mq-editorial-v2 .wl-mq-item.is-highlighted .wl-mq-text {
+    color: var(--wl-pack-primary);
+}
+
+.wl-mq-editorial-v2 .wl-mq-image {
+    height: 26px;
+}
+
+/* The star stays upright while the phrases lean. */
+.wl-mq-editorial-v2 .wl-pack-marquee-sep {
+    color: var(--wl-pack-primary);
+    font-style: normal;
+}
+
+.wl-mq-editorial-v2 .wl-pack-marquee-sep--star::before,
+.wl-mq-editorial-v2 .wl-pack-marquee-sep--diamond::before {
+    font-size: 10px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — Quiet paper band
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v3 — Paper white · Clay diamond · Olive uppercase.
+   This variant's homepage carries no scrolling band, so the strip is built from
+   the pack's own palette. Kept deliberately small and wide-tracked, since v1
+   already owns large serif names and v2 large italic phrases. */
+.wl-mq-editorial-v3 {
+    --wl-pack-primary:    #A0603D;
+    --wl-pack-accent:     #6F735E;
+    --wl-pack-bg:         #F7F3EC;
+    --wl-pack-text:       #1F1E1B;
+    --wl-pack-text-muted: #6F735E;
+    --wl-pack-border:     #DDD1C1;
+
+    padding: 16px 0;
+    background: var(--wl-pack-bg);
+    border-top: 1px solid var(--wl-pack-border);
+    border-bottom: 1px solid var(--wl-pack-border);
+}
+
+.wl-mq-editorial-v3 .wl-mq-item {
+    padding: 0 26px;
+}
+
+.wl-mq-editorial-v3 .wl-mq-text {
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    white-space: nowrap;
+    color: var(--wl-pack-text-muted);
+}
+
+.wl-mq-editorial-v3 .wl-mq-item.is-highlighted .wl-mq-text {
+    color: var(--wl-pack-text);
+}
+
+.wl-mq-editorial-v3 .wl-mq-image {
+    height: 18px;
+}
+
+.wl-mq-editorial-v3 .wl-pack-marquee-sep {
+    color: var(--wl-pack-primary);
+}
+
+.wl-mq-editorial-v3 .wl-pack-marquee-sep--star::before,
+.wl-mq-editorial-v3 .wl-pack-marquee-sep--diamond::before {
+    font-size: 8px;
+}
+
+@media (max-width: 767px) {
+    .wl-mq-editorial-v2 .wl-mq-item,
+    .wl-mq-editorial-v3 .wl-mq-item {
+        padding: 0 18px;
+    }
+}

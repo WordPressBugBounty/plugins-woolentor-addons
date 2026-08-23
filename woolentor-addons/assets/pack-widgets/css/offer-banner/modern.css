@@ -1,0 +1,447 @@
+/**
+ * Offer Banner — Modern pack.
+ * All three variants live in this file so the browser caches one stylesheet
+ * regardless of which variant a page uses.
+ *
+ * The grid, card stacking, overlay and hover-zoom mechanics live in
+ * pack-widgets-base.css under .wl-ob-*. Only this pack's colours, type and
+ * spacing belong here.
+ *
+ * Each variant was designed by a different designer with its own palette, so
+ * each redeclares the --wl-pack-* colour tokens on its own root. v1 matches the
+ * pack defaults and needs no override.
+ *
+ * Font families are deliberately NOT overridden — type comes from the theme and
+ * the Style tab's typography controls.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Shared — Modern
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-ob-modern .wl-ob-card {
+    --wl-ob-img-zoom: 1.04;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — Two-up scrim cards
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v1 needs no palette override — the modern pack defaults already are its
+   colours: cyan #22D3EE accent, near-black #080A0F ground, white type. */
+
+.wl-ob-modern-v1 {
+    --wl-ob-cols: 2;
+}
+
+.wl-ob-modern-v1 .wl-ob-grid {
+    gap: 28px;
+}
+
+.wl-ob-modern-v1 .wl-ob-card {
+    min-height: 360px;
+    border-radius: 28px;
+    color: #fff;
+}
+
+/* Nearly clear at the top so the photograph reads, dense at the bottom so the
+   headline always has contrast regardless of the image behind it. */
+.wl-ob-modern-v1 .wl-ob-overlay {
+    background: linear-gradient(180deg,
+        rgba(8, 10, 15, 0.05) 0%,
+        rgba(8, 10, 15, 0.75) 100%);
+}
+
+.wl-ob-modern-v1 .wl-ob-body {
+    padding: 56px;
+}
+
+.wl-ob-modern-v1 .wl-ob-eyebrow {
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--wl-pack-accent);
+    color: var(--wl-pack-secondary);
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    margin-bottom: 14px;
+}
+
+.wl-ob-modern-v1 .wl-ob-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+    color: #fff;
+}
+
+.wl-ob-modern-v1 .wl-ob-sub {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-base);
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.86);
+    max-width: 380px;
+    margin-bottom: 26px;
+}
+
+.wl-ob-modern-v1 .wl-ob-cta {
+    gap: 10px;
+    padding: 15px 28px;
+    border-radius: 999px;
+    border: 1px solid #fff;
+    background: #fff;
+    color: var(--wl-pack-secondary);
+    font-family: var(--wl-pack-font-body);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    transition: background 0.24s cubic-bezier(0.2, 0.8, 0.2, 1),
+                border-color 0.24s cubic-bezier(0.2, 0.8, 0.2, 1),
+                color 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wl-ob-modern-v1 .wl-ob-card:hover .wl-ob-cta {
+    background: var(--wl-pack-accent);
+    border-color: var(--wl-pack-accent);
+    color: var(--wl-pack-secondary);
+}
+
+/* The reference collapses at 900px, earlier than the shared 767px breakpoint,
+   because 56px of padding inside a half-width card runs out of room first. */
+@media (max-width: 900px) {
+    .wl-ob-modern-v1 .wl-ob-grid {
+        --wl-ob-cols: 1;
+        gap: 18px;
+    }
+
+    .wl-ob-modern-v1 .wl-ob-card {
+        min-height: 320px;
+    }
+
+    .wl-ob-modern-v1 .wl-ob-body {
+        padding: 40px;
+    }
+
+    .wl-ob-modern-v1 .wl-ob-title {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-ob-modern-v1 .wl-ob-body {
+        padding: 28px;
+    }
+
+    .wl-ob-modern-v1 .wl-ob-title {
+        font-size: 26px;
+    }
+
+    .wl-ob-modern-v1 .wl-ob-cta {
+        padding: 13px 22px;
+        font-size: 14px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — Editorial tile pair
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v2 — Warm paper ground · Olive accent · Rust highlight.
+   This variant's homepage carries no banner card grid, so the treatment is taken from its own
+   `.cat3__card` tiles: a 3px corner, a darkened photograph, bottom-centred content and an olive
+   bar that wipes across the top on hover. Nothing is borrowed from v1 or v3. */
+.wl-ob-modern-v2 {
+    --wl-pack-primary:    #7A8F3A;
+    --wl-pack-secondary:  #1D1D1B;
+    --wl-pack-accent:     #B4573F;
+    --wl-pack-bg:         #FAFAF7;
+    --wl-pack-bg-alt:     #F0EEE9;
+    --wl-pack-text:       #111111;
+    --wl-pack-text-muted: #666666;
+    --wl-pack-border:     #D8D5CE;
+
+    --wl-ob-cols:         2;
+    --wl-ob-body-align:   center;
+    --wl-ob-body-justify: flex-end;
+}
+
+.wl-ob-modern-v2 .wl-ob-grid {
+    gap: 14px;
+}
+
+.wl-ob-modern-v2 .wl-ob-card {
+    --wl-ob-img-zoom: 1.07;
+    min-height: 350px;
+    border-radius: 3px;
+}
+
+/* The olive rule wipes in from the left — the one moving part of the tile. */
+.wl-ob-modern-v2 .wl-ob-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 3;
+    background: var(--wl-pack-primary);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wl-ob-modern-v2 .wl-ob-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Darkened rather than scrimmed — the photograph sits back so the type can be small. */
+.wl-ob-modern-v2 .wl-ob-img {
+    filter: brightness(0.76) saturate(0.88);
+    transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 0.55s ease;
+}
+
+.wl-ob-modern-v2 .wl-ob-card:hover .wl-ob-img {
+    filter: brightness(0.65) saturate(1);
+}
+
+.wl-ob-modern-v2 .wl-ob-overlay {
+    background: linear-gradient(to top,
+        rgba(0, 0, 0, 0.90) 0%,
+        rgba(0, 0, 0, 0.58) 30%,
+        rgba(0, 0, 0, 0.10) 58%,
+        transparent 100%);
+}
+
+.wl-ob-modern-v2 .wl-ob-body {
+    padding: 0 18px 28px;
+    text-align: center;
+}
+
+.wl-ob-modern-v2 .wl-ob-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(18px, 1.9vw, 24px);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 7px;
+    transition: transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.wl-ob-modern-v2 .wl-ob-card:hover .wl-ob-title {
+    transform: translateY(-2px);
+}
+
+.wl-ob-modern-v2 .wl-ob-eyebrow {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    line-height: 1.3;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 10px;
+}
+
+.wl-ob-modern-v2 .wl-ob-sub {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 320px;
+    margin-bottom: 18px;
+    transition: color 0.3s ease;
+}
+
+.wl-ob-modern-v2 .wl-ob-card:hover .wl-ob-sub {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* The reference hides this button until hover. A category tile can afford that because the whole
+   tile is the target; a promotional banner cannot, so it stays visible. */
+.wl-ob-modern-v2 .wl-ob-cta {
+    gap: 8px;
+    padding: 9px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 0;
+    background: transparent;
+    color: #fff;
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+}
+
+.wl-ob-modern-v2 .wl-ob-card:hover .wl-ob-cta {
+    background: #fff;
+    border-color: #fff;
+    color: var(--wl-pack-text);
+}
+
+@media (max-width: 1024px) {
+    .wl-ob-modern-v2 .wl-ob-grid {
+        gap: 10px;
+    }
+
+    .wl-ob-modern-v2 .wl-ob-card {
+        min-height: 460px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-ob-modern-v2 .wl-ob-card {
+        min-height: 340px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — Asymmetric pair
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v3 — Off-white ground · Graphite type · Clay and olive accents.
+   --wl-ob-template lives on this root, one level above .wl-ob-grid, so the Columns control can
+   override it from the element itself. See the note in pack-widgets-base.css. */
+.wl-ob-modern-v3 {
+    --wl-pack-primary:    #B8755B;
+    --wl-pack-secondary:  #1F1F1D;
+    --wl-pack-accent:     #626A5D;
+    --wl-pack-bg:         #FAFAF7;
+    --wl-pack-bg-alt:     #FFFFFF;
+    --wl-pack-text:       #1F1F1D;
+    --wl-pack-text-muted: #6F716D;
+    --wl-pack-border:     #D8D2C8;
+
+    /* One wide card beside one narrow one. */
+    --wl-ob-template:     2fr 1fr;
+    --wl-ob-body-align:   center;
+    --wl-ob-body-justify: center;
+}
+
+.wl-ob-modern-v3 .wl-ob-grid {
+    gap: 16px;
+}
+
+.wl-ob-modern-v3 .wl-ob-card {
+    min-height: 440px;
+    border-radius: 16px;
+}
+
+.wl-ob-modern-v3 .wl-ob-overlay {
+    background: linear-gradient(to top,
+        rgba(15, 14, 12, 0.72) 0%,
+        rgba(15, 14, 12, 0.28) 50%,
+        rgba(15, 14, 12, 0.18) 100%);
+    transition: background 0.4s ease;
+}
+
+.wl-ob-modern-v3 .wl-ob-card:hover .wl-ob-overlay {
+    background: linear-gradient(to top,
+        rgba(15, 14, 12, 0.80) 0%,
+        rgba(15, 14, 12, 0.36) 50%,
+        rgba(15, 14, 12, 0.22) 100%);
+}
+
+.wl-ob-modern-v3 .wl-ob-img {
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.wl-ob-modern-v3 .wl-ob-body {
+    padding: 36px 40px;
+    text-align: center;
+}
+
+.wl-ob-modern-v3 .wl-ob-eyebrow {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.70);
+    margin-bottom: 10px;
+}
+
+.wl-ob-modern-v3 .wl-ob-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(36px, 4.5vw, 68px);
+    font-weight: 600;
+    line-height: 1.05;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+/* Card Size only scales the headline here — the wide/narrow split is the grid's job, so
+   reordering the repeater rearranges the pair without breaking the track. */
+.wl-ob-modern-v3 .wl-ob-card--small .wl-ob-title {
+    font-size: clamp(28px, 3.2vw, 48px);
+}
+
+.wl-ob-modern-v3 .wl-ob-sub {
+    font-family: var(--wl-pack-font-body);
+    font-size: 14px;
+    line-height: 1.6;
+    color: #fff;
+    max-width: 360px;
+    margin-bottom: 18px;
+}
+
+.wl-ob-modern-v3 .wl-ob-cta {
+    gap: 6px;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 100px;
+    background: #fff;
+    color: var(--wl-pack-secondary);
+    font-family: var(--wl-pack-font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+}
+
+.wl-ob-modern-v3 .wl-ob-card:hover .wl-ob-cta {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.26);
+}
+
+/* The asymmetric track cannot survive a narrow viewport, so it is dropped rather than squeezed.
+   960px is the reference's own breakpoint, earlier than the shared 767px. */
+@media (max-width: 960px) {
+    .wl-ob-modern-v3 {
+        --wl-ob-template: minmax(0, 1fr);
+    }
+
+    .wl-ob-modern-v3 .wl-ob-card {
+        min-height: 320px;
+    }
+
+    .wl-ob-modern-v3 .wl-ob-card--small {
+        min-height: 260px;
+    }
+}
+
+@media (max-width: 600px) {
+    .wl-ob-modern-v3 .wl-ob-card {
+        min-height: 280px;
+    }
+
+    .wl-ob-modern-v3 .wl-ob-card--small {
+        min-height: 240px;
+    }
+
+    .wl-ob-modern-v3 .wl-ob-body {
+        padding: 28px 24px;
+    }
+}

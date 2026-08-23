@@ -1,0 +1,510 @@
+/**
+ * Offer Banner — Editorial pack.
+ * All three variants live in this file so the browser caches one stylesheet
+ * regardless of which variant a page uses.
+ *
+ * The grid, card stacking, overlay and hover-zoom mechanics live in
+ * pack-widgets-base.css under .wl-ob-*. Only this pack's colours, type and
+ * spacing belong here.
+ *
+ * Each variant was designed by a different designer with its own palette, so
+ * each redeclares the --wl-pack-* colour tokens on its own root. v1 matches the
+ * pack defaults and needs no override.
+ *
+ * Font families are deliberately NOT overridden — type comes from the theme and
+ * the Style tab's typography controls.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — Portrait picks
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v1 needs no palette override — the editorial pack defaults already are its
+   colours: clay #9A6B4F, cream ground, sand rules, warm white type. */
+
+/* The column count sits on the variant root, one level above .wl-ob-grid, so the responsive
+   defaults in pack-widgets-base.css — which target .wl-ob-grid itself — still win at each
+   breakpoint. A deviation from those defaults has to be restated inside the matching query. */
+.wl-ob-editorial-v1 {
+    --wl-ob-cols: 3;
+}
+
+.wl-ob-editorial-v1 .wl-ob-grid {
+    gap: 20px;
+}
+
+.wl-ob-editorial-v1 .wl-ob-card {
+    --wl-ob-img-zoom: 1.05;
+    /* 3:4 portrait. Sized through the shared ratio spacer, so long copy still grows the
+       card instead of being clipped — see pack-widgets-base.css. */
+    --wl-ob-ratio: calc(100% * 4 / 3);
+    border: 1px solid var(--wl-pack-border);
+    border-radius: var(--wl-pack-radius);
+    background: var(--wl-pack-bg-alt);
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wl-ob-editorial-v1 .wl-ob-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+}
+
+/* Slow, unhurried — the photograph is the subject here, not the motion. */
+.wl-ob-editorial-v1 .wl-ob-img {
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wl-ob-editorial-v1 .wl-ob-overlay {
+    background: linear-gradient(180deg, transparent 40%, rgba(42, 33, 28, 0.85) 100%);
+}
+
+.wl-ob-editorial-v1 .wl-ob-badge {
+    top: 18px;
+    left: 18px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    background: var(--wl-pack-primary);
+}
+
+.wl-ob-editorial-v1 .wl-ob-badge-value {
+    font-family: var(--wl-pack-font-body);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wl-pack-bg-alt);
+}
+
+/* Editorial's badge is a single label in the reference, so it lays out in a row rather than the
+   stacked stamp magazine v2 uses. A label typed here still reads instead of being dropped. */
+.wl-ob-editorial-v1 .wl-ob-badge {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.wl-ob-editorial-v1 .wl-ob-badge-label {
+    font-family: var(--wl-pack-font-body);
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    color: var(--wl-pack-bg-alt);
+}
+
+.wl-ob-editorial-v1 .wl-ob-body {
+    padding: 30px;
+}
+
+.wl-ob-editorial-v1 .wl-ob-eyebrow {
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: var(--wl-pack-border);
+    margin-bottom: 8px;
+}
+
+.wl-ob-editorial-v1 .wl-ob-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(22px, 2vw, 28px);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--wl-pack-bg-alt);
+    margin-bottom: 8px;
+}
+
+.wl-ob-editorial-v1 .wl-ob-sub {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    line-height: 1.55;
+    color: rgba(255, 252, 247, 0.78);
+    margin-bottom: 8px;
+}
+
+/* An underlined link rather than a button — the gap widens on hover, so the
+   arrow steps away from the label instead of the whole thing moving. */
+.wl-ob-editorial-v1 .wl-ob-cta {
+    gap: 6px;
+    margin-top: 4px;
+    padding: 0 0 2px;
+    border: 0;
+    border-bottom: 1px solid rgba(154, 107, 79, 0.3);
+    border-radius: 0;
+    background: transparent;
+    color: var(--wl-pack-primary);
+    font-family: var(--wl-pack-font-body);
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.4;
+    transition: gap 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+                border-color 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wl-ob-editorial-v1 .wl-ob-card:hover .wl-ob-cta {
+    gap: 10px;
+    border-bottom-color: var(--wl-pack-primary);
+}
+
+@media (max-width: 1024px) {
+    .wl-ob-editorial-v1 .wl-ob-grid {
+        --wl-ob-cols: 3;
+        gap: 14px;
+    }
+
+    .wl-ob-editorial-v1 .wl-ob-body {
+        padding: 22px;
+    }
+
+    .wl-ob-editorial-v1 .wl-ob-title {
+        font-size: 18px;
+    }
+}
+
+/* Two up rather than one — a 3:4 card at full width is taller than the viewport. */
+@media (max-width: 767px) {
+    .wl-ob-editorial-v1 .wl-ob-grid {
+        --wl-ob-cols: 2;
+    }
+}
+
+@media (max-width: 520px) {
+    .wl-ob-editorial-v1 .wl-ob-grid {
+        --wl-ob-cols: 1;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — Frosted campaign pair
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v2 — Sky blue · Peach · Deep teal-black.
+   This variant's homepage carries no banner card grid, so the treatment is assembled from its own
+   vocabulary: the ruled sky-blue eyebrow, the Playfair headline with an italic accent, and the
+   frosted white pill tag on a 12px photo card. Nothing is borrowed from v1 or v3. */
+.wl-ob-editorial-v2 {
+    --wl-pack-primary:    #3EA3D4;
+    --wl-pack-secondary:  #F4B79A;
+    --wl-pack-accent:     #F4B79A;
+    --wl-pack-bg:         #F7FAFB;
+    --wl-pack-bg-alt:     #FFFFFF;
+    --wl-pack-text:       #121A22;
+    --wl-pack-text-muted: #5E6B75;
+    --wl-pack-border:     #D9E3E8;
+
+    --wl-ob-cols:         2;
+}
+
+.wl-ob-editorial-v2 .wl-ob-grid {
+    gap: clamp(20px, 2.4vw, 34px);
+}
+
+.wl-ob-editorial-v2 .wl-ob-card {
+    --wl-ob-img-zoom: 1.05;
+    min-height: 420px;
+    border-radius: 12px;
+    background: #0D141B;
+}
+
+.wl-ob-editorial-v2 .wl-ob-img {
+    opacity: 0.8;
+    transition: transform 1.1s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wl-ob-editorial-v2 .wl-ob-card:hover .wl-ob-img {
+    opacity: 0.68;
+}
+
+.wl-ob-editorial-v2 .wl-ob-overlay {
+    background: linear-gradient(to top,
+        rgba(7, 17, 25, 0.88) 0%,
+        rgba(7, 17, 25, 0.35) 45%,
+        rgba(7, 17, 25, 0.08) 100%);
+}
+
+.wl-ob-editorial-v2 .wl-ob-badge {
+    top: 18px;
+    left: 18px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(6px);
+}
+
+.wl-ob-editorial-v2 .wl-ob-badge-value {
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: #101820;
+}
+
+/* Editorial's badge is a single label in the reference, so it lays out in a row rather than the
+   stacked stamp magazine v2 uses. A label typed here still reads instead of being dropped. */
+.wl-ob-editorial-v2 .wl-ob-badge {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.wl-ob-editorial-v2 .wl-ob-badge-label {
+    font-family: var(--wl-pack-font-body);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    color: #101820;
+}
+
+.wl-ob-editorial-v2 .wl-ob-body {
+    padding: 32px;
+}
+
+/* The 30px rule before the label is this designer's signature. */
+.wl-ob-editorial-v2 .wl-ob-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: var(--wl-pack-primary);
+    margin-bottom: 14px;
+}
+
+.wl-ob-editorial-v2 .wl-ob-eyebrow::before {
+    content: "";
+    flex-shrink: 0;
+    width: 30px;
+    height: 1px;
+    background: currentColor;
+}
+
+.wl-ob-editorial-v2 .wl-ob-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(26px, 2.4vw, 40px);
+    font-weight: 700;
+    line-height: 1.06;
+    letter-spacing: -1px;
+    color: var(--wl-pack-bg);
+    margin-bottom: 12px;
+}
+
+/* Typing <em> in the Title field is enough to get the two-tone headline. */
+.wl-ob-editorial-v2 .wl-ob-title em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--wl-pack-primary);
+}
+
+.wl-ob-editorial-v2 .wl-ob-sub {
+    font-family: var(--wl-pack-font-body);
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.72);
+    max-width: 380px;
+    margin-bottom: 20px;
+}
+
+.wl-ob-editorial-v2 .wl-ob-cta {
+    gap: 8px;
+    padding: 12px 24px;
+    border: 1px solid var(--wl-pack-primary);
+    border-radius: 6px;
+    background: var(--wl-pack-primary);
+    color: #fff;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    line-height: 1.4;
+    transition: background 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wl-ob-editorial-v2 .wl-ob-card:hover .wl-ob-cta {
+    background: #237FAB;
+    border-color: #237FAB;
+}
+
+@media (max-width: 767px) {
+    .wl-ob-editorial-v2 .wl-ob-card {
+        min-height: 360px;
+    }
+
+    .wl-ob-editorial-v2 .wl-ob-body {
+        padding: 24px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — Full-bleed rule band
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v3 — Paper white · Ink black · Clay brown · Warm stone rules */
+.wl-ob-editorial-v3 {
+    --wl-pack-primary:    #A0603D;
+    --wl-pack-secondary:  #1F1E1B;
+    --wl-pack-accent:     #34382F;
+    --wl-pack-bg:         #F7F3EC;
+    --wl-pack-bg-alt:     #FFFFFF;
+    --wl-pack-text:       #1F1E1B;
+    --wl-pack-text-muted: #6F735E;
+    --wl-pack-border:     #B8AA9A;
+
+    --wl-ob-cols:         3;
+}
+
+.wl-ob-editorial-v3 .wl-ob-grid {
+    gap: 0;
+    border-top: 1px solid var(--wl-pack-border);
+    border-bottom: 1px solid var(--wl-pack-border);
+}
+
+.wl-ob-editorial-v3 .wl-ob-card {
+    --wl-ob-img-zoom: 1.07;
+    min-height: 380px;
+    border-radius: 0;
+    background: var(--wl-pack-secondary);
+}
+
+/* A trailing rule rather than a leading one on `+ card`: a trailing rule wraps away with its own
+   card, so changing the Columns control can never leave a divider stranded at the start of a row.
+   The same fix Store Highlights needed for its editorial divider.
+   Drawn with ::before because ::after is the shared ratio spacer in pack-widgets-base.css. */
+.wl-ob-editorial-v3 .wl-ob-card:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 1px;
+    z-index: 3;
+    background: rgba(184, 170, 154, 0.2);
+}
+
+.wl-ob-editorial-v3 .wl-ob-img {
+    opacity: 0.86;
+    transition: transform 0.75s ease, opacity 0.4s ease;
+}
+
+.wl-ob-editorial-v3 .wl-ob-card:hover .wl-ob-img {
+    opacity: 0.68;
+}
+
+.wl-ob-editorial-v3 .wl-ob-overlay {
+    background: linear-gradient(to top,
+        rgba(31, 30, 27, 0.82) 0%,
+        rgba(31, 30, 27, 0.25) 42%,
+        transparent 68%);
+}
+
+/* Pinned to the card corner, not stacked with the rest of the copy. .wl-ob-body fills the card in
+   overlay layouts, so these coordinates resolve against the card. */
+.wl-ob-editorial-v3 .wl-ob-eyebrow {
+    position: absolute;
+    top: 28px;
+    left: 28px;
+    z-index: 3;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 600;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: #fff;
+}
+
+.wl-ob-editorial-v3 .wl-ob-body {
+    padding: 32px;
+}
+
+.wl-ob-editorial-v3 .wl-ob-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 44px;
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -0.8px;
+    color: var(--wl-pack-bg);
+    margin-bottom: 18px;
+}
+
+.wl-ob-editorial-v3 .wl-ob-sub {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    line-height: 1.6;
+    color: rgba(247, 243, 236, 0.75);
+    max-width: 340px;
+    margin-bottom: 18px;
+}
+
+.wl-ob-editorial-v3 .wl-ob-cta {
+    gap: 8px;
+    padding: 11px 20px;
+    border: 1px solid rgba(247, 243, 236, 0.32);
+    border-radius: 0;
+    background: rgba(247, 243, 236, 0.1);
+    backdrop-filter: blur(6px);
+    color: var(--wl-pack-bg);
+    font-family: var(--wl-pack-font-body);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.wl-ob-editorial-v3 .wl-ob-card:hover .wl-ob-cta {
+    background: var(--wl-pack-primary);
+    border-color: var(--wl-pack-primary);
+}
+
+@media (max-width: 1024px) {
+    /* The band stays three-up here — base drops to two, this variant does not. */
+    .wl-ob-editorial-v3 .wl-ob-grid {
+        --wl-ob-cols: 3;
+    }
+
+    .wl-ob-editorial-v3 .wl-ob-title {
+        font-size: 34px;
+    }
+}
+
+/* Stacked: the vertical rules become horizontal ones so the band still reads as one unit. */
+@media (max-width: 767px) {
+    .wl-ob-editorial-v3 .wl-ob-card {
+        min-height: 400px;
+    }
+
+    .wl-ob-editorial-v3 .wl-ob-card:not(:last-child)::before {
+        top: auto;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: auto;
+        height: 1px;
+    }
+
+    .wl-ob-editorial-v3 .wl-ob-title {
+        font-size: 38px;
+    }
+
+    .wl-ob-editorial-v3 .wl-ob-body {
+        padding: 24px;
+    }
+
+    .wl-ob-editorial-v3 .wl-ob-eyebrow {
+        top: 22px;
+        left: 24px;
+    }
+}

@@ -39,6 +39,26 @@ class Ajax {
                 if( $product->get_catalog_visibility() === 'hidden'){
                     wp_die( -1, 403 );
                 }
+
+                // Access control: Quick View is exposed to anonymous (nopriv) visitors,
+                // so only public, published, unprotected products may be disclosed here.
+                // Non-published products (draft, pending, private, future, trash) require
+                // the caller to actually be able to read the post, and password-protected
+                // products stay withheld unless the caller can edit them or already
+                // supplied the correct password. Prevents anonymous data exposure of
+                // private/protected products (CWE-200 / CWE-639).
+                if ( ! $post || 'product' !== $post->post_type ) {
+                    wp_die( -1, 403 );
+                }
+
+                if ( 'publish' !== $post->post_status && ! current_user_can( 'read_post', $id ) ) {
+                    wp_die( -1, 403 );
+                }
+
+                if ( post_password_required( $post ) && ! current_user_can( 'edit_post', $id ) ) {
+                    wp_die( -1, 403 );
+                }
+
                 echo "<div class='woolentorquickview-content-template ".$product->get_type()."'>"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 include ( apply_filters( 'woolentor_quickview_tmp', TEMPLATE_PATH.'quickview-content.php' ) ); 
                 echo "</div>";

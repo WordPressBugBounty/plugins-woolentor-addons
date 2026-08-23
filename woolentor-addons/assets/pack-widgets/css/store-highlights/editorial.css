@@ -1,0 +1,306 @@
+/**
+ * Store Highlights — Editorial pack.
+ * All three variants live in this file so the browser caches one stylesheet
+ * regardless of which variant a page uses.
+ *
+ * Shared layout mechanics (grid, icon box, responsive columns) live in
+ * pack-widgets-base.css. Only this pack's visual
+ * treatment belongs here.
+ *
+ * Each variant was designed by a different designer with its own palette, so
+ * each redeclares the --wl-pack-* colour tokens on its own root. v1 matches the
+ * pack defaults and needs no override.
+ *
+ * Font families are deliberately NOT overridden — see modern.css for why.
+ * Band borders are not hardcoded either; the Item Box panel controls own those.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant palettes
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v2 — Cool paper base · Sky-blue accent */
+.wl-sh-editorial-v2 {
+    --wl-pack-primary:    #3EA3D4;
+    --wl-pack-accent:     #F4B79A;
+    --wl-pack-bg:         #F7FAFB;
+    --wl-pack-bg-alt:     #FFFFFF;
+    --wl-pack-text:       #121A22;
+    --wl-pack-text-muted: #5E6B75;
+    --wl-pack-border:     #D9E3E8;
+    --wl-pack-radius:     6px;
+}
+
+/* v3 — Warm grey stat band · Clay brown accent · warm-stone rules */
+.wl-sh-editorial-v3 {
+    --wl-pack-primary:    #A0603D;
+    --wl-pack-accent:     #6F735E;
+    --wl-pack-bg:         #E9E9E9;
+    --wl-pack-bg-alt:     #F7F3EC;
+    --wl-pack-text:       #1F1E1B;
+    --wl-pack-text-muted: #6F735E;
+    --wl-pack-border:     #B8AA9A;
+    --wl-pack-radius:     0px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — Centred band, hairline column rules
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-sh-editorial-v1 .wl-sh-list {
+    align-items: center;
+    gap: 28px;
+    background: var(--wl-pack-bg);
+    padding: 28px 0;
+}
+
+.wl-sh-editorial-v1 .wl-sh-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+/* Rules between columns, never before the first one.
+   The gap comes from the Divider section's Space Around control. */
+.wl-sh-editorial-v1 .wl-sh-item + .wl-sh-item {
+    border-left: 1px solid var(--wl-pack-border);
+    padding-left: var(--wl-sh-divider-space, 28px);
+}
+
+.wl-sh-editorial-v1 .wl-sh-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+}
+
+.wl-sh-editorial-v1 .wl-sh-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.wl-sh-editorial-v1 .wl-sh-title {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    font-weight: 600;
+    letter-spacing: .005em;
+    color: var(--wl-pack-text);
+}
+
+.wl-sh-editorial-v1 .wl-sh-sub {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    line-height: 1.5;
+    color: var(--wl-pack-text-muted);
+}
+
+.wl-sh-editorial-v1 .wl-sh-item.is-highlighted .wl-sh-icon {
+    color: var(--wl-pack-accent);
+}
+
+/* Rules read as clutter once the grid collapses to one column. */
+@media (max-width: 767px) {
+    .wl-sh-editorial-v1 .wl-sh-item + .wl-sh-item {
+        border-left: 0;
+        padding-left: 0;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — Numbered columns, small-caps label
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-sh-editorial-v2 .wl-sh-label {
+    margin-bottom: 28px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--wl-pack-primary);
+}
+
+/* The rules do the separating, so the grid itself needs no gap. */
+.wl-sh-editorial-v2 .wl-sh-list {
+    gap: 0;
+    counter-reset: wl-sh-num;
+    background: var(--wl-pack-bg);
+}
+
+.wl-sh-editorial-v2 .wl-sh-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 4px 28px;
+}
+
+.wl-sh-editorial-v2 .wl-sh-item + .wl-sh-item {
+    border-left: 1px solid var(--wl-pack-border);
+}
+
+/* Numbering from a counter, so reordering the repeater renumbers on its own. */
+.wl-sh-editorial-v2 .wl-sh-item::before {
+    counter-increment: wl-sh-num;
+    content: counter(wl-sh-num, decimal-leading-zero);
+    font-family: var(--wl-pack-font-heading);
+    font-size: var(--wl-pack-text-sm);
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--wl-pack-primary);
+}
+
+.wl-sh-editorial-v2 .wl-sh-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.wl-sh-editorial-v2 .wl-sh-icon {
+    font-size: 15px;
+}
+
+.wl-sh-editorial-v2 .wl-sh-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: var(--wl-pack-text-lg);
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--wl-pack-text);
+}
+
+.wl-sh-editorial-v2 .wl-sh-sub {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    line-height: 1.55;
+    color: var(--wl-pack-text-muted);
+}
+
+.wl-sh-editorial-v2 .wl-sh-item.is-highlighted .wl-sh-title {
+    color: var(--wl-pack-primary);
+}
+
+@media (max-width: 767px) {
+    .wl-sh-editorial-v2 .wl-sh-item {
+        padding: 4px 0;
+    }
+
+    .wl-sh-editorial-v2 .wl-sh-item + .wl-sh-item {
+        border-left: 0;
+        border-top: 1px solid var(--wl-pack-border);
+        padding-top: 20px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — Centred stat bar
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* A centred row sized to its content, not a column grid — so the base grid is
+   replaced here and the Columns control is hidden for this variant. */
+.wl-sh-editorial-v3 .wl-sh-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: 0;
+    row-gap: 16px;
+    min-height: 72px;
+    padding: 12px 0;
+    background: var(--wl-pack-bg);
+}
+
+/* Baseline alignment is what makes the large stat and the small label sit on one line.
+   nowrap keeps an item intact so the row only ever breaks between items. */
+.wl-sh-editorial-v3 .wl-sh-item {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 0 var(--wl-sh-divider-space, 22px);
+    white-space: nowrap;
+}
+
+/* Short vertical hairline between items. Deliberately a trailing ::after rather than a
+   leading border-left: this row wraps, and a trailing rule wraps away with its own item,
+   so a new line never starts with a dangling rule. It sits centred in the gap the two
+   neighbouring items' side padding forms.
+   Driven by the Divider style section, same as editorial v1 and v2. */
+.wl-sh-editorial-v3 .wl-sh-item::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 20px;
+    background: var(--wl-pack-border);
+}
+
+.wl-sh-editorial-v3 .wl-sh-item:last-child::after {
+    display: none;
+}
+
+.wl-sh-editorial-v3 .wl-sh-icon {
+    font-size: 15px;
+    align-self: center;
+}
+
+.wl-sh-editorial-v3 .wl-sh-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -.4px;
+    color: var(--wl-pack-text);
+}
+
+.wl-sh-editorial-v3 .wl-sh-sub {
+    font-family: var(--wl-pack-font-body);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .1px;
+    line-height: 1.3;
+    color: var(--wl-pack-text-muted);
+}
+
+.wl-sh-editorial-v3 .wl-sh-item.is-highlighted .wl-sh-title {
+    color: var(--wl-pack-primary);
+}
+
+/* Step the type down before the row is forced to wrap, so the default state stays
+   on one line across common container widths. Users can size it back up from the
+   Style tab — these are starting values, not a ceiling. */
+@media (max-width: 1200px) {
+    .wl-sh-editorial-v3 .wl-sh-item {
+        padding: 0 var(--wl-sh-divider-space, 16px);
+    }
+
+    .wl-sh-editorial-v3 .wl-sh-title {
+        font-size: 18px;
+    }
+
+    .wl-sh-editorial-v3 .wl-sh-sub {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .wl-sh-editorial-v3 .wl-sh-item {
+        padding: 0 var(--wl-sh-divider-space, 14px);
+    }
+}
+
+/* Once every item is on its own line the vertical rules read as clutter. */
+@media (max-width: 767px) {
+    .wl-sh-editorial-v3 .wl-sh-list {
+        row-gap: 14px;
+    }
+
+    .wl-sh-editorial-v3 .wl-sh-item {
+        padding: 0 var(--wl-sh-divider-space, 12px);
+        white-space: normal;
+    }
+
+    .wl-sh-editorial-v3 .wl-sh-item::after {
+        display: none;
+    }
+}

@@ -1,0 +1,908 @@
+/**
+ * Campaign Banner — Editorial pack.
+ * All three variants live in this file so the browser caches one stylesheet
+ * regardless of which variant a page uses.
+ *
+ * The section shapes, countdown structure, media slider and button mechanics live
+ * in pack-widgets-base.css under .wl-cb-* and .wl-pack-*. Only this pack's colours,
+ * type and spacing belong here.
+ *
+ * Each variant was designed by a different designer with its own palette, so each
+ * redeclares the --wl-pack-* colour tokens on its own root. v1 matches the pack
+ * defaults and needs no override.
+ *
+ * Font families are deliberately NOT overridden — type comes from the theme and
+ * the Style tab's typography controls.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — The Drop
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v1 needs no palette override — the editorial pack defaults already are its
+   colours: clay #9A6B4F on near-black, warm white type. */
+
+.wl-cb-editorial-v1 .wl-cb-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 700px;
+    gap: 0;
+    background: #080808;
+}
+
+/* A clay wash bleeding in from the left edge, behind everything. */
+.wl-cb-editorial-v1 .wl-cb-inner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse 65% 90% at 0% 50%, rgba(154, 107, 79, 0.11) 0%, transparent 55%);
+}
+
+.wl-cb-editorial-v1 .wl-cb-body {
+    --wl-cb-cta-gap: 13px;
+    justify-content: center;
+    gap: 44px;
+    padding: 100px clamp(32px, 5vw, 72px);
+}
+
+.wl-cb-editorial-v1 .wl-cb-eyebrow {
+    gap: 12px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: var(--wl-pack-primary);
+}
+
+.wl-cb-editorial-v1 .wl-cb-dot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--wl-pack-primary);
+    box-shadow: 0 0 0 0 rgba(154, 107, 79, 0.7);
+    animation: wl-cb-live-pulse 2s ease-out infinite;
+}
+
+@keyframes wl-cb-live-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(154, 107, 79, 0.7); }
+    70%  { box-shadow: 0 0 0 9px rgba(154, 107, 79, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(154, 107, 79, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wl-cb-editorial-v1 .wl-cb-dot {
+        animation: none;
+    }
+}
+
+.wl-cb-editorial-v1 .wl-cb-headline {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(36px, 3.8vw, 58px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.wl-cb-editorial-v1 .wl-cb-headline em {
+    font-style: italic;
+    color: var(--wl-pack-primary);
+}
+
+.wl-cb-editorial-v1 .wl-cb-rule {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.wl-cb-editorial-v1 .wl-cb-desc {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.35);
+    max-width: 400px;
+}
+
+.wl-cb-editorial-v1 .wl-cb-coupon {
+    padding: 9px 15px;
+    border: 1px dashed rgba(255, 255, 255, 0.28);
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+}
+
+/* The reference puts an email field here. See the note in the template for why
+   the button takes its place — these are the button's styles. */
+.wl-cb-editorial-v1 .wl-cb-btn {
+    padding: 13px 22px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.wl-cb-editorial-v1 .wl-cb-btn--primary {
+    background: var(--wl-pack-primary);
+    border-color: var(--wl-pack-primary);
+    color: #fff;
+}
+
+.wl-cb-editorial-v1 .wl-cb-btn--primary:hover {
+    background: var(--wl-pack-accent);
+    border-color: var(--wl-pack-accent);
+}
+
+.wl-cb-editorial-v1 .wl-cb-btn--secondary {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.wl-cb-editorial-v1 .wl-cb-btn--secondary:hover {
+    border-color: rgba(154, 107, 79, 0.5);
+}
+
+.wl-cb-editorial-v1 .wl-cb-note {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.18);
+}
+
+/* — Countdown — enormous, serif, left-aligned, no cell boxes. */
+
+.wl-cb-editorial-v1 .wl-pack-countdown {
+    --wl-pack-countdown-gap: 20px;
+    --wl-pack-countdown-sep-align: flex-start;
+    align-items: flex-start;
+}
+
+.wl-cb-editorial-v1 .wl-pack-countdown-unit {
+    align-items: flex-start;
+    padding: 0;
+    border: 0;
+    background: none;
+}
+
+.wl-cb-editorial-v1 .wl-pack-countdown-num {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(48px, 6vw, 86px);
+    font-weight: 300;
+    letter-spacing: -0.035em;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.wl-cb-editorial-v1 .wl-pack-countdown-label {
+    margin-top: 11px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: rgba(255, 255, 255, 0.22);
+}
+
+/* The reference gives the colon `line-height: 88px` against an 88px number row, so the
+   glyph lands on the digits' centre. Matching the number's own font-size as the separator's
+   line-height reproduces that at every clamp step — top-aligning it alone left the colon
+   floating above the digits. */
+.wl-cb-editorial-v1 .wl-pack-countdown-sep {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(34px, 4vw, 60px);
+    font-weight: 300;
+    line-height: clamp(48px, 6vw, 86px);
+    color: rgba(255, 255, 255, 0.1);
+}
+
+/* — Media — desaturated, scrimmed from the left so the copy edge stays black. */
+
+.wl-cb-editorial-v1 .wl-cb-media {
+    min-height: 700px;
+}
+
+.wl-cb-editorial-v1 .wl-cb-img {
+    filter: saturate(0.45) brightness(0.72);
+}
+
+.wl-cb-editorial-v1 .wl-cb-media-scrim {
+    background: linear-gradient(to right,
+        #080808 0%,
+        rgba(8, 8, 8, 0.55) 30%,
+        rgba(8, 8, 8, 0.05) 65%);
+}
+
+/* The frosted drop badge: a pulsing clay label, a serif name and a stock line. */
+.wl-cb-editorial-v1 .wl-cb-media-tag {
+    right: 40px;
+    bottom: 48px;
+    max-width: 250px;
+    padding: 22px 26px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    background: rgba(12, 12, 12, 0.72);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+}
+
+.wl-cb-editorial-v1 .wl-cb-media-tag-label {
+    gap: 8px;
+    margin-bottom: 10px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: var(--wl-pack-primary);
+}
+
+.wl-cb-editorial-v1 .wl-cb-media-tag-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--wl-pack-primary);
+    animation: wl-cb-live-pulse 2s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wl-cb-editorial-v1 .wl-cb-media-tag-dot {
+        animation: none;
+    }
+}
+
+.wl-cb-editorial-v1 .wl-cb-media-tag-title {
+    margin-bottom: 8px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.wl-cb-editorial-v1 .wl-cb-media-tag-meta {
+    font-family: var(--wl-pack-font-body);
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.36);
+}
+
+/* Dashes rather than dots — the reference's slide indicator. */
+.wl-cb-editorial-v1 .wl-pack-dots {
+    bottom: 22px;
+    gap: 7px;
+}
+
+.wl-cb-editorial-v1 .wl-pack-dots li button {
+    width: 20px;
+    height: 2px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease;
+}
+
+.wl-cb-editorial-v1 .wl-pack-dots li.slick-active button {
+    width: 34px;
+    transform: none;
+    background: rgba(255, 255, 255, 0.65);
+}
+
+@media (max-width: 900px) {
+    .wl-cb-editorial-v1 .wl-cb-inner {
+        grid-template-columns: 1fr;
+        min-height: 0;
+    }
+
+    .wl-cb-editorial-v1 .wl-cb-media {
+        order: -1;
+        min-height: 340px;
+    }
+
+    .wl-cb-editorial-v1 .wl-cb-body {
+        gap: 30px;
+        padding: 56px 24px;
+    }
+
+    /* Scrimmed from the bottom once the panels stack. */
+    .wl-cb-editorial-v1 .wl-cb-media-scrim {
+        background: linear-gradient(to bottom,
+            rgba(8, 8, 8, 0.05) 0%,
+            rgba(8, 8, 8, 0.55) 70%,
+            #080808 100%);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — Full-bleed campaign frame
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v2 — Sky blue · Peach · Deep teal-black */
+.wl-cb-editorial-v2 {
+    --wl-pack-primary:    #3EA3D4;
+    --wl-pack-secondary:  #F4B79A;
+    --wl-pack-accent:     #F4B79A;
+    --wl-pack-bg:         #F7FAFB;
+    --wl-pack-bg-alt:     #FFFFFF;
+    --wl-pack-text:       #121A22;
+    --wl-pack-text-muted: #5E6B75;
+    --wl-pack-border:     #D9E3E8;
+}
+
+.wl-cb-editorial-v2 .wl-cb-inner {
+    min-height: clamp(580px, 86vh, 900px);
+    background: #071119;
+}
+
+.wl-cb-editorial-v2 .wl-cb-img {
+    /* A very slow push-out — the reference starts enlarged and settles. */
+    transform: scale(1.04);
+    transition: transform 7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wl-cb-editorial-v2 .wl-cb-inner:hover .wl-cb-img {
+    transform: scale(1);
+}
+
+.wl-cb-editorial-v2 .wl-cb-media-scrim {
+    background: linear-gradient(180deg,
+        rgba(7, 17, 25, 0.62) 0%,
+        rgba(7, 17, 25, 0.06) 24%,
+        rgba(7, 17, 25, 0.05) 40%,
+        rgba(7, 17, 25, 0.74) 72%,
+        rgba(7, 17, 25, 0.95) 100%);
+}
+
+/* The body fills the frame and pushes the eyebrow to the top, the foot to the bottom. */
+.wl-cb-editorial-v2 .wl-cb-body {
+    flex: 1;
+    justify-content: space-between;
+    padding: clamp(26px, 4vh, 46px) clamp(24px, 4vw, 40px) clamp(36px, 5vh, 60px);
+}
+
+.wl-cb-editorial-v2 .wl-cb-eyebrow {
+    gap: 12px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: #fff;
+}
+
+.wl-cb-editorial-v2 .wl-cb-eyebrow::before {
+    content: "";
+    flex-shrink: 0;
+    width: 30px;
+    height: 1px;
+    background: var(--wl-pack-primary);
+}
+
+.wl-cb-editorial-v2 .wl-cb-dot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--wl-pack-primary);
+}
+
+.wl-cb-editorial-v2 .wl-cb-foot-text {
+    min-width: 0;
+}
+
+/* The kicker pill. This variant has no oversized number, so the figure slot
+   carries the pill instead — same field, different job. */
+.wl-cb-editorial-v2 .wl-cb-figure {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 18px;
+    padding: 7px 15px;
+    border-radius: 999px;
+    background: var(--wl-pack-primary);
+    box-shadow: 0 8px 22px rgba(62, 163, 212, 0.34);
+}
+
+.wl-cb-editorial-v2 .wl-cb-figure-value,
+.wl-cb-editorial-v2 .wl-cb-figure-suffix {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: #fff;
+    padding-top: 0;
+}
+
+.wl-cb-editorial-v2 .wl-cb-headline {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(48px, 7.5vw, 112px);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -2.5px;
+    color: #fff;
+    text-shadow: 0 2px 30px rgba(7, 17, 25, 0.45);
+}
+
+.wl-cb-editorial-v2 .wl-cb-headline em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--wl-pack-primary);
+}
+
+.wl-cb-editorial-v2 .wl-cb-desc {
+    margin-top: 16px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: rgba(247, 250, 251, 0.86);
+    max-width: 340px;
+    text-shadow: 0 1px 16px rgba(7, 17, 25, 0.5);
+}
+
+.wl-cb-editorial-v2 .wl-cb-coupon {
+    margin-top: 18px;
+    padding: 9px 15px;
+    border: 1px dashed rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    color: rgba(247, 250, 251, 0.9);
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+}
+
+.wl-cb-editorial-v2 .wl-cb-actions {
+    flex-direction: column;
+    align-items: flex-end;
+    flex-shrink: 0;
+    gap: 14px;
+}
+
+.wl-cb-editorial-v2 .wl-cb-btn {
+    gap: 10px;
+    padding: 16px 30px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.wl-cb-editorial-v2 .wl-cb-btn--primary {
+    background: #fff;
+    border-color: #fff;
+    color: #101820;
+}
+
+.wl-cb-editorial-v2 .wl-cb-btn--primary:hover {
+    background: var(--wl-pack-primary);
+    border-color: var(--wl-pack-primary);
+    color: #fff;
+}
+
+.wl-cb-editorial-v2 .wl-cb-btn--secondary {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #fff;
+}
+
+.wl-cb-editorial-v2 .wl-cb-btn--secondary:hover {
+    border-color: #fff;
+}
+
+.wl-cb-editorial-v2 .wl-cb-note {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    line-height: 1.4;
+    color: rgba(247, 250, 251, 0.7);
+    text-align: right;
+}
+
+.wl-cb-editorial-v2 .wl-pack-countdown {
+    --wl-pack-countdown-gap: 10px;
+    margin-top: 24px;
+}
+
+.wl-cb-editorial-v2 .wl-pack-countdown-unit {
+    min-width: 62px;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+}
+
+.wl-cb-editorial-v2 .wl-pack-countdown-num {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.wl-cb-editorial-v2 .wl-pack-countdown-label {
+    margin-top: 5px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: rgba(247, 250, 251, 0.7);
+}
+
+@media (max-width: 767px) {
+    .wl-cb-editorial-v2 .wl-cb-foot {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .wl-cb-editorial-v2 .wl-cb-actions {
+        align-items: flex-start;
+    }
+
+    .wl-cb-editorial-v2 .wl-cb-note {
+        text-align: left;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — Centred paper frame
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v3 — Paper white · Ink black · Clay brown · Warm-stone hairlines.
+   Adapted: this homepage's `.flash-sale` pairs its image slider with real WooCommerce products —
+   Add to Cart, wishlist, compare, swatches — so it belongs to Feature Product. See the template.
+
+   A full-bleed frame like v2, composed the other way round: v2 stacks its copy along the foot on
+   deep teal-black, v3 centres everything inside an inset warm-stone frame on paper. The chips are
+   this variant's own `.banner-card__cta` (`homepage.html:850`), the clay rule its hero's. */
+.wl-cb-editorial-v3 {
+    --wl-pack-primary:    #A0603D;
+    --wl-pack-secondary:  #1F1E1B;
+    --wl-pack-accent:     #34382F;
+    --wl-pack-bg:         #F7F3EC;
+    --wl-pack-bg-alt:     #FFFFFF;
+    --wl-pack-text:       #1F1E1B;
+    --wl-pack-text-muted: #6F735E;
+    --wl-pack-border:     #B8AA9A;
+
+    --wl-cb-body-align:   center;
+    --wl-cb-cta-gap:      20px;
+}
+
+.wl-cb-editorial-v3 .wl-cb-inner {
+    min-height: clamp(560px, 76vh, 820px);
+    background: var(--wl-pack-secondary);
+}
+
+/* The inset hairline frame — the one piece of chrome this variant allows itself. */
+.wl-cb-editorial-v3 .wl-cb-inner::before {
+    content: "";
+    position: absolute;
+    inset: clamp(16px, 2vw, 28px);
+    z-index: 3;
+    border: 1px solid rgba(184, 170, 154, 0.32);
+    pointer-events: none;
+}
+
+.wl-cb-editorial-v3 .wl-cb-img {
+    transition: transform 0.9s ease;
+}
+
+.wl-cb-editorial-v3 .wl-cb-inner:hover .wl-cb-img {
+    transform: scale(1.03);
+}
+
+/* Darkest in the middle, where the copy sits — v2 weights its scrim to the foot.
+   Two layers rather than one: the radial carries the centre, and the linear puts a
+   floor under the whole frame so a pale photograph still holds white type. Tested
+   against a near-white shot, which is the case a single centred gradient fails. */
+.wl-cb-editorial-v3 .wl-cb-media-scrim {
+    background:
+        radial-gradient(ellipse 78% 68% at 50% 50%,
+            rgba(31, 30, 27, 0.80) 0%,
+            rgba(31, 30, 27, 0.30) 72%,
+            rgba(31, 30, 27, 0.12) 100%),
+        linear-gradient(180deg,
+            rgba(31, 30, 27, 0.40) 0%,
+            rgba(31, 30, 27, 0.22) 40%,
+            rgba(31, 30, 27, 0.58) 100%);
+}
+
+.wl-cb-editorial-v3 .wl-cb-body {
+    flex: 1;
+    justify-content: center;
+    padding: clamp(52px, 7vw, 96px);
+    text-align: center;
+}
+
+/* The Display Figure as a watermark behind the copy, not a headline beside it. */
+.wl-cb-editorial-v3 .wl-cb-figure {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    pointer-events: none;
+    user-select: none;
+}
+
+.wl-cb-editorial-v3 .wl-cb-figure-value {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(180px, 26vw, 380px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -8px;
+    color: rgba(247, 243, 236, 0.07);
+}
+
+.wl-cb-editorial-v3 .wl-cb-figure-suffix {
+    padding-top: 0;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 500;
+    line-height: 1;
+    color: rgba(247, 243, 236, 0.07);
+}
+
+.wl-cb-editorial-v3 .wl-cb-eyebrow {
+    gap: 10px;
+    margin-bottom: 26px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: rgba(247, 243, 236, 0.78);
+}
+
+.wl-cb-editorial-v3 .wl-cb-dot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--wl-pack-primary);
+}
+
+.wl-cb-editorial-v3 .wl-cb-headline {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(48px, 6.5vw, 96px);
+    font-weight: 500;
+    line-height: 0.94;
+    letter-spacing: -2.4px;
+    color: var(--wl-pack-bg);
+    max-width: 16ch;
+}
+
+.wl-cb-editorial-v3 .wl-cb-headline em {
+    font-style: italic;
+    color: var(--wl-pack-primary);
+}
+
+/* The hero's clay rule — 52 by 2, and the only clay mass in the composition. */
+.wl-cb-editorial-v3 .wl-cb-rule {
+    width: 52px;
+    height: 2px;
+    margin: 30px 0;
+    background: var(--wl-pack-primary);
+}
+
+.wl-cb-editorial-v3 .wl-cb-desc {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-base);
+    line-height: 1.7;
+    color: rgba(247, 243, 236, 0.82);
+    max-width: 46ch;
+}
+
+.wl-cb-editorial-v3 .wl-cb-coupon {
+    padding: 9px 16px;
+    border: 1px dashed rgba(247, 243, 236, 0.4);
+    color: rgba(247, 243, 236, 0.9);
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+}
+
+.wl-cb-editorial-v3 .wl-cb-actions {
+    justify-content: center;
+    gap: 12px;
+}
+
+/* `.banner-card__cta` — a frosted pane at 10% paper behind a 32% hairline, no radius. */
+.wl-cb-editorial-v3 .wl-cb-btn {
+    gap: 10px;
+    padding: 15px 26px;
+    border: 1px solid rgba(247, 243, 236, 0.32);
+    border-radius: 0;
+    background: rgba(247, 243, 236, 0.1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: var(--wl-pack-bg);
+    font-family: var(--wl-pack-font-body);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.wl-cb-editorial-v3 .wl-cb-btn--primary {
+    background: var(--wl-pack-bg);
+    border-color: var(--wl-pack-bg);
+    color: var(--wl-pack-secondary);
+}
+
+.wl-cb-editorial-v3 .wl-cb-btn--primary:hover {
+    background: var(--wl-pack-primary);
+    border-color: var(--wl-pack-primary);
+    color: var(--wl-pack-bg);
+}
+
+.wl-cb-editorial-v3 .wl-cb-btn--secondary:hover {
+    background: rgba(247, 243, 236, 0.2);
+    border-color: var(--wl-pack-bg);
+}
+
+.wl-cb-editorial-v3 .wl-cb-note {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    line-height: 1.5;
+    color: rgba(247, 243, 236, 0.55);
+}
+
+/* — Countdown — frosted cells, centred under the rule. */
+
+.wl-cb-editorial-v3 .wl-pack-countdown {
+    --wl-pack-countdown-gap: 10px;
+    justify-content: center;
+    margin-bottom: 34px;
+}
+
+.wl-cb-editorial-v3 .wl-pack-countdown-unit {
+    min-width: 74px;
+    padding: 12px 14px;
+    border: 1px solid rgba(247, 243, 236, 0.22);
+    background: rgba(247, 243, 236, 0.08);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.wl-cb-editorial-v3 .wl-pack-countdown-num {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    color: var(--wl-pack-bg);
+}
+
+.wl-cb-editorial-v3 .wl-pack-countdown-label {
+    margin-top: 5px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: rgba(247, 243, 236, 0.5);
+}
+
+.wl-cb-editorial-v3 .wl-pack-countdown-sep {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 26px;
+    line-height: 30px;
+    color: rgba(247, 243, 236, 0.28);
+}
+
+/* — Slide badge — a quiet chip in the frame's foot, clear of the centred copy. */
+
+.wl-cb-editorial-v3 .wl-cb-media-tag {
+    left: clamp(32px, 4vw, 56px);
+    bottom: clamp(32px, 4vw, 56px);
+    z-index: 4;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.wl-cb-editorial-v3 .wl-cb-media-tag-label {
+    gap: 8px;
+    margin-bottom: 6px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: var(--wl-pack-primary);
+}
+
+.wl-cb-editorial-v3 .wl-cb-media-tag-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--wl-pack-primary);
+}
+
+.wl-cb-editorial-v3 .wl-cb-media-tag-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--wl-pack-bg);
+}
+
+.wl-cb-editorial-v3 .wl-cb-media-tag-meta {
+    margin-top: 4px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: rgba(247, 243, 236, 0.55);
+}
+
+/* — Arrows — the same frosted chip, in the opposite corner from the badge. */
+
+.wl-cb-editorial-v3 .wl-pack-nav {
+    top: auto;
+    bottom: clamp(32px, 4vw, 56px);
+    transform: none;
+    z-index: 4;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(247, 243, 236, 0.32);
+    border-radius: 100px;
+    background: rgba(247, 243, 236, 0.1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: none;
+    color: var(--wl-pack-bg);
+}
+
+.wl-cb-editorial-v3 .wl-pack-nav:hover {
+    transform: none;
+    border-color: var(--wl-pack-primary);
+    background: var(--wl-pack-primary);
+    box-shadow: none;
+}
+
+.wl-cb-editorial-v3 .wl-pack-nav-prev {
+    right: calc(clamp(32px, 4vw, 56px) + 48px);
+    left: auto;
+}
+
+.wl-cb-editorial-v3 .wl-pack-nav-next {
+    right: clamp(32px, 4vw, 56px);
+}
+
+@media (max-width: 767px) {
+    .wl-cb-editorial-v3 .wl-cb-body {
+        padding: 64px 24px 120px;
+    }
+
+    /* The badge and the arrows both want the foot; on a phone the badge steps up. */
+    .wl-cb-editorial-v3 .wl-cb-media-tag {
+        bottom: 88px;
+    }
+}

@@ -283,7 +283,7 @@ class Woolentor_Manage_WC_Template{
 
                 // Archive Layout Control
                 $wltermlayoutid = 0;
-                if(( is_tax('product_cat') && is_product_category() ) || ( is_tax('product_tag') && is_product_tag() )){
+                if(( is_tax('product_cat') && is_product_category() ) || ( is_tax('product_tag') && is_product_tag() ) || ( isset( $termobj->taxonomy ) && is_tax( $termobj->taxonomy ) && array_key_exists( $termobj->taxonomy, $get_all_taxonomies ) ) ){
 
                     $product_archive_custom_page_id = self::get_template_id( 'productallarchivepage' );
                     $product_display_mode = function_exists('woocommerce_get_loop_display_mode') ? woocommerce_get_loop_display_mode() : '';

@@ -1,0 +1,407 @@
+/**
+ * Offer Banner — Luxury pack.
+ * All three variants live in this file so the browser caches one stylesheet
+ * regardless of which variant a page uses.
+ *
+ * The grid, card stacking, overlay and hover-zoom mechanics live in
+ * pack-widgets-base.css under .wl-ob-*. Only this pack's colours, type and
+ * spacing belong here.
+ *
+ * Each variant was designed by a different designer with its own palette, so
+ * each redeclares the --wl-pack-* colour tokens on its own root. v1 matches the
+ * pack defaults and needs no override.
+ *
+ * Font families are deliberately NOT overridden — type comes from the theme and
+ * the Style tab's typography controls.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — Gold-tagged trio
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v1 needs no palette override — the luxury pack defaults already are its
+   colours: gold #C9A86A, obsidian #07080C, platinum rules. */
+
+.wl-ob-luxury-v1 {
+    --wl-ob-cols: 3;
+}
+
+.wl-ob-luxury-v1 .wl-ob-grid {
+    gap: 20px;
+}
+
+.wl-ob-luxury-v1 .wl-ob-card {
+    --wl-ob-img-zoom: 1.06;
+    min-height: 320px;
+    border-radius: var(--wl-pack-radius-card);
+    transition: transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.32s ease;
+}
+
+.wl-ob-luxury-v1 .wl-ob-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 56px rgba(0, 0, 0, 0.18);
+}
+
+.wl-ob-luxury-v1 .wl-ob-img {
+    transition: transform 0.7s ease;
+}
+
+.wl-ob-luxury-v1 .wl-ob-overlay {
+    background: linear-gradient(to top,
+        rgba(7, 8, 12, 0.88) 0%,
+        rgba(7, 8, 12, 0.22) 60%,
+        transparent 100%);
+}
+
+.wl-ob-luxury-v1 .wl-ob-body {
+    padding: 28px 26px;
+}
+
+.wl-ob-luxury-v1 .wl-ob-eyebrow {
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--wl-pack-primary);
+    color: var(--wl-pack-secondary);
+    font-family: var(--wl-pack-font-body);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.wl-ob-luxury-v1 .wl-ob-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.wl-ob-luxury-v1 .wl-ob-sub {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.62);
+    margin-bottom: 16px;
+}
+
+/* Underlined in gold, and it is the text that turns gold on hover — the rule
+   below it stays put, so nothing shifts. */
+.wl-ob-luxury-v1 .wl-ob-cta {
+    gap: 7px;
+    padding: 0 0 2px;
+    border: 0;
+    border-bottom: 1.5px solid var(--wl-pack-primary);
+    border-radius: 0;
+    background: transparent;
+    color: #fff;
+    font-family: var(--wl-pack-font-body);
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.4;
+    transition: color 0.22s ease, border-color 0.22s ease;
+}
+
+.wl-ob-luxury-v1 .wl-ob-card:hover .wl-ob-cta {
+    color: var(--wl-pack-primary);
+}
+
+@media (max-width: 1024px) {
+    .wl-ob-luxury-v1 .wl-ob-grid {
+        gap: 16px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-ob-luxury-v1 .wl-ob-body {
+        padding: 24px 22px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — Framed sage pair
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v2 — Pale sage ground · Olive mid-tone · Lime accent */
+.wl-ob-luxury-v2 {
+    --wl-pack-primary:    #E7EC78;
+    --wl-pack-secondary:  #171A15;
+    --wl-pack-accent:     #6B705E;
+    --wl-pack-bg:         #F4F5EF;
+    --wl-pack-bg-alt:     #EAEBE1;
+    --wl-pack-text:       #2A3024;
+    --wl-pack-text-muted: #B8BCA9;
+    --wl-pack-border:     rgba(48, 56, 44, 0.14);
+
+    --wl-ob-cols:         2;
+    --wl-ob-body-justify: center;
+}
+
+.wl-ob-luxury-v2 .wl-ob-grid {
+    gap: clamp(16px, 2vw, 28px);
+}
+
+.wl-ob-luxury-v2 .wl-ob-card {
+    --wl-ob-img-zoom: 1.08;
+    /* 16:11 through the shared ratio spacer — see pack-widgets-base.css. */
+    --wl-ob-ratio: calc(100% * 11 / 16);
+    border-radius: 0;
+    background: var(--wl-pack-bg-alt);
+}
+
+/* The photograph starts slightly enlarged so the slow push-in has somewhere to
+   go without ever revealing an edge. */
+.wl-ob-luxury-v2 .wl-ob-img {
+    filter: saturate(0.92) brightness(0.78);
+    transform: scale(1.03);
+    transition: transform 1.3s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.wl-ob-luxury-v2 .wl-ob-card:hover .wl-ob-img {
+    filter: saturate(1) brightness(0.72);
+}
+
+.wl-ob-luxury-v2 .wl-ob-overlay {
+    background: linear-gradient(105deg,
+        rgba(15, 18, 13, 0.72) 0%,
+        rgba(15, 18, 13, 0.40) 45%,
+        rgba(15, 18, 13, 0.06) 100%);
+}
+
+/* The inset frame and its two corner ticks, drawn without any extra markup:
+   the card's ::before is the frame, the overlay's ::before and ::after are the
+   ticks. The ticks sit at 15px so they land on the frame's own 16px inset line. */
+.wl-ob-luxury-v2 .wl-ob-card::before {
+    content: "";
+    position: absolute;
+    inset: 16px;
+    z-index: 2;
+    border: 1px solid rgba(231, 236, 120, 0.2);
+    pointer-events: none;
+}
+
+.wl-ob-luxury-v2 .wl-ob-overlay::before,
+.wl-ob-luxury-v2 .wl-ob-overlay::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    z-index: 2;
+}
+
+.wl-ob-luxury-v2 .wl-ob-overlay::before {
+    top: 15px;
+    left: 15px;
+    border-top: 1px solid var(--wl-pack-primary);
+    border-left: 1px solid var(--wl-pack-primary);
+}
+
+.wl-ob-luxury-v2 .wl-ob-overlay::after {
+    bottom: 15px;
+    right: 15px;
+    border-bottom: 1px solid var(--wl-pack-primary);
+    border-right: 1px solid var(--wl-pack-primary);
+}
+
+.wl-ob-luxury-v2 .wl-ob-body {
+    padding: clamp(26px, 3vw, 48px);
+}
+
+.wl-ob-luxury-v2 .wl-ob-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: var(--wl-pack-primary);
+    margin-bottom: 12px;
+}
+
+.wl-ob-luxury-v2 .wl-ob-eyebrow::before {
+    content: "";
+    flex-shrink: 0;
+    width: 24px;
+    height: 1px;
+    background: currentColor;
+}
+
+.wl-ob-luxury-v2 .wl-ob-title {
+    font-family: var(--wl-pack-font-heading);
+    font-style: italic;
+    font-size: clamp(28px, 3vw, 46px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -1px;
+    color: #F1F2EA;
+    margin-bottom: 6px;
+}
+
+/* The reference pushes the button well below the centred copy with a flat 150px
+   margin. Kept as a clamp so a short card does not blow the button off the edge. */
+.wl-ob-luxury-v2 .wl-ob-sub {
+    font-family: var(--wl-pack-font-body);
+    font-size: clamp(13px, 1vw, 15px);
+    line-height: 1.55;
+    color: var(--wl-pack-text-muted);
+    max-width: 30ch;
+    margin-bottom: clamp(48px, 11vw, 150px);
+}
+
+.wl-ob-luxury-v2 .wl-ob-cta {
+    gap: 10px;
+    padding: 13px 26px;
+    border: 1px solid rgba(241, 242, 234, 0.55);
+    border-radius: 0;
+    background: transparent;
+    color: #F1F2EA;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 600;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    transition: background 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+                color 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+                border-color 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+                gap 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.wl-ob-luxury-v2 .wl-ob-card:hover .wl-ob-cta {
+    gap: 14px;
+    background: var(--wl-pack-primary);
+    border-color: var(--wl-pack-primary);
+    color: var(--wl-pack-secondary);
+}
+
+/* The reference stacks at 720px; base already stacks at 767px, so the extra query is dropped
+   rather than fought with — a 47px difference nobody sees. The ratio change comes along. */
+@media (max-width: 767px) {
+    .wl-ob-luxury-v2 .wl-ob-card {
+        --wl-ob-ratio: calc(100% * 10 / 16);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — Tall gold-ruled trio
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v3 — Ivory ground · Charcoal type · Muted gold · Mocha mid-tone */
+.wl-ob-luxury-v3 {
+    --wl-pack-primary:    #C6A972;
+    --wl-pack-secondary:  #2C2A28;
+    --wl-pack-accent:     #6E5B4B;
+    --wl-pack-bg:         #F8F5F0;
+    --wl-pack-bg-alt:     #E8DED0;
+    --wl-pack-text:       #2C2A28;
+    --wl-pack-text-muted: #B8A999;
+    --wl-pack-border:     #E8DED0;
+
+    --wl-ob-cols:         3;
+}
+
+.wl-ob-luxury-v3 .wl-ob-grid {
+    gap: 12px;
+}
+
+.wl-ob-luxury-v3 .wl-ob-card {
+    --wl-ob-img-zoom: 1.05;
+    --wl-ob-ratio: calc(100% * 4 / 3);
+    border-radius: 0;
+    background: #E7E7E7;
+}
+
+.wl-ob-luxury-v3 .wl-ob-img {
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wl-ob-luxury-v3 .wl-ob-overlay {
+    background: linear-gradient(to top,
+        rgba(44, 42, 40, 0.70) 0%,
+        rgba(44, 42, 40, 0.12) 52%,
+        transparent 100%);
+}
+
+.wl-ob-luxury-v3 .wl-ob-body {
+    padding: 32px;
+}
+
+.wl-ob-luxury-v3 .wl-ob-eyebrow {
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.wl-ob-luxury-v3 .wl-ob-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 38px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--wl-pack-bg);
+    margin-bottom: 16px;
+}
+
+.wl-ob-luxury-v3 .wl-ob-sub {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    line-height: 1.6;
+    color: rgba(248, 245, 240, 0.75);
+    max-width: 32ch;
+    margin-bottom: 16px;
+}
+
+.wl-ob-luxury-v3 .wl-ob-cta {
+    gap: 7px;
+    padding: 0 0 3px;
+    border: 0;
+    border-bottom: 1px solid var(--wl-pack-primary);
+    border-radius: 0;
+    background: transparent;
+    color: var(--wl-pack-bg);
+    font-family: var(--wl-pack-font-body);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+    transition: color 0.15s ease;
+}
+
+.wl-ob-luxury-v3 .wl-ob-card:hover .wl-ob-cta {
+    color: var(--wl-pack-primary);
+}
+
+@media (max-width: 1024px) {
+    /* Still three up here — base drops to two, this variant does not. */
+    .wl-ob-luxury-v3 .wl-ob-grid {
+        --wl-ob-cols: 3;
+    }
+
+    .wl-ob-luxury-v3 .wl-ob-title {
+        font-size: 30px;
+    }
+}
+
+/* A 3:4 card at full width is taller than most viewports, so the ratio widens
+   with the stack — the reference does the same. */
+@media (max-width: 767px) {
+    .wl-ob-luxury-v3 .wl-ob-card {
+        --wl-ob-ratio: calc(100% * 9 / 16);
+    }
+
+    .wl-ob-luxury-v3 .wl-ob-body {
+        padding: 24px;
+    }
+}

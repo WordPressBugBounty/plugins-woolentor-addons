@@ -1,0 +1,753 @@
+/**
+ * Campaign Banner — Luxury pack.
+ * All three variants live in this file so the browser caches one stylesheet
+ * regardless of which variant a page uses.
+ *
+ * Layout mechanics — the --band / --split / --overlay shapes, the countdown, the
+ * button box, the coupon chip — live in pack-widgets-base.css under .wl-cb-* and
+ * .wl-pack-countdown-*. Only this pack's colours, type and spacing belong here.
+ *
+ * Each variant came from a different designer with its own palette, so each
+ * redeclares the --wl-pack-* colour tokens on its own root. v1 matches the pack
+ * defaults and needs no override.
+ *
+ * Font families are deliberately NOT overridden — type comes from the theme and
+ * the Style tab's typography controls.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — Ivory split, gold hairline  (adapted; see templates/luxury/v1.php)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-cb-luxury-v1 .wl-cb-inner {
+    align-items: stretch;
+    gap: 0;
+    background: var(--wl-pack-bg);
+    border: 1px solid var(--wl-pack-border);
+    border-radius: var(--wl-pack-radius);
+}
+
+.wl-cb-luxury-v1 .wl-cb-body {
+    flex: 1 1 52%;
+    min-width: 0;
+    justify-content: center;
+    padding: clamp(40px, 5vw, 76px);
+}
+
+.wl-cb-luxury-v1 .wl-cb-eyebrow {
+    gap: 14px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 600;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: var(--wl-pack-text-muted);
+}
+
+/* The single gold hairline this variant allows itself, drawn on the eyebrow so it
+   stays attached to the label rather than floating in the stack. */
+.wl-cb-luxury-v1 .wl-cb-eyebrow::before {
+    content: "";
+    width: 34px;
+    height: 1px;
+    flex-shrink: 0;
+    background: var(--wl-pack-primary);
+}
+
+.wl-cb-luxury-v1 .wl-cb-dot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--wl-pack-primary);
+}
+
+.wl-cb-luxury-v1 .wl-cb-headline {
+    margin-top: 22px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(34px, 3.6vw, 54px);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -1.2px;
+    color: var(--wl-pack-text);
+    max-width: 18ch;
+}
+
+.wl-cb-luxury-v1 .wl-cb-headline em {
+    font-style: italic;
+    color: var(--wl-pack-accent);
+}
+
+.wl-cb-luxury-v1 .wl-cb-rule {
+    width: 52px;
+    margin-top: 28px;
+    background: var(--wl-pack-primary);
+}
+
+/* — Countdown — ink figures in gold-hairline cells on the ivory ground. */
+
+.wl-cb-luxury-v1 .wl-cb-countdown {
+    --wl-pack-countdown-gap: 10px;
+    margin-top: 30px;
+}
+
+.wl-cb-luxury-v1 .wl-pack-countdown-unit {
+    min-width: 68px;
+    padding: 14px 10px 11px;
+    border: 1px solid var(--wl-pack-border);
+    border-radius: 4px;
+    background: #FFFFFF;
+}
+
+.wl-cb-luxury-v1 .wl-pack-countdown-num {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--wl-pack-text);
+}
+
+.wl-cb-luxury-v1 .wl-pack-countdown-label {
+    margin-top: 7px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--wl-pack-text-muted);
+}
+
+/* Muted, not border-coloured: a hairline grey that reads on white cells would
+   vanish against this variant's ivory ground. */
+.wl-cb-luxury-v1 .wl-pack-countdown-sep {
+    font-size: 22px;
+    color: var(--wl-pack-text-muted);
+}
+
+.wl-cb-luxury-v1 .wl-cb-cta-group {
+    --wl-cb-cta-gap: 20px;
+    margin-top: 34px;
+}
+
+.wl-cb-luxury-v1 .wl-cb-desc {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-base);
+    line-height: 1.75;
+    color: var(--wl-pack-text-muted);
+    max-width: 44ch;
+}
+
+.wl-cb-luxury-v1 .wl-cb-coupon {
+    padding: 9px 18px;
+    border: 1px dashed var(--wl-pack-primary);
+    border-radius: 3px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--wl-pack-accent);
+}
+
+/* Flat ink button, no radius — the pack's ivory-page button, not its pill. */
+.wl-cb-luxury-v1 .wl-cb-btn--primary {
+    padding: 16px 32px;
+    background: var(--wl-pack-secondary);
+    border: 1px solid var(--wl-pack-secondary);
+    color: #FFFFFF;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    font-weight: 600;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    transition: background 0.32s ease, color 0.32s ease, border-color 0.32s ease;
+}
+
+.wl-cb-luxury-v1 .wl-cb-btn--primary:hover {
+    background: var(--wl-pack-primary);
+    border-color: var(--wl-pack-primary);
+    color: var(--wl-pack-secondary);
+}
+
+.wl-cb-luxury-v1 .wl-cb-btn--secondary {
+    padding: 16px 30px;
+    border: 1px solid var(--wl-pack-border);
+    color: var(--wl-pack-text);
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    font-weight: 600;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.wl-cb-luxury-v1 .wl-cb-btn--secondary:hover {
+    border-color: var(--wl-pack-primary);
+    color: var(--wl-pack-accent);
+}
+
+.wl-cb-luxury-v1 .wl-cb-note {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    line-height: 1.6;
+    color: var(--wl-pack-text-muted);
+}
+
+/* — Media — held in an offset gold frame, drawn on the panel itself so the
+   photograph needs no extra element. */
+
+.wl-cb-luxury-v1 .wl-cb-media {
+    flex: 1 1 48%;
+    align-self: stretch;
+    min-height: 420px;
+    margin: clamp(20px, 2.4vw, 34px);
+    margin-left: 0;
+    overflow: visible;
+}
+
+.wl-cb-luxury-v1 .wl-cb-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translate(14px, 14px);
+    border: 1px solid var(--wl-pack-primary);
+    pointer-events: none;
+}
+
+.wl-cb-luxury-v1 .wl-cb-img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.wl-cb-luxury-v1 .wl-cb-inner:hover .wl-cb-img {
+    transform: scale(1.03);
+}
+
+@media (max-width: 1024px) {
+    .wl-cb-luxury-v1 .wl-cb-inner {
+        flex-direction: column;
+    }
+
+    .wl-cb-luxury-v1 .wl-cb-media {
+        min-height: 320px;
+        margin: clamp(20px, 2.4vw, 34px);
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-cb-luxury-v1 .wl-cb-media::after {
+        transform: translate(8px, 8px);
+    }
+
+    .wl-cb-luxury-v1 .wl-pack-countdown-unit {
+        min-width: 60px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — The seasonal campaign plate
+   Reference: luxury-style/v2/homepage.html:5142 — `.camp`
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v2 — Deep olive-black ground · Sage type · Lime accent */
+.wl-cb-luxury-v2 {
+    --wl-pack-primary:    #E7EC78;
+    --wl-pack-secondary:  #171A15;
+    --wl-pack-accent:     #E4E6DA;
+    --wl-pack-bg:         #F1F2EA;
+    --wl-pack-bg-alt:     #30382C;
+    --wl-pack-text:       #F1F2EA;
+    --wl-pack-text-muted: #B8BCA9;
+    --wl-pack-border:     #4D5646;
+}
+
+.wl-cb-luxury-v2 .wl-cb-inner {
+    min-height: clamp(520px, 82vh, 820px);
+    background: var(--wl-pack-secondary);
+}
+
+.wl-cb-luxury-v2 .wl-cb-img {
+    object-position: center 30%;
+    filter: saturate(0.7) contrast(1.05) brightness(0.62);
+    transform: scale(1.04);
+    transition: transform 2s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.wl-cb-luxury-v2 .wl-cb-inner:hover .wl-cb-img {
+    transform: scale(1.09);
+}
+
+.wl-cb-luxury-v2 .wl-cb-media-scrim {
+    background: linear-gradient(100deg,
+        rgba(23, 26, 21, 0.90) 0%,
+        rgba(23, 26, 21, 0.66) 40%,
+        rgba(23, 26, 21, 0.28) 72%,
+        rgba(23, 26, 21, 0.08) 100%);
+}
+
+/* The inset frame on the inner, its two corner ticks on the scrim's pseudos —
+   between them the reference's three chrome elements are drawn with no extra
+   markup at all. The scrim is inset:0, so the ticks are offset by the same
+   clamp the frame uses. */
+.wl-cb-luxury-v2 .wl-cb-inner::before {
+    content: "";
+    position: absolute;
+    inset: clamp(18px, 2.2vw, 34px);
+    z-index: 3;
+    border: 1px solid rgba(231, 236, 120, 0.16);
+    pointer-events: none;
+}
+
+.wl-cb-luxury-v2 .wl-cb-media-scrim::before,
+.wl-cb-luxury-v2 .wl-cb-media-scrim::after {
+    content: "";
+    position: absolute;
+    z-index: 3;
+    width: 20px;
+    height: 20px;
+}
+
+.wl-cb-luxury-v2 .wl-cb-media-scrim::before {
+    top: clamp(18px, 2.2vw, 34px);
+    left: clamp(18px, 2.2vw, 34px);
+    border-top: 1px solid var(--wl-pack-primary);
+    border-left: 1px solid var(--wl-pack-primary);
+}
+
+.wl-cb-luxury-v2 .wl-cb-media-scrim::after {
+    bottom: clamp(18px, 2.2vw, 34px);
+    right: clamp(18px, 2.2vw, 34px);
+    border-bottom: 1px solid var(--wl-pack-primary);
+    border-right: 1px solid var(--wl-pack-primary);
+}
+
+/* The Fine Print field, set down the right edge. */
+.wl-cb-luxury-v2 .wl-cb-vlabel {
+    position: absolute;
+    right: clamp(28px, 3vw, 50px);
+    top: 50%;
+    z-index: 3;
+    transform: translateY(-50%);
+    writing-mode: vertical-rl;
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--wl-pack-text-muted);
+    opacity: 0.6;
+}
+
+.wl-cb-luxury-v2 .wl-cb-body {
+    flex: 1;
+    max-width: 720px;
+    padding: clamp(56px, 8vw, 120px) clamp(20px, 4vw, 56px);
+}
+
+/* The issue number — italic lime, sized as a caption rather than a figure. */
+.wl-cb-luxury-v2 .wl-cb-figure {
+    align-items: baseline;
+    gap: 6px;
+}
+
+.wl-cb-luxury-v2 .wl-cb-figure-value,
+.wl-cb-luxury-v2 .wl-cb-figure-suffix {
+    font-family: var(--wl-pack-font-heading);
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--wl-pack-primary);
+}
+
+.wl-cb-luxury-v2 .wl-cb-figure-suffix {
+    font-size: 15px;
+}
+
+.wl-cb-luxury-v2 .wl-cb-eyebrow {
+    gap: 12px;
+    margin-top: 14px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: #E4E6DA;
+}
+
+.wl-cb-luxury-v2 .wl-cb-eyebrow::before {
+    content: "";
+    width: 30px;
+    height: 1px;
+    flex-shrink: 0;
+    background: var(--wl-pack-primary);
+}
+
+.wl-cb-luxury-v2 .wl-cb-dot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--wl-pack-primary);
+}
+
+.wl-cb-luxury-v2 .wl-cb-headline {
+    margin-top: 18px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(46px, 6vw, 84px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: var(--wl-pack-text);
+}
+
+.wl-cb-luxury-v2 .wl-cb-headline em {
+    font-style: italic;
+    color: #E4E6DA;
+}
+
+.wl-cb-luxury-v2 .wl-cb-desc {
+    margin-top: 24px;
+    font-family: var(--wl-pack-font-body);
+    font-size: clamp(15px, 1.1vw, 18px);
+    line-height: 1.75;
+    color: var(--wl-pack-text-muted);
+    max-width: 46ch;
+}
+
+/* — Countdown — not in the reference; kept to the same lime-on-dark restraint. */
+
+.wl-cb-luxury-v2 .wl-cb-countdown {
+    --wl-pack-countdown-gap: 14px;
+    margin-top: 32px;
+}
+
+.wl-cb-luxury-v2 .wl-pack-countdown-unit {
+    min-width: 66px;
+    padding: 13px 10px 10px;
+    border: 1px solid var(--wl-pack-border);
+    background: rgba(23, 26, 21, 0.45);
+}
+
+.wl-cb-luxury-v2 .wl-pack-countdown-num {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--wl-pack-primary);
+}
+
+.wl-cb-luxury-v2 .wl-pack-countdown-label {
+    margin-top: 7px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--wl-pack-text-muted);
+}
+
+.wl-cb-luxury-v2 .wl-pack-countdown-sep {
+    font-size: 20px;
+    color: var(--wl-pack-border);
+}
+
+.wl-cb-luxury-v2 .wl-cb-coupon {
+    margin-top: 26px;
+    padding: 9px 18px;
+    border: 1px dashed rgba(231, 236, 120, 0.5);
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--wl-pack-primary);
+}
+
+.wl-cb-luxury-v2 .wl-cb-actions {
+    --wl-cb-actions-gap: 14px;
+    margin-top: 38px;
+}
+
+.wl-cb-luxury-v2 .wl-cb-btn--primary {
+    padding: 16px 32px;
+    background: var(--wl-pack-primary);
+    border: 1px solid var(--wl-pack-primary);
+    color: var(--wl-pack-secondary);
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    transition: background 0.32s ease, color 0.32s ease, border-color 0.32s ease;
+}
+
+.wl-cb-luxury-v2 .wl-cb-btn--primary:hover {
+    background: var(--wl-pack-text);
+    border-color: var(--wl-pack-text);
+    color: var(--wl-pack-secondary);
+}
+
+.wl-cb-luxury-v2 .wl-cb-btn--secondary {
+    gap: 11px;
+    padding: 16px 32px;
+    background: transparent;
+    border: 1px solid var(--wl-pack-border);
+    color: var(--wl-pack-text);
+    font-family: var(--wl-pack-font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.wl-cb-luxury-v2 .wl-cb-btn--secondary:hover {
+    border-color: var(--wl-pack-primary);
+    color: var(--wl-pack-primary);
+}
+
+/* The play glyph is passed as the button's icon, which puts it last in the
+   markup; the reference leads with it. */
+.wl-cb-luxury-v2 .wl-cb-btn--secondary .wl-cb-play {
+    order: -1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+}
+
+.wl-cb-luxury-v2 .wl-cb-btn--secondary .wl-cb-play svg {
+    margin-left: 1px;
+}
+
+.wl-cb-luxury-v2 .wl-cb-btn--secondary:hover svg {
+    transform: none;
+}
+
+@media (max-width: 1024px) {
+    .wl-cb-luxury-v2 .wl-cb-vlabel {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-cb-luxury-v2 .wl-cb-inner {
+        min-height: 0;
+    }
+
+    .wl-cb-luxury-v2 .wl-cb-body {
+        padding: 72px 26px;
+    }
+
+    .wl-cb-luxury-v2 .wl-pack-countdown-unit {
+        min-width: 58px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — The compact sale strip
+   Reference: luxury-style/v3/homepage.html:5005 — `.sale-banner`
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v3 — Warm ivory ground · Charcoal type · Mocha and gold accents */
+.wl-cb-luxury-v3 {
+    --wl-pack-primary:    #C6A972;
+    --wl-pack-secondary:  #2C2A28;
+    --wl-pack-accent:     #6E5B4B;
+    --wl-pack-bg:         #F8F5F0;
+    --wl-pack-bg-alt:     #E5E5E5;
+    --wl-pack-text:       #2C2A28;
+    --wl-pack-text-muted: #6E5B4B;
+    --wl-pack-border:     #E8DED0;
+}
+
+.wl-cb-luxury-v3 .wl-cb-inner {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 28px clamp(24px, 3vw, 40px);
+    border-radius: 12px;
+    background: var(--wl-pack-bg-alt);
+}
+
+.wl-cb-luxury-v3 .wl-cb-eyebrow {
+    gap: 10px;
+    flex-shrink: 0;
+    font-family: var(--wl-pack-font-body);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--wl-pack-text);
+    white-space: nowrap;
+}
+
+.wl-cb-luxury-v3 .wl-cb-dot {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--wl-pack-primary);
+}
+
+/* — Countdown — bare figures on the band, no cells and no captions. Hiding the
+   captions in CSS rather than in the markup leaves one rule for a merchant who
+   does want them back. */
+
+.wl-cb-luxury-v3 .wl-cb-countdown {
+    --wl-pack-countdown-gap: 6px;
+    --wl-pack-countdown-sep-align: center;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+}
+
+.wl-cb-luxury-v3 .wl-pack-countdown-num {
+    min-width: 56px;
+    text-align: center;
+    font-family: var(--wl-pack-font-body);
+    font-size: clamp(32px, 3.4vw, 44px);
+    font-weight: 700;
+    color: var(--wl-pack-text);
+}
+
+.wl-cb-luxury-v3 .wl-pack-countdown-label {
+    display: none;
+}
+
+.wl-cb-luxury-v3 .wl-pack-countdown-sep {
+    font-size: clamp(26px, 2.8vw, 36px);
+    font-weight: 700;
+    color: var(--wl-pack-text);
+}
+
+/* Copy sits right-aligned against the pill, as in the reference. */
+.wl-cb-luxury-v3 .wl-cb-body {
+    align-items: flex-end;
+    margin-left: auto;
+    text-align: right;
+}
+
+.wl-cb-luxury-v3 .wl-cb-headline {
+    font-family: var(--wl-pack-font-body);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--wl-pack-text-muted);
+}
+
+.wl-cb-luxury-v3 .wl-cb-headline em,
+.wl-cb-luxury-v3 .wl-cb-headline strong {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--wl-pack-accent);
+}
+
+.wl-cb-luxury-v3 .wl-cb-desc {
+    font-family: var(--wl-pack-font-body);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--wl-pack-text-muted);
+}
+
+.wl-cb-luxury-v3 .wl-cb-actions {
+    --wl-cb-actions-gap: 12px;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+}
+
+/* The coupon is the strip's call to action, so it takes the charcoal pill the
+   reference gives it — the buttons, if used at all, step back to outlines. */
+.wl-cb-luxury-v3 .wl-cb-coupon {
+    padding: 14px 26px;
+    border-radius: 100px;
+    background: var(--wl-pack-secondary);
+    font-family: var(--wl-pack-font-body);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--wl-pack-bg);
+    white-space: nowrap;
+    transition: background 0.28s ease;
+}
+
+.wl-cb-luxury-v3 .wl-cb-inner:hover .wl-cb-coupon {
+    background: var(--wl-pack-accent);
+}
+
+.wl-cb-luxury-v3 .wl-cb-btn {
+    padding: 13px 24px;
+    border: 1px solid var(--wl-pack-secondary);
+    border-radius: 100px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--wl-pack-text);
+    white-space: nowrap;
+    transition: background 0.28s ease, color 0.28s ease, border-color 0.28s ease;
+}
+
+.wl-cb-luxury-v3 .wl-cb-btn:hover {
+    background: var(--wl-pack-accent);
+    border-color: var(--wl-pack-accent);
+    color: var(--wl-pack-bg);
+}
+
+.wl-cb-luxury-v3 .wl-cb-note {
+    flex-basis: 100%;
+    margin-top: -6px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    line-height: 1.6;
+    color: var(--wl-pack-text-muted);
+}
+
+@media (max-width: 1024px) {
+    .wl-cb-luxury-v3 .wl-cb-inner {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .wl-cb-luxury-v3 .wl-cb-body {
+        align-items: center;
+        margin-left: 0;
+        text-align: center;
+    }
+}
+
+@media (max-width: 767px) {
+    /* The stacked column and its `flex-wrap: nowrap` come from the base sheet —
+       see the note there on why a stacked banner must never wrap. */
+    .wl-cb-luxury-v3 .wl-cb-inner {
+        align-items: center;
+        padding: 26px 22px;
+    }
+
+    .wl-cb-luxury-v3 .wl-cb-inner > * {
+        max-width: 100%;
+    }
+
+    .wl-cb-luxury-v3 .wl-cb-countdown {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .wl-cb-luxury-v3 .wl-cb-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .wl-cb-luxury-v3 .wl-pack-countdown-num {
+        min-width: 46px;
+    }
+}

@@ -1154,7 +1154,55 @@ class Options_Field {
                         'label'     => esc_html__('New','woolentor')
                     ]
                 ),
-                
+
+                array(
+                    'id'    => 'store_highlights',
+                    'name'   => esc_html__( 'Store Highlights - 2026', 'woolentor' ),
+                    'type'    => 'element',
+                    'default' => 'on',
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
+
+                array(
+                    'id'    => 'marquee',
+                    'name'   => esc_html__( 'Marquee - 2026', 'woolentor' ),
+                    'type'    => 'element',
+                    'default' => 'on',
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
+
+                array(
+                    'id'    => 'offer_banner',
+                    'name'   => esc_html__( 'Offer Banner - 2026', 'woolentor' ),
+                    'type'    => 'element',
+                    'default' => 'on',
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
+
+                array(
+                    'id'    => 'campaign_banner',
+                    'name'   => esc_html__( 'Campaign Banner - 2026', 'woolentor' ),
+                    'type'    => 'element',
+                    'default' => 'on',
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
+
                 array(
                     'id'    => 'product_grid_modern',
                     'name' => esc_html__( 'Product Grid - Modern', 'woolentor' ),

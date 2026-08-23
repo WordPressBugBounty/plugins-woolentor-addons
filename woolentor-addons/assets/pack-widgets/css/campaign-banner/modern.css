@@ -1,0 +1,893 @@
+/**
+ * Campaign Banner — Modern pack.
+ * All three variants live in this file so the browser caches one stylesheet
+ * regardless of which variant a page uses.
+ *
+ * The section shapes, countdown structure and button mechanics live in
+ * pack-widgets-base.css under .wl-cb-* and .wl-pack-countdown*. Only this pack's
+ * colours, type and spacing belong here.
+ *
+ * Each variant was designed by a different designer with its own palette, so
+ * each redeclares the --wl-pack-* colour tokens on its own root. v1 matches the
+ * pack defaults and needs no override.
+ *
+ * Font families are deliberately NOT overridden — type comes from the theme and
+ * the Style tab's typography controls.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — Live deal band
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v1 needs no palette override — the modern pack defaults already are its
+   colours: cyan #22D3EE accent, near-black #080A0F ground, white type. */
+
+.wl-cb-modern-v1 .wl-cb-inner {
+    padding: 40px 50px;
+    border-radius: 28px;
+    justify-content: space-between;
+    gap: 32px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--wl-pack-secondary), #1A1D24);
+}
+
+/* The cyan glow bleeding in from the right. A pseudo-element rather than a
+   second gradient layer, so the Section Background control can replace the
+   ground without taking the glow with it. */
+.wl-cb-modern-v1 .wl-cb-inner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(closest-side at 85% 50%, rgba(34, 211, 238, 0.20), transparent 60%);
+}
+
+.wl-cb-modern-v1 .wl-cb-body {
+    gap: 6px;
+}
+
+.wl-cb-modern-v1 .wl-cb-eyebrow {
+    gap: 8px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: var(--wl-pack-accent);
+}
+
+.wl-cb-modern-v1 .wl-cb-dot {
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--wl-pack-accent);
+    box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.25);
+    animation: wl-cb-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes wl-cb-pulse {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 0.75;
+    }
+}
+
+/* A pulsing dot is decoration, not information — it stops for anyone who has
+   asked the system to reduce motion. */
+@media (prefers-reduced-motion: reduce) {
+    .wl-cb-modern-v1 .wl-cb-dot {
+        animation: none;
+    }
+}
+
+.wl-cb-modern-v1 .wl-cb-headline {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: #fff;
+}
+
+.wl-cb-modern-v1 .wl-cb-headline em {
+    font-style: normal;
+    color: var(--wl-pack-accent);
+}
+
+.wl-cb-modern-v1 .wl-cb-desc {
+    margin-top: 6px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 15px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 480px;
+}
+
+.wl-cb-modern-v1 .wl-cb-coupon {
+    margin-top: 14px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+}
+
+/* The reference band carries no buttons. These are here so a user who adds one
+   gets the pack's own button language rather than an unstyled link. */
+.wl-cb-modern-v1 .wl-cb-actions {
+    margin-top: 20px;
+}
+
+.wl-cb-modern-v1 .wl-cb-btn {
+    padding: 13px 24px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-family: var(--wl-pack-font-body);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    transition: background 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
+                border-color 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
+                color 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wl-cb-modern-v1 .wl-cb-btn--primary {
+    background: #fff;
+    border-color: #fff;
+    color: var(--wl-pack-secondary);
+}
+
+.wl-cb-modern-v1 .wl-cb-btn--primary:hover {
+    background: var(--wl-pack-accent);
+    border-color: var(--wl-pack-accent);
+}
+
+.wl-cb-modern-v1 .wl-cb-btn--secondary {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.35);
+    color: #fff;
+}
+
+.wl-cb-modern-v1 .wl-cb-btn--secondary:hover {
+    border-color: #fff;
+}
+
+.wl-cb-modern-v1 .wl-cb-note {
+    margin-top: 14px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* — Countdown — glassy cells on the dark ground. */
+
+.wl-cb-modern-v1 .wl-pack-countdown {
+    --wl-pack-countdown-gap: 10px;
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+}
+
+.wl-cb-modern-v1 .wl-pack-countdown-unit {
+    min-width: 76px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+}
+
+.wl-cb-modern-v1 .wl-pack-countdown-num {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 30px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.wl-cb-modern-v1 .wl-pack-countdown-label {
+    margin-top: 6px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.wl-cb-modern-v1 .wl-pack-countdown-sep {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 24px;
+}
+
+.wl-cb-modern-v1 .wl-pack-countdown-note {
+    font-family: var(--wl-pack-font-body);
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* The reference stacks at 900px, earlier than the shared 767px, because 50px of
+   padding plus four countdown cells runs out of room first. */
+@media (max-width: 900px) {
+    .wl-cb-modern-v1 .wl-cb-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px;
+    }
+
+    .wl-cb-modern-v1 .wl-cb-headline {
+        font-size: 26px;
+    }
+
+    .wl-cb-modern-v1 .wl-pack-countdown-unit {
+        min-width: 62px;
+        padding: 10px 12px;
+    }
+
+    .wl-cb-modern-v1 .wl-pack-countdown-num {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .wl-cb-modern-v1 .wl-cb-inner {
+        padding: 24px 20px;
+    }
+
+    .wl-cb-modern-v1 .wl-pack-countdown {
+        flex-wrap: wrap;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — Split campaign card
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v2 — Warm paper ground · Olive accent · Rust highlight */
+.wl-cb-modern-v2 {
+    --wl-pack-primary:    #7A8F3A;
+    --wl-pack-secondary:  #1D1D1B;
+    --wl-pack-accent:     #B4573F;
+    --wl-pack-bg:         #FAFAF7;
+    --wl-pack-bg-alt:     #F0EEE9;
+    --wl-pack-text:       #111111;
+    --wl-pack-text-muted: #666666;
+    --wl-pack-border:     #D8D5CE;
+}
+
+.wl-cb-modern-v2 .wl-cb-inner {
+    min-height: 440px;
+    border-radius: 16px;
+    gap: 0;
+    /* Equal halves. The Gap control still works — it just has nothing to open by default. */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.wl-cb-modern-v2 .wl-cb-body {
+    justify-content: center;
+    padding: 56px 52px;
+    background: var(--wl-pack-secondary);
+}
+
+.wl-cb-modern-v2 .wl-cb-media {
+    min-height: 100%;
+}
+
+.wl-cb-modern-v2 .wl-cb-img {
+    filter: brightness(0.9);
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.wl-cb-modern-v2 .wl-cb-inner:hover .wl-cb-img {
+    transform: scale(1.04);
+}
+
+/* The 24px rule before the label is this designer's signature. */
+.wl-cb-modern-v2 .wl-cb-eyebrow {
+    gap: 10px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: var(--wl-pack-primary);
+    margin-bottom: 18px;
+}
+
+.wl-cb-modern-v2 .wl-cb-eyebrow::before {
+    content: "";
+    flex-shrink: 0;
+    width: 24px;
+    height: 1px;
+    background: currentColor;
+}
+
+/* The dot is v1's device; this variant leads with the rule instead. It still
+   renders if a user turns it on, just sized to sit inside the label. */
+.wl-cb-modern-v2 .wl-cb-dot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--wl-pack-primary);
+}
+
+.wl-cb-modern-v2 .wl-cb-headline {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: #fff;
+    margin-bottom: 16px;
+}
+
+.wl-cb-modern-v2 .wl-cb-headline em {
+    font-style: normal;
+    color: var(--wl-pack-primary);
+}
+
+.wl-cb-modern-v2 .wl-cb-desc {
+    font-family: var(--wl-pack-font-body);
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 340px;
+    margin-bottom: 32px;
+}
+
+.wl-cb-modern-v2 .wl-cb-coupon {
+    margin-bottom: 20px;
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-family: var(--wl-pack-font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1.4;
+}
+
+/* Sharp corners — this pack does not round its buttons. */
+.wl-cb-modern-v2 .wl-cb-btn {
+    gap: 9px;
+    padding: 13px 28px;
+    border: 1.5px solid transparent;
+    border-radius: 0;
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+}
+
+.wl-cb-modern-v2 .wl-cb-btn--primary {
+    background: var(--wl-pack-primary);
+    border-color: var(--wl-pack-primary);
+    color: #fff;
+}
+
+.wl-cb-modern-v2 .wl-cb-btn--primary:hover {
+    background: #617230;
+    border-color: #617230;
+}
+
+.wl-cb-modern-v2 .wl-cb-btn--secondary {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.28);
+    color: #fff;
+}
+
+.wl-cb-modern-v2 .wl-cb-btn--secondary:hover {
+    border-color: #fff;
+}
+
+/* The stats row sits under a hairline. The divider is a border on the item
+   rather than the reference's separate element — one less node, same rule. */
+.wl-cb-modern-v2 .wl-cb-stats {
+    gap: 20px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.wl-cb-modern-v2 .wl-cb-stat + .wl-cb-stat {
+    padding-left: 20px;
+    border-left-color: rgba(255, 255, 255, 0.1);
+}
+
+.wl-cb-modern-v2 .wl-cb-stat-value {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #fff;
+}
+
+.wl-cb-modern-v2 .wl-cb-stat-label {
+    font-family: var(--wl-pack-font-body);
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.wl-cb-modern-v2 .wl-cb-note {
+    margin-top: 16px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.wl-cb-modern-v2 .wl-pack-countdown {
+    --wl-pack-countdown-gap: 8px;
+    margin-bottom: 28px;
+}
+
+.wl-cb-modern-v2 .wl-pack-countdown-unit {
+    min-width: 64px;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.wl-cb-modern-v2 .wl-pack-countdown-num {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #fff;
+}
+
+.wl-cb-modern-v2 .wl-pack-countdown-label {
+    margin-top: 5px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.wl-cb-modern-v2 .wl-pack-countdown-sep {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 900px) {
+    .wl-cb-modern-v2 .wl-cb-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .wl-cb-modern-v2 .wl-cb-media {
+        min-height: 240px;
+        order: -1;
+    }
+
+    .wl-cb-modern-v2 .wl-cb-body {
+        padding: 44px 32px;
+    }
+
+    .wl-cb-modern-v2 .wl-cb-headline {
+        font-size: clamp(28px, 7vw, 44px);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — Discount split with floating cards
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v3 — Off-white ground · Warm black panel · Clay accent · Olive secondary */
+.wl-cb-modern-v3 {
+    --wl-pack-primary:    #B8755B;
+    --wl-pack-secondary:  #11110F;
+    --wl-pack-accent:     #626A5D;
+    --wl-pack-bg:         #FAFAF7;
+    --wl-pack-bg-alt:     #FFFFFF;
+    --wl-pack-text:       #1F1F1D;
+    --wl-pack-text-muted: #6F716D;
+    --wl-pack-border:     #D8D2C8;
+}
+
+.wl-cb-modern-v3 .wl-cb-inner {
+    display: grid;
+    grid-template-columns: 45fr 55fr;
+    min-height: 700px;
+    gap: 0;
+    border-radius: 0;
+}
+
+/* The reference pads this `80px 64px 80px 280px` to line the copy up with the
+   site container on a full-bleed section. A widget sits inside a container that
+   already has padding, so the clamp keeps it centred wherever it is dropped. */
+.wl-cb-modern-v3 .wl-cb-body {
+    justify-content: center;
+    padding: 80px clamp(32px, 5vw, 72px);
+    background: var(--wl-pack-secondary);
+    color: var(--wl-pack-bg);
+}
+
+.wl-cb-modern-v3 .wl-cb-eyebrow {
+    gap: 8px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: var(--wl-pack-primary);
+    margin-bottom: 28px;
+}
+
+.wl-cb-modern-v3 .wl-cb-dot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--wl-pack-primary);
+}
+
+.wl-cb-modern-v3 .wl-cb-figure {
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.wl-cb-modern-v3 .wl-cb-figure-value {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(88px, 9vw, 136px);
+    font-weight: 700;
+    letter-spacing: -5px;
+    line-height: 0.88;
+    color: #fff;
+}
+
+.wl-cb-modern-v3 .wl-cb-figure-suffix {
+    padding-top: 14px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(30px, 3.2vw, 48px);
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.05;
+    color: var(--wl-pack-primary);
+}
+
+.wl-cb-modern-v3 .wl-cb-headline {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(26px, 2.6vw, 40px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    color: #fff;
+    margin-bottom: 16px;
+}
+
+.wl-cb-modern-v3 .wl-cb-headline em {
+    font-style: normal;
+    color: var(--wl-pack-primary);
+}
+
+.wl-cb-modern-v3 .wl-cb-desc {
+    font-family: var(--wl-pack-font-body);
+    font-size: 15px;
+    line-height: 1.65;
+    color: #fff;
+    max-width: 340px;
+    margin-bottom: 40px;
+}
+
+.wl-cb-modern-v3 .wl-cb-coupon {
+    margin-bottom: 24px;
+    padding: 9px 16px;
+    border-radius: 100px;
+    background: rgba(184, 117, 91, 0.16);
+    color: var(--wl-pack-primary);
+    font-family: var(--wl-pack-font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    line-height: 1.4;
+}
+
+.wl-cb-modern-v3 .wl-cb-btn {
+    gap: 10px;
+    padding: 16px 36px;
+    border: 1px solid transparent;
+    border-radius: 100px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.2;
+    transition: background 0.22s cubic-bezier(0.25, 0.1, 0.25, 1),
+                border-color 0.22s cubic-bezier(0.25, 0.1, 0.25, 1),
+                transform 0.15s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.wl-cb-modern-v3 .wl-cb-btn--primary {
+    background: var(--wl-pack-primary);
+    border-color: var(--wl-pack-primary);
+    color: #fff;
+}
+
+.wl-cb-modern-v3 .wl-cb-btn--primary:hover {
+    background: #9A5E47;
+    border-color: #9A5E47;
+    transform: translateY(-2px);
+}
+
+.wl-cb-modern-v3 .wl-cb-btn--secondary {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.28);
+    color: #fff;
+}
+
+.wl-cb-modern-v3 .wl-cb-btn--secondary:hover {
+    border-color: #fff;
+}
+
+.wl-cb-modern-v3 .wl-cb-note {
+    margin-top: 18px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    letter-spacing: 0.2px;
+    line-height: 1.5;
+    color: #C7C7C7;
+}
+
+/* — Countdown — boxed, bottom-aligned so the separators sit on the baseline. */
+
+/* A timer has to read as one line — four cells stacked into two rows stop looking
+   like a countdown. The base wraps by default, which suits v1's wide band; here the
+   row is locked to one line, the cells give up padding and type size as the panel
+   narrows, and a scroll is the last resort rather than a wrap or a clip. The panel
+   is 45% of the section, so this gets tight far earlier than the viewport suggests. */
+.wl-cb-modern-v3 .wl-pack-countdown {
+    --wl-pack-countdown-gap: 6px;
+    --wl-pack-countdown-sep-align: flex-end;
+    align-items: flex-end;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    margin-bottom: 44px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.wl-cb-modern-v3 .wl-pack-countdown::-webkit-scrollbar {
+    display: none;
+}
+
+.wl-cb-modern-v3 .wl-pack-countdown-unit {
+    flex: 0 0 auto;
+    min-width: 0;
+    padding: 14px clamp(10px, 1.4vw, 20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.wl-cb-modern-v3 .wl-pack-countdown-num {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(24px, 2.4vw, 34px);
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: #fff;
+}
+
+.wl-cb-modern-v3 .wl-pack-countdown-label {
+    margin-top: 5px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: rgba(255, 255, 255, 0.28);
+}
+
+.wl-cb-modern-v3 .wl-pack-countdown-sep {
+    padding-bottom: 22px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+/* — Media panel with the foot gradient and the floating cards. */
+
+.wl-cb-modern-v3 .wl-cb-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(to top,
+        rgba(12, 12, 10, 0.72) 0%,
+        rgba(12, 12, 10, 0.18) 38%,
+        transparent 60%);
+}
+
+.wl-cb-modern-v3 .wl-cb-img {
+    transition: transform 8s ease;
+}
+
+.wl-cb-modern-v3 .wl-cb-inner:hover .wl-cb-img {
+    transform: scale(1.03);
+}
+
+.wl-cb-modern-v3 .wl-cb-cards {
+    right: 28px;
+    bottom: 28px;
+    left: 28px;
+}
+
+/* The label and the arrows share one row above the cards. Slick puts the arrows
+   inside the track, so they are pulled up into that row rather than the base's
+   vertically-centred position. */
+.wl-cb-modern-v3 .wl-cb-cards-label {
+    display: flex;
+    align-items: center;
+    min-height: 30px;
+    margin-bottom: 10px;
+    padding-left: 2px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
+}
+
+.wl-cb-modern-v3 .wl-cb-cards-track {
+    --wl-cb-cards-gap: 10px;
+    gap: 10px;
+}
+
+.wl-cb-modern-v3 .wl-pack-nav {
+    top: -40px;
+    transform: none;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(14, 14, 12, 0.62);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: none;
+    color: #fff;
+}
+
+.wl-cb-modern-v3 .wl-pack-nav:hover {
+    background: var(--wl-pack-primary);
+    border-color: var(--wl-pack-primary);
+    box-shadow: none;
+    /* The base hover keeps translateY(-50%); these arrows are not centred, so the
+       lift has to be dropped or they jump 15px on hover. */
+    transform: scale(1.06);
+}
+
+.wl-cb-modern-v3 .wl-pack-nav svg {
+    width: 13px;
+    height: 13px;
+}
+
+.wl-cb-modern-v3 .wl-pack-nav-prev {
+    right: 36px;
+    left: auto;
+}
+
+.wl-cb-modern-v3 .wl-pack-nav-next {
+    right: 0;
+}
+
+.wl-cb-modern-v3 .wl-pack-nav.slick-disabled {
+    opacity: 0.28;
+    pointer-events: none;
+}
+
+.wl-cb-modern-v3 .wl-cb-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    background: rgba(14, 14, 12, 0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: transform 0.22s cubic-bezier(0.25, 0.1, 0.25, 1),
+                border-color 0.22s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.wl-cb-modern-v3 .wl-cb-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(184, 117, 91, 0.38);
+}
+
+.wl-cb-modern-v3 .wl-cb-card-img {
+    aspect-ratio: 4 / 3;
+}
+
+.wl-cb-modern-v3 .wl-cb-card-info {
+    padding: 12px 14px 15px;
+}
+
+.wl-cb-modern-v3 .wl-cb-card-badge {
+    margin-bottom: 8px;
+    padding: 3px 7px;
+    border-radius: 4px;
+    background: rgba(184, 117, 91, 0.16);
+    color: var(--wl-pack-primary);
+    font-family: var(--wl-pack-font-body);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    line-height: 1.4;
+}
+
+.wl-cb-modern-v3 .wl-cb-card-name {
+    margin-bottom: 8px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: rgba(250, 250, 247, 0.92);
+}
+
+.wl-cb-modern-v3 .wl-cb-card-prices {
+    gap: 7px;
+}
+
+.wl-cb-modern-v3 .wl-cb-card-price {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: #fff;
+}
+
+.wl-cb-modern-v3 .wl-cb-card-old {
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 900px) {
+    .wl-cb-modern-v3 .wl-cb-inner {
+        grid-template-columns: 1fr;
+        min-height: 0;
+    }
+
+    /* Image first on a phone — the figure needs the photo above it for context. */
+    .wl-cb-modern-v3 .wl-cb-media {
+        order: -1;
+        min-height: 300px;
+        height: 55vw;
+    }
+
+    .wl-cb-modern-v3 .wl-cb-body {
+        padding: 52px 24px;
+    }
+
+    .wl-cb-modern-v3 .wl-cb-cards {
+        right: 20px;
+        bottom: 20px;
+        left: 20px;
+    }
+}

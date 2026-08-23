@@ -333,6 +333,26 @@ class Widgets_Control{
                     'title'    => esc_html__('Hero Banner - 2026','woolentor'),
                     'is_pro'   => false,
                     'location' => ( $is_pro ? WOOLENTOR_ADDONS_PL_PATH_PRO : WOOLENTOR_ADDONS_PL_PATH ) . 'includes/addons/pack-widgets/elementor/hero-banner/',
+                ],
+                'store_highlights' => [
+                    'title'    => esc_html__('Store Highlights - 2026','woolentor'),
+                    'is_pro'   => false,
+                    'location' => ( $is_pro ? WOOLENTOR_ADDONS_PL_PATH_PRO : WOOLENTOR_ADDONS_PL_PATH ) . 'includes/addons/pack-widgets/elementor/store-highlights/',
+                ],
+                'marquee' => [
+                    'title'    => esc_html__('Marquee - 2026','woolentor'),
+                    'is_pro'   => false,
+                    'location' => ( $is_pro ? WOOLENTOR_ADDONS_PL_PATH_PRO : WOOLENTOR_ADDONS_PL_PATH ) . 'includes/addons/pack-widgets/elementor/marquee/',
+                ],
+                'offer_banner' => [
+                    'title'    => esc_html__('Offer Banner - 2026','woolentor'),
+                    'is_pro'   => false,
+                    'location' => ( $is_pro ? WOOLENTOR_ADDONS_PL_PATH_PRO : WOOLENTOR_ADDONS_PL_PATH ) . 'includes/addons/pack-widgets/elementor/offer-banner/',
+                ],
+                'campaign_banner' => [
+                    'title'    => esc_html__('Campaign Banner - 2026','woolentor'),
+                    'is_pro'   => false,
+                    'location' => ( $is_pro ? WOOLENTOR_ADDONS_PL_PATH_PRO : WOOLENTOR_ADDONS_PL_PATH ) . 'includes/addons/pack-widgets/elementor/campaign-banner/',
                 ]
 
             ],

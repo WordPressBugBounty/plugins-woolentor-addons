@@ -3,7 +3,8 @@
  *
  * Contains:
  *  1. Design tokens (CSS custom properties) scoped per [data-wl-pack="{slug}"]
- *  2. Common component styles shared by all pack widgets (slider nav, dots…)
+ *  2. Common component styles shared by all pack widgets (slider nav, dots,
+ *     marquee track…)
  *
  * @package WooLentor
  */
@@ -52,6 +53,7 @@
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 10;
     display: flex !important;
     gap: 8px;
     list-style: none;
@@ -75,6 +77,772 @@
 [data-wl-pack] .wl-pack-dots li.slick-active button {
     background: #fff;
     transform: scale(1.3);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Common — Store Highlights structure
+   Layout mechanics shared by all 12 style-variant combinations of the Store
+   Highlights widget. Only structure lives here; every colour, font and border
+   is left to the per-pack stylesheet so packs stay swappable.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-wl-pack] .wl-sh-list {
+    --wl-sh-cols: 4;
+    display: grid;
+    grid-template-columns: repeat(var(--wl-sh-cols, 4), minmax(0, 1fr));
+    gap: var(--wl-pack-space-gap);
+}
+
+[data-wl-pack] .wl-sh-item {
+    text-decoration: none;
+    color: inherit;
+}
+
+[data-wl-pack] .wl-sh-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--wl-pack-primary);
+}
+
+/* Sized in em so one icon-size control drives both icon fonts and inline SVG. */
+[data-wl-pack] .wl-sh-icon svg {
+    display: block;
+    width: 1.375em;
+    height: 1.375em;
+    fill: currentColor;
+}
+
+[data-wl-pack] .wl-sh-label,
+[data-wl-pack] .wl-sh-text,
+[data-wl-pack] .wl-sh-title,
+[data-wl-pack] .wl-sh-sub {
+    display: block;
+}
+
+/* — Responsive column defaults. Elementor's Columns control overrides these. */
+@media (max-width: 1024px) {
+    [data-wl-pack] .wl-sh-list {
+        --wl-sh-cols: 2;
+    }
+}
+
+@media (max-width: 767px) {
+    [data-wl-pack] .wl-sh-list {
+        --wl-sh-cols: 1;
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Common — Offer Banner structure
+   Layout mechanics shared by all 12 style-variant combinations of the Offer
+   Banner widget. Only structure and stacking live here; every colour, font and
+   border is left to the per-pack stylesheet so packs stay swappable.
+
+   Every one of the twelve references turns out to be the same shape: the photo
+   fills the card and the copy sits on top of it. Two of them read as panelled
+   at a glance — luxury v3 nests its image in a wrapper, magazine v2 pushes the
+   copy to 74% width so the photo shows down one side — but both position their
+   content block at inset 0. So there is one card shape here, not two.
+
+   Card height comes from min-height or aspect-ratio set by each pack.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Two ways to describe the track, one property.
+   --wl-ob-cols   equal columns, the common case and what the Columns control writes
+   --wl-ob-template  an explicit track for asymmetric layouts such as modern v3's 2fr 1fr
+
+   A variant sets --wl-ob-template on its own root, one level above .wl-ob-grid. The Columns
+   control writes onto .wl-ob-grid itself, and an element's own declaration always beats an
+   inherited one — so the control wins without a specificity fight. */
+[data-wl-pack] .wl-ob-grid {
+    --wl-ob-cols: 2;
+    display: grid;
+    grid-template-columns: var(--wl-ob-template, repeat(var(--wl-ob-cols, 2), minmax(0, 1fr)));
+    gap: var(--wl-pack-space-gap);
+}
+
+/* A single-cell grid, not a flex column, so the ratio spacer below and the body
+   can share one cell and the card ends up as tall as whichever is taller.
+   `aspect-ratio` cannot be used for this: with a definite height it derives the
+   *width* from the ratio and the card bursts out of its grid track, and with a
+   definite width it pins the height so long copy is clipped by `overflow`. */
+[data-wl-pack] .wl-ob-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 100%;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    /* Keeps the overlay's stacking context inside the card, so a page-level
+       z-index cannot pull it over neighbouring content. */
+    isolation: isolate;
+}
+
+/* The ratio spacer. Variants that size by ratio set --wl-ob-ratio to the height
+   as a percentage of the width — 16:11 is calc(100% * 11 / 16). Variants that
+   size by min-height leave it at zero and the spacer costs nothing. */
+[data-wl-pack] .wl-ob-card::after {
+    content: "";
+    grid-area: 1 / 1;
+    padding-top: var(--wl-ob-ratio, 0);
+    pointer-events: none;
+}
+
+[data-wl-pack] .wl-ob-media {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+[data-wl-pack] .wl-ob-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-wl-pack] .wl-ob-card:hover .wl-ob-img {
+    transform: scale(var(--wl-ob-img-zoom, 1));
+}
+
+[data-wl-pack] .wl-ob-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* The body fills the card so the vertical position control has something to
+   push against. A variant that narrows it — magazine v2 caps the copy at 74%
+   so the photo shows down one side — must keep corner-pinned elements outside
+   it, which is why card_badge() is a sibling of the body, not a child. */
+[data-wl-pack] .wl-ob-body {
+    grid-area: 1 / 1;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: var(--wl-ob-body-align, flex-start);
+    justify-content: var(--wl-ob-body-justify, flex-end);
+}
+
+[data-wl-pack] .wl-ob-eyebrow,
+[data-wl-pack] .wl-ob-title,
+[data-wl-pack] .wl-ob-sub,
+[data-wl-pack] .wl-ob-note {
+    display: block;
+    margin: 0;
+}
+
+[data-wl-pack] .wl-ob-eyebrow {
+    width: max-content;
+    max-width: 100%;
+}
+
+[data-wl-pack] .wl-ob-cta {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+[data-wl-pack] .wl-ob-cta svg {
+    display: block;
+    flex-shrink: 0;
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-wl-pack] .wl-ob-card:hover .wl-ob-cta svg {
+    transform: translateX(3px);
+}
+
+[data-wl-pack] .wl-ob-features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+[data-wl-pack] .wl-ob-feature {
+    display: flex;
+    align-items: flex-start;
+}
+
+[data-wl-pack] .wl-ob-feature svg {
+    display: block;
+    flex-shrink: 0;
+}
+
+[data-wl-pack] .wl-ob-badge {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+}
+
+[data-wl-pack] .wl-ob-foot {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* — Responsive column defaults. Elementor's Columns control overrides these. */
+@media (max-width: 1024px) {
+    [data-wl-pack] .wl-ob-grid {
+        --wl-ob-cols: 2;
+    }
+}
+
+@media (max-width: 767px) {
+    [data-wl-pack] .wl-ob-grid {
+        --wl-ob-cols: 1;
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Common — Campaign Banner structure
+   Layout mechanics shared by all 12 style-variant combinations of the Campaign
+   Banner widget. Only structure and stacking live here.
+
+   Unlike Offer Banner's twelve identical cards, this widget's variants take
+   three genuinely different shapes, so .wl-cb-inner carries a modifier:
+     --band     one row, copy on one side and the countdown on the other
+     --split    copy panel beside a media panel
+     --overlay  copy on top of a full-bleed photograph
+   Sizes, colours and column ratios all belong to the pack stylesheets.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-wl-pack] .wl-cb-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--wl-pack-space-gap);
+    overflow: hidden;
+    isolation: isolate;
+}
+
+[data-wl-pack] .wl-cb-inner--split {
+    align-items: stretch;
+}
+
+/* Editorial v3 stacks a header row over its own split, so the outer box is a
+   column and the split lives one level down. */
+[data-wl-pack] .wl-cb-inner--stack {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+[data-wl-pack] .wl-cb-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--wl-pack-space-gap);
+}
+
+[data-wl-pack] .wl-cb-media-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+[data-wl-pack] .wl-cb-rule {
+    display: block;
+    width: 100%;
+    height: 1px;
+}
+
+[data-wl-pack] .wl-cb-foot {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--wl-pack-space-gap);
+    width: 100%;
+}
+
+
+
+[data-wl-pack] .wl-cb-body {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: var(--wl-cb-body-align, flex-start);
+    min-width: 0;
+}
+
+[data-wl-pack] .wl-cb-media {
+    position: relative;
+    overflow: hidden;
+    min-width: 0;
+}
+
+/* z-index stays `auto` on purpose. A numbered z-index here would make the media panel
+   its own stacking context, and the slider chrome slick injects inside it — arrows and
+   dots — could then never rise above .wl-cb-body (z-index 2), which covers the whole
+   frame in an overlay layout. They would still be *visible* through the transparent
+   body, but every click would land on the body instead. With `auto` the panel paints
+   in DOM order among its positioned siblings (so the photograph stays under the scrim
+   and the copy) while the nav's own z-index counts against the inner. */
+[data-wl-pack] .wl-cb-inner--overlay .wl-cb-media {
+    position: absolute;
+    inset: 0;
+}
+
+[data-wl-pack] .wl-cb-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* The media panel as a slider. Slick needs the track and each slide to fill the
+   panel; the un-initialised state stacks them, so only the first is visible until
+   the script runs — no flash of every shot at once. */
+[data-wl-pack] .wl-cb-media-track,
+[data-wl-pack] .wl-cb-media-track .slick-list,
+[data-wl-pack] .wl-cb-media-track .slick-track,
+[data-wl-pack] .wl-cb-media-slide {
+    height: 100%;
+}
+
+[data-wl-pack] .wl-cb-media-track:not(.slick-initialized) .wl-cb-media-slide {
+    position: absolute;
+    inset: 0;
+}
+
+[data-wl-pack] .wl-cb-media-track:not(.slick-initialized) .wl-cb-media-slide:first-child {
+    position: relative;
+}
+
+/* The badge sits inside its slide, so it changes with the photograph without any
+   JavaScript — the reference does the same swap from script, keyed off data attributes. */
+[data-wl-pack] .wl-cb-media-slide {
+    position: relative;
+}
+
+[data-wl-pack] .wl-cb-media-tag {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+[data-wl-pack] .wl-cb-media-tag-label {
+    display: inline-flex;
+    align-items: center;
+}
+
+[data-wl-pack] .wl-cb-media-tag-dot {
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+
+[data-wl-pack] .wl-cb-media-tag-title,
+[data-wl-pack] .wl-cb-media-tag-meta {
+    display: block;
+}
+
+[data-wl-pack] .wl-cb-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    width: max-content;
+    max-width: 100%;
+}
+
+[data-wl-pack] .wl-cb-headline,
+[data-wl-pack] .wl-cb-desc,
+[data-wl-pack] .wl-cb-note {
+    margin: 0;
+}
+
+/* A tight block inside a loosely-spaced body: the prompt, the action and the fine
+   print belong together, so the section's own gap must not push them apart. */
+[data-wl-pack] .wl-cb-cta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: var(--wl-cb-body-align, flex-start);
+    gap: var(--wl-cb-cta-gap, 14px);
+    width: 100%;
+}
+
+[data-wl-pack] .wl-cb-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--wl-cb-actions-gap, 14px);
+}
+
+[data-wl-pack] .wl-cb-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--wl-cb-btn-gap, 8px);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+[data-wl-pack] .wl-cb-btn svg {
+    display: block;
+    flex-shrink: 0;
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-wl-pack] .wl-cb-btn:hover svg {
+    transform: translateX(3px);
+}
+
+[data-wl-pack] .wl-cb-figure {
+    display: flex;
+    align-items: flex-start;
+    line-height: 1;
+}
+
+[data-wl-pack] .wl-cb-figure-value,
+[data-wl-pack] .wl-cb-figure-suffix {
+    display: block;
+}
+
+[data-wl-pack] .wl-cb-coupon {
+    display: inline-block;
+    width: max-content;
+    max-width: 100%;
+}
+
+/* Floating product cards — a scrolling row, not a carousel, so no JavaScript. */
+[data-wl-pack] .wl-cb-cards {
+    position: absolute;
+    z-index: 3;
+}
+
+[data-wl-pack] .wl-cb-cards-label {
+    display: block;
+}
+
+/* Slick owns this row once it initialises, so the scrolling fallback is scoped to
+   the un-initialised state. That keeps a no-JS page — or one with fewer cards than
+   fit, where the slider is skipped — showing a usable row instead of a broken one. */
+[data-wl-pack] .wl-cb-cards-track {
+    position: relative;
+}
+
+/* Without Slick the row lays itself out on exactly the same geometry Slick would
+   use: N columns sized to the panel, the same gap, scrolling if there are more.
+   Sizing the cards off flex-basis instead left them at content width whenever the
+   slider was skipped — one card ballooning to fill the panel. */
+[data-wl-pack] .wl-cb-cards-track:not(.slick-initialized) {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc(
+        (100% - (var(--wl-cb-cards-view, 3) - 1) * var(--wl-cb-cards-gap, 10px))
+        / var(--wl-cb-cards-view, 3)
+    );
+    gap: var(--wl-cb-cards-gap, 10px);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Matches the breakpoints WLPackSlider is given, so the count does not jump when
+   the slider engages or drops out. */
+@media (max-width: 1024px) {
+    [data-wl-pack] .wl-cb-cards-track:not(.slick-initialized) {
+        --wl-cb-cards-view: var(--wl-cb-cards-view-tablet, 2);
+    }
+}
+
+@media (max-width: 767px) {
+    [data-wl-pack] .wl-cb-cards-track:not(.slick-initialized) {
+        --wl-cb-cards-view: var(--wl-cb-cards-view-mobile, 1);
+    }
+}
+
+[data-wl-pack] .wl-cb-cards-track:not(.slick-initialized)::-webkit-scrollbar {
+    display: none;
+}
+
+/* Slick sets `display: block` on its slides. A card is a column of two block
+   children, so plain block layout is identical to the flex column it replaces —
+   and it cannot end up fighting slick.css over the same property. */
+[data-wl-pack] .wl-cb-card {
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Slick has no gap, so the gutter is padding on the slide pulled back off the list. */
+[data-wl-pack] .wl-cb-cards-track.slick-initialized .slick-list {
+    margin: 0 calc(var(--wl-cb-cards-gap, 10px) / -2);
+}
+
+[data-wl-pack] .wl-cb-cards-track.slick-initialized .slick-slide {
+    height: auto;
+    padding: 0 calc(var(--wl-cb-cards-gap, 10px) / 2);
+}
+
+/* The slide wrapper. In the un-initialised fallback it is the flex item; once Slick
+   takes over it becomes the slide and carries the gutter, leaving the card's border
+   and background flush against its own edges. */
+[data-wl-pack] .wl-cb-card-slide {
+    min-width: 0;
+}
+
+
+
+[data-wl-pack] .wl-cb-card-img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+[data-wl-pack] .wl-cb-card-info {
+    display: block;
+}
+
+[data-wl-pack] .wl-cb-card-badge,
+[data-wl-pack] .wl-cb-card-name {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+}
+
+[data-wl-pack] .wl-cb-card-name {
+    width: auto;
+}
+
+[data-wl-pack] .wl-cb-card-prices {
+    display: flex;
+    align-items: baseline;
+}
+
+[data-wl-pack] .wl-cb-stats {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+[data-wl-pack] .wl-cb-stat {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+/* A trailing rule would wrap away with its own item; a leading one on `+ stat`
+   is safe here because the row never reorders. */
+[data-wl-pack] .wl-cb-stat + .wl-cb-stat {
+    border-left: 1px solid currentColor;
+}
+
+/* Stacked on phones — every variant, whatever its desktop shape.
+   `flex-wrap: nowrap` is not decoration: several variants wrap their desktop band,
+   and column + wrap puts each child on its own flex *line*, then splits the
+   container's width between those lines and stretches them. The result is a
+   column of half-width, oddly-centred children — or, when a child cannot shrink,
+   a strip that runs off the side of the phone. A stacked banner never wants to
+   wrap, so it is cleared here once for all twelve variants. */
+@media (max-width: 767px) {
+    [data-wl-pack] .wl-cb-inner {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: stretch;
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Common — Countdown
+   The structure behind WLPackCountdown in pack-widgets.js. Seven of the twelve
+   Campaign Banner variants carry a deadline, so this is a shared component in
+   the same sense .wl-pack-marquee* is: widgets supply colour, size and spacing,
+   never the mechanism.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-wl-pack] .wl-pack-countdown {
+    display: flex;
+    align-items: center;
+    gap: var(--wl-pack-countdown-gap, 12px);
+    flex-wrap: wrap;
+}
+
+[data-wl-pack] .wl-pack-countdown-unit {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Tabular figures, so the digits do not jitter as the seconds roll over —
+   the single most noticeable flaw in a hand-rolled countdown. */
+[data-wl-pack] .wl-pack-countdown-num {
+    display: block;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+    line-height: 1;
+}
+
+[data-wl-pack] .wl-pack-countdown-label {
+    display: block;
+}
+
+/* An optional lead-in beside the figures — magazine v1's "Ends in". It is not a
+   unit, so it never takes a separator and never shrinks. */
+[data-wl-pack] .wl-pack-countdown-lead {
+    flex-shrink: 0;
+    line-height: 1.2;
+}
+
+[data-wl-pack] .wl-pack-countdown-sep {
+    line-height: 1;
+    /* Optical: a colon between two large figures sits high without this. */
+    align-self: var(--wl-pack-countdown-sep-align, center);
+}
+
+/* — Expiry states, applied by WLPackCountdown when the deadline passes. */
+
+[data-wl-pack] .wl-pack-countdown--done {
+    display: none;
+}
+
+[data-wl-pack] .wl-pack-countdown--expired {
+    display: block;
+}
+
+[data-wl-pack].wl-pack-hidden {
+    display: none;
+}
+
+
+/* — Marquee track — pure CSS, no JavaScript.
+   The track holds two identical item lists and translates by -50%, so the loop
+   is seamless. Duration comes from an inline custom property set by render(). */
+
+[data-wl-pack] .wl-pack-marquee {
+    --wl-pack-marquee-duration: 30s;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+[data-wl-pack] .wl-pack-marquee-track {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    will-change: transform;
+    animation: wl-pack-marquee-scroll var(--wl-pack-marquee-duration) linear infinite;
+}
+
+[data-wl-pack] .wl-pack-marquee--right .wl-pack-marquee-track {
+    animation-direction: reverse;
+}
+
+[data-wl-pack] .wl-pack-marquee--pausable:hover .wl-pack-marquee-track {
+    animation-play-state: paused;
+}
+
+/* Inside a marquee the list is a row, not the shared grid. */
+[data-wl-pack] .wl-pack-marquee-set {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+[data-wl-pack] .wl-pack-marquee-item {
+    display: inline-flex;
+    align-items: center;
+}
+
+[data-wl-pack] .wl-pack-marquee-sep {
+    flex-shrink: 0;
+    color: var(--wl-pack-text-muted);
+}
+
+[data-wl-pack] .wl-pack-marquee-sep--dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+[data-wl-pack] .wl-pack-marquee-sep--dash {
+    width: 14px;
+    height: 1px;
+    background: currentColor;
+}
+
+[data-wl-pack] .wl-pack-marquee-sep--slash::before {
+    content: '/';
+    font-size: var(--wl-pack-text-sm);
+    line-height: 1;
+}
+
+[data-wl-pack] .wl-pack-marquee-sep--star::before {
+    content: '\2726';
+    font-size: var(--wl-pack-text-sm);
+    line-height: 1;
+}
+
+[data-wl-pack] .wl-pack-marquee-sep--diamond::before {
+    content: '\25C6';
+    font-size: var(--wl-pack-text-xs);
+    line-height: 1;
+}
+
+/* Edge fade. A mask rather than gradient overlays, so it works over any ground —
+   an overlay would have to know the band's background colour to blend into it. */
+[data-wl-pack] .wl-pack-marquee--faded {
+    --wl-pack-marquee-fade: 6%;
+    -webkit-mask-image: linear-gradient(to right, transparent, #fff var(--wl-pack-marquee-fade), #fff calc(100% - var(--wl-pack-marquee-fade)), transparent);
+    mask-image: linear-gradient(to right, transparent, #fff var(--wl-pack-marquee-fade), #fff calc(100% - var(--wl-pack-marquee-fade)), transparent);
+}
+
+@keyframes wl-pack-marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+/* Stop the scroll and lay the single accessible copy out statically instead. */
+@media (prefers-reduced-motion: reduce) {
+    [data-wl-pack] .wl-pack-marquee {
+        overflow: visible;
+    }
+
+    [data-wl-pack] .wl-pack-marquee::before,
+    [data-wl-pack] .wl-pack-marquee::after {
+        display: none;
+    }
+
+    [data-wl-pack] .wl-pack-marquee-track {
+        animation: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        white-space: normal;
+    }
+
+    [data-wl-pack] .wl-pack-marquee-set[aria-hidden="true"] {
+        display: none;
+    }
+
+    [data-wl-pack] .wl-pack-marquee-set {
+        flex-wrap: wrap;
+        justify-content: center;
+        row-gap: 10px;
+    }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,233 @@
+/**
+ * Marquee — Magazine pack.
+ * All three variants live in this file so the browser caches one stylesheet
+ * regardless of which variant a page uses.
+ *
+ * The scrolling mechanism — track, keyframes, direction, pause, separators,
+ * edge fade and the reduced-motion fallback — lives in pack-widgets-base.css
+ * under .wl-pack-marquee*. Only this pack's colours, type and spacing belong here.
+ *
+ * Each variant was designed by a different designer with its own palette, so
+ * each redeclares the --wl-pack-* colour tokens on its own root.
+ *
+ * Font families are deliberately NOT overridden — type comes from the theme and
+ * the Style tab's typography controls.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Shared — Magazine
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-mq-magazine .wl-mq-item {
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.wl-mq-magazine .wl-mq-image {
+    display: block;
+    width: auto;
+    object-fit: contain;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — Trending ticker
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v1 — Cyber yellow ground · Black rules · Signal red highlights */
+.wl-mq-magazine-v1 {
+    --wl-pack-primary:    #050505;
+    --wl-pack-accent:     #EF233C;
+    --wl-pack-bg:         #FFD60A;
+    --wl-pack-text:       #050505;
+    --wl-pack-text-muted: rgba(5, 5, 5, .6);
+    --wl-pack-border:     #050505;
+
+    background: var(--wl-pack-bg);
+    color: var(--wl-pack-text);
+    border-top: 3px solid var(--wl-pack-border);
+    border-bottom: 3px solid var(--wl-pack-border);
+}
+
+/* No fade here — the reference runs edge to edge, and a fade over flat yellow
+   would read as a smudge rather than depth. */
+.wl-mq-magazine-v1 .wl-pack-marquee--faded {
+    --wl-pack-marquee-fade: 2%;
+}
+
+.wl-mq-magazine-v1 .wl-mq-item {
+    padding: 16px 26px;
+}
+
+.wl-mq-magazine-v1 .wl-mq-text {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    line-height: 1.3;
+    white-space: nowrap;
+    color: var(--wl-pack-text);
+}
+
+/* Prices and discounts are the red notes in the reference. */
+.wl-mq-magazine-v1 .wl-mq-item.is-highlighted .wl-mq-text {
+    color: var(--wl-pack-accent);
+}
+
+.wl-mq-magazine-v1 .wl-mq-image {
+    height: 22px;
+}
+
+.wl-mq-magazine-v1 .wl-pack-marquee-sep {
+    color: var(--wl-pack-primary);
+}
+
+.wl-mq-magazine-v1 .wl-pack-marquee-sep--dot {
+    width: 8px;
+    height: 8px;
+}
+
+.wl-mq-magazine-v1 .wl-pack-marquee-sep--star::before,
+.wl-mq-magazine-v1 .wl-pack-marquee-sep--diamond::before {
+    font-size: 10px;
+}
+
+@media (max-width: 767px) {
+    .wl-mq-magazine-v1 .wl-mq-item {
+        padding: 12px 16px;
+    }
+
+    .wl-mq-magazine-v1 .wl-mq-text {
+        font-size: 13px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — Dark pill strip
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v2 — Near-black pill · Coral stars · Wide white type */
+.wl-mq-magazine-v2 {
+    --wl-pack-primary:    #D95846;
+    --wl-pack-accent:     #5A9761;
+    --wl-pack-bg:         #151719;
+    --wl-pack-text:       #FFFFFF;
+    --wl-pack-text-muted: rgba(255, 255, 255, .55);
+    --wl-pack-border:     rgba(255, 255, 255, .12);
+
+    padding: 14px 0;
+    background: var(--wl-pack-bg);
+    border-radius: var(--wl-pack-radius);
+    overflow: hidden;
+}
+
+.wl-mq-magazine-v2 .wl-mq-item {
+    gap: 21px;
+    padding: 0 21px;
+}
+
+.wl-mq-magazine-v2 .wl-mq-text {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: .6px;
+    line-height: 1.3;
+    white-space: nowrap;
+    color: var(--wl-pack-text);
+}
+
+.wl-mq-magazine-v2 .wl-mq-item.is-highlighted .wl-mq-text {
+    color: var(--wl-pack-primary);
+}
+
+.wl-mq-magazine-v2 .wl-mq-image {
+    height: 24px;
+}
+
+.wl-mq-magazine-v2 .wl-pack-marquee-sep {
+    color: var(--wl-pack-primary);
+}
+
+.wl-mq-magazine-v2 .wl-pack-marquee-sep--star::before,
+.wl-mq-magazine-v2 .wl-pack-marquee-sep--diamond::before {
+    font-size: 12px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — Warm paper band
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v3 — Warm paper · Espresso serif · Terracotta diamond.
+   This variant's homepage carries no scrolling band, so the strip is built from
+   the pack's own palette. Kept calm and readable on purpose: v1 shouts in yellow
+   and v2 sits in a dark pill, so the third needed somewhere quiet to stand. */
+.wl-mq-magazine-v3 {
+    --wl-pack-primary:    #B86545;
+    --wl-pack-accent:     #7C856A;
+    --wl-pack-bg:         #F5F0E8;
+    --wl-pack-text:       #3B2F2A;
+    --wl-pack-text-muted: #A79D92;
+    --wl-pack-border:     #E0D8CB;
+    --wl-pack-radius:     2px;
+
+    padding: 22px 0;
+    background: var(--wl-pack-bg);
+    border-top: 1px solid var(--wl-pack-border);
+    border-bottom: 1px solid var(--wl-pack-border);
+}
+
+.wl-mq-magazine-v3 .wl-mq-item {
+    padding: 0 30px;
+}
+
+.wl-mq-magazine-v3 .wl-mq-text {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: .01em;
+    line-height: 1.35;
+    white-space: nowrap;
+    color: var(--wl-pack-text);
+}
+
+.wl-mq-magazine-v3 .wl-mq-item.is-highlighted .wl-mq-text {
+    color: var(--wl-pack-primary);
+}
+
+.wl-mq-magazine-v3 .wl-mq-image {
+    height: 24px;
+    border-radius: var(--wl-pack-radius);
+}
+
+.wl-mq-magazine-v3 .wl-pack-marquee-sep {
+    color: var(--wl-pack-primary);
+}
+
+.wl-mq-magazine-v3 .wl-pack-marquee-sep--star::before,
+.wl-mq-magazine-v3 .wl-pack-marquee-sep--diamond::before {
+    font-size: 9px;
+}
+
+@media (max-width: 767px) {
+    .wl-mq-magazine-v2 .wl-mq-item {
+        gap: 14px;
+        padding: 0 14px;
+    }
+
+    .wl-mq-magazine-v2 .wl-mq-text {
+        font-size: 16px;
+    }
+
+    .wl-mq-magazine-v3 {
+        padding: 16px 0;
+    }
+
+    .wl-mq-magazine-v3 .wl-mq-item {
+        padding: 0 20px;
+    }
+
+    .wl-mq-magazine-v3 .wl-mq-text {
+        font-size: 16px;
+    }
+}

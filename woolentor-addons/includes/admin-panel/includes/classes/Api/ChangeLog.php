@@ -164,6 +164,23 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.4.8',
+                'date'    => '2026-08-24',
+                'changes' => [
+                    'New Features' => [
+                        'Archive page template for all product taxonomies.',
+                        '4 (Campaign Banner, Marquee, Offer Banner, Store Highlights) Elementor Addon flowing by 2026 tread.',
+                        '4 (Campaign Banner, Marquee, Offer Banner, Store Highlights) with 12 variant Elementor Addon flowing by 2026 tread. (Pro)',
+                    ],
+                    'Fixes' => [
+                        'Quick View product render issue with private and password protected product.'
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
                 'version' => '3.4.7',
                 'date'    => '2026-08-18',
                 'changes' => [

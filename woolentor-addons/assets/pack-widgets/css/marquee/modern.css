@@ -1,0 +1,222 @@
+/**
+ * Marquee — Modern pack.
+ * All three variants live in this file so the browser caches one stylesheet
+ * regardless of which variant a page uses.
+ *
+ * The scrolling mechanism — track, keyframes, direction, pause, separators,
+ * edge fade and the reduced-motion fallback — lives in pack-widgets-base.css
+ * under .wl-pack-marquee*. Only this pack's colours, type and spacing belong here.
+ *
+ * Each variant was designed by a different designer with its own palette, so
+ * each redeclares the --wl-pack-* colour tokens on its own root. v1 matches the
+ * pack defaults and needs no override.
+ *
+ * Font families are deliberately NOT overridden — type comes from the theme and
+ * the Style tab's typography controls.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Shared — Modern
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-mq-modern .wl-mq-item {
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.wl-mq-modern .wl-mq-image {
+    display: block;
+    width: auto;
+    object-fit: contain;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — Labelled brand strip
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-mq-modern-v1 {
+    padding: 32px 0;
+}
+
+.wl-mq-modern-v1 .wl-mq-label {
+    display: block;
+    margin-bottom: 22px;
+    text-align: center;
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--wl-pack-text-muted);
+}
+
+.wl-mq-modern-v1 .wl-mq-item {
+    padding: 6px 40px;
+    transition: color .22s ease;
+}
+
+/* Wordmarks sit back until pointed at — the strip is texture, not a call to action. */
+.wl-mq-modern-v1 .wl-mq-text {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.2;
+    white-space: nowrap;
+    /* Fallback first for browsers without color-mix(). */
+    color: var(--wl-pack-text-muted);
+    color: color-mix(in srgb, var(--wl-pack-text) 28%, transparent);
+    transition: color .22s ease;
+}
+
+.wl-mq-modern-v1 .wl-mq-item:hover .wl-mq-text,
+.wl-mq-modern-v1 .wl-mq-item.is-highlighted .wl-mq-text {
+    color: var(--wl-pack-text);
+}
+
+.wl-mq-modern-v1 .wl-mq-image {
+    height: 28px;
+}
+
+.wl-mq-modern-v1 .wl-pack-marquee-sep {
+    width: 5px;
+    height: 5px;
+    /* Fallback first for browsers without color-mix(). */
+    color: var(--wl-pack-border);
+    color: color-mix(in srgb, var(--wl-pack-text) 14%, transparent);
+}
+
+@media (max-width: 767px) {
+    .wl-mq-modern-v1 {
+        padding: 24px 0;
+    }
+
+    .wl-mq-modern-v1 .wl-mq-item {
+        padding: 6px 24px;
+    }
+
+    .wl-mq-modern-v1 .wl-mq-text {
+        font-size: 18px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — Dark announcement strip
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v2 — Near-black ground · Olive star · Dimmed white type */
+.wl-mq-modern-v2 {
+    --wl-pack-primary:    #7A8F3A;
+    --wl-pack-accent:     #B4573F;
+    --wl-pack-bg:         #1D1D1B;
+    --wl-pack-text:       rgba(255, 255, 255, .65);
+    --wl-pack-text-muted: rgba(255, 255, 255, .45);
+    --wl-pack-border:     rgba(255, 255, 255, .12);
+
+    padding: 12px 0;
+    background: var(--wl-pack-bg);
+}
+
+.wl-mq-modern-v2 .wl-mq-item {
+    gap: 32px;
+    padding: 0 32px;
+}
+
+.wl-mq-modern-v2 .wl-mq-text {
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    white-space: nowrap;
+    color: var(--wl-pack-text);
+}
+
+.wl-mq-modern-v2 .wl-mq-item.is-highlighted .wl-mq-text {
+    color: #FFFFFF;
+}
+
+.wl-mq-modern-v2 .wl-mq-image {
+    height: 18px;
+}
+
+/* The star is the only colour in the strip. */
+.wl-mq-modern-v2 .wl-pack-marquee-sep {
+    color: var(--wl-pack-primary);
+}
+
+.wl-mq-modern-v2 .wl-pack-marquee-sep--star::before,
+.wl-mq-modern-v2 .wl-pack-marquee-sep--diamond::before {
+    font-size: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — Light values band
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v3 — White band on off-white · Clay dot · Stone hairlines.
+   This is the homepage ticker's own palette, which is not the same as the
+   Store Highlights modern v3 palette — that one comes from the shop page. */
+.wl-mq-modern-v3 {
+    --wl-pack-primary:    #B8755B;
+    --wl-pack-accent:     #626A5D;
+    --wl-pack-bg:         #FFFFFF;
+    --wl-pack-text:       #1F1F1D;
+    --wl-pack-text-muted: #6F716D;
+    --wl-pack-border:     #D8D2C8;
+
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    background: var(--wl-pack-bg);
+    border-top: 1px solid var(--wl-pack-border);
+    border-bottom: 1px solid var(--wl-pack-border);
+}
+
+/* The band is the flex parent here, so the scrolling strip has to fill it. */
+.wl-mq-modern-v3 .wl-pack-marquee {
+    flex: 1;
+    min-width: 0;
+}
+
+.wl-mq-modern-v3 .wl-mq-item {
+    gap: 22px;
+    padding: 0 22px;
+}
+
+.wl-mq-modern-v3 .wl-mq-text {
+    font-family: var(--wl-pack-font-body);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    line-height: 1.4;
+    white-space: nowrap;
+    color: var(--wl-pack-text);
+}
+
+.wl-mq-modern-v3 .wl-mq-item.is-highlighted .wl-mq-text {
+    color: var(--wl-pack-primary);
+}
+
+.wl-mq-modern-v3 .wl-mq-image {
+    height: 20px;
+}
+
+.wl-mq-modern-v3 .wl-pack-marquee-sep {
+    color: var(--wl-pack-primary);
+}
+
+@media (max-width: 767px) {
+    .wl-mq-modern-v2 .wl-mq-item {
+        gap: 20px;
+        padding: 0 20px;
+    }
+
+    .wl-mq-modern-v3 .wl-mq-item {
+        gap: 16px;
+        padding: 0 16px;
+    }
+}

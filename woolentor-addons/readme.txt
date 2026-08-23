@@ -2,8 +2,8 @@
 Contributors: hasthemes, htplugins, devitemsllc, zenaulislam, aslamhasib
 Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenberg blocks
 Requires at least: 4.7
-Tested up to: 7.0
-Stable tag: 3.4.7
+Tested up to: 7.1
+Stable tag: 3.4.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -461,6 +461,11 @@ Check out our other powerful WordPress plugins:
 **[JustTables](https://hasthemes.com/wp/justtables/?utm_source=org&utm_medium=readme)** - WordPress table builder
 
 == Changelog ==
+
+= Version: 3.4.8 - Date: 24-08-2026 =
+* Added: Archive page template for all product taxonomies.
+* Added: 4 (Campaign Banner, Marquee, Offer Banner, Store Highlights) Elementor Addon flowing by 2026 tread.
+* Solved: Quick View product render issue with private and password protected product.
 
 = Version: 3.4.7 - Date: 18-08-2026 =
 * Added: Quantity text change option added in Single product Add to cart button.

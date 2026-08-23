@@ -1,0 +1,233 @@
+/**
+ * Marquee — Luxury pack.
+ * All three variants live in this file so the browser caches one stylesheet
+ * regardless of which variant a page uses.
+ *
+ * The scrolling mechanism — track, keyframes, direction, pause, separators,
+ * edge fade and the reduced-motion fallback — lives in pack-widgets-base.css
+ * under .wl-pack-marquee*. Only this pack's colours, type and spacing belong here.
+ *
+ * Each variant was designed by a different designer with its own palette, so
+ * each redeclares the --wl-pack-* colour tokens on its own root.
+ *
+ * Font families are deliberately NOT overridden — type comes from the theme and
+ * the Style tab's typography controls.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Shared — Luxury
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-mq-luxury .wl-mq-item {
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.wl-mq-luxury .wl-mq-image {
+    display: block;
+    width: auto;
+    object-fit: contain;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — Dark statement band
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v1 — Graphite ground · Gold stars · Alternating solid and outlined headlines */
+.wl-mq-luxury-v1 {
+    --wl-pack-primary:    #C9A86A;
+    --wl-pack-accent:     #B8966A;
+    --wl-pack-bg:         #111318;
+    --wl-pack-text:       #FFFFFF;
+    --wl-pack-text-muted: rgba(255, 255, 255, .5);
+    --wl-pack-border:     rgba(201, 168, 106, .18);
+
+    padding: 24px 0;
+    background: var(--wl-pack-bg);
+    border-top: 1px solid var(--wl-pack-border);
+    border-bottom: 1px solid var(--wl-pack-border);
+}
+
+.wl-mq-luxury-v1 .wl-mq-item {
+    gap: 16px;
+    padding: 0 28px;
+}
+
+.wl-mq-luxury-v1 .wl-mq-text {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.1;
+    white-space: nowrap;
+    color: var(--wl-pack-text);
+    transition: color .25s ease, -webkit-text-stroke-color .25s ease;
+}
+
+/* Every other item is drawn as an outline, giving the band its rhythm. The
+   modifier is applied by index in the template — see the note there. */
+.wl-mq-luxury-v1 .wl-mq-item--outlined .wl-mq-text {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(201, 168, 106, .45);
+}
+
+/* An item marked as highlighted opts out of the outline and fills with gold. */
+.wl-mq-luxury-v1 .wl-mq-item.is-highlighted .wl-mq-text {
+    color: var(--wl-pack-primary);
+    -webkit-text-stroke: 0;
+}
+
+.wl-mq-luxury-v1 .wl-mq-image {
+    height: 36px;
+}
+
+.wl-mq-luxury-v1 .wl-pack-marquee-sep {
+    color: var(--wl-pack-primary);
+}
+
+.wl-mq-luxury-v1 .wl-pack-marquee-sep--star::before,
+.wl-mq-luxury-v1 .wl-pack-marquee-sep--diamond::before {
+    font-size: 28px;
+}
+
+@media (max-width: 767px) {
+    .wl-mq-luxury-v1 {
+        padding: 16px 0;
+    }
+
+    .wl-mq-luxury-v1 .wl-mq-item {
+        gap: 12px;
+        padding: 0 18px;
+    }
+
+    .wl-mq-luxury-v1 .wl-pack-marquee-sep--star::before,
+    .wl-mq-luxury-v1 .wl-pack-marquee-sep--diamond::before {
+        font-size: 18px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — Pale promise band
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v2 — Pale sage ground · Olive icons · Lime dots */
+.wl-mq-luxury-v2 {
+    --wl-pack-primary:    #6B705E;
+    --wl-pack-accent:     #E7EC78;
+    --wl-pack-bg:         #F4F5EF;
+    --wl-pack-text:       #2A3024;
+    --wl-pack-text-muted: #5E6353;
+    --wl-pack-border:     rgba(48, 56, 44, .14);
+
+    background: var(--wl-pack-bg);
+    border-top: 1px solid var(--wl-pack-border);
+    border-bottom: 1px solid var(--wl-pack-border);
+}
+
+/* A wider fade than the default — this band is meant to breathe. */
+.wl-mq-luxury-v2 .wl-pack-marquee--faded {
+    --wl-pack-marquee-fade: 8%;
+}
+
+.wl-mq-luxury-v2 .wl-mq-item {
+    gap: 13px;
+    padding: 20px clamp(24px, 3.2vw, 52px);
+}
+
+.wl-mq-luxury-v2 .wl-mq-icon {
+    font-size: 20px;
+    color: var(--wl-pack-primary);
+}
+
+.wl-mq-luxury-v2 .wl-mq-text {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    font-weight: 500;
+    letter-spacing: .5px;
+    line-height: 1.3;
+    white-space: nowrap;
+    color: var(--wl-pack-text);
+}
+
+.wl-mq-luxury-v2 .wl-mq-item.is-highlighted .wl-mq-text {
+    color: var(--wl-pack-primary);
+}
+
+.wl-mq-luxury-v2 .wl-mq-image {
+    height: 22px;
+}
+
+/* The lime dot is the one bright note in this variant. */
+.wl-mq-luxury-v2 .wl-pack-marquee-sep {
+    color: var(--wl-pack-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — Press row
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v3 — White ground · Charcoal names · Hairline edges */
+.wl-mq-luxury-v3 {
+    --wl-pack-primary:    #C6A972;
+    --wl-pack-accent:     #6E5B4B;
+    --wl-pack-bg:         #FFFFFF;
+    --wl-pack-text:       #2C2A28;
+    --wl-pack-text-muted: #B8A999;
+    --wl-pack-border:     rgba(44, 42, 40, .1);
+
+    padding: 40px 0;
+    background: var(--wl-pack-bg);
+    border-top: 1px solid var(--wl-pack-border);
+    border-bottom: 1px solid var(--wl-pack-border);
+}
+
+.wl-mq-luxury-v3 .wl-mq-item {
+    padding: 0 32px;
+    user-select: none;
+}
+
+.wl-mq-luxury-v3 .wl-mq-text {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    line-height: 1.2;
+    white-space: nowrap;
+    color: var(--wl-pack-text);
+    opacity: .72;
+    transition: opacity .2s ease;
+}
+
+.wl-mq-luxury-v3 .wl-mq-item:hover .wl-mq-text,
+.wl-mq-luxury-v3 .wl-mq-item.is-highlighted .wl-mq-text {
+    opacity: 1;
+}
+
+.wl-mq-luxury-v3 .wl-mq-image {
+    height: 26px;
+    opacity: .72;
+    transition: opacity .2s ease;
+}
+
+.wl-mq-luxury-v3 .wl-mq-item:hover .wl-mq-image {
+    opacity: 1;
+}
+
+.wl-mq-luxury-v3 .wl-pack-marquee-sep {
+    color: var(--wl-pack-text-muted);
+}
+
+@media (max-width: 767px) {
+    .wl-mq-luxury-v3 {
+        padding: 28px 0;
+    }
+
+    .wl-mq-luxury-v3 .wl-mq-item {
+        padding: 0 20px;
+    }
+
+    .wl-mq-luxury-v3 .wl-mq-text {
+        font-size: 18px;
+    }
+}

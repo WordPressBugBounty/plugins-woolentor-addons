@@ -1,0 +1,259 @@
+/**
+ * Store Highlights — Luxury pack.
+ * All three variants live in this file so the browser caches one stylesheet
+ * regardless of which variant a page uses.
+ *
+ * Shared layout mechanics (grid, icon box, responsive columns) live in
+ * pack-widgets-base.css. Only this pack's visual
+ * treatment belongs here.
+ *
+ * Each variant was designed by a different designer with its own palette, so
+ * each redeclares the --wl-pack-* colour tokens on its own root. The gold accent
+ * runs through all three; the grounds differ sharply.
+ *
+ * Font families are deliberately NOT overridden — see modern.css for why.
+ * Band borders are not hardcoded either; the Item Box panel controls own those.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant palettes
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* v1 needs no override. The luxury pack defaults already are its palette: gold #C9A86A,
+   carbon text #171717, taupe #8B8175, platinum rules #E7E2D9. The reference stylesheet
+   defines this section dark early on and then overrides it to a light ground further
+   down with !important — the light version is what actually renders. */
+
+/* v2 — Pale sage ground · Olive icons · Lime separators */
+.wl-sh-luxury-v2 {
+    --wl-pack-primary:    #6B705E;
+    --wl-pack-accent:     #E7EC78;
+    --wl-pack-bg:         #F4F5EF;
+    --wl-pack-bg-alt:     #F4F5EF;
+    --wl-pack-text:       #2A3024;
+    --wl-pack-text-muted: #5E6353;
+    --wl-pack-border:     rgba(48, 56, 44, .14);
+}
+
+/* v3 — Ivory ground · Gold icons · Taupe hairlines */
+.wl-sh-luxury-v3 {
+    --wl-pack-primary:    #C6A972;
+    --wl-pack-accent:     #6E5B4B;
+    --wl-pack-bg:         #F8F5F0;
+    --wl-pack-bg-alt:     #F0EDE6;
+    --wl-pack-text:       #2C2A28;
+    --wl-pack-text-muted: #6E5B4B;
+    --wl-pack-border:     rgba(184, 169, 153, .3);
+    --wl-pack-radius:     0px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — Light band, gold-ringed icons
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* No band background and no band edges — the section behind shows through, and the
+   Item Box panel controls own the ground. Rules between items are the Divider
+   section's job; the band's own top and bottom edges are nobody's default. */
+.wl-sh-luxury-v1 .wl-sh-list {
+    gap: 0;
+    padding: 72px 0;
+}
+
+.wl-sh-luxury-v1 .wl-sh-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+    padding: 16px 32px;
+    transition: background .25s ease;
+}
+
+/* The gap comes from the Divider section's Space Around control. */
+.wl-sh-luxury-v1 .wl-sh-item + .wl-sh-item {
+    border-left: 1px solid var(--wl-pack-border);
+    padding-left: var(--wl-sh-divider-space, 32px);
+}
+
+/* 64px ring: a soft radial pool inside a dimmed gold hairline, plus a second inset ring.
+   The hairline is the accent at 35%, matching the reference's --gold-dim. */
+.wl-sh-luxury-v1 .wl-sh-icon {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    font-size: 26px;
+    border-radius: 50%;
+    /* Fallback first for browsers without color-mix(). */
+    border: 1px solid rgba(201, 168, 106, .35);
+    border-color: color-mix(in srgb, var(--wl-pack-primary) 35%, transparent);
+    background: radial-gradient(circle at 30% 30%,
+        rgba(201, 168, 106, .18) 0%,
+        rgba(201, 168, 106, .04) 65%);
+    transition: background .25s ease, box-shadow .25s ease;
+}
+
+.wl-sh-luxury-v1 .wl-sh-icon::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid rgba(201, 168, 106, .12);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.wl-sh-luxury-v1 .wl-sh-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: var(--wl-pack-text-base);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--wl-pack-text);
+    margin-bottom: 6px;
+}
+
+.wl-sh-luxury-v1 .wl-sh-sub {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    line-height: 1.55;
+    color: var(--wl-pack-text-muted);
+}
+
+.wl-sh-luxury-v1 a.wl-sh-item:hover,
+.wl-sh-luxury-v1 .wl-sh-item.is-highlighted {
+    background: rgba(201, 168, 106, .04);
+}
+
+.wl-sh-luxury-v1 a.wl-sh-item:hover .wl-sh-icon,
+.wl-sh-luxury-v1 .wl-sh-item.is-highlighted .wl-sh-icon {
+    background: radial-gradient(circle at 30% 30%,
+        rgba(201, 168, 106, .28) 0%,
+        rgba(201, 168, 106, .06) 65%);
+    box-shadow: 0 0 32px rgba(201, 168, 106, .18);
+}
+
+@media (max-width: 767px) {
+    .wl-sh-luxury-v1 .wl-sh-list {
+        padding: 48px 0;
+    }
+
+    .wl-sh-luxury-v1 .wl-sh-item + .wl-sh-item {
+        border-left: 0;
+        border-top: 1px solid var(--wl-pack-border);
+        padding-left: 32px;
+        padding-top: 32px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — Quiet hairline rows
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-sh-luxury-v2 .wl-sh-list {
+    gap: 0;
+    padding: 18px 26px;
+    background: var(--wl-pack-bg);
+}
+
+/* One line per promise: icon, claim, then its note running on at the same size. */
+.wl-sh-luxury-v2 .wl-sh-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 0;
+}
+
+@media (max-width: 767px) {
+    .wl-sh-luxury-v2 .wl-sh-item + .wl-sh-item {
+        border-left: 0;
+        border-top: 1px solid var(--wl-pack-border);
+        padding-left: 0;
+    }
+}
+
+/* The reference stacks these rows in a checkout sidebar; across a homepage they read
+   as columns, so the hairline runs vertically like luxury v1 and v3.
+   The gap comes from the Divider section's Space Around control. */
+.wl-sh-luxury-v2 .wl-sh-item + .wl-sh-item {
+    border-left: 1px solid var(--wl-pack-border);
+    padding-left: var(--wl-sh-divider-space, 20px);
+}
+
+.wl-sh-luxury-v2 .wl-sh-icon {
+    font-size: 14px;
+}
+
+.wl-sh-luxury-v2 .wl-sh-title,
+.wl-sh-luxury-v2 .wl-sh-sub {
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.wl-sh-luxury-v2 .wl-sh-title {
+    font-weight: 600;
+    color: var(--wl-pack-text);
+}
+
+.wl-sh-luxury-v2 .wl-sh-sub {
+    font-weight: 400;
+    color: var(--wl-pack-text-muted);
+}
+
+.wl-sh-luxury-v2 .wl-sh-item.is-highlighted .wl-sh-icon {
+    color: var(--wl-pack-accent);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — Bordered promise box
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-sh-luxury-v3 .wl-sh-list {
+    gap: 0;
+    border: 1px solid var(--wl-pack-border);
+    background: var(--wl-pack-bg);
+}
+
+.wl-sh-luxury-v3 .wl-sh-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    padding: 16px 10px;
+}
+
+/* The gap comes from the Divider section's Space Around control. */
+.wl-sh-luxury-v3 .wl-sh-item + .wl-sh-item {
+    border-left: 1px solid var(--wl-pack-border);
+    padding-left: var(--wl-sh-divider-space, 10px);
+}
+
+.wl-sh-luxury-v3 .wl-sh-icon {
+    font-size: 22px;
+}
+
+.wl-sh-luxury-v3 .wl-sh-title {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--wl-pack-text);
+}
+
+.wl-sh-luxury-v3 .wl-sh-sub {
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    line-height: 1.4;
+    color: var(--wl-pack-text-muted);
+}
+
+.wl-sh-luxury-v3 .wl-sh-item.is-highlighted {
+    background: var(--wl-pack-bg-alt);
+}
+
+@media (max-width: 767px) {
+    .wl-sh-luxury-v3 .wl-sh-item + .wl-sh-item {
+        border-left: 0;
+        border-top: 1px solid var(--wl-pack-border);
+        padding-left: 10px;
+    }
+}
