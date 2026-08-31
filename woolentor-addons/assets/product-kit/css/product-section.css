@@ -1,0 +1,31 @@
+/**
+ * Product Section — the only styling the shared behaviour needs.
+ *
+ * Everything visual belongs to the widget or block that drew the section. This file carries the
+ * one state the shared script owns and no consumer can style without knowing about it: what a
+ * section looks like while it is waiting for the server.
+ *
+ * Selectors are keyed on the behaviour attributes rather than on any class name, so the rules
+ * cannot leak onto markup that is not a product section.
+ *
+ * @package WooLentor
+ */
+
+/* The list dims while a request is out instead of collapsing, so the page does not jump under the
+   pointer and the tab row stays where it was clicked. Clicks are blocked for the moment the old
+   cards are still on screen. */
+[data-wl-section].wl-section-loading [data-wl-section-list] {
+    opacity: 0.45;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+[data-wl-section].wl-section-loading [data-wl-section-pager] {
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-wl-section].wl-section-loading [data-wl-section-list] {
+        transition: none;
+    }
+}

@@ -1,0 +1,859 @@
+/**
+ * Shop the Look — Editorial pack
+ *
+ * Skin only. Every layout mechanic the twelve variants share — the stage, the
+ * pin, the card, the flip — lives in pack-widgets-base.css; this file carries
+ * the editorial pack's palette, type and shape, and each variant's own
+ * arrangement on top of it.
+ *
+ * @package WooLentor
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — The scenes
+   Reference: editorial-style/v1/home-editorial.html — `.section-inspo`
+   Three cross-fading scenes in one framed stage, tab strip below. No header.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-stl-editorial-v1 {
+    --wl-stl-ink: #111111;
+    --wl-stl-warm-white: #FFFCF7;
+    --wl-stl-clay: #9A6B4F;
+    --wl-stl-muted: #6F6A64;
+    --wl-stl-sand: #E7D8C5;
+}
+
+/* ── The stage cross-fades rather than swapping ──────────────────────────────
+   The base hides an inactive look with `display: none`, which is right for a
+   layout that has no transition and wrong here: the reference fades between
+   scenes over 0.55s, and `display` cannot be transitioned. So this pack stacks
+   its looks instead, and the stage takes the ratio the image would otherwise
+   have held — with the slides absolute, nothing else gives the box a height. */
+
+/* No overflow clip here either: the looks are stacked inside this box and so
+   are their pins, and a card near an edge has to be able to leave it. The
+   radius moves to the photo, which is the only thing that needed clipping. */
+[data-wl-pack] .wl-stl-editorial-v1 .wl-stl-stage {
+    position: relative;
+    aspect-ratio: 1 / var(--wl-stl-ratio, 0.48);
+}
+
+[data-wl-pack] .wl-stl-editorial-v1 .wl-stl-look {
+    display: block;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 550ms ease;
+}
+
+[data-wl-pack] .wl-stl-editorial-v1 .wl-stl-look.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+[data-wl-pack] .wl-stl-editorial-v1 .wl-stl-image {
+    height: 100%;
+    aspect-ratio: auto;
+    border-radius: 8px;
+}
+
+/* ── Pin — a small round dot carrying the plus glyph ─────────────────────── */
+
+.wl-stl-editorial-v1 .wl-stl-pin-btn {
+    --wl-stl-pin-size: 34px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.96);
+    color: var(--wl-stl-ink);
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 2px 18px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.wl-stl-editorial-v1 .wl-stl-pin-glyph {
+    width: 38%;
+    height: 38%;
+}
+
+.wl-stl-editorial-v1 .wl-stl-pin-glyph::before,
+.wl-stl-editorial-v1 .wl-stl-pin-glyph::after {
+    background: currentColor;
+}
+
+.wl-stl-editorial-v1 .wl-stl-pin-btn:hover,
+.wl-stl-editorial-v1 .wl-stl-pin.is-open .wl-stl-pin-btn {
+    background: var(--wl-stl-ink);
+    color: var(--wl-stl-warm-white);
+    box-shadow: 0 4px 22px rgba(0, 0, 0, 0.32);
+}
+
+/* The pulse ring. Held back from anyone who asked their system to stop moving
+   things — it is decoration, and it never stops on its own. */
+.wl-stl-editorial-v1 .wl-stl-pin-btn::before {
+    content: "";
+    position: absolute;
+    inset: -7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.38);
+    pointer-events: none;
+    animation: wl-stl-pulse 2400ms ease-out infinite;
+}
+
+@keyframes wl-stl-pulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: scale(2.1);
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wl-stl-editorial-v1 .wl-stl-pin-btn::before {
+        animation: none;
+    }
+
+    [data-wl-pack] .wl-stl-editorial-v1 .wl-stl-look {
+        transition: none;
+    }
+}
+
+/* ── Card — image on top, body beneath, a pill link at the foot ──────────── */
+
+.wl-stl-editorial-v1 .wl-stl-card {
+    width: 210px;
+    padding: 0;
+    background: #FFFFFF;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 56px rgba(0, 0, 0, 0.18), 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.wl-stl-editorial-v1 .wl-stl-card-media {
+    display: block;
+    width: 100%;
+}
+
+.wl-stl-editorial-v1 .wl-stl-card-media .wl-stl-img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.wl-stl-editorial-v1 .wl-stl-card-body {
+    padding: 11px 13px 13px;
+}
+
+.wl-stl-editorial-v1 .wl-stl-title {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--wl-stl-ink);
+    margin-bottom: 3px;
+}
+
+.wl-stl-editorial-v1 .wl-stl-price {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--wl-stl-clay);
+    margin-bottom: 10px;
+}
+
+.wl-stl-editorial-v1 .wl-stl-price del {
+    font-weight: 500;
+    color: var(--wl-stl-muted);
+    margin-right: 5px;
+}
+
+.wl-stl-editorial-v1 .wl-stl-price ins {
+    text-decoration: none;
+}
+
+.wl-stl-editorial-v1 .wl-stl-link {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--wl-stl-ink);
+    color: var(--wl-stl-warm-white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: opacity 180ms ease;
+}
+
+.wl-stl-editorial-v1 .wl-stl-link:hover {
+    opacity: 0.78;
+    color: var(--wl-stl-warm-white);
+}
+
+/* ── Tab strip — below the stage, underlined when active ─────────────────── */
+
+.wl-stl-editorial-v1 .wl-stl-switch {
+    --wl-stl-switch-gap: 56px;
+    justify-content: center;
+    margin-top: 28px;
+}
+
+.wl-stl-editorial-v1 .wl-stl-switch-btn {
+    padding: 4px 0 6px;
+    border: none;
+    border-bottom: 1.5px solid transparent;
+    border-radius: 0;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--wl-stl-muted);
+    transition: color 200ms ease, border-color 200ms ease;
+}
+
+.wl-stl-editorial-v1 .wl-stl-switch-btn:hover {
+    color: var(--wl-stl-ink);
+}
+
+.wl-stl-editorial-v1 .wl-stl-switch-btn.is-active {
+    color: var(--wl-stl-ink);
+    font-weight: 700;
+    border-bottom-color: var(--wl-stl-ink);
+}
+
+@media (max-width: 767px) {
+    .wl-stl-editorial-v1 .wl-stl-switch {
+        --wl-stl-switch-gap: 24px;
+    }
+
+    .wl-stl-editorial-v1 .wl-stl-switch-btn {
+        font-size: 13px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — The full look, with a counter
+   Reference: editorial-style/v2/homepage.html — `.look#lookbook`
+   A DARK section — `.look { background: var(--editorial-dark) }` — with a
+   01 / 03 counter, numbered pins, boxed rows and one bulk add. The V2 role.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-stl-editorial-v2 {
+    --wl-stl-dark: #101820;
+    --wl-stl-bg-dark: #071119;
+    --wl-stl-light: #F7FAFB;
+    --wl-stl-primary: #3EA3D4;
+    --wl-stl-primary-hover: #237FAB;
+    --wl-stl-secondary: #F4B79A;
+    --wl-stl-muted: rgba(247, 250, 251, 0.6);
+    --wl-stl-hairline: rgba(255, 255, 255, 0.12);
+
+    --wl-stl-split: 1.12fr 1fr;
+    --wl-stl-split-gap: clamp(34px, 4.5vw, 72px);
+    --wl-stl-item-gap: 12px;
+    --wl-stl-item-thumb: 64px;
+
+    background: var(--wl-stl-dark);
+    color: var(--wl-stl-light);
+    padding: 90px 40px;
+}
+
+/* The reference stretches this row and lets the stage cover — the same shape
+   as Modern V2 and the two room studies. The floor comes from its own
+   `aspect-ratio: 4 / 4.15` on a column of about this width, so a short panel
+   still leaves a properly proportioned picture. No aspect-ratio on the image
+   itself: with the row stretched it would only fight the height it is given. */
+.wl-stl-editorial-v2 .wl-stl-split {
+    align-items: stretch;
+    min-height: 560px;
+}
+
+/* Every step of the chain needs a real height, not just a floor. `min-height`
+   leaves the computed `height` at `auto`, and a percentage height resolves
+   against `height` — so the photo fell back to its intrinsic shape while the
+   box stayed 560px+ tall. With a short, wide photograph that left bare
+   background under it, and the pins — which are percentages of the *box* —
+   landed below the picture entirely. The stage is a stretched grid item, so
+   its 100% is definite; the look and the image inherit that downwards. */
+.wl-stl-editorial-v2 .wl-stl-stage,
+.wl-stl-editorial-v2 .wl-stl-stage>.wl-stl-look,
+.wl-stl-editorial-v2 .wl-stl-image {
+    height: 100%;
+    aspect-ratio: auto;
+    min-height: 560px;
+}
+
+/* ── Top bar — headline left, counter right ─────────────────────────────── */
+
+.wl-stl-editorial-v2 .wl-stl-topbar {
+    margin-bottom: 40px;
+}
+
+.wl-stl-editorial-v2 .wl-stl-head {
+    margin-bottom: 0;
+}
+
+.wl-stl-editorial-v2 .wl-stl-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--wl-stl-primary);
+    margin-bottom: 12px;
+}
+
+.wl-stl-editorial-v2 .wl-stl-eyebrow::before {
+    content: "";
+    width: 34px;
+    height: 1px;
+    background: currentColor;
+    flex: 0 0 auto;
+}
+
+.wl-stl-editorial-v2 .wl-stl-heading {
+    font-size: clamp(30px, 3.6vw, 52px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--wl-stl-light);
+}
+
+.wl-stl-editorial-v2 .wl-stl-desc {
+    max-width: 520px;
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--wl-stl-muted);
+}
+
+.wl-stl-editorial-v2 .wl-stl-counter-btn {
+    border-radius: 50%;
+    border-color: rgba(247, 250, 251, 0.28);
+    color: var(--wl-stl-light);
+    transition: background-color 200ms ease, color 200ms ease;
+}
+
+.wl-stl-editorial-v2 .wl-stl-counter-btn:hover {
+    background: var(--wl-stl-light);
+    color: var(--wl-stl-dark);
+}
+
+.wl-stl-editorial-v2 .wl-stl-counter-text {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--wl-stl-muted);
+}
+
+.wl-stl-editorial-v2 .wl-stl-counter-now {
+    color: var(--wl-stl-light);
+}
+
+/* ── Stage ───────────────────────────────────────────────────────────────── */
+
+.wl-stl-editorial-v2 .wl-stl-image {
+    border-radius: 14px;
+    background: #0D141B;
+}
+
+.wl-stl-editorial-v2 .wl-stl-flag {
+    top: 18px;
+    left: 18px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: rgba(247, 250, 251, 0.92);
+    color: var(--wl-stl-dark);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+/* ── Pins — numerals, not a plus ─────────────────────────────────────────── */
+
+.wl-stl-editorial-v2 .wl-stl-pin-btn {
+    --wl-stl-pin-size: 32px;
+    background: rgba(247, 250, 251, 0.95);
+    color: var(--wl-stl-dark);
+    box-shadow: 0 3px 16px rgba(7, 17, 25, 0.4);
+}
+
+.wl-stl-editorial-v2 .wl-stl-pin.is-active .wl-stl-pin-btn,
+.wl-stl-editorial-v2 .wl-stl-pin.is-open .wl-stl-pin-btn {
+    background: var(--wl-stl-primary);
+    color: #FFFFFF;
+}
+
+.wl-stl-editorial-v2 .wl-stl-pin.is-dim {
+    opacity: 0.45;
+}
+
+.wl-stl-editorial-v2 .wl-stl-card {
+    width: 210px;
+    padding: 12px;
+    background: var(--wl-stl-bg-dark);
+    border: 1px solid var(--wl-stl-hairline);
+    border-radius: 12px;
+    box-shadow: 0 18px 48px rgba(7, 17, 25, 0.5);
+}
+
+.wl-stl-editorial-v2 .wl-stl-card .wl-stl-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--wl-stl-light);
+}
+
+.wl-stl-editorial-v2 .wl-stl-card .wl-stl-price {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--wl-stl-secondary);
+}
+
+.wl-stl-editorial-v2 .wl-stl-card .wl-stl-link {
+    display: block;
+    margin-top: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wl-stl-primary);
+}
+
+/* ── Panel ───────────────────────────────────────────────────────────────── */
+
+.wl-stl-editorial-v2 .wl-stl-panel {
+    padding: 0;
+}
+
+.wl-stl-editorial-v2 .wl-stl-panel .wl-stl-head {
+    margin-bottom: 22px;
+}
+
+.wl-stl-editorial-v2 .wl-stl-panel .wl-stl-eyebrow::before {
+    display: none;
+}
+
+.wl-stl-editorial-v2 .wl-stl-panel .wl-stl-heading {
+    font-size: clamp(22px, 2.2vw, 32px);
+}
+
+.wl-stl-editorial-v2 .wl-stl-panel .wl-stl-desc {
+    font-size: 14px;
+}
+
+/* ── Rows — boxed cards on the dark ground, not hairlines ────────────────── */
+
+.wl-stl-editorial-v2 .wl-stl-item {
+    align-items: center;
+    padding: 12px;
+    border: 1px solid var(--wl-stl-hairline);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.035);
+    transition: border-color 250ms ease, background-color 250ms ease, transform 250ms ease;
+}
+
+.wl-stl-editorial-v2 .wl-stl-item.is-active {
+    border-color: rgba(255, 255, 255, 0.34);
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateX(3px);
+}
+
+.wl-stl-editorial-v2 .wl-stl-item.is-dim {
+    opacity: 0.5;
+}
+
+.wl-stl-editorial-v2 .wl-stl-item-media {
+    width: var(--wl-stl-item-thumb);
+}
+
+.wl-stl-editorial-v2 .wl-stl-item-media .wl-stl-img {
+    height: 82px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.wl-stl-editorial-v2 .wl-stl-item-media .wl-stl-item-num {
+    top: 6px;
+    left: 6px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(7, 17, 25, 0.75);
+    color: var(--wl-stl-light);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.wl-stl-editorial-v2 .wl-stl-brand {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wl-stl-muted);
+    margin-bottom: 4px;
+}
+
+.wl-stl-editorial-v2 .wl-stl-item-name {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--wl-stl-light);
+    margin-bottom: 6px;
+}
+
+.wl-stl-editorial-v2 .wl-stl-meta {
+    font-size: 12px;
+    color: var(--wl-stl-muted);
+}
+
+.wl-stl-editorial-v2 .wl-stl-item-right .wl-stl-price {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--wl-stl-secondary);
+}
+
+.wl-stl-editorial-v2 .wl-stl-item .wl-stl-cart a {
+    padding: 7px 16px;
+    border: 1px solid var(--wl-stl-hairline);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--wl-stl-light);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background-color 200ms ease, border-color 200ms ease;
+}
+
+.wl-stl-editorial-v2 .wl-stl-item .wl-stl-cart a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.34);
+    color: var(--wl-stl-light);
+}
+
+.wl-stl-editorial-v2 .wl-stl-item .added_to_cart {
+    display: none;
+}
+
+/* ── Footer — the label sits above the price, button at the far end ──────── */
+
+.wl-stl-editorial-v2 .wl-stl-foot {
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wl-stl-editorial-v2 .wl-stl-foot-meta {
+    gap: 4px;
+}
+
+.wl-stl-editorial-v2 .wl-stl-count {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--wl-stl-muted);
+}
+
+.wl-stl-editorial-v2 .wl-stl-total ins {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+}
+
+.wl-stl-editorial-v2 .wl-stl-total del {
+    font-size: 15px;
+    color: var(--wl-stl-muted);
+    margin-right: 8px;
+}
+
+.wl-stl-editorial-v2 .wl-stl-bulk {
+    flex: 0 0 auto;
+    margin-left: 0;
+}
+
+.wl-stl-editorial-v2 .wl-stl-bulk-btn {
+    width: auto;
+    padding: 16px 28px;
+    border-radius: 10px;
+    background: var(--wl-stl-primary);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background-color 200ms ease;
+}
+
+.wl-stl-editorial-v2 .wl-stl-bulk-btn:hover:not([disabled]) {
+    background: var(--wl-stl-primary-hover);
+}
+
+@media (max-width: 767px) {
+    .wl-stl-editorial-v2 {
+        padding: 48px 20px;
+    }
+
+    /* Stacked, the row's floor is meaningless and the image's would leave a
+       560px tower on a phone. It goes back to a ratio, which scales. */
+    .wl-stl-editorial-v2 .wl-stl-split,
+    .wl-stl-editorial-v2 .wl-stl-stage,
+    .wl-stl-editorial-v2 .wl-stl-stage>.wl-stl-look,
+    .wl-stl-editorial-v2 .wl-stl-image {
+        min-height: 0;
+        height: auto;
+    }
+
+    .wl-stl-editorial-v2 .wl-stl-image {
+        aspect-ratio: 1 / 1.1;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — The room study
+   Adapted from editorial-style/v3/homepage.html — `.room-study`
+   Image left with a badge and a caption, panel right, one outbound link.
+   The V3 role: no total, no bulk add.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-stl-editorial-v3 {
+    --wl-stl-paper: #F7F3EC;
+    --wl-stl-ink-black: #1F1E1B;
+    --wl-stl-clay-brown: #A0603D;
+    --wl-stl-soft-sand: #DDD1C1;
+    --wl-stl-olive-gray: #6F735E;
+    --wl-stl-warm-stone: #B8AA9A;
+
+    --wl-stl-split: 1.1fr 1fr;
+    --wl-stl-split-gap: 0px;
+    --wl-stl-row-gap: 0px;
+    --wl-stl-row-thumb: 64px;
+}
+
+/* The reference sizes this media by the row, not by a ratio:
+   `.room-study__media { min-height: 640px }` with the image covering it. An
+   aspect-ratio here would fight the stretch — the item takes the row's height
+   and then computes its own width from the ratio, which blows the column wide
+   and pushes the panel off the page. */
+.wl-stl-editorial-v3 .wl-stl-split {
+    align-items: stretch;
+    min-height: 640px;
+}
+
+.wl-stl-editorial-v3 .wl-stl-image {
+    aspect-ratio: auto;
+    min-height: 640px;
+    border-radius: 0;
+}
+
+.wl-stl-editorial-v3 .wl-stl-flag {
+    top: 24px;
+    left: 24px;
+    padding: 8px 16px;
+    background: var(--wl-stl-paper);
+    color: var(--wl-stl-ink-black);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.wl-stl-editorial-v3 .wl-stl-caption {
+    bottom: 24px;
+    left: 24px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wl-stl-paper);
+    text-shadow: 0 1px 8px rgba(31, 30, 27, 0.5);
+}
+
+.wl-stl-editorial-v3 .wl-stl-pin-btn {
+    --wl-stl-pin-size: 26px;
+    background: var(--wl-stl-paper);
+    color: var(--wl-stl-ink-black);
+    box-shadow: 0 2px 12px rgba(31, 30, 27, 0.24);
+}
+
+.wl-stl-editorial-v3 .wl-stl-pin.is-active .wl-stl-pin-btn,
+.wl-stl-editorial-v3 .wl-stl-pin.is-open .wl-stl-pin-btn {
+    background: var(--wl-stl-clay-brown);
+    color: var(--wl-stl-paper);
+}
+
+.wl-stl-editorial-v3 .wl-stl-pin.is-dim {
+    opacity: 0.45;
+}
+
+.wl-stl-editorial-v3 .wl-stl-card {
+    width: 210px;
+    padding: 12px;
+    background: var(--wl-stl-paper);
+    border-radius: 0;
+    box-shadow: 0 16px 44px rgba(31, 30, 27, 0.18);
+}
+
+.wl-stl-editorial-v3 .wl-stl-card .wl-stl-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--wl-stl-ink-black);
+}
+
+.wl-stl-editorial-v3 .wl-stl-card .wl-stl-price {
+    font-size: 13px;
+    color: var(--wl-stl-clay-brown);
+}
+
+.wl-stl-editorial-v3 .wl-stl-card .wl-stl-link {
+    display: block;
+    margin-top: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--wl-stl-ink-black);
+}
+
+/* ── Panel ───────────────────────────────────────────────────────────────── */
+
+.wl-stl-editorial-v3 .wl-stl-panel {
+    padding: 64px 56px;
+    background: var(--wl-stl-paper);
+}
+
+.wl-stl-editorial-v3 .wl-stl-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--wl-stl-clay-brown);
+    margin-bottom: 18px;
+}
+
+.wl-stl-editorial-v3 .wl-stl-heading {
+    font-size: clamp(28px, 3.2vw, 44px);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--wl-stl-ink-black);
+}
+
+.wl-stl-editorial-v3 .wl-stl-desc {
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--wl-stl-olive-gray);
+}
+
+.wl-stl-editorial-v3 .wl-stl-head {
+    margin-bottom: 30px;
+}
+
+/* ── Rows — hairlines, no boxes ──────────────────────────────────────────── */
+
+.wl-stl-editorial-v3 .wl-stl-row {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--wl-stl-soft-sand);
+    transition: opacity 200ms ease;
+}
+
+.wl-stl-editorial-v3 .wl-stl-row.is-dim {
+    opacity: 0.45;
+}
+
+.wl-stl-editorial-v3 .wl-stl-row-media .wl-stl-img {
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.wl-stl-editorial-v3 .wl-stl-row-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--wl-stl-ink-black);
+    margin-bottom: 3px;
+}
+
+.wl-stl-editorial-v3 .wl-stl-meta {
+    font-size: 12px;
+    color: var(--wl-stl-warm-stone);
+}
+
+.wl-stl-editorial-v3 .wl-stl-row .wl-stl-price {
+    font-size: 14px;
+    color: var(--wl-stl-ink-black);
+}
+
+/* ── Bottom link — ghost, the way the reference's btn--ghost-lt reads ────── */
+
+.wl-stl-editorial-v3 .wl-stl-cta {
+    margin-top: 32px;
+}
+
+.wl-stl-editorial-v3 .wl-stl-cta a {
+    width: auto;
+    display: inline-flex;
+    padding: 14px 30px;
+    border-color: var(--wl-stl-ink-black);
+    background: transparent;
+    color: var(--wl-stl-ink-black);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition: background-color 200ms ease, color 200ms ease;
+}
+
+.wl-stl-editorial-v3 .wl-stl-cta a:hover {
+    background: var(--wl-stl-ink-black);
+    color: var(--wl-stl-paper);
+}
+
+.wl-stl-editorial-v3 .wl-stl-switch {
+    margin-bottom: 22px;
+}
+
+.wl-stl-editorial-v3 .wl-stl-switch-btn {
+    border-color: var(--wl-stl-soft-sand);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wl-stl-olive-gray);
+}
+
+.wl-stl-editorial-v3 .wl-stl-switch-btn.is-active {
+    background: var(--wl-stl-ink-black);
+    border-color: var(--wl-stl-ink-black);
+    color: var(--wl-stl-paper);
+}
+
+@media (max-width: 767px) {
+    .wl-stl-editorial-v3 .wl-stl-panel {
+        padding: 36px 24px;
+    }
+
+    /* 640px of image is a tower on a phone; stacked, the ratio is the honest
+       way to size it. */
+    .wl-stl-editorial-v3 .wl-stl-split,
+    .wl-stl-editorial-v3 .wl-stl-image {
+        min-height: 0;
+    }
+
+    .wl-stl-editorial-v3 .wl-stl-image {
+        aspect-ratio: 1 / 0.9;
+    }
+}
+
+/* Confirmed state — the label already says so; this is the colour that
+   goes with it. */
+[data-wl-pack] .wl-stl-editorial-v2 .wl-stl-bulk-btn.is-added {
+    background: #2F6E3C;
+    color: #FFFFFF;
+}

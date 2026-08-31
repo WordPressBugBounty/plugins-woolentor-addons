@@ -164,6 +164,23 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.4.9',
+                'date'    => '2026-08-31',
+                'changes' => [
+                    'New Features' => [
+                        '3 (Shop by Category, Product Showcase, Shop the Look) Elementor Addon flowing by 2026 tread.',
+                        '3 (Shop by Category, Product Showcase, Shop the Look) with 12 variant Elementor Addon flowing by 2026 tread. (Pro)',
+                    ],
+                   'Fixes' => [
+                        'Some Minor bugs fixed',
+                        'PayPal Smart button render issue in Single Product Page.',
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
                 'version' => '3.4.8',
                 'date'    => '2026-08-24',
                 'changes' => [

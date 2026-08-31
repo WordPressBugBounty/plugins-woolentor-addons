@@ -1,0 +1,775 @@
+/**
+ * Shop the Look — Modern pack
+ *
+ * Skin only. Every layout mechanic the twelve variants share — the stage, the
+ * pin, the card, the flip — lives in pack-widgets-base.css; this file carries
+ * the modern pack's palette, type and shape, and each variant's own
+ * arrangement on top of it.
+ *
+ * @package WooLentor
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — The floating card
+   Reference: modern-style/v1/home-modern.html — `.lookbook-sec`
+   One wide photograph, no header and no list: the image is the whole widget.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-stl-modern-v1 {
+    --wl-stl-ink: #080A0F;
+    --wl-stl-soft: #374151;
+    --wl-stl-muted: #6B7280;
+    --wl-stl-line: #E5E7EB;
+    --wl-stl-electric: #2563EB;
+    --wl-stl-star: #F59E0B;
+}
+
+.wl-stl-modern-v1 .wl-stl-image {
+    border-radius: 20px;
+}
+
+/* ── Pin ──────────────────────────────────────────────────────────────────── */
+
+/* Closed pins are white, the open one is the accent — straight from the
+   reference, where exactly one pin is open at a time. */
+.wl-stl-modern-v1 .wl-stl-pin-btn {
+    --wl-stl-pin-size: 40px;
+    position: relative;
+    background: #FFFFFF;
+    color: var(--wl-stl-ink);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+}
+
+.wl-stl-modern-v1 .wl-stl-pin.is-open .wl-stl-pin-btn {
+    background: var(--wl-stl-electric);
+    color: #FFFFFF;
+}
+
+/* A soft ring that only draws on pointer devices — it is decoration, and on
+   touch it would sit permanently under a finger. */
+@media (hover: hover) {
+    .wl-stl-modern-v1 .wl-stl-pin-btn::after {
+        content: "";
+        position: absolute;
+        inset: -8px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        pointer-events: none;
+    }
+}
+
+
+/* ── Card ─────────────────────────────────────────────────────────────────── */
+
+/* The card stacks — image on top at full width, body under it. Padding lives
+   on the body, not the card, so the image can run edge to edge. */
+.wl-stl-modern-v1 .wl-stl-card {
+    width: 200px;
+    padding: 0;
+    background: #FFFFFF;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.22);
+}
+
+.wl-stl-modern-v1 .wl-stl-card-media {
+    display: block;
+    width: 100%;
+}
+
+.wl-stl-modern-v1 .wl-stl-card-media .wl-stl-img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.wl-stl-modern-v1 .wl-stl-card-body {
+    padding: 12px 14px 14px;
+}
+
+.wl-stl-modern-v1 .wl-stl-brand {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wl-stl-muted);
+    margin-bottom: 4px;
+}
+
+.wl-stl-modern-v1 .wl-stl-title {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--wl-stl-ink);
+    margin-bottom: 6px;
+}
+
+.wl-stl-modern-v1 .wl-stl-rating {
+    margin-bottom: 6px;
+}
+
+.wl-stl-modern-v1 .wl-stl-rating svg {
+    color: var(--wl-stl-star);
+}
+
+.wl-stl-modern-v1 .wl-stl-rating-avg {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--wl-stl-ink);
+}
+
+.wl-stl-modern-v1 .wl-stl-rating-count {
+    font-size: 12px;
+    color: var(--wl-stl-muted);
+}
+
+.wl-stl-modern-v1 .wl-stl-price {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--wl-stl-ink);
+    margin-bottom: 10px;
+}
+
+/* WooCommerce prints the original inside <del> on a sale — struck through and
+   quieter, exactly as the reference shows it. */
+.wl-stl-modern-v1 .wl-stl-price del {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--wl-stl-muted);
+    margin-right: 6px;
+}
+
+.wl-stl-modern-v1 .wl-stl-price ins {
+    text-decoration: none;
+}
+
+/* The card's closing action is a full-width filled button — this pack is the
+   loud, direct one, and the reference puts Add to Cart across the whole card. */
+.wl-stl-modern-v1 .wl-stl-cart a {
+    padding: 9px 14px;
+    border-radius: 30px;
+    background: var(--wl-stl-electric);
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    transition: background-color 200ms ease;
+}
+
+.wl-stl-modern-v1 .wl-stl-cart a:hover {
+    background: #1D4ED8;
+    color: #FFFFFF;
+}
+
+/* WooCommerce adds this class while an ajax add is in flight. */
+.wl-stl-modern-v1 .wl-stl-cart a.loading {
+    opacity: 0.7;
+}
+
+.wl-stl-modern-v1 .wl-stl-cart a.added {
+    background: #16A34A;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — The room list
+   Reference: modern-style/v3/01-homepage.html — `.stl.section#shop-room`
+   Centred header, image plus bordered rows, one outbound link. The V3 role:
+   no total and no bulk add — it sends the visitor onward.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Warm off-white with a clay accent — this pack's third palette, and a
+   different one from v1's electric blue on white. */
+.wl-stl-modern-v3 {
+    --wl-stl-off-white: #FAFAF7;
+    --wl-stl-graphite: #1F1F1D;
+    --wl-stl-cool-gray: #6F716D;
+    --wl-stl-stone: #D8D2C8;
+    --wl-stl-clay: #B8755B;
+    --wl-stl-clay-dark: #9A5E47;
+    --wl-stl-warm-black: #11110F;
+
+    --wl-stl-split: 1.4fr 1fr;
+    --wl-stl-split-gap: 48px;
+    --wl-stl-row-gap: 16px;
+    --wl-stl-row-thumb: 60px;
+}
+
+/* ── Header — centred, and the description narrower than the column ──────── */
+
+.wl-stl-modern-v3 .wl-stl-head {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.wl-stl-modern-v3 .wl-stl-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wl-stl-clay);
+    margin-bottom: 10px;
+}
+
+.wl-stl-modern-v3 .wl-stl-heading {
+    font-size: clamp(28px, 3.4vw, 44px);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--wl-stl-graphite);
+}
+
+.wl-stl-modern-v3 .wl-stl-desc {
+    max-width: 500px;
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--wl-stl-cool-gray);
+}
+
+/* ── Image and pins ──────────────────────────────────────────────────────── */
+
+.wl-stl-modern-v3 .wl-stl-image {
+    border-radius: 14px;
+}
+
+.wl-stl-modern-v3 .wl-stl-pin-btn {
+    --wl-stl-pin-size: 30px;
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--wl-stl-warm-black);
+    box-shadow: 0 4px 14px rgba(17, 17, 15, 0.18);
+}
+
+.wl-stl-modern-v3 .wl-stl-pin.is-open .wl-stl-pin-btn {
+    background: var(--wl-stl-clay);
+    color: #FFFFFF;
+}
+
+/* ── Compact card — a pointer into the list, not a second product page ───── */
+
+.wl-stl-modern-v3 .wl-stl-card {
+    width: 210px;
+    padding: 12px;
+    background: var(--wl-stl-off-white);
+    border: 1px solid var(--wl-stl-stone);
+    border-radius: 10px;
+    box-shadow: 0 10px 36px rgba(17, 17, 15, 0.14);
+}
+
+.wl-stl-modern-v3 .wl-stl-card .wl-stl-card-media {
+    width: 56px;
+}
+
+.wl-stl-modern-v3 .wl-stl-card .wl-stl-title {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--wl-stl-graphite);
+}
+
+.wl-stl-modern-v3 .wl-stl-card .wl-stl-price {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--wl-stl-clay);
+    margin-top: 2px;
+}
+
+.wl-stl-modern-v3 .wl-stl-link {
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--wl-stl-graphite);
+}
+
+.wl-stl-modern-v3 .wl-stl-link:hover {
+    color: var(--wl-stl-clay);
+}
+
+/* ── Rows ────────────────────────────────────────────────────────────────── */
+
+.wl-stl-modern-v3 .wl-stl-row {
+    padding: 16px;
+    border: 1px solid #E3E3E3;
+    border-radius: 10px;
+    background: var(--wl-stl-off-white);
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.wl-stl-modern-v3 .wl-stl-row:hover {
+    border-color: var(--wl-stl-clay);
+    box-shadow: 0 4px 16px rgba(17, 17, 15, 0.06);
+}
+
+.wl-stl-modern-v3 .wl-stl-row-media .wl-stl-img {
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.wl-stl-modern-v3 .wl-stl-row-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--wl-stl-graphite);
+    margin-bottom: 3px;
+}
+
+.wl-stl-modern-v3 .wl-stl-meta {
+    font-size: 12px;
+    color: var(--wl-stl-cool-gray);
+}
+
+.wl-stl-modern-v3 .wl-stl-row .wl-stl-price {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--wl-stl-graphite);
+}
+
+/* ── Bottom link ─────────────────────────────────────────────────────────── */
+
+/* The panel is structural here, not painted — this pack's v3 has no block of
+   colour beside the image, just the rows and the link. */
+.wl-stl-modern-v3 .wl-stl-panel {
+    gap: 8px;
+}
+
+.wl-stl-modern-v3 .wl-stl-cta {
+    margin-top: 8px;
+}
+
+.wl-stl-modern-v3 .wl-stl-cta a {
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: var(--wl-stl-warm-black);
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 150ms ease;
+}
+
+.wl-stl-modern-v3 .wl-stl-cta a:hover {
+    background: var(--wl-stl-clay-dark);
+    color: #FFFFFF;
+}
+
+/* ── Switcher — drawn only when a site configures more than one look, which
+      v3's own reference does not. ─────────────────────────────────────────── */
+
+.wl-stl-modern-v3 .wl-stl-switch {
+    justify-content: center;
+    margin-bottom: 28px;
+}
+
+.wl-stl-modern-v3 .wl-stl-switch-btn {
+    border-radius: 999px;
+    border-color: var(--wl-stl-stone);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--wl-stl-cool-gray);
+}
+
+.wl-stl-modern-v3 .wl-stl-switch-btn.is-active {
+    background: var(--wl-stl-warm-black);
+    border-color: var(--wl-stl-warm-black);
+    color: #FFFFFF;
+}
+
+/* ── v1 switcher — labelled thumbnails, the shape Modern V2's reference uses,
+      drawn here only when a site configures more than one look. ───────────── */
+
+.wl-stl-modern-v1 .wl-stl-switch {
+    --wl-stl-switch-thumb: 48px;
+    margin-bottom: 20px;
+}
+
+.wl-stl-modern-v1 .wl-stl-switch-btn {
+    padding: 6px 12px 6px 6px;
+    border-radius: 999px;
+    border-color: var(--wl-stl-line);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--wl-stl-muted);
+}
+
+.wl-stl-modern-v1 .wl-stl-switch-thumb {
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.wl-stl-modern-v1 .wl-stl-switch-btn.is-active {
+    border-color: var(--wl-stl-electric);
+    color: var(--wl-stl-ink);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — The look switcher
+   Reference: modern-style/v2/homepage.html — `.stl#lb`
+   58 / 42 split, photograph left, dark panel right. Several looks, full rows,
+   a complete-look total and one bulk add — the V2 role.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-stl-modern-v2 {
+    --wl-stl-bg: #FAFAF7;
+    --wl-stl-card: #E8E4DC;
+    --wl-stl-text: #111111;
+    --wl-stl-muted: #666666;
+    --wl-stl-border: #D8D5CE;
+    --wl-stl-dark: #1D1D1B;
+    --wl-stl-accent: #7A8F3A;
+    --wl-stl-accent-dk: #617230;
+
+    --wl-stl-split: 58% 42%;
+    --wl-stl-split-gap: 0;
+    --wl-stl-item-gap: 16px;
+    --wl-stl-item-thumb: 56px;
+}
+
+/* Edge to edge: the two columns are one block, not two cards with a gutter. */
+.wl-stl-modern-v2 .wl-stl-split {
+    align-items: stretch;
+    min-height: 700px;
+}
+
+/* Every step of the chain needs a height or the percentage never resolves —
+   the look div sits between the stage and the image, and without this the
+   image falls back to its intrinsic height and leaves the column half empty. */
+.wl-stl-modern-v2 .wl-stl-stage,
+.wl-stl-modern-v2 .wl-stl-stage>.wl-stl-look,
+.wl-stl-modern-v2 .wl-stl-image {
+    height: 100%;
+    aspect-ratio: auto;
+}
+
+.wl-stl-modern-v2 .wl-stl-image {
+    border-radius: 0;
+}
+
+/* ── Look label badge ────────────────────────────────────────────────────── */
+
+.wl-stl-modern-v2 .wl-stl-flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    top: 24px;
+    left: 24px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--wl-stl-text);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.wl-stl-modern-v2 .wl-stl-flag-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--wl-stl-accent);
+}
+
+/* ── Pins and their popup ────────────────────────────────────────────────── */
+
+.wl-stl-modern-v2 .wl-stl-pin-btn {
+    --wl-stl-pin-size: 28px;
+    background: #FFFFFF;
+    color: var(--wl-stl-text);
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.24);
+}
+
+.wl-stl-modern-v2 .wl-stl-pin.is-open .wl-stl-pin-btn {
+    background: var(--wl-stl-accent);
+    color: #FFFFFF;
+}
+
+.wl-stl-modern-v2 .wl-stl-card {
+    width: 240px;
+    padding: 12px;
+    background: #FFFFFF;
+    border-radius: 6px;
+    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.2);
+}
+
+.wl-stl-modern-v2 .wl-stl-card .wl-stl-card-media {
+    width: 56px;
+}
+
+.wl-stl-modern-v2 .wl-stl-card .wl-stl-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--wl-stl-text);
+}
+
+.wl-stl-modern-v2 .wl-stl-card .wl-stl-price {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--wl-stl-text);
+}
+
+.wl-stl-modern-v2 .wl-stl-card .wl-stl-link {
+    margin-top: 10px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background: var(--wl-stl-text);
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    display: block;
+}
+
+/* ── Panel ───────────────────────────────────────────────────────────────── */
+
+.wl-stl-modern-v2 .wl-stl-panel {
+    padding: 52px 48px;
+    background: var(--wl-stl-dark);
+}
+
+.wl-stl-modern-v2 .wl-stl-head {
+    margin-bottom: 26px;
+}
+
+.wl-stl-modern-v2 .wl-stl-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--wl-stl-accent);
+    margin-bottom: 14px;
+}
+
+.wl-stl-modern-v2 .wl-stl-eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+    flex: 0 0 auto;
+}
+
+.wl-stl-modern-v2 .wl-stl-heading {
+    font-size: clamp(26px, 2.6vw, 38px);
+    font-weight: 600;
+    line-height: 1.15;
+    color: #FFFFFF;
+}
+
+.wl-stl-modern-v2 .wl-stl-desc {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.62);
+}
+
+/* ── Switcher — thumbnails with the label burnt in ───────────────────────── */
+
+.wl-stl-modern-v2 .wl-stl-switch {
+    --wl-stl-switch-gap: 10px;
+    margin-bottom: 26px;
+}
+
+.wl-stl-modern-v2 .wl-stl-switch-btn {
+    position: relative;
+    flex: 1;
+    height: 72px;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.wl-stl-modern-v2 .wl-stl-switch-btn.is-active {
+    border-color: var(--wl-stl-accent);
+}
+
+.wl-stl-modern-v2 .wl-stl-switch-btn:not(.is-active):hover {
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.wl-stl-modern-v2 .wl-stl-switch-thumb {
+    width: 100%;
+    height: 100%;
+}
+
+.wl-stl-modern-v2 .wl-stl-switch-thumb img {
+    object-position: top;
+    filter: brightness(0.72);
+    transition: filter 220ms ease;
+}
+
+.wl-stl-modern-v2 .wl-stl-switch-btn.is-active .wl-stl-switch-thumb img,
+.wl-stl-modern-v2 .wl-stl-switch-btn:hover .wl-stl-switch-thumb img {
+    filter: brightness(0.85);
+}
+
+/* The label sits over the thumbnail rather than beside it. */
+.wl-stl-modern-v2 .wl-stl-switch-label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* ── Panel rows ──────────────────────────────────────────────────────────── */
+
+.wl-stl-modern-v2 .wl-stl-item {
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wl-stl-modern-v2 .wl-stl-item-num {
+    flex: 0 0 auto;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.wl-stl-modern-v2 .wl-stl-item-media .wl-stl-img {
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.wl-stl-modern-v2 .wl-stl-brand {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 3px;
+}
+
+.wl-stl-modern-v2 .wl-stl-item-name {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #FFFFFF;
+    margin-bottom: 5px;
+}
+
+.wl-stl-modern-v2 .wl-stl-item .wl-stl-price {
+    font-size: 13px;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.wl-stl-modern-v2 .wl-stl-item .wl-stl-price del {
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.45);
+    margin-right: 5px;
+}
+
+.wl-stl-modern-v2 .wl-stl-item .wl-stl-price ins {
+    text-decoration: none;
+}
+
+.wl-stl-modern-v2 .wl-stl-swatch {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+[data-wl-pack] .wl-stl-modern-v2 .wl-stl-item a.wl-stl-cart-icon {
+    --wl-stl-icon-size: 34px;
+    border-radius: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    transition: background-color 200ms ease;
+}
+
+[data-wl-pack] .wl-stl-modern-v2 .wl-stl-item a.wl-stl-cart-icon:hover {
+    background: var(--wl-stl-accent);
+    color: #FFFFFF;
+}
+
+[data-wl-pack] .wl-stl-modern-v2 .wl-stl-item a.wl-stl-cart-icon.added {
+    background: var(--wl-stl-accent-dk);
+}
+
+/* WooCommerce prints a "View cart" link after a successful ajax add. In a
+   36px icon button it has nowhere to go, so the row keeps only the button. */
+.wl-stl-modern-v2 .wl-stl-item .added_to_cart {
+    display: none;
+}
+
+/* ── Total and the bulk add ──────────────────────────────────────────────── */
+
+.wl-stl-modern-v2 .wl-stl-foot {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.wl-stl-modern-v2 .wl-stl-count {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.wl-stl-modern-v2 .wl-stl-note {
+    font-size: 12px;
+    color: var(--wl-stl-accent);
+}
+
+.wl-stl-modern-v2 .wl-stl-total {
+    margin-left: auto;
+}
+
+.wl-stl-modern-v2 .wl-stl-total ins {
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.wl-stl-modern-v2 .wl-stl-total del {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.45);
+    margin-right: 8px;
+}
+
+.wl-stl-modern-v2 .wl-stl-bulk {
+    margin-top: 18px;
+}
+
+.wl-stl-modern-v2 .wl-stl-bulk-btn {
+    padding: 15px 22px;
+    border-radius: 4px;
+    background: var(--wl-stl-accent);
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background-color 200ms ease;
+}
+
+.wl-stl-modern-v2 .wl-stl-bulk-btn:hover:not([disabled]) {
+    background: var(--wl-stl-accent-dk);
+}
+
+@media (max-width: 767px) {
+    .wl-stl-modern-v2 .wl-stl-split {
+        min-height: 0;
+    }
+
+    .wl-stl-modern-v2 .wl-stl-panel {
+        padding: 34px 24px;
+    }
+
+    .wl-stl-modern-v2 .wl-stl-image {
+        aspect-ratio: 1 / var(--wl-stl-ratio, 1.1);
+    }
+}
+
+/* Confirmed state — the label already says so; this is the colour that
+   goes with it. */
+[data-wl-pack] .wl-stl-modern-v2 .wl-stl-bulk-btn.is-added {
+    background: var(--wl-stl-accent-dk);
+}

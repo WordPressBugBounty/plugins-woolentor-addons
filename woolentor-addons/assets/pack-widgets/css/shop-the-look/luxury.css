@@ -1,0 +1,751 @@
+/**
+ * Shop the Look — Luxury pack
+ *
+ * Skin only. Every layout mechanic the twelve variants share — the stage, the
+ * pin, the card, the flip — lives in pack-widgets-base.css; this file carries
+ * the luxury pack's palette, type and shape, and each variant's own
+ * arrangement on top of it.
+ *
+ * @package WooLentor
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — The Composition
+   Designed, not transcribed: luxury-style/v1/home-luxury.html has a
+   `.section-lookbook` rule and a "10b. LOOKBOOK" comment but no markup, so
+   this is written in the pack's own language. Tokens and idioms come from that
+   file's :root and from `.section-lifestyle`.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-stl-luxury-v1 {
+    --wl-stl-obsidian: #07080C;
+    --wl-stl-ivory: #F8F6F1;
+    --wl-stl-gold: #C9A86A;
+    --wl-stl-gold-hover: #B8966A;
+    --wl-stl-gold-dim: rgba(201, 168, 106, 0.35);
+    --wl-stl-gold-glow: rgba(201, 168, 106, 0.07);
+    --wl-stl-taupe: #8B8175;
+}
+
+.wl-stl-luxury-v1 {
+    background: var(--wl-stl-obsidian);
+    padding: 90px 40px;
+}
+
+/* ── Header — a gold hairline, then letterspaced uppercase, then the title ── */
+
+.wl-stl-luxury-v1 .wl-stl-head {
+    margin-bottom: 40px;
+}
+
+.wl-stl-luxury-v1 .wl-stl-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--wl-stl-gold);
+    margin-bottom: 14px;
+}
+
+.wl-stl-luxury-v1 .wl-stl-eyebrow::before {
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: var(--wl-stl-gold);
+    flex: 0 0 auto;
+}
+
+.wl-stl-luxury-v1 .wl-stl-heading {
+    font-size: clamp(28px, 3.2vw, 42px);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--wl-stl-ivory);
+}
+
+.wl-stl-luxury-v1 .wl-stl-desc {
+    max-width: 560px;
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--wl-stl-taupe);
+}
+
+/* ── Image — framed with a hairline, never shadowed ──────────────────────── */
+
+.wl-stl-luxury-v1 .wl-stl-image {
+    border-radius: 24px;
+    box-shadow: inset 0 0 0 1px var(--wl-stl-gold-dim);
+}
+
+/* ── Pin — a gold ring, filled when open. No plus glyph in this pack. ────── */
+
+.wl-stl-luxury-v1 .wl-stl-pin-btn {
+    --wl-stl-pin-size: 14px;
+    position: relative;
+    background: transparent;
+    border: 1.5px solid var(--wl-stl-gold);
+    color: var(--wl-stl-gold);
+}
+
+.wl-stl-luxury-v1 .wl-stl-pin-glyph {
+    display: none;
+}
+
+.wl-stl-luxury-v1 .wl-stl-pin-btn::before {
+    content: "";
+    position: absolute;
+    inset: -9px;
+    border-radius: 50%;
+    background: var(--wl-stl-gold-glow);
+    pointer-events: none;
+    animation: wl-stl-glow 3200ms ease-out infinite;
+}
+
+@keyframes wl-stl-glow {
+    0%   { transform: scale(0.7); opacity: 1; }
+    100% { transform: scale(2.2); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wl-stl-luxury-v1 .wl-stl-pin-btn::before {
+        animation: none;
+    }
+}
+
+.wl-stl-luxury-v1 .wl-stl-pin.is-open .wl-stl-pin-btn {
+    background: var(--wl-stl-gold);
+}
+
+.wl-stl-luxury-v1 .wl-stl-pin.is-open .wl-stl-pin-btn::before {
+    animation: none;
+    opacity: 0;
+}
+
+/* ── Card — ivory on the dark image ──────────────────────────────────────── */
+
+.wl-stl-luxury-v1 .wl-stl-card {
+    width: 320px;
+    padding: 18px;
+    background: var(--wl-stl-ivory);
+    border-radius: 16px;
+    box-shadow: 0 16px 56px rgba(0, 0, 0, 0.4);
+}
+
+.wl-stl-luxury-v1 .wl-stl-card-index {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    color: var(--wl-stl-gold-hover);
+    margin-bottom: 12px;
+}
+
+.wl-stl-luxury-v1 .wl-stl-card-media {
+    width: 88px;
+}
+
+.wl-stl-luxury-v1 .wl-stl-card-media .wl-stl-img {
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.wl-stl-luxury-v1 .wl-stl-brand {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wl-stl-taupe);
+    margin-bottom: 5px;
+}
+
+.wl-stl-luxury-v1 .wl-stl-title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--wl-stl-obsidian);
+    margin-bottom: 6px;
+}
+
+.wl-stl-luxury-v1 .wl-stl-price {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--wl-stl-obsidian);
+}
+
+.wl-stl-luxury-v1 .wl-stl-price del {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--wl-stl-taupe);
+    margin-right: 6px;
+}
+
+.wl-stl-luxury-v1 .wl-stl-price ins {
+    text-decoration: none;
+}
+
+/* A hairline, then a gold text link. Deliberately not a filled button: no
+   section in Luxury V1 uses one at card scale, and this is the single most
+   likely place for an implementation to drift out of the pack. */
+.wl-stl-luxury-v1 .wl-stl-card-foot {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(139, 129, 117, 0.28);
+}
+
+.wl-stl-luxury-v1 .wl-stl-link {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--wl-stl-gold-hover);
+    border-bottom: 1px solid var(--wl-stl-gold-dim);
+    padding-bottom: 2px;
+    transition: color 200ms ease, border-color 200ms ease;
+}
+
+.wl-stl-luxury-v1 .wl-stl-link:hover {
+    color: var(--wl-stl-gold);
+    border-bottom-color: var(--wl-stl-gold);
+}
+
+/* ── Footer — a quiet count, and a ghost gold link ───────────────────────── */
+
+.wl-stl-luxury-v1 .wl-stl-foot {
+    margin-top: 24px;
+}
+
+.wl-stl-luxury-v1 .wl-stl-count {
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--wl-stl-taupe);
+}
+
+.wl-stl-luxury-v1 .wl-stl-cta a {
+    padding: 12px 28px;
+    border-radius: 999px;
+    border-color: var(--wl-stl-gold);
+    background: transparent;
+    color: var(--wl-stl-gold);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background-color 220ms ease, color 220ms ease;
+}
+
+.wl-stl-luxury-v1 .wl-stl-cta a:hover {
+    background: var(--wl-stl-gold);
+    color: var(--wl-stl-obsidian);
+}
+
+/* ── Switcher ────────────────────────────────────────────────────────────── */
+
+.wl-stl-luxury-v1 .wl-stl-switch {
+    margin-bottom: 24px;
+}
+
+.wl-stl-luxury-v1 .wl-stl-switch-btn {
+    border-radius: 999px;
+    border-color: rgba(201, 168, 106, 0.28);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wl-stl-taupe);
+}
+
+.wl-stl-luxury-v1 .wl-stl-switch-btn.is-active {
+    border-color: var(--wl-stl-gold);
+    color: var(--wl-stl-gold);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — The curated set
+   Reference: luxury-style/v2/homepage.html — `.look#lookbook`
+   Plain dots, a name-and-price tooltip, and rows that dim when a pin is hovered.
+   The quietest of the four V2s.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-stl-luxury-v2 {
+    --wl-stl-dark: #30382C;
+    --wl-stl-olive: #6B705E;
+    --wl-stl-lime: #E7EC78;
+    --wl-stl-light-bg: #F4F5EF;
+    --wl-stl-elevated: #FCFCF8;
+    --wl-stl-on-light: #2A3024;
+    --wl-stl-on-light-soft: #5E6353;
+    --wl-stl-light-border: rgba(48, 56, 44, 0.14);
+
+    --wl-stl-split: 1fr 1fr;
+    --wl-stl-split-gap: 56px;
+    --wl-stl-item-gap: 0px;
+    --wl-stl-item-thumb: 72px;
+}
+
+.wl-stl-luxury-v2 .wl-stl-image {
+    border-radius: 2px;
+}
+
+/* ── Pin — a plain dot. No glyph at all in this pack. ────────────────────── */
+
+.wl-stl-luxury-v2 .wl-stl-pin-btn {
+    --wl-stl-pin-size: 12px;
+    background: var(--wl-stl-elevated);
+    border: 1px solid rgba(48, 56, 44, 0.3);
+    box-shadow: 0 2px 10px rgba(42, 48, 36, 0.28);
+}
+
+.wl-stl-luxury-v2 .wl-stl-pin-glyph {
+    display: none;
+}
+
+.wl-stl-luxury-v2 .wl-stl-pin.is-active .wl-stl-pin-btn,
+.wl-stl-luxury-v2 .wl-stl-pin.is-open .wl-stl-pin-btn {
+    background: var(--wl-stl-dark);
+    border-color: var(--wl-stl-dark);
+}
+
+.wl-stl-luxury-v2 .wl-stl-pin.is-dim {
+    opacity: 0.4;
+}
+
+/* ── Tooltip — the name and the price, and nothing else ──────────────────── */
+
+.wl-stl-luxury-v2 .wl-stl-card {
+    width: 210px;
+    padding: 10px;
+    background: var(--wl-stl-elevated);
+    border: 1px solid var(--wl-stl-light-border);
+    border-radius: 2px;
+    box-shadow: 0 12px 34px rgba(42, 48, 36, 0.16);
+}
+
+.wl-stl-luxury-v2 .wl-stl-card .wl-stl-card-media {
+    width: 48px;
+}
+
+.wl-stl-luxury-v2 .wl-stl-card .wl-stl-card-media .wl-stl-img {
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.wl-stl-luxury-v2 .wl-stl-card .wl-stl-title {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--wl-stl-on-light);
+}
+
+.wl-stl-luxury-v2 .wl-stl-card .wl-stl-price {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--wl-stl-on-light-soft);
+    margin-top: 3px;
+}
+
+/* ── Panel ───────────────────────────────────────────────────────────────── */
+
+.wl-stl-luxury-v2 .wl-stl-panel {
+    padding: 8px 0;
+}
+
+.wl-stl-luxury-v2 .wl-stl-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--wl-stl-olive);
+    margin-bottom: 12px;
+}
+
+.wl-stl-luxury-v2 .wl-stl-heading {
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--wl-stl-on-light);
+}
+
+.wl-stl-luxury-v2 .wl-stl-desc {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--wl-stl-on-light-soft);
+}
+
+.wl-stl-luxury-v2 .wl-stl-panel .wl-stl-head {
+    margin-bottom: 28px;
+}
+
+/* ── Rows — hairlines, and the dim the reference ships ───────────────────── */
+
+.wl-stl-luxury-v2 .wl-stl-item {
+    align-items: flex-start;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--wl-stl-light-border);
+    transition: opacity 220ms ease;
+}
+
+.wl-stl-luxury-v2 .wl-stl-item.is-dim {
+    opacity: 0.38;
+}
+
+.wl-stl-luxury-v2 .wl-stl-item-media .wl-stl-img {
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.wl-stl-luxury-v2 .wl-stl-brand {
+    display: none;
+}
+
+.wl-stl-luxury-v2 .wl-stl-item-name {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--wl-stl-on-light);
+    margin-bottom: 5px;
+}
+
+.wl-stl-luxury-v2 .wl-stl-meta {
+    font-size: 12px;
+    color: var(--wl-stl-on-light-soft);
+}
+
+/* Add to Bag sits under the name here, not beside the price — a quiet
+   underlined link rather than a button. */
+.wl-stl-luxury-v2 .wl-stl-item .wl-stl-cart {
+    display: block;
+    margin: 8px 0 0;
+}
+
+.wl-stl-luxury-v2 .wl-stl-item .wl-stl-cart a {
+    display: inline-block;
+    width: auto;
+    padding: 0 0 2px;
+    border: none;
+    border-bottom: 1px solid var(--wl-stl-light-border);
+    background: none;
+    color: var(--wl-stl-on-light);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: border-color 200ms ease;
+}
+
+.wl-stl-luxury-v2 .wl-stl-item .wl-stl-cart a:hover {
+    border-bottom-color: var(--wl-stl-on-light);
+}
+
+.wl-stl-luxury-v2 .wl-stl-item .added_to_cart {
+    display: none;
+}
+
+.wl-stl-luxury-v2 .wl-stl-item-right .wl-stl-price {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--wl-stl-on-light);
+}
+
+.wl-stl-luxury-v2 .wl-stl-item-right .wl-stl-price del {
+    display: block;
+    font-size: 13px;
+    color: var(--wl-stl-on-light-soft);
+}
+
+.wl-stl-luxury-v2 .wl-stl-item-right .wl-stl-price ins {
+    text-decoration: none;
+}
+
+/* ── The one button, with the total inside its own label ─────────────────── */
+
+.wl-stl-luxury-v2 .wl-stl-bulk {
+    margin-top: 28px;
+}
+
+.wl-stl-luxury-v2 .wl-stl-bulk-btn {
+    padding: 16px 26px;
+    border-radius: 2px;
+    background: var(--wl-stl-dark);
+    color: var(--wl-stl-lime);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: background-color 220ms ease;
+}
+
+.wl-stl-luxury-v2 .wl-stl-bulk-btn:hover:not([disabled]) {
+    background: #252B22;
+}
+
+/* ── Switcher ────────────────────────────────────────────────────────────── */
+
+.wl-stl-luxury-v2 .wl-stl-switch {
+    margin-bottom: 26px;
+}
+
+.wl-stl-luxury-v2 .wl-stl-switch-btn {
+    border-radius: 2px;
+    border-color: var(--wl-stl-light-border);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wl-stl-on-light-soft);
+}
+
+.wl-stl-luxury-v2 .wl-stl-switch-btn.is-active {
+    background: var(--wl-stl-dark);
+    border-color: var(--wl-stl-dark);
+    color: var(--wl-stl-lime);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — The room study
+   Adapted from luxury-style/v3/homepage.html — `.room-study`
+   The same section as Editorial V3's, with this pack's dark panel beside it.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-stl-luxury-v3 {
+    --wl-stl-ivory: #F8F5F0;
+    --wl-stl-charcoal: #2C2A28;
+    --wl-stl-mocha: #6E5B4B;
+    --wl-stl-gold-v3: #C6A972;
+    --wl-stl-taupe-v3: #B8A999;
+    --wl-stl-bg-alt: #E8DED0;
+
+    --wl-stl-split: 1.1fr 1fr;
+    --wl-stl-split-gap: 0px;
+    --wl-stl-row-gap: 0px;
+    --wl-stl-row-thumb: 64px;
+}
+
+/* Same as Editorial V3: `.room-study__inner { min-height: 680px }` with the
+   media covering it, and no aspect-ratio — one would fight the stretch and
+   blow the column out. */
+.wl-stl-luxury-v3 .wl-stl-split {
+    align-items: stretch;
+    min-height: 680px;
+}
+
+.wl-stl-luxury-v3 .wl-stl-image {
+    aspect-ratio: auto;
+    min-height: 680px;
+    max-height: 749px;
+    border-radius: 0;
+}
+
+.wl-stl-luxury-v3 .wl-stl-flag {
+    top: 24px;
+    left: 24px;
+    padding: 8px 16px;
+    background: var(--wl-stl-ivory);
+    color: var(--wl-stl-charcoal);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.wl-stl-luxury-v3 .wl-stl-caption {
+    bottom: 24px;
+    left: 24px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--wl-stl-ivory);
+    text-shadow: 0 1px 8px rgba(44, 42, 40, 0.55);
+}
+
+.wl-stl-luxury-v3 .wl-stl-pin-btn {
+    --wl-stl-pin-size: 13px;
+    background: var(--wl-stl-ivory);
+    border: 1px solid var(--wl-stl-gold-v3);
+}
+
+.wl-stl-luxury-v3 .wl-stl-pin-glyph {
+    display: none;
+}
+
+.wl-stl-luxury-v3 .wl-stl-pin.is-active .wl-stl-pin-btn,
+.wl-stl-luxury-v3 .wl-stl-pin.is-open .wl-stl-pin-btn {
+    background: var(--wl-stl-gold-v3);
+}
+
+.wl-stl-luxury-v3 .wl-stl-pin.is-dim {
+    opacity: 0.4;
+}
+
+.wl-stl-luxury-v3 .wl-stl-card {
+    width: 210px;
+    padding: 12px;
+    background: var(--wl-stl-ivory);
+    border-radius: 0;
+    box-shadow: 0 16px 44px rgba(44, 42, 40, 0.24);
+}
+
+.wl-stl-luxury-v3 .wl-stl-card .wl-stl-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--wl-stl-charcoal);
+}
+
+.wl-stl-luxury-v3 .wl-stl-card .wl-stl-price {
+    font-size: 13px;
+    color: var(--wl-stl-mocha);
+}
+
+.wl-stl-luxury-v3 .wl-stl-card .wl-stl-link {
+    display: block;
+    margin-top: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--wl-stl-charcoal);
+}
+
+/* ── Panel — dark, which is the pack's one change to this section ────────── */
+
+.wl-stl-luxury-v3 .wl-stl-panel {
+    padding: 64px 64px;
+    background: var(--wl-stl-charcoal);
+}
+
+.wl-stl-luxury-v3 .wl-stl-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--wl-stl-gold-v3);
+    margin-bottom: 20px;
+}
+
+.wl-stl-luxury-v3 .wl-stl-heading {
+    font-size: clamp(30px, 3.4vw, 48px);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--wl-stl-ivory);
+}
+
+.wl-stl-luxury-v3 .wl-stl-desc {
+    margin-top: 18px;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--wl-stl-taupe-v3);
+}
+
+.wl-stl-luxury-v3 .wl-stl-head {
+    margin-bottom: 30px;
+}
+
+.wl-stl-luxury-v3 .wl-stl-row {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(248, 245, 240, 0.14);
+    transition: opacity 200ms ease;
+}
+
+.wl-stl-luxury-v3 .wl-stl-row.is-dim {
+    opacity: 0.4;
+}
+
+.wl-stl-luxury-v3 .wl-stl-row-media .wl-stl-img {
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.wl-stl-luxury-v3 .wl-stl-row-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--wl-stl-ivory);
+    margin-bottom: 3px;
+}
+
+.wl-stl-luxury-v3 .wl-stl-meta {
+    font-size: 12px;
+    color: var(--wl-stl-taupe-v3);
+}
+
+.wl-stl-luxury-v3 .wl-stl-row .wl-stl-price {
+    font-size: 14px;
+    color: var(--wl-stl-ivory);
+}
+
+.wl-stl-luxury-v3 .wl-stl-cta {
+    margin-top: 32px;
+}
+
+.wl-stl-luxury-v3 .wl-stl-cta a {
+    width: auto;
+    display: inline-flex;
+    padding: 14px 32px;
+    border-color: var(--wl-stl-gold-v3);
+    background: transparent;
+    color: var(--wl-stl-gold-v3);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: background-color 220ms ease, color 220ms ease;
+}
+
+.wl-stl-luxury-v3 .wl-stl-cta a:hover {
+    background: var(--wl-stl-gold-v3);
+    color: var(--wl-stl-charcoal);
+}
+
+.wl-stl-luxury-v3 .wl-stl-switch {
+    margin-bottom: 22px;
+}
+
+.wl-stl-luxury-v3 .wl-stl-switch-btn {
+    border-color: rgba(44, 42, 40, 0.18);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--wl-stl-mocha);
+}
+
+.wl-stl-luxury-v3 .wl-stl-switch-btn.is-active {
+    background: var(--wl-stl-charcoal);
+    border-color: var(--wl-stl-charcoal);
+    color: var(--wl-stl-gold-v3);
+}
+
+@media (max-width: 767px) {
+    .wl-stl-luxury-v3 .wl-stl-panel {
+        padding: 36px 24px;
+    }
+
+    .wl-stl-luxury-v3 .wl-stl-split,
+    .wl-stl-luxury-v3 .wl-stl-image {
+        min-height: 0;
+        max-height: none;
+    }
+
+    .wl-stl-luxury-v3 .wl-stl-image {
+        aspect-ratio: 1 / 0.9;
+    }
+}
+
+/* Confirmed state — the label already says so; this is the colour that
+   goes with it. */
+[data-wl-pack] .wl-stl-luxury-v2 .wl-stl-bulk-btn.is-added {
+    background: #252B22;
+    color: var(--wl-stl-lime);
+}
+
+/* The section paints its own ground, so its padding is its own to answer for
+   on a narrow screen — 40px of side gutter is most of a phone. */
+@media (max-width: 767px) {
+    .wl-stl-luxury-v1 {
+        padding: 48px 20px;
+    }
+}

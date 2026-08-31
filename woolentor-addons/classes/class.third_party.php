@@ -28,6 +28,7 @@ class WooLentorThirdParty{
     function __construct(){
         $this->woocommerce_german_market();
         $this->theme_compatibility();
+        $this->woocommerce_paypal_payments();
     }
 
     /**
@@ -40,6 +41,42 @@ class WooLentorThirdParty{
             add_action( 'woolentor_universal_after_price', array( 'WGM_Template', 'woocommerce_de_price_with_tax_hint_loop' ) );
             add_action( 'woolentor_addon_after_price', array( 'WGM_Template', 'woocommerce_de_price_with_tax_hint_loop' ) );
         }
+    }
+
+    /**
+     * WooCommerce PayPal Payments
+     *
+     * By default the plugin renders its smart buttons on the
+     * "woocommerce_single_product_summary" hook, which never runs when a WooLentor
+     * single product template takes over the product page. The buttons are moved to
+     * "woocommerce_after_add_to_cart_form" instead, a hook the WL: Add To cart widget
+     * fires through woocommerce_template_single_add_to_cart(). PayPal registers its
+     * renderer on "wp" (priority 10), so the filter has to be added before that.
+     *
+     * @return void
+     */
+    public function woocommerce_paypal_payments(){
+        add_action( 'wp', [ $this, 'woocommerce_paypal_payments_button_position' ], 1 );
+    }
+
+    /**
+     * Move the PayPal Payments smart buttons inside the add to cart form
+     * when a WooLentor single product template is in use.
+     *
+     * @return void
+     */
+    public function woocommerce_paypal_payments_button_position(){
+        if( ! defined('PPCP_PAYPAL_BN_CODE') || ! function_exists('is_product') || ! is_product() || ! class_exists('Woolentor_Manage_WC_Template') ){
+            return;
+        }
+
+        if( false === Woolentor_Manage_WC_Template::has_template( 'singleproductpage', '_selectproduct_layout' ) ){
+            return;
+        }
+
+        add_filter( 'woocommerce_paypal_payments_single_product_renderer_hook', function(){
+            return 'woocommerce_after_add_to_cart_form';
+        } );
     }
 
     /**

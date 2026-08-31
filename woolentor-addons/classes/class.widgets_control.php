@@ -353,6 +353,21 @@ class Widgets_Control{
                     'title'    => esc_html__('Campaign Banner - 2026','woolentor'),
                     'is_pro'   => false,
                     'location' => ( $is_pro ? WOOLENTOR_ADDONS_PL_PATH_PRO : WOOLENTOR_ADDONS_PL_PATH ) . 'includes/addons/pack-widgets/elementor/campaign-banner/',
+                ],
+                'shop_by_category' => [
+                    'title'    => esc_html__('Shop by Category - 2026','woolentor'),
+                    'is_pro'   => false,
+                    'location' => ( $is_pro ? WOOLENTOR_ADDONS_PL_PATH_PRO : WOOLENTOR_ADDONS_PL_PATH ) . 'includes/addons/pack-widgets/elementor/shop-by-category/',
+                ],
+                'product_showcase' => [
+                    'title'    => esc_html__('Product Showcase - 2026','woolentor'),
+                    'is_pro'   => false,
+                    'location' => ( $is_pro ? WOOLENTOR_ADDONS_PL_PATH_PRO : WOOLENTOR_ADDONS_PL_PATH ) . 'includes/addons/pack-widgets/elementor/product-showcase/',
+                ],
+                'shop_the_look' => [
+                    'title'    => esc_html__('Shop the Look - 2026','woolentor'),
+                    'is_pro'   => false,
+                    'location' => ( $is_pro ? WOOLENTOR_ADDONS_PL_PATH_PRO : WOOLENTOR_ADDONS_PL_PATH ) . 'includes/addons/pack-widgets/elementor/shop-the-look/',
                 ]
 
             ],

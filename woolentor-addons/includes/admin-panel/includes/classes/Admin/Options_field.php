@@ -1148,6 +1148,7 @@ class Options_Field {
                     'name'   => esc_html__( 'Hero Banner - 2026', 'woolentor' ),
                     'type'    => 'element',
                     'default' => 'on',
+                    'documentation' => esc_url('https://woolentor.com/doc/how-to-use-hero-banner-widget-for-elementor/'),
                     'badge'   => [
                         'is_active' => true,
                         'type'      => 'new',
@@ -1194,6 +1195,42 @@ class Options_Field {
                 array(
                     'id'    => 'campaign_banner',
                     'name'   => esc_html__( 'Campaign Banner - 2026', 'woolentor' ),
+                    'type'    => 'element',
+                    'default' => 'on',
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
+
+                array(
+                    'id'    => 'shop_by_category',
+                    'name'   => esc_html__( 'Shop by Category - 2026', 'woolentor' ),
+                    'type'    => 'element',
+                    'default' => 'on',
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
+
+                array(
+                    'id'    => 'product_showcase',
+                    'name'   => esc_html__( 'Product Showcase - 2026', 'woolentor' ),
+                    'type'    => 'element',
+                    'default' => 'on',
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
+
+                array(
+                    'id'    => 'shop_the_look',
+                    'name'   => esc_html__( 'Shop the Look - 2026', 'woolentor' ),
                     'type'    => 'element',
                     'default' => 'on',
                     'badge'   => [

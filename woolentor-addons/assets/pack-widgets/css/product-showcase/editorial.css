@@ -1,0 +1,1155 @@
+/**
+ * Product Showcase — Editorial pack
+ *
+ * Skin only. Every layout mechanic the twelve variants share lives in
+ * pack-widgets-base.css; this file carries the editorial pack's palette, type
+ * and shape, and each variant's own arrangement on top of it.
+ *
+ * @package WooLentor
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — Square cards on cream, underlined tabs, split hover bar
+   Reference: editorial-style/v1/home-editorial.html:6109 — `.feat-grid`
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Clay on cream with a sand ground — this variant's own palette. */
+.wl-ps-editorial-v1 {
+    --wl-ps-ink: #111111;
+    --wl-ps-muted: #6F6A64;
+    --wl-ps-sand: #E7D8C5;
+    --wl-ps-warm-white: #FFFCF7;
+    --wl-ps-clay: #9A6B4F;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.wl-ps-editorial-v1 .wl-ps-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 48px;
+}
+
+.wl-ps-editorial-v1 .wl-ps-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--wl-ps-clay);
+}
+
+.wl-ps-editorial-v1 .wl-ps-eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1.5px;
+    flex-shrink: 0;
+    background: currentColor;
+}
+
+.wl-ps-editorial-v1 .wl-ps-headline {
+    margin: 0;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-editorial-v1 .wl-ps-headline em {
+    font-style: italic;
+    color: var(--wl-ps-clay);
+}
+
+/* ── Tab row — underlined text, no pills ─────────────────────────────────── */
+
+.wl-ps-editorial-v1 .wl-ps-tabs {
+    gap: 24px;
+}
+
+.wl-ps-editorial-v1 .wl-ps-tab {
+    position: relative;
+    padding: 4px 0;
+    font-family: var(--wl-pack-font-body);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--wl-ps-muted);
+    transition: color 0.22s ease;
+}
+
+.wl-ps-editorial-v1 .wl-ps-tab::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 0;
+    height: 1.5px;
+    background: var(--wl-ps-ink);
+    transition: width 0.22s ease;
+}
+
+.wl-ps-editorial-v1 .wl-ps-tab:hover,
+.wl-ps-editorial-v1 .wl-ps-tab.is-active {
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-editorial-v1 .wl-ps-tab.is-active::after {
+    width: 100%;
+}
+
+.wl-ps-editorial-v1 .wl-ps-tab-count {
+    font-size: 11px;
+    opacity: 0.65;
+}
+
+/* ── Grid ────────────────────────────────────────────────────────────────── */
+
+.wl-ps-editorial-v1 .wl-ps-grid {
+    --wl-ps-cols: 4;
+    gap: 24px;
+}
+
+.wl-ps-editorial-v1 .wl-ps-thumb {
+    margin-bottom: 14px;
+    border-radius: 4px;
+    background: var(--wl-ps-sand);
+}
+
+.wl-ps-editorial-v1 .wl-ps-media img {
+    transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wl-ps-editorial-v1 .wl-ps-card:hover .wl-ps-media img {
+    transform: scale(1.03);
+}
+
+/* ── Badges ──────────────────────────────────────────────────────────────── */
+
+.wl-ps-editorial-v1 .wl-ps-badges {
+    top: 12px;
+    left: 12px;
+    gap: 5px;
+}
+
+.wl-ps-editorial-v1 .wl-ps-badge {
+    padding: 4px 9px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--wl-ps-ink);
+}
+
+.wl-ps-editorial-v1 .wl-ps-badge--sale {
+    background: var(--wl-ps-clay);
+}
+
+/* ── Icon column — slides in from off the right edge ─────────────────────── */
+
+.wl-ps-editorial-v1 .wl-ps-iconcol {
+    top: 12px;
+    right: 12px;
+    gap: 8px;
+    opacity: 0;
+    transform: translateX(52px);
+    transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.22s ease;
+}
+
+.wl-ps-editorial-v1 .wl-ps-card:hover .wl-ps-iconcol {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.wl-ps-editorial-v1 .wl-ps-iconbtn {
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--wl-ps-sand);
+    border-radius: 50%;
+    color: var(--wl-ps-ink);
+    background: var(--wl-ps-warm-white);
+    transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+}
+
+.wl-ps-editorial-v1 .wl-ps-iconbtn:hover {
+    border-color: var(--wl-ps-clay);
+    background: var(--wl-ps-clay);
+    color: var(--wl-ps-warm-white);
+}
+
+/* ── Split hover bar — quick view | add to cart ──────────────────────────── */
+
+.wl-ps-editorial-v1 .wl-ps-actions {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    gap: 0;
+    transform: translateY(100%);
+    transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wl-ps-editorial-v1 .wl-ps-card:hover .wl-ps-actions {
+    transform: translateY(0);
+}
+
+/* The reference splits this bar in half because its quick-view side carries a label. Ours is the
+   icon alone — half a bar of empty space around one eye reads as a mistake, so it takes only the
+   width it needs and the cart button gets the rest. */
+.wl-ps-editorial-v1 .wl-ps-actions .wl-ps-qview {
+    flex: 0 0 auto;
+    width: 52px;
+    height: auto;
+    padding: 12px 6px;
+    border: none;
+    border-right: 1px solid rgba(42, 33, 28, 0.12);
+    border-radius: 0;
+    color: var(--wl-ps-ink);
+    background: rgba(255, 252, 247, 0.93);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: background 0.18s ease, color 0.18s ease;
+}
+
+.wl-ps-editorial-v1 .wl-ps-actions .wl-ps-qview:hover {
+    background: var(--wl-ps-warm-white);
+    color: var(--wl-ps-clay);
+}
+
+.wl-ps-editorial-v1 .wl-ps-cart-wrap {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.wl-ps-editorial-v1 .wl-ps-cart-wrap a.button {
+    width: 100%;
+    padding: 12px 6px;
+    border-radius: 0;
+    font-family: var(--wl-pack-font-body);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--wl-ps-warm-white);
+    background: var(--wl-ps-ink);
+    transition: background 0.18s ease;
+}
+
+.wl-ps-editorial-v1 .wl-ps-cart-wrap a.button:hover {
+    background: var(--wl-ps-clay);
+    color: var(--wl-ps-warm-white);
+}
+
+@media (hover: none) {
+    .wl-ps-editorial-v1 .wl-ps-actions {
+        transform: none;
+    }
+
+    .wl-ps-editorial-v1 .wl-ps-iconcol {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ── Card body ───────────────────────────────────────────────────────────── */
+
+/* The tagline stretches so every card's price row lands on the same line. */
+.wl-ps-editorial-v1 .wl-ps-card,
+.wl-ps-editorial-v1 .wl-ps-body {
+    height: auto;
+}
+
+.wl-ps-editorial-v1 .wl-ps-body {
+    flex: 1;
+}
+
+.wl-ps-editorial-v1 .wl-ps-brand {
+    margin-bottom: 7px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--wl-ps-clay);
+}
+
+.wl-ps-editorial-v1 .wl-ps-title {
+    margin-bottom: 5px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-editorial-v1 .wl-ps-tagline {
+    flex: 1;
+    margin-bottom: 14px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: 13.5px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--wl-ps-muted);
+}
+
+.wl-ps-editorial-v1 .wl-ps-foot {
+    margin-top: auto;
+}
+
+.wl-ps-editorial-v1 .wl-ps-price {
+    font-family: var(--wl-pack-font-body);
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-editorial-v1 .wl-ps-price del {
+    font-size: 13px;
+    font-weight: 400;
+    opacity: 1;
+    color: var(--wl-ps-muted);
+}
+
+.wl-ps-editorial-v1 .wl-ps-rating {
+    font-family: var(--wl-pack-font-body);
+    font-size: 12.5px;
+    line-height: 1;
+    color: var(--wl-ps-muted);
+}
+
+/* One clay star beside the average, as the reference prints it. */
+.wl-ps-editorial-v1 .wl-ps-rating svg {
+    color: var(--wl-ps-clay);
+}
+
+.wl-ps-editorial-v1 .wl-ps-rating svg ~ svg {
+    display: none;
+}
+
+/* ── View all — not in the reference, styled for when it is switched on ──── */
+
+.wl-ps-editorial-v1 .wl-ps-foot-row {
+    margin-top: 44px;
+    text-align: center;
+}
+
+.wl-ps-editorial-v1 .wl-ps-viewall {
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--wl-ps-ink);
+    font-family: var(--wl-pack-font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--wl-ps-ink);
+    transition: color 0.2s ease, border-color 0.2s ease, gap 0.2s ease;
+}
+
+.wl-ps-editorial-v1 .wl-ps-viewall:hover {
+    gap: 12px;
+    border-color: var(--wl-ps-clay);
+    color: var(--wl-ps-clay);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+    .wl-ps-editorial-v1 .wl-ps-grid {
+        --wl-ps-cols: 3;
+    }
+}
+
+@media (max-width: 860px) {
+    .wl-ps-editorial-v1 .wl-ps-grid {
+        --wl-ps-cols: 2;
+    }
+
+    .wl-ps-editorial-v1 .wl-ps-head {
+        gap: 24px;
+        margin-bottom: 30px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — Rounded 3:4 cards, glass icons, lifted action row
+   Reference: editorial-style/v2/homepage.html:4858 — `.products` / `.product`
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Sky blue on a cool paper with a Playfair headline — this variant's own palette. */
+.wl-ps-editorial-v2 {
+    --wl-ps-ink: #121A22;
+    --wl-ps-dark: #101820;
+    --wl-ps-muted: #5E6B75;
+    --wl-ps-faint: #9AA7AF;
+    --wl-ps-line: #D9E3E8;
+    --wl-ps-cool: #EAF2F5;
+    --wl-ps-primary: #3EA3D4;
+    --wl-ps-primary-deep: #237FAB;
+    --wl-ps-secondary: #F4B79A;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.wl-ps-editorial-v2 .wl-ps-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 28px;
+    margin-bottom: 48px;
+}
+
+.wl-ps-editorial-v2 .wl-ps-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--wl-ps-primary);
+}
+
+.wl-ps-editorial-v2 .wl-ps-eyebrow::before {
+    content: "";
+    width: 30px;
+    height: 1px;
+    flex-shrink: 0;
+    background: currentColor;
+}
+
+.wl-ps-editorial-v2 .wl-ps-headline {
+    margin: 0;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(34px, 4vw, 62px);
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-editorial-v2 .wl-ps-headline em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--wl-ps-primary);
+}
+
+/* ── Tab row — outlined squares ──────────────────────────────────────────── */
+
+.wl-ps-editorial-v2 .wl-ps-tabs {
+    gap: 8px;
+}
+
+.wl-ps-editorial-v2 .wl-ps-tab {
+    padding: 11px 20px;
+    border: 1px solid var(--wl-ps-line);
+    border-radius: 4px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--wl-ps-muted);
+    background: transparent;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.wl-ps-editorial-v2 .wl-ps-tab:hover {
+    border-color: var(--wl-ps-ink);
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-editorial-v2 .wl-ps-tab.is-active {
+    border-color: var(--wl-ps-dark);
+    background: var(--wl-ps-dark);
+    color: #fff;
+}
+
+.wl-ps-editorial-v2 .wl-ps-tab-count {
+    font-size: 10px;
+    opacity: 0.7;
+}
+
+/* ── Grid ────────────────────────────────────────────────────────────────── */
+
+.wl-ps-editorial-v2 .wl-ps-grid {
+    --wl-ps-cols: 4;
+    gap: 26px 24px;
+}
+
+.wl-ps-editorial-v2 .wl-ps-thumb {
+    border-radius: 10px;
+    background: var(--wl-ps-cool);
+}
+
+.wl-ps-editorial-v2 .wl-ps-media {
+    aspect-ratio: 3 / 4;
+}
+
+.wl-ps-editorial-v2 .wl-ps-media img {
+    transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wl-ps-editorial-v2 .wl-ps-card:hover .wl-ps-media img {
+    transform: scale(1.05);
+}
+
+/* ── Badges ──────────────────────────────────────────────────────────────── */
+
+.wl-ps-editorial-v2 .wl-ps-badges {
+    top: 12px;
+    left: 12px;
+    gap: 6px;
+}
+
+.wl-ps-editorial-v2 .wl-ps-badge {
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--wl-ps-dark);
+}
+
+.wl-ps-editorial-v2 .wl-ps-badge--hot {
+    background: var(--wl-ps-secondary);
+    color: var(--wl-ps-dark);
+}
+
+.wl-ps-editorial-v2 .wl-ps-badge--sale {
+    background: var(--wl-ps-primary);
+}
+
+/* ── Icon column — glass circles, always visible ─────────────────────────── */
+
+.wl-ps-editorial-v2 .wl-ps-iconcol {
+    top: 10px;
+    right: 10px;
+    gap: 8px;
+}
+
+.wl-ps-editorial-v2 .wl-ps-iconbtn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: var(--wl-ps-ink);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: transform 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.wl-ps-editorial-v2 .wl-ps-iconbtn:hover {
+    transform: scale(1.1);
+    color: var(--wl-ps-primary);
+}
+
+/* ── Action row — lifts from inside the bottom edge ──────────────────────── */
+
+.wl-ps-editorial-v2 .wl-ps-actions {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+                transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wl-ps-editorial-v2 .wl-ps-card:hover .wl-ps-actions {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.wl-ps-editorial-v2 .wl-ps-cart-wrap {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.wl-ps-editorial-v2 .wl-ps-cart-wrap a.button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--wl-ps-dark);
+    transition: background 0.2s ease;
+}
+
+.wl-ps-editorial-v2 .wl-ps-cart-wrap a.button:hover {
+    background: var(--wl-ps-primary);
+    color: #fff;
+}
+
+.wl-ps-editorial-v2 .wl-ps-actions .wl-ps-qview {
+    width: 44px;
+    height: auto;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 6px;
+    color: var(--wl-ps-ink);
+    background: #fff;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.wl-ps-editorial-v2 .wl-ps-actions .wl-ps-qview:hover {
+    background: var(--wl-ps-primary);
+    color: #fff;
+    transform: none;
+}
+
+@media (hover: none) {
+    .wl-ps-editorial-v2 .wl-ps-actions {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ── Card body ───────────────────────────────────────────────────────────── */
+
+.wl-ps-editorial-v2 .wl-ps-body {
+    padding-top: 15px;
+}
+
+/* Category and name on the left, price pushed to the right edge. */
+.wl-ps-editorial-v2 .wl-ps-info {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.wl-ps-editorial-v2 .wl-ps-info-main {
+    min-width: 0;
+}
+
+.wl-ps-editorial-v2 .wl-ps-brand {
+    display: block;
+    margin-bottom: 5px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--wl-ps-primary-deep);
+}
+
+.wl-ps-editorial-v2 .wl-ps-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-editorial-v2 .wl-ps-title a:hover {
+    color: var(--wl-ps-primary);
+}
+
+.wl-ps-editorial-v2 .wl-ps-price {
+    padding-top: 2px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.2;
+    white-space: nowrap;
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-editorial-v2 .wl-ps-price del {
+    margin-right: 6px;
+    font-weight: 500;
+    opacity: 1;
+    color: var(--wl-ps-faint);
+}
+
+.wl-ps-editorial-v2 .wl-ps-price ins {
+    color: var(--wl-ps-primary);
+}
+
+.wl-ps-editorial-v2 .wl-ps-swatches {
+    gap: 7px;
+    margin-top: 12px;
+}
+
+.wl-ps-editorial-v2 .wl-ps-swatch {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid #fff;
+    box-shadow: 0 0 0 1px var(--wl-ps-line);
+    transition: transform 0.15s ease;
+}
+
+.wl-ps-editorial-v2 .wl-ps-swatch:hover {
+    transform: scale(1.18);
+}
+
+.wl-ps-editorial-v2 .wl-ps-swatch-more {
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--wl-ps-muted);
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+
+.wl-ps-editorial-v2 .wl-ps-foot-row {
+    margin-top: 52px;
+    text-align: center;
+}
+
+.wl-ps-editorial-v2 .wl-ps-viewall {
+    padding: 16px 38px;
+    border: 1.5px solid var(--wl-ps-ink);
+    border-radius: 6px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--wl-ps-ink);
+    transition: background 0.22s ease, color 0.22s ease, gap 0.2s ease;
+}
+
+.wl-ps-editorial-v2 .wl-ps-viewall:hover {
+    gap: 16px;
+    background: var(--wl-ps-ink);
+    color: #fff;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+    .wl-ps-editorial-v2 .wl-ps-grid {
+        --wl-ps-cols: 3;
+    }
+}
+
+@media (max-width: 860px) {
+    .wl-ps-editorial-v2 .wl-ps-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .wl-ps-editorial-v2 .wl-ps-grid {
+        --wl-ps-cols: 2;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — Borderless 4:5 cards on paper, scrim + staggered pills
+   Reference: editorial-style/v3/homepage.html:4641 — `.products__grid`
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Clay brown on paper white with an olive label — this variant's own palette. */
+.wl-ps-editorial-v3 {
+    --wl-ps-ink: #1F1E1B;
+    --wl-ps-paper: #F7F3EC;
+    --wl-ps-clay: #A0603D;
+    --wl-ps-sand: #DDD1C1;
+    --wl-ps-olive: #6F735E;
+    --wl-ps-stone: #B8AA9A;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.wl-ps-editorial-v3 .wl-ps-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 56px;
+}
+
+.wl-ps-editorial-v3 .wl-ps-eyebrow {
+    display: block;
+    margin-bottom: 14px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--wl-ps-clay);
+}
+
+.wl-ps-editorial-v3 .wl-ps-headline {
+    margin: 0;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(34px, 4vw, 56px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-editorial-v3 .wl-ps-headline em {
+    font-style: italic;
+    color: var(--wl-ps-clay);
+}
+
+/* This variant's reference has no tab row, so TABS_VARIANTS does not offer the control here and
+   the markup comes back empty. The skin is written anyway: opening the gate is then a one-line
+   change rather than a design job. */
+.wl-ps-editorial-v3 .wl-ps-tabs {
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.wl-ps-editorial-v3 .wl-ps-tab {
+    padding: 8px 18px;
+    border: 1px solid var(--wl-ps-stone);
+    border-radius: 100px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wl-ps-olive);
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.wl-ps-editorial-v3 .wl-ps-tab:hover {
+    border-color: var(--wl-ps-clay);
+    color: var(--wl-ps-clay);
+}
+
+.wl-ps-editorial-v3 .wl-ps-tab.is-active {
+    border-color: var(--wl-ps-ink);
+    background: var(--wl-ps-ink);
+    color: var(--wl-ps-paper);
+}
+
+.wl-ps-editorial-v3 .wl-ps-tab-count {
+    font-size: 11px;
+    opacity: 0.7;
+}
+
+/* ── Grid ────────────────────────────────────────────────────────────────── */
+
+.wl-ps-editorial-v3 .wl-ps-grid {
+    --wl-ps-cols: 4;
+    gap: 32px;
+}
+
+.wl-ps-editorial-v3 .wl-ps-thumb {
+    margin-bottom: 20px;
+    background: var(--wl-ps-sand);
+}
+
+.wl-ps-editorial-v3 .wl-ps-media {
+    aspect-ratio: 4 / 5;
+}
+
+.wl-ps-editorial-v3 .wl-ps-media img {
+    transition: transform 0.7s ease;
+}
+
+.wl-ps-editorial-v3 .wl-ps-card:hover .wl-ps-media img {
+    transform: scale(1.06);
+}
+
+/* The scrim that darkens the image on hover. It is decoration, so it lives on the thumb's own
+   pseudo-element rather than in the markup — nothing in the card needs to know about it. */
+.wl-ps-editorial-v3 .wl-ps-thumb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(31, 30, 27, 0);
+    pointer-events: none;
+    transition: background 0.35s ease;
+}
+
+.wl-ps-editorial-v3 .wl-ps-card:hover .wl-ps-thumb::after {
+    background: rgba(31, 30, 27, 0.14);
+}
+
+/* ── Badges ──────────────────────────────────────────────────────────────── */
+
+.wl-ps-editorial-v3 .wl-ps-badges {
+    top: 14px;
+    left: 14px;
+    gap: 6px;
+    z-index: 2;
+}
+
+.wl-ps-editorial-v3 .wl-ps-badge {
+    padding: 5px 13px;
+    border-radius: 100px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wl-ps-paper);
+    background: var(--wl-ps-clay);
+}
+
+.wl-ps-editorial-v3 .wl-ps-badge--hot,
+.wl-ps-editorial-v3 .wl-ps-badge--new {
+    background: var(--wl-ps-ink);
+}
+
+/* ── Icon pills — stagger in from the right ──────────────────────────────── */
+
+.wl-ps-editorial-v3 .wl-ps-iconcol {
+    top: 12px;
+    right: 12px;
+    gap: 7px;
+    z-index: 3;
+}
+
+.wl-ps-editorial-v3 .wl-ps-iconbtn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    color: var(--wl-ps-ink);
+    background: rgba(247, 243, 236, 0.95);
+    box-shadow: 0 2px 8px rgba(31, 30, 27, 0.14);
+    opacity: 0;
+    transform: translateX(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, background 0.13s ease, color 0.13s ease;
+}
+
+.wl-ps-editorial-v3 .wl-ps-iconbtn:nth-child(2) { transition-delay: 55ms; }
+.wl-ps-editorial-v3 .wl-ps-iconbtn:nth-child(3) { transition-delay: 110ms; }
+
+.wl-ps-editorial-v3 .wl-ps-card:hover .wl-ps-iconbtn {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.wl-ps-editorial-v3 .wl-ps-iconbtn:hover {
+    background: var(--wl-ps-clay);
+    color: var(--wl-ps-paper);
+}
+
+/* ── Add to cart bar ─────────────────────────────────────────────────────── */
+
+.wl-ps-editorial-v3 .wl-ps-actions {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateY(100%);
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wl-ps-editorial-v3 .wl-ps-card:hover .wl-ps-actions {
+    transform: translateY(0);
+}
+
+.wl-ps-editorial-v3 .wl-ps-cart-wrap {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.wl-ps-editorial-v3 .wl-ps-cart-wrap a.button {
+    width: 100%;
+    padding: 14px 20px;
+    border-top: 1.5px solid var(--wl-ps-clay);
+    border-radius: 0;
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--wl-ps-clay);
+    background: rgba(247, 243, 236, 0.97);
+    transition: background 0.14s ease, color 0.14s ease;
+}
+
+.wl-ps-editorial-v3 .wl-ps-cart-wrap a.button:hover {
+    background: var(--wl-ps-clay);
+    color: var(--wl-ps-paper);
+}
+
+@media (hover: none) {
+    .wl-ps-editorial-v3 .wl-ps-actions {
+        transform: none;
+    }
+
+    .wl-ps-editorial-v3 .wl-ps-iconbtn {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ── Card body ───────────────────────────────────────────────────────────── */
+
+.wl-ps-editorial-v3 .wl-ps-brand {
+    display: block;
+    margin-bottom: 8px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--wl-ps-olive);
+}
+
+.wl-ps-editorial-v3 .wl-ps-title {
+    margin-bottom: 10px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.008em;
+    color: var(--wl-ps-ink);
+    transition: color 0.15s ease;
+}
+
+.wl-ps-editorial-v3 .wl-ps-card:hover .wl-ps-title a {
+    color: var(--wl-ps-clay);
+}
+
+.wl-ps-editorial-v3 .wl-ps-foot {
+    justify-content: flex-start;
+}
+
+.wl-ps-editorial-v3 .wl-ps-price {
+    font-family: var(--wl-pack-font-body);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--wl-ps-clay);
+}
+
+.wl-ps-editorial-v3 .wl-ps-price del {
+    font-size: 13px;
+    font-weight: 400;
+    opacity: 1;
+    color: var(--wl-ps-stone);
+}
+
+.wl-ps-editorial-v3 .wl-ps-price ins {
+    color: var(--wl-ps-clay);
+}
+
+.wl-ps-editorial-v3 .wl-ps-swatches {
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.wl-ps-editorial-v3 .wl-ps-swatch {
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid rgba(31, 30, 27, 0.12);
+    transition: transform 0.15s ease;
+}
+
+.wl-ps-editorial-v3 .wl-ps-swatch:hover {
+    transform: scale(1.18);
+}
+
+.wl-ps-editorial-v3 .wl-ps-swatch-more {
+    font-family: var(--wl-pack-font-body);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--wl-ps-olive);
+}
+
+/* ── View all — an underlined text link in the header ────────────────────── */
+
+.wl-ps-editorial-v3 .wl-ps-viewall {
+    flex-shrink: 0;
+    font-family: var(--wl-pack-font-body);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    color: var(--wl-ps-ink);
+    transition: color 0.15s ease;
+}
+
+.wl-ps-editorial-v3 .wl-ps-viewall:hover {
+    color: var(--wl-ps-clay);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+    .wl-ps-editorial-v3 .wl-ps-grid {
+        --wl-ps-cols: 3;
+        gap: 24px;
+    }
+}
+
+@media (max-width: 860px) {
+    .wl-ps-editorial-v3 .wl-ps-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        margin-bottom: 34px;
+    }
+
+    .wl-ps-editorial-v3 .wl-ps-grid {
+        --wl-ps-cols: 2;
+        gap: 20px;
+    }
+
+    .wl-ps-editorial-v3 .wl-ps-title {
+        font-size: 20px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Pagination — pack-wide
+   Ruled rather than boxed, matching the underlined tabs and the underlined
+   view-all link the editorial references use.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-wl-pack] .wl-ps-editorial .wl-ps-page {
+    border-radius: 0;
+    border-color: var(--wl-pack-border);
+    font-family: var(--wl-pack-font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wl-pack-text);
+}
+
+[data-wl-pack] .wl-ps-editorial .wl-ps-page:hover,
+[data-wl-pack] .wl-ps-editorial .wl-ps-page.current {
+    border-color: var(--wl-pack-primary);
+    background: var(--wl-pack-primary);
+    color: #fff;
+}
+
+[data-wl-pack] .wl-ps-editorial .wl-ps-loadmore.is-done:hover {
+    border-color: var(--wl-pack-border);
+    background: transparent;
+    color: var(--wl-pack-text);
+}

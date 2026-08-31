@@ -1,0 +1,805 @@
+/**
+ * Shop the Look — Magazine pack
+ *
+ * Skin only. Every layout mechanic the twelve variants share — the stage, the
+ * pin, the card, the flip — lives in pack-widgets-base.css; this file carries
+ * the magazine pack's palette, type and shape, and each variant's own
+ * arrangement on top of it.
+ *
+ * @package WooLentor
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — The Kit
+   Designed, not transcribed: magazine-style/v1/home-magazine.html has no
+   lookbook at all. Tokens and idioms come from that file's :root and from
+   `.section-bundles` / `.section-picks`.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-stl-magazine-v1 {
+    --wl-stl-news-black: #050505;
+    --wl-stl-ink: #0F1115;
+    --wl-stl-red: #EF233C;
+    --wl-stl-red-dark: #D31C33;
+    --wl-stl-cool-gray: #F2F4F7;
+    --wl-stl-line: #D9DEE7;
+    --wl-stl-muted: #667085;
+}
+
+/* ── Header — red kicker, condensed uppercase headline ───────────────────── */
+
+.wl-stl-magazine-v1 .wl-stl-head {
+    margin-bottom: 32px;
+}
+
+.wl-stl-magazine-v1 .wl-stl-eyebrow {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: var(--wl-stl-red);
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.wl-stl-magazine-v1 .wl-stl-heading {
+    font-size: clamp(30px, 4.2vw, 56px);
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--wl-stl-news-black);
+}
+
+.wl-stl-magazine-v1 .wl-stl-desc {
+    max-width: 620px;
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--wl-stl-muted);
+}
+
+/* ── Image and its corner flag ───────────────────────────────────────────── */
+
+.wl-stl-magazine-v1 .wl-stl-image {
+    border-radius: 12px;
+}
+
+.wl-stl-magazine-v1 .wl-stl-flag {
+    padding: 8px 16px;
+    border-radius: 12px 0 4px 0;
+    background: var(--wl-stl-red);
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* ── Pin — a square plus, not a circle. This pack has almost no round UI. ── */
+
+.wl-stl-magazine-v1 .wl-stl-pin-btn {
+    --wl-stl-pin-size: 26px;
+    border-radius: 4px;
+    background: #FFFFFF;
+    border: 1.5px solid var(--wl-stl-news-black);
+    color: var(--wl-stl-news-black);
+}
+
+.wl-stl-magazine-v1 .wl-stl-pin.is-open .wl-stl-pin-btn {
+    background: var(--wl-stl-red);
+    border-color: var(--wl-stl-red);
+    color: #FFFFFF;
+    box-shadow: 0 10px 28px rgba(239, 35, 60, 0.22);
+}
+
+/* ── Card — hard edges, a border rather than a heavy shadow ──────────────── */
+
+.wl-stl-magazine-v1 .wl-stl-card {
+    width: 300px;
+    padding: 12px;
+    background: #FFFFFF;
+    border: 1px solid var(--wl-stl-line);
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(15, 17, 21, 0.08);
+}
+
+.wl-stl-magazine-v1 .wl-stl-card-media {
+    width: 56px;
+}
+
+.wl-stl-magazine-v1 .wl-stl-card-media .wl-stl-img {
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.wl-stl-magazine-v1 .wl-stl-brand {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--wl-stl-muted);
+    margin-bottom: 3px;
+}
+
+.wl-stl-magazine-v1 .wl-stl-title {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.15;
+    text-transform: uppercase;
+    color: var(--wl-stl-news-black);
+    margin-bottom: 4px;
+}
+
+/* The spec line reads as a checked-off item, the way the bundle list does. */
+.wl-stl-magazine-v1 .wl-stl-meta {
+    position: relative;
+    padding-left: 16px;
+    font-size: 12px;
+    color: var(--wl-stl-muted);
+    margin-bottom: 6px;
+}
+
+.wl-stl-magazine-v1 .wl-stl-meta::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.42em;
+    width: 9px;
+    height: 5px;
+    border-left: 2px solid var(--wl-stl-red);
+    border-bottom: 2px solid var(--wl-stl-red);
+    transform: rotate(-45deg);
+}
+
+.wl-stl-magazine-v1 .wl-stl-price {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--wl-stl-news-black);
+    margin-bottom: 10px;
+}
+
+.wl-stl-magazine-v1 .wl-stl-price del {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--wl-stl-muted);
+    margin-right: 6px;
+}
+
+.wl-stl-magazine-v1 .wl-stl-price ins {
+    text-decoration: none;
+}
+
+.wl-stl-magazine-v1 .wl-stl-cart a {
+    padding: 10px 14px;
+    border-radius: 6px;
+    background: var(--wl-stl-red);
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: background-color 160ms ease;
+    line-height: 1;
+}
+
+.wl-stl-magazine-v1 .wl-stl-cart a:hover {
+    background: var(--wl-stl-red-dark);
+    color: #FFFFFF;
+}
+
+.wl-stl-magazine-v1 .wl-stl-cart a.loading {
+    opacity: 0.7;
+}
+
+.wl-stl-magazine-v1 .wl-stl-cart a.added {
+    background: #16A34A;
+}
+
+/* ── Footer strip — count, look price, and an outline link ───────────────── */
+
+.wl-stl-magazine-v1 .wl-stl-foot {
+    margin-top: 20px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    background: var(--wl-stl-cool-gray);
+}
+
+.wl-stl-magazine-v1 .wl-stl-count {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wl-stl-ink);
+}
+
+.wl-stl-magazine-v1 .wl-stl-total-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wl-stl-muted);
+}
+
+.wl-stl-magazine-v1 .wl-stl-total ins {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--wl-stl-news-black);
+}
+
+.wl-stl-magazine-v1 .wl-stl-total del {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--wl-stl-muted);
+    margin-right: 6px;
+}
+
+/* Outline, not filled — the filled red already belongs to the card's cart
+   button, and the footer must not read louder than the thing that sells. */
+.wl-stl-magazine-v1 .wl-stl-cta a {
+    padding: 11px 22px;
+    border-radius: 6px;
+    border-color: var(--wl-stl-news-black);
+    background: transparent;
+    color: var(--wl-stl-news-black);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background-color 160ms ease, color 160ms ease;
+}
+
+.wl-stl-magazine-v1 .wl-stl-cta a:hover {
+    background: var(--wl-stl-news-black);
+    color: #FFFFFF;
+}
+
+/* ── Switcher ────────────────────────────────────────────────────────────── */
+
+.wl-stl-magazine-v1 .wl-stl-switch {
+    margin-bottom: 20px;
+}
+
+.wl-stl-magazine-v1 .wl-stl-switch-btn {
+    border-radius: 6px;
+    border-color: var(--wl-stl-line);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--wl-stl-muted);
+}
+
+.wl-stl-magazine-v1 .wl-stl-switch-btn.is-active {
+    background: var(--wl-stl-news-black);
+    border-color: var(--wl-stl-news-black);
+    color: #FFFFFF;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — Editor-styled, tabs across the top
+   Reference: magazine-style/v2/homepage.html — `#shop-the-look`
+   A different pack from v1: coral and green on off-white, not signal red on
+   news black. Numbered look tabs, `+` hotspots, a card list beside the image.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-stl-magazine-v2 {
+    --wl-stl-coral: #D95846;
+    --wl-stl-coral-hover: #B94234;
+    --wl-stl-green: #5A9761;
+    --wl-stl-mag-dark: #151719;
+    --wl-stl-bg-light: #F8F8F4;
+    --wl-stl-surface: #FFFFFF;
+    --wl-stl-text: #111315;
+    --wl-stl-text-2: #555D63;
+    --wl-stl-text-muted: #8D969C;
+    --wl-stl-mag-border: #DDE2E5;
+
+    --wl-stl-split: 1fr 1fr;
+    --wl-stl-split-gap: 32px;
+    --wl-stl-item-gap: 12px;
+    --wl-stl-item-thumb: 80px;
+}
+
+/* ── Top bar — byline left, numbered tabs right ─────────────────────────── */
+
+.wl-stl-magazine-v2 .wl-stl-topbar {
+    margin-bottom: 28px;
+}
+
+.wl-stl-magazine-v2 .wl-stl-head {
+    margin-bottom: 0;
+}
+
+.wl-stl-magazine-v2 .wl-stl-eyebrow {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 3px;
+    background: var(--wl-stl-coral);
+    color: #FFFFFF;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.wl-stl-magazine-v2 .wl-stl-heading {
+    font-size: clamp(30px, 3.6vw, 46px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--wl-stl-text);
+}
+
+.wl-stl-magazine-v2 .wl-stl-desc {
+    max-width: 560px;
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--wl-stl-text-2);
+}
+
+/* This is the one pack that numbers its tabs. */
+.wl-stl-magazine-v2 .wl-stl-switch-num {
+    display: inline;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--wl-stl-coral);
+}
+
+.wl-stl-magazine-v2 .wl-stl-switch-btn {
+    gap: 8px;
+    padding: 9px 14px;
+    border-radius: 4px;
+    border-color: var(--wl-stl-mag-border);
+    background: var(--wl-stl-surface);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--wl-stl-text-2);
+}
+
+.wl-stl-magazine-v2 .wl-stl-switch-btn.is-active {
+    background: var(--wl-stl-mag-dark);
+    border-color: var(--wl-stl-mag-dark);
+    color: #FFFFFF;
+}
+
+.wl-stl-magazine-v2 .wl-stl-switch-btn.is-active .wl-stl-switch-num {
+    color: var(--wl-stl-coral);
+}
+
+/* ── Stage ───────────────────────────────────────────────────────────────── */
+
+.wl-stl-magazine-v2 .wl-stl-image {
+    border-radius: 8px;
+}
+
+.wl-stl-magazine-v2 .wl-stl-flag {
+    top: 16px;
+    left: 16px;
+    padding: 6px 12px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--wl-stl-text);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.wl-stl-magazine-v2 .wl-stl-pin-btn {
+    --wl-stl-pin-size: 30px;
+    background: var(--wl-stl-surface);
+    color: var(--wl-stl-text);
+    box-shadow: 0 3px 14px rgba(17, 19, 21, 0.22);
+}
+
+.wl-stl-magazine-v2 .wl-stl-pin.is-active .wl-stl-pin-btn,
+.wl-stl-magazine-v2 .wl-stl-pin.is-open .wl-stl-pin-btn {
+    background: var(--wl-stl-coral);
+    color: #FFFFFF;
+}
+
+.wl-stl-magazine-v2 .wl-stl-pin.is-dim {
+    opacity: 0.5;
+}
+
+/* The popover is a hover-weight thing here: an image, a name, a price. */
+.wl-stl-magazine-v2 .wl-stl-card {
+    width: 220px;
+    padding: 10px;
+    background: var(--wl-stl-surface);
+    border-radius: 8px;
+    box-shadow: 0 14px 40px rgba(17, 19, 21, 0.18);
+}
+
+.wl-stl-magazine-v2 .wl-stl-card .wl-stl-card-media {
+    width: 52px;
+}
+
+.wl-stl-magazine-v2 .wl-stl-card .wl-stl-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--wl-stl-text);
+}
+
+.wl-stl-magazine-v2 .wl-stl-card .wl-stl-price {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--wl-stl-coral);
+}
+
+/* ── Rows — cards, not hairlines ─────────────────────────────────────────── */
+
+.wl-stl-magazine-v2 .wl-stl-item {
+    padding: 12px;
+    border-radius: 8px;
+    background: var(--wl-stl-surface);
+    border: 1px solid var(--wl-stl-mag-border);
+    transition: transform 200ms ease, box-shadow 200ms ease, outline-color 200ms ease;
+    outline: 2px solid transparent;
+    outline-offset: -2px;
+}
+
+.wl-stl-magazine-v2 .wl-stl-item.is-active {
+    outline-color: var(--wl-stl-coral);
+    transform: translateX(4px);
+    box-shadow: 0 6px 18px rgba(17, 19, 21, 0.08);
+}
+
+.wl-stl-magazine-v2 .wl-stl-item-media .wl-stl-img {
+    aspect-ratio: 5 / 6;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.wl-stl-magazine-v2 .wl-stl-brand {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--wl-stl-green);
+    margin-bottom: 4px;
+}
+
+.wl-stl-magazine-v2 .wl-stl-item-name {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--wl-stl-text);
+    margin-bottom: 5px;
+}
+
+.wl-stl-magazine-v2 .wl-stl-item .wl-stl-price {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--wl-stl-text);
+}
+
+.wl-stl-magazine-v2 .wl-stl-item .wl-stl-price del {
+    font-weight: 500;
+    color: var(--wl-stl-text-muted);
+    margin-right: 5px;
+}
+
+.wl-stl-magazine-v2 .wl-stl-item .wl-stl-price ins {
+    text-decoration: none;
+}
+
+[data-wl-pack] .wl-stl-magazine-v2 .wl-stl-item a.wl-stl-cart-icon {
+    --wl-stl-icon-size: 36px;
+    border-radius: 4px;
+    background: var(--wl-stl-coral);
+    color: #FFFFFF;
+    transition: background-color 160ms ease;
+}
+
+[data-wl-pack] .wl-stl-magazine-v2 .wl-stl-item a.wl-stl-cart-icon:hover {
+    background: var(--wl-stl-coral-hover);
+    color: #FFFFFF;
+}
+
+.wl-stl-magazine-v2 .wl-stl-item .added_to_cart {
+    display: none;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+
+.wl-stl-magazine-v2 .wl-stl-foot {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    background: var(--wl-stl-bg-light);
+}
+
+.wl-stl-magazine-v2 .wl-stl-count {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--wl-stl-text-2);
+}
+
+.wl-stl-magazine-v2 .wl-stl-total {
+    margin-left: auto;
+}
+
+.wl-stl-magazine-v2 .wl-stl-total ins {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--wl-stl-text);
+}
+
+.wl-stl-magazine-v2 .wl-stl-total del {
+    font-size: 13px;
+    color: var(--wl-stl-text-muted);
+    margin-right: 6px;
+}
+
+.wl-stl-magazine-v2 .wl-stl-bulk {
+    margin-top: 12px;
+}
+
+.wl-stl-magazine-v2 .wl-stl-bulk-btn {
+    padding: 14px 22px;
+    border-radius: 6px;
+    background: var(--wl-stl-coral);
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background-color 160ms ease;
+}
+
+.wl-stl-magazine-v2 .wl-stl-bulk-btn:hover:not([disabled]) {
+    background: var(--wl-stl-coral-hover);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — The room study, in Magazine's third language
+   Designed, not transcribed: magazine-style/v3's `room-transform` is a
+   before/after slider, a different widget. Tokens from that file's :root and
+   the `.sec-head--row` idiom. Warm paper, Fraunces serif, terracotta, 2px
+   corners, and no shadows anywhere in this pack.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-stl-magazine-v3 {
+    --wl-stl-warm-paper: #F5F0E8;
+    --wl-stl-graphite: #242424;
+    --wl-stl-terracotta: #B86545;
+    --wl-stl-mushroom: #A79D92;
+    --wl-stl-soft-cream: #FFF9EF;
+
+    --wl-stl-split: 1.5fr 1fr;
+    --wl-stl-split-gap: 28px;
+    --wl-stl-row-gap: 0px;
+    --wl-stl-row-thumb: 64px;
+}
+
+.wl-stl-magazine-v3 {
+    background: var(--wl-stl-warm-paper);
+    padding: 110px 32px;
+}
+
+/* ── Header — terracotta label, serif heading ───────────────────────────── */
+
+.wl-stl-magazine-v3 .wl-stl-head {
+    margin-bottom: 36px;
+}
+
+.wl-stl-magazine-v3 .wl-stl-eyebrow {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 2px;
+    background: var(--wl-stl-terracotta);
+    color: var(--wl-stl-soft-cream);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.wl-stl-magazine-v3 .wl-stl-heading {
+    font-size: clamp(28px, 3.4vw, 46px);
+    font-weight: 500;
+    line-height: 1.12;
+    color: var(--wl-stl-graphite);
+}
+
+.wl-stl-magazine-v3 .wl-stl-desc {
+    max-width: 560px;
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--wl-stl-mushroom);
+}
+
+/* ── Image — 4:5, 2px corners, no shadow ─────────────────────────────────── */
+
+.wl-stl-magazine-v3 .wl-stl-image {
+    border-radius: 2px;
+    aspect-ratio: 4 / 5;
+}
+
+/* The plate is the grid item, so the caption's height is part of the row and a
+   short panel beside a tall picture still lines up. */
+.wl-stl-magazine-v3 .wl-stl-plate {
+    min-width: 0;
+}
+
+/* Top left, like the other two V3s. It used to sit bottom left, which put it
+   16px above the printed caption — two labels in one corner, each explaining
+   the same picture. */
+.wl-stl-magazine-v3 .wl-stl-flag {
+    top: 16px;
+    left: 16px;
+    padding: 7px 14px;
+    border-radius: 2px;
+    background: var(--wl-stl-soft-cream);
+    color: var(--wl-stl-graphite);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+.wl-stl-magazine-v3 .wl-stl-caption {
+    position: static;
+    display: block;
+    margin-top: 12px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wl-stl-mushroom);
+}
+
+/* ── Pins — the pack's plus, at V3's volume ──────────────────────────────── */
+
+.wl-stl-magazine-v3 .wl-stl-pin-btn {
+    --wl-stl-pin-size: 22px;
+    background: var(--wl-stl-terracotta);
+    border: 2px solid var(--wl-stl-soft-cream);
+    color: var(--wl-stl-soft-cream);
+    box-shadow: none;
+}
+
+.wl-stl-magazine-v3 .wl-stl-pin.is-active .wl-stl-pin-btn,
+.wl-stl-magazine-v3 .wl-stl-pin.is-open .wl-stl-pin-btn {
+    background: var(--wl-stl-graphite);
+}
+
+.wl-stl-magazine-v3 .wl-stl-pin.is-dim {
+    opacity: 0.45;
+}
+
+.wl-stl-magazine-v3 .wl-stl-card {
+    width: 190px;
+    padding: 10px;
+    background: var(--wl-stl-soft-cream);
+    border: 1px solid var(--wl-stl-mushroom);
+    border-radius: 2px;
+    box-shadow: none;
+}
+
+.wl-stl-magazine-v3 .wl-stl-card .wl-stl-card-media {
+    width: 44px;
+}
+
+.wl-stl-magazine-v3 .wl-stl-card .wl-stl-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--wl-stl-graphite);
+}
+
+.wl-stl-magazine-v3 .wl-stl-card .wl-stl-price {
+    font-size: 13px;
+    color: var(--wl-stl-terracotta);
+}
+
+/* ── Rows — hairlines, a serif terracotta numeral ────────────────────────── */
+
+.wl-stl-magazine-v3 .wl-stl-row {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(167, 157, 146, 0.4);
+    transition: opacity 200ms ease;
+}
+
+.wl-stl-magazine-v3 .wl-stl-row.is-dim {
+    opacity: 0.45;
+}
+
+.wl-stl-magazine-v3 .wl-stl-row-index {
+    flex: 0 0 auto;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--wl-stl-terracotta);
+}
+
+.wl-stl-magazine-v3 .wl-stl-row-media .wl-stl-img {
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.wl-stl-magazine-v3 .wl-stl-row-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--wl-stl-graphite);
+    margin-bottom: 3px;
+}
+
+.wl-stl-magazine-v3 .wl-stl-meta {
+    font-size: 12px;
+    color: var(--wl-stl-mushroom);
+}
+
+.wl-stl-magazine-v3 .wl-stl-row .wl-stl-price {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--wl-stl-graphite);
+}
+
+/* ── Bottom link — outline, full width ───────────────────────────────────── */
+
+.wl-stl-magazine-v3 .wl-stl-cta {
+    margin-top: 28px;
+}
+
+.wl-stl-magazine-v3 .wl-stl-cta a {
+    padding: 15px 24px;
+    border-radius: 2px;
+    border-color: var(--wl-stl-graphite);
+    background: transparent;
+    color: var(--wl-stl-graphite);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background-color 220ms ease, color 220ms ease;
+}
+
+.wl-stl-magazine-v3 .wl-stl-cta a:hover {
+    background: var(--wl-stl-graphite);
+    color: var(--wl-stl-warm-paper);
+}
+
+.wl-stl-magazine-v3 .wl-stl-switch {
+    margin-bottom: 22px;
+}
+
+.wl-stl-magazine-v3 .wl-stl-switch-btn {
+    border-radius: 2px;
+    border-color: rgba(167, 157, 146, 0.5);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--wl-stl-mushroom);
+}
+
+.wl-stl-magazine-v3 .wl-stl-switch-btn.is-active {
+    background: var(--wl-stl-graphite);
+    border-color: var(--wl-stl-graphite);
+    color: var(--wl-stl-warm-paper);
+}
+
+/* Confirmed states — the icon swaps to a check on its own; these are the
+   colours that go with it. */
+[data-wl-pack] .wl-stl-magazine-v2 .wl-stl-item a.wl-stl-cart-icon.added {
+    background: var(--wl-stl-green);
+}
+
+[data-wl-pack] .wl-stl-magazine-v2 .wl-stl-bulk-btn.is-added {
+    background: var(--wl-stl-green);
+}
+
+/* This pack's v3 paints its own warm ground, and 110px of vertical padding is
+   a screenful on a phone before anything has been shown. */
+@media (max-width: 767px) {
+    .wl-stl-magazine-v3 {
+        padding: 56px 20px;
+    }
+}

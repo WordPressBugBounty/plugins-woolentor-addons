@@ -1,0 +1,1135 @@
+/**
+ * Product Showcase — Luxury pack
+ *
+ * Skin only. Every layout mechanic the twelve variants share lives in
+ * pack-widgets-base.css; this file carries the luxury pack's palette, type and
+ * shape, and each variant's own arrangement on top of it.
+ *
+ * @package WooLentor
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — Carousel of bordered cream cards, gold accents, tag strip
+   Reference: luxury-style/v1/home-luxury.html:6691 — `.products-carousel`
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Gold on ivory with a carbon ink — this variant's own palette. */
+.wl-ps-luxury-v1 {
+    --wl-ps-slide-gap: 20px;
+    --wl-ps-ink: #171717;
+    --wl-ps-obsidian: #07080C;
+    --wl-ps-ivory: #F8F6F1;
+    --wl-ps-platinum: #E7E2D9;
+    --wl-ps-gold: #C9A86A;
+    --wl-ps-gold-hover: #B8966A;
+    --wl-ps-taupe: #8B8175;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.wl-ps-luxury-v1 .wl-ps-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 28px;
+    margin-bottom: 48px;
+}
+
+.wl-ps-luxury-v1 .wl-ps-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--wl-ps-gold);
+}
+
+.wl-ps-luxury-v1 .wl-ps-eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    flex-shrink: 0;
+    background: currentColor;
+}
+
+.wl-ps-luxury-v1 .wl-ps-headline {
+    margin: 0;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(32px, 3.6vw, 48px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-luxury-v1 .wl-ps-headline em {
+    font-style: normal;
+    color: var(--wl-ps-gold);
+}
+
+.wl-ps-luxury-v1 .wl-ps-viewall {
+    flex-shrink: 0;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--wl-ps-platinum);
+    font-family: var(--wl-pack-font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--wl-ps-taupe);
+    transition: color 0.22s ease, border-color 0.22s ease;
+}
+
+.wl-ps-luxury-v1 .wl-ps-viewall:hover {
+    border-color: var(--wl-ps-ink);
+    color: var(--wl-ps-ink);
+}
+
+/* ── Tab row ─────────────────────────────────────────────────────────────── */
+
+/* The reference for this variant is a plain rail with no tabs. Now that every variant can carry a
+   tab row, v1 needs a skin for one — hairline and letterspaced, the same restraint as its header,
+   and a gold rule under the open tab rather than v2's drawn-in underline. */
+.wl-ps-luxury-v1 .wl-ps-tabs {
+    gap: 28px;
+    margin-bottom: 34px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--wl-ps-platinum);
+}
+
+.wl-ps-luxury-v1 .wl-ps-tab {
+    padding: 0 0 12px;
+    margin-bottom: -13px;
+    border-bottom: 1px solid transparent;
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--wl-ps-taupe);
+    transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.wl-ps-luxury-v1 .wl-ps-tab:hover {
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-luxury-v1 .wl-ps-tab.is-active {
+    border-bottom-color: var(--wl-ps-gold);
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-luxury-v1 .wl-ps-tab-count {
+    font-size: 10px;
+    color: var(--wl-ps-taupe);
+}
+
+/* ── Carousel ────────────────────────────────────────────────────────────── */
+
+/* The arrows hang outside the track, as the reference does. The outer keeps room for them. */
+.wl-ps-luxury-v1 .wl-ps-grid {
+    --wl-ps-cols: 4;
+    gap: var(--wl-ps-slide-gap);
+}
+
+.wl-ps-luxury-v1 .wl-ps-card {
+    overflow: hidden;
+    border: 1px solid var(--wl-ps-platinum);
+    border-radius: 24px;
+    background: #FBF9F5;
+    transition: border-color 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wl-ps-luxury-v1 .wl-ps-card:hover {
+    border-color: rgba(201, 168, 106, 0.35);
+    box-shadow: 0 16px 56px rgba(0, 0, 0, 0.1);
+}
+
+.wl-ps-luxury-v1 .wl-ps-media {
+    background: var(--wl-ps-ivory);
+}
+
+/* ── Badges ──────────────────────────────────────────────────────────────── */
+
+.wl-ps-luxury-v1 .wl-ps-badges {
+    top: 14px;
+    left: 14px;
+    gap: 6px;
+}
+
+.wl-ps-luxury-v1 .wl-ps-badge {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--wl-ps-ink);
+}
+
+.wl-ps-luxury-v1 .wl-ps-badge--sale {
+    background: var(--wl-ps-gold);
+    color: var(--wl-ps-obsidian);
+}
+
+/* ── Icon column — drops in from above ───────────────────────────────────── */
+
+.wl-ps-luxury-v1 .wl-ps-iconcol {
+    top: 14px;
+    right: 14px;
+    z-index: 5;
+    gap: 8px;
+    opacity: 0;
+    transform: translateY(-12px);
+    transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.22s ease;
+}
+
+.wl-ps-luxury-v1 .wl-ps-card:hover .wl-ps-iconcol {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.wl-ps-luxury-v1 .wl-ps-iconbtn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--wl-ps-platinum);
+    border-radius: 50%;
+    color: var(--wl-ps-ink);
+    background: #fff;
+    transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+}
+
+.wl-ps-luxury-v1 .wl-ps-iconbtn:hover {
+    border-color: var(--wl-ps-gold);
+    background: var(--wl-ps-gold);
+    color: var(--wl-ps-obsidian);
+}
+
+/* ── Attribute strip ─────────────────────────────────────────────────────── */
+
+.wl-ps-luxury-v1 .wl-ps-tagstrip {
+    height: 36px;
+    background: rgba(7, 8, 12, 0.62);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.wl-ps-luxury-v1 .wl-ps-tag {
+    margin: 0 5px;
+    padding: 2px 9px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.88);
+    background: rgba(255, 255, 255, 0.11);
+}
+
+/* ── Hover scrim + actions ───────────────────────────────────────────────── */
+
+.wl-ps-luxury-v1 .wl-ps-actions {
+    inset: 0;
+    z-index: 4;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 14px 14px;
+    opacity: 0;
+    background: rgba(7, 8, 12, 0.42);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    transition: opacity 0.22s ease;
+}
+
+.wl-ps-luxury-v1 .wl-ps-card:hover .wl-ps-actions {
+    opacity: 1;
+}
+
+.wl-ps-luxury-v1 .wl-ps-actions .wl-ps-qview,
+.wl-ps-luxury-v1 .wl-ps-cart-wrap a.button {
+    height: 42px;
+    border-radius: 10px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    transform: translateY(8px);
+    transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.15s ease, color 0.15s ease;
+}
+
+.wl-ps-luxury-v1 .wl-ps-card:hover .wl-ps-actions .wl-ps-qview,
+.wl-ps-luxury-v1 .wl-ps-card:hover .wl-ps-cart-wrap a.button {
+    transform: translateY(0);
+}
+
+.wl-ps-luxury-v1 .wl-ps-actions .wl-ps-qview {
+    width: 52px;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--wl-ps-ink);
+    background: rgba(255, 255, 255, 0.92);
+}
+
+.wl-ps-luxury-v1 .wl-ps-actions .wl-ps-qview:hover {
+    background: #fff;
+}
+
+.wl-ps-luxury-v1 .wl-ps-cart-wrap {
+    flex: 0 1 140px;
+    min-width: 0;
+}
+
+.wl-ps-luxury-v1 .wl-ps-cart-wrap a.button {
+    width: 100%;
+    padding: 0 14px;
+    color: var(--wl-ps-obsidian);
+    background: var(--wl-ps-gold);
+}
+
+.wl-ps-luxury-v1 .wl-ps-cart-wrap a.button:hover {
+    background: var(--wl-ps-gold-hover);
+    color: var(--wl-ps-obsidian);
+}
+
+@media (hover: none) {
+    .wl-ps-luxury-v1 .wl-ps-actions {
+        opacity: 1;
+    }
+
+    .wl-ps-luxury-v1 .wl-ps-actions .wl-ps-qview,
+    .wl-ps-luxury-v1 .wl-ps-cart-wrap a.button {
+        transform: none;
+    }
+
+    .wl-ps-luxury-v1 .wl-ps-iconcol {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ── Card body ───────────────────────────────────────────────────────────── */
+
+.wl-ps-luxury-v1 .wl-ps-body {
+    padding: 22px;
+}
+
+.wl-ps-luxury-v1 .wl-ps-brand {
+    margin-bottom: 7px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--wl-ps-taupe);
+}
+
+.wl-ps-luxury-v1 .wl-ps-title {
+    margin-bottom: 8px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-luxury-v1 .wl-ps-title a:hover {
+    color: var(--wl-ps-gold-hover);
+}
+
+.wl-ps-luxury-v1 .wl-ps-rating {
+    margin-bottom: 14px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    line-height: 1;
+    color: var(--wl-ps-taupe);
+}
+
+/* This variant keeps the whole five-star row rather than a single star. */
+.wl-ps-luxury-v1 .wl-ps-rating svg {
+    width: 13px;
+    height: 13px;
+    color: var(--wl-ps-gold);
+}
+
+.wl-ps-luxury-v1 .wl-ps-rating-avg {
+    display: none;
+}
+
+.wl-ps-luxury-v1 .wl-ps-foot {
+    margin-bottom: 18px;
+    justify-content: flex-start;
+}
+
+.wl-ps-luxury-v1 .wl-ps-price {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-luxury-v1 .wl-ps-price del {
+    font-family: var(--wl-pack-font-body);
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 1;
+    color: var(--wl-ps-taupe);
+}
+
+.wl-ps-luxury-v1 .wl-ps-swatch {
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid #fff;
+    box-shadow: 0 0 0 1px var(--wl-ps-platinum);
+    transition: transform 0.15s ease;
+}
+
+.wl-ps-luxury-v1 .wl-ps-swatch:hover {
+    transform: scale(1.18);
+}
+
+.wl-ps-luxury-v1 .wl-ps-swatch-more {
+    margin-left: 2px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--wl-ps-taupe);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+    .wl-ps-luxury-v1 .wl-ps-slider-outer {
+        padding: 0;
+    }
+
+    .wl-ps-luxury-v1 .wl-ps-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        margin-bottom: 30px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — Frameless 3:4 cards, underline tabs, swatches above the name
+   Reference: luxury-style/v2/homepage.html:4552 — `.prod__grid` / `.pc`
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Deep olive on a pale olive ground with a lime accent — this variant's own palette. */
+.wl-ps-luxury-v2 {
+    --wl-ps-ink: #2A3024;
+    --wl-ps-soft: #5E6353;
+    --wl-ps-dark: #30382C;
+    --wl-ps-olive: #6B705E;
+    --wl-ps-lime: #E7EC78;
+    --wl-ps-surface: #EAEBE1;
+    --wl-ps-elevated: #FCFCF8;
+    --wl-ps-line: rgba(48, 56, 44, 0.24);
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.wl-ps-luxury-v2 .wl-ps-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: clamp(28px, 3vw, 44px);
+}
+
+.wl-ps-luxury-v2 .wl-ps-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.17em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--wl-ps-soft);
+}
+
+.wl-ps-luxury-v2 .wl-ps-eyebrow::before {
+    content: "";
+    width: 30px;
+    height: 1px;
+    flex-shrink: 0;
+    background: var(--wl-ps-dark);
+}
+
+.wl-ps-luxury-v2 .wl-ps-headline {
+    margin: 0;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(34px, 4.2vw, 60px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.022em;
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-luxury-v2 .wl-ps-headline em {
+    font-style: italic;
+    color: var(--wl-ps-olive);
+}
+
+/* ── Tab row — a rule that draws itself in ───────────────────────────────── */
+
+.wl-ps-luxury-v2 .wl-ps-tabs {
+    gap: 0;
+}
+
+.wl-ps-luxury-v2 .wl-ps-tab {
+    position: relative;
+    margin-right: 24px;
+    padding: 9px 0;
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wl-ps-soft);
+    transition: color 0.25s ease;
+}
+
+.wl-ps-luxury-v2 .wl-ps-tab:last-child {
+    margin-right: 0;
+}
+
+.wl-ps-luxury-v2 .wl-ps-tab::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--wl-ps-dark);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.wl-ps-luxury-v2 .wl-ps-tab:hover,
+.wl-ps-luxury-v2 .wl-ps-tab.is-active {
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-luxury-v2 .wl-ps-tab.is-active::after {
+    transform: scaleX(1);
+}
+
+.wl-ps-luxury-v2 .wl-ps-tab-count {
+    font-size: 11px;
+    opacity: 0.65;
+}
+
+/* ── Grid ────────────────────────────────────────────────────────────────── */
+
+.wl-ps-luxury-v2 .wl-ps-grid {
+    --wl-ps-cols: 4;
+    gap: clamp(16px, 1.8vw, 28px);
+}
+
+.wl-ps-luxury-v2 .wl-ps-thumb {
+    background: var(--wl-ps-surface);
+}
+
+.wl-ps-luxury-v2 .wl-ps-media {
+    aspect-ratio: 3 / 4;
+}
+
+.wl-ps-luxury-v2 .wl-ps-media img {
+    transition: transform 1.1s ease;
+}
+
+.wl-ps-luxury-v2 .wl-ps-card:hover .wl-ps-media img {
+    transform: scale(1.06);
+}
+
+/* ── Badges ──────────────────────────────────────────────────────────────── */
+
+.wl-ps-luxury-v2 .wl-ps-badges {
+    top: 12px;
+    left: 12px;
+    gap: 6px;
+}
+
+.wl-ps-luxury-v2 .wl-ps-badge {
+    padding: 5px 11px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--wl-ps-ink);
+    background: var(--wl-ps-elevated);
+}
+
+.wl-ps-luxury-v2 .wl-ps-badge--hot,
+.wl-ps-luxury-v2 .wl-ps-badge--new {
+    background: var(--wl-ps-dark);
+    color: var(--wl-ps-lime);
+}
+
+.wl-ps-luxury-v2 .wl-ps-badge--sale {
+    background: var(--wl-ps-olive);
+    color: var(--wl-ps-elevated);
+}
+
+/* ── Icon column — slides in from the right ──────────────────────────────── */
+
+.wl-ps-luxury-v2 .wl-ps-iconcol {
+    top: 12px;
+    right: 12px;
+    z-index: 4;
+    gap: 8px;
+}
+
+.wl-ps-luxury-v2 .wl-ps-iconbtn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    color: var(--wl-ps-ink);
+    background: rgba(252, 252, 248, 0.9);
+    box-shadow: 0 4px 14px -6px rgba(48, 56, 44, 0.4);
+    opacity: 0;
+    transform: translateX(12px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: opacity 0.35s ease, transform 0.35s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.wl-ps-luxury-v2 .wl-ps-card:hover .wl-ps-iconbtn {
+    opacity: 1;
+    transform: none;
+}
+
+.wl-ps-luxury-v2 .wl-ps-iconbtn:hover {
+    background: var(--wl-ps-dark);
+    color: var(--wl-ps-lime);
+}
+
+/* ── Add to bag bar ──────────────────────────────────────────────────────── */
+
+.wl-ps-luxury-v2 .wl-ps-actions {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.wl-ps-luxury-v2 .wl-ps-card:hover .wl-ps-actions {
+    opacity: 1;
+    transform: none;
+}
+
+.wl-ps-luxury-v2 .wl-ps-cart-wrap {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.wl-ps-luxury-v2 .wl-ps-cart-wrap a.button {
+    width: 100%;
+    padding: 13px;
+    border-radius: 0;
+    font-family: var(--wl-pack-font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: #F1F2EA;
+    background: var(--wl-ps-dark);
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.wl-ps-luxury-v2 .wl-ps-cart-wrap a.button:hover {
+    background: var(--wl-ps-lime);
+    color: var(--wl-ps-ink);
+}
+
+@media (hover: none) {
+
+    .wl-ps-luxury-v2 .wl-ps-actions,
+    .wl-ps-luxury-v2 .wl-ps-iconbtn {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ── Card body — swatches lead, as the reference reads colour first ──────── */
+
+.wl-ps-luxury-v2 .wl-ps-body {
+    gap: 8px;
+    padding-top: 16px;
+}
+
+.wl-ps-luxury-v2 .wl-ps-swatches {
+    gap: 7px;
+}
+
+.wl-ps-luxury-v2 .wl-ps-swatch {
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--wl-ps-line);
+    transition: box-shadow 0.2s ease;
+}
+
+.wl-ps-luxury-v2 .wl-ps-swatch:hover {
+    box-shadow: 0 0 0 2px var(--wl-ps-line);
+}
+
+.wl-ps-luxury-v2 .wl-ps-swatch-more {
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--wl-ps-soft);
+}
+
+.wl-ps-luxury-v2 .wl-ps-brand {
+    font-family: var(--wl-pack-font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--wl-ps-soft);
+}
+
+.wl-ps-luxury-v2 .wl-ps-title {
+    font-family: var(--wl-pack-font-body);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-luxury-v2 .wl-ps-title a:hover {
+    color: var(--wl-ps-olive);
+}
+
+.wl-ps-luxury-v2 .wl-ps-price {
+    font-family: var(--wl-pack-font-body);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-luxury-v2 .wl-ps-price del {
+    font-weight: 400;
+    opacity: 1;
+    color: var(--wl-ps-soft);
+}
+
+.wl-ps-luxury-v2 .wl-ps-rating {
+    font-family: var(--wl-pack-font-body);
+    font-size: 11px;
+    line-height: 1;
+    color: var(--wl-ps-olive);
+}
+
+/* One star beside the average, as the reference prints it. */
+.wl-ps-luxury-v2 .wl-ps-rating svg {
+    color: var(--wl-ps-olive);
+}
+
+.wl-ps-luxury-v2 .wl-ps-rating svg~svg,
+.wl-ps-luxury-v2 .wl-ps-rating-count {
+    display: none;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+
+.wl-ps-luxury-v2 .wl-ps-foot-row {
+    margin-top: clamp(40px, 4.5vw, 64px);
+    text-align: center;
+}
+
+.wl-ps-luxury-v2 .wl-ps-viewall {
+    gap: 11px;
+    padding: 16px 32px;
+    border: 1px solid var(--wl-ps-dark);
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #F1F2EA;
+    background: var(--wl-ps-dark);
+    transition: background 0.32s ease, color 0.32s ease, border-color 0.32s ease;
+}
+
+.wl-ps-luxury-v2 .wl-ps-viewall:hover {
+    border-color: var(--wl-ps-lime);
+    background: var(--wl-ps-lime);
+    color: var(--wl-ps-ink);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+    .wl-ps-luxury-v2 .wl-ps-grid {
+        --wl-ps-cols: 3;
+    }
+}
+
+@media (max-width: 860px) {
+    .wl-ps-luxury-v2 .wl-ps-grid {
+        --wl-ps-cols: 2;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — Frameless 4:5 cards, actions split across two corners
+   Reference: luxury-style/v3/homepage.html:4476 — `.arrivals-grid`
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Gold on ivory with a charcoal ink — this variant's own palette. */
+.wl-ps-luxury-v3 {
+    --wl-ps-ink: #2C2A28;
+    --wl-ps-mocha: #6E5B4B;
+    --wl-ps-gold: #C6A972;
+    --wl-ps-taupe: #B8A999;
+    --wl-ps-beige: #E7E7E7;
+    --wl-ps-ivory: #F8F5F0;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.wl-ps-luxury-v3 .wl-ps-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 60px;
+}
+
+.wl-ps-luxury-v3 .wl-ps-eyebrow {
+    display: inline-block;
+    margin-bottom: 12px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--wl-ps-gold);
+}
+
+.wl-ps-luxury-v3 .wl-ps-headline {
+    margin: 0;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(32px, 3.6vw, 48px);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.017em;
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-luxury-v3 .wl-ps-headline em {
+    font-style: italic;
+    color: var(--wl-ps-gold);
+}
+
+.wl-ps-luxury-v3 .wl-ps-viewall {
+    flex-shrink: 0;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--wl-ps-gold);
+    font-family: var(--wl-pack-font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--wl-ps-ink);
+    transition: color 0.15s ease;
+}
+
+.wl-ps-luxury-v3 .wl-ps-viewall:hover {
+    color: var(--wl-ps-mocha);
+}
+
+/* This variant's reference has no tab row, so TABS_VARIANTS does not offer the control here.
+   The skin is written anyway: opening the gate is then a one-line change. */
+.wl-ps-luxury-v3 .wl-ps-tabs {
+    gap: 22px;
+    margin-top: 22px;
+}
+
+.wl-ps-luxury-v3 .wl-ps-tab {
+    padding: 6px 0;
+    border-bottom: 1px solid transparent;
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wl-ps-taupe);
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.wl-ps-luxury-v3 .wl-ps-tab:hover,
+.wl-ps-luxury-v3 .wl-ps-tab.is-active {
+    border-color: var(--wl-ps-gold);
+    color: var(--wl-ps-ink);
+}
+
+/* ── Grid ────────────────────────────────────────────────────────────────── */
+
+.wl-ps-luxury-v3 .wl-ps-grid {
+    --wl-ps-cols: 4;
+    gap: 24px;
+}
+
+.wl-ps-luxury-v3 .wl-ps-thumb {
+    background: var(--wl-ps-beige);
+}
+
+.wl-ps-luxury-v3 .wl-ps-media {
+    aspect-ratio: 4 / 5;
+}
+
+.wl-ps-luxury-v3 .wl-ps-media img {
+    transition: transform 0.52s ease;
+}
+
+.wl-ps-luxury-v3 .wl-ps-card:hover .wl-ps-media img {
+    transform: scale(1.05);
+}
+
+/* ── Badges ──────────────────────────────────────────────────────────────── */
+
+.wl-ps-luxury-v3 .wl-ps-badges {
+    top: 14px;
+    left: 14px;
+    gap: 6px;
+}
+
+.wl-ps-luxury-v3 .wl-ps-badge {
+    padding: 5px 10px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--wl-ps-ink);
+    background: var(--wl-ps-gold);
+}
+
+.wl-ps-luxury-v3 .wl-ps-badge--sale {
+    background: var(--wl-ps-ink);
+    color: var(--wl-ps-ivory);
+}
+
+/* ── Top corner: quick view + compare ────────────────────────────────────── */
+
+.wl-ps-luxury-v3 .wl-ps-iconcol {
+    top: 12px;
+    right: 12px;
+    gap: 6px;
+    opacity: 0;
+    transform: translateX(8px);
+    pointer-events: none;
+    transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.wl-ps-luxury-v3 .wl-ps-card:hover .wl-ps-iconcol {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+.wl-ps-luxury-v3 .wl-ps-iconbtn {
+    width: 44px;
+    height: 44px;
+    border-radius: 0;
+    color: var(--wl-ps-ivory);
+    background: var(--wl-ps-ink);
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.wl-ps-luxury-v3 .wl-ps-iconbtn:hover {
+    background: var(--wl-ps-gold);
+    color: var(--wl-ps-ink);
+}
+
+/* ── Bottom bar: add to cart + wishlist ──────────────────────────────────── */
+
+.wl-ps-luxury-v3 .wl-ps-actions {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    gap: 6px;
+    padding: 12px;
+    transform: translateY(100%);
+    transition: transform 0.28s ease;
+}
+
+.wl-ps-luxury-v3 .wl-ps-card:hover .wl-ps-actions {
+    transform: translateY(0);
+}
+
+.wl-ps-luxury-v3 .wl-ps-cart-wrap {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.wl-ps-luxury-v3 .wl-ps-cart-wrap a.button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 0;
+    font-family: var(--wl-pack-font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    color: var(--wl-ps-ivory);
+    background: var(--wl-ps-ink);
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.wl-ps-luxury-v3 .wl-ps-cart-wrap a.button:hover {
+    background: var(--wl-ps-gold);
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-luxury-v3 .wl-ps-actions .wl-ps-wish {
+    width: 44px;
+    height: auto;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 0;
+    color: var(--wl-ps-ivory);
+    background: var(--wl-ps-ink);
+}
+
+.wl-ps-luxury-v3 .wl-ps-actions .wl-ps-wish:hover {
+    background: var(--wl-ps-gold);
+    color: var(--wl-ps-ink);
+}
+
+@media (hover: none) {
+    .wl-ps-luxury-v3 .wl-ps-actions {
+        transform: none;
+    }
+
+    .wl-ps-luxury-v3 .wl-ps-iconcol {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+    }
+}
+
+/* ── Card body ───────────────────────────────────────────────────────────── */
+
+.wl-ps-luxury-v3 .wl-ps-body {
+    padding-top: 16px;
+}
+
+.wl-ps-luxury-v3 .wl-ps-brand {
+    margin-bottom: 7px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--wl-ps-taupe);
+}
+
+.wl-ps-luxury-v3 .wl-ps-title {
+    margin-bottom: 8px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-luxury-v3 .wl-ps-title a:hover {
+    color: var(--wl-ps-mocha);
+}
+
+.wl-ps-luxury-v3 .wl-ps-foot {
+    justify-content: flex-start;
+}
+
+.wl-ps-luxury-v3 .wl-ps-price {
+    font-family: var(--wl-pack-font-body);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--wl-ps-ink);
+}
+
+.wl-ps-luxury-v3 .wl-ps-price del {
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 1;
+    color: var(--wl-ps-taupe);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 1100px) {
+    .wl-ps-luxury-v3 .wl-ps-grid {
+        --wl-ps-cols: 3;
+    }
+}
+
+@media (max-width: 860px) {
+    .wl-ps-luxury-v3 .wl-ps-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        margin-bottom: 34px;
+    }
+
+    .wl-ps-luxury-v3 .wl-ps-grid {
+        --wl-ps-cols: 2;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Pagination — pack-wide
+   Hairline and letterspaced, in the pack's restraint. v1 is the carousel and
+   never draws one; these rules are for v2 and v3.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-wl-pack] .wl-ps-luxury .wl-ps-page {
+    border-radius: 0;
+    border-color: var(--wl-pack-border);
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--wl-pack-text-muted);
+}
+
+[data-wl-pack] .wl-ps-luxury .wl-ps-page:hover,
+[data-wl-pack] .wl-ps-luxury .wl-ps-page.current {
+    border-color: var(--wl-pack-text);
+    background: transparent;
+    color: var(--wl-pack-text);
+}
+
+[data-wl-pack] .wl-ps-luxury .wl-ps-loadmore.is-done:hover {
+    border-color: var(--wl-pack-border);
+    color: var(--wl-pack-text-muted);
+}

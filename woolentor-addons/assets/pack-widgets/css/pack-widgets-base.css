@@ -44,9 +44,18 @@
     transform: translateY(-50%) scale(1.06);
 }
 
-[data-wl-pack] .wl-pack-nav-prev { left: 16px; }
-[data-wl-pack] .wl-pack-nav-next { right: 16px; }
-[data-wl-pack] .wl-pack-nav svg  { display: block; flex-shrink: 0; }
+[data-wl-pack] .wl-pack-nav-prev {
+    left: 16px;
+}
+
+[data-wl-pack] .wl-pack-nav-next {
+    right: 16px;
+}
+
+[data-wl-pack] .wl-pack-nav svg {
+    display: block;
+    flex-shrink: 0;
+}
 
 [data-wl-pack] .wl-pack-dots {
     position: absolute;
@@ -548,10 +557,7 @@
 [data-wl-pack] .wl-cb-cards-track:not(.slick-initialized) {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: calc(
-        (100% - (var(--wl-cb-cards-view, 3) - 1) * var(--wl-cb-cards-gap, 10px))
-        / var(--wl-cb-cards-view, 3)
-    );
+    grid-auto-columns: calc((100% - (var(--wl-cb-cards-view, 3) - 1) * var(--wl-cb-cards-gap, 10px)) / var(--wl-cb-cards-view, 3));
     gap: var(--wl-cb-cards-gap, 10px);
     overflow-x: auto;
     scrollbar-width: none;
@@ -645,7 +651,7 @@
 
 /* A trailing rule would wrap away with its own item; a leading one on `+ stat`
    is safe here because the row never reorders. */
-[data-wl-pack] .wl-cb-stat + .wl-cb-stat {
+[data-wl-pack] .wl-cb-stat+.wl-cb-stat {
     border-left: 1px solid currentColor;
 }
 
@@ -812,8 +818,13 @@
 }
 
 @keyframes wl-pack-marquee-scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
 }
 
 /* Stop the scroll and lay the single accessible copy out statically instead. */
@@ -846,43 +857,676 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   Common — Shop by Category structure
+   Layout mechanics shared by all 12 style-variant combinations of the Shop by
+   Category widget. Only structure lives here; every colour, font and border is
+   left to the per-pack stylesheet so packs stay swappable.
+
+   --wl-sbc-cols carries the column count. Each variant sets its own default in
+   its pack stylesheet; the Layout > Columns control overwrites it inline when
+   the user picks a value.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Several cards give a full-width element its own padding — magazine v1's caption bar is the
+   clearest case. Most themes set border-box globally and those layouts are built against it, but
+   a theme that does not leaves the padding added on top of 100%, and the caption then hangs off
+   the side of its own card. The widget states the box model it needs instead of inheriting it. */
+[data-wl-pack] .wl-sbc,
+[data-wl-pack] .wl-sbc *,
+[data-wl-pack] .wl-sbc *::before,
+[data-wl-pack] .wl-sbc *::after {
+    box-sizing: border-box;
+}
+
+[data-wl-pack] .wl-sbc-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--wl-sbc-cols, 4), minmax(0, 1fr));
+    gap: var(--wl-pack-space-gap);
+}
+
+[data-wl-pack] .wl-sbc-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+}
+
+[data-wl-pack] .wl-sbc-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+[data-wl-pack] .wl-sbc-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+[data-wl-pack] .wl-sbc-name,
+[data-wl-pack] .wl-sbc-count,
+[data-wl-pack] .wl-sbc-sub {
+    margin: 0;
+}
+
+[data-wl-pack] .wl-sbc-icon,
+[data-wl-pack] .wl-sbc-go {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+[data-wl-pack] .wl-sbc-icon svg,
+[data-wl-pack] .wl-sbc-go svg {
+    display: block;
+    flex-shrink: 0;
+}
+
+[data-wl-pack] .wl-sbc-viewall {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Common — Product Showcase structure
+   Layout mechanics shared by all 12 style-variant combinations of the Product
+   Showcase widget. Only structure lives here; every colour, font and border is
+   left to the per-pack stylesheet so packs stay swappable.
+
+   --wl-ps-cols carries the column count. Each variant sets its own default in
+   its pack stylesheet; the Layout > Columns control overwrites it inline when
+   the user picks a value.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* The card stacks full-width elements that carry their own padding. Most themes
+   set border-box globally and these layouts are built against it, but a theme
+   that does not would push those elements past the card edge. The widget states
+   the box model it needs rather than inheriting it. */
+[data-wl-pack] .wl-ps,
+[data-wl-pack] .wl-ps *,
+[data-wl-pack] .wl-ps *::before,
+[data-wl-pack] .wl-ps *::after {
+    box-sizing: border-box;
+}
+
+[data-wl-pack] .wl-ps-tabs {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+[data-wl-pack] .wl-ps-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+[data-wl-pack] .wl-ps-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--wl-ps-cols, 4), minmax(0, 1fr));
+    gap: var(--wl-pack-space-gap);
+}
+
+/* The loading state moved to the Product Kit's own stylesheet, keyed on the behaviour
+   attributes rather than this widget's class names — see assets/product-kit/css/product-section.css.
+   It has to be shared, because the script that sets it is shared. */
+
+/* Carousel variants. Slick measures the track, so the grid rules have to be off before it runs.
+   Each card sits in a .wl-ps-slide shell: Slick promotes the track's direct children as they are,
+   so the gap has to live on the shell — put on the card it would be painted over by the card's own
+   border and background. */
+/* Any variant can be a carousel now, so the room the arrows hang in is a default rather than
+   something each pack remembers to set. A pack that wants them tighter or wider overrides it —
+   luxury v1 does. */
+[data-wl-pack] .wl-ps-slider-outer {
+    position: relative;
+}
+
+@media (max-width: 767px) {
+    [data-wl-pack] .wl-ps-slider-outer {
+        padding: 0;
+    }
+}
+
+/* The shared dots are built for a hero: white, laid over the bottom of a photograph. A product
+   rail has no photograph to put them on, so they move below the track and take their colour from
+   the pack rather than assuming a dark ground. */
+[data-wl-pack] .wl-ps .wl-pack-dots {
+    position: static;
+    transform: none;
+    justify-content: center;
+    margin-top: 28px;
+}
+
+[data-wl-pack] .wl-ps .wl-pack-dots li button {
+    background: var(--wl-pack-border);
+}
+
+[data-wl-pack] .wl-ps .wl-pack-dots li.slick-active button {
+    background: var(--wl-pack-primary);
+}
+
+[data-wl-pack] .wl-ps-grid[data-wl-slider="true"] {
+    display: block;
+}
+
+[data-wl-pack] .wl-ps-grid[data-wl-slider="true"] .slick-track {
+    display: flex;
+}
+
+/* Slick promotes the track's direct children as they are, so the gap lives on the shell — put on
+   the card it would be painted over by the card's own border and background. The fallback follows
+   the pack's own gap, so a rail on any variant is spaced like that variant's grid. */
+[data-wl-pack] .wl-ps-grid.slick-initialized .wl-ps-slide {
+    height: auto;
+    padding: 0 calc(var(--wl-ps-slide-gap, var(--wl-pack-space-gap, 20px)) / 2);
+}
+
+/* The track's own outer edges are already inset by the wrapper, so the first and last slides do
+   not need their half-gap as well. */
+[data-wl-pack] .wl-ps-grid.slick-initialized .slick-list {
+    margin: 0 calc(var(--wl-ps-slide-gap, var(--wl-pack-space-gap, 20px)) / -2);
+}
+
+/* Cards fill their shell so a shorter one still lines up with its neighbours. */
+[data-wl-pack] .wl-ps-slide .wl-ps-card {
+    height: 100%;
+}
+
+/* The attribute strip along the foot of a card image — luxury v1. The track is printed twice and
+   shifted by exactly half its width, which is what makes the loop seamless. */
+[data-wl-pack] .wl-ps-tagstrip {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+[data-wl-pack] .wl-ps-tagtrack {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: wl-ps-tagscroll 22s linear infinite;
+    will-change: transform;
+}
+
+[data-wl-pack] .wl-ps-tag {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+@keyframes wl-ps-tagscroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-wl-pack] .wl-ps-tagtrack {
+        animation: none;
+    }
+}
+
+/* An empty tab's message is a grid child, so it has to be told to take the whole row. */
+[data-wl-pack] .wl-ps-empty {
+    grid-column: 1 / -1;
+    margin: 0;
+    text-align: center;
+    color: var(--wl-pack-text-muted);
+}
+
+[data-wl-pack] .wl-ps-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+/* The overlay parent. Badges, icon buttons and the action bar are siblings of
+   the image link rather than children of it — an anchor must not contain the
+   wishlist and compare buttons. */
+[data-wl-pack] .wl-ps-thumb {
+    position: relative;
+    overflow: hidden;
+}
+
+[data-wl-pack] .wl-ps-media-link {
+    display: block;
+    text-decoration: none;
+}
+
+[data-wl-pack] .wl-ps-media {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+[data-wl-pack] .wl-ps-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* The gallery image sits behind the main one and is revealed on hover. It is
+   only in the markup when the product actually has a gallery. */
+[data-wl-pack] .wl-ps-img-second {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+[data-wl-pack] .wl-ps-img-second img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+[data-wl-pack] .wl-ps-card:hover .wl-ps-img-second {
+    opacity: 1;
+}
+
+[data-wl-pack] .wl-ps-badges {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    pointer-events: none;
+}
+
+[data-wl-pack] .wl-ps-badge {
+    display: inline-block;
+    line-height: 1;
+}
+
+[data-wl-pack] .wl-ps-iconcol,
+[data-wl-pack] .wl-ps-wishcol {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Inside the action bar rather than over the image — modern v3 puts its three icon buttons in a
+   row beside Add to Cart, so this one is not positioned at all. */
+[data-wl-pack] .wl-ps-iconrow {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 5px;
+}
+
+[data-wl-pack] .wl-ps-iconbtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+[data-wl-pack] .wl-ps-iconbtn svg {
+    display: block;
+    flex-shrink: 0;
+    margin-right: 0;
+}
+
+/* Every icon button carries its label in the markup for the accessible name. Only a variant that
+   wants the words beside the glyph turns this back on — magazine v3 is the one that does. */
+[data-wl-pack] .wl-ps-btn-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+[data-wl-pack] .wl-ps-stock {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+}
+
+/* Wishlist and compare come from their own plugins, which bring their own
+   markup. Neutralising it here is what lets one skin cover both.
+   The button's own label is excluded: it is not third-party markup, and
+   `font-size: 0` would silently collapse the one variant that prints it. */
+[data-wl-pack] .wl-ps-iconbtn a,
+[data-wl-pack] .wl-ps-iconbtn button,
+[data-wl-pack] .wl-ps-iconbtn>div,
+[data-wl-pack] .wl-ps-iconbtn>span:not(.wl-ps-btn-label) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    font-size: 0;
+    line-height: 1;
+    text-decoration: none;
+}
+
+[data-wl-pack] .wl-ps-actions {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+[data-wl-pack] .wl-ps-cart-wrap {
+    display: inline-flex;
+    min-width: 0;
+}
+
+/* WooCommerce prints its own loop button. It is re-skinned, never replaced —
+   variable products still route to the product page and ajax add-to-cart still
+   works because this is the same element the rest of the store uses. */
+[data-wl-pack] .wl-ps-cart-wrap a.button,
+[data-wl-pack] .wl-ps-cart-wrap a.wl-ps-cart {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+[data-wl-pack] .wl-ps-cart-wrap svg {
+    flex-shrink: 0;
+}
+
+/* Added-to-cart's "View cart" follow-up link would break the bar's shape. */
+[data-wl-pack] .wl-ps-cart-wrap .added_to_cart {
+    display: none;
+}
+
+[data-wl-pack] .wl-ps-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+[data-wl-pack] .wl-ps-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    min-width: 0;
+}
+
+[data-wl-pack] .wl-ps-title,
+[data-wl-pack] .wl-ps-meta-line,
+[data-wl-pack] .wl-ps-tagline {
+    margin: 0;
+}
+
+[data-wl-pack] .wl-ps-title a {
+    text-decoration: none;
+    color: inherit;
+}
+
+[data-wl-pack] .wl-ps-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+[data-wl-pack] .wl-ps-rating svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+}
+
+[data-wl-pack] .wl-ps-rating .star.empty {
+    opacity: 0.28;
+}
+
+[data-wl-pack] .wl-ps-mid,
+[data-wl-pack] .wl-ps-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-width: 0;
+}
+
+[data-wl-pack] .wl-ps-price {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+[data-wl-pack] .wl-ps-price del {
+    text-decoration: line-through;
+}
+
+[data-wl-pack] .wl-ps-price ins {
+    text-decoration: none;
+}
+
+[data-wl-pack] .wl-ps-swatches {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+[data-wl-pack] .wl-ps-swatch {
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+[data-wl-pack] .wl-ps-viewall {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+/* Pagination ─────────────────────────────────────────────────────────────────
+   Structure only. The three types share one skin — .wl-ps-page — so a store that
+   switches from Numbers to Load More does not have to re-style the section, and one
+   set of Elementor colour controls reaches all of them. Each pack paints it. */
+[data-wl-pack] .wl-ps-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: var(--wl-pack-space-gap);
+}
+
+/* Keyed on .wl-ps-page rather than paginate_links()' own .page-numbers: the class is
+   put on the links, the spans and the Load More button alike, so one rule skins all
+   three types — and a pack's override needs only one extra class to beat it. */
+[data-wl-pack] .wl-ps-page {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid var(--wl-pack-border);
+    border-radius: var(--wl-pack-radius-sm, 4px);
+    color: var(--wl-pack-text);
+    background: transparent;
+    text-decoration: none;
+    line-height: 1;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+/* paginate_links() wraps its links in a <ul>. It is unwrapped here rather than styled
+   as a list, because a theme's list rules would otherwise put bullets and indents in
+   the middle of a pager. */
+[data-wl-pack] .wl-ps-pagination ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+[data-wl-pack] .wl-ps-pagination li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+[data-wl-pack] .wl-ps-pagination .page-numbers.dots {
+    border-color: transparent;
+}
+
+/* One arrow glyph serves both ends of the pager; the previous link turns it around. */
+[data-wl-pack] .wl-ps-page.prev svg {
+    transform: rotate(180deg);
+}
+
+[data-wl-pack] .wl-ps-loadmore {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 32px;
+    border: 1px solid var(--wl-pack-border);
+    border-radius: var(--wl-pack-radius-sm, 4px);
+    background: transparent;
+    color: var(--wl-pack-text);
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+/* The finished button stays on screen saying so — a control that vanishes reads as a
+   page that broke — but it stops looking like something to press. */
+[data-wl-pack] .wl-ps-loadmore.is-done {
+    opacity: 0.55;
+    cursor: default;
+}
+
+[data-wl-pack] .wl-ps-infinite {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 44px;
+}
+
+[data-wl-pack] .wl-ps-spinner {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--wl-pack-border);
+    border-top-color: var(--wl-pack-primary);
+    border-radius: 50%;
+    animation: wl-ps-spin 0.7s linear infinite;
+}
+
+@keyframes wl-ps-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-wl-pack] .wl-ps-spinner {
+        animation-duration: 2.4s;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
    Modern — Clean white base · Electric blue accent · Sora + Inter
    ═══════════════════════════════════════════════════════════════════════════ */
 [data-wl-pack="modern"] {
     /* Colors */
-    --wl-pack-primary:        #2563EB;
-    --wl-pack-secondary:      #080A0F;
-    --wl-pack-accent:         #22D3EE;
-    --wl-pack-bg:             #FFFFFF;
-    --wl-pack-bg-alt:         #F5F7FA;
-    --wl-pack-text:           #080A0F;
-    --wl-pack-text-muted:     #6B7280;
-    --wl-pack-border:         #E5E7EB;
+    --wl-pack-primary: #2563EB;
+    --wl-pack-secondary: #080A0F;
+    --wl-pack-accent: #22D3EE;
+    --wl-pack-bg: #FFFFFF;
+    --wl-pack-bg-alt: #F5F7FA;
+    --wl-pack-text: #080A0F;
+    --wl-pack-text-muted: #6B7280;
+    --wl-pack-border: #E5E7EB;
 
     /* Typography */
-    --wl-pack-font-heading:   'Sora', sans-serif;
-    --wl-pack-font-body:      'Inter', sans-serif;
-    --wl-pack-text-xs:        11px;
-    --wl-pack-text-sm:        13px;
-    --wl-pack-text-base:      16px;
-    --wl-pack-text-lg:        18px;
-    --wl-pack-text-xl:        24px;
-    --wl-pack-text-2xl:       36px;
-    --wl-pack-text-hero:      68px;
+    --wl-pack-font-heading: 'Sora', sans-serif;
+    --wl-pack-font-body: 'Inter', sans-serif;
+    --wl-pack-text-xs: 11px;
+    --wl-pack-text-sm: 13px;
+    --wl-pack-text-base: 16px;
+    --wl-pack-text-lg: 18px;
+    --wl-pack-text-xl: 24px;
+    --wl-pack-text-2xl: 36px;
+    --wl-pack-text-hero: 68px;
 
     /* Spacing */
-    --wl-pack-space-section:  96px;
-    --wl-pack-space-gap:      24px;
+    --wl-pack-space-section: 96px;
+    --wl-pack-space-gap: 24px;
 
     /* Shape */
-    --wl-pack-radius:         10px;
-    --wl-pack-radius-card:    20px;
+    --wl-pack-radius: 10px;
+    --wl-pack-radius-card: 20px;
 
     /* Buttons */
-    --wl-pack-btn-bg:         #2563EB;
-    --wl-pack-btn-text:       #FFFFFF;
-    --wl-pack-btn-radius:     14px;
-    --wl-pack-btn-border:     transparent;
+    --wl-pack-btn-bg: #2563EB;
+    --wl-pack-btn-text: #FFFFFF;
+    --wl-pack-btn-radius: 14px;
+    --wl-pack-btn-border: transparent;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -890,39 +1534,39 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 [data-wl-pack="luxury"] {
     /* Colors */
-    --wl-pack-primary:        #C9A86A;
-    --wl-pack-secondary:      #07080C;
-    --wl-pack-accent:         #B8966A;
-    --wl-pack-bg:             #F8F6F1;
-    --wl-pack-bg-alt:         #07080C;
-    --wl-pack-text:           #171717;
-    --wl-pack-text-muted:     #8B8175;
-    --wl-pack-border:         #E7E2D9;
+    --wl-pack-primary: #C9A86A;
+    --wl-pack-secondary: #07080C;
+    --wl-pack-accent: #B8966A;
+    --wl-pack-bg: #F8F6F1;
+    --wl-pack-bg-alt: #07080C;
+    --wl-pack-text: #171717;
+    --wl-pack-text-muted: #8B8175;
+    --wl-pack-border: #E7E2D9;
 
     /* Typography */
-    --wl-pack-font-heading:   'Sora', sans-serif;
-    --wl-pack-font-body:      'Inter', sans-serif;
-    --wl-pack-text-xs:        11px;
-    --wl-pack-text-sm:        13px;
-    --wl-pack-text-base:      16px;
-    --wl-pack-text-lg:        18px;
-    --wl-pack-text-xl:        24px;
-    --wl-pack-text-2xl:       36px;
-    --wl-pack-text-hero:      72px;
+    --wl-pack-font-heading: 'Sora', sans-serif;
+    --wl-pack-font-body: 'Inter', sans-serif;
+    --wl-pack-text-xs: 11px;
+    --wl-pack-text-sm: 13px;
+    --wl-pack-text-base: 16px;
+    --wl-pack-text-lg: 18px;
+    --wl-pack-text-xl: 24px;
+    --wl-pack-text-2xl: 36px;
+    --wl-pack-text-hero: 72px;
 
     /* Spacing */
-    --wl-pack-space-section:  120px;
-    --wl-pack-space-gap:      32px;
+    --wl-pack-space-section: 120px;
+    --wl-pack-space-gap: 32px;
 
     /* Shape */
-    --wl-pack-radius:         16px;
-    --wl-pack-radius-card:    24px;
+    --wl-pack-radius: 16px;
+    --wl-pack-radius-card: 24px;
 
     /* Buttons */
-    --wl-pack-btn-bg:         #07080C;
-    --wl-pack-btn-text:       #FFFFFF;
-    --wl-pack-btn-radius:     999px;
-    --wl-pack-btn-border:     transparent;
+    --wl-pack-btn-bg: #07080C;
+    --wl-pack-btn-text: #FFFFFF;
+    --wl-pack-btn-radius: 999px;
+    --wl-pack-btn-border: transparent;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -930,39 +1574,39 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 [data-wl-pack="editorial"] {
     /* Colors */
-    --wl-pack-primary:        #9A6B4F;
-    --wl-pack-secondary:      #111111;
-    --wl-pack-accent:         #7A523B;
-    --wl-pack-bg:             #F7F2EA;
-    --wl-pack-bg-alt:         #FFFCF7;
-    --wl-pack-text:           #111111;
-    --wl-pack-text-muted:     #6F6A64;
-    --wl-pack-border:         #E7D8C5;
+    --wl-pack-primary: #9A6B4F;
+    --wl-pack-secondary: #111111;
+    --wl-pack-accent: #7A523B;
+    --wl-pack-bg: #F7F2EA;
+    --wl-pack-bg-alt: #FFFCF7;
+    --wl-pack-text: #111111;
+    --wl-pack-text-muted: #6F6A64;
+    --wl-pack-border: #E7D8C5;
 
     /* Typography */
-    --wl-pack-font-heading:   'Newsreader', 'Times New Roman', Georgia, serif;
-    --wl-pack-font-body:      'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --wl-pack-text-xs:        11px;
-    --wl-pack-text-sm:        13px;
-    --wl-pack-text-base:      16px;
-    --wl-pack-text-lg:        18px;
-    --wl-pack-text-xl:        24px;
-    --wl-pack-text-2xl:       40px;
-    --wl-pack-text-hero:      80px;
+    --wl-pack-font-heading: 'Newsreader', 'Times New Roman', Georgia, serif;
+    --wl-pack-font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --wl-pack-text-xs: 11px;
+    --wl-pack-text-sm: 13px;
+    --wl-pack-text-base: 16px;
+    --wl-pack-text-lg: 18px;
+    --wl-pack-text-xl: 24px;
+    --wl-pack-text-2xl: 40px;
+    --wl-pack-text-hero: 80px;
 
     /* Spacing */
-    --wl-pack-space-section:  100px;
-    --wl-pack-space-gap:      24px;
+    --wl-pack-space-section: 100px;
+    --wl-pack-space-gap: 24px;
 
     /* Shape */
-    --wl-pack-radius:         4px;
-    --wl-pack-radius-card:    6px;
+    --wl-pack-radius: 4px;
+    --wl-pack-radius-card: 6px;
 
     /* Buttons */
-    --wl-pack-btn-bg:         #111111;
-    --wl-pack-btn-text:       #FFFFFF;
-    --wl-pack-btn-radius:     4px;
-    --wl-pack-btn-border:     transparent;
+    --wl-pack-btn-bg: #111111;
+    --wl-pack-btn-text: #FFFFFF;
+    --wl-pack-btn-radius: 4px;
+    --wl-pack-btn-border: transparent;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -970,37 +1614,678 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 [data-wl-pack="magazine"] {
     /* Colors */
-    --wl-pack-primary:        #EF233C;
-    --wl-pack-secondary:      #0F1115;
-    --wl-pack-accent:         #FFD60A;
-    --wl-pack-bg:             #FFFFFF;
-    --wl-pack-bg-alt:         #F8F9FB;
-    --wl-pack-text:           #050505;
-    --wl-pack-text-muted:     #667085;
-    --wl-pack-border:         #D9DEE7;
+    --wl-pack-primary: #EF233C;
+    --wl-pack-secondary: #0F1115;
+    --wl-pack-accent: #FFD60A;
+    --wl-pack-bg: #FFFFFF;
+    --wl-pack-bg-alt: #F8F9FB;
+    --wl-pack-text: #050505;
+    --wl-pack-text-muted: #667085;
+    --wl-pack-border: #D9DEE7;
 
     /* Typography */
-    --wl-pack-font-heading:   'Barlow Condensed', 'Arial Narrow', sans-serif;
-    --wl-pack-font-body:      'Inter', 'Helvetica Neue', Arial, sans-serif;
-    --wl-pack-text-xs:        11px;
-    --wl-pack-text-sm:        13px;
-    --wl-pack-text-base:      16px;
-    --wl-pack-text-lg:        18px;
-    --wl-pack-text-xl:        24px;
-    --wl-pack-text-2xl:       36px;
-    --wl-pack-text-hero:      80px;
+    --wl-pack-font-heading: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    --wl-pack-font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    --wl-pack-text-xs: 11px;
+    --wl-pack-text-sm: 13px;
+    --wl-pack-text-base: 16px;
+    --wl-pack-text-lg: 18px;
+    --wl-pack-text-xl: 24px;
+    --wl-pack-text-2xl: 36px;
+    --wl-pack-text-hero: 80px;
 
     /* Spacing */
-    --wl-pack-space-section:  80px;
-    --wl-pack-space-gap:      20px;
+    --wl-pack-space-section: 80px;
+    --wl-pack-space-gap: 20px;
 
     /* Shape */
-    --wl-pack-radius:         8px;
-    --wl-pack-radius-card:    12px;
+    --wl-pack-radius: 8px;
+    --wl-pack-radius-card: 12px;
 
     /* Buttons */
-    --wl-pack-btn-bg:         #EF233C;
-    --wl-pack-btn-text:       #FFFFFF;
-    --wl-pack-btn-radius:     6px;
-    --wl-pack-btn-border:     transparent;
+    --wl-pack-btn-bg: #EF233C;
+    --wl-pack-btn-text: #FFFFFF;
+    --wl-pack-btn-radius: 6px;
+    --wl-pack-btn-border: transparent;
+}
+/* ═══════════════════════════════════════════════════════════════════════════
+   Shop the Look — pin, card and stage structure
+   Mechanics only. Every pack skins these; none of them re-implements them.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-wl-pack] .wl-stl-stage {
+    position: relative;
+}
+
+/* Looks are all rendered and hidden rather than fetched, so switching one is a
+   class change and never a request. */
+[data-wl-pack] .wl-stl-look {
+    display: none;
+}
+
+[data-wl-pack] .wl-stl-look.is-active {
+    display: block;
+}
+
+/* The pin coordinates are percentages of this box, so it has to be the
+   positioning context and it has to have a height before the photo decodes —
+   otherwise every pin lands at the top on first paint. */
+/* Deliberately NOT `overflow: hidden`. The pins live in this box, and so do
+   their cards — clipping here cuts a card off at the edge of the photograph
+   instead of letting it hang over the section, which is exactly what a card
+   near an edge has to do. The photo is clipped on itself instead. */
+[data-wl-pack] .wl-stl-image {
+    position: relative;
+    aspect-ratio: 1 / var(--wl-stl-ratio, 0.66);
+}
+
+[data-wl-pack] .wl-stl-photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+/* ── Pin ──────────────────────────────────────────────────────────────────── */
+
+/* left/top come from the repeater's own X and Y sliders through
+   {{CURRENT_ITEM}}; the translate is what makes those coordinates name the
+   centre of the pin rather than its top-left corner. */
+[data-wl-pack] .wl-stl-pin {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+[data-wl-pack] .wl-stl-pin.is-open {
+    z-index: 4;
+}
+
+[data-wl-pack] .wl-stl-pin-btn {
+    --wl-stl-pin-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--wl-stl-pin-size);
+    height: var(--wl-stl-pin-size);
+    padding: 0;
+    border: 1.5px solid transparent;
+    background: #FFFFFF;
+    color: #111111;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 200ms ease, color 200ms ease, transform 200ms ease;
+}
+
+[data-wl-pack] .wl-stl-pin-btn:hover {
+    transform: scale(1.08);
+}
+
+/* A visible focus ring is not optional here: the pin is a button holding
+   another button, and it is the only way in from the keyboard. */
+[data-wl-pack] .wl-stl-pin-btn:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+/* The default glyph is a plus, drawn rather than typed so it needs no icon font
+   and stays centred at any pin size. Packs that use a dot hide the bars. */
+[data-wl-pack] .wl-stl-pin-glyph {
+    position: relative;
+    width: 44%;
+    height: 44%;
+}
+
+[data-wl-pack] .wl-stl-pin-glyph::before,
+[data-wl-pack] .wl-stl-pin-glyph::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: currentColor;
+    transform: translate(-50%, -50%);
+    transition: transform 200ms ease;
+}
+
+[data-wl-pack] .wl-stl-pin-glyph::before {
+    width: 100%;
+    height: 1.5px;
+}
+
+[data-wl-pack] .wl-stl-pin-glyph::after {
+    width: 1.5px;
+    height: 100%;
+}
+
+/* Open turns the plus into a close cross — same element, no second glyph. */
+[data-wl-pack] .wl-stl-pin.is-open .wl-stl-pin-glyph::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+[data-wl-pack] .wl-stl-pin.is-open .wl-stl-pin-glyph::after {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* ── Card ─────────────────────────────────────────────────────────────────── */
+
+/* [hidden] is what the script toggles, so the card is genuinely out of the
+   accessibility tree when closed rather than merely transparent. */
+[data-wl-pack] .wl-stl-card[hidden] {
+    display: none;
+}
+
+/* --wl-stl-card-y is the script's vertical correction: a pin near the top or
+   the bottom of the image would otherwise centre its card half outside the
+   picture. Zero by default, so a card in open space is exactly centred. */
+[data-wl-pack] .wl-stl-card {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 14px);
+    width: 300px;
+    max-width: min(300px, 70vw);
+    transform: translateY(calc(-50% + var(--wl-stl-card-y, 0px)));
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+    text-align: left;
+    cursor: default;
+}
+
+/* The flip. `is-card-left` is a row that forced a side in the editor;
+   `is-flipped` is the script's auto resolution against the image box. Same
+   result, two sources, so both are named here. */
+[data-wl-pack] .wl-stl-pin.is-card-left .wl-stl-card,
+[data-wl-pack] .wl-stl-pin.is-flipped .wl-stl-card {
+    left: auto;
+    right: calc(100% + 14px);
+}
+
+/* Below a phone's width there is no side to open to, so the card leaves the
+   pin and sits under the image where it has room to be read. */
+@media (max-width: 575px) {
+    [data-wl-pack] .wl-stl-pin .wl-stl-card {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 100%;
+        transform: none;
+        border-radius: 12px 12px 0 0;
+        z-index: 9;
+    }
+}
+
+[data-wl-pack] .wl-stl-card-inner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+[data-wl-pack] .wl-stl-card-media {
+    flex: 0 0 auto;
+    width: 84px;
+    display: block;
+}
+
+[data-wl-pack] .wl-stl-media,
+[data-wl-pack] .wl-stl-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+[data-wl-pack] .wl-stl-card-body {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+[data-wl-pack] .wl-stl-brand,
+[data-wl-pack] .wl-stl-title,
+[data-wl-pack] .wl-stl-price {
+    display: block;
+}
+
+[data-wl-pack] .wl-stl-title a {
+    text-decoration: none;
+    color: inherit;
+}
+
+[data-wl-pack] .wl-stl-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+[data-wl-pack] .wl-stl-rating svg.star {
+    width: 13px;
+    height: 13px;
+}
+
+[data-wl-pack] .wl-stl-cart {
+    display: block;
+}
+
+[data-wl-pack] .wl-stl-cart a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid transparent;
+}
+
+/* ── Dimming, for the packs whose list and image behave as one control ────── */
+
+[data-wl-pack] .wl-stl-pin.is-dim,
+[data-wl-pack] .wl-stl-row.is-dim {
+    opacity: 0.4;
+}
+
+/* ── Shop the Look — header, split, list and switcher ─────────────────────── */
+
+[data-wl-pack] .wl-stl-head {
+    margin-bottom: 40px;
+}
+
+[data-wl-pack] .wl-stl-eyebrow,
+[data-wl-pack] .wl-stl-heading,
+[data-wl-pack] .wl-stl-desc {
+    display: block;
+    margin: 0;
+}
+
+/* The description is the one header piece packs give a max-width, and a block
+   narrower than its parent ignores text-align for its own box — which is why
+   centring it used to need `margin-inline: auto`, and why the Alignment control
+   then could not move it. As an inline-block the parent's text-align places the
+   box as well as the words, so one control does what it says on all three
+   settings and no pack needs auto margins. */
+[data-wl-pack] .wl-stl-desc {
+    display: inline-block;
+}
+
+/* The panel layouts and the list layouts are the same two-column box; only the
+   ratio between the columns differs, so packs set the one custom property. */
+[data-wl-pack] .wl-stl-split {
+    display: grid;
+    grid-template-columns: var(--wl-stl-split, 1.4fr 1fr);
+    gap: var(--wl-stl-split-gap, 48px);
+    align-items: center;
+}
+
+/* A grid item's automatic minimum size is its content's — and for a box with
+   an aspect-ratio and a stretched height, that minimum is height ÷ ratio. An
+   `fr` track honours it, so a tall panel beside a ratio-sized image makes the
+   image demand a track wider than the row and the whole layout blows out. This
+   is the standard cure, and it costs nothing when nothing is overflowing. */
+[data-wl-pack] .wl-stl-split > * {
+    min-width: 0;
+}
+
+@media (max-width: 767px) {
+    [data-wl-pack] .wl-stl-split {
+        grid-template-columns: 1fr;
+    }
+}
+
+[data-wl-pack] .wl-stl-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wl-stl-row-gap, 16px);
+}
+
+/* The whole row is a link, so its own text decoration has to go — the row's
+   parts carry their own styling. */
+[data-wl-pack] .wl-stl-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    color: inherit;
+}
+
+[data-wl-pack] .wl-stl-row-media {
+    flex: 0 0 auto;
+    width: var(--wl-stl-row-thumb, 60px);
+}
+
+[data-wl-pack] .wl-stl-row-body {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+[data-wl-pack] .wl-stl-row-index,
+[data-wl-pack] .wl-stl-row-name,
+[data-wl-pack] .wl-stl-meta {
+    display: block;
+}
+
+/* Pushed to the end of the row rather than given a width, so a long name and a
+   long price never fight over the same space. */
+[data-wl-pack] .wl-stl-row .wl-stl-price {
+    flex: 0 0 auto;
+    margin-left: auto;
+}
+
+[data-wl-pack] .wl-stl-cta a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    text-decoration: none;
+    border: 1px solid transparent;
+}
+
+/* ── Switcher ─────────────────────────────────────────────────────────────── */
+
+/* One shape for every skin — a tab strip, labelled thumbnails, tabs above the
+   image. The mode only decides whether a thumbnail is printed. */
+[data-wl-pack] .wl-stl-switch {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--wl-stl-switch-gap, 10px);
+}
+
+[data-wl-pack] .wl-stl-switch-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    border: 1px solid transparent;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+}
+
+[data-wl-pack] .wl-stl-switch-thumb {
+    flex: 0 0 auto;
+    width: var(--wl-stl-switch-thumb, 44px);
+    line-height: 0;
+}
+
+[data-wl-pack] .wl-stl-switch-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+/* ── Compact card ─────────────────────────────────────────────────────────── */
+
+[data-wl-pack] .wl-stl-link {
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* ── Shop the Look — footer bar, card index and flag ──────────────────────── */
+
+[data-wl-pack] .wl-stl-foot {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* The link is pushed to the end so the count and the total keep the left,
+   whatever a pack chooses to put between them. */
+[data-wl-pack] .wl-stl-foot .wl-stl-cta {
+    margin-left: auto;
+}
+
+[data-wl-pack] .wl-stl-foot .wl-stl-cta a {
+    width: auto;
+}
+
+[data-wl-pack] .wl-stl-total-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+[data-wl-pack] .wl-stl-total ins {
+    text-decoration: none;
+}
+
+/* A badge burnt into a corner of the image, carrying the look's own label. */
+[data-wl-pack] .wl-stl-flag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
+[data-wl-pack] .wl-stl-card-index {
+    display: block;
+}
+
+/* ── Shop the Look — panel rows, swatches and the bulk button ─────────────── */
+
+[data-wl-pack] .wl-stl-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+[data-wl-pack] .wl-stl-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wl-stl-item-gap, 14px);
+}
+
+[data-wl-pack] .wl-stl-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+[data-wl-pack] .wl-stl-item-media {
+    flex: 0 0 auto;
+    width: var(--wl-stl-item-thumb, 56px);
+    display: block;
+}
+
+[data-wl-pack] .wl-stl-item-info {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+[data-wl-pack] .wl-stl-item-name {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+[data-wl-pack] .wl-stl-item-bottom {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* The bag button is the row's own control, so it keeps the end of the row
+   whatever else the row carries. */
+[data-wl-pack] .wl-stl-item .wl-stl-cart {
+    flex: 0 0 auto;
+    margin-left: auto;
+}
+
+/* The icon control is sized here at a specificity a theme's button rules
+   cannot reach, and the `button` class is stripped from it in PHP as well —
+   between them the control stays a 36px square whatever the theme does. */
+[data-wl-pack] .wl-stl-items .wl-stl-item a.wl-stl-cart-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--wl-stl-icon-size, 36px);
+    height: var(--wl-stl-icon-size, 36px);
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    border: none;
+    text-decoration: none;
+}
+
+[data-wl-pack] .wl-stl-cart-icon svg {
+    display: block;
+}
+
+[data-wl-pack] .wl-stl-swatches {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+[data-wl-pack] .wl-stl-swatch {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+}
+
+/* The "+2" that stands for the colours past the limit. It is a number, not a
+   dot, so it needs type of its own — without this it inherits whatever the row
+   happens to set and reads as a stray character. */
+[data-wl-pack] .wl-stl-swatch-more {
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    opacity: 0.7;
+}
+
+[data-wl-pack] .wl-stl-bulk-btn {
+    display: block;
+    width: 100%;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font: inherit;
+    text-align: center;
+    text-decoration: none;
+}
+
+[data-wl-pack] .wl-stl-bulk-btn[disabled] {
+    opacity: 0.6;
+    cursor: default;
+}
+
+[data-wl-pack] .wl-stl-foot-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+/* ── Shop the Look — the counter switcher and numbered pins ───────────────── */
+
+[data-wl-pack] .wl-stl-topbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+[data-wl-pack] .wl-stl-counter {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+[data-wl-pack] .wl-stl-counter-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid transparent;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+[data-wl-pack] .wl-stl-pin-num {
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* The price and the add button as their own column, for the rows that put
+   them there rather than inline under the name. */
+[data-wl-pack] .wl-stl-item-right {
+    flex: 0 0 auto;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+/* The numeral burnt into the thumbnail rather than leading the row. */
+[data-wl-pack] .wl-stl-item-media {
+    position: relative;
+}
+
+[data-wl-pack] .wl-stl-item-media .wl-stl-item-num {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* The tab numeral is printed for every skin; the packs that do not number
+   their tabs hide it rather than the markup changing shape per pack. */
+[data-wl-pack] .wl-stl-switch-num {
+    display: none;
+}
+
+/* The caption line the three room studies carry under their badge. */
+[data-wl-pack] .wl-stl-caption {
+    position: absolute;
+    z-index: 3;
+}
+
+/* WooCommerce inserts its "View cart" link straight after the button it just
+   used, with nothing between them — so the gap is ours to give. Every pack
+   that shows a cart button in a card gets it; the panel rows hide the link
+   instead, because a 36px icon button has nowhere to put it. */
+[data-wl-pack] .wl-stl-cart .added_to_cart {
+    display: block;
+    margin-top: 8px;
+}
+
+/* ── Shop the Look — "it went in" feedback ────────────────────────────────── */
+
+/* The panel row's icon control carries both glyphs and swaps them on
+   WooCommerce's own `added` class. It is the only confirmation these rows get:
+   the "View cart" link WooCommerce appends is hidden there, because a 36px
+   square has nowhere to put it. The check stays — it reads as "this is in your
+   cart", which is more use than a message that fades. */
+[data-wl-pack] .wl-stl-cart-icon .wl-stl-icon-bag,
+[data-wl-pack] .wl-stl-cart-icon .wl-stl-icon-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+}
+
+[data-wl-pack] .wl-stl-cart-icon .wl-stl-icon-check,
+[data-wl-pack] .wl-stl-cart-icon.added .wl-stl-icon-bag {
+    display: none;
+}
+
+[data-wl-pack] .wl-stl-cart-icon.added .wl-stl-icon-check {
+    display: flex;
+}
+
+/* The bulk button writes its own confirmation into its label, so it needs no
+   appended link either — the script deliberately withholds the button from
+   WooCommerce's `added_to_cart` handler to stop one being added. */
+[data-wl-pack] .wl-stl-bulk-btn.is-loading {
+    opacity: 0.75;
 }

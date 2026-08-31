@@ -1,0 +1,633 @@
+/**
+ * Shop by Category — Modern pack.
+ * All three variants live in this file so the browser caches one stylesheet
+ * regardless of which variant a page uses.
+ *
+ * The grid mechanics, card box and media crop live in pack-widgets-base.css
+ * under .wl-sbc-*. Only this pack's colours, type and spacing belong here.
+ *
+ * Each variant was designed by a different designer with its own palette, so
+ * each redeclares the --wl-pack-* colour tokens on its own root where it
+ * differs. v1 matches the pack defaults and needs no override.
+ *
+ * Font families are deliberately NOT overridden — type comes from the theme and
+ * the Style tab's typography controls.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — Six-up thumbnail cards with a frosted footer bar
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-sbc-modern-v1 .wl-sbc-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+.wl-sbc-modern-v1 .wl-sbc-head-main {
+    max-width: 640px;
+}
+
+.wl-sbc-modern-v1 .wl-sbc-eyebrow {
+    display: block;
+    margin-bottom: 10px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    color: var(--wl-pack-primary);
+}
+
+.wl-sbc-modern-v1 .wl-sbc-headline {
+    margin: 0;
+    font-family: var(--wl-pack-font-heading);
+    font-size: var(--wl-pack-text-2xl);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    color: var(--wl-pack-text);
+}
+
+.wl-sbc-modern-v1 .wl-sbc-headline em {
+    font-style: normal;
+    color: var(--wl-pack-primary);
+}
+
+.wl-sbc-modern-v1 .wl-sbc-desc {
+    margin: 12px 0 0;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-base);
+    line-height: 1.65;
+    color: var(--wl-pack-text-muted);
+}
+
+.wl-sbc-modern-v1 .wl-sbc-viewall {
+    flex-shrink: 0;
+    padding-bottom: 4px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-sm);
+    font-weight: 600;
+    color: var(--wl-pack-primary);
+    transition: gap 0.22s ease, color 0.22s ease;
+}
+
+.wl-sbc-modern-v1 .wl-sbc-viewall:hover {
+    gap: 10px;
+    color: var(--wl-pack-secondary);
+}
+
+/* Six across is what the reference draws; the Columns control overrides it. */
+.wl-sbc-modern-v1 .wl-sbc-grid {
+    --wl-sbc-cols: 6;
+    gap: 14px;
+}
+
+.wl-sbc-modern-v1 .wl-sbc-card {
+    background: var(--wl-pack-bg);
+    border: 1px solid var(--wl-pack-border);
+    border-radius: var(--wl-pack-radius-card);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.wl-sbc-modern-v1 .wl-sbc-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(15, 23, 42, 0.1);
+    border-color: #DBEAFE;
+}
+
+.wl-sbc-modern-v1 .wl-sbc-media {
+    background: var(--wl-pack-bg-alt);
+}
+
+.wl-sbc-modern-v1 .wl-sbc-media img {
+    object-position: center top;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wl-sbc-modern-v1 .wl-sbc-card:hover .wl-sbc-media img {
+    transform: scale(1.08);
+}
+
+.wl-sbc-modern-v1 .wl-sbc-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 13px 15px;
+    background: var(--wl-pack-bg-alt);
+    border-top: 1px solid var(--wl-pack-border);
+}
+
+.wl-sbc-modern-v1 .wl-sbc-label {
+    min-width: 0;
+}
+
+.wl-sbc-modern-v1 .wl-sbc-name {
+    margin-bottom: 2px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--wl-pack-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.2s ease;
+}
+
+.wl-sbc-modern-v1 .wl-sbc-card:hover .wl-sbc-name {
+    color: var(--wl-pack-primary);
+}
+
+.wl-sbc-modern-v1 .wl-sbc-count {
+    display: block;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    color: var(--wl-pack-text-muted);
+}
+
+.wl-sbc-modern-v1 .wl-sbc-go {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--wl-pack-bg);
+    border: 1px solid var(--wl-pack-border);
+    color: #94A3B8;
+    transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease, transform 0.22s ease;
+}
+
+.wl-sbc-modern-v1 .wl-sbc-card:hover .wl-sbc-go {
+    background: var(--wl-pack-primary);
+    border-color: var(--wl-pack-primary);
+    color: #fff;
+    transform: scale(1.1);
+}
+
+@media (max-width: 1100px) {
+    .wl-sbc-modern-v1 .wl-sbc-grid {
+        --wl-sbc-cols: 3;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-sbc-modern-v1 .wl-sbc-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 28px;
+    }
+
+    .wl-sbc-modern-v1 .wl-sbc-headline {
+        font-size: var(--wl-pack-text-xl);
+    }
+}
+
+@media (max-width: 600px) {
+    .wl-sbc-modern-v1 .wl-sbc-grid {
+        --wl-sbc-cols: 2;
+        gap: 10px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — Four full-bleed tiles with a hover-revealed button
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Olive accent on an off-white ground — this variant's own palette. */
+.wl-sbc-modern-v2 {
+    --wl-pack-primary: #7A8F3A;
+    --wl-pack-accent: #7A8F3A;
+    --wl-pack-bg: #FAFAF7;
+    --wl-pack-text: #111111;
+    --wl-pack-text-muted: #666666;
+}
+
+.wl-sbc-modern-v2 .wl-sbc-head {
+    max-width: 600px;
+    margin: 0 auto 56px;
+    text-align: center;
+}
+
+/* The rules flanking the eyebrow are pseudo-elements so the control still holds
+   plain text. */
+.wl-sbc-modern-v2 .wl-sbc-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--wl-pack-accent);
+}
+
+.wl-sbc-modern-v2 .wl-sbc-eyebrow::before,
+.wl-sbc-modern-v2 .wl-sbc-eyebrow::after {
+    content: "";
+    display: block;
+    flex-shrink: 0;
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+}
+
+.wl-sbc-modern-v2 .wl-sbc-headline {
+    margin: 0 0 18px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--wl-pack-text);
+}
+
+.wl-sbc-modern-v2 .wl-sbc-headline em {
+    font-style: normal;
+    color: var(--wl-pack-accent);
+}
+
+.wl-sbc-modern-v2 .wl-sbc-desc {
+    max-width: 400px;
+    margin: 0 auto;
+    font-family: var(--wl-pack-font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--wl-pack-text-muted);
+}
+
+.wl-sbc-modern-v2 .wl-sbc-grid {
+    --wl-sbc-cols: 4;
+    gap: 14px;
+}
+
+.wl-sbc-modern-v2 .wl-sbc-card {
+    height: 350px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* The accent rule that wipes across the top edge on hover. */
+.wl-sbc-modern-v2 .wl-sbc-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    height: 3px;
+    background: var(--wl-pack-accent);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wl-sbc-modern-v2 .wl-sbc-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* A background image rather than an <img>: the photo has to fill a fixed-height
+   tile and pan inside it. */
+.wl-sbc-modern-v2 .wl-sbc-media {
+    position: absolute;
+    inset: 0;
+    width: auto;
+    aspect-ratio: auto;
+    background-size: cover;
+    background-position: center 12%;
+    filter: brightness(0.76) saturate(0.88);
+    transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.55s ease;
+}
+
+.wl-sbc-modern-v2 .wl-sbc-card:hover .wl-sbc-media {
+    transform: scale(1.07);
+    filter: brightness(0.65) saturate(1);
+}
+
+.wl-sbc-modern-v2 .wl-sbc-shade {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.90) 0%,
+            rgba(0, 0, 0, 0.58) 30%,
+            rgba(0, 0, 0, 0.10) 58%,
+            transparent 100%);
+}
+
+.wl-sbc-modern-v2 .wl-sbc-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 18px 28px;
+    text-align: center;
+}
+
+.wl-sbc-modern-v2 .wl-sbc-name {
+    margin-bottom: 7px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(18px, 1.9vw, 24px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #fff;
+    transition: transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.wl-sbc-modern-v2 .wl-sbc-card:hover .wl-sbc-name {
+    transform: translateY(-2px);
+}
+
+.wl-sbc-modern-v2 .wl-sbc-count {
+    margin-bottom: 10px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.wl-sbc-modern-v2 .wl-sbc-sub {
+    margin-bottom: 18px;
+    font-family: var(--wl-pack-font-body);
+    font-size: var(--wl-pack-text-xs);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.03em;
+    color: rgba(255, 255, 255, 0.55);
+    transition: color 0.3s ease;
+}
+
+.wl-sbc-modern-v2 .wl-sbc-card:hover .wl-sbc-sub {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* Hidden until hover — this is the part the reference screenshot cannot show. */
+.wl-sbc-modern-v2 .wl-sbc-btn {
+    display: inline-block;
+    padding: 9px 24px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #fff;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.35s ease 0.04s,
+        transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.04s,
+        background 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+}
+
+.wl-sbc-modern-v2 .wl-sbc-card:hover .wl-sbc-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.wl-sbc-modern-v2 .wl-sbc-btn:hover {
+    background: #fff;
+    border-color: #fff;
+    color: var(--wl-pack-text);
+}
+
+/* Touch devices have no hover, so the button would never appear. */
+@media (hover: none) {
+    .wl-sbc-modern-v2 .wl-sbc-btn {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    .wl-sbc-modern-v2 .wl-sbc-card {
+        height: 460px;
+    }
+
+    .wl-sbc-modern-v2 .wl-sbc-grid {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-sbc-modern-v2 .wl-sbc-headline {
+        font-size: 30px;
+        letter-spacing: -0.03em;
+    }
+
+    .wl-sbc-modern-v2 .wl-sbc-desc {
+        display: none;
+    }
+
+    .wl-sbc-modern-v2 .wl-sbc-card {
+        height: 380px;
+    }
+
+    .wl-sbc-modern-v2 .wl-sbc-grid {
+        --wl-sbc-cols: 2;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 520px) {
+    .wl-sbc-modern-v2 .wl-sbc-card {
+        height: 260px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — Split cards with an overlapping count badge
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Clay on off-white with a graphite ink — this variant's own palette. */
+.wl-sbc-modern-v3 {
+    --wl-pack-primary: #B8755B;
+    --wl-pack-accent: #B8755B;
+    --wl-pack-bg: #FFFFFF;
+    --wl-pack-bg-alt: #FAFAF7;
+    --wl-pack-text: #1F1F1D;
+    --wl-pack-border: rgba(216, 210, 200, 0.65);
+}
+
+.wl-sbc-modern-v3 .wl-sbc-head {
+    margin-bottom: 48px;
+    text-align: center;
+}
+
+.wl-sbc-modern-v3 .wl-sbc-eyebrow {
+    display: block;
+    margin-bottom: 12px;
+    font-family: var(--wl-pack-font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--wl-pack-accent);
+}
+
+.wl-sbc-modern-v3 .wl-sbc-headline {
+    margin: 0;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(40px, 4.8vw, 68px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.037em;
+    color: var(--wl-pack-text);
+}
+
+.wl-sbc-modern-v3 .wl-sbc-headline em {
+    font-style: normal;
+    color: var(--wl-pack-accent);
+}
+
+.wl-sbc-modern-v3 .wl-sbc-grid {
+    --wl-sbc-cols: 3;
+    gap: 18px;
+}
+
+.wl-sbc-modern-v3 .wl-sbc-card {
+    flex-direction: row;
+    align-items: stretch;
+    min-height: 172px;
+    padding: 20px 16px 20px 26px;
+    background: var(--wl-pack-bg);
+    border: 1px solid var(--wl-pack-border);
+    border-radius: 16px;
+    transition: box-shadow 0.32s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.32s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.wl-sbc-modern-v3 .wl-sbc-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 40px rgba(17, 17, 15, 0.09);
+}
+
+.wl-sbc-modern-v3 .wl-sbc-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 52px;
+}
+
+.wl-sbc-modern-v3 .wl-sbc-name {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.0125em;
+    color: var(--wl-pack-text);
+    transition: color 0.18s ease;
+}
+
+.wl-sbc-modern-v3 .wl-sbc-card:hover .wl-sbc-name {
+    color: var(--wl-pack-accent);
+}
+
+/* Icons come from the Overrides repeater only — WooCommerce has no icon field
+   for a category, so the slot simply collapses when none is set. */
+.wl-sbc-modern-v3 .wl-sbc-icon {
+    align-items: flex-end;
+    margin-top: auto;
+    font-size: 44px;
+    color: var(--wl-pack-text);
+    opacity: 0.55;
+    transition: opacity 0.18s ease, color 0.18s ease;
+    justify-content: flex-start;
+}
+
+.wl-sbc-modern-v3 .wl-sbc-icon svg {
+    width: 44px;
+    height: 44px;
+}
+
+.wl-sbc-modern-v3 .wl-sbc-card:hover .wl-sbc-icon {
+    opacity: 0.8;
+    color: var(--wl-pack-accent);
+}
+
+/* A pill rather than a strict circle: bare numbers stay round, and a count with
+   a suffix set on it widens instead of overflowing. */
+.wl-sbc-modern-v3 .wl-sbc-badge {
+    position: absolute;
+    top: 50%;
+    left: calc(54% - 22px);
+    z-index: 2;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 44px;
+    padding: 0 12px;
+    border-radius: 100px;
+    background: var(--wl-pack-text);
+    color: #fff;
+    font-family: var(--wl-pack-font-heading);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    box-shadow: 0 3px 12px rgba(17, 17, 15, 0.22);
+    transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.wl-sbc-modern-v3 .wl-sbc-card:hover .wl-sbc-badge {
+    background: var(--wl-pack-accent);
+    transform: translateY(-50%) scale(1.06);
+}
+
+.wl-sbc-modern-v3 .wl-sbc-media {
+    width: 46%;
+    flex-shrink: 0;
+    aspect-ratio: auto;
+    border-radius: 12px;
+    background: #D8D2C8;
+}
+
+.wl-sbc-modern-v3 .wl-sbc-media img {
+    transition: transform 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.wl-sbc-modern-v3 .wl-sbc-card:hover .wl-sbc-media img {
+    transform: scale(1.06);
+}
+
+@media (max-width: 960px) {
+    .wl-sbc-modern-v3 .wl-sbc-grid {
+        --wl-sbc-cols: 2;
+    }
+}
+
+@media (max-width: 560px) {
+    .wl-sbc-modern-v3 .wl-sbc-grid {
+        --wl-sbc-cols: 1;
+    }
+
+    .wl-sbc-modern-v3 .wl-sbc-card {
+        min-height: 140px;
+        padding: 16px 14px 16px 20px;
+    }
+
+    .wl-sbc-modern-v3 .wl-sbc-media {
+        width: 42%;
+    }
+
+    .wl-sbc-modern-v3 .wl-sbc-badge {
+        left: calc(58% - 20px);
+        min-width: 40px;
+        height: 40px;
+        font-size: 13px;
+    }
+}

@@ -528,6 +528,13 @@ final class Base {
         // Style Pack Manager
         require_once( WOOLENTOR_ADDONS_PL_PATH . 'includes/addons/pack-widgets/class.style-pack-manager.php' );
 
+        // Product Kit — the builder-agnostic base every product widget and block draws on: query
+        // settings, pagination, tabs, the section endpoint and (later) the slider. Nothing in it
+        // touches Elementor or Gutenberg, so it loads unconditionally; a builder is supported by
+        // registering a provider.
+        require_once( WOOLENTOR_ADDONS_PL_PATH . 'includes/product-kit/class.kit.php' );
+        \WooLentor\Product_Kit\Kit::instance();
+
 
     }
     

@@ -1,0 +1,72 @@
+<?php
+/**
+ * Shop by Category — Luxury / Variant 1.
+ *
+ * A centred header — a gold rule leading a small caps eyebrow, then the headline — above a
+ * carousel of portrait cards. Each card is a 3:4 photograph with the category name and its count
+ * set on one baseline underneath. A thin progress rail and a pair of circular arrows sit in a
+ * control row beneath the track.
+ *
+ * Reference: design-reference/new_temlate/luxury-style/v1/home-luxury.html:6610 — `.cat-slider-outer`
+ *
+ * This is the first Shop by Category variant that is a carousel. It reuses the plugin's existing
+ * WLPackSlider (Slick) through $this->slider_attrs() rather than shipping a second slider —
+ * pack-widgets.js moves the injected arrows into the control row and drives the progress rail.
+ *
+ * Each card is wrapped in a .wl-sbc-slide div because Slick promotes the grid's direct children to
+ * slides without adding a wrapper of its own. Without this the gutter padding would land on the
+ * card itself, and the Card > Background control would paint straight through the gap.
+ *
+ * The outer .wl-sbc wrapper and the [data-wl-pack] scope are emitted by render().
+ *
+ * @var array  $rows      Category rows: id, name, url, count, image, icon, desc, children.
+ * @var array  $header    eyebrow, headline, description, card_button, view_all.
+ * @var array  $settings  Raw widget settings — read through count_text() and slider_attrs().
+ * @var string $style     Pack slug, for slider_attrs().
+ * @var string $variant   Variant key, for slider_attrs().
+ *
+ * @package WooLentor
+ */
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+?>
+<?php if ( '' !== $header['eyebrow'] || '' !== $header['headline'] ) : ?>
+    <div class="wl-sbc-head">
+        <?php if ( '' !== $header['eyebrow'] ) : ?>
+            <span class="wl-sbc-eyebrow"><?php echo esc_html( $header['eyebrow'] ); ?></span>
+        <?php endif; ?>
+
+        <?php if ( '' !== $header['headline'] ) : ?>
+            <h2 class="wl-sbc-headline"><?php echo $this->headline( $header['headline'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- run through wp_kses() in headline() ?></h2>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>
+
+<div class="wl-sbc-slider-outer">
+    <div class="wl-sbc-grid"<?php echo $this->slider_attrs( $settings, $style, $variant ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside slider_attrs() ?>>
+        <?php foreach ( $rows as $wl_sbc_row ) : ?>
+            <div class="wl-sbc-slide">
+                <?php echo $this->card_open( $wl_sbc_row ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside card_open() ?>
+                    <?php if ( '' !== $wl_sbc_row['image'] ) : ?>
+                        <span class="wl-sbc-media">
+                            <img src="<?php echo esc_url( $wl_sbc_row['image'] ); ?>" alt="<?php echo esc_attr( $wl_sbc_row['name'] ); ?>" loading="lazy">
+                        </span>
+                    <?php endif; ?>
+
+                    <span class="wl-sbc-label">
+                        <span class="wl-sbc-name"><?php echo esc_html( $wl_sbc_row['name'] ); ?></span>
+                        <?php $wl_sbc_count = $this->count_text( $wl_sbc_row, $settings ); ?>
+                        <?php if ( '' !== $wl_sbc_count ) : ?>
+                            <span class="wl-sbc-count"><?php echo $wl_sbc_count; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside count_text() ?></span>
+                        <?php endif; ?>
+                    </span>
+                <?php echo $this->card_close( $wl_sbc_row ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped inside card_close() ?>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
+    <div class="wl-sbc-controls">
+        <span class="wl-sbc-progress" aria-hidden="true"><span class="wl-sbc-progress-fill"></span></span>
+        <span class="wl-sbc-nav"></span>
+    </div>
+</div>

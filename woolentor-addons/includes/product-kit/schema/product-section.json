@@ -1,0 +1,491 @@
+{
+  "$comment": "One option list for every product section, in either builder. PHP reads it to register Elementor controls and to sanitise incoming settings; the block build reads it to generate block.json attributes and to drive the shared inspector. Same keys on both sides means the same settings array reaches WooLentor\\Product_Kit\\Product_Query whichever builder sent it. Labels are English source strings — the PHP side runs them through the translation functions, the JS side through @wordpress/i18n.",
+  "version": 1,
+  "groups": {
+    "query": {
+      "label": "Products",
+      "fields": {
+        "query_type": {
+          "type": "string",
+          "control": "select",
+          "label": "Source",
+          "default": "recent",
+          "options": {
+            "recent": "Latest Products",
+            "featured": "Featured",
+            "best_selling": "Best Selling",
+            "top_rated": "Top Rated",
+            "sale": "On Sale",
+            "recently_viewed": "Recently Viewed",
+            "products": "All Products",
+            "manual": "Hand-picked",
+            "current_query": "Current Page Query"
+          },
+          "pro": [
+            "featured",
+            "sale",
+            "best_selling",
+            "top_rated",
+            "recently_viewed"
+          ]
+        },
+        "include_products": {
+          "type": "array",
+          "control": "product-search",
+          "label": "Products",
+          "default": [],
+          "showWhen": {
+            "query_type": [
+              "manual"
+            ]
+          },
+          "placeholder": "Search products..."
+        },
+        "categories": {
+          "type": "array",
+          "control": "taxonomy",
+          "taxonomy": "product_cat",
+          "label": "Categories",
+          "description": "Leave empty for every category.",
+          "default": [],
+          "hideWhen": {
+            "query_type": [
+              "manual",
+              "current_query"
+            ]
+          }
+        },
+        "tags": {
+          "type": "array",
+          "control": "taxonomy",
+          "taxonomy": "product_tag",
+          "label": "Tags",
+          "default": [],
+          "hideWhen": {
+            "query_type": [
+              "manual",
+              "current_query"
+            ]
+          }
+        },
+        "posts_per_page": {
+          "type": "number",
+          "control": "number",
+          "label": "Products To Show",
+          "default": 8,
+          "min": 1,
+          "max": 48
+        },
+        "orderby": {
+          "type": "string",
+          "control": "select",
+          "label": "Order By",
+          "default": "date",
+          "options": {
+            "date": "Date",
+            "title": "Title",
+            "price": "Price",
+            "popularity": "Popularity",
+            "rating": "Rating",
+            "menu_order": "Menu Order",
+            "rand": "Random"
+          },
+          "hideWhen": {
+            "query_type": [
+              "manual",
+              "current_query"
+            ]
+          }
+        },
+        "order": {
+          "type": "string",
+          "control": "select",
+          "label": "Order",
+          "default": "DESC",
+          "options": {
+            "ASC": "Ascending",
+            "DESC": "Descending"
+          },
+          "hideWhen": {
+            "query_type": [
+              "manual",
+              "current_query"
+            ]
+          }
+        },
+        "exclude_products": {
+          "type": "array",
+          "control": "product-search",
+          "label": "Exclude Products",
+          "default": [],
+          "separator": "before",
+          "placeholder": "Search products..."
+        },
+        "exclude_out_of_stock": {
+          "type": "boolean",
+          "control": "switch",
+          "label": "Hide Out Of Stock",
+          "default": false
+        },
+        "exclude_no_image": {
+          "type": "boolean",
+          "control": "switch",
+          "label": "Hide Products Without An Image",
+          "default": false
+        },
+        "enable_filters": {
+          "type": "boolean",
+          "control": "switch",
+          "label": "Respond To Product Filters",
+          "description": "Let the Product Filter module narrow this section, the same way it narrows the product grid.",
+          "default": true,
+          "separator": "before"
+        }
+      }
+    },
+    "pagination": {
+      "label": "Pagination",
+      "fields": {
+        "enable_pagination": {
+          "type": "boolean",
+          "control": "switch",
+          "label": "Enable Pagination",
+          "description": "With this on, \"Products To Show\" becomes the number of products per page.",
+          "default": false
+        },
+        "pagination_type": {
+          "type": "string",
+          "control": "select",
+          "label": "Pagination Type",
+          "default": "numbers",
+          "options": {
+            "numbers": "Numbers",
+            "load_more": "Load More",
+            "infinite": "Infinite Scroll"
+          },
+          "showWhen": {
+            "enable_pagination": true
+          },
+          "pro": [
+            "load_more",
+            "infinite"
+          ]
+        },
+        "load_more_text": {
+          "type": "string",
+          "control": "text",
+          "label": "Button Text",
+          "default": "Load More",
+          "showWhen": {
+            "enable_pagination": true,
+            "pagination_type": [
+              "load_more"
+            ]
+          }
+        },
+        "load_more_complete_text": {
+          "type": "string",
+          "control": "text",
+          "label": "Finished Text",
+          "description": "Shown on the button once every product has been loaded.",
+          "default": "No more products",
+          "showWhen": {
+            "enable_pagination": true,
+            "pagination_type": [
+              "load_more"
+            ]
+          }
+        }
+      }
+    },
+    "tabs": {
+      "label": "Tab Row",
+      "fields": {
+        "tabs": {
+          "type": "array",
+          "control": "repeater",
+          "label": "Tabs",
+          "description": "Leave empty for a section with no tab row. The first tab is the one shown on load.",
+          "default": [],
+          "titleField": "tab_label",
+          "preventEmpty": false,
+          "fields": {
+            "tab_label": {
+              "type": "string",
+              "control": "text",
+              "label": "Label",
+              "default": "New Arrivals"
+            },
+            "tab_source": {
+              "type": "string",
+              "control": "select",
+              "label": "Shows",
+              "default": "query_type",
+              "options": {
+                "inherit": "Everything (the section's own settings)",
+                "query_type": "A product source",
+                "category": "Categories",
+                "tag": "Tags"
+              }
+            },
+            "tab_query_type": {
+              "type": "string",
+              "control": "select",
+              "label": "Source",
+              "default": "recent",
+              "optionsFrom": "query.query_type",
+              "showWhen": {
+                "tab_source": [
+                  "query_type"
+                ]
+              },
+              "pro": [
+                "featured",
+                "sale",
+                "best_selling",
+                "top_rated",
+                "recently_viewed"
+              ]
+            },
+            "tab_categories": {
+              "type": "array",
+              "control": "taxonomy",
+              "taxonomy": "product_cat",
+              "label": "Categories",
+              "default": [],
+              "showWhen": {
+                "tab_source": [
+                  "category"
+                ]
+              }
+            },
+            "tab_tags": {
+              "type": "array",
+              "control": "taxonomy",
+              "taxonomy": "product_tag",
+              "label": "Tags",
+              "default": [],
+              "showWhen": {
+                "tab_source": [
+                  "tag"
+                ]
+              }
+            }
+          }
+        },
+        "tab_show_count": {
+          "type": "boolean",
+          "control": "switch",
+          "label": "Show Product Count",
+          "description": "Prints the number of matching products beside each label. Each tab costs one extra count query.",
+          "default": false
+        }
+      }
+    },
+    "slider": {
+      "label": "Slider Options",
+      "fields": {
+        "enable_slider": {
+          "type": "boolean",
+          "control": "switch",
+          "label": "Enable Slider",
+          "description": "Turns this section into a carousel. A carousel has no tab row and no pager — it scrolls through its own products.",
+          "default": false,
+          "pro": true
+        },
+        "slider_arrows": {
+          "type": "boolean",
+          "control": "switch",
+          "label": "Show Arrows",
+          "default": true,
+          "showWhen": {
+            "enable_slider": true
+          }
+        },
+        "slider_dots": {
+          "type": "boolean",
+          "control": "switch",
+          "label": "Show Dots",
+          "default": false,
+          "showWhen": {
+            "enable_slider": true
+          }
+        },
+        "slider_infinite": {
+          "type": "boolean",
+          "control": "switch",
+          "label": "Infinite Loop",
+          "default": false,
+          "showWhen": {
+            "enable_slider": true
+          }
+        },
+        "slider_autoplay": {
+          "type": "boolean",
+          "control": "switch",
+          "label": "Autoplay",
+          "default": false,
+          "showWhen": {
+            "enable_slider": true
+          }
+        },
+        "slider_autoplay_speed": {
+          "type": "number",
+          "control": "number",
+          "label": "Autoplay Speed (ms)",
+          "default": 5000,
+          "min": 500,
+          "max": 30000,
+          "step": 100,
+          "showWhen": {
+            "enable_slider": true,
+            "slider_autoplay": true
+          }
+        },
+        "slider_speed": {
+          "type": "number",
+          "control": "number",
+          "label": "Transition Speed (ms)",
+          "default": 600,
+          "min": 100,
+          "max": 5000,
+          "step": 50,
+          "showWhen": {
+            "enable_slider": true
+          }
+        },
+        "slider_pause_on_hover": {
+          "type": "boolean",
+          "control": "switch",
+          "label": "Pause on Hover",
+          "default": true,
+          "showWhen": {
+            "enable_slider": true
+          }
+        },
+        "slider_fade": {
+          "type": "boolean",
+          "control": "switch",
+          "label": "Fade Transition",
+          "description": "Only for a one-card rail — Slick cross-fades a single slide.",
+          "default": false,
+          "showWhen": {
+            "enable_slider": true
+          }
+        },
+        "slider_heading_desktop": {
+          "control": "heading",
+          "label": "Desktop",
+          "separator": "before",
+          "showWhen": {
+            "enable_slider": true
+          }
+        },
+        "sl_items": {
+          "type": "number",
+          "control": "number",
+          "label": "Cards Per View",
+          "default": 4,
+          "min": 1,
+          "max": 8,
+          "showWhen": {
+            "enable_slider": true
+          }
+        },
+        "sl_scroll": {
+          "type": "number",
+          "control": "number",
+          "label": "Cards To Scroll",
+          "default": 1,
+          "min": 1,
+          "max": 8,
+          "showWhen": {
+            "enable_slider": true
+          }
+        },
+        "slider_heading_tablet": {
+          "control": "heading",
+          "label": "Tablet",
+          "separator": "before",
+          "showWhen": {
+            "enable_slider": true
+          }
+        },
+        "sl_tablet_items": {
+          "type": "number",
+          "control": "number",
+          "label": "Cards Per View",
+          "default": 3,
+          "min": 1,
+          "max": 8,
+          "showWhen": {
+            "enable_slider": true
+          }
+        },
+        "sl_tablet_scroll": {
+          "type": "number",
+          "control": "number",
+          "label": "Cards To Scroll",
+          "default": 1,
+          "min": 1,
+          "max": 8,
+          "showWhen": {
+            "enable_slider": true
+          }
+        },
+        "sl_tablet_width": {
+          "type": "number",
+          "control": "number",
+          "label": "Tablet Breakpoint (px)",
+          "default": 1024,
+          "min": 480,
+          "max": 1600,
+          "showWhen": {
+            "enable_slider": true
+          }
+        },
+        "slider_heading_mobile": {
+          "control": "heading",
+          "label": "Mobile",
+          "separator": "before",
+          "showWhen": {
+            "enable_slider": true
+          }
+        },
+        "sl_mobile_items": {
+          "type": "number",
+          "control": "number",
+          "label": "Cards Per View",
+          "default": 2,
+          "min": 1,
+          "max": 6,
+          "showWhen": {
+            "enable_slider": true
+          }
+        },
+        "sl_mobile_scroll": {
+          "type": "number",
+          "control": "number",
+          "label": "Cards To Scroll",
+          "default": 1,
+          "min": 1,
+          "max": 6,
+          "showWhen": {
+            "enable_slider": true
+          }
+        },
+        "sl_mobile_width": {
+          "type": "number",
+          "control": "number",
+          "label": "Mobile Breakpoint (px)",
+          "default": 640,
+          "min": 320,
+          "max": 1024,
+          "showWhen": {
+            "enable_slider": true
+          }
+        }
+      }
+    }
+  }
+}

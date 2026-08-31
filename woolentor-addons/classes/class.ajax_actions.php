@@ -41,6 +41,10 @@ class Woolentor_Ajax_Action{
         add_action( 'wp_ajax_woolentor_load_more_products', [$this, 'load_more_products'] );
         add_action( 'wp_ajax_nopriv_woolentor_load_more_products', [$this, 'load_more_products'] );
 
+        // Add every product in a Shop the Look look, in one request
+        add_action( 'wp_ajax_woolentor_add_look_to_cart', [ $this, 'add_look_to_cart' ] );
+        add_action( 'wp_ajax_nopriv_woolentor_add_look_to_cart', [ $this, 'add_look_to_cart' ] );
+
         // Custom select control AJAX search
         add_action( 'wp_ajax_woolentor_select_search', [$this, 'select_search'] );
         add_action( 'wp_ajax_woolentor_select_get_titles', [$this, 'select_get_titles'] );
@@ -87,6 +91,92 @@ class Woolentor_Ajax_Action{
         }
         wp_send_json_success();
         
+    }
+
+    /**
+     * [add_look_to_cart] Add every product in a Shop the Look look, in one request.
+     *
+     * Deliberately not three calls to insert_to_cart(). Each of those ends in
+     * WC_AJAX::get_refreshed_fragments(), so adding a three-item look would race three fragment
+     * responses against each other and show a cart count that is briefly, visibly wrong. This adds
+     * the whole list in one pass and refreshes the fragments once at the end.
+     *
+     * A product that cannot be added without a choice — variable, external, or out of stock — is
+     * skipped rather than guessed at, and the response says how many actually went in. Silently
+     * dropping one would take a shopper's money for a set they did not get.
+     *
+     * @return void
+     */
+    public function add_look_to_cart() {
+
+        if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'woolentor_psa_nonce' ) ) {
+            wp_send_json_error( [ 'message' => esc_html__( 'Nonce Varification Faild !', 'woolentor' ) ] );
+        }
+
+        // phpcs:disable WordPress.Security.NonceVerification.Missing
+        $ids = isset( $_POST['product_ids'] ) ? array_map( 'absint', (array) wp_unslash( $_POST['product_ids'] ) ) : [];
+        $ids = array_values( array_filter( array_unique( $ids ) ) );
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
+
+        if ( empty( $ids ) || ! function_exists( 'wc_get_product' ) || ! \WC()->cart ) {
+            wp_send_json_error( [ 'message' => esc_html__( 'Nothing to add.', 'woolentor' ) ] );
+        }
+
+        $added   = 0;
+        $skipped = 0;
+
+        foreach ( $ids as $id ) {
+            $product = wc_get_product( $id );
+
+            if ( ! $product || 'publish' !== get_post_status( $id )
+                || ! $product->is_purchasable() || ! $product->is_in_stock()
+                || $product->is_type( 'variable' ) || $product->is_type( 'external' ) ) {
+                $skipped++;
+                continue;
+            }
+
+            $product_id = apply_filters( 'woocommerce_add_to_cart_product_id', $id );
+
+            if ( ! apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, 1, 0, [] ) ) {
+                $skipped++;
+                continue;
+            }
+
+            if ( \WC()->cart->add_to_cart( $product_id, 1 ) ) {
+                do_action( 'woocommerce_ajax_added_to_cart', $product_id );
+                $added++;
+            } else {
+                $skipped++;
+            }
+        }
+
+        if ( ! $added ) {
+            wp_send_json_error( [
+                'message' => esc_html__( 'None of these products could be added on their own.', 'woolentor' ),
+                'skipped' => $skipped,
+            ] );
+        }
+
+        // One refresh for the whole look, after every add — this is the reason the endpoint exists.
+        //
+        // Built here rather than through WC_AJAX::get_refreshed_fragments(), which ends in
+        // wp_send_json() and so never returns: buffering its output would swallow the response but
+        // still terminate the request, and this endpoint's own added/skipped counts would never be
+        // sent. These are the same two lines that function assembles before it sends.
+        ob_start();
+        woocommerce_mini_cart();
+        $mini_cart = ob_get_clean();
+
+        $fragments = apply_filters( 'woocommerce_add_to_cart_fragments', [
+            'div.widget_shopping_cart_content' => '<div class="widget_shopping_cart_content">' . $mini_cart . '</div>',
+        ] );
+
+        wp_send_json_success( [
+            'added'     => $added,
+            'skipped'   => $skipped,
+            'fragments' => $fragments,
+            'cart_hash' => \WC()->cart->get_cart_hash(),
+        ] );
     }
 
     /**
