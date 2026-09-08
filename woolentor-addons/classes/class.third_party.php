@@ -29,6 +29,7 @@ class WooLentorThirdParty{
         $this->woocommerce_german_market();
         $this->theme_compatibility();
         $this->woocommerce_paypal_payments();
+        $this->woocommerce_cart_checkout_block();
     }
 
     /**
@@ -77,6 +78,70 @@ class WooLentorThirdParty{
         add_filter( 'woocommerce_paypal_payments_single_product_renderer_hook', function(){
             return 'woocommerce_after_add_to_cart_form';
         } );
+    }
+
+    /**
+     * WooCommerce Cart and Checkout Block
+     *
+     * WooCommerce stores the "woocommerce/cart" and "woocommerce/checkout" blocks in
+     * the cart and checkout page content, so has_block() keeps reporting a block cart
+     * or checkout even when a WooLentor template takes the page over and renders the
+     * classic markup instead. Payment gateways use that check to pick between their
+     * block and their classic integration, so they load the block one and their
+     * classic output stays empty (Mollie credit card components, PayPal card fields
+     * and express buttons and so on). The block markup is renamed on those requests
+     * so the checks report what is really rendered. Gateways read it from
+     * "wp_enqueue_scripts" onwards, hence "wp".
+     *
+     * @return void
+     */
+    public function woocommerce_cart_checkout_block(){
+        add_action( 'wp', [ $this, 'woocommerce_cart_checkout_block_markup' ], 1 );
+    }
+
+    /**
+     * Rename the cart or checkout block markup when a WooLentor template is in use.
+     *
+     * @return void
+     */
+    public function woocommerce_cart_checkout_block_markup(){
+        if( is_admin() || ! function_exists('is_checkout') || ! class_exists('Woolentor_Manage_WC_Template') ){
+            return;
+        }
+
+        $block = '';
+
+        if( is_checkout() && ! is_checkout_pay_page() && ! is_wc_endpoint_url('order-received') ){
+
+            if( false !== Woolentor_Manage_WC_Template::has_template( 'productcheckoutpage' ) ){
+                $block = 'checkout';
+            }
+
+        } elseif( is_cart() ) {
+
+            $is_empty = ! WC()->cart || WC()->cart->is_empty();
+
+            if( ( ! $is_empty && false !== Woolentor_Manage_WC_Template::has_template( 'productcartpage' ) )
+                || ( $is_empty && false !== Woolentor_Manage_WC_Template::has_template( 'productemptycartpage' ) ) ){
+                $block = 'cart';
+            }
+
+        }
+
+        if( empty( $block ) ){
+            return;
+        }
+
+        global $post;
+        if( ! ( $post instanceof WP_Post ) || strpos( $post->post_content, '<!-- wp:woocommerce/' . $block ) === false ){
+            return;
+        }
+
+        $post->post_content = str_replace(
+            [ '<!-- wp:woocommerce/' . $block, '<!-- /wp:woocommerce/' . $block ],
+            [ '<!-- wp:woolentor/' . $block, '<!-- /wp:woolentor/' . $block ],
+            $post->post_content
+        );
     }
 
     /**

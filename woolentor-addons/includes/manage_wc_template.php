@@ -480,6 +480,20 @@ class Woolentor_Manage_WC_Template{
     /**
      * Trigger Elementor's atomic CSS pipeline for the active free WooLentor template.
      * Reuses get_active_template() so the page-type conditions stay in one place.
+     *
+     * Elementor collects the post ids it has to build atomic (v4 flexbox) CSS for
+     * through "elementor/post/render", and flushes them once on
+     * "elementor/frontend/after_enqueue_post_styles". Both of those live inside
+     * Frontend::enqueue_styles(), which is guarded by a static flag and therefore runs
+     * only for whoever calls it first. Header Footer Elementor calls it on
+     * "wp_enqueue_scripts" priority 10, so announcing the template on a later priority
+     * is too late: the flush already happened and the template gets no atomic CSS at
+     * all, leaving every flexbox container without its "display:flex" rules.
+     *
+     * The template id is announced from "elementor/frontend/before_enqueue_styles"
+     * instead. That hook fires at the top of the guarded block, so the id is collected
+     * no matter who triggers the pipeline or when. The priority 15 call stays as a
+     * fallback for the case where nothing else triggers it.
      */
     public function enqueue_atomic_styles_for_template() {
         if ( ! class_exists( '\Elementor\Plugin' ) ) {
@@ -491,8 +505,11 @@ class Woolentor_Manage_WC_Template{
             return;
         }
 
-        add_action( 'wp_enqueue_scripts', function() use ( $template_id ) {
+        add_action( 'elementor/frontend/before_enqueue_styles', function() use ( $template_id ) {
             do_action( 'elementor/post/render', $template_id );
+        } );
+
+        add_action( 'wp_enqueue_scripts', function() {
             \Elementor\Plugin::instance()->frontend->enqueue_styles();
         }, 15 );
     }

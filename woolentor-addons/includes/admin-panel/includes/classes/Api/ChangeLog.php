@@ -164,6 +164,22 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.5.0',
+                'date'    => '2026-09-08',
+                'changes' => [
+                    'New Features' => [
+                        'Product Tabs widget column responsive settings.',
+                    ],
+                    'Fixes' => [
+                        'Card info field not show in the checkout page with WooCommerce PayPal plugin.',
+                        'Template design broken in the frontend when the template is built with Elementor Flexbox container.',
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
                 'version' => '3.4.9',
                 'date'    => '2026-08-31',
                 'changes' => [

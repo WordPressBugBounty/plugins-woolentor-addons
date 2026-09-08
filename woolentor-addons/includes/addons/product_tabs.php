@@ -86,7 +86,7 @@ class Woolentor_Product_Tabs_Widget extends Widget_Base {
                 ]
             );
             
-            $this->add_control(
+            $this->add_responsive_control(
                 'woolentor_product_grid_column',
                 [
                     'label' => esc_html__( 'Columns', 'woolentor' ),
@@ -1253,6 +1253,8 @@ class Woolentor_Product_Tabs_Widget extends Widget_Base {
         $orderby            = $this->get_settings_for_display('orderby');
         $order              = $this->get_settings_for_display('order');
         $columns            = $this->get_settings_for_display('woolentor_product_grid_column');
+        $columns_tablet     = $this->get_settings_for_display('woolentor_product_grid_column_tablet');
+        $columns_mobile     = $this->get_settings_for_display('woolentor_product_grid_column_mobile');
         $rows               = $this->get_settings_for_display('woolentor_product_grid_row');
         $tabuniqid          = $this->get_id();
         $proslider          = $this->get_settings_for_display('proslider');
@@ -1374,11 +1376,13 @@ class Woolentor_Product_Tabs_Widget extends Widget_Base {
         }else{
             $collumval = 'ht-col-lg-3 ht-col-md-6 ht-col-sm-6 ht-col-xs-12 mb-50';
             if( $columns !='' ){
+                $colwidth = round(12/$columns);
+                $colwidthtablet = round(12/$columns_tablet);
+                $colwidthmobile = round(12/$columns_mobile);
                 if( $columns == 5){
-                    $collumval = 'cus-col-5 ht-col-md-6 ht-col-sm-6 ht-col-xs-12 mb-50';
+                    $collumval = 'cus-col-5 ht-col-md-'.$colwidthtablet.' ht-col-sm-'.$colwidthtablet.' ht-col-xs-'.$colwidthmobile.' mb-50';
                 }else{
-                    $colwidth = round(12/$columns);
-                    $collumval = 'ht-col-lg-'.$colwidth.' ht-col-md-6 ht-col-sm-6 ht-col-xs-12 mb-50';
+                    $collumval = 'ht-col-lg-'.$colwidth.' ht-col-md-'.$colwidthtablet.' ht-col-sm-'.$colwidthtablet.' ht-col-xs-'.$colwidthmobile.' mb-50';
                 }
             }
         }

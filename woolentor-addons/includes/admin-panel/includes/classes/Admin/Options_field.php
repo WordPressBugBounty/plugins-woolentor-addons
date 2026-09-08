@@ -1161,6 +1161,7 @@ class Options_Field {
                     'name'   => esc_html__( 'Store Highlights - 2026', 'woolentor' ),
                     'type'    => 'element',
                     'default' => 'on',
+                    'documentation' => esc_url('https://woolentor.com/doc/how-to-use-the-store-highlights-widget-for-elementor/'),
                     'badge'   => [
                         'is_active' => true,
                         'type'      => 'new',
@@ -1173,6 +1174,7 @@ class Options_Field {
                     'name'   => esc_html__( 'Marquee - 2026', 'woolentor' ),
                     'type'    => 'element',
                     'default' => 'on',
+                    'documentation' => esc_url('https://woolentor.com/doc/how-to-use-the-marquee-widget-for-elementor/'),
                     'badge'   => [
                         'is_active' => true,
                         'type'      => 'new',
@@ -1185,6 +1187,7 @@ class Options_Field {
                     'name'   => esc_html__( 'Offer Banner - 2026', 'woolentor' ),
                     'type'    => 'element',
                     'default' => 'on',
+                    'documentation' => esc_url('https://woolentor.com/doc/how-to-use-the-offer-banner-2026-widget-for-elementor/'),
                     'badge'   => [
                         'is_active' => true,
                         'type'      => 'new',
@@ -1197,6 +1200,7 @@ class Options_Field {
                     'name'   => esc_html__( 'Campaign Banner - 2026', 'woolentor' ),
                     'type'    => 'element',
                     'default' => 'on',
+                    'documentation' => esc_url('https://woolentor.com/doc/how-to-use-the-campaign-banner-widget-for-elementor/'),
                     'badge'   => [
                         'is_active' => true,
                         'type'      => 'new',
@@ -1209,6 +1213,7 @@ class Options_Field {
                     'name'   => esc_html__( 'Shop by Category - 2026', 'woolentor' ),
                     'type'    => 'element',
                     'default' => 'on',
+                    'documentation' => esc_url('https://woolentor.com/doc/how-to-use-the-shop-by-category-widget-for-elementor/'),
                     'badge'   => [
                         'is_active' => true,
                         'type'      => 'new',
@@ -1221,6 +1226,7 @@ class Options_Field {
                     'name'   => esc_html__( 'Product Showcase - 2026', 'woolentor' ),
                     'type'    => 'element',
                     'default' => 'on',
+                    'documentation' => esc_url('https://woolentor.com/doc/how-to-use-the-product-showcase-widget-for-elementor/'),
                     'badge'   => [
                         'is_active' => true,
                         'type'      => 'new',
@@ -1233,6 +1239,7 @@ class Options_Field {
                     'name'   => esc_html__( 'Shop the Look - 2026', 'woolentor' ),
                     'type'    => 'element',
                     'default' => 'on',
+                    'documentation' => esc_url('https://woolentor.com/doc/how-to-use-the-shop-the-look-widget-for-elementor/'),
                     'badge'   => [
                         'is_active' => true,
                         'type'      => 'new',

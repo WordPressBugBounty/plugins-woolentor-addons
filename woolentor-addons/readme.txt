@@ -4,7 +4,7 @@ Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenb
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 3.4.9
+Stable tag: 3.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -670,6 +670,11 @@ Please report security issues to our team directly at **[woolentor.com/contact](
 22. Module Settings
 
 == Changelog ==
+
+= Version: 3.5.0 - Date: 08-09-2026 =
+* Added: Column control responsive settings in Product Tabs widget.
+* Solved: Card info field not show in the checkout page with WooCommerce PayPal plugin.
+* Solved: Template design broken in the frontend when the template is built with Elementor Flexbox container.
 
 = Version: 3.4.9 - Date: 31-08-2026 =
 * Added: 3 (Shop by Category, Product Showcase, Shop the Look) Elementor Addons flowing by 2026 tread.
