@@ -92,6 +92,8 @@ class Woolentor_Product_Tabs_Widget extends Widget_Base {
                     'label' => esc_html__( 'Columns', 'woolentor' ),
                     'type' => Controls_Manager::SELECT,
                     'default' => '4',
+                    'tablet_default' => '2',
+                    'mobile_default' => '1',
                     'options' => [
                         '1' => esc_html__( '1', 'woolentor' ),
                         '2' => esc_html__( '2', 'woolentor' ),
@@ -1255,6 +1257,12 @@ class Woolentor_Product_Tabs_Widget extends Widget_Base {
         $columns            = $this->get_settings_for_display('woolentor_product_grid_column');
         $columns_tablet     = $this->get_settings_for_display('woolentor_product_grid_column_tablet');
         $columns_mobile     = $this->get_settings_for_display('woolentor_product_grid_column_mobile');
+
+        // Widgets saved before the responsive columns control existed have no tablet or
+        // mobile value, so fall back to the responsive defaults instead of dividing by zero.
+        $columns        = absint( $columns ) ? absint( $columns ) : 4;
+        $columns_tablet = absint( $columns_tablet ) ? absint( $columns_tablet ) : 2;
+        $columns_mobile = absint( $columns_mobile ) ? absint( $columns_mobile ) : 1;
         $rows               = $this->get_settings_for_display('woolentor_product_grid_row');
         $tabuniqid          = $this->get_id();
         $proslider          = $this->get_settings_for_display('proslider');
