@@ -164,6 +164,24 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.5.2',
+                'date'    => '2026-09-17',
+                'changes' => [
+                    'New Features' => [
+                        'Slider option in (Product Grid - Modern, Product Grid Editorial and Product Grid Luxury) Elementor Addon (Pro).',
+                        'Show variation / item data in side mini cart. (Pro)',
+                    ],
+                    'Fixes' => [
+                        'Product tab grid column render issue in mobile device.',
+                        'Stored Cross-Site Scripting (XSS) vulnerability in the Product Filter Horizontal and Vertical elementor addons.',
+                        'Some minor bugs fixed.',
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
                 'version' => '3.5.0',
                 'date'    => '2026-09-08',
                 'changes' => [

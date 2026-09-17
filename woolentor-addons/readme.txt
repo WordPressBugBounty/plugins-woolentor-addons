@@ -4,7 +4,7 @@ Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenb
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 3.5.1
+Stable tag: 3.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -108,11 +108,11 @@ With ShopLentor:
 
 [youtube https://www.youtube.com/watch?v=mijUgJK0iDc]
 
-**[Product Stock Progress Bar](https://woolentor.com/product-stock-progress-bar/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=modules)** - Display **inventory levels visually**
+**[Product Stock Progress Bar](https://woolentor.com/widgets/stock-progress-bar/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=modules)** - Display **inventory levels visually**
 
 **[Redirect to Checkout](https://woolentor.com/redirect-to-checkout/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=modules)** - **Skip cart page** for faster purchase
 
-**[Grid/List View Toggle](https://woolentor.com/grid-list-view-toggle/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=modules)** - Let customers choose **grid or list view**
+**[Grid/List View Toggle](https://woolentor.com/widgets/universal-product/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=modules)** - Let customers choose **grid or list view**
 
 **Pro Modules:**
 
@@ -190,7 +190,7 @@ With ShopLentor:
 
 [youtube https://www.youtube.com/watch?v=--1etmIVlOo]
 
-**[Social Share](https://woolentor.com/social-share/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=modules)** - Social media sharing buttons for products
+**[Social Share](https://demo.shoplentor.com/product/street-style-high-top-sneakers/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=modules)** - Social media sharing buttons for products
 
 🚀 **[Discover All Modules →](https://woolentor.com/woolentor-woocommerce-modules/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=modules)**
 
@@ -228,7 +228,7 @@ With ShopLentor:
 **[Product Image Accordion](https://woolentor.com/demo/product-image-accordion/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=widgetdemo)** - Interactive image-based product showcase
 **[Product Curvy](https://woolentor.com/demo/product-curvy/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=widgetdemo)** - Modern curved design product layouts
 **[Recently Viewed Products](https://woolentor.com/demo/product/ship-your-idea/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=widgetdemo)** - Display customers' browsing history dynamically
-**[Product List](https://woolentor.com/demo/product-list/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=widgetdemo)** - List view layouts with detailed information
+**[Product List](https://demo.shoplentor.com/product-layout/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=widgetdemo)** - List view layouts with detailed information
 **[Category Grid/List](https://woolentor.com/demo/category-grid/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=widgetdemo)** - Display categories in various layouts
 **[Brand Logo Display](https://woolentor.com/demo/brand-logo/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=widgetdemo)** - Showcase brand logos in grid/carousel
 **[Testimonial Widget](https://woolentor.com/demo/testimonial/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=widgetdemo)** - Customer reviews showcase
@@ -314,22 +314,22 @@ ShopLentor delivers full Gutenberg block support — **45 native blocks in the f
 
 **General Blocks (18):**
 
-**[Product Tab](https://woolentor.com/demo/block-product-tab/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Organize products in tabbed layouts for better navigation
+**[Product Tab](https://woolentor.com/demo/product-tab-block/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Organize products in tabbed layouts for better navigation
 **[Product Grid](https://woolentor.com/demo/product-grid-block/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Display products in a responsive grid format
 **[Product Grid Modern](https://woolentor.com/widgets/product-grid-modern/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** 🆕 - Dual view modes (Grid/List) with **real-time stock status** & AJAX pagination
 **[Product Grid Editorial](https://woolentor.com/widgets/product-grid-editorial/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** 🆕 - **Playfair typography** with editorial aesthetics & professional image aspect ratios
 **[Product Grid Magazine](https://woolentor.com/widgets/product-grid-magazine/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** 🆕 - **12-column asymmetric grid** with alternating 3:4 and 4:3 image ratios
 **[Product Grid Luxury](https://woolentor.com/widgets/product-grid-luxury/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** 🆕 - **Premium minimal design** for luxury & boutique stores
 **[Recently Viewed Products](https://woolentor.com/demo/product/ship-your-idea/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Show customers' browsing history dynamically
-**[Category Grid](https://woolentor.com/demo/block-category-grid/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Show product categories in attractive grids
-**[FAQ](https://woolentor.com/demo/block-faq/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Add collapsible frequently asked questions sections
-**[Brand Logo](https://woolentor.com/demo/block-brand-logo/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Display brand partnerships and certifications
-**[Special Day Offer](https://woolentor.com/demo/block-special-day-offer/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Highlight seasonal deals and holiday promotions
-**[Promo Banner](https://woolentor.com/demo/block-promo-banner/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Create eye-catching promotional banners
+**[Category Grid](https://woolentor.com/demo/category-grid-block/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Show product categories in attractive grids
+**[FAQ](https://woolentor.com/demo/faq-block/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Add collapsible frequently asked questions sections
+**[Brand Logo](https://woolentor.com/demo/brand-logo-block/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Display brand partnerships and certifications
+**[Special Day Offer](https://woolentor.com/demo/special-day-offer-block/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Highlight seasonal deals and holiday promotions
+**[Promo Banner](https://woolentor.com/demo/promo-banner-block/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Create eye-catching promotional banners
 **[Customer Review](https://woolentor.com/demo/customer-review-block/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Display testimonials and reviews beautifully
-**[Store Features](https://woolentor.com/demo/store-features-block/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Highlight store benefits and services
+**[Store Features](https://woolentor.com/demo/store-feature-block/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Highlight store benefits and services
 **[Image Marker](https://woolentor.com/demo/image-marker-block/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Interactive hotspots on product images
-**[Testimonial](https://woolentor.com/demo/testimonial-block/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Customer testimonials display
+**[Testimonial](https://woolentor.com/demo/customer-review-block/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Customer testimonials display
 **[Product Curvy](https://woolentor.com/demo/product-curvy-block/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Unique curved product layouts
 **Archive Title** - Show the dynamic archive page title
 
@@ -344,7 +344,7 @@ ShopLentor delivers full Gutenberg block support — **45 native blocks in the f
 **Product Page Blocks (30):**
 **[Add to Cart](https://woolentor.com/demo/product/rock-colorful-suit/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Conversion-optimized cart buttons with custom styles
 **[Product Gallery](https://woolentor.com/demo/product/rock-colorful-suit/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Beautiful image galleries with zoom functionality
-**[Product Video Gallery](https://woolentor.com/demo/product/video-gallery/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Embed product videos in gallery
+**[Product Video Gallery](https://woolentor.com/demo/product/woo-single-2/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Embed product videos in gallery
 **[Product Price](https://woolentor.com/demo/product/rock-colorful-suit/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Show prices with sale indicators
 **[Product Reviews](https://woolentor.com/demo/product/rock-colorful-suit/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Customer reviews and ratings section
 **[QR Code](https://woolentor.com/demo/product/rock-colorful-suit/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=blockdemo)** - Generate QR codes automatically for products
@@ -671,6 +671,12 @@ Please report security issues to our team directly at **[woolentor.com/contact](
 
 == Changelog ==
 
+= Version: 3.5.2 - Date: 17-09-2026 =
+* Solved: Product tab grid column render issue in mobile device.
+* Solved: Stored Cross-Site Scripting (XSS) vulnerability in the Product Filter Horizontal and Vertical elementor addons.
+* Solved: Some minor bugs fixed.
+* Compatibility: Latest WordPress and WooCommerce version.
+
 = Version: 3.5.0 - Date: 08-09-2026 =
 * Added: Column control responsive settings in Product Tabs widget.
 * Solved: Card info field not show in the checkout page with WooCommerce PayPal plugin.
@@ -836,29 +842,5 @@ Please report security issues to our team directly at **[woolentor.com/contact](
 
 = Version: 3.2.5 - Date: 16-10-2025 =
 * Solved: Missing stylesheet issue with product grid modern widget.
-
-= Version: 3.2.3 - Date: 15-10-2025 =
-* Added: Product Grid - Modern Widget.
-* Solved: Wishlist table data fetching issue with block theme.
-* Solved: Compare table render issue in footer.
-* Compatibility: Latest WordPress and WooCommerce version.
-
-= Version: 3.2.2 - Date: 23-09-2025 =
-* Solved: Sample demo image loading issue.
-* Compatibility: Latest WordPress and WooCommerce version.
-
-= Version: 3.2.1 - Date: 07-09-2025 =
-* Added: Badge support in other page.
-* Solved: Post CSS Saving for contributor rule.
-* Compatibility: Latest WordPress and WooCommerce version.
-
-= Version: 3.2.0 - Date: 26-08-2025 =
-* Added: Pagination in template list for abandoned cart module.
-* Added: Refresh button for abandon cart list and Analytics data.
-* Solved: Shopify like checkout Field height issue.
-* Compatibility: Latest WordPress and WooCommerce version.
-
-= Version: 3.1.9 - Date: 18-08-2025 =
-* Solved: Template library showing issue.
 
 **Looking for older releases?** See the **[complete version history](https://woolentor.com/changes-log/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=changelog)** for every ShopLentor version back to 2.5.5.

@@ -14,13 +14,21 @@
 		var image_src = $(this).data('tooltip_image'),
 			text = $(this).data('tooltip_text');
 
-		if(image_src && text){
-			$(this).append(`<div class="swatchly-tooltip"><span class="swatchly-tooltip-text">${text}</span><img src="${image_src}" /></div>`);
-		} else if(image_src){
-			$(this).append(`<div class="swatchly-tooltip"><img src="${image_src}" /></div>`);
-		} else if(text){
-			$(this).append(`<div class="swatchly-tooltip"><span class="swatchly-tooltip-text">${text}</span></div>`);
+		if( !image_src && !text ){
+			return;
 		}
+
+		var $tooltip = $('<div class="swatchly-tooltip"></div>');
+
+		if( text ){
+			$tooltip.append( $('<span class="swatchly-tooltip-text"></span>').text( text ) );
+		}
+
+		if( image_src ){
+			$tooltip.append( $('<img />').attr( 'src', image_src ) );
+		}
+
+		$(this).append( $tooltip );
 	}
 
 	function removeTooltip(e){
@@ -511,7 +519,7 @@
 									if($el_swatch.closest('tr').find('.swatchly_selected_variation_name').length){
 										$el_swatch.closest('tr').find('.swatchly_selected_variation_name').text( variation_label_separator + $el_swatch.data('attr_label') );
 									} else {
-										$el_swatch.closest('tr').find('.label label').append('<span class="swatchly_selected_variation_name">'+ variation_label_separator + $el_swatch.data('attr_label') +'</span>');
+										$el_swatch.closest('tr').find('.label label').append( $('<span class="swatchly_selected_variation_name"></span>').text( variation_label_separator + $el_swatch.data('attr_label') ) );
 
 									}
 								}
@@ -539,7 +547,7 @@
 										if($el_swatch.closest('tr').find('.swatchly_selected_variation_name').length){
 											$el_swatch.closest('tr').find('.swatchly_selected_variation_name').text( variation_label_separator + $el_swatch.data('attr_label') );
 										} else {
-											$el_swatch.closest('tr').find('.label label').append('<span class="swatchly_selected_variation_name">'+ variation_label_separator + $el_swatch.data('attr_label') +'</span>');
+											$el_swatch.closest('tr').find('.label label').append( $('<span class="swatchly_selected_variation_name"></span>').text( variation_label_separator + $el_swatch.data('attr_label') ) );
 										}
 									}
 		
@@ -563,7 +571,7 @@
 										var default_attr_label = $tr.find('.swatchly-type-wrap').attr('data-default_attr_value');
 		
 										if(default_attr_label){
-											$tr.find('.label label').append('<span class="swatchly_selected_variation_name">'+ variation_label_separator + default_attr_label +'</span>');
+											$tr.find('.label label').append( $('<span class="swatchly_selected_variation_name"></span>').text( variation_label_separator + default_attr_label ) );
 
 										} else {
 											$tr.find('.label label').append('<span class="swatchly_selected_variation_name"></span>');

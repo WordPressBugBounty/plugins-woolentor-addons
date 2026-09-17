@@ -107,6 +107,10 @@ if ( $layout_mode === 'grid' ) {
 } elseif($layout_mode === 'list') {
     $layout_mode_class = 'list';
     $card_classes = array( 'woolentor-product-card', 'woolentor-editorial-list-card' );
+} elseif($layout_mode === 'slider') {
+    // Slider reuses the grid card exactly; only the container differs.
+    $layout_mode_class = 'slider';
+    $card_classes = array( 'woolentor-product-card', 'woolentor-editorial-grid-card' );
 } else {
     $layout_mode_class = $settings['default_view_mode'] === 'grid' ? 'grid' : 'list';
     $card_classes = $settings['default_view_mode'] === 'grid' ? array( 'woolentor-product-card', 'woolentor-editorial-grid-card' ) : array( 'woolentor-product-card', 'woolentor-editorial-list-card' );
@@ -117,8 +121,17 @@ $grid_aspect_ratio_class = 'grid-aspect-' . $grid_image_aspect_ratio;
 $list_aspect_ratio_class = 'list-aspect-' . $list_image_aspect_ratio;
 ?>
 
+<?php
+$slider_attr = '';
+if ( 'slider' === $layout_mode && class_exists( 'WooLentor_Product_Grid_Base' ) ) {
+    $slider_attr = ' data-wl-slider="true" data-slider-settings=\''
+        . esc_attr( WooLentor_Product_Grid_Base::instance()->get_slider_settings_json( $settings ) )
+        . '\'';
+}
+?>
+
 <?php if(!$only_items): ?>
-<div class="woolentor-product-grid-editorial woolentor-layout-<?php echo esc_attr( $layout_mode_class ); ?> <?php echo esc_attr( $grid_classes ); ?> <?php echo esc_attr( $grid_aspect_ratio_class ); ?> <?php echo esc_attr( $list_aspect_ratio_class ); ?>" id="<?php echo esc_attr( $grid_id ); ?>">
+<div class="woolentor-product-grid-editorial woolentor-layout-<?php echo esc_attr( $layout_mode_class ); ?> <?php echo esc_attr( $grid_classes ); ?> <?php echo esc_attr( $grid_aspect_ratio_class ); ?> <?php echo esc_attr( $list_aspect_ratio_class ); ?>" id="<?php echo esc_attr( $grid_id ); ?>"<?php echo $slider_attr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- built and escaped above ?>>
 <?php endif; ?>
 
     <?php while ( $products->have_posts() ) : $products->the_post(); ?>

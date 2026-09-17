@@ -94,10 +94,23 @@ $title_html_tag = woolentor_validate_html_tag( $settings['title_tag'] );
 $enable_pagination = isset( $settings['enable_pagination'] ) && $settings['enable_pagination'];
 $pagination_type = isset( $settings['pagination_type'] ) ? $settings['pagination_type'] : 'numbers';
 
+// Layout mode. Luxury only offers Grid and Slider — no list view.
+$layout_mode = isset( $settings['layout'] ) ? $settings['layout'] : 'grid';
+$layout_mode_class = ( 'slider' === $layout_mode ) ? 'slider' : 'grid';
+
+?>
+
+<?php
+$slider_attr = '';
+if ( 'slider' === $layout_mode_class && class_exists( 'WooLentor_Product_Grid_Base' ) ) {
+    $slider_attr = ' data-wl-slider="true" data-slider-settings=\''
+        . esc_attr( WooLentor_Product_Grid_Base::instance()->get_slider_settings_json( $settings ) )
+        . '\'';
+}
 ?>
 
 <?php if(!$only_items): ?>
-<div class="woolentor-product-grid-luxury <?php echo esc_attr( $aspect_ratio_class ); ?> <?php echo esc_attr( $grid_classes ); ?>" id="<?php echo esc_attr( $grid_id ); ?>">
+<div class="woolentor-product-grid-luxury woolentor-layout-<?php echo esc_attr( $layout_mode_class ); ?> <?php echo esc_attr( $aspect_ratio_class ); ?> <?php echo esc_attr( $grid_classes ); ?>" id="<?php echo esc_attr( $grid_id ); ?>"<?php echo $slider_attr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- built and escaped above ?>>
 <?php endif; ?>
 
     <?php while ( $products->have_posts() ) : $products->the_post(); ?>

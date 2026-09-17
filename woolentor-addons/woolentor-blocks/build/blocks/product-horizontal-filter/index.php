@@ -231,7 +231,7 @@ echo '<div class="'.esc_attr(implode(' ', $areaClasses )).'">';
 														$selected = 1;
 													}
 
-													echo sprintf('<option value="%1$s" %3$s>%2$s</option>', $link['link'], esc_html($term->name), selected( $selected, 1, false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+													echo sprintf('<option value="%1$s" %3$s>%2$s</option>', esc_url( $link['link'] ), esc_html($term->name), selected( $selected, 1, false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 												}
 
 											echo '</select></div>';

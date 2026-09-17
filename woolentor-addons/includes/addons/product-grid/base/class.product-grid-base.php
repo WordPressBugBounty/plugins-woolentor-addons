@@ -138,6 +138,23 @@ class WooLentor_Product_Grid_Base {
             'load_more_text'        => esc_html__('Load More','woolentor'),
             'load_more_complete_text' => esc_html__( 'No more products', 'woolentor' ),
 
+            // Slider
+            'slider_arrows'         => true,
+            'slider_dots'           => true,
+            'slider_infinite'       => true,
+            'slider_autoplay'       => false,
+            'slider_autoplay_speed' => 3000,
+            'slider_speed'          => 600,
+            'slider_pause_on_hover' => true,
+            'slider_items'          => 4,
+            'slider_items_tablet'   => 3,
+            'slider_items_mobile'   => 1,
+            'slider_scroll'         => 1,
+            'slider_scroll_tablet'  => 1,
+            'slider_scroll_mobile'  => 1,
+            'slider_tablet_width'   => 750,
+            'slider_mobile_width'   => 480,
+
             // Advanced
             'custom_class'          => '',
             'enable_quick_cart'     => false,
@@ -312,6 +329,41 @@ class WooLentor_Product_Grid_Base {
     }
 
     /**
+     * Build the slider configuration consumed by WooLentorGridSlider().
+     */
+    public function get_slider_settings_json( $settings ) {
+
+        $int = function( $key, $default ) use ( $settings ) {
+            return isset( $settings[ $key ] ) ? absint( $settings[ $key ] ) : $default;
+        };
+
+        $bool = function( $key, $default ) use ( $settings ) {
+            return isset( $settings[ $key ] ) ? (bool) $settings[ $key ] : $default;
+        };
+
+        $config = [
+            'arrows'         => $bool( 'slider_arrows', true ),
+            'dots'           => $bool( 'slider_dots', true ),
+            'infinite'       => $bool( 'slider_infinite', true ),
+            'autoplay'       => $bool( 'slider_autoplay', false ),
+            'autoplay_speed' => max( 500, $int( 'slider_autoplay_speed', 3000 ) ),
+            'speed'          => max( 100, $int( 'slider_speed', 600 ) ),
+            'pause_on_hover' => $bool( 'slider_pause_on_hover', true ),
+            'items'          => max( 1, $int( 'slider_items', 4 ) ),
+            'scroll'         => max( 1, $int( 'slider_scroll', 1 ) ),
+            'tablet_width'   => max( 1, $int( 'slider_tablet_width', 750 ) ),
+            'tablet_items'   => max( 1, $int( 'slider_items_tablet', 3 ) ),
+            'tablet_scroll'  => max( 1, $int( 'slider_scroll_tablet', 1 ) ),
+            'mobile_width'   => max( 1, $int( 'slider_mobile_width', 480 ) ),
+            'mobile_items'   => max( 1, $int( 'slider_items_mobile', 1 ) ),
+            'mobile_scroll'  => max( 1, $int( 'slider_scroll_mobile', 1 ) ),
+            'rtl'            => is_rtl(),
+        ];
+
+        return wp_json_encode( apply_filters( 'woolentor_product_grid_slider_settings', $config, $settings ) );
+    }
+
+    /**
      * Allow Style / Template Type
      *
      * @return array
@@ -406,6 +458,11 @@ class WooLentor_Product_Grid_Base {
             $settings = wp_parse_args( $settings, $this->get_default_settings() );
         }
 
+        // Slider is layout.
+        if ( isset( $settings['layout'] ) && 'slider' === $settings['layout'] && ! woolentor_is_pro() ) {
+            $settings['layout'] = 'grid';
+        }
+
         // Dropdown Filter
         $order_by = isset( $_GET['orderby'] ) ? $_GET['orderby'] : $settings['orderby'];
         $settings['orderby'] = $order_by;
@@ -423,8 +480,9 @@ class WooLentor_Product_Grid_Base {
             // Load template
             $this->load_template( $settings['style'], $settings['layout'], $products, $settings, $only_items );
 
-            // Render pagination
-            if ( ! empty( $settings['enable_pagination'] ) && !$only_items ) {
+            // Pagination and slider are mutually exclusive: the AJAX handlers
+            // append into the grid, which a slick track does not accept.
+            if ( ! empty( $settings['enable_pagination'] ) && !$only_items && 'slider' !== $settings['layout'] ) {
                 $this->render_pagination( $products, $settings );
             }
         } else {

@@ -788,6 +788,81 @@
     }
 
     /**
+     * Grid Slider
+     *
+     * @param {jQuery} $container Element carrying data-wl-slider="true".
+     */
+    var WooLentorGridSlider = function( $container ){
+
+        if( !$container || !$container.length ){
+            return;
+        }
+
+        var defaults = {
+            arrows         : true,
+            dots           : true,
+            infinite       : true,
+            autoplay       : false,
+            autoplay_speed : 3000,
+            speed          : 600,
+            pause_on_hover : true,
+            items          : 4,
+            scroll         : 1,
+            tablet_width   : 750,
+            tablet_items   : 3,
+            tablet_scroll  : 1,
+            mobile_width   : 480,
+            mobile_items   : 1,
+            mobile_scroll  : 1,
+            rtl            : false
+        };
+
+        var s = $.extend( {}, defaults, $container.data('slider-settings') || {} );
+
+        // Re-rendering inside the Elementor editor would otherwise stack a
+        // second slick instance on the same element.
+        if( $container.hasClass('slick-initialized') ){
+            $container.slick('unslick');
+        }
+
+        $container.slick({
+            slidesToShow   : s.items,
+            slidesToScroll : s.scroll,
+            arrows         : s.arrows,
+            prevArrow      : '<button type="button" class="woolentor-grid-nav woolentor-grid-nav-prev" aria-label="Previous products"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>',
+            nextArrow      : '<button type="button" class="woolentor-grid-nav woolentor-grid-nav-next" aria-label="Next products"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>',
+            dots           : s.dots,
+            dotsClass      : 'woolentor-grid-dots',
+            infinite       : s.infinite,
+            autoplay       : s.autoplay,
+            autoplaySpeed  : s.autoplay_speed,
+            speed          : s.speed,
+            pauseOnHover   : s.pause_on_hover,
+            rtl            : s.rtl,
+            responsive     : [
+                {
+                    breakpoint : s.tablet_width,
+                    settings   : {
+                        slidesToShow   : s.tablet_items,
+                        slidesToScroll : s.tablet_scroll
+                    }
+                },
+                {
+                    breakpoint : s.mobile_width,
+                    settings   : {
+                        slidesToShow   : s.mobile_items,
+                        slidesToScroll : s.mobile_scroll
+                    }
+                }
+            ]
+        });
+
+        // A11y fix: Slick adds role="listbox" to .slick-track which is
+        // semantically incorrect for a carousel and fails a Lighthouse audit.
+        $container.find('.slick-track').removeAttr('role');
+    };
+
+    /**
      * New Product Grid
      * @param {*} $scope
      * @param {*} $
@@ -817,6 +892,9 @@
         // View Manager
         WooLentorViewModeManager('.woolentor-product-grid-modern');
 
+        // Slider layout
+        WooLentorGridSlider( $scope.find('[data-wl-slider="true"]').eq(0) );
+
     }
 
     /**
@@ -842,6 +920,10 @@
 
         // View Manager
         WooLentorViewModeManager('.woolentor-product-grid-editorial','editorial');
+
+        // Slider layout
+        WooLentorGridSlider( $scope.find('[data-wl-slider="true"]').eq(0) );
+
     }
 
     /**

@@ -1028,7 +1028,7 @@ class Woolentor_Wl_Product_Filter_Widget extends Widget_Base {
                                                 echo '<ul class="wlchildren">';
                                                     foreach( $loterms as $key => $loterm ){
                                                         $clink = $this->generate_term_link( $filter_type, $loterm, $current_url );
-                                                        echo sprintf('<li class="%5$s">%1$s<a rel="nofollow" href="%2$s">%3$s <span>(%4$s)</span></a></li>', $list_icon, $clink['link'], $loterm->name, $loterm->count, $clink['class'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                        echo sprintf('<li class="%5$s">%1$s<a rel="nofollow" href="%2$s">%3$s <span>(%4$s)</span></a></li>', $list_icon, esc_url( $clink['link'] ), esc_html( $loterm->name ), absint( $loterm->count ), esc_attr( $clink['class'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                     }
                                                 echo '</ul>';
                                             }

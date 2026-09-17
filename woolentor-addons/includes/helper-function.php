@@ -2222,6 +2222,37 @@ if( !function_exists('woolentor_get_user_roles') ){
 }
 
 /**
+ * Safe base URL for the product filter links.
+ *
+ * remove_query_arg() falls back to the raw $_SERVER['REQUEST_URI'] when it is given
+ * false, and WordPress' build_query() emits parameter NAMES unencoded, so an attacker
+ * supplied parameter name travels into the generated link untouched. Rebuilding the
+ * query string with PHP's own http_build_query() keeps every active filter intact
+ * while URL encoding the names as well as the values.
+ *
+ * @return string
+ */
+if( !function_exists('woolentor_filter_safe_current_url') ){
+    function woolentor_filter_safe_current_url() {
+        $request_uri = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+
+        if( empty( $request_uri ) ){
+            return '';
+        }
+
+        $parts = explode( '?', $request_uri, 2 );
+        $path  = $parts[0];
+
+        $query_args = array();
+        if( isset( $parts[1] ) ){
+            wp_parse_str( $parts[1], $query_args );
+        }
+
+        return empty( $query_args ) ? $path : $path . '?' . http_build_query( $query_args );
+    }
+}
+
+/**
  * Generate Filter Term Link
  *
  * @param [type] $filter_type
@@ -2231,6 +2262,12 @@ if( !function_exists('woolentor_get_user_roles') ){
  */
 if( !function_exists('woolentor_block_filter_generate_term_link') ){
     function woolentor_block_filter_generate_term_link( $filter_type, $term, $current_url = false ) {
+
+        // Never let remove_query_arg() fall back to the raw request: rebuild a safe
+        // base URL where the query string parameter names are URL encoded too.
+        if ( empty( $current_url ) ) {
+            $current_url = woolentor_filter_safe_current_url();
+        }
 
         // remove_query_arg() only falls back to the current request when it is given false.
         // A null reaches strstr() inside add_query_arg(), which is deprecated on PHP 8.1+.

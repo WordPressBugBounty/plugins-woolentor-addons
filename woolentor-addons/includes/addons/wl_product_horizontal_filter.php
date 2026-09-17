@@ -1169,7 +1169,7 @@ class Woolentor_Wl_Product_Horizontal_Filter_Widget extends Widget_Base {
                                                                 $selected = 1;
                                                             }
 
-                                                            echo sprintf('<option value="%1$s" %3$s>%2$s</option>', $link['link'], $term->name, selected( $selected, 1, false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                            echo sprintf('<option value="%1$s" %3$s>%2$s</option>', esc_url( $link['link'] ), esc_html( $term->name ), selected( $selected, 1, false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                                                         }
 
                                                     echo '</select></div>';
@@ -1194,6 +1194,12 @@ class Woolentor_Wl_Product_Horizontal_Filter_Widget extends Widget_Base {
     }
 
     protected function generate_term_link( $filter_type, $term, $current_url = false ) {
+
+        // Never let remove_query_arg() fall back to the raw request: rebuild a safe
+        // base URL where the query string parameter names are URL encoded too.
+        if ( empty( $current_url ) && function_exists( 'woolentor_filter_safe_current_url' ) ) {
+            $current_url = woolentor_filter_safe_current_url();
+        }
 
         // remove_query_arg() only falls back to the current request when it is given false.
         // A null reaches strstr() inside add_query_arg(), which is deprecated on PHP 8.1+.

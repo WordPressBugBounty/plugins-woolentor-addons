@@ -293,11 +293,12 @@ class Woolentor_Product_Grid_Editorial_Widget extends WooLentor_Product_Grid_Bas
                     'grid' => esc_html__( 'Grid', 'woolentor' ),
                     'list' => esc_html__( 'List', 'woolentor' ),
                     'wlpro_f1' => esc_html__( 'Grid List Tab (Pro)', 'woolentor' ),
+                    'wlpro_f2' => esc_html__( 'Slider (Pro)', 'woolentor' ),
                 ]
             ]
         );
 
-        woolentor_upgrade_pro_notice_elementor($this, Controls_Manager::RAW_HTML, 'woolentor-product-grid-editorial', 'layout', ['wlpro_f1']);
+        woolentor_upgrade_pro_notice_elementor($this, Controls_Manager::RAW_HTML, 'woolentor-product-grid-editorial', 'layout', ['wlpro_f1','wlpro_f2']);
 
         $this->add_responsive_control(
             'columns',

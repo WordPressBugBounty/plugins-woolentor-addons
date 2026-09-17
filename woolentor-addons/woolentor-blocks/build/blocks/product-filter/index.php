@@ -213,7 +213,7 @@ echo '<div class="'.esc_attr(implode(' ', $areaClasses )).'">';
 										echo '<ul class="wlchildren">';
 											foreach( $loterms as $key => $loterm ){
 												$clink = woolentor_block_filter_generate_term_link( $filter_type, $loterm, $current_url );
-												echo sprintf('<li class="%5$s">%1$s<a href="%2$s">%3$s <span>(%4$s)</span></a></li>', $list_icon, $clink['link'], $loterm->name, $loterm->count, $clink['class'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+												echo sprintf('<li class="%5$s">%1$s<a href="%2$s">%3$s <span>(%4$s)</span></a></li>', $list_icon, esc_url( $clink['link'] ), esc_html( $loterm->name ), absint( $loterm->count ), esc_attr( $clink['class'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 											}
 										echo '</ul>';
 									}

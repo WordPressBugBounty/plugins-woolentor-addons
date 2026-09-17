@@ -346,11 +346,11 @@ class Woo_Config {
             $hide_this_variation_row_class = 'swatchly-hide-this-variation-row';
         }
 
-        $selected           = $args['selected'];
-        $current_term       = get_term_by( 'slug', $selected, $taxonomy );
+        $selected           = isset( $args['selected'] ) ? $args['selected'] : '';
+        $current_term       = $selected ? get_term_by( 'slug', $selected, $taxonomy ) : false;
         $current_term_label = $current_term ? $current_term->name : $selected;
 
-        $html = "<div class='swatchly_default_select $hide_this_variation_row_class'>";
+        $html = "<div class='swatchly_default_select ". esc_attr( $hide_this_variation_row_class ) ."'>";
         $html .= $old_html;
         $html .= '</div>';
 
@@ -360,8 +360,8 @@ class Woo_Config {
             return $html; 
         }
 
-        $attr_class = "class='swatchly-type-wrap swatchly-shape-type-$shape_style swatchly-type-$swatch_type $inset_class swatchly-$disabled_attribute_type_class $featured_class $hide_this_variation_row_class'";
-        $attr_default_attr_value  = "data-default_attr_value='$current_term_label'";
+        $attr_class = "class='swatchly-type-wrap swatchly-shape-type-". esc_attr( $shape_style ) ." swatchly-type-". esc_attr( $swatch_type ) ." ". esc_attr( $inset_class ) ." swatchly-". esc_attr( $disabled_attribute_type_class ) ." ". esc_attr( $featured_class ) ." ". esc_attr( $hide_this_variation_row_class ) ."'";
+        $attr_default_attr_value  = "data-default_attr_value='". esc_attr( $current_term_label ) ."'";
         $html .= "<div $attr_class $attr_default_attr_value>";
 
             if ( taxonomy_exists( $taxonomy ) ) {
@@ -509,9 +509,9 @@ class Woo_Config {
                     $swatch_image_size  = apply_filters('swatchly_swatch_image_size', $swatch_image_key);
                     $tooltip_image_size = apply_filters('swatchly_tooltip_image_size', $tooltip_image_key);
                     $tooltip_image      = wp_get_attachment_image_url( $tooltip_image, $tooltip_image_size );
-                    $attr_class         = "class='swatchly-swatch $selected_class'";
-                    $attr_value         = "data-attr_value='$term->slug'";
-                    $attr_label         = "data-attr_label='$term->name'";
+                    $attr_class         = "class='swatchly-swatch ". esc_attr( $selected_class ) ."'";
+                    $attr_value         = "data-attr_value='". esc_attr( $term->slug ) ."'";
+                    $attr_label         = "data-attr_label='". esc_attr( $term->name ) ."'";
                     $attr_tooltip_text  = $tooltip && $tooltip_text ? 'data-tooltip_text="'. esc_attr($tooltip_text) .'"' : '';
                     $attr_tooltip_image = $tooltip && $tooltip_image ? 'data-tooltip_image="'. esc_attr($tooltip_image) .'"' : '';
 
@@ -523,10 +523,10 @@ class Woo_Config {
                     }
 
                     if($swatch_type == 'color'){
-                        $attr_inline_style = $background_color ? "style='background-color: $background_color;'" : '';
+                        $attr_inline_style = $background_color ? "style='background-color: ". esc_attr( $background_color ) .";'" : '';
 
                         if($enable_multi_color){
-                            $attr_inline_style = $background_color_2 ? "style='background: linear-gradient(-50deg, $background_color 50%, $background_color_2 50%);'" : '';
+                            $attr_inline_style = $background_color_2 ? "style='background: linear-gradient(-50deg, ". esc_attr( $background_color ) ." 50%, ". esc_attr( $background_color_2 ) ." 50%);'" : '';
                         }
 
                         $html .= "<div $attr_class $attr_inline_style $attr_tooltip_text $attr_tooltip_image $attr_label $attr_value>";
@@ -540,8 +540,7 @@ class Woo_Config {
                         }
 
                         $background_image   = $image_id ? wp_get_attachment_image_url( $image_id, $swatch_image_size ) : wc_placeholder_img_src('woocommerce_gallery_thumbnail');
-                        $attr_inline_style  = $background_image ? " style='background-image: url( $background_image );'" : '';
-                        $attr_inline_style  = $background_image ? " style='background-image: url( $background_image );'" : '';
+                        $attr_inline_style  = $background_image ? " style='background-image: url( ". esc_url( $background_image ) ." );'" : '';
 
                         if( $show_swatch_image_in_tooltip ){
                             $background_image   = $image_id ? wp_get_attachment_image_url( $image_id, $tooltip_image_size ) : wc_placeholder_img_src('woocommerce_gallery_thumbnail');
@@ -675,9 +674,9 @@ class Woo_Config {
                     $swatch_image_size  = apply_filters('swatchly_swatch_image_size', $swatch_image_key);
                     $tooltip_image_size = apply_filters('swatchly_tooltip_image_size', $tooltip_image_key);
                     $tooltip_image      = wp_get_attachment_image_url( $tooltip_image, $tooltip_image_size );
-                    $attr_class         = "class='swatchly-swatch $selected_class'";
-                    $attr_label         = "data-attr_label='$variation_name'";
-                    $attr_value         = "data-attr_value='$variation_name'";
+                    $attr_class         = "class='swatchly-swatch ". esc_attr( $selected_class ) ."'";
+                    $attr_label         = "data-attr_label='". esc_attr( $variation_name ) ."'";
+                    $attr_value         = "data-attr_value='". esc_attr( $variation_name ) ."'";
                     $attr_tooltip_text  = $tooltip && $tooltip_text ? 'data-tooltip_text="'. esc_attr($tooltip_text) .'"' : '';
                     $attr_tooltip_image = $tooltip && $tooltip_image ? 'data-tooltip_image="'. esc_attr($tooltip_image) .'"' : '';
 
@@ -689,10 +688,10 @@ class Woo_Config {
                     }
 
                     if($swatch_type == 'color'){
-                        $attr_inline_style = $background_color ? "style='background-color: $background_color;'" : '';
+                        $attr_inline_style = $background_color ? "style='background-color: ". esc_attr( $background_color ) .";'" : '';
 
                         if($enable_multi_color){
-                            $attr_inline_style = $background_color_2 ? "style='background: linear-gradient(-50deg, $background_color 50%, $background_color_2 50%);'" : '';
+                            $attr_inline_style = $background_color_2 ? "style='background: linear-gradient(-50deg, ". esc_attr( $background_color ) ." 50%, ". esc_attr( $background_color_2 ) ." 50%);'" : '';
                         }
 
                         $html .= "<div $attr_class $attr_inline_style $attr_tooltip_text $attr_tooltip_image $attr_label $attr_value>";
@@ -706,7 +705,7 @@ class Woo_Config {
                         }
 
                         $background_image   = $image_id ? wp_get_attachment_image_url( $image_id, $swatch_image_size ) : wc_placeholder_img_src('woocommerce_gallery_thumbnail');
-                        $attr_inline_style  = $background_image ? " style='background-image: url( $background_image );'" : '';
+                        $attr_inline_style  = $background_image ? " style='background-image: url( ". esc_url( $background_image ) ." );'" : '';
 
                         if( $show_swatch_image_in_tooltip ){
                             $attr_tooltip_image = $tooltip && $background_image ? 'data-tooltip_image="'. esc_attr($background_image) .'"' : '';
@@ -741,8 +740,8 @@ class Woo_Config {
 
         $pl_more_text_link_arr    = Helper::get_option('pl_more_text_link');
         if( !empty($pl_more_text_link_arr) ){
-            $pl_more_text_link_url    = esc_url($pl_more_text_link_arr['url'] ? $pl_more_text_link_arr['url'] : $pl_more_text_link_url);
-            $pl_more_text_link_target = esc_attr($pl_more_text_link_arr['target']);
+            $pl_more_text_link_url    = $pl_more_text_link_arr['url'] ? $pl_more_text_link_arr['url'] : $pl_more_text_link_url;
+            $pl_more_text_link_target = $pl_more_text_link_arr['target'];
         }
 
         $html = '';
@@ -752,7 +751,7 @@ class Woo_Config {
             
 
             $html .= '<div class="swatchly-more-button">';
-                $html .= "<a href='$pl_more_text_link_url' target='".esc_attr($pl_more_text_link_target)."' class='swatchly-content'><span>+</span><span>$more_swatch_count</span> <span>".esc_html($more_text)."</span></a>";
+                $html .= "<a href='". esc_url($pl_more_text_link_url) ."' target='".esc_attr($pl_more_text_link_target)."' class='swatchly-content'><span>+</span><span>". absint($more_swatch_count) ."</span> <span>".esc_html($more_text)."</span></a>";
             $html .= '</div>';
 
         } else {
@@ -762,7 +761,7 @@ class Woo_Config {
                 $attr_data_tooltip_text = $pl_more_icon_tooltip_text ? 'data-tooltip_text="'. esc_attr($pl_more_icon_tooltip_text) .'"' : 'data-tooltip_text="'. esc_attr__('More Options', 'woolentor') .'"';
             }
 
-            $html .= "<a href='$pl_more_text_link_url' target='".esc_attr($pl_more_text_link_target)."' class='swatchly-swatch swatchly-more-button' $attr_data_tooltip_text>";
+            $html .= "<a href='". esc_url($pl_more_text_link_url) ."' target='".esc_attr($pl_more_text_link_target)."' class='swatchly-swatch swatchly-more-button' $attr_data_tooltip_text>";
                 $html .= '<span class="swatchly-content"></span>';
             $html .= '</a>';
         }

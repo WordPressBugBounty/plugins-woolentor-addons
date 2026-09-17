@@ -242,7 +242,10 @@ abstract class WooLentor_Product_Grid_Base_Widget extends Widget_Base {
                 'label_off' => esc_html__( 'No', 'woolentor' ),
                 'return_value' => 'yes',
                 'default' => 'no',
-                'description' => esc_html__('If you want to support the Product filter module then enable it.','woolentor')
+                'description' => esc_html__('If you want to support the Product filter module then enable it.','woolentor'),
+                'condition' => [
+                    'layout!' => 'slider',
+                ],
             ]
         );
 
@@ -281,6 +284,7 @@ abstract class WooLentor_Product_Grid_Base_Widget extends Widget_Base {
                 'default' => 4,
                 'min' => 1,
                 'max' => 1000,
+                'description' => esc_html__( 'Total number of products to query. In Slider layout this is the total number of slides rather than a page size.', 'woolentor' ),
             ]
         );
     }
@@ -306,11 +310,12 @@ abstract class WooLentor_Product_Grid_Base_Widget extends Widget_Base {
                     'grid' => esc_html__( 'Grid', 'woolentor' ),
                     'list' => esc_html__( 'List', 'woolentor' ),
                     'wlpro_f1' => esc_html__( 'Grid List Tab (Pro)', 'woolentor' ),
+                    'wlpro_f2' => esc_html__( 'Slider (Pro)', 'woolentor' ),
                 ]
             ]
         );
 
-        woolentor_upgrade_pro_notice_elementor($this, Controls_Manager::RAW_HTML, 'woolentor-product-grid-modern', 'layout', ['wlpro_f1']);
+        woolentor_upgrade_pro_notice_elementor($this, Controls_Manager::RAW_HTML, 'woolentor-product-grid-modern', 'layout', ['wlpro_f1','wlpro_f2']);
 
         $this->add_responsive_control(
             'columns',
@@ -960,6 +965,16 @@ abstract class WooLentor_Product_Grid_Base_Widget extends Widget_Base {
 
         // Pagination Styles
         $this->register_pagination_style_controls();
+
+        // Slider style
+        $this->register_slider_control_styles();
+    }
+
+    /**
+     * Register slider style controls
+     */
+    protected function register_slider_control_styles() {
+        // Override in child classes to add style-specific controls
     }
 
     /**
@@ -1885,6 +1900,7 @@ abstract class WooLentor_Product_Grid_Base_Widget extends Widget_Base {
                 'tab' => Controls_Manager::TAB_STYLE,
                 'condition' => [
                     'enable_pagination' => 'yes',
+                    'layout!' => 'slider',
                 ],
             ]
         );

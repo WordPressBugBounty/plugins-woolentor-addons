@@ -175,6 +175,21 @@ class Woolentor_Product_Grid_Luxury_Widget extends WooLentor_Product_Grid_Base_W
             ]
         );
 
+        $this->add_control(
+            'layout',
+            [
+                'label' => esc_html__( 'Layout', 'woolentor' ),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'grid',
+                'options' => [
+                    'grid' => esc_html__( 'Grid', 'woolentor' ),
+                    'wlpro_f2' => esc_html__( 'Slider (Pro)', 'woolentor' ),
+                ]
+            ]
+        );
+
+        woolentor_upgrade_pro_notice_elementor($this, Controls_Manager::RAW_HTML, 'woolentor-product-grid-luxury', 'layout', ['wlpro_f2']);
+
         $this->add_responsive_control(
             'columns',
             [
@@ -760,7 +775,6 @@ class Woolentor_Product_Grid_Luxury_Widget extends WooLentor_Product_Grid_Base_W
         $luxury_settings = [
             'widget_name'               => $this->get_name(),
             'widget_id'                 => $this->get_id(),
-            'layout'                    => 'grid',
             'show_subtitle'             => $get_val('show_subtitle') === 'yes',
             'subtitle_length'           => absint($get_val('subtitle_length', 5)),
             'show_category_badge'       => $get_val('show_category_badge') === 'yes',
