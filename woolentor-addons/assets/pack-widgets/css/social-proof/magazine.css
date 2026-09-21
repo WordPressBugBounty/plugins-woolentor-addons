@@ -1,0 +1,761 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Social Proof — Magazine pack
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — The summary and the wall
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-sp-magazine-v1 {
+    --wl-sp-red: #EF233C;
+    --wl-sp-ink: #050505;
+    --wl-sp-muted: #667085;
+    --wl-sp-line: #D9DEE7;
+    --wl-sp-cool: #F2F4F7;
+    --wl-sp-surface: #FFFFFF;
+    --wl-sp-yellow: #FFD60A;
+    --wl-sp-green: #16A34A;
+
+    --wl-sp-split: 1fr 2fr;
+    --wl-sp-split-gap: 40px;
+    --wl-sp-cols: repeat(2, 1fr);
+    --wl-sp-cols-md: 1fr;
+    --wl-sp-gap: 18px;
+    --wl-sp-star-size: 15px;
+    --wl-sp-avatar-size: 40px;
+    --wl-sp-bar-height: 6px;
+
+    background: var(--wl-sp-cool);
+    color: var(--wl-sp-ink);
+    padding: 54px 40px;
+}
+
+/* The left column rides with the wall, as the reference pins it. */
+.wl-sp-magazine-v1 .wl-sp-aside {
+    position: sticky;
+    top: 140px;
+}
+
+/* ── Left column ─────────────────────────────────────────────────────────── */
+
+.wl-sp-magazine-v1 .wl-sp-head {
+    margin-bottom: 20px;
+}
+
+/* A red rule, then red condensed type — the reference's kicker, not a filled tag. */
+.wl-sp-magazine-v1 .wl-sp-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--wl-sp-red);
+}
+
+.wl-sp-magazine-v1 .wl-sp-eyebrow::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 28px;
+    height: 2px;
+    background: currentColor;
+}
+
+.wl-sp-magazine-v1 .wl-sp-heading {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(34px, 4.4vw, 56px);
+    font-weight: 800;
+    line-height: 0.98;
+    text-transform: uppercase;
+}
+
+.wl-sp-magazine-v1 .wl-sp-heading em {
+    font-style: normal;
+    color: var(--wl-sp-red);
+}
+
+.wl-sp-magazine-v1 .wl-sp-desc {
+    max-width: 380px;
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--wl-sp-muted);
+}
+
+/* ── Rating summary ──────────────────────────────────────────────────────── */
+
+.wl-sp-magazine-v1 .wl-sp-summary {
+    margin-top: 28px;
+    padding: 24px 24px 14px;
+    border: 1px solid var(--wl-sp-line);
+    border-bottom: 0;
+    border-radius: 8px 8px 0 0;
+    background: var(--wl-sp-surface);
+}
+
+.wl-sp-magazine-v1 .wl-sp-bars {
+    gap: 14px;
+    margin-bottom: 0;
+    padding: 14px 24px 24px;
+    border: 1px solid var(--wl-sp-line);
+    border-top: 1px solid var(--wl-sp-line);
+    border-radius: 0 0 8px 8px;
+    background: var(--wl-sp-surface);
+}
+
+.wl-sp-magazine-v1 .wl-sp-score {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.wl-sp-magazine-v1 .wl-sp-star {
+    color: var(--wl-sp-yellow);
+}
+
+.wl-sp-magazine-v1 .wl-sp-count {
+    width: 100%;
+    font-size: 12px;
+    color: var(--wl-sp-muted);
+}
+
+/* ── Histogram ───────────────────────────────────────────────────────────── */
+
+.wl-sp-magazine-v1 .wl-sp-bar-star,
+.wl-sp-magazine-v1 .wl-sp-bar-pct {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--wl-sp-muted);
+}
+
+.wl-sp-magazine-v1 .wl-sp-bar {
+    border-radius: 999px;
+    background: var(--wl-sp-cool);
+}
+
+.wl-sp-magazine-v1 .wl-sp-bar-fill {
+    border-radius: 999px;
+    background: var(--wl-sp-yellow);
+}
+
+/* ── Cards ───────────────────────────────────────────────────────────────── */
+
+.wl-sp-magazine-v1 .wl-sp-item {
+    position: relative;
+    gap: 14px;
+    padding: 28px;
+    border: 1px solid var(--wl-sp-line);
+    border-radius: 8px;
+    background: var(--wl-sp-surface);
+    transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+}
+
+.wl-sp-magazine-v1 .wl-sp-item:hover {
+    transform: translateY(-3px);
+    border-color: var(--wl-sp-ink);
+    box-shadow: 0 6px 18px rgba(5, 5, 5, 0.08);
+}
+
+
+.wl-sp-magazine-v1 .wl-sp-verified {
+    z-index: 2;
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    color: var(--wl-sp-green);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.wl-sp-magazine-v1 .wl-sp-text {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--wl-sp-muted);
+}
+
+.wl-sp-magazine-v1 .wl-sp-author {
+    padding-top: 14px;
+    border-top: 1px dashed var(--wl-sp-line);
+}
+
+.wl-sp-magazine-v1 .wl-sp-name {
+    font-size: 13px;
+    font-weight: 800;
+}
+
+
+@media (max-width: 767px) {
+    .wl-sp-magazine-v1 {
+        padding: 50px 20px;
+    }
+
+    .wl-sp-magazine-v1 .wl-sp-head {
+        margin-bottom: 14px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — The photograph and its panel
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-sp-magazine-v2 {
+    --wl-sp-coral: #D95846;
+    --wl-sp-green: #5A9761;
+    --wl-sp-blue: #4576E7;
+    --wl-sp-dark: #151719;
+    --wl-sp-ink: #111315;
+    --wl-sp-text-2: #555D63;
+    --wl-sp-muted: #8D969C;
+    --wl-sp-line: #DDE2E5;
+    --wl-sp-field: #F8F8F4;
+    --wl-sp-surface: #FFFFFF;
+
+    /* One slide, edge to edge: no half-gap inset on the track. */
+    --wl-sp-gap: 0px;
+    --wl-sp-star-size: 13px;
+    --wl-sp-star-gap: 3px;
+    --wl-sp-avatar-size: auto;
+    --wl-sp-arrow-size: 44px;
+    --wl-sp-progress-height: 3px;
+    --wl-sp-panel-height: 540px;
+
+    background: var(--wl-sp-field);
+    color: var(--wl-sp-ink);
+    padding: 78px 40px;
+}
+
+/* ── Header, centred ─────────────────────────────────────────────────────── */
+
+.wl-sp-magazine-v2 .wl-sp-head-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 44px;
+    text-align: center;
+}
+
+.wl-sp-magazine-v2 .wl-sp-head {
+    margin-bottom: 0;
+    align-items: center;
+    text-align: center;
+}
+
+/* A coral star, then the label, then a hairline — the pack's section mark. */
+.wl-sp-magazine-v2 .wl-sp-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2.6px;
+    text-transform: uppercase;
+    color: var(--wl-sp-ink);
+}
+
+.wl-sp-magazine-v2 .wl-sp-eyebrow::before {
+    content: "\2726";
+    flex: 0 0 auto;
+    font-size: 14px;
+    line-height: 0;
+    color: var(--wl-sp-coral);
+}
+
+.wl-sp-magazine-v2 .wl-sp-eyebrow::after {
+    content: "";
+    flex: 0 0 auto;
+    width: 24px;
+    height: 1px;
+    background: var(--wl-sp-line);
+}
+
+.wl-sp-magazine-v2 .wl-sp-heading {
+    margin-top: 12px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(36px, 4.2vw, 56px);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.5px;
+}
+
+.wl-sp-magazine-v2 .wl-sp-heading em {
+    font-style: italic;
+    color: var(--wl-sp-coral);
+}
+
+.wl-sp-magazine-v2 .wl-sp-desc {
+    max-width: 520px;
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--wl-sp-text-2);
+}
+
+.wl-sp-magazine-v2 .wl-sp-summary {
+    gap: 14px;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--wl-sp-text-2);
+}
+
+.wl-sp-magazine-v2 .wl-sp-score {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--wl-sp-ink);
+}
+
+.wl-sp-magazine-v2 .wl-sp-star {
+    color: currentColor;
+}
+
+/* ── The slide ───────────────────────────────────────────────────────────── */
+
+/* The whole track is one rounded plate, as the reference frames it. */
+.wl-sp-magazine-v2 .wl-sp-slider {
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(17, 19, 21, 0.08);
+}
+
+.wl-sp-magazine-v2 [data-wl-sp-item="0"],
+.wl-sp-magazine-v2 [data-wl-sp-item="4"],
+.wl-sp-magazine-v2 [data-wl-sp-item="8"],
+.wl-sp-magazine-v2 [data-wl-sp-item="12"],
+.wl-sp-magazine-v2 [data-wl-sp-item="16"] {
+    --wl-sp-panel: var(--wl-sp-dark);
+}
+
+.wl-sp-magazine-v2 [data-wl-sp-item="1"],
+.wl-sp-magazine-v2 [data-wl-sp-item="5"],
+.wl-sp-magazine-v2 [data-wl-sp-item="9"],
+.wl-sp-magazine-v2 [data-wl-sp-item="13"],
+.wl-sp-magazine-v2 [data-wl-sp-item="17"] {
+    --wl-sp-panel: var(--wl-sp-coral);
+}
+
+.wl-sp-magazine-v2 [data-wl-sp-item="2"],
+.wl-sp-magazine-v2 [data-wl-sp-item="6"],
+.wl-sp-magazine-v2 [data-wl-sp-item="10"],
+.wl-sp-magazine-v2 [data-wl-sp-item="14"],
+.wl-sp-magazine-v2 [data-wl-sp-item="18"] {
+    --wl-sp-panel: var(--wl-sp-blue);
+}
+
+.wl-sp-magazine-v2 [data-wl-sp-item="3"],
+.wl-sp-magazine-v2 [data-wl-sp-item="7"],
+.wl-sp-magazine-v2 [data-wl-sp-item="11"],
+.wl-sp-magazine-v2 [data-wl-sp-item="15"],
+.wl-sp-magazine-v2 [data-wl-sp-item="19"] {
+    --wl-sp-panel: var(--wl-sp-green);
+}
+
+.wl-sp-magazine-v2 .wl-sp-item {
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+    gap: 0;
+    min-height: var(--wl-sp-panel-height);
+    padding: 48px 54px 48px calc(46% + 54px);
+    background: var(--wl-sp-panel, var(--wl-sp-dark));
+    color: #FFFFFF;
+}
+
+/* The ghost quotation mark the panel is set over. */
+.wl-sp-magazine-v2 .wl-sp-item::before {
+    content: "\201C";
+    position: absolute;
+    top: -50px;
+    left: calc(46% + 24px);
+    z-index: 0;
+    font-family: var(--wl-pack-font-heading);
+    font-size: 300px;
+    line-height: 1;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.wl-sp-magazine-v2 .wl-sp-item>* {
+    position: relative;
+    z-index: 1;
+}
+
+/* ── The photograph ──────────────────────────────────────────────────────── */
+
+.wl-sp-magazine-v2 .wl-sp-author {
+    display: contents;
+}
+
+.wl-sp-magazine-v2 .wl-sp-avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 0;
+    width: 46%;
+    height: auto;
+    border-radius: 0;
+    overflow: hidden;
+    background: var(--wl-sp-line);
+}
+
+.wl-sp-magazine-v2 .wl-sp-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease;
+}
+
+.wl-sp-magazine-v2 .wl-sp-item:hover .wl-sp-avatar img {
+    transform: scale(1.05);
+}
+
+/* The identity card over the photograph's bottom corner. */
+.wl-sp-magazine-v2 .wl-sp-author-text {
+    position: absolute;
+    left: 22px;
+    bottom: 22px;
+    z-index: 2;
+    max-width: calc(46% - 44px);
+    padding: 13px 18px;
+    border-radius: 8px;
+    background: var(--wl-sp-surface);
+    color: var(--wl-sp-ink);
+    box-shadow: 0 2px 10px rgba(17, 19, 21, 0.12);
+}
+
+.wl-sp-magazine-v2 .wl-sp-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--wl-sp-ink);
+}
+
+.wl-sp-magazine-v2 .wl-sp-meta {
+    margin-top: 2px;
+}
+
+.wl-sp-magazine-v2 .wl-sp-role {
+    font-size: 11px;
+    color: var(--wl-sp-muted);
+}
+
+/* ── The copy ────────────────────────────────────────────────────────────── */
+
+/* The reference opens the panel with a small ruled line naming the source. */
+.wl-sp-magazine-v2 .wl-sp-verified {
+    order: -1;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    align-self: flex-start;
+    margin-bottom: 22px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.wl-sp-magazine-v2 .wl-sp-verified::after {
+    content: "";
+    flex: 0 0 auto;
+    width: 30px;
+    height: 1px;
+    background: currentColor;
+}
+
+.wl-sp-magazine-v2 .wl-sp-quote {
+    margin-bottom: 22px;
+}
+
+.wl-sp-magazine-v2 .wl-sp-text {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(24px, 2.5vw, 32px);
+    font-weight: 600;
+    line-height: 1.22;
+    letter-spacing: -0.3px;
+    color: #FFFFFF;
+}
+
+.wl-sp-magazine-v2 .wl-sp-rating {
+    align-self: flex-start;
+    letter-spacing: 3px;
+}
+
+/* ── Bottom: the bar and the arrows share a line ─────────────────────────── */
+
+.wl-sp-magazine-v2 .wl-sp-bottom {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 22px;
+}
+
+.wl-sp-magazine-v2 .wl-sp-progress {
+    flex: 1 1 auto;
+    border-radius: 999px;
+    background: var(--wl-sp-line);
+}
+
+.wl-sp-magazine-v2 .wl-sp-progress-fill {
+    border-radius: 999px;
+    background: var(--wl-sp-coral);
+}
+
+.wl-sp-magazine-v2 .wl-sp-nav {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 8px;
+}
+
+.wl-sp-magazine-v2 .wl-sp-arrow {
+    border: 1px solid var(--wl-sp-line);
+    border-radius: 999px;
+    background: var(--wl-sp-surface);
+    color: var(--wl-sp-ink);
+    transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.wl-sp-magazine-v2 .wl-sp-arrow:hover:not([disabled]) {
+    border-color: var(--wl-sp-coral);
+    background: var(--wl-sp-coral);
+    color: var(--wl-sp-surface);
+}
+
+.wl-sp-magazine-v2 .wl-sp-arrow .wl-sp-icon {
+    width: 16px;
+    height: 16px;
+}
+
+@media (max-width: 1024px) {
+
+    /* The photograph goes over the copy rather than beside it. */
+    .wl-sp-magazine-v2 {
+        --wl-sp-panel-height: 0px;
+    }
+
+    .wl-sp-magazine-v2 .wl-sp-item {
+        padding: 300px 32px 40px;
+    }
+
+    .wl-sp-magazine-v2 .wl-sp-item::before {
+        left: 20px;
+        font-size: 200px;
+    }
+
+    .wl-sp-magazine-v2 .wl-sp-avatar {
+        bottom: auto;
+        width: 100%;
+        height: 280px;
+    }
+
+    .wl-sp-magazine-v2 .wl-sp-author-text {
+        left: 20px;
+        bottom: auto;
+        top: 210px;
+        max-width: calc(100% - 40px);
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-sp-magazine-v2 {
+        padding: 50px 20px;
+    }
+
+    .wl-sp-magazine-v2 .wl-sp-head-row {
+        margin-bottom: 26px;
+    }
+
+    .wl-sp-magazine-v2 .wl-sp-item {
+        padding: 250px 22px 32px;
+    }
+
+    .wl-sp-magazine-v2 .wl-sp-avatar {
+        height: 230px;
+    }
+
+    .wl-sp-magazine-v2 .wl-sp-author-text {
+        top: 165px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — The printed verdict
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-sp-magazine-v3 {
+    --wl-sp-terracotta: #B5573C;
+    --wl-sp-cream: #F6F1E8;
+    --wl-sp-cream-2: #FBF8F2;
+    --wl-sp-graphite: #2B2926;
+    --wl-sp-mushroom: #A79D92;
+
+    --wl-sp-star-size: 15px;
+    --wl-sp-picker-gap: 8px;
+    --wl-sp-product-thumb: 44px;
+
+    background: var(--wl-sp-cream);
+    color: var(--wl-sp-graphite);
+    padding: 96px 40px;
+}
+
+.wl-sp-magazine-v3 .wl-sp-head {
+    margin-bottom: 14px;
+}
+
+.wl-sp-magazine-v3 .wl-sp-eyebrow {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 4px 10px;
+    border-radius: 2px;
+    background: var(--wl-sp-terracotta);
+    color: var(--wl-sp-cream-2);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.wl-sp-magazine-v3 .wl-sp-heading {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(28px, 3.4vw, 46px);
+    font-weight: 500;
+    line-height: 1.12;
+}
+
+.wl-sp-magazine-v3 .wl-sp-heading em {
+    font-style: italic;
+    color: var(--wl-sp-terracotta);
+}
+
+.wl-sp-magazine-v3 .wl-sp-desc {
+    max-width: 60ch;
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--wl-sp-mushroom);
+}
+
+.wl-sp-magazine-v3 .wl-sp-summary {
+    margin-bottom: 26px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wl-sp-mushroom);
+}
+
+.wl-sp-magazine-v3 .wl-sp-score {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 24px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--wl-sp-graphite);
+}
+
+.wl-sp-magazine-v3 .wl-sp-star {
+    color: var(--wl-sp-terracotta);
+}
+
+/* ── Picker — paper tabs ─────────────────────────────────────────────────── */
+
+.wl-sp-magazine-v3 .wl-sp-picker {
+    margin-bottom: 28px;
+}
+
+.wl-sp-magazine-v3 .wl-sp-picker-btn {
+    padding: 8px 16px;
+    border: 1px solid var(--wl-sp-mushroom);
+    border-radius: 2px;
+    background: var(--wl-sp-cream-2);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--wl-sp-graphite);
+    transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.wl-sp-magazine-v3 .wl-sp-picker-btn.is-active {
+    background: var(--wl-sp-graphite);
+    border-color: var(--wl-sp-graphite);
+    color: var(--wl-sp-cream-2);
+}
+
+/* ── The verdict, set as a page ──────────────────────────────────────────── */
+
+.wl-sp-magazine-v3 .wl-sp-item {
+    gap: 18px;
+    max-width: 68ch;
+    padding: 34px;
+    border: 1px solid rgba(167, 157, 146, 0.45);
+    border-radius: 2px;
+    background: var(--wl-sp-cream-2);
+}
+
+.wl-sp-magazine-v3 .wl-sp-text {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(19px, 2.2vw, 27px);
+    font-weight: 400;
+    line-height: 1.55;
+}
+
+.wl-sp-magazine-v3 .wl-sp-product {
+    padding: 6px 14px 6px 6px;
+    border: 1px solid rgba(167, 157, 146, 0.45);
+    border-radius: 2px;
+    font-size: 13px;
+}
+
+.wl-sp-magazine-v3 .wl-sp-product-thumb {
+    border-radius: 2px;
+}
+
+.wl-sp-magazine-v3 .wl-sp-product-name {
+    font-style: italic;
+    color: var(--wl-sp-terracotta);
+}
+
+.wl-sp-magazine-v3 .wl-sp-author {
+    padding-top: 18px;
+    border-top: 1px solid rgba(167, 157, 146, 0.45);
+}
+
+.wl-sp-magazine-v3 .wl-sp-name {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.wl-sp-magazine-v3 .wl-sp-meta {
+    margin-top: 3px;
+}
+
+.wl-sp-magazine-v3 .wl-sp-role {
+    font-size: 12px;
+    color: var(--wl-sp-mushroom);
+}
+
+.wl-sp-magazine-v3 .wl-sp-verified {
+    margin-left: auto;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--wl-sp-terracotta);
+}
+
+@media (max-width: 767px) {
+    .wl-sp-magazine-v3 {
+        padding: 56px 20px;
+    }
+
+    .wl-sp-magazine-v3 .wl-sp-item {
+        padding: 22px;
+    }
+
+    .wl-sp-magazine-v3 .wl-sp-picker {
+        margin-bottom: 20px;
+    }
+}

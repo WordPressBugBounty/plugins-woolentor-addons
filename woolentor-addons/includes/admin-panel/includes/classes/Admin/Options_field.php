@@ -1248,6 +1248,30 @@ class Options_Field {
                 ),
 
                 array(
+                    'id'    => 'product_bundle',
+                    'name'   => esc_html__( 'Product Bundle - 2026', 'woolentor' ),
+                    'type'    => 'element',
+                    'default' => 'on',
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
+
+                array(
+                    'id'    => 'social_proof',
+                    'name'   => esc_html__( 'Social Proof - 2026', 'woolentor' ),
+                    'type'    => 'element',
+                    'default' => 'on',
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
+
+                array(
                     'id'    => 'product_grid_modern',
                     'name' => esc_html__( 'Product Grid - Modern', 'woolentor' ),
                     'type'    => 'element',

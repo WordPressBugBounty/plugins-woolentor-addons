@@ -754,6 +754,461 @@
         } );
     };
 
+    /**
+     * WLProductBundle — bundle switching, item toggling and one-request add to cart.
+     */
+    var WLProductBundle = function ( $scope ) {
+        var $widgets = $scope.find( '[data-wl-pb]' );
+
+        if ( ! $widgets.length ) {
+            return;
+        }
+
+        $widgets.each( function () {
+            var $pb = $( this );
+            var ns  = '.wlpb' + ( $pb.attr( 'data-wl-pb-uid' ) || Math.random().toString( 36 ).slice( 2 ) );
+
+            // Re-rendering a widget in the editor would otherwise stack a second set of handlers
+            // on the same nodes and fire everything twice.
+            if ( $pb.attr( 'data-wl-pb-bound' ) ) {
+                $pb.off( $pb.attr( 'data-wl-pb-bound' ) );
+            }
+
+            $pb.attr( 'data-wl-pb-bound', ns );
+
+            var money = {};
+
+            try {
+                money = JSON.parse( $pb.attr( 'data-wl-pb-money' ) || '{}' );
+            } catch ( e ) {
+                money = {};
+            }
+
+            /**
+             * Format a number the way the server would.
+             *
+             * WooCommerce's own separators and pattern come through on the widget, because a shop
+             * selling in euros writes `1.234,56 €` and one selling in dollars writes `$1,234.56`.
+             * Guessing either would produce a total that disagrees with the one beside it.
+             */
+            function formatMoney( amount ) {
+                if ( ! money.format ) {
+                    return String( amount );
+                }
+
+                var negative = amount < 0;
+                var fixed    = Math.abs( amount ).toFixed( money.decimals );
+                var parts    = fixed.split( '.' );
+
+                parts[ 0 ] = parts[ 0 ].replace( /\B(?=(\d{3})+(?!\d))/g, money.thousand );
+
+                var number = parts.length > 1 ? parts.join( money.decimal ) : parts[ 0 ];
+
+                return ( negative ? '-' : '' ) + money.format
+                    .replace( '%1$s', money.symbol )
+                    .replace( '%2$s', number );
+            }
+
+            /** Every box that holds one bundle's own items, total and button. */
+            function boxes() {
+                return $pb.find( '[data-wl-pb-bundle]' );
+            }
+
+            /** Re-price one bundle from the rows that are still on. */
+            function retotal( $box ) {
+                var now = 0;
+                var was = 0;
+                var on  = 0;
+
+                $box.find( '[data-wl-pb-item]' ).each( function () {
+                    var $item = $( this );
+
+                    if ( $item.hasClass( 'is-off' ) ) {
+                        return;
+                    }
+
+                    now += parseFloat( $item.attr( 'data-wl-pb-price' ) ) || 0;
+                    was += parseFloat( $item.attr( 'data-wl-pb-regular' ) ) || 0;
+                    on++;
+                } );
+
+                $box.find( '[data-wl-pb-now]' ).text( formatMoney( now ) );
+
+                var saved = Math.max( 0, was - now );
+                var $was  = $box.find( '[data-wl-pb-was]' );
+                var $save = $box.find( '[data-wl-pb-save]' );
+
+                // A saving of zero is not shown at all rather than printed as "Save 0": the
+                // struck price and the badge both stop meaning anything once they are equal.
+                if ( saved > 0.009 ) {
+                    $was.text( formatMoney( was ) ).show();
+                    $save.show().find( '.wl-pb-save-value' ).each( function () {
+                        var $v      = $( this );
+                        var percent = was > 0 ? Math.round( ( saved / was ) * 100 ) : 0;
+                        var mode    = $v.attr( 'data-wl-pb-save-mode' ) || 'amount';
+
+                        if ( 'percent' === mode ) {
+                            $v.text( percent + '%' );
+                        } else if ( 'both' === mode ) {
+                            $v.text( formatMoney( saved ) + ' — ' + percent + '%' );
+                        } else {
+                            $v.text( formatMoney( saved ) );
+                        }
+                    } );
+                } else {
+                    $was.hide();
+                    $save.hide();
+                }
+
+                $box.find( '[data-wl-pb-selected]' ).text( on );
+
+                // The button is the only thing that can act, so it is the thing that reports an
+                // empty selection — disabled, and saying why.
+                var $cta  = $box.find( '[data-wl-pb-add]' );
+                var empty = $cta.attr( 'data-wl-pb-empty' ) || '';
+
+                if ( ! $cta.hasClass( 'is-added' ) ) {
+                    if ( ! on ) {
+                        $cta.prop( 'disabled', true );
+
+                        if ( empty ) {
+                            $cta.find( '.wl-pb-cta-text' ).text( empty );
+                        }
+                    } else {
+                        $cta.prop( 'disabled', false )
+                            .find( '.wl-pb-cta-text' ).text( $cta.attr( 'data-wl-pb-label' ) || '' );
+                    }
+                }
+
+                giftProgress( $box, now );
+            }
+
+            /**
+             * Move the free-gift bar. It reports progress toward a promotion the merchant has set
+             * up in WooCommerce; it never adds anything, and it never claims the gift is in the
+             * cart.
+             */
+            function giftProgress( $box, now ) {
+                var $gift = $box.find( '[data-wl-pb-gift]' );
+
+                if ( ! $gift.length ) {
+                    return;
+                }
+
+                var threshold = parseFloat( $gift.attr( 'data-wl-pb-gift' ) ) || 0;
+
+                if ( threshold <= 0 ) {
+                    return;
+                }
+
+                var left    = Math.max( 0, threshold - now );
+                var percent = Math.min( 100, ( now / threshold ) * 100 );
+
+                $gift.find( '[data-wl-pb-gift-fill]' ).css( 'width', percent + '%' );
+                $gift.toggleClass( 'is-unlocked', left <= 0 );
+
+                var $left = $gift.find( '[data-wl-pb-gift-left]' );
+
+                if ( $left.length ) {
+                    $left.text( formatMoney( left ) );
+                }
+            }
+
+            function setItem( $item, on ) {
+                if ( ! $item.hasClass( 'is-toggle' ) ) {
+                    return;
+                }
+
+                $item.toggleClass( 'is-off', ! on );
+                $item.find( '[data-wl-pb-toggle]' ).attr( 'aria-checked', on ? 'true' : 'false' );
+
+                // Magazine V2 recaps the set beside its total. The recap line is keyed by product
+                // id and carries no price attribute of its own, so it follows the tile without
+                // ever being counted a second time.
+                var id = $item.attr( 'data-wl-pb-id' );
+
+                if ( id ) {
+                    $item.closest( '[data-wl-pb-bundle]' )
+                        .find( '[data-wl-pb-line="' + id + '"]' )
+                        .toggleClass( 'is-off', ! on );
+                }
+            }
+
+            // ── Toggling ──────────────────────────────────────────────────────
+
+            $pb.on( 'click' + ns, '[data-wl-pb-toggle]', function () {
+                var $item = $( this ).closest( '[data-wl-pb-item]' );
+                setItem( $item, $item.hasClass( 'is-off' ) );
+                retotal( $item.closest( '[data-wl-pb-bundle]' ) );
+            } );
+
+            // Clicking anywhere on the row is a convenience on top of the real control; when the
+            // click landed on that control it has already been handled.
+            $pb.on( 'click' + ns, '.wl-pb-item.is-toggle', function ( event ) {
+                if ( $( event.target ).closest( '[data-wl-pb-toggle]' ).length ) {
+                    return;
+                }
+
+                var $item = $( this );
+                setItem( $item, $item.hasClass( 'is-off' ) );
+                retotal( $item.closest( '[data-wl-pb-bundle]' ) );
+            } );
+
+            $pb.on( 'click' + ns, '[data-wl-pb-all]', function () {
+                var $box = $( this ).closest( '[data-wl-pb-bundle]' );
+                $box.find( '.wl-pb-item.is-toggle' ).each( function () {
+                    setItem( $( this ), true );
+                } );
+                retotal( $box );
+            } );
+
+            $pb.on( 'click' + ns, '[data-wl-pb-none]', function () {
+                var $box = $( this ).closest( '[data-wl-pb-bundle]' );
+                $box.find( '.wl-pb-item.is-toggle' ).each( function () {
+                    setItem( $( this ), false );
+                } );
+                retotal( $box );
+            } );
+
+            // ── Switching ─────────────────────────────────────────────────────
+
+            function show( index ) {
+                var $all = $pb.find( '.wl-pb-stage > .wl-pb-bundle' );
+
+                if ( ! $all.length ) {
+                    return;
+                }
+
+                $all.removeClass( 'is-active' )
+                    .filter( '[data-wl-pb-bundle="' + index + '"]' ).addClass( 'is-active' );
+
+                $pb.find( '[data-wl-pb-go]' ).each( function () {
+                    var $btn   = $( this );
+                    var active = String( $btn.attr( 'data-wl-pb-go' ) ) === String( index );
+                    $btn.toggleClass( 'is-active', active ).attr( 'aria-pressed', active ? 'true' : 'false' );
+                } );
+
+                var order = $all.map( function () {
+                    return $( this ).attr( 'data-wl-pb-bundle' );
+                } ).get();
+
+                var position = order.indexOf( String( index ) ) + 1;
+
+                $pb.find( '[data-wl-pb-counter] .wl-pb-switch-now' )
+                    .text( position < 10 ? '0' + position : String( position ) );
+
+                // The counter is a one-arrow pager, so it cycles. Disabling its only control at
+                // the last bundle would strand the shopper there with no way back — which is
+                // exactly what it did. The two-arrow shape stops at the ends instead, because
+                // there a disabled arrow still leaves the other one to use.
+                if ( ! wraps() ) {
+                    $pb.find( '[data-wl-pb-prev]' ).prop( 'disabled', position <= 1 );
+                    $pb.find( '[data-wl-pb-next]' ).prop( 'disabled', position >= order.length );
+                }
+            }
+
+            function wraps() {
+                return $pb.find( '[data-wl-pb-switch="counter"]' ).length > 0;
+            }
+
+            function step( delta ) {
+                var $all = $pb.find( '.wl-pb-stage > .wl-pb-bundle' );
+                var order = $all.map( function () {
+                    return $( this ).attr( 'data-wl-pb-bundle' );
+                } ).get();
+
+                if ( ! order.length ) {
+                    return;
+                }
+
+                var current = $all.filter( '.is-active' ).attr( 'data-wl-pb-bundle' );
+                var next    = order.indexOf( String( current ) ) + delta;
+
+                if ( wraps() ) {
+                    next = ( next + order.length ) % order.length;
+                } else if ( next < 0 || next >= order.length ) {
+                    return;
+                }
+
+                show( order[ next ] );
+            }
+
+            $pb.on( 'click' + ns, '[data-wl-pb-go]', function () {
+                show( $( this ).attr( 'data-wl-pb-go' ) );
+            } );
+
+            $pb.on( 'click' + ns, '[data-wl-pb-prev]', function () {
+                step( -1 );
+            } );
+
+            $pb.on( 'click' + ns, '[data-wl-pb-next]', function () {
+                step( 1 );
+            } );
+
+            // ── Add to cart ───────────────────────────────────────────────────
+
+            $pb.on( 'click' + ns, '[data-wl-pb-add]', function ( event ) {
+                event.preventDefault();
+
+                var $btn = $( this );
+
+                if ( $btn.prop( 'disabled' ) || $btn.hasClass( 'is-loading' ) ) {
+                    return;
+                }
+
+                var $box  = $btn.closest( '[data-wl-pb-bundle]' );
+                var items = [];
+
+                $box.find( '[data-wl-pb-item]' ).each( function () {
+                    var $item = $( this );
+
+                    if ( $item.hasClass( 'is-off' ) ) {
+                        return;
+                    }
+
+                    items.push( {
+                        id:  $item.attr( 'data-wl-pb-id' ),
+                        qty: $item.attr( 'data-wl-pb-qty' ) || 1
+                    } );
+                } );
+
+                if ( ! items.length || typeof wlPackWidgets === 'undefined' ) {
+                    return;
+                }
+
+                var $label   = $btn.find( '.wl-pb-cta-text' );
+                var original = $label.text();
+
+                $btn.addClass( 'is-loading' ).prop( 'disabled', true );
+
+                $.post( wlPackWidgets.ajaxurl, {
+                    action: 'woolentor_add_bundle_to_cart',
+                    nonce:  $btn.attr( 'data-wl-pb-nonce' ),
+                    coupon: $btn.attr( 'data-wl-pb-coupon' ) || '',
+                    items:  items
+                } ).done( function ( response ) {
+                    if ( ! response || ! response.success ) {
+                        $label.text( original );
+                        return;
+                    }
+
+                    $( document.body ).trigger( 'wc_fragment_refresh' );
+
+                    /**
+                     * One `added_to_cart` per product.
+                     *
+                     * The fourth argument is not optional in practice: listeners read
+                     * `button.data('product_id')` straight off it with no guard — the wishlist
+                     * module does — so firing without a button throws inside somebody else's
+                     * handler. This widget has no per-product button to hand over, so each event
+                     * carries a detached one holding that product's id: honest about which product
+                     * it announces, and enough for every listener that reads it.
+                     */
+                    ( response.data.ids || [] ).forEach( function ( id ) {
+                        $( document.body ).trigger( 'added_to_cart', [
+                            response.data.fragments,
+                            response.data.cart_hash,
+                            $( '<button type="button" data-product_id="' + id + '"></button>' ),
+                            id
+                        ] );
+                    } );
+
+                    $btn.addClass( 'is-added' );
+
+                    var done = $btn.attr( 'data-wl-pb-added' );
+                    $label.text( done || original );
+                } ).fail( function () {
+                    $label.text( original );
+                } ).always( function () {
+                    $btn.removeClass( 'is-loading' ).prop( 'disabled', false );
+                } );
+            } );
+
+            // First paint: the markup already carries the server's figures, so this only settles
+            // the switcher's arrows and the button's empty state.
+            boxes().each( function () {
+                retotal( $( this ) );
+            } );
+
+            var $active = $pb.find( '.wl-pb-stage > .wl-pb-bundle.is-active' ).first();
+
+            if ( $active.length ) {
+                show( $active.attr( 'data-wl-pb-bundle' ) );
+            }
+        } );
+    };
+
+    /**
+     * WLSocialProof — hands each slider to the shared Slick core and wires the pack's own picker.
+     *
+     * There is deliberately **no bespoke slider here**. Slick is already bundled, already
+     * keyboard- and touch-capable, and every other pack widget uses it through `WLPackSlider`,
+     * so a merchant meets the same switches under the same names. All this module adds is the
+     * part Slick has no opinion about: a filmstrip, a row of portraits or a set of tabs that
+     * drives it, and a counter that follows it.
+     *
+     * Nothing here calls stopPropagation(). WooCommerce delegates handlers on `document`, and
+     * stopping a click inside a pack widget has already turned an AJAX add into a full page
+     * navigation once.
+     */
+    var WLSocialProof = function ( $scope ) {
+        $scope.find( '.wl-sp-slider[data-wl-slider="true"]' ).each( function () {
+            var $slider = $( this );
+            var $sp     = $slider.closest( '[data-wl-sp]' );
+
+            // Slick refuses to re-init a live instance, and the editor re-renders on every
+            // keystroke in a control.
+            if ( $slider.hasClass( 'slick-initialized' ) ) {
+                $slider.slick( 'unslick' );
+            }
+
+            WLPackSlider( $slider );
+
+            // Bound on the widget rather than the picker: a carousel's arrows sit in the header
+            // row and a spotlight's in its picker, and both drive the same slider.
+            var ns    = '.wlsp' + Math.random().toString( 36 ).slice( 2 );
+            var bound = $sp.attr( 'data-wl-sp-bound' );
+
+            if ( bound ) {
+                $sp.off( bound );
+            }
+
+            $sp.attr( 'data-wl-sp-bound', ns );
+
+            function paint( index ) {
+                $sp.find( '[data-wl-sp-go]' ).each( function () {
+                    var $btn   = $( this );
+                    var active = parseInt( $btn.attr( 'data-wl-sp-go' ), 10 ) === index;
+                    $btn.toggleClass( 'is-active', active ).attr( 'aria-pressed', active ? 'true' : 'false' );
+                } );
+
+                var now = index + 1;
+                $sp.find( '.wl-sp-counter-now' ).text( now < 10 ? '0' + now : String( now ) );
+            }
+
+            // Slick owns the current index; the picker only asks it to move and then redraws
+            // from what Slick reports. Keeping one source of truth is what stops the highlight
+            // drifting out of step with the slide during autoplay.
+            $slider.on( 'afterChange' + ns, function ( event, slick, current ) {
+                paint( current );
+            } );
+
+            $sp.on( 'click' + ns, '[data-wl-sp-go]', function () {
+                $slider.slick( 'slickGoTo', parseInt( $( this ).attr( 'data-wl-sp-go' ), 10 ) || 0 );
+            } );
+
+            $sp.on( 'click' + ns, '[data-wl-sp-prev]', function () {
+                $slider.slick( 'slickPrev' );
+            } );
+
+            $sp.on( 'click' + ns, '[data-wl-sp-next]', function () {
+                $slider.slick( 'slickNext' );
+            } );
+
+            paint( 0 );
+        } );
+    };
+
     // ── Elementor editor / preview ────────────────────────────────────────────
 
     $( window ).on( 'elementor/frontend/init', function () {
@@ -782,6 +1237,16 @@
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/woolentor-shop-the-look.default',
             WLShopTheLook
+        );
+
+        elementorFrontend.hooks.addAction(
+            'frontend/element_ready/woolentor-product-bundle.default',
+            WLProductBundle
+        );
+
+        elementorFrontend.hooks.addAction(
+            'frontend/element_ready/woolentor-social-proof.default',
+            WLSocialProof
         );
 
         // Countdown is a shared component rather than one widget's behaviour, so it
@@ -818,6 +1283,14 @@
 
         $( '.elementor-widget-woolentor-shop-the-look' ).each( function () {
             WLShopTheLook( $( this ) );
+        } );
+
+        $( '.elementor-widget-woolentor-product-bundle' ).each( function () {
+            WLProductBundle( $( this ) );
+        } );
+
+        $( '.elementor-widget-woolentor-social-proof' ).each( function () {
+            WLSocialProof( $( this ) );
         } );
 
         WLPackCountdown( $( document.body ) );

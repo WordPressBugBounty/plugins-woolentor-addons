@@ -1,0 +1,746 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Social Proof — Editorial pack
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-sp-editorial-v3 {
+    --wl-sp-paper: #F7F2EA;
+    --wl-sp-paper-2: #FFFCF7;
+    --wl-sp-ink: #111111;
+    --wl-sp-clay: #9A6B4F;
+    --wl-sp-muted: #6F6A64;
+    --wl-sp-line: #E7D8C5;
+
+    --wl-sp-cols: repeat(3, 1fr);
+    --wl-sp-cols-md: 1fr 1fr;
+    --wl-sp-gap: clamp(28px, 3.5vw, 52px);
+    --wl-sp-star-size: 13px;
+    --wl-sp-item-gap: 14px;
+
+    background: var(--wl-sp-paper);
+    color: var(--wl-sp-ink);
+    padding: 96px 40px;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.wl-sp-editorial-v3 .wl-sp-head {
+    margin-bottom: 14px;
+}
+
+.wl-sp-editorial-v3 .wl-sp-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--wl-sp-clay);
+}
+
+.wl-sp-editorial-v3 .wl-sp-eyebrow::before {
+    content: "";
+    width: 24px;
+    height: 1px;
+    margin-right: 12px;
+    background: currentColor;
+}
+
+.wl-sp-editorial-v3 .wl-sp-heading {
+    max-width: 20ch;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.08;
+}
+
+.wl-sp-editorial-v3 .wl-sp-heading em {
+    font-style: italic;
+    color: var(--wl-sp-clay);
+}
+
+.wl-sp-editorial-v3 .wl-sp-desc {
+    max-width: 54ch;
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--wl-sp-muted);
+}
+
+/* ── Aggregate, in caption type ──────────────────────────────────────────── */
+
+.wl-sp-editorial-v3 .wl-sp-summary {
+    margin-bottom: 44px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--wl-sp-line);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--wl-sp-muted);
+}
+
+.wl-sp-editorial-v3 .wl-sp-score {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 20px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--wl-sp-ink);
+}
+
+.wl-sp-editorial-v3 .wl-sp-star {
+    color: var(--wl-sp-clay);
+}
+
+/* ── Extracts ────────────────────────────────────────────────────────────── */
+
+.wl-sp-editorial-v3 .wl-sp-item {
+    padding-top: 22px;
+    border-top: 1px solid var(--wl-sp-line);
+}
+
+
+.wl-sp-editorial-v3 .wl-sp-text {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--wl-sp-ink);
+}
+
+.wl-sp-editorial-v3 .wl-sp-author {
+    padding-top: 14px;
+    border-top: 1px solid var(--wl-sp-line);
+}
+
+.wl-sp-editorial-v3 .wl-sp-name {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.wl-sp-editorial-v3 .wl-sp-meta {
+    margin-top: 4px;
+}
+
+.wl-sp-editorial-v3 .wl-sp-role {
+    font-size: 12px;
+    color: var(--wl-sp-muted);
+}
+
+.wl-sp-editorial-v3 .wl-sp-product-name {
+    font-style: italic;
+    font-size: 13px;
+    color: var(--wl-sp-clay);
+}
+
+@media (max-width: 767px) {
+    .wl-sp-editorial-v3 {
+        --wl-sp-gap: 28px;
+        padding: 56px 20px;
+    }
+
+    .wl-sp-editorial-v3 .wl-sp-summary {
+        margin-bottom: 28px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — Press, then the carousel
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-sp-editorial-v2 {
+    --wl-sp-cool: #EAF2F5;
+    --wl-sp-surface: #FFFFFF;
+    --wl-sp-ink: #121A22;
+    --wl-sp-gray: #5E6B75;
+    --wl-sp-line: #D9E3E8;
+    --wl-sp-primary: #3EA3D4;
+    --wl-sp-primary-deep: #237FAB;
+    --wl-sp-peach: #F4B79A;
+    --wl-sp-peach-deep: #E69A78;
+
+    --wl-sp-gap: 28px;
+    --wl-sp-slide: 340px;
+    --wl-sp-star-size: 13px;
+    --wl-sp-star-gap: 3px;
+    --wl-sp-avatar-size: 44px;
+    --wl-sp-arrow-size: 48px;
+    --wl-sp-press-gap: 0px;
+
+    background: var(--wl-sp-cool);
+    color: var(--wl-sp-ink);
+    padding: clamp(72px, 8.5vw, 128px) 40px;
+}
+
+.wl-sp-editorial-v2 .wl-sp-head {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 46px;
+}
+
+/* The reference rules a 30px hairline in before the eyebrow. */
+.wl-sp-editorial-v2 .wl-sp-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--wl-sp-primary);
+}
+
+.wl-sp-editorial-v2 .wl-sp-eyebrow::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 30px;
+    height: 1px;
+    background: currentColor;
+}
+
+.wl-sp-editorial-v2 .wl-sp-heading {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(34px, 4vw, 62px);
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: -1.4px;
+}
+
+.wl-sp-editorial-v2 .wl-sp-heading em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--wl-sp-primary);
+}
+
+.wl-sp-editorial-v2 .wl-sp-desc {
+    max-width: 56ch;
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--wl-sp-gray);
+}
+
+/* ── Press strip ─────────────────────────────────────────────────────────── */
+
+.wl-sp-editorial-v2 .wl-sp-press {
+    margin-bottom: 54px;
+    padding: 22px 0;
+    border-top: 1px solid var(--wl-sp-line);
+    border-bottom: 1px solid var(--wl-sp-line);
+}
+
+.wl-sp-editorial-v2 .wl-sp-press-item {
+    padding: 6px 28px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2.6px;
+    color: var(--wl-sp-gray);
+    transition: color 200ms ease;
+}
+
+.wl-sp-editorial-v2 .wl-sp-press-item:hover {
+    color: var(--wl-sp-ink);
+}
+
+.wl-sp-editorial-v2 .wl-sp-press-sep {
+    width: 1px;
+    height: 16px;
+    background: var(--wl-sp-line);
+}
+
+/* ── Cards ───────────────────────────────────────────────────────────────── */
+
+.wl-sp-editorial-v2 .wl-sp-item {
+    position: relative;
+    overflow: hidden;
+    gap: 0;
+    padding: 42px 38px 34px;
+    border: 1px solid var(--wl-sp-line);
+    border-radius: 12px;
+    background: var(--wl-sp-surface);
+    box-shadow: 0 2px 12px rgba(16, 24, 32, 0.04);
+    transition: border-color 350ms ease, box-shadow 350ms ease, transform 350ms ease;
+}
+
+/* The accent bar that wipes up the card's left edge on hover. */
+.wl-sp-editorial-v2 .wl-sp-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--wl-sp-primary);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 400ms ease;
+}
+
+.wl-sp-editorial-v2 .wl-sp-item:hover {
+    border-color: rgba(62, 163, 212, 0.3);
+    box-shadow: 0 16px 48px rgba(16, 24, 32, 0.1);
+    transform: translateY(-4px);
+}
+
+.wl-sp-editorial-v2 .wl-sp-item:hover::before {
+    transform: scaleY(1);
+}
+
+.wl-sp-editorial-v2 .wl-sp-verified {
+    position: absolute;
+    top: 42px;
+    left: 38px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background: rgba(62, 163, 212, 0.1);
+    color: var(--wl-sp-primary-deep);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.wl-sp-editorial-v2 .wl-sp-date {
+    position: absolute;
+    top: 48px;
+    right: 38px;
+    font-size: 11px;
+    letter-spacing: 0.3px;
+    color: var(--wl-sp-gray);
+}
+
+/* That top line is 26px tall plus its 14px gap, so the stars start below it. */
+.wl-sp-editorial-v2 .wl-sp-rating {
+    margin-bottom: 16px;
+    padding-top: 40px;
+    letter-spacing: 3px;
+}
+
+.wl-sp-editorial-v2 .wl-sp-star {
+    color: var(--wl-sp-peach-deep);
+}
+
+.wl-sp-editorial-v2 .wl-sp-quote {
+    flex: 1;
+    margin-bottom: 22px;
+}
+
+.wl-sp-editorial-v2 .wl-sp-text {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--wl-sp-ink);
+}
+
+.wl-sp-editorial-v2 .wl-sp-item>.wl-sp-product {
+    align-self: stretch;
+}
+
+.wl-sp-editorial-v2 .wl-sp-product {
+    margin-bottom: 22px;
+    padding: 14px 16px;
+    border-left: 2px solid var(--wl-sp-peach);
+    border-radius: 0 6px 6px 0;
+    background: var(--wl-sp-cool);
+}
+
+.wl-sp-editorial-v2 .wl-sp-product-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--wl-sp-ink);
+}
+
+.wl-sp-editorial-v2 .wl-sp-author {
+    gap: 14px;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid var(--wl-sp-line);
+}
+
+.wl-sp-editorial-v2 .wl-sp-avatar {
+    box-shadow: 0 2px 8px rgba(16, 24, 32, 0.18);
+}
+
+.wl-sp-editorial-v2 .wl-sp-name {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--wl-sp-ink);
+}
+
+.wl-sp-editorial-v2 .wl-sp-meta {
+    margin-top: 3px;
+}
+
+.wl-sp-editorial-v2 .wl-sp-role {
+    font-size: 11px;
+    color: var(--wl-sp-gray);
+}
+
+/* ── Bottom bar ──────────────────────────────────────────────────────────── */
+
+.wl-sp-editorial-v2 .wl-sp-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.wl-sp-editorial-v2 .wl-sp-summary {
+    gap: 16px;
+    font-size: 12px;
+    color: var(--wl-sp-gray);
+}
+
+.wl-sp-editorial-v2 .wl-sp-score {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -1px;
+    color: var(--wl-sp-ink);
+}
+
+.wl-sp-editorial-v2 .wl-sp-nav {
+    display: flex;
+    gap: 10px;
+}
+
+.wl-sp-editorial-v2 .wl-sp-arrow {
+    border: 1.5px solid var(--wl-sp-ink);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--wl-sp-ink);
+    transition: background 200ms ease, color 200ms ease;
+}
+
+.wl-sp-editorial-v2 .wl-sp-arrow:hover:not([disabled]) {
+    background: var(--wl-sp-ink);
+    color: var(--wl-sp-surface);
+}
+
+.wl-sp-editorial-v2 .wl-sp-arrow[disabled] {
+    opacity: 0.28;
+}
+
+.wl-sp-editorial-v2 .wl-sp-arrow .wl-sp-icon {
+    width: 17px;
+    height: 17px;
+}
+
+@media (max-width: 767px) {
+    .wl-sp-editorial-v2 {
+        --wl-sp-slide: 86%;
+        padding: 56px 20px;
+    }
+
+    .wl-sp-editorial-v2 .wl-sp-press {
+        margin-bottom: 30px;
+    }
+
+    .wl-sp-editorial-v2 .wl-sp-press-item {
+        padding: 6px 16px;
+        font-size: 11px;
+    }
+
+    .wl-sp-editorial-v2 .wl-sp-item {
+        padding: 38px 24px 28px;
+    }
+
+    .wl-sp-editorial-v2 .wl-sp-verified {
+        left: 24px;
+        top: 38px;
+    }
+
+    .wl-sp-editorial-v2 .wl-sp-date {
+        right: 24px;
+        top: 44px;
+    }
+
+    .wl-sp-editorial-v2 .wl-sp-score {
+        font-size: 40px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — The verdict and its filmstrip
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-sp-editorial-v1 {
+    /* One slide at a time, so the track needs no half-gap inset. */
+    --wl-sp-gap: 0px;
+    --wl-sp-cream: #F7F2EA;
+    --wl-sp-warm-white: #FFFCF7;
+    --wl-sp-ink: #111111;
+    --wl-sp-clay: #9A6B4F;
+    --wl-sp-cocoa: #2A211C;
+    --wl-sp-muted: #6F6A64;
+    --wl-sp-sand: #E7D8C5;
+    --wl-sp-sand-deep: #D9C7B0;
+
+    --wl-sp-star-size: 13px;
+    --wl-sp-star-gap: 3px;
+    --wl-sp-picker-thumb: 64px;
+    --wl-sp-picker-gap: 8px;
+    --wl-sp-product-thumb: 22px;
+
+    background: var(--wl-sp-cream);
+    color: var(--wl-sp-ink);
+    padding: 110px 0;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-image: linear-gradient(90deg, transparent, var(--wl-sp-sand-deep), transparent) 1;
+}
+
+/* ── The verdict ─────────────────────────────────────────────────────────── */
+
+.wl-sp-editorial-v1 .wl-sp-item {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 60px;
+    text-align: center;
+}
+
+.wl-sp-editorial-v1 .wl-sp-mark {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-family: var(--wl-pack-font-heading);
+    font-size: 120px;
+    font-style: italic;
+    line-height: 0.7;
+    color: var(--wl-sp-clay);
+    opacity: 0.18;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* The quote takes the whole first row; the rest share the second. */
+.wl-sp-editorial-v1 .wl-sp-quote {
+    order: 1;
+    flex: 0 0 100%;
+    margin-bottom: 6px;
+}
+
+.wl-sp-editorial-v1 .wl-sp-text {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(26px, 3.2vw, 42px);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--wl-sp-ink);
+}
+
+.wl-sp-editorial-v1 .wl-sp-item>.wl-sp-rating,
+.wl-sp-editorial-v1 .wl-sp-item>.wl-sp-product {
+    align-self: center;
+}
+
+.wl-sp-editorial-v1 .wl-sp-rating {
+    order: 2;
+    letter-spacing: 2px;
+}
+
+.wl-sp-editorial-v1 .wl-sp-star {
+    color: var(--wl-sp-clay);
+}
+
+.wl-sp-editorial-v1 .wl-sp-star:not(.is-on) {
+    color: var(--wl-sp-sand-deep);
+}
+
+.wl-sp-editorial-v1 .wl-sp-author {
+    order: 3;
+    width: auto;
+    margin: 0;
+}
+
+/* Name and role on one line, parted by the reference's small round separator. */
+.wl-sp-editorial-v1 .wl-sp-author-text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--wl-sp-muted);
+}
+
+.wl-sp-editorial-v1 .wl-sp-name {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--wl-sp-ink);
+}
+
+.wl-sp-editorial-v1 .wl-sp-meta {
+    margin-top: 0;
+    gap: 10px;
+}
+
+.wl-sp-editorial-v1 .wl-sp-meta::before {
+    content: '';
+    flex: 0 0 auto;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--wl-sp-sand-deep);
+}
+
+.wl-sp-editorial-v1 .wl-sp-role {
+    font-size: 14px;
+    color: var(--wl-sp-muted);
+}
+
+/* ── The product chip ────────────────────────────────────────────────────── */
+
+.wl-sp-editorial-v1 .wl-sp-product {
+    order: 4;
+    gap: 8px;
+    padding: 6px 14px 6px 10px;
+    border: 1px solid var(--wl-sp-sand);
+    border-radius: 999px;
+    background: var(--wl-sp-warm-white);
+    font-size: 12px;
+    color: var(--wl-sp-muted);
+    transition: border-color 200ms ease;
+}
+
+.wl-sp-editorial-v1 .wl-sp-product:hover {
+    border-color: var(--wl-sp-clay);
+}
+
+.wl-sp-editorial-v1 .wl-sp-product-thumb {
+    border-radius: 50%;
+    background: var(--wl-sp-sand);
+}
+
+.wl-sp-editorial-v1 .wl-sp-product-name {
+    font-weight: 600;
+    color: var(--wl-sp-cocoa);
+}
+
+/* The reference reads "AuraPhones Pro · $249"; the dot belongs to the price. */
+.wl-sp-editorial-v1 .wl-sp-product-price::before {
+    content: '·';
+    margin: 0 5px 0 3px;
+}
+
+/* ── Filmstrip ───────────────────────────────────────────────────────────── */
+
+.wl-sp-editorial-v1 .wl-sp-picker {
+    justify-content: center;
+    max-width: 720px;
+    margin: 60px auto 0;
+}
+
+.wl-sp-editorial-v1 .wl-sp-picker-btn {
+    box-sizing: border-box;
+    position: relative;
+    width: var(--wl-sp-picker-thumb);
+    height: var(--wl-sp-picker-thumb);
+    border: 2px solid transparent;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--wl-sp-sand);
+    opacity: 0.4;
+    transition: opacity 200ms ease, border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+
+.wl-sp-editorial-v1 .wl-sp-picker-btn:hover {
+    opacity: 0.7;
+}
+
+.wl-sp-editorial-v1 .wl-sp-picker-btn.is-active {
+    opacity: 1;
+    border-color: var(--wl-sp-clay);
+    transform: scale(1.12);
+    box-shadow: 0 0 0 4px rgba(154, 107, 79, 0.1);
+}
+
+.wl-sp-editorial-v1 .wl-sp-picker-media {
+    width: 100%;
+    height: 100%;
+}
+
+/* A corner tab inside the frame, not a numeral floating over it. */
+.wl-sp-editorial-v1 .wl-sp-picker-num {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50% 0 0 0;
+    background: var(--wl-sp-clay);
+    color: var(--wl-sp-warm-white);
+    font-size: 8px;
+    font-weight: 700;
+    font-style: normal;
+}
+
+@media (max-width: 1024px) {
+    .wl-sp-editorial-v1 .wl-sp-item {
+        gap: 18px;
+        padding: 0 20px;
+    }
+
+    .wl-sp-editorial-v1 .wl-sp-mark {
+        top: -12px;
+        font-size: 80px;
+    }
+
+    .wl-sp-editorial-v1 .wl-sp-text {
+        font-size: clamp(22px, 5vw, 28px);
+    }
+
+    .wl-sp-editorial-v1 {
+        --wl-sp-picker-thumb: 48px;
+        --wl-sp-picker-gap: 6px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-sp-editorial-v1 {
+        --wl-sp-picker-thumb: 40px;
+        padding: 56px 0;
+    }
+
+    /* Stars, byline and chip stack rather than crowd one line. */
+    .wl-sp-editorial-v1 .wl-sp-item {
+        flex-direction: column;
+    }
+
+    .wl-sp-editorial-v1 .wl-sp-quote {
+        flex: 0 0 auto;
+    }
+
+    .wl-sp-editorial-v1 .wl-sp-picker {
+        margin-top: 36px;
+    }
+
+    .wl-sp-editorial-v1 .wl-sp-picker-num {
+        display: none;
+    }
+}

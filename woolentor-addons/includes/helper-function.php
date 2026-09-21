@@ -2321,3 +2321,117 @@ if( !function_exists('woolentor_block_filter_generate_term_link') ){
 
     }
 }
+/**
+ * Can this product go into the cart as part of a set, without asking the shopper anything?
+ *
+ * Lives here, in a file `Base::include_files()` loads on every request, because **two callers
+ * that must never disagree** ask it: the Product Bundle widget, which decides what to list and
+ * what to price, and the `woolentor_add_bundle_to_cart` endpoint, which decides what actually
+ * goes in. If they diverge the shopper reads one total and is charged another.
+ *
+ * It started as a static method on the widget class and that was wrong: the widget is registered
+ * on `elementor/widgets/register`, a hook admin-ajax.php never fires, so the endpoint's
+ * `class_exists()` check was false on every real request and **every item was skipped**. A plain
+ * function in an always-loaded file has no such dependency.
+ *
+ * A variable product needs a variation chosen and an external one lives on someone else's site;
+ * neither can be added blind. An out-of-stock item would silently shrink the set.
+ *
+ * @param  WC_Product|false|null $product
+ * @param  int                   $product_id
+ * @return bool
+ */
+function woolentor_bundle_item_is_addable( $product, $product_id ) {
+    return $product instanceof \WC_Product
+        && 'publish' === get_post_status( $product_id )
+        && $product->is_purchasable()
+        && $product->is_in_stock()
+        && ! $product->is_type( 'variable' )
+        && ! $product->is_type( 'external' );
+}
+
+/**
+ * Shop-wide rating summary for the Social Proof widget: the average, the review count and how
+ * many reviews sit at each star.
+ *
+ * Six of the ten reference sections print an aggregate and one draws a full histogram, so this is
+ * needed on most variants. It aggregates the `rating` comment meta across **every approved review
+ * of every published product**, which grows with the catalogue — hence the transient. Without it
+ * the query would run on every page view of every page carrying the widget.
+ *
+ * It lives here, in a file `Base::include_files()` loads unconditionally, for the same reason
+ * `woolentor_bundle_item_is_addable()` does: more than one caller needs it and the widget class
+ * is only loaded on `elementor/widgets/register`.
+ *
+ * Returns zeroes when the shop has no reviews. Callers must render nothing in that case rather
+ * than an empty row of stars — see §3 of blueprint/social-proof-widget-plan.md.
+ *
+ * @return array  [ 'average' => float, 'count' => int, 'counts' => [5=>int,…,1=>int] ]
+ */
+function woolentor_sp_rating_summary() {
+
+    $cached = get_transient( 'woolentor_sp_rating_summary' );
+
+    if ( is_array( $cached ) ) {
+        return $cached;
+    }
+
+    global $wpdb;
+
+    $rows = $wpdb->get_results( // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- aggregate over comment meta, cached in a transient below.
+        "SELECT cm.meta_value AS rating, COUNT(*) AS total
+           FROM {$wpdb->commentmeta} cm
+     INNER JOIN {$wpdb->comments} c ON c.comment_ID = cm.comment_id
+     INNER JOIN {$wpdb->posts} p ON p.ID = c.comment_post_ID
+          WHERE cm.meta_key = 'rating'
+            AND c.comment_approved = '1'
+            AND p.post_type = 'product'
+            AND p.post_status = 'publish'
+       GROUP BY cm.meta_value"
+    );
+
+    $counts = [ 5 => 0, 4 => 0, 3 => 0, 2 => 0, 1 => 0 ];
+    $total  = 0;
+    $sum    = 0;
+
+    foreach ( (array) $rows as $row ) {
+        $star = (int) $row->rating;
+
+        if ( $star < 1 || $star > 5 ) {
+            continue;
+        }
+
+        $n              = (int) $row->total;
+        $counts[ $star ] = $n;
+        $total          += $n;
+        $sum            += $star * $n;
+    }
+
+    $summary = [
+        'average' => $total ? round( $sum / $total, 1 ) : 0.0,
+        'count'   => $total,
+        'counts'  => $counts,
+    ];
+
+    set_transient( 'woolentor_sp_rating_summary', $summary, DAY_IN_SECONDS );
+
+    return $summary;
+}
+
+/**
+ * Throw the rating summary away whenever a review could have changed it.
+ *
+ * Hooked to every transition a review can make: posted, approved or unapproved, edited, trashed,
+ * untrashed, spammed and deleted. Miss one and the section quietly shows yesterday's average.
+ */
+function woolentor_sp_flush_rating_summary() {
+    delete_transient( 'woolentor_sp_rating_summary' );
+}
+add_action( 'comment_post', 'woolentor_sp_flush_rating_summary' );
+add_action( 'edit_comment', 'woolentor_sp_flush_rating_summary' );
+add_action( 'deleted_comment', 'woolentor_sp_flush_rating_summary' );
+add_action( 'trashed_comment', 'woolentor_sp_flush_rating_summary' );
+add_action( 'untrashed_comment', 'woolentor_sp_flush_rating_summary' );
+add_action( 'spammed_comment', 'woolentor_sp_flush_rating_summary' );
+add_action( 'unspammed_comment', 'woolentor_sp_flush_rating_summary' );
+add_action( 'transition_comment_status', 'woolentor_sp_flush_rating_summary' );

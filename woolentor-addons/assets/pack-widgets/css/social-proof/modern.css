@@ -1,0 +1,810 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Social Proof — Modern pack
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — The scrolling wall
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-sp-modern-v1 {
+    --wl-sp-blue: #2563EB;
+    --wl-sp-ink: #080A0F;
+    --wl-sp-muted: #6B7280;
+    --wl-sp-line: #E5E7EB;
+    --wl-sp-field: #F5F7FA;
+    --wl-sp-surface: #FFFFFF;
+    --wl-sp-amber: #F59E0B;
+    --wl-sp-green: #059669;
+
+    --wl-sp-cols: repeat(3, 1fr);
+    --wl-sp-cols-md: 1fr 1fr;
+    --wl-sp-gap: 18px;
+    --wl-sp-star-size: 14px;
+    --wl-sp-avatar-size: 30px;
+    --wl-sp-marquee-height: 620px;
+    --wl-sp-marquee-speed: 38s;
+
+    background: var(--wl-sp-field);
+    color: var(--wl-sp-ink);
+    padding: 110px 40px 120px;
+}
+
+/* ── Header, centred ─────────────────────────────────────────────────────── */
+
+.wl-sp-modern-v1 .wl-sp-head {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+/* A white pill with a hairline and a soft shadow, as the reference draws it — not plain text. */
+.wl-sp-modern-v1 .wl-sp-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 22px;
+    padding: 7px 14px 7px 11px;
+    border: 1px solid rgba(8, 10, 15, 0.08);
+    border-radius: 100px;
+    background: var(--wl-sp-surface);
+    box-shadow: 0 1px 2px rgba(8, 10, 15, 0.04);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--wl-sp-ink);
+}
+
+/* The accent dot, with the glow ring the reference gives it. */
+.wl-sp-modern-v1 .wl-sp-eyebrow::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: var(--wl-sp-blue);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);
+}
+
+.wl-sp-modern-v1 .wl-sp-heading {
+    font-size: clamp(30px, 3.6vw, 46px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+}
+
+.wl-sp-modern-v1 .wl-sp-desc {
+    max-width: 66ch;
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--wl-sp-muted);
+}
+
+/* ── Trust line ──────────────────────────────────────────────────────────── */
+
+.wl-sp-modern-v1 .wl-sp-summary {
+    justify-content: center;
+    margin-bottom: 40px;
+    font-size: 14px;
+    color: var(--wl-sp-muted);
+}
+
+.wl-sp-modern-v1 .wl-sp-score {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--wl-sp-ink);
+}
+
+.wl-sp-modern-v1 .wl-sp-star {
+    color: var(--wl-sp-amber);
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+.wl-sp-modern-v1 .wl-sp-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+        "stars  stars"
+        "quote  quote"
+        "avatar byline"
+        "avatar product";
+    align-items: center;
+    gap: 0 10px;
+    padding: 22px 22px 20px;
+    border: 1px solid rgba(8, 10, 15, 0.05);
+    border-radius: 16px;
+    background: var(--wl-sp-surface);
+    box-shadow: 0 1px 2px rgba(8, 10, 15, 0.03);
+    transition: box-shadow 250ms ease, transform 250ms ease, border-color 250ms ease;
+}
+
+.wl-sp-modern-v1 .wl-sp-item:hover {
+    border-color: rgba(37, 99, 235, 0.25);
+    box-shadow: 0 12px 28px rgba(8, 10, 15, 0.08);
+    transform: translateY(-2px);
+}
+
+.wl-sp-modern-v1 .wl-sp-rating {
+    grid-area: stars;
+    margin-bottom: 12px;
+}
+
+.wl-sp-modern-v1 .wl-sp-quote {
+    grid-area: quote;
+}
+
+/* `contents` lets the avatar and the byline take grid areas of their own. */
+.wl-sp-modern-v1 .wl-sp-author {
+    display: contents;
+}
+
+.wl-sp-modern-v1 .wl-sp-avatar {
+    grid-area: avatar;
+}
+
+.wl-sp-modern-v1 .wl-sp-author-text {
+    grid-area: byline;
+}
+
+.wl-sp-modern-v1 .wl-sp-verified {
+    z-index: 2;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 4px 9px;
+    border: 1px solid rgba(5, 150, 105, 0.3);
+    border-radius: 999px;
+    background: #ECFDF5;
+    color: var(--wl-sp-green);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.wl-sp-modern-v1 .wl-sp-item {
+    position: relative;
+}
+
+.wl-sp-modern-v1 .wl-sp-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--wl-sp-ink);
+}
+
+.wl-sp-modern-v1 .wl-sp-quote {
+    padding-bottom: 18px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--wl-sp-line);
+}
+
+.wl-sp-modern-v1 .wl-sp-name {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.wl-sp-modern-v1 .wl-sp-role,
+.wl-sp-modern-v1 .wl-sp-product-name {
+    font-size: 11px;
+    color: var(--wl-sp-muted);
+}
+
+.wl-sp-modern-v1 .wl-sp-product {
+    grid-area: product;
+    justify-self: start;
+    font-size: 11px;
+    color: var(--wl-sp-muted);
+}
+
+.wl-sp-modern-v1 .wl-sp-product:hover .wl-sp-product-name {
+    color: var(--wl-sp-blue);
+}
+
+@media (max-width: 767px) {
+    .wl-sp-modern-v1 {
+        --wl-sp-marquee-height: 520px;
+        padding: 56px 20px;
+    }
+
+    .wl-sp-modern-v1 .wl-sp-head {
+        margin-bottom: 14px;
+    }
+
+    .wl-sp-modern-v1 .wl-sp-summary {
+        margin-bottom: 28px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — The card carousel
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-sp-modern-v3 {
+    --wl-sp-graphite: #1F1F1D;
+    --wl-sp-cool-gray: #6F716D;
+    --wl-sp-stone: #D8D2C8;
+    --wl-sp-clay: #B8755B;
+    --wl-sp-card: #F6F6F6;
+    --wl-sp-surface: #FFFFFF;
+    --wl-sp-rule: #DFDFDF;
+    --wl-sp-green: #17B26A;
+
+    --wl-sp-gap: 20px;
+    --wl-sp-slide: 360px;
+    --wl-sp-star-size: 15px;
+    --wl-sp-star-gap: 3px;
+    --wl-sp-avatar-size: 40px;
+    --wl-sp-arrow-size: 48px;
+
+    background: var(--wl-sp-surface);
+    color: var(--wl-sp-graphite);
+    padding: 100px 40px;
+}
+
+/* ── Header row ──────────────────────────────────────────────────────────── */
+
+.wl-sp-modern-v3 .wl-sp-head-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-bottom: 52px;
+}
+
+.wl-sp-modern-v3 .wl-sp-head {
+    margin-bottom: 0;
+}
+
+.wl-sp-modern-v3 .wl-sp-eyebrow {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wl-sp-clay);
+}
+
+.wl-sp-modern-v3 .wl-sp-heading {
+    font-size: clamp(28px, 3.4vw, 44px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+}
+
+.wl-sp-modern-v3 .wl-sp-desc {
+    max-width: 56ch;
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--wl-sp-cool-gray);
+}
+
+.wl-sp-modern-v3 .wl-sp-nav {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+    padding-bottom: 6px;
+}
+
+.wl-sp-modern-v3 .wl-sp-arrow {
+    border: 1.5px solid var(--wl-sp-stone);
+    border-radius: 50%;
+    background: var(--wl-sp-surface);
+    color: var(--wl-sp-graphite);
+    transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.wl-sp-modern-v3 .wl-sp-arrow:hover:not([disabled]) {
+    background: var(--wl-sp-graphite);
+    border-color: var(--wl-sp-graphite);
+    color: var(--wl-sp-surface);
+}
+
+.wl-sp-modern-v3 .wl-sp-arrow .wl-sp-icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+
+.wl-sp-modern-v3 .wl-sp-item {
+    gap: 0;
+    padding: 32px;
+    border-radius: 14px;
+    background: var(--wl-sp-card);
+    box-shadow: 0 2px 12px rgba(17, 17, 15, 0.05);
+    transition: box-shadow 250ms ease, transform 250ms ease;
+}
+
+.wl-sp-modern-v3 .wl-sp-item:hover {
+    box-shadow: 0 8px 32px rgba(17, 17, 15, 0.1);
+    transform: translateY(-3px);
+}
+
+/* A large soft quotation mark in the pack's serif, opening the card. */
+.wl-sp-modern-v3 .wl-sp-mark {
+    display: block;
+    margin-bottom: 16px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 72px;
+    line-height: 0.65;
+    color: var(--wl-sp-clay);
+    opacity: 0.65;
+    user-select: none;
+}
+
+.wl-sp-modern-v3 .wl-sp-rating {
+    margin-bottom: 16px;
+}
+
+.wl-sp-modern-v3 .wl-sp-star {
+    color: var(--wl-sp-clay);
+}
+
+.wl-sp-modern-v3 .wl-sp-quote {
+    margin-bottom: 24px;
+}
+
+.wl-sp-modern-v3 .wl-sp-text {
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.68;
+    color: var(--wl-sp-graphite);
+}
+
+.wl-sp-modern-v3 .wl-sp-author {
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid var(--wl-sp-rule);
+}
+
+/* The byline takes the slack so the badge is pushed to the card's edge. */
+.wl-sp-modern-v3 .wl-sp-author-text {
+    flex: 1;
+}
+
+.wl-sp-modern-v3 .wl-sp-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--wl-sp-graphite);
+}
+
+.wl-sp-modern-v3 .wl-sp-meta {
+    margin-top: 2px;
+}
+
+.wl-sp-modern-v3 .wl-sp-role,
+.wl-sp-modern-v3 .wl-sp-product-name {
+    font-size: 12px;
+    color: var(--wl-sp-cool-gray);
+}
+
+.wl-sp-modern-v3 .wl-sp-verified {
+    margin-left: auto;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: rgba(23, 178, 106, 0.1);
+    color: var(--wl-sp-green);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+}
+
+/* ── Closing button ──────────────────────────────────────────────────────── */
+
+.wl-sp-modern-v3 .wl-sp-foot {
+    display: flex;
+    justify-content: center;
+    margin-top: 56px;
+}
+
+.wl-sp-modern-v3 .wl-sp-cta {
+    padding: 13px 26px;
+    border: 1px solid var(--wl-sp-graphite);
+    border-radius: 999px;
+    color: var(--wl-sp-graphite);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.wl-sp-modern-v3 .wl-sp-cta:hover {
+    background: var(--wl-sp-graphite);
+    color: var(--wl-sp-surface);
+}
+
+.wl-sp-modern-v3 .wl-sp-cta .wl-sp-icon {
+    width: 15px;
+    height: 15px;
+}
+
+@media (max-width: 767px) {
+    .wl-sp-modern-v3 {
+        --wl-sp-slide: 88%;
+        padding: 56px 20px;
+    }
+
+    .wl-sp-modern-v3 .wl-sp-head-row {
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 28px;
+    }
+
+    .wl-sp-modern-v3 .wl-sp-item {
+        padding: 24px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — The spotlight in a dark card
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-sp-modern-v2 {
+    --wl-sp-gap: 0px;
+    --wl-sp-paper: #FAFAF7;
+    --wl-sp-dark: #1D1D1B;
+    --wl-sp-accent: #7A8F3A;
+    --wl-sp-gold: #C8A75E;
+    --wl-sp-ink: #111111;
+    --wl-sp-on-dark: rgba(255, 255, 255, 0.92);
+    --wl-sp-on-dark-soft: rgba(255, 255, 255, 0.55);
+    --wl-sp-hairline: rgba(255, 255, 255, 0.15);
+
+    --wl-sp-star-size: 13px;
+    --wl-sp-star-gap: 3px;
+    --wl-sp-avatar-size: 360px;
+    --wl-sp-avatar-radius: 14px;
+    --wl-sp-picker-thumb: 36px;
+    --wl-sp-picker-gap: 10px;
+    --wl-sp-arrow-size: 44px;
+
+    background: var(--wl-sp-paper);
+    color: var(--wl-sp-ink);
+    padding: 108px 40px 116px;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.wl-sp-modern-v2 .wl-sp-head {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+/* A rule either side of the eyebrow, as the reference draws it. */
+.wl-sp-modern-v2 .wl-sp-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--wl-sp-accent);
+}
+
+.wl-sp-modern-v2 .wl-sp-eyebrow::before,
+.wl-sp-modern-v2 .wl-sp-eyebrow::after {
+    content: "";
+    width: 18px;
+    height: 1px;
+    background: currentColor;
+}
+
+.wl-sp-modern-v2 .wl-sp-heading {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.wl-sp-modern-v2 .wl-sp-desc {
+    max-width: 62ch;
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: #666666;
+}
+
+/* ── The dark panel ──────────────────────────────────────────────────────── */
+
+.wl-sp-modern-v2 .wl-sp-panel {
+    position: relative;
+    overflow: hidden;
+    padding: 72px 72px 64px;
+    border-radius: 20px;
+    background: var(--wl-sp-dark);
+    color: var(--wl-sp-on-dark);
+}
+
+/* An olive bloom in the top-right corner, straight from the reference. */
+.wl-sp-modern-v2 .wl-sp-panel::before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 340px;
+    height: 340px;
+    background: radial-gradient(circle, rgba(122, 143, 58, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.wl-sp-modern-v2 .wl-sp-ghost {
+    position: absolute;
+    top: -24px;
+    left: 56px;
+    font-size: 280px;
+    font-weight: 800;
+    line-height: 1;
+    color: #FFFFFF;
+    opacity: 0.04;
+    user-select: none;
+    pointer-events: none;
+}
+
+.wl-sp-modern-v2 .wl-sp-slider {
+    position: relative;
+    z-index: 1;
+}
+
+/* ── One review — copy left, portrait right ─────────────────────────────── */
+
+.wl-sp-modern-v2 .wl-sp-item {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    grid-template-areas:
+        "product photo"
+        "stars   photo"
+        "quote   photo"
+        "author  photo";
+    align-content: center;
+    gap: 0 72px;
+}
+
+.wl-sp-modern-v2 .wl-sp-author {
+    display: contents;
+}
+
+.wl-sp-modern-v2 .wl-sp-product {
+    grid-area: product;
+}
+
+.wl-sp-modern-v2 .wl-sp-rating {
+    grid-area: stars;
+}
+
+.wl-sp-modern-v2 .wl-sp-quote {
+    grid-area: quote;
+}
+
+.wl-sp-modern-v2 .wl-sp-author-text {
+    grid-area: author;
+}
+
+.wl-sp-modern-v2 .wl-sp-avatar {
+    grid-area: photo;
+    align-self: center;
+}
+
+.wl-sp-modern-v2 .wl-sp-mark {
+    display: none;
+}
+
+/* The product chip. */
+.wl-sp-modern-v2 .wl-sp-product {
+    align-self: start;
+    width: fit-content;
+    margin-bottom: 28px;
+    padding: 5px 14px;
+    border: 1px solid var(--wl-sp-hairline);
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.wl-sp-modern-v2 .wl-sp-rating {
+    align-self: start;
+    margin-bottom: 20px;
+}
+
+.wl-sp-modern-v2 .wl-sp-star {
+    color: var(--wl-sp-gold);
+}
+
+.wl-sp-modern-v2 .wl-sp-text {
+    font-size: clamp(22px, 2.4vw, 32px);
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: -0.02em;
+    color: var(--wl-sp-on-dark);
+}
+
+.wl-sp-modern-v2 .wl-sp-quote {
+    margin-bottom: 36px;
+}
+
+.wl-sp-modern-v2 .wl-sp-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.wl-sp-modern-v2 .wl-sp-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+    font-size: 13px;
+    color: var(--wl-sp-on-dark-soft);
+}
+
+.wl-sp-modern-v2 .wl-sp-verified,
+.wl-sp-modern-v2 .wl-sp-date {
+    color: var(--wl-sp-accent);
+    font-size: 13px;
+}
+
+/* "Verified · January 2025" — one phrase, so the dot belongs to the date. */
+.wl-sp-modern-v2 .wl-sp-date::before {
+    content: "·";
+    margin-right: 6px;
+}
+
+.wl-sp-modern-v2 .wl-sp-meta .wl-sp-verified+.wl-sp-date {
+    margin-left: -8px;
+}
+
+.wl-sp-modern-v2 .wl-sp-avatar {
+    width: 360px;
+    height: 440px;
+    max-width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* ── Nav bar, along the foot of the panel ───────────────────────────────── */
+
+.wl-sp-modern-v2 .wl-sp-picker {
+    position: relative;
+    z-index: 1;
+    justify-content: space-between;
+    margin-top: 48px;
+    padding: 0 4px;
+}
+
+.wl-sp-modern-v2 .wl-sp-counter {
+    min-width: 56px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.wl-sp-modern-v2 .wl-sp-counter-now {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.wl-sp-modern-v2 .wl-sp-picker-faces {
+    display: flex;
+    align-items: center;
+    gap: var(--wl-sp-picker-gap);
+}
+
+.wl-sp-modern-v2 .wl-sp-picker-btn {
+    opacity: 0.4;
+    transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.wl-sp-modern-v2 .wl-sp-picker-btn:hover {
+    opacity: 0.7;
+    transform: scale(1.06);
+}
+
+.wl-sp-modern-v2 .wl-sp-picker-btn.is-active {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+.wl-sp-modern-v2 .wl-sp-picker-media {
+    border-radius: 999px;
+    border: 2px solid transparent;
+    transition: border-color 250ms ease;
+}
+
+.wl-sp-modern-v2 .wl-sp-picker-btn.is-active .wl-sp-picker-media {
+    border-color: var(--wl-sp-accent);
+}
+
+/* Faces alone in the reference — the name would crowd a 36px circle. */
+.wl-sp-modern-v2 .wl-sp-picker-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.wl-sp-modern-v2 .wl-sp-nav {
+    display: flex;
+    gap: 10px;
+}
+
+.wl-sp-modern-v2 .wl-sp-arrow {
+    border: 1px solid var(--wl-sp-hairline);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.07);
+    color: rgba(255, 255, 255, 0.7);
+    transition: background-color 220ms ease, border-color 220ms ease, color 220ms ease;
+}
+
+.wl-sp-modern-v2 .wl-sp-arrow:hover:not([disabled]) {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #FFFFFF;
+}
+
+.wl-sp-modern-v2 .wl-sp-arrow .wl-sp-icon {
+    width: 16px;
+    height: 16px;
+}
+
+@media (max-width: 1024px) {
+    .wl-sp-modern-v2 .wl-sp-item {
+        grid-template-columns: 1fr 280px;
+        gap: 0 40px;
+    }
+
+    .wl-sp-modern-v2 .wl-sp-avatar {
+        width: 280px;
+        height: 340px;
+    }
+
+    .wl-sp-modern-v2 .wl-sp-panel {
+        padding: 48px 40px 40px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-sp-modern-v2 {
+        padding: 56px 20px 64px;
+    }
+
+    .wl-sp-modern-v2 .wl-sp-head {
+        margin-bottom: 30px;
+    }
+
+    /* Stacked, the portrait leads and the copy follows. */
+    .wl-sp-modern-v2 .wl-sp-item {
+        grid-template-columns: 1fr;
+        grid-template-areas: "photo" "product" "stars" "quote" "author";
+        gap: 0;
+    }
+
+    .wl-sp-modern-v2 .wl-sp-avatar {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        margin-bottom: 24px;
+    }
+
+    .wl-sp-modern-v2 .wl-sp-panel {
+        padding: 28px 20px 24px;
+    }
+
+    .wl-sp-modern-v2 .wl-sp-ghost {
+        font-size: 150px;
+        left: 16px;
+    }
+
+    .wl-sp-modern-v2 .wl-sp-picker {
+        margin-top: 28px;
+    }
+}

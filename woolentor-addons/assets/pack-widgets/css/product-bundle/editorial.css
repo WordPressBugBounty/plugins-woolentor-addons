@@ -1,0 +1,780 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Product Bundle — Editorial pack
+   Warm cream #F7F2EA · clay #9A6B4F · Newsreader serif headings · 4px corners
+   Skin only. Mechanics live in pack-widgets-base.css.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — The featured split
+   Transcribed from editorial-style/v1/home-editorial.html — `.section-bundle`
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-pb-editorial-v1 {
+    --wl-pb-paper: #F7F2EA;
+    --wl-pb-paper-2: #FFFCF7;
+    --wl-pb-ink: #111111;
+    --wl-pb-clay: #9A6B4F;
+    --wl-pb-clay-dark: #7A523B;
+    --wl-pb-muted: #6F6A64;
+    --wl-pb-line: #E7D8C5;
+
+    --wl-pb-split: 1fr 1.05fr;
+    --wl-pb-split-gap: clamp(32px, 5vw, 72px);
+    --wl-pb-thumb-size: 56px;
+    --wl-pb-item-gap: 14px;
+    --wl-pb-ratio: 1.15;
+
+    background: var(--wl-pb-paper);
+    color: var(--wl-pb-ink);
+    padding: 96px 40px;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.wl-pb-editorial-v1 .wl-pb-head {
+    margin-bottom: 44px;
+}
+
+.wl-pb-editorial-v1 .wl-pb-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--wl-pb-clay);
+}
+
+.wl-pb-editorial-v1 .wl-pb-eyebrow::before {
+    content: "";
+    width: 24px;
+    height: 1px;
+    margin-right: 12px;
+    background: currentColor;
+}
+
+.wl-pb-editorial-v1 .wl-pb-heading {
+    max-width: 18ch;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.08;
+    color: var(--wl-pb-ink);
+}
+
+.wl-pb-editorial-v1 .wl-pb-heading em {
+    font-style: italic;
+    color: var(--wl-pb-clay);
+}
+
+.wl-pb-editorial-v1 .wl-pb-desc {
+    max-width: 54ch;
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--wl-pb-muted);
+}
+
+/* ── One bundle per split, stacked ───────────────────────────────────────── */
+
+.wl-pb-editorial-v1 .wl-pb-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 72px;
+}
+
+.wl-pb-editorial-v1 .wl-pb-image {
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--wl-pb-paper-2);
+}
+
+.wl-pb-editorial-v1 .wl-pb-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--wl-pb-clay);
+}
+
+.wl-pb-editorial-v1 .wl-pb-name {
+    margin: 14px 0 0;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(28px, 3.2vw, 42px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--wl-pb-ink);
+}
+
+.wl-pb-editorial-v1 .wl-pb-name em {
+    font-style: italic;
+    color: var(--wl-pb-clay);
+}
+
+.wl-pb-editorial-v1 .wl-pb-intro {
+    margin: 14px 0 0;
+    max-width: 48ch;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--wl-pb-muted);
+}
+
+/* ── List ────────────────────────────────────────────────────────────────── */
+
+.wl-pb-editorial-v1 .wl-pb-list {
+    margin-top: 28px;
+}
+
+.wl-pb-editorial-v1 .wl-pb-item {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--wl-pb-line);
+}
+
+.wl-pb-editorial-v1 .wl-pb-item:first-child {
+    border-top: 1px solid var(--wl-pb-line);
+}
+
+.wl-pb-editorial-v1 .wl-pb-check {
+    --wl-pb-check-size: 22px;
+    border-radius: 999px;
+    background: var(--wl-pb-clay);
+    color: var(--wl-pb-paper-2);
+}
+
+.wl-pb-editorial-v1 .wl-pb-item-media {
+    border-radius: 4px;
+    background: var(--wl-pb-paper-2);
+}
+
+.wl-pb-editorial-v1 .wl-pb-item-name {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--wl-pb-ink);
+}
+
+.wl-pb-editorial-v1 .wl-pb-item-meta {
+    margin-top: 3px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-editorial-v1 .wl-pb-item-price {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--wl-pb-ink);
+}
+
+.wl-pb-editorial-v1 .wl-pb-item-was {
+    margin-left: 6px;
+    font-weight: 400;
+    color: var(--wl-pb-muted);
+}
+
+/* ── Pricing and button ──────────────────────────────────────────────────── */
+
+.wl-pb-editorial-v1 .wl-pb-pricing {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 26px;
+}
+
+.wl-pb-editorial-v1 .wl-pb-was {
+    order: -1;
+    font-size: 17px;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-editorial-v1 .wl-pb-now {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--wl-pb-ink);
+}
+
+.wl-pb-editorial-v1 .wl-pb-save {
+    padding: 5px 11px;
+    border-radius: 4px;
+    background: var(--wl-pb-clay);
+    color: var(--wl-pb-paper-2);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.wl-pb-editorial-v1 .wl-pb-foot {
+    margin-top: 28px;
+}
+
+.wl-pb-editorial-v1 .wl-pb-cta {
+    padding: 14px 26px;
+    border-radius: 4px;
+    background: var(--wl-pb-ink);
+    color: var(--wl-pb-paper-2);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.wl-pb-editorial-v1 .wl-pb-cta:hover {
+    background: var(--wl-pb-clay-dark);
+}
+
+.wl-pb-editorial-v1 .wl-pb-cta .wl-pb-icon {
+    width: 15px;
+    height: 15px;
+}
+
+@media (max-width: 767px) {
+    .wl-pb-editorial-v1 {
+        padding: 56px 20px;
+    }
+
+    .wl-pb-editorial-v1 .wl-pb-stack {
+        gap: 48px;
+    }
+
+    .wl-pb-editorial-v1 .wl-pb-head {
+        margin-bottom: 30px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — The configurator
+   Designed in the pack's own language. V1's split, right column live.
+   Plan §5.3.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-pb-editorial-v2 {
+    --wl-pb-paper: #F7F2EA;
+    --wl-pb-paper-2: #FFFCF7;
+    --wl-pb-ink: #111111;
+    --wl-pb-clay: #9A6B4F;
+    --wl-pb-clay-dark: #7A523B;
+    --wl-pb-muted: #6F6A64;
+    --wl-pb-line: #E7D8C5;
+
+    --wl-pb-split: 0.9fr 1.1fr;
+    --wl-pb-split-gap: clamp(32px, 5vw, 64px);
+    --wl-pb-thumb-size: 52px;
+    --wl-pb-item-gap: 14px;
+    --wl-pb-ratio: 1.33;
+
+    background: var(--wl-pb-paper);
+    color: var(--wl-pb-ink);
+    padding: 96px 40px;
+}
+
+.wl-pb-editorial-v2 .wl-pb-head {
+    margin-bottom: 44px;
+}
+
+.wl-pb-editorial-v2 .wl-pb-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--wl-pb-clay);
+}
+
+.wl-pb-editorial-v2 .wl-pb-eyebrow::before {
+    content: "";
+    width: 24px;
+    height: 1px;
+    margin-right: 12px;
+    background: currentColor;
+}
+
+.wl-pb-editorial-v2 .wl-pb-heading {
+    max-width: 18ch;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+    line-height: 1.08;
+}
+
+.wl-pb-editorial-v2 .wl-pb-heading em {
+    font-style: italic;
+    color: var(--wl-pb-clay);
+}
+
+.wl-pb-editorial-v2 .wl-pb-desc {
+    max-width: 54ch;
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-editorial-v2 .wl-pb-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 72px;
+}
+
+.wl-pb-editorial-v2 .wl-pb-image {
+    border-radius: 4px;
+    background: var(--wl-pb-paper-2);
+}
+
+/* No overflow:hidden — the flag sits inside this box and clipping it at the
+   photograph's edge is exactly the wrong behaviour. The radius goes on the
+   photo instead, which inherits it from base. */
+.wl-pb-editorial-v2 .wl-pb-flag {
+    top: 16px;
+    left: 16px;
+    padding: 6px 12px;
+    background: var(--wl-pb-paper-2);
+    color: var(--wl-pb-ink);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.wl-pb-editorial-v2 .wl-pb-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.wl-pb-editorial-v2 .wl-pb-name {
+    margin: 0;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+.wl-pb-editorial-v2 .wl-pb-name em {
+    font-style: italic;
+    color: var(--wl-pb-clay);
+}
+
+.wl-pb-editorial-v2 .wl-pb-intro {
+    margin: 12px 0 0;
+    max-width: 48ch;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--wl-pb-muted);
+}
+
+/* ── Picker ──────────────────────────────────────────────────────────────── */
+
+.wl-pb-editorial-v2 .wl-pb-list {
+    margin-top: 24px;
+}
+
+.wl-pb-editorial-v2 .wl-pb-item {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--wl-pb-line);
+    transition: opacity 180ms ease;
+}
+
+.wl-pb-editorial-v2 .wl-pb-item:first-child {
+    border-top: 1px solid var(--wl-pb-line);
+}
+
+.wl-pb-editorial-v2 .wl-pb-item.is-off .wl-pb-item-name {
+    text-decoration: line-through;
+}
+
+/* A square outline that fills with ink — Editorial has no round filled
+   checkboxes anywhere, and a pill here would read as another pack. */
+.wl-pb-editorial-v2 .wl-pb-check {
+    --wl-pb-check-size: 20px;
+    border: 1px solid var(--wl-pb-ink);
+    border-radius: 2px;
+    background: var(--wl-pb-ink);
+    color: var(--wl-pb-paper-2);
+    transition: background-color 160ms ease;
+}
+
+.wl-pb-editorial-v2 .wl-pb-item.is-off .wl-pb-check {
+    background: transparent;
+    border-color: var(--wl-pb-line);
+}
+
+.wl-pb-editorial-v2 .wl-pb-item-media {
+    border-radius: 4px;
+    background: var(--wl-pb-paper-2);
+}
+
+.wl-pb-editorial-v2 .wl-pb-item-name {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.wl-pb-editorial-v2 .wl-pb-item-meta {
+    margin-top: 3px;
+    font-size: 13px;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-editorial-v2 .wl-pb-item-price {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.wl-pb-editorial-v2 .wl-pb-item-was {
+    margin-left: 6px;
+    font-weight: 400;
+    color: var(--wl-pb-muted);
+}
+
+/* ── Selection line — text links, no pills ───────────────────────────────── */
+
+.wl-pb-editorial-v2 .wl-pb-selectbar {
+    margin-top: 14px;
+}
+
+.wl-pb-editorial-v2 .wl-pb-selectbar-count {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-editorial-v2 .wl-pb-selectbar-count strong {
+    color: var(--wl-pb-ink);
+}
+
+.wl-pb-editorial-v2 .wl-pb-selectbar-actions {
+    gap: 14px;
+}
+
+.wl-pb-editorial-v2 .wl-pb-selectbar-actions button {
+    border-bottom: 1px solid var(--wl-pb-ink);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--wl-pb-ink);
+    transition: color 160ms ease, border-color 160ms ease;
+}
+
+.wl-pb-editorial-v2 .wl-pb-selectbar-actions button:hover {
+    color: var(--wl-pb-clay);
+    border-color: var(--wl-pb-clay);
+}
+
+/* ── Pricing and button ──────────────────────────────────────────────────── */
+
+.wl-pb-editorial-v2 .wl-pb-pricing {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 26px;
+}
+
+.wl-pb-editorial-v2 .wl-pb-was {
+    order: -1;
+    font-size: 17px;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-editorial-v2 .wl-pb-now {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.wl-pb-editorial-v2 .wl-pb-save {
+    padding: 5px 11px;
+    border-radius: 4px;
+    background: var(--wl-pb-clay);
+    color: var(--wl-pb-paper-2);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.wl-pb-editorial-v2 .wl-pb-foot {
+    margin-top: 26px;
+}
+
+.wl-pb-editorial-v2 .wl-pb-cta {
+    padding: 14px 26px;
+    border-radius: 4px;
+    background: var(--wl-pb-ink);
+    color: var(--wl-pb-paper-2);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.wl-pb-editorial-v2 .wl-pb-cta:hover:not([disabled]) {
+    background: var(--wl-pb-clay-dark);
+}
+
+.wl-pb-editorial-v2 .wl-pb-cta .wl-pb-icon {
+    width: 15px;
+    height: 15px;
+}
+
+@media (max-width: 767px) {
+    .wl-pb-editorial-v2 {
+        padding: 56px 20px;
+    }
+
+    .wl-pb-editorial-v2 .wl-pb-stack {
+        gap: 48px;
+    }
+
+    .wl-pb-editorial-v2 .wl-pb-head {
+        margin-bottom: 30px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — The featured set, with the counter
+   Designed. The `04 — 04` pager from Editorial V1's reference belongs to the
+   V3 role and lives here. No section header; a printed caption under the
+   plate, because this pack has no shadow to keep one legible over a photo.
+   Plan §5.4.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-pb-editorial-v3 {
+    --wl-pb-paper: #F7F2EA;
+    --wl-pb-paper-2: #FFFCF7;
+    --wl-pb-ink: #111111;
+    --wl-pb-clay: #9A6B4F;
+    --wl-pb-clay-dark: #7A523B;
+    --wl-pb-muted: #6F6A64;
+    --wl-pb-line: #E7D8C5;
+
+    --wl-pb-split: 1fr 1fr;
+    --wl-pb-split-gap: clamp(32px, 5vw, 72px);
+    --wl-pb-thumb-size: 48px;
+    --wl-pb-item-gap: 14px;
+
+    background: var(--wl-pb-paper);
+    color: var(--wl-pb-ink);
+    padding: 100px 40px;
+}
+
+/* The row stretches and the photograph covers. Every step of the chain gets a
+   real `height`, not a floor: a percentage height resolves against the
+   parent's computed `height`, and `min-height` leaves that at `auto` — which
+   is how Shop the Look's Editorial V2 ended up with its pins below the
+   picture. The stage is the stretched grid item, so its 100% is definite. */
+.wl-pb-editorial-v3 .wl-pb-split {
+    align-items: stretch;
+    min-height: 560px;
+}
+
+.wl-pb-editorial-v3 .wl-pb-plate {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.wl-pb-editorial-v3 .wl-pb-image {
+    flex: 1 1 auto;
+    aspect-ratio: auto;
+    border-radius: 4px;
+    background: var(--wl-pb-paper-2);
+}
+
+.wl-pb-editorial-v3 .wl-pb-caption {
+    position: static;
+    display: block;
+    margin-top: 12px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-editorial-v3 .wl-pb-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wl-pb-editorial-v3 .wl-pb-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--wl-pb-clay);
+}
+
+.wl-pb-editorial-v3 .wl-pb-name {
+    margin: 14px 0 0;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(30px, 3.6vw, 46px);
+    font-weight: 400;
+    line-height: 1.08;
+}
+
+.wl-pb-editorial-v3 .wl-pb-name em {
+    font-style: italic;
+    color: var(--wl-pb-clay);
+}
+
+.wl-pb-editorial-v3 .wl-pb-intro {
+    margin: 14px 0 0;
+    max-width: 48ch;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-editorial-v3 .wl-pb-list {
+    margin-top: 26px;
+}
+
+.wl-pb-editorial-v3 .wl-pb-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--wl-pb-line);
+}
+
+.wl-pb-editorial-v3 .wl-pb-item:first-child {
+    border-top: 1px solid var(--wl-pb-line);
+}
+
+.wl-pb-editorial-v3 .wl-pb-check {
+    --wl-pb-check-size: 20px;
+    border-radius: 999px;
+    background: var(--wl-pb-clay);
+    color: var(--wl-pb-paper-2);
+}
+
+.wl-pb-editorial-v3 .wl-pb-item-media {
+    border-radius: 4px;
+    background: var(--wl-pb-paper-2);
+}
+
+.wl-pb-editorial-v3 .wl-pb-item-name {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.wl-pb-editorial-v3 .wl-pb-item-meta {
+    margin-top: 3px;
+    font-size: 13px;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-editorial-v3 .wl-pb-pricing {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+}
+
+.wl-pb-editorial-v3 .wl-pb-was {
+    order: -1;
+    font-size: 17px;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-editorial-v3 .wl-pb-now {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.wl-pb-editorial-v3 .wl-pb-save {
+    padding: 5px 11px;
+    border-radius: 4px;
+    background: var(--wl-pb-clay);
+    color: var(--wl-pb-paper-2);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* ── Foot — the button left, the pager right ─────────────────────────────── */
+
+.wl-pb-editorial-v3 .wl-pb-foot {
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid var(--wl-pb-line);
+}
+
+.wl-pb-editorial-v3 .wl-pb-cta {
+    padding: 14px 26px;
+    border-radius: 4px;
+    background: var(--wl-pb-ink);
+    color: var(--wl-pb-paper-2);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.wl-pb-editorial-v3 .wl-pb-cta:hover:not([disabled]) {
+    background: var(--wl-pb-clay-dark);
+}
+
+.wl-pb-editorial-v3 .wl-pb-cta .wl-pb-icon {
+    width: 15px;
+    height: 15px;
+}
+
+.wl-pb-editorial-v3 .wl-pb-switch-counter {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-editorial-v3 .wl-pb-switch-now {
+    color: var(--wl-pb-ink);
+}
+
+.wl-pb-editorial-v3 .wl-pb-switch-arrow {
+    --wl-pb-arrow-size: 38px;
+    border: 1px solid var(--wl-pb-line);
+    border-radius: 999px;
+    color: var(--wl-pb-ink);
+    transition: border-color 160ms ease, color 160ms ease;
+}
+
+.wl-pb-editorial-v3 .wl-pb-switch-arrow:hover:not([disabled]) {
+    border-color: var(--wl-pb-clay);
+    color: var(--wl-pb-clay);
+}
+
+.wl-pb-editorial-v3 .wl-pb-switch-arrow .wl-pb-icon {
+    width: 15px;
+    height: 15px;
+}
+
+@media (max-width: 767px) {
+    .wl-pb-editorial-v3 {
+        padding: 56px 20px;
+    }
+
+    /* Stacked, a 560px floor would leave a tower on a phone, and the stretched
+       chain means nothing — so both come off and the image goes back to a
+       ratio, which scales. */
+    .wl-pb-editorial-v3 .wl-pb-split {
+        min-height: 0;
+    }
+
+    .wl-pb-editorial-v3 .wl-pb-plate {
+        height: auto;
+    }
+
+    .wl-pb-editorial-v3 .wl-pb-image {
+        flex: 0 0 auto;
+        aspect-ratio: 1 / 1.1;
+    }
+}

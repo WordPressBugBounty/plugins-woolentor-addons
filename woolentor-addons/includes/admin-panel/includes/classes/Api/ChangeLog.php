@@ -164,6 +164,23 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.5.3',
+                'date'    => '2026-09-22',
+                'changes' => [
+                    'New Features' => [
+                        '2 (Product Bundle and Social Proof) Elementor Addon flowing by 2026 tread.',
+                        '2 (Product Bundle and Social Proof) with 12 variant Elementor Addon flowing by 2026 tread. (Pro)',
+                    ],
+                    'Fixes' => [
+                        'Remove deprecated Add to Cart button markup in product page (Razorpay gateway plugin).',
+                        'Some minor bugs fixed.',
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
                 'version' => '3.5.2',
                 'date'    => '2026-09-17',
                 'changes' => [

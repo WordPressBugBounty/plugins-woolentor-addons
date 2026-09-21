@@ -1,0 +1,1026 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Social Proof — Luxury pack
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — The featured review and its company
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-sp-luxury-v1 {
+    --wl-sp-obsidian: #07080C;
+    --wl-sp-graphite: #111318;
+    --wl-sp-white: #FFFFFF;
+    --wl-sp-gold: #C9A86A;
+    --wl-sp-gold-hover: #B8966A;
+    --wl-sp-gold-dim: rgba(201, 168, 106, 0.35);
+    --wl-sp-hair: rgba(255, 255, 255, 0.08);
+    --wl-sp-hair-soft: rgba(255, 255, 255, 0.06);
+    --wl-sp-dim: rgba(255, 255, 255, 0.4);
+    --wl-sp-dimmer: rgba(255, 255, 255, 0.35);
+
+    --wl-sp-split: 1.3fr 1fr;
+    --wl-sp-split-gap: 24px;
+    --wl-sp-gap: 16px;
+    --wl-sp-star-size: 14px;
+    --wl-sp-star-gap: 3px;
+    --wl-sp-avatar-size: 56px;
+    --wl-sp-stats-gap: 20px;
+
+    background: var(--wl-sp-obsidian);
+    color: var(--wl-sp-white);
+    padding: 120px 40px;
+}
+
+/* ── Header row ──────────────────────────────────────────────────────────── */
+
+.wl-sp-luxury-v1 .wl-sp-head-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 40px;
+    margin-bottom: 64px;
+}
+
+.wl-sp-luxury-v1 .wl-sp-head {
+    margin-bottom: 0;
+}
+
+.wl-sp-luxury-v1 .wl-sp-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--wl-sp-gold);
+}
+
+.wl-sp-luxury-v1 .wl-sp-eyebrow::before {
+    content: "";
+    width: 40px;
+    height: 1px;
+    margin-right: 14px;
+    background: currentColor;
+}
+
+.wl-sp-luxury-v1 .wl-sp-heading {
+    font-size: clamp(30px, 3.6vw, 44px);
+    font-weight: 300;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: var(--wl-sp-white);
+}
+
+.wl-sp-luxury-v1 .wl-sp-desc {
+    max-width: 52ch;
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--wl-sp-dim);
+}
+
+/* ── Trust figures, parted by hairlines ──────────────────────────────────── */
+
+.wl-sp-luxury-v1 .wl-sp-stat {
+    padding-right: 20px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wl-sp-luxury-v1 .wl-sp-stat:last-child {
+    padding-right: 0;
+    border-right: none;
+}
+
+.wl-sp-luxury-v1 .wl-sp-stat-num {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--wl-sp-white);
+}
+
+.wl-sp-luxury-v1 .wl-sp-stat-label {
+    margin-top: 4px;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--wl-sp-dimmer);
+}
+
+.wl-sp-luxury-v1 .wl-sp-split {
+    align-items: stretch;
+}
+
+/* ── The featured review ─────────────────────────────────────────────────── */
+.wl-sp-luxury-v1 .wl-sp-featured {
+    position: sticky;
+    top: 40px;
+    align-self: start;
+}
+
+.wl-sp-luxury-v1 .wl-sp-featured .wl-sp-item {
+    position: relative;
+    gap: 0;
+    padding: 48px;
+    border: 1px solid rgba(201, 168, 106, 0.18);
+    border-radius: 24px;
+    background: linear-gradient(160deg, rgba(201, 168, 106, 0.06) 0%, rgba(255, 255, 255, 0.02) 60%);
+}
+
+.wl-sp-luxury-v1 .wl-sp-featured .wl-sp-mark {
+    position: absolute;
+    top: 32px;
+    right: 36px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 100px;
+    font-weight: 700;
+    line-height: 0.7;
+    color: rgba(201, 168, 106, 0.16);
+}
+
+/* The featured card names no product; the reference prints it only on the small three. */
+.wl-sp-luxury-v1 .wl-sp-featured .wl-sp-product {
+    display: none;
+}
+
+.wl-sp-luxury-v1 .wl-sp-featured .wl-sp-rating {
+    margin-bottom: 24px;
+    letter-spacing: 3px;
+}
+
+.wl-sp-luxury-v1 .wl-sp-featured .wl-sp-quote {
+    flex: 1;
+    margin-bottom: 32px;
+}
+
+.wl-sp-luxury-v1 .wl-sp-featured .wl-sp-text {
+    font-size: clamp(20px, 2.2vw, 28px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+    color: var(--wl-sp-white);
+}
+
+.wl-sp-luxury-v1 .wl-sp-featured .wl-sp-author {
+    position: relative;
+    gap: 14px;
+    padding-top: 28px;
+    border-top: 1px solid var(--wl-sp-hair);
+}
+
+.wl-sp-luxury-v1 .wl-sp-featured .wl-sp-avatar {
+    border: 2px solid var(--wl-sp-gold-dim);
+    background: var(--wl-sp-graphite);
+}
+
+.wl-sp-luxury-v1 .wl-sp-featured .wl-sp-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--wl-sp-white);
+}
+
+.wl-sp-luxury-v1 .wl-sp-featured .wl-sp-role {
+    font-size: 12.5px;
+    color: var(--wl-sp-dim);
+}
+
+.wl-sp-luxury-v1 .wl-sp-featured .wl-sp-verified {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    margin-top: 14px;
+}
+
+/* ── The three beside it ─────────────────────────────────────────────────── */
+.wl-sp-luxury-v1 .wl-sp-col {
+    display: grid;
+    grid-auto-rows: 1fr;
+    gap: 16px;
+}
+
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-item {
+    position: relative;
+    gap: 0;
+    padding: 22px 24px;
+    border: 1px solid var(--wl-sp-hair-soft);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    transition: border-color 220ms ease, background 220ms ease;
+}
+
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-item:hover {
+    border-color: rgba(201, 168, 106, 0.18);
+    background: rgba(201, 168, 106, 0.03);
+}
+
+/* Quieter than the featured card: no quotation mark, tighter type. */
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-mark {
+    display: none;
+}
+
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-rating {
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+    --wl-sp-star-size: 13px;
+}
+
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-text {
+    font-size: 13.5px;
+    font-style: normal;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-item {
+    --wl-sp-avatar-size: 32px;
+}
+
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-avatar {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--wl-sp-graphite);
+}
+
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-name {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--wl-sp-white);
+}
+
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-role {
+    font-size: 11px;
+    color: var(--wl-sp-dimmer);
+}
+
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr auto auto;
+    grid-template-areas:
+        "stars  stars"
+        "quote  quote"
+        "avatar byline"
+        "avatar product";
+    align-items: center;
+    gap: 0 10px;
+}
+
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-rating {
+    grid-area: stars;
+}
+
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-quote {
+    grid-area: quote;
+}
+
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-product {
+    grid-area: product;
+    justify-self: start;
+}
+
+/* `contents` frees the avatar and the byline to take areas of their own. */
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-author {
+    display: contents;
+}
+
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-avatar {
+    grid-area: avatar;
+}
+
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-author-text {
+    grid-area: byline;
+}
+
+/* The rule above the foot is drawn under the quote: the foot is three grid items now. */
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-quote {
+    padding-bottom: 16px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--wl-sp-hair-soft);
+}
+
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-product-name {
+    font-size: 11px;
+    color: var(--wl-sp-gold);
+}
+
+/* Where the reference prints the review's source, on the card's opening line. */
+.wl-sp-luxury-v1 .wl-sp-col .wl-sp-verified {
+    position: absolute;
+    top: 22px;
+    right: 24px;
+}
+
+.wl-sp-luxury-v1 .wl-sp-star {
+    color: var(--wl-sp-gold);
+}
+
+.wl-sp-luxury-v1 .wl-sp-verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 11px;
+    border: 1px solid rgba(201, 168, 106, 0.18);
+    border-radius: 999px;
+    background: rgba(201, 168, 106, 0.08);
+    color: var(--wl-sp-gold);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+    .wl-sp-luxury-v1 .wl-sp-head-row {
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: 28px;
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-sp-luxury-v1 {
+        --wl-sp-stats-gap: 14px;
+        padding: 64px 20px;
+    }
+
+    .wl-sp-luxury-v1 .wl-sp-featured .wl-sp-item {
+        padding: 30px 24px;
+    }
+
+    .wl-sp-luxury-v1 .wl-sp-featured .wl-sp-mark {
+        top: 20px;
+        right: 22px;
+        font-size: 64px;
+    }
+
+    /* The badge would collide with the byline at this width, so it returns to the line. */
+    .wl-sp-luxury-v1 .wl-sp-featured .wl-sp-verified {
+        position: static;
+        transform: none;
+        margin-top: 0;
+    }
+
+    .wl-sp-luxury-v1 .wl-sp-col {
+        grid-template-rows: none;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — The carousel with one card enlarged
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-sp-luxury-v2 {
+    --wl-sp-field: #EAEBE1;
+    --wl-sp-elevated: #FCFCF8;
+    --wl-sp-light-bg: #F4F5EF;
+    --wl-sp-dark: #30382C;
+    --wl-sp-olive: #6B705E;
+    --wl-sp-lime: #E7EC78;
+    --wl-sp-on-light: #2A3024;
+    --wl-sp-on-light-soft: #5E6353;
+    --wl-sp-text-primary: #F1F2EA;
+    --wl-sp-text-soft: #E4E6DA;
+    --wl-sp-line: rgba(48, 56, 44, 0.14);
+    --wl-sp-line-strong: rgba(48, 56, 44, 0.24);
+
+    --wl-sp-gap: 16px;
+    --wl-sp-slide: 340px;
+    --wl-sp-star-size: 13px;
+    --wl-sp-star-gap: 4px;
+    --wl-sp-avatar-size: 40px;
+    --wl-sp-arrow-size: 52px;
+
+    background: var(--wl-sp-field);
+    color: var(--wl-sp-on-light);
+    padding: clamp(64px, 7vw, 110px) 40px;
+}
+
+/* ── Header, centred ─────────────────────────────────────────────────────── */
+
+.wl-sp-luxury-v2 .wl-sp-head-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-bottom: clamp(40px, 5vw, 68px);
+}
+
+.wl-sp-luxury-v2 .wl-sp-head {
+    max-width: 560px;
+    margin-bottom: 0;
+    text-align: center;
+    align-items: center;
+}
+
+.wl-sp-luxury-v2 .wl-sp-eyebrow {
+    display: block;
+    margin-bottom: 14px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.8px;
+    text-transform: uppercase;
+    color: var(--wl-sp-olive);
+}
+
+.wl-sp-luxury-v2 .wl-sp-heading {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(36px, 4vw, 58px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -1.2px;
+    color: var(--wl-sp-on-light);
+}
+
+.wl-sp-luxury-v2 .wl-sp-heading em {
+    font-style: italic;
+    color: var(--wl-sp-olive);
+}
+
+.wl-sp-luxury-v2 .wl-sp-desc {
+    max-width: 46ch;
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--wl-sp-on-light-soft);
+}
+
+/* The reference sets its arrows below the track, centred. */
+.wl-sp-luxury-v2 .wl-sp-nav {
+    order: 2;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: clamp(24px, 3.5vw, 40px);
+}
+
+.wl-sp-luxury-v2 .wl-sp-arrow {
+    border: 1px solid var(--wl-sp-line-strong);
+    border-radius: 0;
+    background: var(--wl-sp-elevated);
+    color: var(--wl-sp-on-light);
+    transition: background 280ms ease, border-color 280ms ease, color 280ms ease;
+}
+
+.wl-sp-luxury-v2 .wl-sp-arrow:hover:not([disabled]) {
+    background: var(--wl-sp-dark);
+    border-color: var(--wl-sp-dark);
+    color: var(--wl-sp-text-primary);
+}
+
+.wl-sp-luxury-v2 .wl-sp-arrow .wl-sp-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* The reference's dots: a small square-cornered bar for the current slide. */
+.wl-sp-luxury-v2 .wl-sp-slider .wl-pack-dots {
+    color: var(--wl-sp-dark);
+    margin-top: clamp(24px, 3.5vw, 40px);
+}
+
+.wl-sp-luxury-v2 .wl-sp-slider .wl-pack-dots li button {
+    width: 7px;
+    height: 7px;
+    background: var(--wl-sp-line-strong);
+    opacity: 1;
+}
+
+.wl-sp-luxury-v2 .wl-sp-slider .wl-pack-dots li.slick-active button {
+    width: 22px;
+    border-radius: 0;
+    background: var(--wl-sp-dark);
+}
+
+/* ── Cards — square, near-white, no shadow ───────────────────────────────── */
+
+.wl-sp-luxury-v2 .wl-sp-item {
+    height: 100%;
+    gap: 18px;
+    padding: clamp(24px, 2.5vw, 36px);
+    border: 1px solid var(--wl-sp-line);
+    border-radius: 0;
+    background: var(--wl-sp-elevated);
+    transition: background 350ms ease, border-color 350ms ease;
+}
+
+.wl-sp-luxury-v2 .wl-sp-item:hover {
+    background: var(--wl-sp-light-bg);
+    border-color: var(--wl-sp-line-strong);
+}
+
+.wl-sp-luxury-v2 .wl-sp-mark {
+    display: none;
+}
+
+.wl-sp-luxury-v2 .wl-sp-rating {
+    order: -1;
+}
+
+.wl-sp-luxury-v2 .wl-sp-star {
+    color: var(--wl-sp-olive);
+}
+
+.wl-sp-luxury-v2 .wl-sp-quote {
+    flex: 1;
+}
+
+.wl-sp-luxury-v2 .wl-sp-text {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(18px, 1.6vw, 24px);
+    font-weight: 500;
+    line-height: 1.32;
+    letter-spacing: -0.3px;
+    color: var(--wl-sp-on-light);
+}
+
+.wl-sp-luxury-v2 .wl-sp-text em {
+    font-style: italic;
+    color: var(--wl-sp-olive);
+}
+
+.wl-sp-luxury-v2 .wl-sp-author {
+    gap: 12px;
+    padding-top: 18px;
+    border-top: 1px solid var(--wl-sp-line);
+}
+
+.wl-sp-luxury-v2 .wl-sp-avatar {
+    filter: saturate(0.85);
+}
+
+.wl-sp-luxury-v2 .wl-sp-name {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    color: var(--wl-sp-on-light);
+}
+
+.wl-sp-luxury-v2 .wl-sp-meta {
+    margin-top: 2px;
+}
+
+.wl-sp-luxury-v2 .wl-sp-role {
+    font-size: 11px;
+    color: var(--wl-sp-on-light-soft);
+}
+
+/* ── The one enlarged card: dark olive, a lime mark, a ruled ground ──────── */
+
+.wl-sp-luxury-v2 .wl-sp-item.is-featured {
+    position: relative;
+    overflow: hidden;
+    border-color: var(--wl-sp-dark);
+    background: var(--wl-sp-dark);
+    color: var(--wl-sp-text-primary);
+}
+
+.wl-sp-luxury-v2 .wl-sp-item.is-featured::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        repeating-linear-gradient(0deg, rgba(241, 242, 234, 0.035) 0, rgba(241, 242, 234, 0.035) 1px, transparent 1px, transparent 40px),
+        repeating-linear-gradient(90deg, rgba(241, 242, 234, 0.035) 0, rgba(241, 242, 234, 0.035) 1px, transparent 1px, transparent 40px);
+}
+
+.wl-sp-luxury-v2 .wl-sp-item.is-featured:hover {
+    background: var(--wl-sp-dark);
+    border-color: var(--wl-sp-dark);
+}
+
+.wl-sp-luxury-v2 .wl-sp-item.is-featured>* {
+    position: relative;
+    z-index: 1;
+}
+
+.wl-sp-luxury-v2 .wl-sp-item.is-featured .wl-sp-mark {
+    display: block;
+    margin-bottom: 0;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(60px, 7vw, 96px);
+    font-weight: 400;
+    line-height: 0.7;
+    color: var(--wl-sp-lime);
+}
+
+.wl-sp-luxury-v2 .wl-sp-item.is-featured .wl-sp-star {
+    color: var(--wl-sp-lime);
+}
+
+.wl-sp-luxury-v2 .wl-sp-item.is-featured .wl-sp-text {
+    font-size: clamp(19px, 1.7vw, 26px);
+    color: var(--wl-sp-text-primary);
+}
+
+.wl-sp-luxury-v2 .wl-sp-item.is-featured .wl-sp-text em {
+    color: var(--wl-sp-text-soft);
+}
+
+.wl-sp-luxury-v2 .wl-sp-item.is-featured .wl-sp-author {
+    border-top-color: rgba(241, 242, 234, 0.18);
+}
+
+.wl-sp-luxury-v2 .wl-sp-item.is-featured .wl-sp-name {
+    color: var(--wl-sp-text-primary);
+}
+
+.wl-sp-luxury-v2 .wl-sp-item.is-featured .wl-sp-role {
+    color: var(--wl-sp-text-soft);
+}
+
+@media (max-width: 767px) {
+    .wl-sp-luxury-v2 {
+        --wl-sp-slide: 86%;
+        --wl-sp-arrow-size: 44px;
+        padding: 60px 20px;
+    }
+
+    .wl-sp-luxury-v2 .wl-sp-head-row {
+        margin-bottom: 30px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — The rich card, one at a time
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-sp-luxury-v3 {
+    --wl-sp-gap: 0px;
+    --wl-sp-ivory: #F8F5F0;
+    --wl-sp-beige: #E7E7E7;
+    --wl-sp-charcoal: #2C2A28;
+    --wl-sp-mocha: #6E5B4B;
+    --wl-sp-gold: #C6A972;
+    --wl-sp-taupe: #B8A999;
+
+    --wl-sp-star-size: 15px;
+    --wl-sp-star-gap: 3px;
+    --wl-sp-avatar-size: 50px;
+    --wl-sp-arrow-size: 52px;
+
+    background: #FFFFFF;
+    color: var(--wl-sp-charcoal);
+    padding: 120px 40px;
+}
+
+/* ── Header, centred ─────────────────────────────────────────────────────── */
+
+.wl-sp-luxury-v3 .wl-sp-head-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 620px;
+    margin: 0 auto 60px;
+    text-align: center;
+}
+
+.wl-sp-luxury-v3 .wl-sp-head {
+    margin-bottom: 0;
+    align-items: center;
+    text-align: center;
+}
+
+.wl-sp-luxury-v3 .wl-sp-eyebrow {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--wl-sp-gold);
+}
+
+.wl-sp-luxury-v3 .wl-sp-heading {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    color: var(--wl-sp-charcoal);
+}
+
+.wl-sp-luxury-v3 .wl-sp-desc {
+    max-width: 56ch;
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--wl-sp-mocha);
+}
+
+.wl-sp-luxury-v3 .wl-sp-summary {
+    gap: 10px;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #4C4C4C;
+}
+
+.wl-sp-luxury-v3 .wl-sp-score {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--wl-sp-charcoal);
+}
+
+.wl-sp-luxury-v3 .wl-sp-star {
+    color: var(--wl-sp-gold);
+}
+
+/* ── The card ────────────────────────────────────────────────────────────── */
+
+.wl-sp-luxury-v3 .wl-sp-item {
+    display: grid;
+    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1fr);
+    grid-template-areas:
+        "media  mark"
+        "media  quote"
+        "media  author";
+    align-content: start;
+    min-height: 384px;
+    gap: 0;
+    overflow: hidden;
+    border: 1px solid var(--wl-sp-beige);
+    border-radius: 18px;
+    background: #FFFFFF;
+    transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease;
+}
+
+.wl-sp-luxury-v3 .wl-sp-item:hover {
+    transform: translateY(-6px);
+    border-color: var(--wl-sp-gold);
+    box-shadow: 0 34px 64px -34px rgba(44, 42, 40, 0.5);
+}
+
+.wl-sp-luxury-v3 .wl-sp-item>.wl-sp-product {
+    align-self: stretch;
+}
+
+.wl-sp-luxury-v3 .wl-sp-product {
+    position: relative;
+    grid-area: media;
+    display: block;
+    overflow: hidden;
+    background: var(--wl-sp-beige);
+}
+
+.wl-sp-luxury-v3 .wl-sp-product-thumb {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.wl-sp-luxury-v3 .wl-sp-product-img {
+    transition: transform 1.1s ease;
+}
+
+.wl-sp-luxury-v3 .wl-sp-item:hover .wl-sp-product-img {
+    transform: scale(1.06);
+}
+
+.wl-sp-luxury-v3 .wl-sp-product-name {
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    max-width: calc(100% - 32px);
+    padding: 8px 13px;
+    border-radius: 999px;
+    background: rgba(44, 42, 40, 0.6);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    color: var(--wl-sp-ivory);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: none;
+}
+
+.wl-sp-luxury-v3 .wl-sp-product-name::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--wl-sp-gold);
+}
+
+/* ── The body beside it ──────────────────────────────────────────────────── */
+
+.wl-sp-luxury-v3 .wl-sp-mark {
+    grid-area: mark;
+    margin: 38px 34px 16px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: 56px;
+    line-height: 0.6;
+    color: var(--wl-sp-gold);
+    opacity: 0.5;
+}
+
+.wl-sp-luxury-v3 .wl-sp-quote {
+    grid-area: quote;
+    margin: 0 34px 22px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--wl-sp-beige);
+}
+
+.wl-sp-luxury-v3 .wl-sp-text {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 21px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--wl-sp-charcoal);
+}
+
+.wl-sp-luxury-v3 .wl-sp-rating {
+    display: none;
+}
+
+.wl-sp-luxury-v3 .wl-sp-author {
+    grid-area: author;
+    gap: 13px;
+    margin: auto 34px 38px;
+}
+
+.wl-sp-luxury-v3 .wl-sp-avatar {
+    background: var(--wl-sp-beige);
+    box-shadow: 0 0 0 1px var(--wl-sp-beige), 0 0 0 4px #FFFFFF;
+}
+
+.wl-sp-luxury-v3 .wl-sp-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--wl-sp-charcoal);
+}
+
+.wl-sp-luxury-v3 .wl-sp-meta {
+    margin-top: 3px;
+}
+
+.wl-sp-luxury-v3 .wl-sp-role {
+    font-size: 13px;
+    color: var(--wl-sp-taupe);
+}
+
+/* The reference marks the name itself, so the badge is a gold tick beside it. */
+.wl-sp-luxury-v3 .wl-sp-verified {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--wl-sp-gold);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+/* ── Picker — arrows and a counter, centred under the card ───────────────── */
+
+.wl-sp-luxury-v3 .wl-sp-picker {
+    justify-content: center;
+    gap: 24px;
+    margin-top: 48px;
+}
+
+.wl-sp-luxury-v3 .wl-sp-counter {
+    font-size: 14px;
+    letter-spacing: 0.14em;
+    color: var(--wl-sp-mocha);
+}
+
+.wl-sp-luxury-v3 .wl-sp-counter-now {
+    color: var(--wl-sp-gold);
+}
+
+.wl-sp-luxury-v3 .wl-sp-arrow {
+    border: 1px solid rgba(44, 42, 40, 0.35);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--wl-sp-charcoal);
+    transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.wl-sp-luxury-v3 .wl-sp-arrow:hover:not([disabled]) {
+    background: var(--wl-sp-charcoal);
+    border-color: var(--wl-sp-charcoal);
+    color: var(--wl-sp-ivory);
+}
+
+.wl-sp-luxury-v3 .wl-sp-arrow .wl-sp-icon {
+    width: 18px;
+    height: 18px;
+}
+
+@media (max-width: 767px) {
+    .wl-sp-luxury-v3 {
+        --wl-sp-arrow-size: 44px;
+        padding: 64px 20px;
+    }
+
+    .wl-sp-luxury-v3 .wl-sp-head-row {
+        margin-bottom: 36px;
+    }
+
+    /* The photograph goes over the copy and keeps a fixed frame of its own. */
+    .wl-sp-luxury-v3 .wl-sp-item {
+        grid-template-columns: 1fr;
+        grid-template-areas: "media" "mark" "quote" "author";
+        min-height: 0;
+    }
+
+    .wl-sp-luxury-v3 .wl-sp-product {
+        aspect-ratio: 16 / 11;
+    }
+
+    .wl-sp-luxury-v3 .wl-sp-mark {
+        margin: 32px 28px 16px;
+    }
+
+    .wl-sp-luxury-v3 .wl-sp-quote {
+        margin: 0 28px 22px;
+    }
+
+    .wl-sp-luxury-v3 .wl-sp-author {
+        margin: 0 28px 32px;
+    }
+
+    .wl-sp-luxury-v3 .wl-sp-text {
+        font-size: 20px;
+    }
+}
+
+
+/* ── The closing bar ─────────────────────────────────────────────────────── */
+
+.wl-sp-luxury-v1 .wl-sp-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 48px;
+    padding: 28px 36px;
+    border: 1px solid var(--wl-sp-hair-soft);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* The photographs are cut out of the section's own ground, so the ring is obsidian. */
+.wl-sp-luxury-v1 .wl-sp-face {
+    border: 2px solid var(--wl-sp-obsidian);
+    background: var(--wl-sp-graphite);
+}
+
+.wl-sp-luxury-v1 .wl-sp-note {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.wl-sp-luxury-v1 .wl-sp-note strong {
+    font-weight: 600;
+    color: var(--wl-sp-white);
+}
+
+.wl-sp-luxury-v1 .wl-sp-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    background: var(--wl-sp-gold);
+    color: var(--wl-sp-obsidian);
+    font-size: 13.5px;
+    font-weight: 600;
+    transition: background 220ms ease;
+}
+
+.wl-sp-luxury-v1 .wl-sp-cta:hover {
+    background: var(--wl-sp-gold-hover);
+}
+
+.wl-sp-luxury-v1 .wl-sp-cta .wl-sp-icon {
+    width: 15px;
+    height: 15px;
+}
+
+@media (max-width: 767px) {
+    .wl-sp-luxury-v1 .wl-sp-foot {
+        justify-content: center;
+        margin-top: 30px;
+        padding: 20px;
+    }
+
+    .wl-sp-luxury-v1 .wl-sp-foot-aside {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+}

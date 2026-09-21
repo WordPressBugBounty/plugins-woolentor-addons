@@ -4,7 +4,7 @@ Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenb
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 3.5.2
+Stable tag: 3.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -670,6 +670,12 @@ Please report security issues to our team directly at **[woolentor.com/contact](
 22. Module Settings
 
 == Changelog ==
+
+= Version: 3.5.3 - Date: 22-09-2026 =
+* Added: 2 (Product Bundle and Social Proof) Elementor Addon flowing by 2026 tread.
+* Solved: Remove deprecated Add to Cart button markup in product page (Razorpay gateway plugin).
+* Solved: Some minor bugs fixed.
+* Compatibility: Latest WordPress and WooCommerce version.
 
 = Version: 3.5.2 - Date: 17-09-2026 =
 * Solved: Product tab grid column render issue in mobile device.

@@ -368,6 +368,16 @@ class Widgets_Control{
                     'title'    => esc_html__('Shop the Look - 2026','woolentor'),
                     'is_pro'   => false,
                     'location' => ( $is_pro ? WOOLENTOR_ADDONS_PL_PATH_PRO : WOOLENTOR_ADDONS_PL_PATH ) . 'includes/addons/pack-widgets/elementor/shop-the-look/',
+                ],
+                'product_bundle' => [
+                    'title'    => esc_html__('Product Bundle - 2026','woolentor'),
+                    'is_pro'   => false,
+                    'location' => ( $is_pro ? WOOLENTOR_ADDONS_PL_PATH_PRO : WOOLENTOR_ADDONS_PL_PATH ) . 'includes/addons/pack-widgets/elementor/product-bundle/',
+                ],
+                'social_proof' => [
+                    'title'    => esc_html__('Social Proof - 2026','woolentor'),
+                    'is_pro'   => false,
+                    'location' => ( $is_pro ? WOOLENTOR_ADDONS_PL_PATH_PRO : WOOLENTOR_ADDONS_PL_PATH ) . 'includes/addons/pack-widgets/elementor/social-proof/',
                 ]
 
             ],

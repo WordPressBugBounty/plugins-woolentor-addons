@@ -45,6 +45,9 @@ class Woolentor_Ajax_Action{
         add_action( 'wp_ajax_woolentor_add_look_to_cart', [ $this, 'add_look_to_cart' ] );
         add_action( 'wp_ajax_nopriv_woolentor_add_look_to_cart', [ $this, 'add_look_to_cart' ] );
 
+        add_action( 'wp_ajax_woolentor_add_bundle_to_cart', [ $this, 'add_bundle_to_cart' ] );
+        add_action( 'wp_ajax_nopriv_woolentor_add_bundle_to_cart', [ $this, 'add_bundle_to_cart' ] );
+
         // Custom select control AJAX search
         add_action( 'wp_ajax_woolentor_select_search', [$this, 'select_search'] );
         add_action( 'wp_ajax_woolentor_select_get_titles', [$this, 'select_get_titles'] );
@@ -174,6 +177,127 @@ class Woolentor_Ajax_Action{
         wp_send_json_success( [
             'added'     => $added,
             'skipped'   => $skipped,
+            'fragments' => $fragments,
+            'cart_hash' => \WC()->cart->get_cart_hash(),
+        ] );
+    }
+
+    /**
+     * [add_bundle_to_cart] Add every product in a Product Bundle, in one request.
+     *
+     * Like add_look_to_cart() this exists so a set of products produces **one** cart-fragment
+     * refresh rather than one per product racing the others. It differs in two ways: each item
+     * carries its own quantity, and a bundle may name a real WooCommerce coupon to apply once the
+     * items are in.
+     *
+     * **What is skipped here must match what the widget declined to display.** Both sides call
+     * woolentor_bundle_item_is_addable(), which lives in includes/helper-function.php precisely
+     * because that file is loaded on every request — the widget class is not. It is registered on
+     * `elementor/widgets/register`, a hook admin-ajax.php never fires, so an earlier version that
+     * asked the widget class skipped every single item here.
+     *
+     * @return void
+     */
+    public function add_bundle_to_cart() {
+
+        if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'woolentor_psa_nonce' ) ) {
+            wp_send_json_error( [ 'message' => esc_html__( 'Nonce Varification Faild !', 'woolentor' ) ] );
+        }
+
+        // phpcs:disable WordPress.Security.NonceVerification.Missing
+        $raw    = isset( $_POST['items'] ) ? (array) wp_unslash( $_POST['items'] ) : [];
+        $coupon = isset( $_POST['coupon'] ) ? wc_format_coupon_code( sanitize_text_field( wp_unslash( $_POST['coupon'] ) ) ) : '';
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
+
+        $wanted = [];
+
+        foreach ( $raw as $row ) {
+            $id  = absint( $row['id'] ?? 0 );
+            $qty = isset( $row['qty'] ) ? wc_stock_amount( $row['qty'] ) : 1;
+
+            if ( ! $id || $qty <= 0 ) {
+                continue;
+            }
+
+            // The same product listed twice in one bundle is one line with a bigger quantity.
+            $wanted[ $id ] = ( $wanted[ $id ] ?? 0 ) + $qty;
+        }
+
+        if ( empty( $wanted ) || ! function_exists( 'wc_get_product' ) || ! \WC()->cart ) {
+            wp_send_json_error( [ 'message' => esc_html__( 'Nothing to add.', 'woolentor' ) ] );
+        }
+
+        $added   = 0;
+        $skipped = 0;
+        $ids     = [];
+
+        foreach ( $wanted as $id => $qty ) {
+            $product = wc_get_product( $id );
+
+            if ( ! woolentor_bundle_item_is_addable( $product, $id ) ) {
+                $skipped++;
+                continue;
+            }
+
+            $product_id = apply_filters( 'woocommerce_add_to_cart_product_id', $id );
+
+            if ( ! apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $qty, 0, [] ) ) {
+                $skipped++;
+                continue;
+            }
+
+            if ( \WC()->cart->add_to_cart( $product_id, $qty ) ) {
+                do_action( 'woocommerce_ajax_added_to_cart', $product_id );
+                $added++;
+                $ids[] = $product_id;
+            } else {
+                $skipped++;
+            }
+        }
+
+        if ( ! $added ) {
+            wp_send_json_error( [
+                'message' => esc_html__( 'None of these products could be added on their own.', 'woolentor' ),
+                'skipped' => $skipped,
+            ] );
+        }
+
+        // The coupon is the merchant's own, configured in WooCommerce. Nothing here invents a
+        // discount: if the code is wrong or its own restrictions reject it, the cart simply keeps
+        // the prices the widget already showed, and the response says what happened.
+        $coupon_state = '';
+
+        if ( '' !== $coupon ) {
+            if ( \WC()->cart->has_discount( $coupon ) ) {
+                $coupon_state = 'already';
+            } else {
+                $applied      = \WC()->cart->apply_coupon( $coupon );
+                $coupon_state = $applied ? 'applied' : 'failed';
+
+                // apply_coupon() reports its refusal through the notice store. Left there it would
+                // surface on whatever page the shopper loads next, detached from this action.
+                if ( ! $applied ) {
+                    wc_clear_notices();
+                }
+            }
+        }
+
+        // One refresh for the whole bundle, after every add — the reason this endpoint exists.
+        // Built by hand rather than through WC_AJAX::get_refreshed_fragments(), which ends in
+        // wp_send_json() and never returns, so this endpoint's own counts would never be sent.
+        ob_start();
+        woocommerce_mini_cart();
+        $mini_cart = ob_get_clean();
+
+        $fragments = apply_filters( 'woocommerce_add_to_cart_fragments', [
+            'div.widget_shopping_cart_content' => '<div class="widget_shopping_cart_content">' . $mini_cart . '</div>',
+        ] );
+
+        wp_send_json_success( [
+            'added'     => $added,
+            'skipped'   => $skipped,
+            'ids'       => $ids,
+            'coupon'    => $coupon_state,
             'fragments' => $fragments,
             'cart_hash' => \WC()->cart->get_cart_hash(),
         ] );

@@ -1,0 +1,888 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Product Bundle — Luxury pack
+   Bone #F8F6F1 · obsidian #07080C · gold #C9A86A · pill buttons · 16px corners
+   Skin only. Mechanics live in pack-widgets-base.css.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — The image-headed grid
+   Transcribed from luxury-style/v1/home-luxury.html — `.section-deals`
+   Selection is deliberately absent; it belongs to v2. Plan §4.1.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-pb-luxury-v1 {
+    --wl-pb-bone: #F8F6F1;
+    --wl-pb-obsidian: #07080C;
+    --wl-pb-gold: #C9A86A;
+    --wl-pb-gold-dark: #B8966A;
+    --wl-pb-ink: #171717;
+    --wl-pb-muted: #8B8175;
+    --wl-pb-line: #E7E2D9;
+    --wl-pb-surface: #FFFFFF;
+
+    --wl-pb-cols: repeat(3, 1fr);
+    --wl-pb-cols-md: 1fr 1fr;
+    --wl-pb-gap: 28px;
+    --wl-pb-thumb-size: 48px;
+    --wl-pb-item-gap: 12px;
+    --wl-pb-ratio: 0.62;
+
+    background: var(--wl-pb-bone);
+    color: var(--wl-pb-ink);
+    padding: 110px 40px;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.wl-pb-luxury-v1 .wl-pb-head {
+    margin-bottom: 44px;
+}
+
+.wl-pb-luxury-v1 .wl-pb-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--wl-pb-gold);
+}
+
+.wl-pb-luxury-v1 .wl-pb-eyebrow::before {
+    content: "";
+    width: 40px;
+    height: 1px;
+    margin-right: 14px;
+    background: currentColor;
+}
+
+.wl-pb-luxury-v1 .wl-pb-heading {
+    font-size: clamp(30px, 3.6vw, 44px);
+    font-weight: 300;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: var(--wl-pb-ink);
+}
+
+.wl-pb-luxury-v1 .wl-pb-desc {
+    max-width: 52ch;
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-luxury-v1 .wl-pb-link {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--wl-pb-ink);
+}
+
+.wl-pb-luxury-v1 .wl-pb-link .wl-pb-icon {
+    width: 14px;
+    height: 14px;
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+
+.wl-pb-luxury-v1 .wl-pb-card {
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--wl-pb-surface);
+    border: 1px solid var(--wl-pb-line);
+}
+
+.wl-pb-luxury-v1 .wl-pb-image {
+    border-radius: 0;
+}
+
+/* The scrim is what keeps the burnt-in title legible over any photograph, and
+   it is a gradient rather than a flat wash so the picture still reads. */
+.wl-pb-luxury-v1 .wl-pb-scrim {
+    background: linear-gradient(to top, rgba(7, 8, 12, 0.88) 0%, rgba(7, 8, 12, 0.28) 46%, rgba(7, 8, 12, 0) 76%);
+}
+
+.wl-pb-luxury-v1 .wl-pb-image-title {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 22px;
+    z-index: 2;
+}
+
+.wl-pb-luxury-v1 .wl-pb-image-title .wl-pb-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--wl-pb-gold);
+}
+
+.wl-pb-luxury-v1 .wl-pb-image-title .wl-pb-name {
+    margin: 8px 0 0;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--wl-pb-bone);
+}
+
+.wl-pb-luxury-v1 .wl-pb-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    padding: 24px;
+}
+
+/* ── List ────────────────────────────────────────────────────────────────── */
+
+.wl-pb-luxury-v1 .wl-pb-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--wl-pb-line);
+}
+
+.wl-pb-luxury-v1 .wl-pb-item:last-child {
+    border-bottom: 0;
+}
+
+.wl-pb-luxury-v1 .wl-pb-check {
+    --wl-pb-check-size: 20px;
+    border-radius: 999px;
+    background: var(--wl-pb-gold);
+    color: var(--wl-pb-obsidian);
+}
+
+.wl-pb-luxury-v1 .wl-pb-item-media {
+    border-radius: 8px;
+    background: var(--wl-pb-bone);
+}
+
+.wl-pb-luxury-v1 .wl-pb-item-name {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--wl-pb-ink);
+}
+
+.wl-pb-luxury-v1 .wl-pb-item-meta {
+    margin-top: 3px;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-luxury-v1 .wl-pb-item-price {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--wl-pb-ink);
+}
+
+.wl-pb-luxury-v1 .wl-pb-item-was {
+    margin-left: 5px;
+    font-weight: 400;
+    color: var(--wl-pb-muted);
+}
+
+/* ── Savings and pricing ─────────────────────────────────────────────────── */
+
+.wl-pb-luxury-v1 .wl-pb-savings-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: rgba(201, 168, 106, 0.12);
+}
+
+.wl-pb-luxury-v1 .wl-pb-savings-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-luxury-v1 .wl-pb-save-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--wl-pb-gold-dark);
+}
+
+.wl-pb-luxury-v1 .wl-pb-pricing {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+.wl-pb-luxury-v1 .wl-pb-now {
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--wl-pb-ink);
+}
+
+.wl-pb-luxury-v1 .wl-pb-was {
+    font-size: 14px;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-luxury-v1 .wl-pb-ribbon {
+    margin-left: auto;
+    padding: 5px 12px;
+    border: 1px solid var(--wl-pb-gold);
+    border-radius: 999px;
+    color: var(--wl-pb-gold-dark);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.wl-pb-luxury-v1 .wl-pb-foot {
+    margin-top: 20px;
+}
+
+.wl-pb-luxury-v1 .wl-pb-cta {
+    width: 100%;
+    padding: 14px 22px;
+    border-radius: 999px;
+    background: var(--wl-pb-obsidian);
+    color: var(--wl-pb-bone);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.wl-pb-luxury-v1 .wl-pb-cta:hover {
+    background: var(--wl-pb-gold-dark);
+    color: var(--wl-pb-obsidian);
+}
+
+.wl-pb-luxury-v1 .wl-pb-cta .wl-pb-icon {
+    width: 15px;
+    height: 15px;
+}
+
+@media (max-width: 767px) {
+    .wl-pb-luxury-v1 {
+        padding: 60px 20px;
+    }
+
+    .wl-pb-luxury-v1 .wl-pb-head {
+        margin-bottom: 30px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — The configurator
+   The same `.section-deals` card as v1, with the reference's selection
+   mechanics switched on: each row toggles, the count bar appears, and the
+   savings and price recompute. Plan §4.1.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-pb-luxury-v2 {
+    --wl-pb-bone: #F8F6F1;
+    --wl-pb-obsidian: #07080C;
+    --wl-pb-gold: #C9A86A;
+    --wl-pb-gold-dark: #B8966A;
+    --wl-pb-ink: #171717;
+    --wl-pb-muted: #8B8175;
+    --wl-pb-line: #E7E2D9;
+    --wl-pb-surface: #FFFFFF;
+
+    --wl-pb-cols: repeat(3, 1fr);
+    --wl-pb-cols-md: 1fr 1fr;
+    --wl-pb-gap: 28px;
+    --wl-pb-thumb-size: 48px;
+    --wl-pb-item-gap: 12px;
+    --wl-pb-ratio: 0.62;
+
+    background: var(--wl-pb-bone);
+    color: var(--wl-pb-ink);
+    padding: 110px 40px;
+}
+
+.wl-pb-luxury-v2 .wl-pb-head {
+    margin-bottom: 44px;
+}
+
+.wl-pb-luxury-v2 .wl-pb-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--wl-pb-gold);
+}
+
+.wl-pb-luxury-v2 .wl-pb-eyebrow::before {
+    content: "";
+    width: 40px;
+    height: 1px;
+    margin-right: 14px;
+    background: currentColor;
+}
+
+.wl-pb-luxury-v2 .wl-pb-heading {
+    font-size: clamp(30px, 3.6vw, 44px);
+    font-weight: 300;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+}
+
+.wl-pb-luxury-v2 .wl-pb-desc {
+    max-width: 52ch;
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-luxury-v2 .wl-pb-link {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--wl-pb-ink);
+}
+
+.wl-pb-luxury-v2 .wl-pb-link .wl-pb-icon {
+    width: 14px;
+    height: 14px;
+}
+
+.wl-pb-luxury-v2 .wl-pb-card {
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--wl-pb-surface);
+    border: 1px solid var(--wl-pb-line);
+}
+
+.wl-pb-luxury-v2 .wl-pb-image {
+    border-radius: 0;
+}
+
+.wl-pb-luxury-v2 .wl-pb-scrim {
+    background: linear-gradient(to top, rgba(7, 8, 12, 0.88) 0%, rgba(7, 8, 12, 0.28) 46%, rgba(7, 8, 12, 0) 76%);
+}
+
+.wl-pb-luxury-v2 .wl-pb-image-title {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 22px;
+    z-index: 2;
+}
+
+.wl-pb-luxury-v2 .wl-pb-image-title .wl-pb-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--wl-pb-gold);
+}
+
+.wl-pb-luxury-v2 .wl-pb-image-title .wl-pb-name {
+    margin: 8px 0 0;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--wl-pb-bone);
+}
+
+.wl-pb-luxury-v2 .wl-pb-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    padding: 24px;
+}
+
+/* ── List, now a picker ──────────────────────────────────────────────────── */
+
+.wl-pb-luxury-v2 .wl-pb-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--wl-pb-line);
+    transition: opacity 180ms ease;
+}
+
+.wl-pb-luxury-v2 .wl-pb-item:last-child {
+    border-bottom: 0;
+}
+
+/* Off is a state, not a disappearance: the row stays readable so the shopper
+   can see what they turned down and put it back. */
+.wl-pb-luxury-v2 .wl-pb-item.is-off .wl-pb-item-name {
+    text-decoration: line-through;
+}
+
+.wl-pb-luxury-v2 .wl-pb-check {
+    --wl-pb-check-size: 22px;
+    border-radius: 999px;
+    background: var(--wl-pb-gold);
+    color: var(--wl-pb-obsidian);
+    border: 1px solid var(--wl-pb-gold);
+    transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.wl-pb-luxury-v2 .wl-pb-item.is-off .wl-pb-check {
+    background: transparent;
+    border-color: var(--wl-pb-line);
+}
+
+.wl-pb-luxury-v2 .wl-pb-item-media {
+    border-radius: 8px;
+    background: var(--wl-pb-bone);
+}
+
+.wl-pb-luxury-v2 .wl-pb-item-name {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--wl-pb-ink);
+}
+
+.wl-pb-luxury-v2 .wl-pb-item-meta {
+    margin-top: 3px;
+    font-size: 11px;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-luxury-v2 .wl-pb-item-price {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--wl-pb-ink);
+}
+
+.wl-pb-luxury-v2 .wl-pb-item-was {
+    margin-left: 5px;
+    font-weight: 400;
+    color: var(--wl-pb-muted);
+}
+
+/* ── Selection bar ───────────────────────────────────────────────────────── */
+
+.wl-pb-luxury-v2 .wl-pb-selectbar {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--wl-pb-line);
+}
+
+.wl-pb-luxury-v2 .wl-pb-selectbar-count {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-luxury-v2 .wl-pb-selectbar-count strong {
+    color: var(--wl-pb-ink);
+}
+
+.wl-pb-luxury-v2 .wl-pb-selectbar-actions button {
+    padding: 4px 12px;
+    border: 1px solid var(--wl-pb-line);
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wl-pb-muted);
+    transition: border-color 160ms ease, color 160ms ease;
+}
+
+.wl-pb-luxury-v2 .wl-pb-selectbar-actions button:hover {
+    border-color: var(--wl-pb-gold);
+    color: var(--wl-pb-gold-dark);
+}
+
+/* ── Savings, pricing, button ────────────────────────────────────────────── */
+
+.wl-pb-luxury-v2 .wl-pb-savings-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: rgba(201, 168, 106, 0.12);
+}
+
+.wl-pb-luxury-v2 .wl-pb-savings-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-luxury-v2 .wl-pb-save-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--wl-pb-gold-dark);
+}
+
+.wl-pb-luxury-v2 .wl-pb-pricing {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+.wl-pb-luxury-v2 .wl-pb-now {
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+}
+
+.wl-pb-luxury-v2 .wl-pb-was {
+    font-size: 14px;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-luxury-v2 .wl-pb-ribbon {
+    margin-left: auto;
+    padding: 5px 12px;
+    border: 1px solid var(--wl-pb-gold);
+    border-radius: 999px;
+    color: var(--wl-pb-gold-dark);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.wl-pb-luxury-v2 .wl-pb-foot {
+    margin-top: 20px;
+}
+
+.wl-pb-luxury-v2 .wl-pb-cta {
+    width: 100%;
+    padding: 14px 22px;
+    border-radius: 999px;
+    background: var(--wl-pb-obsidian);
+    color: var(--wl-pb-bone);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.wl-pb-luxury-v2 .wl-pb-cta:hover:not([disabled]) {
+    background: var(--wl-pb-gold-dark);
+    color: var(--wl-pb-obsidian);
+}
+
+.wl-pb-luxury-v2 .wl-pb-cta .wl-pb-icon {
+    width: 15px;
+    height: 15px;
+}
+
+@media (max-width: 767px) {
+    .wl-pb-luxury-v2 {
+        padding: 60px 20px;
+    }
+
+    .wl-pb-luxury-v2 .wl-pb-head {
+        margin-bottom: 30px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — The featured set, dark
+   Designed. Obsidian ground, a full-bleed plate with the name burnt in, the
+   items as a labelled gold strip, one centred price and a pill button.
+   Plan §5.5.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-pb-luxury-v3 {
+    --wl-pb-bone: #F8F6F1;
+    --wl-pb-obsidian: #07080C;
+    --wl-pb-gold: #C9A86A;
+    --wl-pb-gold-dark: #B8966A;
+    --wl-pb-muted: rgba(248, 246, 241, 0.62);
+    --wl-pb-hairline: rgba(201, 168, 106, 0.32);
+
+    --wl-pb-switch-gap: 0px;
+    --wl-pb-ratio: 0.46;
+
+    background: var(--wl-pb-obsidian);
+    color: var(--wl-pb-bone);
+    padding: 120px 40px;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.wl-pb-luxury-v3 .wl-pb-head {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 26px;
+}
+
+.wl-pb-luxury-v3 .wl-pb-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--wl-pb-gold);
+}
+
+.wl-pb-luxury-v3 .wl-pb-eyebrow::before {
+    content: "";
+    width: 40px;
+    height: 1px;
+    margin-right: 14px;
+    background: currentColor;
+}
+
+.wl-pb-luxury-v3 .wl-pb-heading {
+    font-size: clamp(32px, 4vw, 50px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--wl-pb-bone);
+}
+
+.wl-pb-luxury-v3 .wl-pb-desc {
+    max-width: 56ch;
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--wl-pb-muted);
+}
+
+/* ── Switcher — tabs on a hairline ───────────────────────────────────────── */
+
+.wl-pb-luxury-v3 .wl-pb-switch {
+    justify-content: center;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--wl-pb-hairline);
+}
+
+.wl-pb-luxury-v3 .wl-pb-switch-btn {
+    padding: 14px 24px;
+    border-bottom: 1px solid transparent;
+    margin-bottom: -1px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--wl-pb-muted);
+    transition: color 160ms ease, border-color 160ms ease;
+}
+
+.wl-pb-luxury-v3 .wl-pb-switch-btn.is-active,
+.wl-pb-luxury-v3 .wl-pb-switch-btn:hover {
+    color: var(--wl-pb-gold);
+    border-bottom-color: var(--wl-pb-gold);
+}
+
+/* ── Plate ───────────────────────────────────────────────────────────────── */
+
+.wl-pb-luxury-v3 .wl-pb-image {
+    border-radius: 2px;
+}
+
+.wl-pb-luxury-v3 .wl-pb-scrim {
+    background: linear-gradient(to top, rgba(7, 8, 12, 0.92) 0%, rgba(7, 8, 12, 0.24) 52%, rgba(7, 8, 12, 0) 78%);
+}
+
+/* A column, not a wrapping row. The row version needed `width: 100%` on the tag to push the
+   name onto its own line — and a full-width label is a full-width background the moment anyone
+   sets one, which is exactly the red bar this produced. Stacked, every label sizes to its own
+   content. */
+.wl-pb-luxury-v3 .wl-pb-image-title {
+    position: absolute;
+    left: 40px;
+    right: 40px;
+    bottom: 36px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.wl-pb-luxury-v3 .wl-pb-image-title .wl-pb-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--wl-pb-gold);
+}
+
+.wl-pb-luxury-v3 .wl-pb-image-title .wl-pb-name {
+    margin: 0;
+    font-size: clamp(26px, 3.2vw, 40px);
+    font-weight: 300;
+    line-height: 1.12;
+    color: var(--wl-pb-bone);
+}
+
+.wl-pb-luxury-v3 .wl-pb-ribbon {
+    padding: 5px 12px;
+    border: 1px solid var(--wl-pb-gold);
+    border-radius: 999px;
+    color: var(--wl-pb-gold);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.wl-pb-luxury-v3 .wl-pb-intro {
+    max-width: 62ch;
+    margin: 32px auto 0;
+    font-size: 15px;
+    line-height: 1.75;
+    text-align: center;
+    color: var(--wl-pb-muted);
+}
+
+/* ── The strip is the item list here ─────────────────────────────────────── */
+
+.wl-pb-luxury-v3 .wl-pb-thumbstrip {
+    --wl-pb-thumbstrip-gap: 22px;
+    align-items: flex-start;
+    margin-top: 40px;
+}
+
+.wl-pb-luxury-v3 .wl-pb-thumb {
+    flex: 0 1 180px;
+    text-align: center;
+}
+
+.wl-pb-luxury-v3 .wl-pb-thumb img {
+    aspect-ratio: 1 / 1;
+    border: 1px solid var(--wl-pb-hairline);
+    border-radius: 2px;
+}
+
+.wl-pb-luxury-v3 .wl-pb-thumb-name {
+    display: block;
+    margin-top: 12px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--wl-pb-bone);
+}
+
+.wl-pb-luxury-v3 .wl-pb-thumb-price {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--wl-pb-gold);
+}
+
+.wl-pb-luxury-v3 .wl-pb-plus {
+    margin-top: 60px;
+    color: var(--wl-pb-gold);
+}
+
+.wl-pb-luxury-v3 .wl-pb-plus .wl-pb-icon {
+    width: 14px;
+    height: 14px;
+}
+
+/* ── Summary ─────────────────────────────────────────────────────────────── */
+
+.wl-pb-luxury-v3 .wl-pb-close {
+    margin-top: 44px;
+    padding-top: 32px;
+    border-top: 1px solid var(--wl-pb-hairline);
+    text-align: center;
+}
+
+.wl-pb-luxury-v3 .wl-pb-save {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--wl-pb-gold);
+}
+
+.wl-pb-luxury-v3 .wl-pb-pricing {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 12px;
+}
+
+.wl-pb-luxury-v3 .wl-pb-now {
+    font-size: 34px;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    color: var(--wl-pb-bone);
+}
+
+.wl-pb-luxury-v3 .wl-pb-was {
+    font-size: 16px;
+    color: var(--wl-pb-muted);
+}
+
+.wl-pb-luxury-v3 .wl-pb-foot {
+    justify-content: center;
+    margin-top: 26px;
+}
+
+.wl-pb-luxury-v3 .wl-pb-cta {
+    padding: 16px 44px;
+    border-radius: 999px;
+    background: var(--wl-pb-gold);
+    color: var(--wl-pb-obsidian);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.wl-pb-luxury-v3 .wl-pb-cta:hover:not([disabled]) {
+    background: var(--wl-pb-bone);
+}
+
+.wl-pb-luxury-v3 .wl-pb-cta .wl-pb-icon {
+    width: 15px;
+    height: 15px;
+}
+
+@media (max-width: 767px) {
+    .wl-pb-luxury-v3 {
+        --wl-pb-ratio: 1;
+        padding: 60px 20px;
+    }
+
+    .wl-pb-luxury-v3 .wl-pb-image-title {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+    }
+
+    .wl-pb-luxury-v3 .wl-pb-thumbstrip {
+        --wl-pb-thumbstrip-gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .wl-pb-luxury-v3 .wl-pb-thumb {
+        flex: 0 1 calc(50% - 30px);
+    }
+
+    /* Wrapped onto two rows the `+` glyphs no longer line up with anything, and
+       a plus floating beside a gap reads as a mistake. */
+    .wl-pb-luxury-v3 .wl-pb-plus {
+        display: none;
+    }
+}
