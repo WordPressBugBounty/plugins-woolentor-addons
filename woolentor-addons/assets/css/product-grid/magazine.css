@@ -1,11 +1,3 @@
-/**
- * Product Grid Magazine Style
- * Editorial Magazine Layout inspired by high-end fashion publications
- */
-
-/* ===================================
-   CSS Variables
-   =================================== */
 .woolentor-product-grid-magazine {
     --magazine-bg-primary: #faf9f7;
     --magazine-bg-secondary: #f5f4f2;
@@ -15,6 +7,10 @@
     --magazine-border: #d4d4d4;
     --magazine-hover: #2a2a2a;
     --magazine-white: #ffffff;
+}
+
+.wp-embed-responsive .wp-block {
+    outline: 0;
 }
 
 /* ===================================
@@ -32,7 +28,7 @@
    =================================== */
 .woolentor-product-grid-magazine.woolentor-layout-grid {
     display: grid;
-    grid-template-columns:repeat(12, 1fr) !important;
+    grid-template-columns: repeat(12, 1fr) !important;
 }
 
 .woolentor-product-grid-magazine.woolentor-layout-list {
@@ -40,34 +36,45 @@
     flex-direction: column;
 }
 
-/* ===================================
-   Asymmetric Grid Layout - Repeating Pattern for Unlimited Products
-   =================================== */
-/* Pattern: 5-7, 6-6, 7-5, 4-8 (repeats every 8 items) */
-
 /* Items 1, 9, 17, 25, etc. (8n+1) */
-.woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(8n+1) { grid-column: span 5; }
+.woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(8n+1) {
+    grid-column: span 5;
+}
 
 /* Items 2, 10, 18, 26, etc. (8n+2) */
-.woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(8n+2) { grid-column: span 7; }
+.woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(8n+2) {
+    grid-column: span 7;
+}
 
 /* Items 3, 11, 19, 27, etc. (8n+3) */
-.woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(8n+3) { grid-column: span 6; }
+.woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(8n+3) {
+    grid-column: span 6;
+}
 
 /* Items 4, 12, 20, 28, etc. (8n+4) */
-.woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(8n+4) { grid-column: span 6; }
+.woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(8n+4) {
+    grid-column: span 6;
+}
 
 /* Items 5, 13, 21, 29, etc. (8n+5) */
-.woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(8n+5) { grid-column: span 7; }
+.woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(8n+5) {
+    grid-column: span 7;
+}
 
 /* Items 6, 14, 22, 30, etc. (8n+6) */
-.woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(8n+6) { grid-column: span 5; }
+.woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(8n+6) {
+    grid-column: span 5;
+}
 
 /* Items 7, 15, 23, 31, etc. (8n+7) */
-.woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(8n+7) { grid-column: span 4; }
+.woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(8n+7) {
+    grid-column: span 4;
+}
 
 /* Items 8, 16, 24, 32, etc. (8n) */
-.woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(8n) { grid-column: span 8; }
+.woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(8n) {
+    grid-column: span 8;
+}
 
 /* ===================================
    Product Card Base
@@ -87,7 +94,8 @@
     box-shadow: none;
     transform: translateY(0);
 }
-.woolentor-product-grid-magazine .woolentor-quickview-btn svg{
+
+.woolentor-product-grid-magazine .woolentor-quickview-btn svg {
     fill: none !important;
     color: currentColor;
     margin-right: 0;
@@ -186,7 +194,8 @@
     border-color: var(--magazine-accent);
     color: var(--magazine-white);
 }
-.woolentor-product-grid-magazine .woolentor-quick-action:hover a{
+
+.woolentor-product-grid-magazine .woolentor-quick-action:hover a {
     color: var(--magazine-white);
 }
 
@@ -316,7 +325,7 @@
     direction: rtl;
 }
 
-.woolentor-product-grid-magazine.woolentor-layout-list .woolentor-product-item:nth-child(even) .woolentor-list-view-content > * {
+.woolentor-product-grid-magazine.woolentor-layout-list .woolentor-product-item:nth-child(even) .woolentor-list-view-content>* {
     direction: ltr;
 }
 
@@ -498,10 +507,12 @@
     cursor: pointer;
     transition: all 0.3s ease;
 }
-.woolentor-product-grid-magazine .woolentor-list-wishlist-btn a{
+
+.woolentor-product-grid-magazine .woolentor-list-wishlist-btn a {
     color: var(--magazine-accent);
 }
-.woolentor-product-grid-magazine .woolentor-list-wishlist-btn:hover a{
+
+.woolentor-product-grid-magazine .woolentor-list-wishlist-btn:hover a {
     color: var(--magazine-white);
 }
 
@@ -550,6 +561,7 @@
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -562,19 +574,43 @@
 }
 
 /* Repeating animation delays for unlimited products (8 item cycle) */
-.woolentor-product-grid-magazine .woolentor-product-item:nth-child(8n+1) .woolentor-product-card { animation-delay: 0.1s; }
-.woolentor-product-grid-magazine .woolentor-product-item:nth-child(8n+2) .woolentor-product-card { animation-delay: 0.2s; }
-.woolentor-product-grid-magazine .woolentor-product-item:nth-child(8n+3) .woolentor-product-card { animation-delay: 0.3s; }
-.woolentor-product-grid-magazine .woolentor-product-item:nth-child(8n+4) .woolentor-product-card { animation-delay: 0.4s; }
-.woolentor-product-grid-magazine .woolentor-product-item:nth-child(8n+5) .woolentor-product-card { animation-delay: 0.5s; }
-.woolentor-product-grid-magazine .woolentor-product-item:nth-child(8n+6) .woolentor-product-card { animation-delay: 0.6s; }
-.woolentor-product-grid-magazine .woolentor-product-item:nth-child(8n+7) .woolentor-product-card { animation-delay: 0.7s; }
-.woolentor-product-grid-magazine .woolentor-product-item:nth-child(8n) .woolentor-product-card { animation-delay: 0.8s; }
+.woolentor-product-grid-magazine .woolentor-product-item:nth-child(8n+1) .woolentor-product-card {
+    animation-delay: 0.1s;
+}
+
+.woolentor-product-grid-magazine .woolentor-product-item:nth-child(8n+2) .woolentor-product-card {
+    animation-delay: 0.2s;
+}
+
+.woolentor-product-grid-magazine .woolentor-product-item:nth-child(8n+3) .woolentor-product-card {
+    animation-delay: 0.3s;
+}
+
+.woolentor-product-grid-magazine .woolentor-product-item:nth-child(8n+4) .woolentor-product-card {
+    animation-delay: 0.4s;
+}
+
+.woolentor-product-grid-magazine .woolentor-product-item:nth-child(8n+5) .woolentor-product-card {
+    animation-delay: 0.5s;
+}
+
+.woolentor-product-grid-magazine .woolentor-product-item:nth-child(8n+6) .woolentor-product-card {
+    animation-delay: 0.6s;
+}
+
+.woolentor-product-grid-magazine .woolentor-product-item:nth-child(8n+7) .woolentor-product-card {
+    animation-delay: 0.7s;
+}
+
+.woolentor-product-grid-magazine .woolentor-product-item:nth-child(8n) .woolentor-product-card {
+    animation-delay: 0.8s;
+}
 
 /* ===================================
    Responsive Design
    =================================== */
 @media (max-width: 1200px) {
+
     .woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(1),
     .woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(2),
     .woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item:nth-child(3),
@@ -605,7 +641,7 @@
         gap: 40px;
     }
 
-    .woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item{
+    .woolentor-product-grid-magazine.woolentor-layout-grid .woolentor-product-item {
         grid-column: span 12 !important;
     }
 

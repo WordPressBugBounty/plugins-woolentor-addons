@@ -33,6 +33,12 @@
     text-decoration: none !important;
 }
 
+/* Fix: Ensure product grid container has proper display */
+.e-con-inner:has(> .elementor-widget-woolentor-product-grid-modern),
+.e-con:has(> .elementor-widget-woolentor-product-grid-modern) {
+    display: block;
+}
+
 /* Main Grid Container */
 .woolentor-product-grid-modern {
     display: grid;

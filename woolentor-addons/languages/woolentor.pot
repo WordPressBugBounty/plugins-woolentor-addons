@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: ShopLentor – All-in-One WooCommerce Growth & Store "
 "Enhancement Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-21 11:34+0000\n"
+"POT-Creation-Date: 2026-09-29 06:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.8.8; wp-7.1.2-alpha-63695; php-8.2.32\n"
+"X-Loco-Version: 2.8.8; wp-7.1.3-alpha-63920; php-8.2.32\n"
 "X-Domain: woolentor"
 
 #: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:131
@@ -408,7 +408,7 @@ msgstr ""
 #: classes/class.assest_management.php:347 includes/addons/wl_faq.php:464
 #: includes/addons/wl_faq.php:760 includes/addons/wb_product_data_tab.php:187
 #: includes/addons/wb_archive_product.php:758
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2114
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2120
 msgid "Active"
 msgstr ""
 
@@ -524,7 +524,7 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_magazine.php:632
 #: includes/addons/product-grid/product_grid_magazine.php:786
 #: includes/addons/product-grid/product_grid_editorial.php:587
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1498
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1504
 #: includes/addons/pack-widgets/elementor/product-showcase/product_showcase.php:447
 msgid "Add To Cart Button"
 msgstr ""
@@ -632,7 +632,7 @@ msgstr ""
 msgid "Additional Options"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:743
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:749
 msgid "Additional Settings"
 msgstr ""
 
@@ -668,7 +668,7 @@ msgstr ""
 msgid "admin@domain.com"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:841
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:847
 #: includes/modules/popup-builder/includes/admin/tmpl-popup-builder-modal.php:111
 msgid "Advanced"
 msgstr ""
@@ -704,7 +704,7 @@ msgstr ""
 msgid "After Add to Cart"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:916
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:922
 msgid "After all product are load complete then show this text"
 msgstr ""
 
@@ -785,8 +785,8 @@ msgstr ""
 #: includes/addons/product_tabs.php:1057
 #: includes/addons/wl_category_grid.php:730
 #: includes/addons/wb_product_tags.php:60
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1106
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1911
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1112
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1917
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:613
 #: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:438
 #: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:545
@@ -1290,7 +1290,7 @@ msgstr ""
 #: includes/addons/wb_ever_compare_table.php:301
 #: includes/addons/wl_category_grid.php:530
 #: includes/addons/wl_category_grid.php:998
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:995
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1001
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:478
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:656
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:779
@@ -1376,13 +1376,13 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_editorial.php:438
 #: includes/addons/product-grid/product_grid_editorial.php:618
 #: includes/addons/product-grid/product_grid_editorial.php:660
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1311
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1529
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1560
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1800
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1832
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2089
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2132
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1317
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1535
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1566
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1806
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1838
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2095
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2138
 #: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:191
 #: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:294
 #: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:581
@@ -1435,7 +1435,7 @@ msgstr ""
 
 #: includes/addons/wl_recently_viewed_products.php:749
 #: includes/addons/product-grid/product_grid_luxury.php:385
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1144
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1150
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:854
 #: includes/addons/pack-widgets/elementor/campaign-banner/campaign_banner.php:636
 msgid "Badge"
@@ -1450,7 +1450,7 @@ msgid "Badge area padding."
 msgstr ""
 
 #: includes/addons/product-grid/product_grid_luxury.php:420
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1179
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1185
 msgid "Badge Background"
 msgstr ""
 
@@ -1487,7 +1487,7 @@ msgstr ""
 msgid "Badge List"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:669
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:675
 msgid "Badge Module Enable"
 msgstr ""
 
@@ -1500,17 +1500,17 @@ msgid "Badge padding"
 msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:277
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:712
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:718
 #: includes/modules/badges/includes/classes/Admin/Fields.php:186
 msgid "Badge Position"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:546
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:552
 #: includes/modules/badges/includes/classes/Admin/Fields.php:180
 msgid "Badge Settings"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:688
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:694
 msgid "Badge Style"
 msgstr ""
 
@@ -1811,10 +1811,10 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_editorial.php:449
 #: includes/addons/product-grid/product_grid_editorial.php:629
 #: includes/addons/product-grid/product_grid_editorial.php:671
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1572
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2057
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2100
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2143
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1578
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2063
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2106
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2149
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:809
 #: includes/addons/pack-widgets/elementor/shop-by-category/shop_by_category.php:776
 #: includes/addons/pack-widgets/elementor/shop-by-category/shop_by_category.php:978
@@ -1913,13 +1913,13 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_luxury.php:725
 #: includes/addons/product-grid/product_grid_editorial.php:480
 #: includes/addons/product-grid/product_grid_editorial.php:702
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1014
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1064
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1197
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1381
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1626
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1870
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1955
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1020
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1070
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1203
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1387
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1632
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1876
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1961
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:489
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:676
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:834
@@ -2249,7 +2249,7 @@ msgstr ""
 #: includes/addons/wb_product_call_for_price.php:50
 #: includes/addons/wb_product_suggest_price.php:57
 #: includes/addons/add_banner.php:115 includes/product-kit/class.schema.php:361
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:891
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:897
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:258
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:46
 #: includes/modules/wishlist/includes/classes/Admin/Fields.php:219
@@ -2342,7 +2342,7 @@ msgstr ""
 msgid "Card Button Text"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:777
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:783
 msgid "Card Hover Effect"
 msgstr ""
 
@@ -2432,6 +2432,10 @@ msgstr ""
 msgid "Cart Button Text"
 msgstr ""
 
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:275
+msgid "Cart Cross-sells (Pro)"
+msgstr ""
+
 #: includes/modules/abandoned-cart/includes/classes/Email/Email_Template_System.php:537
 msgid "Cart Currency: "
 msgstr ""
@@ -2505,7 +2509,7 @@ msgid "Categories:"
 msgstr ""
 
 #: classes/class.widgets_control.php:293
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1288
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1294
 #: includes/addons/pack-widgets/elementor/shop-by-category/shop_by_category.php:445
 #: includes/modules/badges/includes/classes/Admin/Fields.php:222
 msgid "Category"
@@ -2611,8 +2615,8 @@ msgstr ""
 #: includes/addons/product_tabs.php:1065
 #: includes/addons/wl_category_grid.php:738
 #: includes/addons/wb_product_tags.php:68
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1114
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1919
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1120
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1925
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:617
 #: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:365
 #: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:446
@@ -3015,14 +3019,14 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_luxury.php:687
 #: includes/addons/product-grid/product_grid_editorial.php:386
 #: includes/addons/product-grid/product_grid_editorial.php:428
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1155
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1239
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1299
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1409
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1460
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2035
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2078
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2121
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1161
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1245
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1305
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1415
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1466
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2041
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2084
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2127
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:650
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:702
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:730
@@ -3106,7 +3110,7 @@ msgstr ""
 #: includes/addons/wl_category_grid.php:248
 #: includes/addons/product-grid/product_grid_luxury.php:196
 #: includes/addons/product-grid/product_grid_editorial.php:306
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:323
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:329
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:425
 #: includes/addons/pack-widgets/elementor/shop-by-category/shop_by_category.php:514
 #: includes/addons/pack-widgets/elementor/product-showcase/product_showcase.php:573
@@ -3165,7 +3169,7 @@ msgstr ""
 msgid "Compare page"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:907
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:913
 msgid "Complete Button Text"
 msgstr ""
 
@@ -3205,7 +3209,7 @@ msgstr ""
 #: includes/addons/wb_image_marker.php:251
 #: includes/addons/wb_ever_compare_table.php:131
 #: includes/addons/wb_product_additional_information.php:117
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1086
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1092
 #: includes/addons/pack-widgets/elementor/campaign-banner/campaign_banner.php:280
 #: includes/addons/pack-widgets/elementor/campaign-banner/campaign_banner.php:713
 msgid "Content"
@@ -3510,6 +3514,10 @@ msgstr ""
 
 #: includes/modules/smart-cross-sell-popup/includes/classes/Admin/Fields.php:100
 msgid "Cross-sells"
+msgstr ""
+
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:274
+msgid "Cross-sells (Pro)"
 msgstr ""
 
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:195
@@ -3882,7 +3890,7 @@ msgstr ""
 #: includes/addons/wl_archive_title.php:175
 #: includes/addons/wb_image_marker.php:365
 #: includes/addons/wl_category_grid.php:687
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1401
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1407
 #: includes/addons/pack-widgets/elementor/campaign-banner/campaign_banner.php:326
 #: includes/addons/pack-widgets/elementor/campaign-banner/campaign_banner.php:906
 #: includes/addons/pack-widgets/elementor/shop-by-category/shop_by_category.php:291
@@ -4037,7 +4045,7 @@ msgid "Dismissible"
 msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:124
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:381
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:387
 msgid "Display"
 msgstr ""
 
@@ -4185,7 +4193,7 @@ msgstr ""
 msgid "Editorial v2 and Luxury v3 only."
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base.php:523
+#: includes/addons/product-grid/base/class.product-grid-base.php:583
 msgid "Editorial View"
 msgstr ""
 
@@ -4285,7 +4293,7 @@ msgstr ""
 msgid "Empty Rating Star Color"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1679
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1685
 msgid "Empty review start"
 msgstr ""
 
@@ -4387,7 +4395,7 @@ msgid "Enable or disable the Free Shipping Bar."
 msgstr ""
 
 #: includes/product-kit/class.schema.php:355
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:860
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:866
 msgid "Enable Pagination"
 msgstr ""
 
@@ -4502,7 +4510,7 @@ msgstr ""
 msgid "Ends With"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:784
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:790
 msgid "Enhanced Shadow (Pro)"
 msgstr ""
 
@@ -4755,7 +4763,7 @@ msgstr ""
 msgid "Fade Edges"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:824
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:830
 msgid "Fade Effect (Pro)"
 msgstr ""
 
@@ -5046,7 +5054,7 @@ msgstr ""
 
 #: includes/addons/product-grid/product_grid_luxury.php:206
 #: includes/addons/product-grid/product_grid_editorial.php:316
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:333
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:339
 msgid "Five (Pro)"
 msgstr ""
 
@@ -5161,7 +5169,7 @@ msgstr ""
 
 #: includes/addons/product-grid/product_grid_luxury.php:205
 #: includes/addons/product-grid/product_grid_editorial.php:315
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:332
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:338
 msgid "Four (Pro)"
 msgstr ""
 
@@ -5248,7 +5256,7 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_magazine.php:91
 #: includes/addons/product-grid/product_grid_luxury.php:218
 #: includes/addons/product-grid/product_grid_editorial.php:331
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:348
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:354
 #: includes/addons/pack-widgets/elementor/campaign-banner/campaign_banner.php:986
 msgid "Gap"
 msgstr ""
@@ -5325,7 +5333,7 @@ msgstr ""
 msgid "Good"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:693
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:699
 msgid "Gradient (Pro)"
 msgstr ""
 
@@ -5333,30 +5341,30 @@ msgstr ""
 msgid "Gradient Color"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:825
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:831
 msgid "Grayscale to Color (Pro)"
 msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:79
 #: includes/addons/product-grid/product_grid_luxury.php:185
 #: includes/addons/product-grid/product_grid_editorial.php:293
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:310
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:316
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:419
 msgid "Grid"
 msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:81
 #: includes/addons/product-grid/product_grid_editorial.php:295
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:312
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:318
 msgid "Grid List Tab (Pro)"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base.php:522
+#: includes/addons/product-grid/base/class.product-grid-base.php:582
 msgid "Grid View"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base.php:530
-#: includes/addons/product-grid/base/class.product-grid-base.php:553
+#: includes/addons/product-grid/base/class.product-grid-base.php:590
+#: includes/addons/product-grid/base/class.product-grid-base.php:613
 msgid "Grid view"
 msgstr ""
 
@@ -5612,15 +5620,15 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_editorial.php:119
 #: includes/addons/product-grid/product_grid_editorial.php:172
 #: includes/addons/product-grid/product_grid_editorial.php:196
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:391
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:416
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:442
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:454
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:466
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:478
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:490
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:503
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:516
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:397
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:422
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:448
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:460
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:472
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:484
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:496
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:509
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:522
 #: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:81
 #: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:121
 msgid "Hide"
@@ -5785,9 +5793,9 @@ msgstr ""
 msgid "Horizontal Product Filter"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:653
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:654
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2288
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:659
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:660
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2294
 msgid "HOT"
 msgstr ""
 
@@ -5848,9 +5856,9 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_luxury.php:295
 #: includes/addons/product-grid/product_grid_editorial.php:421
 #: includes/addons/product-grid/product_grid_editorial.php:642
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1542
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1813
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2071
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1548
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1819
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2077
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:579
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:791
 #: includes/addons/pack-widgets/elementor/marquee/marquee.php:449
@@ -5870,7 +5878,7 @@ msgstr ""
 msgid "Hover Background"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1335
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1341
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:254
 #: includes/modules/compare/includes/classes/Admin/Fields.php:514
 #: includes/modules/wishlist/includes/classes/Admin/Fields.php:588
@@ -5891,7 +5899,7 @@ msgstr ""
 msgid "Hover Border Type"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:797
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:803
 msgid "Hover Box Shadow"
 msgstr ""
 
@@ -5903,8 +5911,8 @@ msgstr ""
 #: includes/addons/wb_wishsuite_table.php:164
 #: includes/addons/wb_wishsuite_table.php:272
 #: includes/addons/add_banner.php:254 includes/addons/wl_category_grid.php:622
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1250
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1323
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1256
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1329
 #: includes/addons/pack-widgets/elementor/campaign-banner/campaign_banner.php:1051
 #: includes/addons/pack-widgets/elementor/campaign-banner/campaign_banner.php:1084
 #: includes/addons/pack-widgets/elementor/shop-by-category/shop_by_category.php:708
@@ -6057,7 +6065,7 @@ msgstr ""
 #: includes/addons/wl_product_filter.php:373
 #: includes/addons/wl_product_filter.php:479
 #: includes/addons/product-grid/product_grid_magazine.php:730
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1596
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1602
 #: includes/addons/pack-widgets/elementor/marquee/marquee.php:486
 #: includes/addons/pack-widgets/elementor/store-highlights/store_highlights.php:391
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:294
@@ -6093,7 +6101,7 @@ msgstr ""
 msgid "IE"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:670
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:676
 msgid ""
 "If badge module is enable this option do not work, All badge are manage from "
 "the module"
@@ -6145,7 +6153,7 @@ msgstr ""
 #: includes/addons/wb_customer_review.php:109
 #: includes/addons/wb_customer_review.php:361
 #: includes/addons/wl_category_grid.php:542
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1053
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1059
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:229
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:518
 #: includes/addons/pack-widgets/elementor/campaign-banner/campaign_banner.php:477
@@ -6181,7 +6189,7 @@ msgstr ""
 msgid "Image Height"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:818
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:824
 msgid "Image Hover Effect"
 msgstr ""
 
@@ -6272,7 +6280,7 @@ msgstr ""
 msgid "Infinite Scroll"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:878
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:884
 msgid "Infinite Scroll (Pro)"
 msgstr ""
 
@@ -6556,8 +6564,8 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_luxury.php:181
 #: includes/addons/product-grid/product_grid_editorial.php:282
 #: includes/addons/product-grid/product_grid_editorial.php:289
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:299
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:306
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:305
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:312
 #: includes/addons/pack-widgets/elementor/shop-by-category/shop_by_category.php:504
 #: includes/addons/pack-widgets/elementor/product-showcase/product_showcase.php:567
 #: includes/addons/pack-widgets/elementor/store-highlights/store_highlights.php:290
@@ -6680,8 +6688,8 @@ msgstr ""
 #: includes/addons/wb_product_tags.php:64
 #: includes/addons/product-grid/product_grid_magazine.php:1447
 #: includes/addons/product-grid/product_grid_magazine.php:1542
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1110
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1915
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1116
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1921
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:531
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:616
 #: includes/addons/pack-widgets/elementor/campaign-banner/campaign_banner.php:1205
@@ -6726,7 +6734,7 @@ msgstr ""
 msgid "Lifetime Repairs"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:782
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:788
 msgid "Lift Up"
 msgstr ""
 
@@ -6833,7 +6841,7 @@ msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:80
 #: includes/addons/product-grid/product_grid_editorial.php:294
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:311
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:317
 #: includes/modules/currency-switcher/includes/widgets/wl_currency_switcher.php:52
 msgid "List"
 msgstr ""
@@ -6842,8 +6850,8 @@ msgstr ""
 msgid "List Item"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base.php:533
-#: includes/addons/product-grid/base/class.product-grid-base.php:558
+#: includes/addons/product-grid/base/class.product-grid-base.php:593
+#: includes/addons/product-grid/base/class.product-grid-base.php:618
 msgid "List view"
 msgstr ""
 
@@ -6872,17 +6880,17 @@ msgstr ""
 #: includes/product-kit/class.pagination.php:52
 #: includes/product-kit/class.schema.php:359
 #: templates/product-grid/modern.php:96 templates/product-grid/magazine.php:112
-#: includes/addons/product-grid/base/class.product-grid-base.php:138
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:894
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:895
+#: includes/addons/product-grid/base/class.product-grid-base.php:148
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:900
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:901
 msgid "Load More"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:877
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:883
 msgid "Load More (Pro)"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:900
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:906
 msgid "Load More Button text"
 msgstr ""
 
@@ -7091,11 +7099,11 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_luxury.php:749
 #: includes/addons/product-grid/product_grid_editorial.php:504
 #: includes/addons/product-grid/product_grid_editorial.php:568
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1269
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1368
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1429
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1752
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1983
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1275
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1374
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1435
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1758
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1989
 #: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:532
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:448
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:229
@@ -7478,9 +7486,9 @@ msgstr ""
 msgid "Needs the Quick View module. Hidden when it is off."
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:611
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:612
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2285
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:617
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:618
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2291
 msgid "NEW"
 msgstr ""
 
@@ -7499,11 +7507,11 @@ msgstr ""
 msgid "New Badge"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:622
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:628
 msgid "New Badge Days"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:609
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:615
 msgid "New Badge Text"
 msgstr ""
 
@@ -7564,12 +7572,12 @@ msgstr ""
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:220
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:231
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:242
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:556
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:572
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:599
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:640
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:756
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:863
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:562
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:578
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:605
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:646
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:762
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:869
 #: settings-panel/includes/classes/Admin/Menu.php:176
 #: includes/admin-panel/includes/classes/Admin/Menu.php:176
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:343
@@ -7610,9 +7618,9 @@ msgstr ""
 
 #: includes/product-kit/class.pagination.php:53
 #: includes/product-kit/class.schema.php:363
-#: includes/addons/product-grid/base/class.product-grid-base.php:139
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:910
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:911
+#: includes/addons/product-grid/base/class.product-grid-base.php:149
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:916
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:917
 msgid "No more products"
 msgstr ""
 
@@ -7645,7 +7653,7 @@ msgid "No products match this section's settings yet."
 msgstr ""
 
 #: includes/helper-function.php:2160
-#: includes/addons/product-grid/base/class.product-grid-base.php:628
+#: includes/addons/product-grid/base/class.product-grid-base.php:688
 msgid "No products were found matching your selection."
 msgstr ""
 
@@ -7726,8 +7734,8 @@ msgstr ""
 #: includes/addons/product_curvy.php:202
 #: includes/addons/wl_product_filter.php:121
 #: includes/addons/product_tabs.php:162
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:781
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:822
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:787
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:828
 #: includes/addons/pack-widgets/elementor/campaign-banner/campaign_banner.php:431
 #: includes/addons/pack-widgets/elementor/marquee/marquee.php:299
 #: includes/modules/free-shipping-bar/includes/classes/Admin/Fields.php:310
@@ -7786,9 +7794,9 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_luxury.php:275
 #: includes/addons/product-grid/product_grid_editorial.php:379
 #: includes/addons/product-grid/product_grid_editorial.php:600
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1511
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1781
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2028
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1517
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1787
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2034
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:568
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:767
 #: includes/addons/pack-widgets/elementor/marquee/marquee.php:439
@@ -7873,7 +7881,7 @@ msgid "Number of Products"
 msgstr ""
 
 #: includes/product-kit/class.schema.php:358
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:876
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:882
 msgid "Numbers"
 msgstr ""
 
@@ -8024,7 +8032,7 @@ msgstr ""
 #: includes/addons/wl_category_grid.php:252
 #: includes/addons/product-grid/product_grid_luxury.php:202
 #: includes/addons/product-grid/product_grid_editorial.php:312
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:329
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:335
 msgid "One"
 msgstr ""
 
@@ -8254,7 +8262,7 @@ msgstr ""
 msgid "Outerwear"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:694
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:700
 msgid "Outline (Pro)"
 msgstr ""
 
@@ -8355,13 +8363,13 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_luxury.php:737
 #: includes/addons/product-grid/product_grid_editorial.php:492
 #: includes/addons/product-grid/product_grid_editorial.php:714
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1034
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1094
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1209
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1355
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1638
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1882
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1969
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1040
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1100
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1215
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1361
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1644
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1888
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1975
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:602
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:667
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:825
@@ -8390,13 +8398,13 @@ msgstr ""
 #: includes/addons/wb_archive_product.php:90
 #: includes/addons/wb_archive_product.php:689
 #: includes/product-kit/class.schema.php:354
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1899
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1905
 #: includes/addons/pack-widgets/elementor/product-showcase/product_showcase.php:1119
 msgid "Pagination"
 msgstr ""
 
 #: includes/product-kit/class.schema.php:357
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:872
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:878
 msgid "Pagination Type"
 msgstr ""
 
@@ -8737,7 +8745,7 @@ msgstr ""
 #: templates/product-grid/magazine.php:485
 #: includes/addons/product-grid/product_grid_magazine.php:464
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:178
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1449
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1455
 #: includes/addons/pack-widgets/elementor/campaign-banner/campaign_banner.php:624
 #: includes/addons/pack-widgets/elementor/product-showcase/product_showcase.php:523
 #: includes/addons/pack-widgets/elementor/product-showcase/product_showcase.php:958
@@ -8950,7 +8958,7 @@ msgstr ""
 msgid "Product Call for Price"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:987
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:993
 #: includes/addons/pack-widgets/elementor/product-showcase/product_showcase.php:376
 msgid "Product Card"
 msgstr ""
@@ -9081,7 +9089,7 @@ msgstr ""
 msgid "Product Grid - Modern"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2168
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2174
 msgid "Product Grid Base not available"
 msgstr ""
 
@@ -9370,7 +9378,7 @@ msgstr ""
 #: includes/addons/wb_product_related.php:51
 #: includes/addons/product-grid/product_grid_luxury.php:158
 #: includes/addons/product-grid/product_grid_editorial.php:266
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:282
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:288
 msgid "Products Per Page"
 msgstr ""
 
@@ -9483,7 +9491,7 @@ msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:1058
 #: includes/addons/product-grid/product_grid_magazine.php:1209
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1771
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1777
 msgid "Quick Action Button"
 msgstr ""
 
@@ -9750,6 +9758,10 @@ msgstr ""
 msgid "Related Product"
 msgstr ""
 
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:272
+msgid "Related Products (Pro)"
+msgstr ""
+
 #: includes/modules/shopify-like-checkout/includes/templates/form-login.php:37
 msgid "Remember me"
 msgstr ""
@@ -9890,15 +9902,15 @@ msgid "Revealed on hover. Leave empty to drop the button."
 msgstr ""
 
 #: includes/addons/wb_customer_review.php:43
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1657
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1663
 msgid "Review"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1730
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1736
 msgid "Review Counter Color"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1668
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1674
 msgid "Review Start Color"
 msgstr ""
 
@@ -9938,8 +9950,8 @@ msgstr ""
 #: includes/addons/product_tabs.php:1069 includes/addons/add_banner.php:68
 #: includes/addons/wl_category_grid.php:742
 #: includes/addons/wb_product_tags.php:72
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1118
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1923
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1124
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1929
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:532
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:618
 #: includes/addons/pack-widgets/elementor/campaign-banner/campaign_banner.php:1206
@@ -10066,8 +10078,8 @@ msgstr ""
 msgid "Safari"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:585
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2283
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:591
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2289
 msgid "SALE"
 msgstr ""
 
@@ -10084,7 +10096,7 @@ msgstr ""
 msgid "Sale Badge Background"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:583
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:589
 msgid "Sale Badge Text"
 msgstr ""
 
@@ -10101,7 +10113,7 @@ msgstr ""
 #: includes/addons/product_accordion.php:490
 #: includes/addons/product_curvy.php:480 includes/addons/product_curvy.php:495
 #: includes/addons/product-grid/product_grid_magazine.php:488
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1472
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1478
 msgid "Sale Price Color"
 msgstr ""
 
@@ -10115,7 +10127,7 @@ msgstr ""
 msgid "Sale Tag"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:586
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:592
 msgid "SALE!"
 msgstr ""
 
@@ -10146,6 +10158,10 @@ msgstr ""
 msgid "Sales Report Email"
 msgstr ""
 
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:276
+msgid "Same Category (Pro)"
+msgstr ""
+
 #: includes/addons/wl_recently_viewed_products.php:136
 msgid "Same Height Box ?"
 msgstr ""
@@ -10153,6 +10169,10 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_luxury.php:244
 #, php-format
 msgid "Same Height Grid %s"
+msgstr ""
+
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:277
+msgid "Same Tag (Pro)"
 msgstr ""
 
 #: includes/modules/sales-report-email/includes/classes/Admin/Fields.php:101
@@ -10190,7 +10210,7 @@ msgstr ""
 msgid "Saving..."
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:783
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:789
 msgid "Scale (Pro)"
 msgstr ""
 
@@ -10938,15 +10958,15 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_editorial.php:118
 #: includes/addons/product-grid/product_grid_editorial.php:171
 #: includes/addons/product-grid/product_grid_editorial.php:195
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:390
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:415
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:441
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:453
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:465
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:477
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:489
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:502
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:515
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:396
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:421
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:447
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:459
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:471
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:483
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:495
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:508
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:521
 #: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:80
 #: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:120
 msgid "Show"
@@ -10983,7 +11003,7 @@ msgid ""
 msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:206
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:475
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:481
 msgid "Show Add to Cart"
 msgstr ""
 
@@ -10996,7 +11016,7 @@ msgid "Show Arrows"
 msgstr ""
 
 #: includes/addons/wl_recently_viewed_products.php:371
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:553
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:559
 msgid "Show Badge"
 msgstr ""
 
@@ -11020,7 +11040,7 @@ msgid "Show By Id"
 msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:194
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:463
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:469
 msgid "Show Categories"
 msgstr ""
 
@@ -11042,7 +11062,7 @@ msgid "Show Company Name Field"
 msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:244
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:513
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:519
 msgid "Show Compare"
 msgstr ""
 
@@ -11144,7 +11164,7 @@ msgstr ""
 
 #: includes/addons/wl_archive_title.php:85
 #: includes/addons/product-grid/product_grid_magazine.php:131
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:388
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:394
 msgid "Show Image"
 msgstr ""
 
@@ -11152,11 +11172,11 @@ msgstr ""
 msgid "Show items"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:596
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:602
 msgid "Show New Badge"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:630
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:636
 msgid "Show NEW badge for products published within this many days"
 msgstr ""
 
@@ -11204,7 +11224,7 @@ msgstr ""
 
 #: includes/addons/wl_recently_viewed_products.php:351
 #: includes/addons/product-grid/product_grid_magazine.php:182
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:439
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:445
 msgid "Show Price"
 msgstr ""
 
@@ -11238,16 +11258,16 @@ msgstr ""
 msgid "Show Quantity Selector"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:753
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:759
 msgid "Show Quick Actions"
 msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:218
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:487
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:493
 msgid "Show Quick View"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:451
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:457
 msgid "Show Rating"
 msgstr ""
 
@@ -11260,16 +11280,16 @@ msgstr ""
 msgid "Show Result Count"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:569
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:575
 msgid "Show Sale Badge"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:575
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:581
 msgid "Show Sale badge for on sale product"
 msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:261
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:530
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:536
 #, php-format
 msgid "Show Secondary Image on Hover %s"
 msgstr ""
@@ -11316,15 +11336,15 @@ msgstr ""
 #: includes/addons/wl_archive_title.php:61
 #: includes/addons/wl_recently_viewed_products.php:341
 #: includes/addons/product-grid/product_grid_magazine.php:156
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:413
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:419
 msgid "Show Title"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:637
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:643
 msgid "Show Trending Badge"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:643
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:649
 msgid "Show TRENDING badge for featured products"
 msgstr ""
 
@@ -11337,16 +11357,16 @@ msgid "Show View Details Button"
 msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:231
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:500
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:506
 msgid "Show Wishlist"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:759
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:765
 msgid "Show wishlist, compare and quick view buttons on hover"
 msgstr ""
 
 #. 1: first product number on this page, 2: last product number on this page, 3: total number of products
-#: includes/addons/product-grid/base/class.product-grid-base.php:511
+#: includes/addons/product-grid/base/class.product-grid-base.php:571
 #, php-format
 msgid "Showing <strong>%1$s-%2$s</strong> of <strong>%3$s</strong> product"
 msgid_plural ""
@@ -11449,7 +11469,7 @@ msgstr ""
 
 #: includes/addons/product-grid/product_grid_luxury.php:207
 #: includes/addons/product-grid/product_grid_editorial.php:317
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:334
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:340
 msgid "Six (Pro)"
 msgstr ""
 
@@ -11465,7 +11485,7 @@ msgstr ""
 #: includes/product-kit/class.elementor-controls.php:252
 #: includes/addons/product-grid/product_grid_magazine.php:1160
 #: includes/addons/product-grid/product_grid_magazine.php:1311
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1848
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1854
 #: includes/addons/pack-widgets/elementor/marquee/marquee.php:580
 #: includes/addons/pack-widgets/elementor/shop-by-category/shop_by_category.php:916
 #: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:256
@@ -11539,7 +11559,7 @@ msgstr ""
 
 #: includes/addons/product-grid/product_grid_luxury.php:186
 #: includes/addons/product-grid/product_grid_editorial.php:296
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:313
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:319
 msgid "Slider (Pro)"
 msgstr ""
 
@@ -11705,7 +11725,7 @@ msgstr ""
 msgid "Sold:"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:692
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:698
 msgid "Solid Color"
 msgstr ""
 
@@ -11861,7 +11881,7 @@ msgstr ""
 msgid "Space Between"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1998
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:2004
 msgid "Space between"
 msgstr ""
 
@@ -11947,11 +11967,11 @@ msgstr ""
 msgid "Start from $100"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1691
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1697
 msgid "Start Size"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1709
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1715
 msgid "Start space between"
 msgstr ""
 
@@ -12571,10 +12591,10 @@ msgstr ""
 #: includes/addons/product-grid/product_grid_editorial.php:527
 #: includes/addons/product-grid/product_grid_editorial.php:607
 #: includes/addons/product-grid/product_grid_editorial.php:649
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1518
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1549
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1788
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1820
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1524
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1555
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1794
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1826
 #: includes/addons/pack-widgets/elementor/marquee/marquee.php:549
 #: includes/addons/pack-widgets/elementor/product-showcase/product_showcase.php:909
 #: includes/addons/pack-widgets/elementor/product-showcase/product_showcase.php:1061
@@ -12879,17 +12899,17 @@ msgid "This offer has ended"
 msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:250
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:519
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:525
 msgid "This option will not work if the Compare module is not active."
 msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:224
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:493
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:499
 msgid "This option will not work if the Quick View module is not active."
 msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:237
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:506
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:512
 msgid "This option will not work if the Wishlist module is not active."
 msgstr ""
 
@@ -12930,7 +12950,7 @@ msgstr ""
 #: includes/addons/wl_category_grid.php:254
 #: includes/addons/product-grid/product_grid_luxury.php:204
 #: includes/addons/product-grid/product_grid_editorial.php:314
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:331
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:337
 msgid "Three"
 msgstr ""
 
@@ -13024,7 +13044,7 @@ msgstr ""
 #: includes/addons/add_banner.php:150 includes/addons/wl_category_grid.php:602
 #: includes/product-kit/class.schema.php:338
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:177
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1228
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1234
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:243
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:696
 #: includes/addons/pack-widgets/elementor/campaign-banner/campaign_banner.php:617
@@ -13080,7 +13100,7 @@ msgid "Title HTML Tag"
 msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:169
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:426
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:432
 msgid "Title Tag"
 msgstr ""
 
@@ -13139,11 +13159,11 @@ msgid "Top"
 msgstr ""
 
 #: includes/addons/product-grid/product_grid_magazine.php:283
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:718
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:724
 msgid "Top Center (Pro)"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:716
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:722
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:533
 #: includes/modules/badges/includes/classes/Admin/Fields.php:191
 msgid "Top Left"
@@ -13183,7 +13203,7 @@ msgstr ""
 msgid "Top Right"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:717
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:723
 msgid "Top Right (Pro)"
 msgstr ""
 
@@ -13195,7 +13215,7 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:287
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:293
 msgid ""
 "Total number of products to query. In Slider layout this is the total number "
 "of slides rather than a page size."
@@ -13235,7 +13255,7 @@ msgstr ""
 msgid "Transition Speed (ms)"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:651
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:657
 msgid "Trending Badge Text"
 msgstr ""
 
@@ -13294,7 +13314,7 @@ msgstr ""
 #: includes/addons/wl_category_grid.php:253
 #: includes/addons/product-grid/product_grid_luxury.php:203
 #: includes/addons/product-grid/product_grid_editorial.php:313
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:330
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:336
 msgid "Two"
 msgstr ""
 
@@ -13387,7 +13407,7 @@ msgstr ""
 #: includes/addons/wl_category_grid.php:710
 #: includes/addons/wl_category_grid.php:790
 #: includes/addons/wb_product_tags.php:52
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1939
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:1945
 #: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:430
 #: includes/modules/free-shipping-bar/includes/widgets/wl_free_shipping_bar.php:503
 #: includes/modules/popup-builder/includes/widgets/wl_popup_trigger_button.php:197
@@ -13526,6 +13546,10 @@ msgstr ""
 
 #: includes/addons/wb_product_upsell.php:43
 msgid "Upsells"
+msgstr ""
+
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:273
+msgid "Upsells (Pro)"
 msgstr ""
 
 #: includes/modules/advanced-coupon/includes/classes/Admin/Fields.php:64
@@ -14685,12 +14709,12 @@ msgstr ""
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:219
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:230
 #: includes/addons/product-grid/base/class.product-grid-base-widget.php:241
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:555
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:571
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:598
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:639
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:755
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:862
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:561
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:577
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:604
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:645
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:761
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:868
 #: settings-panel/includes/classes/Admin/Menu.php:175
 #: includes/admin-panel/includes/classes/Admin/Menu.php:175
 #: includes/addons/pack-widgets/elementor/offer-banner/offer_banner.php:342
@@ -15001,7 +15025,7 @@ msgstr ""
 msgid "Zippers cotton jogger"
 msgstr ""
 
-#: includes/addons/product-grid/base/class.product-grid-base-widget.php:823
+#: includes/addons/product-grid/base/class.product-grid-base-widget.php:829
 msgid "Zoom In"
 msgstr ""
 

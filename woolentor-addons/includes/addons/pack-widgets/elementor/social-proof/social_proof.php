@@ -347,11 +347,21 @@ class Woolentor_Social_Proof_Widget extends Widget_Base {
      * inside another — which is how a control gets both "only on these variants" and "not on a
      * Pro-locked one" at the same time.
      *
+     * An empty AND group — build_negated_conditions( [] ) with Pro active — is dropped. It is
+     * always true, so dropping it changes nothing, but nested it would break Conditions::check():
+     * that only recurses when 'terms' is non-empty, and otherwise reads the group as a leaf term
+     * with no 'name' or 'value', raising "Undefined array key" warnings on CSS generation.
+     *
      * @param  array ...$groups
      * @return array
      */
     private function all_of( ...$groups ) {
-        return [ 'relation' => 'and', 'terms' => $groups ];
+        $groups = array_filter( $groups, function ( $group ) {
+            $is_and = ! isset( $group['relation'] ) || 'or' !== $group['relation'];
+            return ! ( isset( $group['terms'] ) && empty( $group['terms'] ) && $is_and );
+        } );
+
+        return [ 'relation' => 'and', 'terms' => array_values( $groups ) ];
     }
 
     /**

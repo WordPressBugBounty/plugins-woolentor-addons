@@ -99,6 +99,7 @@ class WooLentor_WooCommerce_Query_Manager {
             'meta_query'        => [],
             'author'            => '',
             's'                 => '', // Search term
+            'current_product_id' => 0, // Context product for related, upsell, cross-sell, same category/tag
         ];
     }
 
@@ -216,8 +217,20 @@ class WooLentor_WooCommerce_Query_Manager {
                 $this->set_cross_sell_products_query();
                 break;
 
+            case 'cart_cross_sell':
+                $this->set_cart_cross_sell_products_query();
+                break;
+
             case 'related':
                 $this->set_related_products_query();
+                break;
+
+            case 'same_category':
+                $this->set_same_term_products_query( 'product_cat' );
+                break;
+
+            case 'same_tag':
+                $this->set_same_term_products_query( 'product_tag' );
                 break;
 
             case 'manual':
@@ -301,55 +314,48 @@ class WooLentor_WooCommerce_Query_Manager {
     }
 
     /**
-     * Set upsell products query
+     * Resolve the product the contextual query types are built around.
+     *
+     * An explicit ID wins, because an AJAX request (load more, filters) has no
+     * global product of its own. On a page load the global product or the single
+     * product being viewed is used. In the editor and template preview there is
+     * no real product, so the latest published one stands in to keep the preview
+     * populated.
+     *
+     * @return WC_Product|null
      */
-    private function set_upsell_products_query() {
-        global $product;
+    private function get_context_product() {
+        $product_id = absint( $this->settings['current_product_id'] );
 
-        if ( ! $product ) {
-            $product = wc_get_product( get_the_ID() );
-        }
+        if ( ! $product_id ) {
+            global $product;
 
-        if ( $product && method_exists( $product, 'get_upsell_ids' ) ) {
-            $upsells = $product->get_upsell_ids();
-
-            if ( ! empty( $upsells ) ) {
-                $this->query_args['post__in'] = $upsells;
-                $this->query_args['orderby'] = 'post__in';
-            } else {
-                $this->query_args['post__in'] = [0]; // Force no results
+            // The viewed product first: a grid rendered earlier on the page can leave its last item in the global.
+            if ( is_singular( 'product' ) ) {
+                $product_id = get_queried_object_id();
+            } elseif ( $product instanceof WC_Product ) {
+                $product_id = $product->get_id();
+            } elseif ( ( function_exists( 'woolentor_is_preview_mode' ) && woolentor_is_preview_mode() ) || ( isset( $_GET['is_editor_mode'] ) && 'yes' === $_GET['is_editor_mode'] ) ) {
+                // Elementor editor / template preview, or the block editor's server-side render
+                $product_id = absint( woolentor_get_last_product_id() );
             }
-        } else {
-            $this->query_args['post__in'] = [0]; // Force no results
         }
+
+        $context_product = $product_id ? wc_get_product( $product_id ) : null;
+
+        return $context_product instanceof WC_Product ? $context_product : null;
     }
 
     /**
-     * Set cross sell products query
+     * Limit the query to the given IDs, or to nothing when there are none
+     *
+     * @param array $product_ids
      */
-    private function set_cross_sell_products_query() {
-        $cross_sells = [];
+    private function set_post_in( $product_ids ) {
+        $product_ids = array_filter( array_map( 'absint', (array) $product_ids ) );
 
-        // Get cross-sells from cart
-        if ( WC()->cart ) {
-            $cross_sells = WC()->cart->get_cross_sells();
-        }
-
-        // If empty, try to get from current product
-        if ( empty( $cross_sells ) ) {
-            global $product;
-
-            if ( ! $product ) {
-                $product = wc_get_product( get_the_ID() );
-            }
-
-            if ( $product && method_exists( $product, 'get_cross_sell_ids' ) ) {
-                $cross_sells = $product->get_cross_sell_ids();
-            }
-        }
-
-        if ( ! empty( $cross_sells ) ) {
-            $this->query_args['post__in'] = $cross_sells;
+        if ( ! empty( $product_ids ) ) {
+            $this->query_args['post__in'] = $product_ids;
             $this->query_args['orderby'] = 'post__in';
         } else {
             $this->query_args['post__in'] = [0]; // Force no results
@@ -357,27 +363,71 @@ class WooLentor_WooCommerce_Query_Manager {
     }
 
     /**
+     * Set upsell products query
+     */
+    private function set_upsell_products_query() {
+        $context_product = $this->get_context_product();
+        $this->set_post_in( $context_product ? $context_product->get_upsell_ids() : [] );
+    }
+
+    /**
+     * Set cross sell products query (for the current product)
+     */
+    private function set_cross_sell_products_query() {
+        $context_product = $this->get_context_product();
+        $this->set_post_in( $context_product ? $context_product->get_cross_sell_ids() : [] );
+    }
+
+    /**
+     * Set cart cross sell products query
+     */
+    private function set_cart_cross_sell_products_query() {
+        $cross_sells = ( WC()->cart ) ? WC()->cart->get_cross_sells() : [];
+        $this->set_post_in( $cross_sells );
+    }
+
+    /**
      * Set related products query
      */
     private function set_related_products_query() {
-        global $product;
+        $context_product = $this->get_context_product();
+        $related = [];
 
-        if ( ! $product ) {
-            $product = wc_get_product( get_the_ID() );
+        if ( $context_product ) {
+            $exclude = ! empty( $this->settings['exclude_products'] ) ? array_map( 'absint', (array) $this->settings['exclude_products'] ) : [];
+            $related = wc_get_related_products( $context_product->get_id(), $this->settings['posts_per_page'], $exclude );
         }
 
-        if ( $product ) {
-            $related = wc_get_related_products( $product->get_id(), $this->settings['posts_per_page'] );
+        $this->set_post_in( $related );
+    }
 
-            if ( ! empty( $related ) ) {
-                $this->query_args['post__in'] = $related;
-                $this->query_args['orderby'] = 'post__in';
-            } else {
-                $this->query_args['post__in'] = [0]; // Force no results
-            }
-        } else {
+    /**
+     * Set products sharing a category or tag with the current product
+     *
+     * @param string $taxonomy
+     */
+    private function set_same_term_products_query( $taxonomy ) {
+        $context_product = $this->get_context_product();
+
+        if ( ! $context_product ) {
             $this->query_args['post__in'] = [0]; // Force no results
+            return;
         }
+
+        $term_ids = ( 'product_tag' === $taxonomy ) ? $context_product->get_tag_ids() : $context_product->get_category_ids();
+
+        if ( empty( $term_ids ) ) {
+            $this->query_args['post__in'] = [0]; // Force no results
+            return;
+        }
+
+        $this->query_args['tax_query'][] = [
+            'taxonomy' => $taxonomy,
+            'field'    => 'term_id',
+            'terms'    => array_map( 'absint', $term_ids ),
+        ];
+
+        $this->query_args['post__not_in'][] = $context_product->get_id();
     }
 
     /**
@@ -669,7 +719,9 @@ class WooLentor_WooCommerce_Query_Manager {
         // Exclude specific products
         if ( ! empty( $this->settings['exclude_products'] ) ) {
             $exclude = is_array( $this->settings['exclude_products'] ) ? $this->settings['exclude_products'] : explode( ',', $this->settings['exclude_products'] );
-            $this->query_args['post__not_in'] = array_map( 'absint', $exclude );
+            // Merge, so an exclusion set by the query type (e.g. the current product) is kept
+            $existing = isset( $this->query_args['post__not_in'] ) ? $this->query_args['post__not_in'] : [];
+            $this->query_args['post__not_in'] = array_unique( array_merge( $existing, array_map( 'absint', $exclude ) ) );
         }
 
         // Exclude products without images

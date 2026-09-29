@@ -39,6 +39,16 @@ class WooLentor_Product_Grid_Base {
     ];
 
     /**
+     * Query types built around the product being viewed (Pro)
+     */
+    const CONTEXT_QUERY_TYPES = [ 'related', 'upsell', 'cross_sell', 'cart_cross_sell', 'same_category', 'same_tag' ];
+
+    /**
+     * Context query types whose product list is fixed (or shuffled), so paging through it makes no sense
+     */
+    const UNPAGED_QUERY_TYPES = [ 'related', 'upsell', 'cross_sell', 'cart_cross_sell' ];
+
+    /**
      * Available layouts
      */
     protected $available_layouts = [
@@ -164,6 +174,49 @@ class WooLentor_Product_Grid_Base {
     }
 
     /**
+     * Normalize settings for the context query types (related, upsell, cross-sell, same category/tag)
+     *
+     * Runs before the settings are printed into the wrapper, so the context
+     * product travels with the AJAX load more / filter requests.
+     */
+    public function prepare_context_settings( $settings ) {
+        if ( empty( $settings['query_type'] ) || ! in_array( $settings['query_type'], self::CONTEXT_QUERY_TYPES, true ) ) {
+            return $settings;
+        }
+
+        // Pro feature: keep the saved value, but fall back until Pro is active.
+        if ( ! woolentor_is_pro() ) {
+            $settings['query_type'] = 'products';
+            return $settings;
+        }
+
+        // The products come from the current product, so a leftover category/tag choice would only empty the grid.
+        $settings['categories'] = [];
+        $settings['tags']       = [];
+
+        if ( in_array( $settings['query_type'], self::UNPAGED_QUERY_TYPES, true ) ) {
+            $settings['enable_pagination'] = false;
+        }
+
+        // AJAX requests carry the ID from the page load; there is no product context to read here.
+        if ( empty( $settings['current_product_id'] ) && ! wp_doing_ajax() ) {
+            global $product;
+
+            if ( is_singular( 'product' ) ) {
+                $settings['current_product_id'] = get_queried_object_id();
+            } elseif ( $product instanceof WC_Product ) {
+                $settings['current_product_id'] = $product->get_id();
+            }
+        }
+
+        if ( ! empty( $settings['current_product_id'] ) ) {
+            $settings['current_product_id'] = absint( $settings['current_product_id'] );
+        }
+
+        return $settings;
+    }
+
+    /**
      * Prepare query settings for Query Manager
      */
     public function prepare_query_settings( $settings ) {
@@ -180,6 +233,10 @@ class WooLentor_Product_Grid_Base {
             'exclude_out_of_stock'  => $settings['exclude_out_of_stock'],
             'exclude_no_image'      => $settings['exclude_no_image'],
         ];
+
+        if ( ! empty( $settings['current_product_id'] ) ) {
+            $query_settings['current_product_id'] = absint( $settings['current_product_id'] );
+        }
 
         // Handle manual product selection
         if ( ! empty( $settings['include_products'] ) ) {
@@ -426,6 +483,7 @@ class WooLentor_Product_Grid_Base {
     public function render( $settings ) {
 
         $settings = wp_parse_args( $settings, $this->get_default_settings() );
+        $settings = $this->prepare_context_settings( $settings );
 
         // Get wrapper classes
         $wrapper_classes = $this->get_wrapper_classes( $settings );
@@ -457,6 +515,8 @@ class WooLentor_Product_Grid_Base {
         if( $only_items === true ){
             $settings = wp_parse_args( $settings, $this->get_default_settings() );
         }
+
+        $settings = $this->prepare_context_settings( $settings );
 
         // Slider is layout.
         if ( isset( $settings['layout'] ) && 'slider' === $settings['layout'] && ! woolentor_is_pro() ) {

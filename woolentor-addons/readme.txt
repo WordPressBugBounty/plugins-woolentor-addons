@@ -4,7 +4,7 @@ Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenb
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 3.5.3
+Stable tag: 3.5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -646,30 +646,40 @@ Please report security issues to our team directly at **[woolentor.com/contact](
 
 == Screenshots ==
 
-1. Custom Product Page Builder
-2. Custom Cart Page Builder
-3. Custom Checkout Page Builder
-4. Checkout Page Field Editor
-5. Custom My Account Page
-6. Woo Wishlist
-7. Product Compare Table
-8. Product Quick View
-9. Horizontal Product Filter
-10. Vertical Product Filter
-11. Sales Notification
-12. Universal Product Layout
-13. Product Slider - Style 1
-14. Product Slider - Style 2
-15. Product Slider - Style 3
-16. Product Tab - Style 1
-17. Product Tab - Style 2
-18. Product Tab - Style 3
-19. Template Library
-20. Widgets Control Panel
-21. WC Template Settings
-22. Module Settings
+1. Build, customize, and grow your WooCommerce store with ShopLentor. 
+2. Enable only the WooCommerce features your store needs.
+3. Import ready-made WooCommerce templates and launch pages faster.
+4. Build WooCommerce layouts with powerful Elementor widgets.
+5. Customize WooCommerce pages using native Gutenberg blocks.
+6. Design custom WooCommerce templates for every key store page.
+7. Create custom shop and archive pages with better product browsing.
+8. Design high-converting product pages with flexible WooCommerce widgets.
+9. Showcase products with modern, editorial, magazine, and luxury grid styles.
+10. Present premium products with editorial layouts, smart badges, and elegant CTAs.
+11. Help shoppers find the right products faster with AJAX filtering.
+12. Give shoppers faster ways to preview, save, and compare products.
+13. Replace dropdowns with color, image, and label variation swatches.
+14. Highlight discounts, new arrivals, featured products, and special offers.
+15. Design a cleaner cart page that keeps customers moving toward checkout.
+16. Encourage bigger orders with a dynamic free shipping progress bar.
+17. Create a cleaner, conversion-focused WooCommerce checkout page.
+18. Give WooCommerce checkout a clean, modern Shopify-like experience.
+19. Reduce checkout friction with a guided step-by-step checkout flow.
+20. Add, edit, reorder, or hide checkout fields with ease.
+21. Speed up checkout by suggesting and filling customer addresses automatically.
+22. Recover lost sales with automated abandoned cart emails and analytics.
+23. Show the right currency automatically based on customer location.
+24. Deliver a smooth shopping experience across desktop, tablet, and mobile.
 
 == Changelog ==
+
+= Version: 3.5.4 - Date: 29-09-2026 =
+* Solved: Grid Product layout not showing issue in Elementor editor when Elementor Flexbox container is enabled.
+* Solved: Social proof elementor addon field conditions build warning.
+* Solved: Editorial, Luxury and Magazine layout Product Grid broken issue in Gutenberg Editor.
+* Solved: Product dimension filed style issue in the block editor panel.
+* Solved: Quick action button and Add to cart button style issue in the Gutenberg Product Grid Modern, Editor, Luxury and Magazine Block.
+* Compatibility: Latest WordPress and WooCommerce version.
 
 = Version: 3.5.3 - Date: 22-09-2026 =
 * Added: 2 (Product Bundle and Social Proof) Elementor Addon flowing by 2026 tread.

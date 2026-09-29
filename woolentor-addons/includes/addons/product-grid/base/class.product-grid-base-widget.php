@@ -118,7 +118,7 @@ abstract class WooLentor_Product_Grid_Base_Widget extends Widget_Base {
 
         $this->add_query_type_control();
 
-        woolentor_upgrade_pro_notice_elementor($this, Controls_Manager::RAW_HTML, 'woolentor-product-grid-modern', 'query_type', ['wlpro_f1','wlpro_f2','wlpro_f3','wlpro_f4','wlpro_f5']);
+        woolentor_upgrade_pro_notice_elementor($this, Controls_Manager::RAW_HTML, 'woolentor-product-grid-modern', 'query_type', ['wlpro_f1','wlpro_f2','wlpro_f3','wlpro_f4','wlpro_f5','wlpro_f6','wlpro_f7','wlpro_f8','wlpro_f9','wlpro_f10','wlpro_f11']);
 
         $this->add_control(
             'include_products',
@@ -147,7 +147,7 @@ abstract class WooLentor_Product_Grid_Base_Widget extends Widget_Base {
                 'options' => woolentor_taxonomy_list(),
                 'label_block' => true,
                 'condition' => [
-                    'query_type!' => 'manual',
+                    'query_type!' => array_merge( [ 'manual' ], \WooLentor_Product_Grid_Base::CONTEXT_QUERY_TYPES ),
                 ],
             ]
         );
@@ -161,7 +161,7 @@ abstract class WooLentor_Product_Grid_Base_Widget extends Widget_Base {
                 'options' => woolentor_taxonomy_list( 'product_tag' ),
                 'label_block' => true,
                 'condition' => [
-                    'query_type!' => 'manual',
+                    'query_type!' => array_merge( [ 'manual' ], \WooLentor_Product_Grid_Base::CONTEXT_QUERY_TYPES ),
                 ],
             ]
         );
@@ -269,6 +269,12 @@ abstract class WooLentor_Product_Grid_Base_Widget extends Widget_Base {
                     'wlpro_f3'    => esc_html__( 'Best Selling (Pro)', 'woolentor' ),
                     'wlpro_f4'    => esc_html__( 'Top Rated (Pro)', 'woolentor' ),
                     'wlpro_f5'    => esc_html__( 'Recently Viewed (Pro)', 'woolentor' ),
+                    'wlpro_f6'    => esc_html__( 'Related Products (Pro)', 'woolentor' ),
+                    'wlpro_f7'    => esc_html__( 'Upsells (Pro)', 'woolentor' ),
+                    'wlpro_f8'    => esc_html__( 'Cross-sells (Pro)', 'woolentor' ),
+                    'wlpro_f9'    => esc_html__( 'Cart Cross-sells (Pro)', 'woolentor' ),
+                    'wlpro_f10'   => esc_html__( 'Same Category (Pro)', 'woolentor' ),
+                    'wlpro_f11'   => esc_html__( 'Same Tag (Pro)', 'woolentor' ),
                 ],
             ]
         );

@@ -1020,7 +1020,7 @@
             }
           ]
         ],
-        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-editorial-list-card a.woolentor-cart-btn{ color: {{cart_action_button_text_color}}; }"
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-editorial-list-card a.woolentor-cart-btn{ color: {{cart_action_button_text_color}} }"
       }
     },
     "cart_action_button_background_color": {
@@ -1148,43 +1148,43 @@
     "quick_action_button_text_color": {
       "type": "string",
       "style": {
-        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action,{{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action a{ color: {{quick_action_button_text_color}}; }"
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action,{{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action a{ color: {{quick_action_button_text_color}}!important; }"
       }
     },
     "quick_action_button_background_color": {
       "type": "string",
       "style": {
-        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action{ background-color: {{quick_action_button_background_color}}; background:{{quick_action_button_background_color}}; }"
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action{ background-color: {{quick_action_button_background_color}}!important; background:{{quick_action_button_background_color}}!important; }"
       }
     },
     "quick_button_hover_color": {
       "type": "string",
       "style": {
-        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action:hover,{{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action:hover a{ color: {{quick_button_hover_color}}; }"
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action:hover,{{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action:hover a{ color: {{quick_button_hover_color}}!important; }"
       }
     },
     "quick_button_background_hover_color": {
       "type": "string",
       "style": {
-        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action:hover{ background-color: {{quick_button_background_hover_color}}; background:{{quick_button_background_hover_color}}; }"
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action:hover{ background-color: {{quick_button_background_hover_color}}!important; background:{{quick_button_background_hover_color}}!important; }"
       }
     },
     "quick_action_button_size": {
       "type": "string",
       "style": {
-        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action svg{ width: {{quick_action_button_size}}px; height: {{quick_action_button_size}}px; } {{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action{ font-size:{{quick_action_button_size}}px; }"
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action svg{ width: {{quick_action_button_size}}px!important; height: {{quick_action_button_size}}px!important; } {{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action{ font-size:{{quick_action_button_size}}px!important; }"
       }
     },
     "quick_button_border_radius": {
       "type": "object",
       "style": {
-        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action{ border-radius: {{quick_button_border_radius}}; }"
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action{ border-radius: {{quick_button_border_radius}}!important; }"
       }
     },
     "quick_button_padding": {
       "type": "object",
       "style": {
-        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action{ padding: {{quick_button_padding}}; }"
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-quick-actions .woolentor-quick-action{ padding: {{quick_button_padding}}!important; }"
       }
     },
     "pagination_position": {

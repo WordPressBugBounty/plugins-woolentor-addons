@@ -805,7 +805,7 @@
             }
           ]
         ],
-        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-actions .woolentor-cart-btn{ color: {{cart_action_button_text_color}}; }"
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-actions .woolentor-cart-btn{ color: {{cart_action_button_text_color}}!important; }"
       }
     },
     "cart_action_button_background_color": {
@@ -820,7 +820,7 @@
             }
           ]
         ],
-        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-actions .woolentor-cart-btn{ background-color: {{cart_action_button_background_color}};background: {{cart_action_button_background_color}}; }"
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-actions .woolentor-cart-btn{ background-color: {{cart_action_button_background_color}}!important;background: {{cart_action_button_background_color}}!important; }"
       }
     },
     "cart_button_hover_color": {
@@ -835,7 +835,7 @@
             }
           ]
         ],
-        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-actions .woolentor-cart-btn:hover{ color: {{cart_button_hover_color}}; }"
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-actions .woolentor-cart-btn:hover{ color: {{cart_button_hover_color}}!important; }"
       }
     },
     "cart_button_background_hover_color": {
@@ -880,7 +880,7 @@
             }
           ]
         ],
-        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-grid-card .woolentor-product-actions .woolentor-cart-btn,{{WOOLENTOR_WRAPPER}} .woolentor-list-card .woolentor-product-actions .woolentor-cart-btn{ font-size: {{cart_action_button_typography}}; }"
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-grid-card .woolentor-product-actions .woolentor-cart-btn,{{WOOLENTOR_WRAPPER}} .woolentor-list-card .woolentor-product-actions .woolentor-cart-btn{ font-size: {{cart_action_button_typography}}!important; }"
       },
       "deprecated": true,
       "_comment": "old name of cart_action_button_typography, we will remove it later"
@@ -912,7 +912,7 @@
             }
           ]
         ],
-        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-actions .woolentor-cart-btn{ border-radius: {{cart_button_border_radius}}; }"
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-actions .woolentor-cart-btn{ border-radius: {{cart_button_border_radius}}!important; }"
       }
     },
     "cart_button_padding": {
@@ -927,7 +927,7 @@
             }
           ]
         ],
-        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-actions .woolentor-cart-btn{ padding: {{cart_button_padding}}; }"
+        "selector": "{{WOOLENTOR_WRAPPER}} .woolentor-product-actions .woolentor-cart-btn{ padding: {{cart_button_padding}}!important; }"
       }
     },
     "quick_action_button_text_color": {

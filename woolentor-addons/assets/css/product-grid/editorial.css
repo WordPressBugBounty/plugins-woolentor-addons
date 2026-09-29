@@ -1,8 +1,3 @@
-/**
- * Product Grid Editorial Style
- * Premium editorial collection design inspired by high-end fashion galleries
- */
-
 :root {
     --woolentor-editorial-bg: #FAFAFA;
     --woolentor-editorial-card-bg: #FFFFFF;
@@ -35,9 +30,10 @@
 }
 
 /* Product Card */
-.woolentor-editorial-grid-card{
+.woolentor-editorial-grid-card {
     height: 100%;
 }
+
 .woolentor-product-grid-editorial .woolentor-editorial-card {
     background: var(--woolentor-editorial-card-bg);
     border-radius: 0;
@@ -60,23 +56,27 @@
 
 /* Grid Image Aspect Ratios */
 .woolentor-product-grid-editorial.grid-aspect-1-1 .woolentor-editorial-grid-card .woolentor-product-image {
-    padding-top: 100%; /* 1:1 */
+    padding-top: 100%;
+    /* 1:1 */
 }
 
 .woolentor-product-grid-editorial.grid-aspect-3-4 .woolentor-editorial-grid-card .woolentor-product-image {
-    padding-top: 133.33%; /* 3:4 */
+    padding-top: 133.33%;
+    /* 3:4 */
 }
 
 .woolentor-product-grid-editorial.grid-aspect-4-5 .woolentor-editorial-grid-card .woolentor-product-image {
-    padding-top: 125%; /* 4:5 */
+    padding-top: 125%;
+    /* 4:5 */
 }
 
 .woolentor-product-grid-editorial.grid-aspect-9-16 .woolentor-editorial-grid-card .woolentor-product-image {
-    padding-top: 177.78%; /* 9:16 */
+    padding-top: 177.78%;
+    /* 9:16 */
 }
 
 /* Grid View Image Link */
-.woolentor-editorial-grid-card .woolentor-product-image > a {
+.woolentor-editorial-grid-card .woolentor-product-image>a {
     position: absolute;
     top: 0;
     left: 0;
@@ -97,7 +97,7 @@
     transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.woolentor-editorial-grid-card .woolentor-product-image .woolentor-product-badge img{
+.woolentor-editorial-grid-card .woolentor-product-image .woolentor-product-badge img {
     position: static;
 }
 
@@ -189,7 +189,8 @@
     visibility: visible;
 }
 
-.woolentor-product-grid-editorial .woolentor-quick-action,.woolentor-product-grid-editorial a.woolentor-quick-action  {
+.woolentor-product-grid-editorial .woolentor-quick-action,
+.woolentor-product-grid-editorial a.woolentor-quick-action {
     width: 44px;
     height: 44px;
     background: rgba(255, 255, 255, 0.95) !important;
@@ -228,27 +229,35 @@
     color: white;
     transform: scale(1.1) translateY(-2px);
 }
-.woolentor-product-grid-editorial a.woolentor-cart-action:hover{
+
+.woolentor-product-grid-editorial a.woolentor-cart-action:hover {
     color: white;
     background: var(--woolentor-editorial-accent);
 }
+
 .woolentor-product-grid-editorial .htcompare-btn svg {
     fill: transparent;
     stroke: currentColor;
 }
-.woolentor-product-grid-editorial .woolentor-quickview-btn svg{
+
+.woolentor-product-grid-editorial .woolentor-quickview-btn svg {
     fill: none;
 }
-.woolentor-quick-actions .added_to_cart{
+
+.woolentor-quick-actions .added_to_cart {
     display: none;
 }
-.woolentor-product-grid-editorial .woolentor-quick-action.added svg,.woolentor-product-grid-editorial .woolentor-quick-action.loading svg{
+
+.woolentor-product-grid-editorial .woolentor-quick-action.added svg,
+.woolentor-product-grid-editorial .woolentor-quick-action.loading svg {
     display: none;
 }
+
 .woolentor-product-grid-editorial .woolentor-quick-action.loading::after {
     right: 0 !important;
     top: 5px !important;
 }
+
 .woolentor-product-grid-editorial .woolentor-quick-action.added::after {
     transform: translateX(0) translateY(0) !important;
     left: 3px;
@@ -467,7 +476,7 @@
 }
 
 /* Pagination Styles */
-.woolentor-product-grid-editorial + .woolentor-pagination {
+.woolentor-product-grid-editorial+.woolentor-pagination {
     margin-top: 64px;
 }
 
@@ -477,6 +486,7 @@
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -597,7 +607,7 @@
     height: 426px;
 }
 
-.woolentor-editorial-list-card .woolentor-product-image > a {
+.woolentor-editorial-list-card .woolentor-product-image>a {
     position: absolute;
     top: 0;
     left: 0;
@@ -706,10 +716,13 @@
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 1;
         transform: scale(1);
     }
+
     50% {
         opacity: 0.7;
         transform: scale(1.1);
@@ -919,7 +932,8 @@
     .woolentor-editorial-list-card .woolentor-product-image {
         width: 100%;
         height: auto;
-        padding-top: 125%; /* Default 4:5 aspect ratio */
+        padding-top: 125%;
+        /* Default 4:5 aspect ratio */
     }
 
     .woolentor-product-grid-editorial.list-aspect-1-1 .woolentor-editorial-list-card .woolentor-product-image {
