@@ -408,7 +408,12 @@ class Woolentor_Product_Bundle_Widget extends Widget_Base {
      * @return array
      */
     private function all_of( ...$groups ) {
-        return [ 'relation' => 'and', 'terms' => $groups ];
+        $groups = array_filter( $groups, function ( $group ) {
+            $is_and = ! isset( $group['relation'] ) || 'or' !== $group['relation'];
+            return ! ( isset( $group['terms'] ) && empty( $group['terms'] ) && $is_and );
+        } );
+
+        return [ 'relation' => 'and', 'terms' => array_values( $groups ) ];
     }
 
     /**

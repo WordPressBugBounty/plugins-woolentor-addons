@@ -1,16 +1,5 @@
-/**
- * Product Showcase — Magazine pack
- *
- * Skin only. Every layout mechanic the twelve variants share lives in
- * pack-widgets-base.css; this file carries the magazine pack's palette, type
- * and shape, and each variant's own arrangement on top of it.
- *
- * @package WooLentor
- */
-
 /* ═══════════════════════════════════════════════════════════════════════════
    Variant: v1 — Newsstand masthead, tab bar, bordered cards, split hover bar
-   Reference: magazine-style/v1/home-magazine.html:7360 — `.bs-grid` / `.bs-card`
    ═══════════════════════════════════════════════════════════════════════════ */
 
 /* Signal red on newsprint white with a cyber-yellow flag — this variant's own palette. */
@@ -622,6 +611,7 @@
 }
 
 @media (hover: none) {
+
     .wl-ps-magazine-v2 .wl-ps-actions,
     .wl-ps-magazine-v2 .wl-ps-iconbtn {
         opacity: 1;
@@ -1031,6 +1021,39 @@
     .wl-ps-magazine-v3 .wl-ps-grid {
         --wl-ps-cols: 2;
         gap: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .wl-ps-columns-mobile-2 [class*="wl-ps-magazine-"] .wl-ps-iconbtn {
+        width: 30px;
+        height: 30px;
+    }
+
+    .wl-ps-columns-mobile-2 .wl-ps-magazine-v2 .wl-ps-cart-wrap a.button {
+        padding: 10px;
+    }
+
+    .wl-ps-columns-mobile-2 .wl-ps-magazine-v2 .wl-ps-mid,
+    .wl-ps-columns-mobile-2 .wl-ps-magazine-v2 .wl-ps-foot {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .wl-ps-columns-mobile-2 .wl-ps-magazine-v1 .wl-ps-cart-wrap a.button {
+        font-weight: 400;
+        text-transform: lowercase;
+        letter-spacing: 0;
+        padding: 8px 5px;
+    }
+
+    .wl-ps-columns-mobile-2 .wl-ps-magazine-v1 .wl-ps-rating {
+        gap: 1px;
+    }
+
+    .wl-ps-columns-mobile-2 .wl-ps-magazine-v1 .wl-ps-foot {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
 

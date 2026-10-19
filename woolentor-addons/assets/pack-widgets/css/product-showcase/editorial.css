@@ -1,13 +1,3 @@
-/**
- * Product Showcase — Editorial pack
- *
- * Skin only. Every layout mechanic the twelve variants share lives in
- * pack-widgets-base.css; this file carries the editorial pack's palette, type
- * and shape, and each variant's own arrangement on top of it.
- *
- * @package WooLentor
- */
-
 /* ═══════════════════════════════════════════════════════════════════════════
    Variant: v1 — Square cards on cream, underlined tabs, split hover bar
    Reference: editorial-style/v1/home-editorial.html:6109 — `.feat-grid`
@@ -335,7 +325,7 @@
     color: var(--wl-ps-clay);
 }
 
-.wl-ps-editorial-v1 .wl-ps-rating svg ~ svg {
+.wl-ps-editorial-v1 .wl-ps-rating svg~svg {
     display: none;
 }
 
@@ -573,7 +563,7 @@
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
-                transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+        transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .wl-ps-editorial-v2 .wl-ps-card:hover .wl-ps-actions {
@@ -941,8 +931,13 @@
     transition: opacity 0.2s ease, transform 0.2s ease, background 0.13s ease, color 0.13s ease;
 }
 
-.wl-ps-editorial-v3 .wl-ps-iconbtn:nth-child(2) { transition-delay: 55ms; }
-.wl-ps-editorial-v3 .wl-ps-iconbtn:nth-child(3) { transition-delay: 110ms; }
+.wl-ps-editorial-v3 .wl-ps-iconbtn:nth-child(2) {
+    transition-delay: 55ms;
+}
+
+.wl-ps-editorial-v3 .wl-ps-iconbtn:nth-child(3) {
+    transition-delay: 110ms;
+}
 
 .wl-ps-editorial-v3 .wl-ps-card:hover .wl-ps-iconbtn {
     opacity: 1;
@@ -1121,6 +1116,22 @@
 
     .wl-ps-editorial-v3 .wl-ps-title {
         font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .wl-ps-columns-mobile-2 .wl-ps-editorial-v2 .wl-ps-actions .wl-ps-qview {
+        width: 30px;
+    }
+
+    .wl-ps-columns-mobile-2 .wl-ps-editorial-v2 .wl-ps-cart-wrap a.button {
+        padding: 10px 10px;
+        text-transform: lowercase;
+        font-weight: 400;
+    }
+
+    .wl-ps-columns-mobile-2 .wl-ps-editorial-v2 .wl-ps-info {
+        flex-direction: column;
     }
 }
 

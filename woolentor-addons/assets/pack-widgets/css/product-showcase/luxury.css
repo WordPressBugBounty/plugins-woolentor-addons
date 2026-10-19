@@ -1,16 +1,5 @@
-/**
- * Product Showcase — Luxury pack
- *
- * Skin only. Every layout mechanic the twelve variants share lives in
- * pack-widgets-base.css; this file carries the luxury pack's palette, type and
- * shape, and each variant's own arrangement on top of it.
- *
- * @package WooLentor
- */
-
 /* ═══════════════════════════════════════════════════════════════════════════
    Variant: v1 — Carousel of bordered cream cards, gold accents, tag strip
-   Reference: luxury-style/v1/home-luxury.html:6691 — `.products-carousel`
    ═══════════════════════════════════════════════════════════════════════════ */
 
 /* Gold on ivory with a carbon ink — this variant's own palette. */
@@ -1084,6 +1073,10 @@
     color: var(--wl-ps-taupe);
 }
 
+.wl-ps-luxury-v1 .wl-ps-slide .wl-ps-card {
+    box-shadow: none;
+}
+
 /* ── Responsive ──────────────────────────────────────────────────────────── */
 
 @media (max-width: 1100px) {
@@ -1102,6 +1095,33 @@
 
     .wl-ps-luxury-v3 .wl-ps-grid {
         --wl-ps-cols: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .wl-ps-columns-mobile-2 .wl-ps-luxury-v1 .wl-ps-cart-wrap a.button {
+        height: 30px;
+        font-weight: 500;
+    }
+
+    .wl-ps-columns-mobile-2 .wl-ps-luxury-v1 .wl-ps-actions .wl-ps-qview,
+    .wl-ps-columns-mobile-2 [class*="wl-ps-luxury-"] .wl-ps-iconbtn {
+        width: 30px;
+        height: 30px;
+    }
+
+    .wl-ps-columns-mobile-2 .wl-ps-luxury-v2 .wl-ps-cart-wrap a.button {
+        padding: 10px;
+    }
+
+    .wl-ps-columns-mobile-2 .wl-ps-luxury-v3 .wl-ps-cart-wrap a.button {
+        padding: 7px 8px;
+        font-weight: 500;
+    }
+
+    .wl-ps-columns-mobile-2 .wl-ps-luxury-v3 .wl-ps-tabs {
+        gap: 15px;
+        margin-top: 15px;
     }
 }
 

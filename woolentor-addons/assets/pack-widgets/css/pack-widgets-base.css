@@ -3032,3 +3032,406 @@
 [data-wl-pack] .wl-sp-item>.wl-sp-mark {
     align-self: flex-start;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Blog Posts
+   Mechanics only — grid, aspect ratios, overlays, avatar sizing, the image
+   placeholder. Colour, type, radius and borders live in the pack files under
+   css/blog-posts/, which set the custom properties below.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-wl-pack] .wl-bp {
+    box-sizing: border-box;
+}
+
+[data-wl-pack] .wl-bp *,
+[data-wl-pack] .wl-bp *::before,
+[data-wl-pack] .wl-bp *::after {
+    box-sizing: inherit;
+}
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+
+[data-wl-pack] .wl-bp-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+[data-wl-pack] .wl-bp-head-main {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+[data-wl-pack] .wl-bp-heading,
+[data-wl-pack] .wl-bp-desc,
+[data-wl-pack] .wl-bp-title,
+[data-wl-pack] .wl-bp-excerpt {
+    margin: 0;
+}
+
+/* ── Layouts ──────────────────────────────────────────────────────────────── */
+
+/* Grid variants: N equal cards. Lead variants reuse the grid with two tracks — the lead story and
+   the list — which the pack file sets through --wl-bp-cols. */
+[data-wl-pack] .wl-bp-grid {
+    display: grid;
+    grid-template-columns: var(--wl-bp-cols, repeat(3, minmax(0, 1fr)));
+    gap: var(--wl-bp-gap, 28px);
+    align-items: var(--wl-bp-align, stretch);
+}
+
+/* Index variants, and the list beside a lead story: stacked rows. */
+[data-wl-pack] .wl-bp-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wl-bp-list-gap, 20px);
+    min-width: 0;
+}
+
+[data-wl-pack] .wl-bp-grid>*,
+[data-wl-pack] .wl-bp-list>* {
+    min-width: 0;
+}
+
+/* ── Item ─────────────────────────────────────────────────────────────────── */
+
+/* A card in a grid is a column; a row in a list puts its thumbnail beside its text. */
+[data-wl-pack] .wl-bp-grid>.wl-bp-item {
+    display: flex;
+    flex-direction: column;
+}
+
+[data-wl-pack] .wl-bp-list>.wl-bp-item {
+    display: flex;
+    flex-direction: row;
+    align-items: var(--wl-bp-row-align, center);
+    gap: var(--wl-bp-row-gap, 20px);
+}
+
+[data-wl-pack] .wl-bp-list>.wl-bp-item>.wl-bp-media {
+    flex: 0 0 var(--wl-bp-thumb, 96px);
+    width: var(--wl-bp-thumb, 96px);
+}
+
+[data-wl-pack] .wl-bp-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wl-bp-body-gap, 10px);
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+/* Labels, pills and links must not stretch across a column body. These target children of
+   .wl-bp-body only, which is always a column — never the row items of a list, where the same
+   reset would top-align everything (the Social Proof lesson). */
+[data-wl-pack] .wl-bp-body>.wl-bp-cat,
+[data-wl-pack] .wl-bp-body>.wl-bp-link,
+[data-wl-pack] .wl-bp-body>.wl-bp-tags,
+[data-wl-pack] .wl-bp-body>.wl-bp-date {
+    align-self: flex-start;
+}
+
+[data-wl-pack] .wl-bp-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ── Media ────────────────────────────────────────────────────────────────── */
+
+[data-wl-pack] .wl-bp-media {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: var(--wl-bp-ratio, 16 / 10);
+}
+
+[data-wl-pack] .wl-bp-media-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+[data-wl-pack] .wl-bp-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+/* Only when neither a featured image, the fallback image nor the WooCommerce placeholder exists. */
+[data-wl-pack] .wl-bp-img-empty {
+    background: var(--wl-bp-field, rgba(0, 0, 0, 0.06));
+}
+
+[data-wl-pack] .wl-bp-media>.wl-bp-badge,
+[data-wl-pack] .wl-bp-media>.wl-bp-read {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+}
+
+[data-wl-pack] .wl-bp-media>.wl-bp-badge {
+    top: var(--wl-bp-badge-inset, 14px);
+    left: var(--wl-bp-badge-inset, 14px);
+}
+
+[data-wl-pack] .wl-bp-media>.wl-bp-read {
+    top: var(--wl-bp-badge-inset, 14px);
+    right: var(--wl-bp-badge-inset, 14px);
+}
+
+/* ── Small labels ─────────────────────────────────────────────────────────── */
+
+[data-wl-pack] .wl-bp-cat,
+[data-wl-pack] .wl-bp-badge,
+[data-wl-pack] .wl-bp-read,
+[data-wl-pack] .wl-bp-date,
+[data-wl-pack] .wl-bp-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1.2;
+}
+
+[data-wl-pack] .wl-bp-meta,
+[data-wl-pack] .wl-bp-byline {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--wl-bp-meta-gap, 8px);
+}
+
+[data-wl-pack] .wl-bp-sep {
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.5;
+    flex: 0 0 auto;
+}
+
+[data-wl-pack] .wl-bp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+[data-wl-pack] .wl-bp-num {
+    line-height: 1;
+}
+
+[data-wl-pack] .wl-bp-divider {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.15;
+}
+
+/* ── Author ───────────────────────────────────────────────────────────────── */
+
+[data-wl-pack] .wl-bp-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+[data-wl-pack] .wl-bp-avatar {
+    display: inline-flex;
+    flex: 0 0 auto;
+    width: var(--wl-bp-avatar-size, 32px);
+    height: var(--wl-bp-avatar-size, 32px);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+[data-wl-pack] .wl-bp-avatar-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+/* Sites with avatars switched off get the author's initial instead — never an empty circle. */
+[data-wl-pack] .wl-bp-monogram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: calc(var(--wl-bp-avatar-size, 32px) * 0.42);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--wl-bp-monogram-color, #fff);
+    background: var(--wl-bp-monogram-bg, currentColor);
+}
+
+/* ── Item foot, links, buttons ────────────────────────────────────────────── */
+
+[data-wl-pack] .wl-bp-item-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: auto;
+}
+
+[data-wl-pack] .wl-bp-link,
+[data-wl-pack] .wl-bp-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+[data-wl-pack] .wl-bp-icon {
+    width: 1em;
+    height: 1em;
+    flex: 0 0 auto;
+}
+
+[data-wl-pack] .wl-bp-foot {
+    display: flex;
+    justify-content: center;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+    [data-wl-pack] .wl-bp-grid {
+        grid-template-columns: var(--wl-bp-cols-md, repeat(2, minmax(0, 1fr)));
+    }
+}
+
+@media (max-width: 767px) {
+    [data-wl-pack] .wl-bp-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    [data-wl-pack] .wl-bp-list>.wl-bp-item {
+        gap: var(--wl-bp-row-gap-sm, 14px);
+    }
+
+    [data-wl-pack] .wl-bp-list>.wl-bp-item>.wl-bp-media {
+        flex-basis: var(--wl-bp-thumb-sm, 76px);
+        width: var(--wl-bp-thumb-sm, 76px);
+    }
+}
+
+/* ── Pagination and Load More (Pro) ───────────────────────────────────────── */
+
+[data-wl-pack] .wl-bp-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+[data-wl-pack] .wl-bp-pager,
+[data-wl-pack] .wl-bp-more {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: var(--wl-bp-pager-space, 48px);
+}
+
+[data-wl-pack] .wl-bp-pages {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+[data-wl-pack] .wl-bp-pages li {
+    margin: 0;
+}
+
+[data-wl-pack] .wl-bp-pager .page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid var(--wl-bp-pager-line, rgba(0, 0, 0, 0.14));
+    border-radius: var(--wl-bp-pager-radius, 4px);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    color: inherit;
+    text-decoration: none;
+    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+[data-wl-pack] .wl-bp-pager .page-numbers.dots {
+    border-color: transparent;
+}
+
+[data-wl-pack] .wl-bp-pager a.page-numbers:hover,
+[data-wl-pack] .wl-bp-pager a.page-numbers:focus-visible,
+[data-wl-pack] .wl-bp-pager .page-numbers.current {
+    border-color: var(--wl-bp-accent, #111111);
+    background-color: var(--wl-bp-accent, #111111);
+    color: var(--wl-bp-accent-ink, #FFFFFF);
+}
+
+[data-wl-pack] .wl-bp-more-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 48px;
+    padding: 14px 32px;
+    border: 1px solid currentColor;
+    border-radius: var(--wl-bp-pager-radius, 4px);
+    background: transparent;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    color: inherit;
+    cursor: pointer;
+    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+[data-wl-pack] .wl-bp-more-btn:hover,
+[data-wl-pack] .wl-bp-more-btn:focus-visible {
+    border-color: var(--wl-bp-accent, #111111);
+    background-color: var(--wl-bp-accent, #111111);
+    color: var(--wl-bp-accent-ink, #FFFFFF);
+}
+
+[data-wl-pack] .wl-bp-more-btn[aria-busy="true"] {
+    cursor: progress;
+    opacity: 0.7;
+}
+
+[data-wl-pack] .wl-bp-more-status {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.75;
+}
+
+[data-wl-pack] .wl-bp-more-status:empty {
+    display: none;
+}

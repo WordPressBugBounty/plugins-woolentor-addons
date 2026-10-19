@@ -139,12 +139,19 @@ class Fields{
                             [
                                 'id'      => 'manual_threshold',
                                 'name'    => esc_html__('Manual Threshold Amount', 'woolentor'),
-                                'desc'    => esc_html__('Override the free-shipping minimum amount detected from your WooCommerce shipping zones. Leave at 0 to auto-detect.', 'woolentor'),
+                                'desc'    => esc_html__('Module mode: required — the bar and the module\'s free shipping use this amount. WooCommerce mode: leave at 0 to auto-detect from your WooCommerce Free Shipping method.', 'woolentor'),
                                 'type'    => 'number',
                                 'default' => '0',
                                 'min'     => '0',
                                 'step'    => '0.01',
                                 'class'   => 'woolentor-action-field-left',
+                            ],
+                            [
+                                'id'        => 'manual_threshold_notice',
+                                'type'      => 'html',
+                                'html'      => wp_kses_post( __( '<strong>Threshold required:</strong> In Module mode the Free Shipping Bar and free shipping stay inactive until you set a Manual Threshold Amount greater than 0.', 'woolentor' ) ),
+                                'condition' => [ 'key' => 'shipping_mode|manual_threshold', 'operator' => '==|<=', 'value' => 'module|0' ],
+                                'class'     => 'woolentor_option_field_notice',
                             ],
 
                             [
@@ -164,6 +171,34 @@ class Fields{
                                     'module'      => esc_html__('Module (apply automatically)', 'woolentor'),
                                 ],
                                 'class'   => 'woolentor-action-field-left',
+                            ],
+                            [
+                                'id'        => 'module_allowed_zones',
+                                'name'      => esc_html__('Free Shipping Zones', 'woolentor'),
+                                'desc'      => esc_html__('Apply free shipping only to customers in these WooCommerce shipping zones. Leave empty to apply it to every zone you ship to.', 'woolentor'),
+                                'type'      => 'multiselect',
+                                'default'   => [],
+                                'options'   => self::get_shipping_zone_options(),
+                                'class'     => 'woolentor-action-field-left',
+                                'condition' => [
+                                    'key'      => 'shipping_mode',
+                                    'operator' => '==',
+                                    'value'    => 'module',
+                                ],
+                            ],
+                            [
+                                'id'        => 'exclude_virtual_products',
+                                'name'      => esc_html__('Exclude Virtual & Downloadable Products', 'woolentor'),
+                                'desc'      => esc_html__('Do not count virtual or downloadable products towards the free shipping threshold. Example: £55 of physical goods plus a £15 e-book counts as £55.', 'woolentor'),
+                                'type'      => 'checkbox',
+                                'default'   => 'off',
+                                'is_pro'    => true,
+                                'class'     => 'woolentor-action-field-left',
+                                'condition' => [
+                                    'key'      => 'shipping_mode',
+                                    'operator' => '==',
+                                    'value'    => 'module',
+                                ],
                             ],
                             [
                                 'id'        => 'module_hide_other_rates',
@@ -202,6 +237,15 @@ class Fields{
                                 'desc'    => esc_html__('Message shown when the customer has unlocked free shipping.', 'woolentor'),
                                 'type'    => 'text',
                                 'default' => esc_html__("🎉 You have unlocked FREE shipping!", 'woolentor'),
+                                'class'   => 'woolentor-action-field-left',
+                            ],
+                            [
+                                'id'      => 'show_not_eligible_msg',
+                                'name'    => esc_html__('Show Message When Not Available', 'woolentor'),
+                                'desc'    => esc_html__('When free shipping is not available for the customer\'s location, show a message instead of hiding the bar.', 'woolentor'),
+                                'type'    => 'checkbox',
+                                'default' => 'off',
+                                'is_pro'  => true,
                                 'class'   => 'woolentor-action-field-left',
                             ],
 
@@ -540,5 +584,24 @@ class Fields{
         ];
 
         return $fields;
+    }
+
+    /**
+     * WooCommerce shipping zones as select options ( zone_id => name ).
+     *
+     * @return array
+     */
+    public static function get_shipping_zone_options() {
+        if ( ! class_exists( '\WC_Shipping_Zones' ) ) {
+            return [];
+        }
+
+        $options = [];
+        foreach ( \WC_Shipping_Zones::get_zones() as $zone ) {
+            $options[ (string) $zone['zone_id'] ] = $zone['zone_name'];
+        }
+        $options['0'] = esc_html__( 'Locations not covered by your other zones', 'woolentor' );
+
+        return $options;
     }
 }

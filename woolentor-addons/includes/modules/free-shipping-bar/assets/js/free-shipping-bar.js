@@ -181,6 +181,15 @@
         var fillEl  = bar.querySelector( '.wl-fsb-progress-fill' );
         var trackEl = bar.querySelector( '.wl-fsb-progress-track' );
 
+        // Free shipping isn't available here and Pro asked to say so instead of hiding the bar.
+        var notEligible = ! isEligible( cfg.eligible ) && !! cfg.msgNotEligible;
+        bar.classList.toggle( 'wl-fsb-not-eligible', notEligible );
+        if ( notEligible ) {
+            if ( msgEl ) msgEl.innerHTML = cfg.msgNotEligible;
+            bar.classList.remove( 'wl-fsb-complete' );
+            return;
+        }
+
         var threshold  = parseFloat( cfg.threshold );
         var total      = parseFloat( cartTotal ) || 0;
         var remaining  = Math.max( 0, threshold - total );
@@ -212,6 +221,20 @@
         }
     }
 
+    // Hide the bar when free shipping is not available for the customer's destination,
+    // unless a "not available" message is set (Pro).
+    function isEligible( value ) {
+        return value !== 'no';
+    }
+
+    function syncVisibility( bar ) {
+        if ( isEligible( cfg.eligible ) || cfg.msgNotEligible ) {
+            showBar( bar );
+        } else {
+            hideBar( bar );
+        }
+    }
+
     // -------------------------------------------------------------------------
     // AJAX: fetch fresh cart total
     // -------------------------------------------------------------------------
@@ -225,12 +248,29 @@
                 try {
                     var resp = JSON.parse( xhr.responseText );
                     if ( resp.success && resp.data && resp.data.cart_total !== undefined ) {
-                        callback( resp.data.cart_total );
+                        var data = resp.data;
+                        if ( data.eligible !== undefined ) {
+                            cfg.eligible = data.eligible;
+                        }
+                        // The threshold and messages can change with the customer's address (Pro zone bars).
+                        if ( parseFloat( data.threshold ) > 0 ) {
+                            cfg.threshold = data.threshold;
+                        }
+                        if ( data.msg_initial ) {
+                            cfg.msgInitial = data.msg_initial;
+                        }
+                        if ( data.msg_success ) {
+                            cfg.msgSuccess = data.msg_success;
+                        }
+                        callback( data.cart_total );
                     }
                 } catch ( e ) { /* silent */ }
             }
         };
-        xhr.send( 'action=woolentor_fsb_cart_total&nonce=' + encodeURIComponent( cfg.nonce ) );
+        xhr.send(
+            'action=woolentor_fsb_cart_total&nonce=' + encodeURIComponent( cfg.nonce ) +
+            '&page_id=' + encodeURIComponent( cfg.pageId || 0 )
+        );
     }
 
     // -------------------------------------------------------------------------
@@ -275,6 +315,7 @@
             'wc_fragments_refreshed',
             'wc_fragments_loaded',
             'updated_wc_div',
+            'updated_checkout',
         ];
 
         if ( typeof jQuery !== 'undefined' ) {
@@ -304,7 +345,10 @@
                 var totals = selector.getCartTotals();
                 if ( ! totals ) return;
 
-                var current = totals.total_price;
+                // Include the shipping country so a destination change refreshes eligibility.
+                var customer = selector.getCustomerData ? selector.getCustomerData() : null;
+                var country  = customer && customer.shippingAddress ? customer.shippingAddress.country : '';
+                var current  = totals.total_price + '|' + country;
                 if ( prevBlockTotal !== null && prevBlockTotal !== current ) {
                     triggerRefresh();
                 }
@@ -337,7 +381,7 @@
         }
 
         updateBar( bar, cfg.cartTotal || 0 );
-        showBar( bar );
+        syncVisibility( bar );
 
         if ( closeBtn ) {
             closeBtn.addEventListener( 'click', function () {
@@ -367,6 +411,9 @@
                 var allBars = document.querySelectorAll( '.wl-fsb-wrap' );
                 for ( var j = 0; j < allBars.length; j++ ) {
                     updateBar( allBars[ j ], freshTotal );
+                    if ( ! isDismissed() && isDeviceAllowed() ) {
+                        syncVisibility( allBars[ j ] );
+                    }
                 }
             } );
         } );
@@ -384,7 +431,7 @@
                     if ( ! b.classList.contains( 'wl-fsb-inline' ) ) {
                         setBarTop( b );
                     }
-                    showBar( b );
+                    syncVisibility( b );
                 }
             }
         } );

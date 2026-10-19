@@ -1,0 +1,699 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — three cards with overlays and a byline
+   Reference: luxury-style/v1, .section-blog › .blog-grid
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-bp-luxury-v1 {
+    --wl-bp-obsidian: #07080C;
+    --wl-bp-ivory: #F8F6F1;
+    --wl-bp-platinum: #E7E2D9;
+    --wl-bp-gold: #C9A86A;
+    --wl-bp-taupe: #8B8175;
+    --wl-bp-carbon: #171717;
+    --wl-bp-surface: #FFFFFF;
+
+    --wl-bp-cols: repeat(3, minmax(0, 1fr));
+    --wl-bp-gap: 28px;
+    --wl-bp-align: start;
+    --wl-bp-body-gap: 0;
+    --wl-bp-badge-inset: 18px;
+    --wl-bp-avatar-size: 32px;
+    --wl-bp-monogram-bg: var(--wl-bp-gold);
+    --wl-bp-monogram-color: var(--wl-bp-obsidian);
+    --wl-bp-field: var(--wl-bp-platinum);
+
+    color: var(--wl-bp-carbon);
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.wl-bp-luxury-v1 .wl-bp-head {
+    margin-bottom: 56px;
+}
+
+/* The gold rule and a spaced uppercase label. */
+.wl-bp-luxury-v1 .wl-bp-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 10px;
+    margin-bottom: 16px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--wl-bp-gold);
+}
+
+.wl-bp-luxury-v1 .wl-bp-eyebrow::before {
+    content: "";
+    flex-shrink: 0;
+    width: 28px;
+    height: 1px;
+    background: var(--wl-bp-gold);
+}
+
+.wl-bp-luxury-v1 .wl-bp-heading {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(32px, 3.4vw, 48px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--wl-bp-carbon);
+}
+
+/* "View All Articles" — taupe text over a platinum hairline; the reference hides its arrow. */
+.wl-bp-luxury-v1 .wl-bp-cta {
+    gap: 8px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--wl-bp-platinum);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--wl-bp-taupe);
+    transition: color 220ms ease, border-color 220ms ease;
+}
+
+.wl-bp-luxury-v1 .wl-bp-cta .wl-bp-icon,
+.wl-bp-luxury-v1 .wl-bp-link .wl-bp-icon {
+    display: none;
+}
+
+.wl-bp-luxury-v1 .wl-bp-cta:hover,
+.wl-bp-luxury-v1 .wl-bp-cta:focus-visible {
+    border-color: var(--wl-bp-carbon);
+    color: var(--wl-bp-carbon);
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+
+.wl-bp-luxury-v1 .wl-bp-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    background: var(--wl-bp-surface);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+    transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wl-bp-luxury-v1 .wl-bp-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+/* A fixed-height plate rather than a ratio, as the reference sets it. */
+.wl-bp-luxury-v1 .wl-bp-media {
+    aspect-ratio: auto;
+    height: 260px;
+}
+
+.wl-bp-luxury-v1 .wl-bp-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(to bottom, rgba(7, 8, 12, 0.08) 0%, rgba(7, 8, 12, 0.72) 100%);
+    pointer-events: none;
+}
+
+.wl-bp-luxury-v1 .wl-bp-img {
+    transition: transform 700ms ease;
+}
+
+.wl-bp-luxury-v1 .wl-bp-item:hover .wl-bp-img {
+    transform: scale(1.07);
+}
+
+.wl-bp-luxury-v1 .wl-bp-badge {
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: var(--wl-bp-gold);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--wl-bp-obsidian);
+}
+
+/* The read time, a frosted pill opposite the category. */
+.wl-bp-luxury-v1 .wl-bp-media>.wl-bp-read {
+    padding: 4px 11px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    background: rgba(7, 8, 12, 0.55);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    font-size: 10.5px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.wl-bp-luxury-v1 .wl-bp-body {
+    padding: 26px 26px 28px;
+}
+
+/* The date, led by a short gold rule. */
+.wl-bp-luxury-v1 .wl-bp-meta {
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--wl-bp-taupe);
+}
+
+.wl-bp-luxury-v1 .wl-bp-meta::before {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: var(--wl-bp-gold);
+}
+
+.wl-bp-luxury-v1 .wl-bp-title {
+    margin-bottom: 12px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--wl-bp-carbon);
+    transition: color 220ms ease;
+}
+
+.wl-bp-luxury-v1 .wl-bp-item:hover .wl-bp-title {
+    color: var(--wl-bp-gold);
+}
+
+.wl-bp-luxury-v1 .wl-bp-excerpt {
+    margin-bottom: 22px;
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--wl-bp-taupe);
+}
+
+.wl-bp-luxury-v1 .wl-bp-item-foot {
+    padding-top: 18px;
+    border-top: 1px solid var(--wl-bp-platinum);
+}
+
+.wl-bp-luxury-v1 .wl-bp-avatar {
+    border: 2px solid var(--wl-bp-platinum);
+}
+
+.wl-bp-luxury-v1 .wl-bp-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--wl-bp-carbon);
+}
+
+.wl-bp-luxury-v1 .wl-bp-link {
+    padding-bottom: 1px;
+    border-bottom: 1.5px solid transparent;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--wl-bp-carbon);
+    transition: border-color 220ms ease, color 220ms ease;
+}
+
+.wl-bp-luxury-v1 .wl-bp-item:hover .wl-bp-link,
+.wl-bp-luxury-v1 .wl-bp-link:focus-visible {
+    border-bottom-color: var(--wl-bp-gold);
+    color: var(--wl-bp-gold);
+}
+
+@media (max-width: 1024px) {
+    .wl-bp-luxury-v1 {
+        padding: 90px 24px;
+    }
+
+    .wl-bp-luxury-v1 .wl-bp-head {
+        margin-bottom: 44px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-bp-luxury-v1 {
+        padding: 70px 16px;
+    }
+
+    .wl-bp-luxury-v1 .wl-bp-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        margin-bottom: 40px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — three square cards with a button, on the pale olive ground
+   Reference: luxury-style/v2, #journal › .journal__grid
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-bp-luxury-v2 {
+    --wl-bp-forest: #30382C;
+    --wl-bp-olive: #6B705E;
+    --wl-bp-lime: #E7EC78;
+    --wl-bp-lime-deep: #D8DE62;
+    --wl-bp-night: #171A15;
+    --wl-bp-mist: #F1F2EA;
+    --wl-bp-ground: #F4F5EF;
+    --wl-bp-plate: #EAEBE1;
+    --wl-bp-paper: #FCFCF8;
+    --wl-bp-ink: #2A3024;
+    --wl-bp-soft: #5E6353;
+    --wl-bp-line: rgba(48, 56, 44, 0.14);
+    --wl-bp-line-strong: rgba(48, 56, 44, 0.24);
+
+    --wl-bp-cols: repeat(3, minmax(0, 1fr));
+    --wl-bp-gap: clamp(20px, 2.4vw, 34px);
+    --wl-bp-ratio: 5 / 4;
+    --wl-bp-body-gap: 0;
+    --wl-bp-field: var(--wl-bp-plate);
+
+    color: var(--wl-bp-ink);
+}
+
+/* ── Header, centred, the rule drawn on both sides ───────────────────────── */
+
+.wl-bp-luxury-v2 .wl-bp-head {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: clamp(36px, 4vw, 58px);
+    text-align: center;
+}
+
+.wl-bp-luxury-v2 .wl-bp-head-main {
+    align-items: center;
+    gap: 14px;
+}
+
+.wl-bp-luxury-v2 .wl-bp-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.9px;
+    text-transform: uppercase;
+    color: var(--wl-bp-soft);
+}
+
+.wl-bp-luxury-v2 .wl-bp-eyebrow::before,
+.wl-bp-luxury-v2 .wl-bp-eyebrow::after {
+    content: "";
+    width: 30px;
+    height: 1px;
+    background: var(--wl-bp-forest);
+}
+
+.wl-bp-luxury-v2 .wl-bp-heading {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(34px, 4.2vw, 60px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -1.3px;
+    color: var(--wl-bp-ink);
+}
+
+.wl-bp-luxury-v2 .wl-bp-heading em {
+    font-style: italic;
+    color: var(--wl-bp-olive);
+}
+
+/* ── Card: square-cornered, near-white, hairline ─────────────────────────── */
+
+.wl-bp-luxury-v2 .wl-bp-item {
+    overflow: hidden;
+    border: 1px solid var(--wl-bp-line);
+    border-radius: 0;
+    background: var(--wl-bp-paper);
+    transition: transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 500ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.wl-bp-luxury-v2 .wl-bp-item:hover {
+    transform: translateY(-8px);
+    border-color: var(--wl-bp-line-strong);
+    box-shadow: 0 40px 80px -50px rgba(48, 56, 44, 0.5);
+}
+
+.wl-bp-luxury-v2 .wl-bp-media {
+    background: var(--wl-bp-plate);
+}
+
+.wl-bp-luxury-v2 .wl-bp-img {
+    transition: transform 1100ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.wl-bp-luxury-v2 .wl-bp-item:hover .wl-bp-img {
+    transform: scale(1.07);
+}
+
+.wl-bp-luxury-v2 .wl-bp-badge {
+    padding: 7px 13px;
+    border-radius: 0;
+    background: rgba(23, 26, 21, 0.78);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--wl-bp-lime);
+}
+
+.wl-bp-luxury-v2 .wl-bp-body {
+    padding: clamp(22px, 2vw, 30px);
+}
+
+.wl-bp-luxury-v2 .wl-bp-meta {
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--wl-bp-soft);
+}
+
+.wl-bp-luxury-v2 .wl-bp-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(22px, 1.9vw, 27px);
+    font-weight: 500;
+    line-height: 1.18;
+    letter-spacing: -0.4px;
+    color: var(--wl-bp-ink);
+}
+
+.wl-bp-luxury-v2 .wl-bp-excerpt {
+    flex: 1;
+    margin: 12px 0 22px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--wl-bp-soft);
+}
+
+/* "READ ARTICLE →" — a real button, not a text link. */
+.wl-bp-luxury-v2 .wl-bp-button {
+    align-self: flex-start;
+    gap: 9px;
+    padding: 13px 24px;
+    border: 1px solid var(--wl-bp-forest);
+    background: var(--wl-bp-forest);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--wl-bp-mist);
+    transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease, gap 300ms ease;
+}
+
+.wl-bp-luxury-v2 .wl-bp-button:hover,
+.wl-bp-luxury-v2 .wl-bp-button:focus-visible {
+    gap: 14px;
+    border-color: var(--wl-bp-lime-deep);
+    background: var(--wl-bp-lime-deep);
+    color: var(--wl-bp-night);
+}
+
+@media (max-width: 900px) {
+    .wl-bp-luxury-v2 .wl-bp-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — the lead plate
+   Designed in luxury-style/v3's language: no journal section exists in that
+   pack. The lead follows Social Proof's Luxury V3 card — a two-column plate,
+   photograph one side — with two type-only entries beside it.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-bp-luxury-v3 {
+    --wl-bp-ivory: #F8F5F0;
+    --wl-bp-beige: #E7E7E7;
+    --wl-bp-charcoal: #2C2A28;
+    --wl-bp-mocha: #6E5B4B;
+    --wl-bp-gold: #C6A972;
+    --wl-bp-taupe: #B8A999;
+
+    --wl-bp-cols: minmax(0, 1.75fr) minmax(0, 1fr);
+    --wl-bp-cols-md: minmax(0, 1fr);
+    --wl-bp-gap: 48px;
+    --wl-bp-list-gap: 0;
+    --wl-bp-body-gap: 0;
+    --wl-bp-avatar-size: 50px;
+    --wl-bp-monogram-bg: var(--wl-bp-gold);
+    --wl-bp-field: var(--wl-bp-beige);
+
+    color: var(--wl-bp-charcoal);
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.wl-bp-luxury-v3 .wl-bp-head {
+    gap: 24px;
+    margin-bottom: 56px;
+}
+
+.wl-bp-luxury-v3 .wl-bp-eyebrow {
+    margin-bottom: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    color: var(--wl-bp-gold);
+}
+
+.wl-bp-luxury-v3 .wl-bp-heading {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    color: var(--wl-bp-charcoal);
+}
+
+.wl-bp-luxury-v3 .wl-bp-heading em {
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* The pack's outline button: square, a pale grey hairline, warming to beige on hover. */
+.wl-bp-luxury-v3 .wl-bp-cta {
+    gap: 10px;
+    padding: 15px 28px;
+    border: 1px solid #CBCBCB;
+    background: transparent;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.3px;
+    color: var(--wl-bp-charcoal);
+    transition: background-color 280ms ease, border-color 280ms ease, color 280ms ease;
+}
+
+.wl-bp-luxury-v3 .wl-bp-cta:hover,
+.wl-bp-luxury-v3 .wl-bp-cta:focus-visible {
+    background: var(--wl-bp-beige);
+}
+
+/* ── The lead plate ──────────────────────────────────────────────────────── */
+
+.wl-bp-luxury-v3 .wl-bp-grid>.wl-bp-lead {
+    display: grid;
+    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1fr);
+    min-height: 384px;
+    overflow: hidden;
+    border: 1px solid var(--wl-bp-beige);
+    border-radius: 18px;
+    background: #FFFFFF;
+    transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease;
+}
+
+.wl-bp-luxury-v3 .wl-bp-grid>.wl-bp-lead:hover {
+    transform: translateY(-6px);
+    border-color: var(--wl-bp-gold);
+    box-shadow: 0 34px 64px -34px rgba(44, 42, 40, 0.5);
+}
+
+.wl-bp-luxury-v3 .wl-bp-lead .wl-bp-media {
+    aspect-ratio: auto;
+    height: 100%;
+    background: var(--wl-bp-beige);
+}
+
+.wl-bp-luxury-v3 .wl-bp-lead .wl-bp-img {
+    transition: transform 520ms ease;
+}
+
+.wl-bp-luxury-v3 .wl-bp-lead:hover .wl-bp-img {
+    transform: scale(1.06);
+}
+
+.wl-bp-luxury-v3 .wl-bp-lead .wl-bp-body {
+    justify-content: center;
+    padding: 48px 44px;
+}
+
+/* The category, underlined by a short gold rule. */
+.wl-bp-luxury-v3 .wl-bp-cat {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--wl-bp-mocha);
+}
+
+.wl-bp-luxury-v3 .wl-bp-lead .wl-bp-cat {
+    margin-bottom: 22px;
+}
+
+.wl-bp-luxury-v3 .wl-bp-lead .wl-bp-cat::after {
+    content: "";
+    width: 40px;
+    height: 1px;
+    background: var(--wl-bp-gold);
+}
+
+.wl-bp-luxury-v3 .wl-bp-lead .wl-bp-title {
+    margin-bottom: 16px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(26px, 2.4vw, 34px);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    color: var(--wl-bp-charcoal);
+}
+
+.wl-bp-luxury-v3 .wl-bp-lead .wl-bp-excerpt {
+    margin-bottom: 28px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--wl-bp-mocha);
+}
+
+.wl-bp-luxury-v3 .wl-bp-author {
+    gap: 14px;
+}
+
+/* Ringed the way the pack rings a reviewer's portrait. */
+.wl-bp-luxury-v3 .wl-bp-avatar {
+    background: var(--wl-bp-beige);
+    box-shadow: 0 0 0 1px var(--wl-bp-beige), 0 0 0 4px #FFFFFF;
+}
+
+.wl-bp-luxury-v3 .wl-bp-monogram {
+    font-family: var(--wl-pack-font-heading);
+    font-weight: 500;
+    color: #FFFFFF;
+}
+
+.wl-bp-luxury-v3 .wl-bp-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--wl-bp-charcoal);
+}
+
+/* ── Beside it: two entries in type alone ────────────────────────────────── */
+
+.wl-bp-luxury-v3 .wl-bp-list {
+    justify-content: center;
+}
+
+.wl-bp-luxury-v3 .wl-bp-list>.wl-bp-item {
+    padding: 32px 0;
+    border-bottom: 1px solid var(--wl-bp-beige);
+}
+
+.wl-bp-luxury-v3 .wl-bp-list>.wl-bp-item:first-child {
+    padding-top: 0;
+}
+
+.wl-bp-luxury-v3 .wl-bp-list>.wl-bp-item:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.wl-bp-luxury-v3 .wl-bp-list .wl-bp-body {
+    gap: 12px;
+}
+
+.wl-bp-luxury-v3 .wl-bp-list .wl-bp-cat {
+    font-size: 11px;
+    color: var(--wl-bp-gold);
+}
+
+.wl-bp-luxury-v3 .wl-bp-list .wl-bp-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--wl-bp-charcoal);
+    transition: color 280ms ease;
+}
+
+.wl-bp-luxury-v3 .wl-bp-list .wl-bp-item:hover .wl-bp-title {
+    color: var(--wl-bp-mocha);
+}
+
+.wl-bp-luxury-v3 .wl-bp-meta {
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    color: var(--wl-bp-taupe);
+}
+
+.wl-bp-luxury-v3 .wl-bp-sep {
+    background: var(--wl-bp-gold);
+    opacity: 1;
+}
+
+@media (max-width: 1024px) {
+    .wl-bp-luxury-v3 {
+        padding: 90px 24px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-bp-luxury-v3 {
+        padding: 70px 16px;
+    }
+
+    .wl-bp-luxury-v3 .wl-bp-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .wl-bp-luxury-v3 .wl-bp-grid>.wl-bp-lead {
+        grid-template-columns: minmax(0, 1fr);
+        min-height: 0;
+    }
+
+    .wl-bp-luxury-v3 .wl-bp-lead .wl-bp-media {
+        aspect-ratio: 4 / 3;
+        height: auto;
+    }
+
+    .wl-bp-luxury-v3 .wl-bp-lead .wl-bp-body {
+        padding: 28px 24px 32px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Pagination and Load More (Pro) — each variant's own accent
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-bp-luxury-v1 {
+    --wl-bp-accent: var(--wl-bp-gold);
+    --wl-bp-accent-ink: var(--wl-bp-obsidian);
+}
+
+.wl-bp-luxury-v2 {
+    --wl-bp-accent: var(--wl-bp-forest);
+}
+
+.wl-bp-luxury-v3 {
+    --wl-bp-accent: var(--wl-bp-charcoal);
+}

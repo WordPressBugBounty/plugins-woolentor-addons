@@ -4,7 +4,7 @@ Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenb
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 3.5.4
+Stable tag: 3.5.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -673,6 +673,14 @@ Please report security issues to our team directly at **[woolentor.com/contact](
 
 == Changelog ==
 
+= Version: 3.5.5 - Date: 19-10-2026 =
+* Added: Blog Post Elementor Addon flowing by 2026 tread.
+* Added: Tabs menu style option Product showcase elementor widget.
+* Solved: Free Shipping Bar - Module mode should not add free shipping to all packages globally.
+* Solved: Mobile layout two column issue in product showcase elementor widget.
+* Solved: Elementor condition build issue in (Social Proof, Product bundle, shop by category, Shop the Look and Product showcase) widget.
+* Compatibility: Latest WordPress and WooCommerce version.
+
 = Version: 3.5.4 - Date: 29-09-2026 =
 * Solved: Grid Product layout not showing issue in Elementor editor when Elementor Flexbox container is enabled.
 * Solved: Social proof elementor addon field conditions build warning.
@@ -824,39 +832,5 @@ Please report security issues to our team directly at **[woolentor.com/contact](
 * Solved: Focus outline issue in (WL: Product Grid - Modern, WL: Product Grid - Luxury, WL: Product Grid - Editorial, WL: Product Grid - Magazine) widget.
 * Improved: Template library caching.
 * Compatibility: Latest WordPress and WooCommerce version.
-
-= Version: 3.2.9 - Date: 01-12-2025 =
-* Added: Product Grid - Editorial Gutenberg Block.
-* Added: Product Grid - Magazine Gutenberg Block.
-* Solved: Add to button styling issue for grouped and external products in the Product Grid – Modern widget.
-* Compatibility: Latest WordPress and WooCommerce version.
-
-= Version: 3.2.8 - Date: 23-11-2025 =
-* Added: Product Grid - Luxury Gutenberg Block.
-* Added: Product Grid - Editorial Elementor Widget.
-* Added: Product Grid - Magazine Elementor Widget.
-* Solved: Two column responsive issue in Product Grid - Luxury widget.
-* Compatibility: Latest WordPress and WooCommerce version.
-
-= Version: 3.2.7 - Date: 11-11-2025 =
-* Added: Product Grid - Modern Gutenberg Block.
-* Added: Product Grid - Luxury Elementor Widget.
-* Solved: Product Grid - Modern compatibility with product Horizontal and Vertical filter widget.
-* Compatibility: Latest WordPress and WooCommerce version.
-
-= Version: 3.2.6 - Date: 02-11-2025 =
-* Added: Category, review, badge, and pagination style options in the Product Grid – Modern widget.
-* Added: Option to show or hide badges in the Product Grid – Modern widget.
-* Added: Support for current taxonomy page queries in the Product Grid – Modern widget.
-* Added: Custom preloader option for the Quick View module.
-* Fixed: Add to Cart button styling issue for grouped and external products in the Product Grid – Modern widget.
-* Fixed: Add to Cart button loader display issue with block-supported themes in the Product Grid – Modern widget.
-* Fixed: WooCommerce deprecated script warning.
-* Fixed: Responsive column layout issue.
-* Fixed: Compare icon color change issue in the Add to Cart widget.
-* Compatibility: Verified with the latest versions of WordPress and WooCommerce.
-
-= Version: 3.2.5 - Date: 16-10-2025 =
-* Solved: Missing stylesheet issue with product grid modern widget.
 
 **Looking for older releases?** See the **[complete version history](https://woolentor.com/changes-log/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=changelog)** for every ShopLentor version back to 2.5.5.

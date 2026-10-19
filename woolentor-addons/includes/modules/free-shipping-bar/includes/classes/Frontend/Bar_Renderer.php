@@ -17,6 +17,11 @@ class Bar_Renderer {
     private static $rendered = false;
 
     /**
+     * Page ID sent by the bar's AJAX refresh, where WordPress has no queried page.
+     */
+    private static $page_id_override = 0;
+
+    /**
      * Mark the bar as already rendered. Called by Shortcode::render() so that
      * the wp_footer hook knows not to output a second copy.
      *
@@ -77,9 +82,9 @@ class Bar_Renderer {
             return (float) apply_filters( 'woolentor_fsb_get_threshold', $manual );
         }
 
-        // WooCommerce mode: manual override still takes priority.
+        // WooCommerce mode: manual override still takes priority (filterable, e.g. Pro geo-targeting).
         if ( $manual > 0 ) {
-            return $manual;
+            return (float) apply_filters( 'woolentor_fsb_get_threshold', $manual );
         }
 
         if ( ! function_exists( 'WC' ) || ! WC()->shipping() ) {
@@ -117,6 +122,28 @@ class Bar_Renderer {
         return (float) apply_filters( 'woolentor_fsb_get_threshold', $threshold );
     }
 
+    /**
+     * Cart amount counted towards the free-shipping threshold.
+     *
+     * Used by the bar, the AJAX refresh and Module-mode free shipping so they
+     * always agree. Pro filters it to leave out virtual/downloadable items.
+     *
+     * @return float
+     */
+    public static function get_cart_total() {
+        if ( ! function_exists( 'WC' ) || ! WC()->cart ) {
+            return 0;
+        }
+
+        /**
+         * Filter the cart amount counted towards the free-shipping threshold.
+         *
+         * @param float    $total Displayed cart subtotal.
+         * @param \WC_Cart $cart  Current cart.
+         */
+        return (float) apply_filters( 'woolentor_fsb_cart_total', (float) WC()->cart->get_displayed_subtotal(), WC()->cart );
+    }
+
     // -------------------------------------------------------------------------
     // Page / device visibility
     // -------------------------------------------------------------------------
@@ -130,6 +157,9 @@ class Bar_Renderer {
      * @return int
      */
     public static function get_current_page_id() {
+        if ( self::$page_id_override ) {
+            return self::$page_id_override;
+        }
         if ( function_exists( 'is_shop' ) && is_shop() ) {
             return (int) wc_get_page_id( 'shop' );
         }
@@ -143,6 +173,16 @@ class Bar_Renderer {
             return (int) wc_get_page_id( 'myaccount' );
         }
         return (int) get_queried_object_id();
+    }
+
+    /**
+     * Use the page the bar is displayed on during an AJAX refresh.
+     *
+     * @param  int $page_id
+     * @return void
+     */
+    public static function set_page_id_override( $page_id ) {
+        self::$page_id_override = absint( $page_id );
     }
 
     /**
@@ -221,15 +261,15 @@ class Bar_Renderer {
         }
 
         // Cart total for initial render (server-side)
-        $cart_total = function_exists( 'WC' ) && WC()->cart
-            ? (float) WC()->cart->get_displayed_subtotal()
-            : 0;
+        $cart_total = self::get_cart_total();
 
         $localize_data = [
             'ajaxUrl'        => admin_url( 'admin-ajax.php' ),
             'nonce'          => wp_create_nonce( 'wl-fsb-nonce' ),
+            'pageId'         => self::get_current_page_id(),
             'threshold'      => $threshold,
             'cartTotal'      => $cart_total,
+            'eligible'       => Shipping_Handler::is_customer_eligible() ? 'yes' : 'no',
             'currencySymbol' => get_woocommerce_currency_symbol(),
             'priceFormat'    => get_woocommerce_price_format(),
             'decimals'       => wc_get_price_decimals(),

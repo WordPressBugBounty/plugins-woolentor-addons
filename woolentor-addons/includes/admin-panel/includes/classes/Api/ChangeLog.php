@@ -164,6 +164,44 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.5.5',
+                'date'    => '2026-10-19',
+                'changes' => [
+                    'New Features' => [
+                        'Blog Post Elementor Addon flowing by 2026 tread.',
+                        'Tabs menu style option Product showcase elementor widget.'
+                    ],
+                    'Fixes' => [
+                        'Free Shipping Bar - Module mode should not add free shipping to all packages globally.',
+                        'Mobile layout two column issue in product showcase elementor widget.',
+                        'Elementor condition build issue in (Social Proof, Product bundle, shop by category, Shop the Look and Product showcase) widget.',
+                        'Some minor bugs fixed.',
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
+                'version' => '3.5.4',
+                'date'    => '2026-10-29',
+                'changes' => [
+                    'New Features' => [
+                        'Blog Post Elementor Addon flowing by 2026 tread.',
+                    ],
+                    'Fixes' => [
+                        'Grid Product layout not showing issue in Elementor editor when Elementor Flexbox container is enabled.',
+                        'Social proof elementor addon field conditions build warning.',
+                        'Editorial, Luxury and Magazine layout Product Grid broken issue in Gutenberg Editor.',
+                        'Product dimension filed style issue in the block editor panel.',
+                        'Quick action button and Add to cart button style issue in the Gutenberg Product Grid Modern, Editor, Luxury and Magazine Block.',
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
                 'version' => '3.5.3',
                 'date'    => '2026-09-22',
                 'changes' => [
@@ -222,7 +260,7 @@ class ChangeLog extends WP_REST_Controller {
                         '3 (Shop by Category, Product Showcase, Shop the Look) Elementor Addon flowing by 2026 tread.',
                         '3 (Shop by Category, Product Showcase, Shop the Look) with 12 variant Elementor Addon flowing by 2026 tread. (Pro)',
                     ],
-                   'Fixes' => [
+                    'Fixes' => [
                         'Some Minor bugs fixed',
                         'PayPal Smart button render issue in Single Product Page.',
                     ],

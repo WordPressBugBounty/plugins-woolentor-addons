@@ -85,6 +85,12 @@
     color: #d1fae5;
 }
 
+/* ── Not available for the customer's location (Pro message) ─────────────── */
+.wl-fsb-not-eligible .wl-fsb-progress-track,
+.wl-fsb-not-eligible .wl-fsb-countdown {
+    display: none;
+}
+
 /* ── Close button ────────────────────────────────────────────────────────── */
 .wl-fsb-close {
     position: absolute;

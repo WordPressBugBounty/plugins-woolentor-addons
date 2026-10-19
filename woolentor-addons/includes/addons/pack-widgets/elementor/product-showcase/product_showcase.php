@@ -201,7 +201,12 @@ class Woolentor_Product_Showcase_Widget extends Widget_Base implements \WooLento
      * @return array
      */
     private function all_of( ...$groups ) {
-        return [ 'relation' => 'and', 'terms' => $groups ];
+        $groups = array_filter( $groups, function ( $group ) {
+            $is_and = ! isset( $group['relation'] ) || 'or' !== $group['relation'];
+            return ! ( isset( $group['terms'] ) && empty( $group['terms'] ) && $is_and );
+        } );
+
+        return [ 'relation' => 'and', 'terms' => array_values( $groups ) ];
     }
 
     protected function register_controls() {
@@ -582,6 +587,7 @@ class Woolentor_Product_Showcase_Widget extends Widget_Base implements \WooLento
                     '5' => '5',
                     '6' => '6',
                 ],
+                'prefix_class' => 'wl-ps-columns%s-',
                 'selectors' => [
                     '{{WRAPPER}} .wl-ps-grid' => '--wl-ps-cols: {{VALUE}};',
                 ],
@@ -630,6 +636,166 @@ class Woolentor_Product_Showcase_Widget extends Widget_Base implements \WooLento
     }
 
     // ── Style tab ─────────────────────────────────────────────────────────────
+
+    /**
+     * Style > Tabs. The tab row is one `.wl-ps-tabs` wrapper around `.wl-ps-tab` buttons in every
+     * variant, so one set of selectors covers all twelve. Only rendered when the section has tabs.
+     *
+     * @param array|null $conditions Section conditions (free hides it on Pro-locked variants).
+     */
+    private function register_tabs_style_controls( $conditions = null ) {
+        $section = [
+            'label' => esc_html__( 'Tabs', 'woolentor' ),
+            'tab'   => Controls_Manager::TAB_STYLE,
+        ];
+        if ( $conditions ) {
+            $section['conditions'] = $conditions;
+        }
+
+        $this->start_controls_section( 'style_tabs', $section );
+
+            $this->add_control( 'tabs_area_heading', [
+                'label' => esc_html__( 'Tabs Area', 'woolentor' ),
+                'type'  => Controls_Manager::HEADING,
+            ] );
+
+            $this->add_responsive_control( 'tabs_align', [
+                'label'     => esc_html__( 'Alignment', 'woolentor' ),
+                'type'      => Controls_Manager::CHOOSE,
+                'options'   => [
+                    'flex-start' => [ 'title' => esc_html__( 'Left', 'woolentor' ), 'icon' => 'eicon-text-align-left' ],
+                    'center'     => [ 'title' => esc_html__( 'Center', 'woolentor' ), 'icon' => 'eicon-text-align-center' ],
+                    'flex-end'   => [ 'title' => esc_html__( 'Right', 'woolentor' ), 'icon' => 'eicon-text-align-right' ],
+                ],
+                'selectors' => [ '{{WRAPPER}} .wl-ps-tabs' => 'justify-content: {{VALUE}};' ],
+            ] );
+
+            $this->add_responsive_control( 'tabs_gap', [
+                'label'      => esc_html__( 'Gap Between Tabs', 'woolentor' ),
+                'type'       => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range'      => [ 'px' => [ 'min' => 0, 'max' => 80 ] ],
+                'selectors'  => [ '{{WRAPPER}} .wl-ps-tabs' => 'gap: {{SIZE}}{{UNIT}};' ],
+            ] );
+
+            $this->add_group_control( Group_Control_Background::get_type(), [
+                'name'     => 'tabs_area_bg',
+                'types'    => [ 'classic', 'gradient' ],
+                'selector' => '{{WRAPPER}} .wl-ps-tabs',
+            ] );
+
+            $this->add_group_control( Group_Control_Border::get_type(), [
+                'name'     => 'tabs_area_border',
+                'selector' => '{{WRAPPER}} .wl-ps-tabs',
+            ] );
+
+            $this->add_responsive_control( 'tabs_area_radius', [
+                'label'      => esc_html__( 'Border Radius', 'woolentor' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors'  => [
+                    '{{WRAPPER}} .wl-ps-tabs' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ] );
+
+            $this->add_responsive_control( 'tabs_area_padding', [
+                'label'      => esc_html__( 'Padding', 'woolentor' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em' ],
+                'selectors'  => [
+                    '{{WRAPPER}} .wl-ps-tabs' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ] );
+
+            $this->add_responsive_control( 'tabs_area_margin', [
+                'label'      => esc_html__( 'Margin', 'woolentor' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em' ],
+                'selectors'  => [
+                    '{{WRAPPER}} .wl-ps-tabs' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ] );
+
+            $this->add_control( 'tabs_button_heading', [
+                'label'     => esc_html__( 'Tab Buttons', 'woolentor' ),
+                'type'      => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ] );
+
+            $this->add_group_control( Group_Control_Typography::get_type(), [
+                'name'     => 'tab_typography',
+                'selector' => '{{WRAPPER}} .wl-ps-tab',
+            ] );
+
+            $this->add_responsive_control( 'tab_padding', [
+                'label'      => esc_html__( 'Padding', 'woolentor' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em' ],
+                'selectors'  => [
+                    '{{WRAPPER}} .wl-ps-tab' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ] );
+
+            $this->add_group_control( Group_Control_Border::get_type(), [
+                'name'     => 'tab_border',
+                'selector' => '{{WRAPPER}} .wl-ps-tab',
+            ] );
+
+            $this->add_responsive_control( 'tab_radius', [
+                'label'      => esc_html__( 'Border Radius', 'woolentor' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors'  => [
+                    '{{WRAPPER}} .wl-ps-tab' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ] );
+
+            $this->start_controls_tabs( 'tab_state_tabs' );
+
+            // Hover is declared before Active so that, at equal specificity, the open tab wins.
+            $states = [
+                'normal' => [ esc_html__( 'Normal', 'woolentor' ), '.wl-ps-tab' ],
+                'hover'  => [ esc_html__( 'Hover', 'woolentor' ), '.wl-ps-tab:hover' ],
+                'active' => [ esc_html__( 'Active', 'woolentor' ), '.wl-ps-tab.is-active' ],
+            ];
+
+            foreach ( $states as $key => $state ) {
+                $sel = '{{WRAPPER}} ' . $state[1];
+
+                $this->start_controls_tab( 'tab_state_' . $key, [ 'label' => $state[0] ] );
+
+                    $this->add_control( 'tab_color_' . $key, [
+                        'label'     => esc_html__( 'Text Color', 'woolentor' ),
+                        'type'      => Controls_Manager::COLOR,
+                        'selectors' => [ $sel => 'color: {{VALUE}};' ],
+                    ] );
+
+                    $this->add_control( 'tab_bg_' . $key, [
+                        'label'     => esc_html__( 'Background', 'woolentor' ),
+                        'type'      => Controls_Manager::COLOR,
+                        'selectors' => [ $sel => 'background: {{VALUE}};' ],
+                    ] );
+
+                    $this->add_control( 'tab_border_color_' . $key, [
+                        'label'     => esc_html__( 'Border Color', 'woolentor' ),
+                        'type'      => Controls_Manager::COLOR,
+                        'selectors' => [ $sel => 'border-color: {{VALUE}};' ],
+                    ] );
+
+                $this->end_controls_tab();
+            }
+
+            $this->end_controls_tabs();
+
+            $this->add_control( 'tab_count_color', [
+                'label'     => esc_html__( 'Count Color', 'woolentor' ),
+                'type'      => Controls_Manager::COLOR,
+                'separator' => 'before',
+                'selectors' => [ '{{WRAPPER}} .wl-ps-tab-count' => 'color: {{VALUE}};' ],
+            ] );
+
+        $this->end_controls_section();
+    }
 
     /**
      * All 12 templates share the same semantic classes, so every selector here is a single
@@ -979,6 +1145,8 @@ class Woolentor_Product_Showcase_Widget extends Widget_Base implements \WooLento
 
         $this->end_controls_section();
 
+        $this->register_tabs_style_controls( $unlocked );
+
         // Buttons -----------------------------------------------------------
         $this->start_controls_section( 'style_buttons', [
             'label'      => esc_html__( 'Buttons', 'woolentor' ),
@@ -1092,22 +1260,75 @@ class Woolentor_Product_Showcase_Widget extends Widget_Base implements \WooLento
             ),
         ] );
 
-            $this->add_control( 'view_all_color', [
-                'label'     => esc_html__( 'Color', 'woolentor' ),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [ '{{WRAPPER}} .wl-ps-viewall' => 'color: {{VALUE}};' ],
-            ] );
-
-            $this->add_control( 'view_all_bg', [
-                'label'     => esc_html__( 'Background', 'woolentor' ),
-                'type'      => Controls_Manager::COLOR,
-                'selectors' => [ '{{WRAPPER}} .wl-ps-viewall' => 'background: {{VALUE}};' ],
-            ] );
-
             $this->add_group_control( Group_Control_Typography::get_type(), [
                 'name'     => 'view_all_typography',
                 'selector' => '{{WRAPPER}} .wl-ps-viewall',
             ] );
+
+            $this->add_group_control( Group_Control_Border::get_type(), [
+                'name'     => 'view_all_border',
+                'selector' => '{{WRAPPER}} .wl-ps-viewall',
+            ] );
+
+            $this->add_responsive_control( 'view_all_radius', [
+                'label'      => esc_html__( 'Border Radius', 'woolentor' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
+                'selectors'  => [
+                    '{{WRAPPER}} .wl-ps-viewall' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ] );
+
+            $this->add_responsive_control( 'view_all_padding', [
+                'label'      => esc_html__( 'Padding', 'woolentor' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em' ],
+                'selectors'  => [
+                    '{{WRAPPER}} .wl-ps-viewall' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ] );
+
+            $this->start_controls_tabs( 'view_all_state_tabs' );
+
+                $this->start_controls_tab( 'view_all_tab_normal', [ 'label' => esc_html__( 'Normal', 'woolentor' ) ] );
+
+                    $this->add_control( 'view_all_color', [
+                        'label'     => esc_html__( 'Color', 'woolentor' ),
+                        'type'      => Controls_Manager::COLOR,
+                        'selectors' => [ '{{WRAPPER}} .wl-ps-viewall' => 'color: {{VALUE}};' ],
+                    ] );
+
+                    $this->add_control( 'view_all_bg', [
+                        'label'     => esc_html__( 'Background', 'woolentor' ),
+                        'type'      => Controls_Manager::COLOR,
+                        'selectors' => [ '{{WRAPPER}} .wl-ps-viewall' => 'background: {{VALUE}};' ],
+                    ] );
+
+                $this->end_controls_tab();
+
+                $this->start_controls_tab( 'view_all_tab_hover', [ 'label' => esc_html__( 'Hover', 'woolentor' ) ] );
+
+                    $this->add_control( 'view_all_color_hover', [
+                        'label'     => esc_html__( 'Color', 'woolentor' ),
+                        'type'      => Controls_Manager::COLOR,
+                        'selectors' => [ '{{WRAPPER}} .wl-ps-viewall:hover, {{WRAPPER}} .wl-ps-viewall:focus' => 'color: {{VALUE}};' ],
+                    ] );
+
+                    $this->add_control( 'view_all_bg_hover', [
+                        'label'     => esc_html__( 'Background', 'woolentor' ),
+                        'type'      => Controls_Manager::COLOR,
+                        'selectors' => [ '{{WRAPPER}} .wl-ps-viewall:hover, {{WRAPPER}} .wl-ps-viewall:focus' => 'background: {{VALUE}};' ],
+                    ] );
+
+                    $this->add_control( 'view_all_border_color_hover', [
+                        'label'     => esc_html__( 'Border Color', 'woolentor' ),
+                        'type'      => Controls_Manager::COLOR,
+                        'selectors' => [ '{{WRAPPER}} .wl-ps-viewall:hover, {{WRAPPER}} .wl-ps-viewall:focus' => 'border-color: {{VALUE}};' ],
+                    ] );
+
+                $this->end_controls_tab();
+
+            $this->end_controls_tabs();
 
         $this->end_controls_section();
 

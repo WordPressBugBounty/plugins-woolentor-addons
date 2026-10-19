@@ -1,0 +1,652 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Blog Posts — Modern pack
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — three cards with a tag row
+   Reference: modern-style/v1, .sec › .blog-grid
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-bp-modern-v1 {
+    --wl-bp-electric: #2563EB;
+    --wl-bp-ink: #080A0F;
+    --wl-bp-soft: #374151;
+    --wl-bp-muted: #6B7280;
+    --wl-bp-line: #E5E7EB;
+    --wl-bp-field: #F5F7FA;
+    --wl-bp-surface: #FFFFFF;
+
+    --wl-bp-cols: repeat(3, minmax(0, 1fr));
+    --wl-bp-gap: 28px;
+    --wl-bp-ratio: 16 / 10;
+    --wl-bp-body-gap: 12px;
+
+    color: var(--wl-bp-ink);
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.wl-bp-modern-v1 .wl-bp-head {
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.wl-bp-modern-v1 .wl-bp-head-main {
+    max-width: 640px;
+}
+
+.wl-bp-modern-v1 .wl-bp-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wl-bp-electric);
+}
+
+.wl-bp-modern-v1 .wl-bp-eyebrow::before {
+    content: "";
+    width: 22px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--wl-bp-electric);
+}
+
+.wl-bp-modern-v1 .wl-bp-heading {
+    margin-bottom: 14px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(30px, 3.4vw, 48px);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--wl-bp-ink);
+}
+
+.wl-bp-modern-v1 .wl-bp-desc {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--wl-bp-soft);
+}
+
+/* "Visit the journal →" — a text link underlined by a 2px rule. */
+.wl-bp-modern-v1 .wl-bp-cta {
+    gap: 8px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--wl-bp-ink);
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--wl-bp-ink);
+    transition: color 220ms ease, border-color 220ms ease, gap 220ms ease;
+}
+
+.wl-bp-modern-v1 .wl-bp-cta:hover,
+.wl-bp-modern-v1 .wl-bp-cta:focus-visible {
+    gap: 12px;
+    border-color: var(--wl-bp-electric);
+    color: var(--wl-bp-electric);
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+
+.wl-bp-modern-v1 .wl-bp-item {
+    overflow: hidden;
+    border: 1px solid var(--wl-bp-line);
+    border-radius: 18px;
+    background: var(--wl-bp-surface);
+    transition: transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 280ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wl-bp-modern-v1 .wl-bp-item:hover {
+    transform: translateY(-5px);
+    border-color: transparent;
+    box-shadow: 0 20px 50px rgba(8, 10, 15, 0.12);
+}
+
+.wl-bp-modern-v1 .wl-bp-media {
+    flex-shrink: 0;
+    background: var(--wl-bp-field);
+}
+
+.wl-bp-modern-v1 .wl-bp-img {
+    transition: transform 650ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.wl-bp-modern-v1 .wl-bp-item:hover .wl-bp-img {
+    transform: scale(1.06);
+}
+
+.wl-bp-modern-v1 .wl-bp-body {
+    padding: 26px 24px 22px;
+}
+
+.wl-bp-modern-v1 .wl-bp-meta {
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: var(--wl-bp-muted);
+}
+
+.wl-bp-modern-v1 .wl-bp-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--wl-bp-ink);
+    transition: color 220ms ease;
+}
+
+.wl-bp-modern-v1 .wl-bp-item:hover .wl-bp-title {
+    color: var(--wl-bp-electric);
+}
+
+.wl-bp-modern-v1 .wl-bp-excerpt {
+    flex: 1;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--wl-bp-muted);
+}
+
+.wl-bp-modern-v1 .wl-bp-tags {
+    gap: 7px;
+    margin-top: auto;
+    padding-top: 6px;
+}
+
+.wl-bp-modern-v1 .wl-bp-tag {
+    padding: 4px 13px;
+    border: 1px solid var(--wl-bp-line);
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--wl-bp-soft);
+    transition: border-color 200ms ease, color 200ms ease;
+}
+
+.wl-bp-modern-v1 .wl-bp-item:hover .wl-bp-tag {
+    border-color: var(--wl-bp-electric);
+    color: var(--wl-bp-electric);
+}
+
+@media (max-width: 1024px) {
+    .wl-bp-modern-v1 {
+        padding: 80px 24px;
+    }
+
+    .wl-bp-modern-v1 .wl-bp-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 36px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-bp-modern-v1 {
+        padding: 60px 16px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — three cards with a category badge and a byline
+   Reference: modern-style/v2, #blog › .blog-grid
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-bp-modern-v2 {
+    --wl-bp-ground: #F0EEE9;
+    --wl-bp-ink: #111111;
+    --wl-bp-muted: #666666;
+    --wl-bp-line: #D8D5CE;
+    --wl-bp-olive: #7A8F3A;
+    --wl-bp-surface: #FFFFFF;
+
+    --wl-bp-cols: repeat(3, minmax(0, 1fr));
+    --wl-bp-gap: 24px;
+    --wl-bp-ratio: 4 / 3;
+    --wl-bp-body-gap: 0;
+    --wl-bp-badge-inset: 12px;
+    --wl-bp-avatar-size: 26px;
+    --wl-bp-monogram-bg: var(--wl-bp-ground);
+    --wl-bp-monogram-color: var(--wl-bp-muted);
+    --wl-bp-field: var(--wl-bp-ground);
+
+    color: var(--wl-bp-ink);
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.wl-bp-modern-v2 .wl-bp-head {
+    gap: 32px;
+    margin-bottom: 52px;
+}
+
+.wl-bp-modern-v2 .wl-bp-head-main {
+    flex: 1;
+}
+
+.wl-bp-modern-v2 .wl-bp-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 10px;
+    margin-bottom: 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--wl-bp-olive);
+}
+
+.wl-bp-modern-v2 .wl-bp-eyebrow::before {
+    content: "";
+    flex-shrink: 0;
+    width: 24px;
+    height: 1px;
+    background: var(--wl-bp-olive);
+}
+
+.wl-bp-modern-v2 .wl-bp-heading {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: var(--wl-bp-ink);
+}
+
+/* "ALL ARTICLES →" — an outlined button that fills on hover. */
+.wl-bp-modern-v2 .wl-bp-cta {
+    gap: 9px;
+    margin-bottom: 4px;
+    padding: 13px 28px;
+    border: 1.5px solid var(--wl-bp-ink);
+    background: transparent;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--wl-bp-ink);
+}
+
+.wl-bp-modern-v2 .wl-bp-cta:hover,
+.wl-bp-modern-v2 .wl-bp-cta:focus-visible {
+    background: var(--wl-bp-ink);
+    color: var(--wl-bp-surface);
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+
+.wl-bp-modern-v2 .wl-bp-item {
+    overflow: hidden;
+    border-top: 2px solid transparent;
+    border-radius: 14px;
+    background: var(--wl-bp-surface);
+    box-shadow: 0 0 0 1px var(--wl-bp-line);
+    transition: box-shadow 300ms ease, transform 300ms ease, border-top-color 300ms ease;
+}
+
+.wl-bp-modern-v2 .wl-bp-item:hover {
+    transform: translateY(-5px);
+    border-top-color: var(--wl-bp-olive);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--wl-bp-line);
+}
+
+.wl-bp-modern-v2 .wl-bp-media {
+    flex-shrink: 0;
+}
+
+/* The darkening wash the reference lays over the photograph on hover. */
+.wl-bp-modern-v2 .wl-bp-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(17, 17, 17, 0);
+    pointer-events: none;
+    transition: background 300ms ease;
+}
+
+.wl-bp-modern-v2 .wl-bp-item:hover .wl-bp-media::after {
+    background: rgba(17, 17, 17, 0.18);
+}
+
+.wl-bp-modern-v2 .wl-bp-img {
+    transition: transform 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.wl-bp-modern-v2 .wl-bp-item:hover .wl-bp-img {
+    transform: scale(1.06);
+}
+
+.wl-bp-modern-v2 .wl-bp-badge {
+    padding: 4px 11px;
+    border-radius: 100px;
+    background: var(--wl-bp-olive);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--wl-bp-surface);
+}
+
+.wl-bp-modern-v2 .wl-bp-body {
+    padding: 20px 22px 24px;
+}
+
+.wl-bp-modern-v2 .wl-bp-meta {
+    margin-bottom: 12px;
+    font-size: 10px;
+    color: var(--wl-bp-muted);
+}
+
+.wl-bp-modern-v2 .wl-bp-date {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.wl-bp-modern-v2 .wl-bp-sep {
+    background: var(--wl-bp-line);
+    opacity: 1;
+}
+
+.wl-bp-modern-v2 .wl-bp-title {
+    margin-bottom: 10px;
+    font-family: var(--wl-pack-font-heading);
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.32;
+    letter-spacing: -0.3px;
+    color: var(--wl-bp-ink);
+    transition: color 220ms ease;
+}
+
+.wl-bp-modern-v2 .wl-bp-item:hover .wl-bp-title {
+    color: var(--wl-bp-olive);
+}
+
+.wl-bp-modern-v2 .wl-bp-excerpt {
+    flex: 1;
+    margin-bottom: 20px;
+    font-size: 13px;
+    line-height: 1.62;
+    color: var(--wl-bp-muted);
+}
+
+.wl-bp-modern-v2 .wl-bp-item-foot {
+    padding-top: 14px;
+    border-top: 1px solid var(--wl-bp-line);
+}
+
+.wl-bp-modern-v2 .wl-bp-author {
+    gap: 8px;
+}
+
+.wl-bp-modern-v2 .wl-bp-avatar {
+    border: 1px solid var(--wl-bp-line);
+}
+
+.wl-bp-modern-v2 .wl-bp-monogram {
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.wl-bp-modern-v2 .wl-bp-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--wl-bp-ink);
+}
+
+.wl-bp-modern-v2 .wl-bp-link {
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--wl-bp-muted);
+    transition: color 220ms ease;
+}
+
+.wl-bp-modern-v2 .wl-bp-item:hover .wl-bp-link,
+.wl-bp-modern-v2 .wl-bp-link:focus-visible {
+    color: var(--wl-bp-olive);
+}
+
+@media (max-width: 1024px) {
+    .wl-bp-modern-v2 {
+        padding: 80px 24px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-bp-modern-v2 {
+        padding: 60px 16px;
+    }
+
+    .wl-bp-modern-v2 .wl-bp-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — the contents page
+   Designed in modern-style/v3's language: no journal section exists in that
+   pack. Full-width rows under a thin rule; no card, no shadow.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-bp-modern-v3 {
+    --wl-bp-graphite: #1F1F1D;
+    --wl-bp-cool: #6F716D;
+    --wl-bp-stone: #D8D2C8;
+    --wl-bp-clay: #B8755B;
+    --wl-bp-clay-deep: #9A5E47;
+    --wl-bp-ground: #FAFAF7;
+
+    --wl-bp-list-gap: 0;
+    --wl-bp-thumb: 96px;
+    --wl-bp-ratio: 1 / 1;
+    --wl-bp-row-gap: 28px;
+    --wl-bp-body-gap: 6px;
+    --wl-bp-meta-gap: 10px;
+    --wl-bp-field: var(--wl-bp-stone);
+
+    color: var(--wl-bp-graphite);
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.wl-bp-modern-v3 .wl-bp-head {
+    /* flex-end, not the pack's baseline: with an eyebrow above the heading, baseline would line
+       the link up with the eyebrow instead of the heading. */
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+.wl-bp-modern-v3 .wl-bp-eyebrow {
+    margin-bottom: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--wl-bp-clay);
+}
+
+.wl-bp-modern-v3 .wl-bp-heading {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(40px, 4.8vw, 68px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -2.5px;
+    color: var(--wl-bp-graphite);
+}
+
+/* The pack's "link-arrow": clay, and the arrow opens away on hover. */
+.wl-bp-modern-v3 .wl-bp-cta {
+    gap: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--wl-bp-clay);
+    transition: gap 150ms ease, color 150ms ease;
+}
+
+.wl-bp-modern-v3 .wl-bp-cta:hover,
+.wl-bp-modern-v3 .wl-bp-cta:focus-visible {
+    gap: 10px;
+    color: var(--wl-bp-clay-deep);
+}
+
+/* ── Rows ────────────────────────────────────────────────────────────────── */
+
+.wl-bp-modern-v3 .wl-bp-list>.wl-bp-item {
+    position: relative;
+    padding: 24px 0;
+    border-top: 1px solid var(--wl-bp-stone);
+}
+
+.wl-bp-modern-v3 .wl-bp-list>.wl-bp-item:last-child {
+    border-bottom: 1px solid var(--wl-bp-stone);
+}
+
+/* The accent: a clay rule that draws itself along the row's top edge on hover. */
+.wl-bp-modern-v3 .wl-bp-list>.wl-bp-item::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--wl-bp-clay);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 500ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.wl-bp-modern-v3 .wl-bp-list>.wl-bp-item:hover::before,
+.wl-bp-modern-v3 .wl-bp-list>.wl-bp-item:focus-within::before {
+    transform: scaleX(1);
+}
+
+.wl-bp-modern-v3 .wl-bp-media {
+    border-radius: 10px;
+}
+
+.wl-bp-modern-v3 .wl-bp-img {
+    transition: transform 500ms ease;
+}
+
+.wl-bp-modern-v3 .wl-bp-item:hover .wl-bp-img {
+    transform: scale(1.06);
+}
+
+.wl-bp-modern-v3 .wl-bp-cat {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--wl-bp-clay);
+}
+
+.wl-bp-modern-v3 .wl-bp-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(20px, 1.9vw, 26px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    color: var(--wl-bp-graphite);
+    transition: color 220ms ease;
+}
+
+.wl-bp-modern-v3 .wl-bp-item:hover .wl-bp-title {
+    color: var(--wl-bp-clay);
+}
+
+/* One line, as a contents page would set it. */
+.wl-bp-modern-v3 .wl-bp-excerpt {
+    overflow: hidden;
+    font-size: 15px;
+    line-height: 1.6;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--wl-bp-cool);
+}
+
+/* Date and read time, set flush right. */
+.wl-bp-modern-v3 .wl-bp-item>.wl-bp-meta {
+    flex: 0 0 auto;
+    margin-left: auto;
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    color: var(--wl-bp-cool);
+}
+
+.wl-bp-modern-v3 .wl-bp-sep {
+    background: var(--wl-bp-stone);
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wl-bp-modern-v3 .wl-bp-list>.wl-bp-item::before {
+        transition: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    .wl-bp-modern-v3 {
+        padding: 80px 24px;
+    }
+}
+
+/* On a phone the date drops under the copy, aligned with it rather than with the thumbnail. */
+@media (max-width: 767px) {
+    .wl-bp-modern-v3 {
+        padding: 64px 16px;
+    }
+
+    .wl-bp-modern-v3 .wl-bp-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .wl-bp-modern-v3 .wl-bp-list>.wl-bp-item {
+        flex-wrap: wrap;
+        row-gap: 8px;
+    }
+
+    .wl-bp-modern-v3 .wl-bp-list>.wl-bp-item>.wl-bp-body {
+        flex: 1 1 0;
+    }
+
+    .wl-bp-modern-v3 .wl-bp-item>.wl-bp-meta {
+        flex-basis: 100%;
+        margin-left: 0;
+        padding-left: calc(var(--wl-bp-thumb-sm, 76px) + var(--wl-bp-row-gap-sm, 14px));
+    }
+
+    .wl-bp-modern-v3 .wl-bp-excerpt {
+        white-space: normal;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Pagination and Load More (Pro) — each variant's own accent
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-bp-modern-v1 {
+    --wl-bp-accent: var(--wl-bp-electric);
+}
+
+.wl-bp-modern-v2 {
+    --wl-bp-accent: var(--wl-bp-olive);
+}
+
+.wl-bp-modern-v3 {
+    --wl-bp-accent: var(--wl-bp-clay);
+}

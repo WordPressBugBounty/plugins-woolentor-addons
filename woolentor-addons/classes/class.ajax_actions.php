@@ -48,6 +48,10 @@ class Woolentor_Ajax_Action{
         add_action( 'wp_ajax_woolentor_add_bundle_to_cart', [ $this, 'add_bundle_to_cart' ] );
         add_action( 'wp_ajax_nopriv_woolentor_add_bundle_to_cart', [ $this, 'add_bundle_to_cart' ] );
 
+        // The next page of a Blog Posts - 2026 widget, for its Load More button (Pro)
+        add_action( 'wp_ajax_woolentor_blog_posts_load_more', [ $this, 'blog_posts_load_more' ] );
+        add_action( 'wp_ajax_nopriv_woolentor_blog_posts_load_more', [ $this, 'blog_posts_load_more' ] );
+
         // Custom select control AJAX search
         add_action( 'wp_ajax_woolentor_select_search', [$this, 'select_search'] );
         add_action( 'wp_ajax_woolentor_select_get_titles', [$this, 'select_get_titles'] );
@@ -198,6 +202,82 @@ class Woolentor_Ajax_Action{
      *
      * @return void
      */
+    /**
+     * The next page of a Blog Posts - 2026 widget, for its Load More button.
+     *
+     * Two rules make this safe to leave open to visitors:
+     *
+     *   - **It is gated on Pro here, not only in the widget.** Hiding the button is not a gate;
+     *     a direct POST on a free site is refused before anything is read.
+     *   - **It never takes settings from the browser.** The request names a document and an
+     *     element; the widget is rebuilt from that document's saved data, so a visitor cannot
+     *     change the post type, the count or anything else the merchant chose.
+     *
+     * @return void
+     */
+    public function blog_posts_load_more() {
+
+        if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'woolentor_blog_posts_load_more' ) ) {
+            wp_send_json_error( [ 'message' => esc_html__( 'Nonce Varification Faild !', 'woolentor' ) ], 403 );
+        }
+
+        if ( ! woolentor_is_pro() || ! class_exists( '\\Elementor\\Plugin' ) ) {
+            wp_send_json_error( [ 'message' => esc_html__( 'Load More is not available.', 'woolentor' ) ], 403 );
+        }
+
+        $post_id    = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
+        $element_id = isset( $_POST['element_id'] ) ? preg_replace( '/[^a-z0-9]/', '', strtolower( sanitize_text_field( wp_unslash( $_POST['element_id'] ) ) ) ) : '';
+        $page       = isset( $_POST['page'] ) ? absint( $_POST['page'] ) : 0;
+        $exclude    = isset( $_POST['exclude'] ) ? absint( $_POST['exclude'] ) : 0;
+
+        if ( ! $post_id || '' === $element_id || $page < 2 ) {
+            wp_send_json_error( [ 'message' => esc_html__( 'Bad request.', 'woolentor' ) ], 400 );
+        }
+
+        // Only a published document — or one the current user may edit, for the editor preview.
+        if ( 'publish' !== get_post_status( $post_id ) && ! current_user_can( 'edit_post', $post_id ) ) {
+            wp_send_json_error( [ 'message' => esc_html__( 'Bad request.', 'woolentor' ) ], 403 );
+        }
+
+        $document = \Elementor\Plugin::$instance->documents->get( $post_id );
+        $element  = $document ? $this->find_blog_posts_element( (array) $document->get_elements_data(), $element_id ) : null;
+
+        if ( ! $element ) {
+            wp_send_json_error( [ 'message' => esc_html__( 'Bad request.', 'woolentor' ) ], 404 );
+        }
+
+        $widget = \Elementor\Plugin::$instance->elements_manager->create_element_instance( $element );
+        $result = ( $widget && method_exists( $widget, 'ajax_page' ) ) ? $widget->ajax_page( $page, $exclude ) : null;
+
+        if ( null === $result ) {
+            wp_send_json_error( [ 'message' => esc_html__( 'Load More is not available.', 'woolentor' ) ], 403 );
+        }
+
+        wp_send_json_success( $result );
+    }
+
+    /**
+     * Find a Blog Posts - 2026 widget by its element id in a document's element tree.
+     *
+     * @param  array  $elements
+     * @param  string $element_id
+     * @return array|null
+     */
+    private function find_blog_posts_element( array $elements, $element_id ) {
+        foreach ( $elements as $element ) {
+            if ( ( $element['id'] ?? '' ) === $element_id && 'woolentor-blog-posts' === ( $element['widgetType'] ?? '' ) ) {
+                return $element;
+            }
+            if ( ! empty( $element['elements'] ) ) {
+                $found = $this->find_blog_posts_element( (array) $element['elements'], $element_id );
+                if ( $found ) {
+                    return $found;
+                }
+            }
+        }
+        return null;
+    }
+
     public function add_bundle_to_cart() {
 
         if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'woolentor_psa_nonce' ) ) {

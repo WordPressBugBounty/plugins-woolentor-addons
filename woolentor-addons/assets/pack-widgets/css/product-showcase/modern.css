@@ -1,13 +1,3 @@
-/**
- * Product Showcase — Modern pack
- *
- * Skin only. Every layout mechanic the twelve variants share lives in
- * pack-widgets-base.css; this file carries the modern pack's palette, type and
- * shape, and each variant's own arrangement on top of it.
- *
- * @package WooLentor
- */
-
 /* ═══════════════════════════════════════════════════════════════════════════
    Variant: v1 — Four white cards under a split header, hover-rise cart bar
    Reference: modern-style/v1/home-modern.html:5833 — `.prod-grid`
@@ -134,8 +124,8 @@
     border-radius: 20px;
     background: #fff;
     transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
-                box-shadow 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
-                border-color 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+        box-shadow 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
+        border-color 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .wl-ps-modern-v1 .wl-ps-card:hover {
@@ -221,7 +211,7 @@
     opacity: 0;
     transform: translateY(110%);
     transition: opacity 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
-                transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+        transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .wl-ps-modern-v1 .wl-ps-card:hover .wl-ps-actions {
@@ -307,7 +297,7 @@
     color: var(--wl-ps-star);
 }
 
-.wl-ps-modern-v1 .wl-ps-rating svg ~ svg {
+.wl-ps-modern-v1 .wl-ps-rating svg~svg {
     display: none;
 }
 
@@ -415,6 +405,35 @@
 
     .wl-ps-modern-v1 .wl-ps-grid {
         --wl-ps-cols: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .wl-ps-columns-mobile-2 .wl-ps-modern-v1 .wl-ps-cart-wrap a.button {
+        text-indent: -99999px;
+    }
+
+    .wl-ps-columns-mobile-2 .wl-ps-modern-v1 .wl-ps-actions .wl-ps-qview,
+    .wl-ps-columns-mobile-2 .wl-ps-modern-v1 .wl-ps-iconbtn {
+        width: 30px;
+        height: 30px;
+    }
+
+    .wl-ps-columns-mobile-2 .wl-ps-modern-v1 .wl-ps-cart-wrap a.button {
+        padding: 10px 18px;
+    }
+
+    .wl-ps-columns-mobile-2 .wl-ps-modern-v1 .wl-ps-foot {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .wl-ps-columns-mobile-2 [class*="wl-ps-modern-"] .wl-ps-tabs {
+        border-radius: 0;
+    }
+
+    .wl-ps-columns-mobile-2 [class*="wl-ps-modern-"] .wl-ps-tab {
+        padding: 8px 10px;
     }
 }
 
@@ -616,7 +635,7 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     transition: background 0.18s ease, color 0.18s ease, opacity 0.25s ease,
-                transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Only the pair under the wishlist is hover-revealed — the wishlist itself stays put. */
@@ -932,8 +951,8 @@
     border-radius: 10px;
     background: #fff;
     transition: border-color 0.22s cubic-bezier(0.25, 0.1, 0.25, 1),
-                box-shadow 0.22s cubic-bezier(0.25, 0.1, 0.25, 1),
-                transform 0.22s cubic-bezier(0.25, 0.1, 0.25, 1);
+        box-shadow 0.22s cubic-bezier(0.25, 0.1, 0.25, 1),
+        transform 0.22s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .wl-ps-modern-v3 .wl-ps-card:hover {
@@ -1115,7 +1134,7 @@
     color: var(--wl-ps-clay);
 }
 
-.wl-ps-modern-v3 .wl-ps-rating svg ~ svg {
+.wl-ps-modern-v3 .wl-ps-rating svg~svg {
     display: none;
 }
 
