@@ -499,161 +499,198 @@
     },
 
     /**
+     * Current page query string, sent with Load More / Infinite Scroll so the server
+     * applies the same filters (Horizontal Filter, sorting, Product Filter module) as page 1.
+     */
+    getFilterQuery: function(){
+      return window.location.search.replace( /^\?/, '' );
+    },
+
+    /**
+     * Wrapper that holds the widget settings (.woolentor-ajax-enabled).
+     * @param {jQuery} $gridArea // .woolentor-product-grid
+     */
+    getAjaxWrapper: function( $gridArea ){
+      return $gridArea.hasClass('woolentor-ajax-enabled') ? $gridArea : $gridArea.find('.woolentor-ajax-enabled').eq(0);
+    },
+
+    /**
      * LoadMore Product Ajax Action handeler
-     * @param {String} gridArea // gridArea area Selector
+     *
+     * Bound on the outer grid wrapper with a delegated event, because the Product Filter
+     * module replaces the products and the pagination inside it after an AJAX filter.
+     *
+     * @param {jQuery} $gridArea // gridArea area Selector
      */
     loadMore: function( $gridArea ){
 
-      let loadMoreButton = $gridArea.find('.woolentor-load-more-btn');
+      const loadMoreWrapper = WooLentorBlocks.getAjaxWrapper( $gridArea );
 
-      if (loadMoreButton.length > 0) {
-
-        loadMoreButton.on('click', function(e) {
-          e.preventDefault();
-      
-          const $button = loadMoreButton;
-          const uniqIdentifire = $button.data('grid-id');
-          const $loader = $button.siblings('.woolentor-ajax-loader');
-          const $grid = $('#' + uniqIdentifire);
-          const currentPage = parseInt($button.data('page'));
-          const maxPages = parseInt($button.data('max-pages'));
-          const dataLayout = $grid.attr('data-show-layout');
-
-          const loadMoreWrapper = $('.' + uniqIdentifire).find('.woolentor-ajax-enabled');
-      
-          if (currentPage > maxPages) {
-            return;
-          }
-      
-          $button.hide();
-          $loader.show();
-      
-        let settings = loadMoreWrapper.attr( 'data-wl-widget-settings' );
-      
-          // Prepare AJAX data
-          const ajaxData = {
-            action: 'woolentor_load_more_products',
-            nonce: typeof window?.woolentorLocalizeData !== 'undefined' ? window?.woolentorLocalizeData.security : '',
-            page: currentPage,
-            settings: settings,
-            viewlayout: typeof dataLayout === 'undefined' ? '' : dataLayout
-          };
-      
-          // AJAX request to load more products
-          $.ajax({
-            url: typeof window?.woolentorLocalizeData !== 'undefined' ? window?.woolentorLocalizeData.ajaxUrl : '',
-            type: 'POST',
-            data: ajaxData,
-            success: function(response) {
-              if (response.success && response.data.html) {
-
-                // Append new products
-                const $newProducts = $(response.data.html);
-                $grid.append($newProducts);
-                  
-                // Update page counter
-                $button.data('page', currentPage+1);
-      
-                // Show button if more pages available
-                if (currentPage < maxPages) {
-                  $button.show();
-                } else {
-                  $button.text($button.data('complete-loadtxt')).prop('disabled', true).show();
-                }
-              }
-              $loader.hide();
-            },
-            error: function(xhr, status, error) {
-              $loader.hide();
-              $button.show();
-              console.log("Status:", status, "Error:", error);
-            }
-          });
-        });
+      if ( ! loadMoreWrapper.length ) {
+        return;
       }
+
+      loadMoreWrapper.off('click.wlLoadMore').on('click.wlLoadMore', '.woolentor-load-more-btn', function(e) {
+        e.preventDefault();
+
+        const $button = $(this);
+        const $loader = $button.siblings('.woolentor-ajax-loader');
+        const $grid = $('#' + $button.data('grid-id'));
+        const currentPage = parseInt($button.data('page'));
+        const maxPages = parseInt($button.data('max-pages'));
+        const dataLayout = $grid.attr('data-show-layout');
+
+        if ( $button.prop('disabled') || currentPage > maxPages ) {
+          return;
+        }
+
+        $button.hide();
+        $loader.show();
+
+        // Prepare AJAX data
+        const ajaxData = {
+          action: 'woolentor_load_more_products',
+          nonce: typeof window?.woolentorLocalizeData !== 'undefined' ? window?.woolentorLocalizeData.security : '',
+          page: currentPage,
+          settings: loadMoreWrapper.attr( 'data-wl-widget-settings' ),
+          viewlayout: typeof dataLayout === 'undefined' ? '' : dataLayout,
+          filter_query: WooLentorBlocks.getFilterQuery()
+        };
+
+        // AJAX request to load more products
+        $.ajax({
+          url: typeof window?.woolentorLocalizeData !== 'undefined' ? window?.woolentorLocalizeData.ajaxUrl : '',
+          type: 'POST',
+          data: ajaxData,
+          success: function(response) {
+            if (response.success && response.data.html) {
+
+              // Append new products
+              const $newProducts = $(response.data.html);
+              $grid.append($newProducts);
+
+              // Update page counter
+              $button.data('page', currentPage+1);
+
+              // Show button if more pages available
+              if (currentPage < maxPages) {
+                $button.show();
+              } else {
+                $button.text($button.data('complete-loadtxt')).prop('disabled', true).show();
+              }
+            } else {
+              $button.show();
+            }
+            $loader.hide();
+          },
+          error: function(xhr, status, error) {
+            $loader.hide();
+            $button.show();
+            console.log("Status:", status, "Error:", error);
+          }
+        });
+      });
 
     },
 
+    /**
+     * Infinite Scroll handeler
+     *
+     * The sentinel, the loader and the grid are looked up on every scroll instead of being
+     * kept from the first render, because the Product Filter module replaces them after an
+     * AJAX filter. The scroll listener stays bound for the same reason.
+     *
+     * @param {jQuery} $gridArea // gridArea area Selector
+     */
     infiniteScroll: function($gridArea){
 
-      let selectorBtn = $gridArea.find('.woolentor-infinite-scroll');
+      const productLoadWrapper = WooLentorBlocks.getAjaxWrapper( $gridArea );
+
+      if ( ! productLoadWrapper.length ) {
+        return;
+      }
+
+      if ( ! productLoadWrapper.data('wlInfiniteId') ) {
+        productLoadWrapper.data('wlInfiniteId', 'wlInfinite' + Math.random().toString(36).slice(2));
+      }
+      const eventName = 'scroll.' + productLoadWrapper.data('wlInfiniteId');
 
       let isLoading = false;
-      const uniqIdentifire = selectorBtn.data('grid-id');
-      const productLoadWrapper = $('.' + uniqIdentifire).find('.woolentor-ajax-enabled');
-      const $loader = selectorBtn.find('.woolentor-ajax-loader');
-      const $grid = $('#' + uniqIdentifire);
-      const paginationArea = productLoadWrapper.find('.woolentor-pagination-infinite');
 
       function loadMoreOnScroll() {
           if (isLoading) return;
 
-          // Calculate trigger point based on product grid bottom position
-          const gridOffset = $grid?.offset()?.top;
-          const gridHeight = $grid.outerHeight();
-          const gridBottom = gridOffset + gridHeight;
-          const scrollTop = $(window).scrollTop();
-          const windowHeight = $(window).height();
-          const triggerPoint = gridBottom - windowHeight - 100; // 100px before grid end
-
-          if (scrollTop >= triggerPoint) {
-              const currentPage = parseInt(selectorBtn.data('page'));
-              const maxPages = parseInt(selectorBtn.data('max-pages'));
-
-              if (currentPage > maxPages) {
-                  $(window).off('scroll', loadMoreOnScroll);
-                  return;
-              }
-
-              paginationArea.css('margin-top', '30px');
-              isLoading = true;
-              $loader.show();
-
-              let settings = productLoadWrapper.attr( 'data-wl-widget-settings' );
-              const dataLayout = $grid.attr('data-show-layout');
-
-              // AJAX request to load more products
-              $.ajax({
-                  url: typeof woolentor_addons !== 'undefined' ? woolentor_addons.woolentorajaxurl : '',
-                  type: 'POST',
-                  data: {
-                      action: 'woolentor_load_more_products',
-                      nonce: typeof woolentor_addons !== 'undefined' ? woolentor_addons.ajax_nonce : '',
-                      page: currentPage,
-                      settings: settings,
-                      viewlayout: typeof dataLayout === 'undefined' ? '' : dataLayout
-                  },
-                  success: function(response) {
-                      if (response.success && response.data.html) {
-                          // Append new products
-                          const $newProducts = $(response.data.html);
-                          $grid.append($newProducts);
-
-                          // Update page counter
-                          selectorBtn.data('page', currentPage + 1);
-
-                          // Check if we've reached the last page
-                          if (currentPage > maxPages) {
-                              $(window).off('scroll', loadMoreOnScroll);
-                              selectorBtn.remove();
-                          }
-                      }
-                  },
-                  complete: function() {
-                      $loader.hide();
-                      isLoading = false;
-                      paginationArea.css('margin-top', '0');
-                  },
-                  error: function() {
-                      $loader.hide();
-                      isLoading = false;
-                  }
-              });
+          // Wrapper was removed from the page
+          if ( ! $.contains( document.documentElement, productLoadWrapper[0] ) ) {
+              $(window).off(eventName);
+              return;
           }
+
+          const selectorBtn = productLoadWrapper.find('.woolentor-infinite-scroll').eq(0);
+          if ( ! selectorBtn.length ) return;
+
+          const $grid = $('#' + selectorBtn.data('grid-id'));
+          if ( ! $grid.length ) return;
+
+          // Calculate trigger point based on product grid bottom position
+          const gridBottom = $grid.offset().top + $grid.outerHeight();
+          const triggerPoint = gridBottom - $(window).height() - 100; // 100px before grid end
+
+          if ( $(window).scrollTop() < triggerPoint ) return;
+
+          const currentPage = parseInt(selectorBtn.data('page'));
+          const maxPages = parseInt(selectorBtn.data('max-pages'));
+
+          if (currentPage > maxPages) {
+              selectorBtn.remove();
+              return;
+          }
+
+          const $loader = selectorBtn.find('.woolentor-ajax-loader');
+          const paginationArea = productLoadWrapper.find('.woolentor-pagination-infinite');
+          const dataLayout = $grid.attr('data-show-layout');
+
+          paginationArea.css('margin-top', '30px');
+          isLoading = true;
+          $loader.show();
+
+          // AJAX request to load more products
+          $.ajax({
+              url: typeof window?.woolentorLocalizeData !== 'undefined' ? window?.woolentorLocalizeData.ajaxUrl : '',
+              type: 'POST',
+              data: {
+                  action: 'woolentor_load_more_products',
+                  nonce: typeof window?.woolentorLocalizeData !== 'undefined' ? window?.woolentorLocalizeData.security : '',
+                  page: currentPage,
+                  settings: productLoadWrapper.attr( 'data-wl-widget-settings' ),
+                  viewlayout: typeof dataLayout === 'undefined' ? '' : dataLayout,
+                  filter_query: WooLentorBlocks.getFilterQuery()
+              },
+              success: function(response) {
+                  if (response.success && response.data.html) {
+                      // Append new products
+                      const $newProducts = $(response.data.html);
+                      $grid.append($newProducts);
+
+                      // Update page counter
+                      selectorBtn.data('page', currentPage + 1);
+
+                      // Last page loaded, nothing more to watch
+                      if (currentPage >= maxPages) {
+                          selectorBtn.remove();
+                      }
+                  }
+              },
+              complete: function() {
+                  $loader.hide();
+                  isLoading = false;
+                  paginationArea.css('margin-top', '0');
+              }
+          });
       }
 
       // Bind scroll event
-      $(window).on('scroll', loadMoreOnScroll);
+      $(window).off(eventName).on(eventName, loadMoreOnScroll);
 
     },
 

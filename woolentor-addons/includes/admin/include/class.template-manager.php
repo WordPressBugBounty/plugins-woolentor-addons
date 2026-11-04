@@ -863,15 +863,19 @@ class Woolentor_Template_Manager{
 	public function get_template_id( $template_key, $callback = false ){
 		$option_value = ( $callback && is_callable( $callback ) ) ? $callback( $template_key, 'woolentor_woo_template_tabs', '0' ) : woolentor_get_option( $template_key, 'woolentor_woo_template_tabs', '0' );
 		$option_value = maybe_unserialize( $option_value );
-		$template_id = 0;
-		if( is_array( $option_value ) && array_key_exists( self::$language_code, $option_value['lang'] ) ){
-			$template_id = ( $option_value['lang'][self::$language_code]['template_id'] != '0' ) ? $option_value['lang'][self::$language_code]['template_id'] : $option_value['lang']['en']['template_id'];
+		$lang_data = ( is_array( $option_value ) && isset( $option_value['lang'] ) && is_array( $option_value['lang'] ) ) ? $option_value['lang'] : [];
+		$language_code = (string) self::$language_code;
+
+		// Current language first, then English. A language can be stored with '0' (switched off)
+		// and 'en' may not exist at all on a site that is not in English (e.g. WPML / Polylang with only Dutch).
+		if( isset( $lang_data[ $language_code ]['template_id'] ) && '0' != $lang_data[ $language_code ]['template_id'] ){
+			$template_id = $lang_data[ $language_code ]['template_id'];
+		}elseif( isset( $lang_data['en']['template_id'] ) ){
+			$template_id = $lang_data['en']['template_id'];
+		}elseif( ! is_array( $option_value ) ){
+			$template_id = $option_value; // Old format: plain template ID
 		}else{
-			if( is_array( $option_value ) ){
-				$template_id = isset( $option_value['lang']['en']['template_id'] ) ? $option_value['lang']['en']['template_id'] : '0';
-			}else{
-				$template_id = $option_value;
-			}
+			$template_id = '0';
 		}
 		return $template_id;
 	}

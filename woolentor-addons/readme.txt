@@ -4,7 +4,7 @@ Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenb
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 3.5.5
+Stable tag: 3.5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -672,6 +672,10 @@ Please report security issues to our team directly at **[woolentor.com/contact](
 24. Deliver a smooth shopping experience across desktop, tablet, and mobile.
 
 == Changelog ==
+= Version: 3.5.6 - Date: 04-11-2026 =
+* Solved: Template Id parsing waring for non english site.
+* Solved: Badge default value marge for ignore the warning.
+* Compatibility: Latest WordPress and WooCommerce version.
 
 = Version: 3.5.5 - Date: 19-10-2026 =
 * Added: Blog Post Elementor Addon flowing by 2026 tread.

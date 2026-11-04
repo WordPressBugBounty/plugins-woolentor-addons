@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: ShopLentor – All-in-One WooCommerce Growth & Store "
 "Enhancement Plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-18 11:38+0000\n"
+"POT-Creation-Date: 2026-11-04 05:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.8.9; wp-7.1.4-alpha-64164; php-8.2.32\n"
+"X-Loco-Version: 2.8.9; wp-7.1.5-alpha-64973; php-8.2.35\n"
 "X-Domain: woolentor"
 
 #: includes/modules/advanced-coupon/includes/classes/Admin/Coupon_Meta_Boxes.php:131
@@ -3576,11 +3576,11 @@ msgstr ""
 msgid "Custom CSS"
 msgstr ""
 
-#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:162
+#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:174
 msgid "Custom Currency Symbol"
 msgstr ""
 
-#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:171
+#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:183
 msgid "Custom Flag"
 msgstr ""
 
@@ -3814,7 +3814,7 @@ msgstr ""
 msgid "Default Active Tab"
 msgstr ""
 
-#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:198
+#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:210
 msgid "Default Currency"
 msgstr ""
 
@@ -7819,7 +7819,7 @@ msgstr ""
 #: includes/admin/include/class.template-manager.php:563
 #: includes/admin/include/class.template-manager.php:753
 #: includes/admin/include/class.template-manager.php:798
-#: includes/admin/include/class.template-manager.php:914
+#: includes/admin/include/class.template-manager.php:918
 #: includes/modules/sales-notification/real_notification.php:28
 #: includes/modules/variation-swatch/includes/ajax-actions.php:60
 #: includes/modules/compare/includes/classes/Ajax.php:31
@@ -7831,7 +7831,7 @@ msgstr ""
 msgid "Nonce Varification Faild !"
 msgstr ""
 
-#: classes/class.ajax_actions.php:615 classes/class.ajax_actions.php:651
+#: classes/class.ajax_actions.php:677 classes/class.ajax_actions.php:713
 #: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:207
 #: includes/modules/abandoned-cart/includes/classes/Api/Cart_Data.php:238
 #: includes/modules/abandoned-cart/includes/classes/Api/Email_Template.php:103
@@ -8593,7 +8593,7 @@ msgstr ""
 msgid "Payment error message"
 msgstr ""
 
-#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:151
+#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:163
 msgid "Payment Method Disables"
 msgstr ""
 
@@ -8924,6 +8924,10 @@ msgstr ""
 
 #: includes/addons/wl_product_horizontal_filter.php:236
 msgid "Price Range"
+msgstr ""
+
+#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:151
+msgid "Price Rounding"
 msgstr ""
 
 #: includes/addons/wl_product_filter.php:935
@@ -9897,7 +9901,7 @@ msgstr ""
 #: includes/modules/quickview/includes/classes/Admin/Fields.php:187
 #: includes/modules/compare/includes/classes/Admin/Fields.php:234
 #: includes/modules/compare/includes/classes/Admin/Fields.php:263
-#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:176
+#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:188
 #: includes/modules/badges/includes/classes/Admin/Fields.php:159
 #: includes/modules/wishlist/includes/classes/Admin/Fields.php:299
 #: includes/modules/wishlist/includes/classes/Admin/Fields.php:489
@@ -10157,6 +10161,12 @@ msgstr ""
 
 #: includes/modules/popup-builder/includes/admin/class-manage-metabox.php:363
 msgid "rotateOutUpRight"
+msgstr ""
+
+#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:152
+msgid ""
+"Round converted prices (Up / Down / Nearest to 1, 10, 100, 1000) and "
+"subtract a custom amount for .99 / .95 endings."
 msgstr ""
 
 #: includes/modules/variation-swatch/includes/Admin/Product_Metabox.php:190
@@ -11883,7 +11893,7 @@ msgstr ""
 #: includes/admin/include/class.template-manager.php:657
 #: includes/admin/include/class.template-manager.php:772
 #: includes/admin/include/class.template-manager.php:823
-#: includes/admin/include/class.template-manager.php:954
+#: includes/admin/include/class.template-manager.php:958
 msgid "Some thing is worng !"
 msgstr ""
 
@@ -12592,7 +12602,7 @@ msgstr ""
 msgid "Template does not have any content"
 msgstr ""
 
-#: includes/admin/include/class.template-manager.php:947
+#: includes/admin/include/class.template-manager.php:951
 msgid "Template has been imported"
 msgstr ""
 
@@ -12982,8 +12992,9 @@ msgid ""
 "all premium features and templates."
 msgstr ""
 
-#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:154
-#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:165
+#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:155
+#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:166
+#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:177
 #: includes/modules/badges/includes/classes/Admin/Fields.php:259
 msgid "This is a pro features"
 msgstr ""
@@ -13612,7 +13623,7 @@ msgstr ""
 #: includes/modules/quickview/includes/classes/Admin/Fields.php:186
 #: includes/modules/compare/includes/classes/Admin/Fields.php:233
 #: includes/modules/compare/includes/classes/Admin/Fields.php:262
-#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:175
+#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:187
 #: includes/modules/badges/includes/classes/Admin/Fields.php:158
 #: includes/modules/wishlist/includes/classes/Admin/Fields.php:488
 #: includes/modules/wishlist/includes/classes/Admin/Fields.php:516
@@ -14842,7 +14853,7 @@ msgstr ""
 #: includes/admin/include/class.template-manager.php:570
 #: includes/admin/include/class.template-manager.php:745
 #: includes/admin/include/class.template-manager.php:790
-#: includes/admin/include/class.template-manager.php:906
+#: includes/admin/include/class.template-manager.php:910
 msgid "You are unauthorize to adding template!"
 msgstr ""
 
@@ -14965,7 +14976,7 @@ msgstr ""
 msgid "You can set send after time unit from here."
 msgstr ""
 
-#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:172
+#: includes/modules/currency-switcher/includes/classes/Admin/Fields.php:184
 msgid "You can upload your flag for currency switcher from here."
 msgstr ""
 

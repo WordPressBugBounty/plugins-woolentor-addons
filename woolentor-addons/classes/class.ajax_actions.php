@@ -596,6 +596,9 @@ class Woolentor_Ajax_Action{
 
         $setting_data['paged'] = $page;
 
+        // Restore the active filters from the page URL, because this AJAX request is a POST and has no filter query of its own.
+        $this->restore_filter_query();
+
         ob_start();
         $product_grid_base->render_items( $setting_data, true );
         $html = ob_get_clean();
@@ -605,6 +608,65 @@ class Woolentor_Ajax_Action{
             'current_page' => $page
         ));
 
+    }
+
+    /**
+     * Put the filter parameters of the page URL back into $_GET.
+     *
+     * The product filters (Horizontal Filter, WooCommerce sorting, Product Filter module) read
+     * their selection from $_GET. Page 1 is rendered with the browser URL, but Load More and
+     * Infinite Scroll post to admin-ajax.php, so the script sends the page query string as
+     * `filter_query` and it is restored here. Only filter keys are accepted, and pagination
+     * keys are dropped because the page number always comes from $_POST['page'].
+     *
+     * @return void
+     */
+    private function restore_filter_query() {
+
+        if ( empty( $_POST['filter_query'] ) || ! is_string( $_POST['filter_query'] ) ) {
+            return;
+        }
+
+        $query_args = [];
+        wp_parse_str( wp_unslash( $_POST['filter_query'] ), $query_args );
+
+        if ( empty( $query_args ) || ! is_array( $query_args ) ) {
+            return;
+        }
+
+        $wlpf_prefix = function_exists( 'wlpf_get_query_args_prefix' ) ? sanitize_key( wlpf_get_query_args_prefix() ) : 'wlpf_';
+
+        $exact_keys      = [ 'wlfilter', 'min_price', 'max_price', 'wlorder_by', 'wlsort', 'wlstock', 'orderby', 's', 'q' ];
+        $prefix_keys     = [ 'woolentor_', 'filter_', $wlpf_prefix ];
+        $pagination_keys = [ 'paged', 'page', 'product-page', $wlpf_prefix . 'page' ];
+
+        $filter_args = [];
+        foreach ( $query_args as $key => $value ) {
+            $key = sanitize_key( $key );
+
+            if ( '' === $key || in_array( $key, $pagination_keys, true ) ) {
+                continue;
+            }
+
+            $allowed = in_array( $key, $exact_keys, true );
+            if ( ! $allowed ) {
+                foreach ( $prefix_keys as $prefix ) {
+                    if ( '' !== $prefix && 0 === strpos( $key, $prefix ) ) {
+                        $allowed = true;
+                        break;
+                    }
+                }
+            }
+
+            if ( $allowed ) {
+                $filter_args[ $key ] = map_deep( $value, 'sanitize_text_field' );
+            }
+        }
+
+        if ( ! empty( $filter_args ) ) {
+            // $_GET is slashed by WordPress, keep the same convention.
+            $_GET = array_merge( $_GET, wp_slash( $filter_args ) );
+        }
     }
 
     /**

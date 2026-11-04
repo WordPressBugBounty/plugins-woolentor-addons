@@ -12,7 +12,8 @@
     $badge_image_size = !empty( $badge['badge_image_size'] ) ? $badge['badge_image_size'] : [];
     $badge_image_size_css = "height: auto; width: 35px;";
     if( !empty( $badge_image_size ) ){
-        $badge_image_size_css = 'width: '.($badge_image_size['width'] ? $badge_image_size['width'].$badge_image_size['unit'] : '35px').'; height: '.($badge_image_size['height'] ? $badge_image_size['height'].$badge_image_size['unit'] : 'auto').';';
+        $badge_image_unit     = !empty( $badge_image_size['unit'] ) ? $badge_image_size['unit'] : 'px';
+        $badge_image_size_css = 'width: '.( !empty( $badge_image_size['width'] ) ? $badge_image_size['width'].$badge_image_unit : '35px' ).'; height: '.( !empty( $badge_image_size['height'] ) ? $badge_image_size['height'].$badge_image_unit : 'auto' ).';';
     }
 ?>
 <?php if( !empty($badge_image_url) ): ?>

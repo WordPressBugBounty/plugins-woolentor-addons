@@ -147,6 +147,18 @@ class Fields {
                             ),
 
                             array(
+                                'id'    => 'currency_roundingp',
+                                'name'   => esc_html__( 'Price Rounding', 'woolentor' ),
+                                'desc'    => esc_html__( 'Round converted prices (Up / Down / Nearest to 1, 10, 100, 1000) and subtract a custom amount for .99 / .95 endings.', 'woolentor' ),
+                                'type'    => 'select',
+                                'options' => array(
+                                    'select' => esc_html__('This is a pro features','woolentor'),
+                                ),
+                                'class' => 'woolentor-action-field-left',
+                                'is_pro'  => true,
+                            ),
+
+                            array(
                                 'id'    => 'disallowed_payment_methodp',
                                 'name'   => esc_html__( 'Payment Method Disables', 'woolentor' ),
                                 'type'    => 'select',

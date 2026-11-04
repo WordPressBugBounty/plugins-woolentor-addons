@@ -195,9 +195,9 @@ class WooLentorProductQuery{
             // }
 
 
-            $queries =[];
+            // Read from $_GET, not QUERY_STRING: Load More / Infinite Scroll restore the filters into $_GET.
+            $queries = wp_unslash( $_GET );
             $new_queries = [];
-            parse_str( $_SERVER['QUERY_STRING' ], $queries );
             foreach ( $queries as $key => $querie ) {
                 // $new_queries[] = $key;
 
@@ -259,8 +259,13 @@ class WooLentorProductQuery{
         // Module Support: Advanced Filter module query, If set Advanced Filter module query then do not apply current taxonomy query
         $has_advanced_filter = false;
         if( function_exists('wlpf_get_query_args_prefix') ){
-            $query_string = $_SERVER['QUERY_STRING' ];
-            $has_advanced_filter = is_string($query_string) && strpos($query_string, wlpf_get_query_args_prefix()) === 0;
+            $wlpf_prefix = wlpf_get_query_args_prefix();
+            foreach ( array_keys( $_GET ) as $query_key ) {
+                if ( is_string( $query_key ) && 0 === strpos( $query_key, $wlpf_prefix ) ) {
+                    $has_advanced_filter = true;
+                    break;
+                }
+            }
         }
 
         if ( !isset( $_GET['wlfilter'] ) && !$has_advanced_filter ) {

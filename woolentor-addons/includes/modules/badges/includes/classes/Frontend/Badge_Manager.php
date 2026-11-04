@@ -35,7 +35,11 @@ class Badge_Manager {
      * @return bool
      */
     public function is_fire_ajax_request() {
-        if( defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_REQUEST['action'] ) && $_REQUEST['action'] === 'wlpf_ajax_filter' ){
+        // AJAX requests that render product loops: Product Filter module, and Load More /
+        // Infinite Scroll of the Product Grid widgets and blocks (pages 2+ are rendered there).
+        $ajax_actions = [ 'wlpf_ajax_filter', 'woolentor_load_more_products' ];
+
+        if( defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_REQUEST['action'] ) && in_array( $_REQUEST['action'], $ajax_actions, true ) ){
             return true;
         }else{
             return false;
@@ -129,11 +133,46 @@ class Badge_Manager {
     }
 
     /**
+     * Fill in every key the badge templates read.
+     *
+     * A saved badge can miss keys (e.g. data saved by an older version or imported), and the
+     * templates read them directly, which gives "Undefined array key" warnings on PHP 8.
+     * @param mixed $badge
+     * @return array
+     */
+    private function prepare_badge( $badge ) {
+        $defaults = [
+            'badge_title'           => '',
+            'badge_type'            => 'text',
+            'badge_text'            => '',
+            'badge_text_color'      => '',
+            'badge_bg_color'        => '',
+            'badge_font_size'       => '',
+            'badge_padding'         => [],
+            'badge_border_radius'   => [],
+            'badge_image'           => '',
+            'badge_image_size'      => [],
+            'badge_position'        => '',
+            'badge_custom_position' => [],
+        ];
+
+        $badge = wp_parse_args( is_array( $badge ) ? $badge : [], $defaults );
+
+        if ( empty( $badge['badge_type'] ) ) {
+            $badge['badge_type'] = 'text';
+        }
+
+        return $badge;
+    }
+
+    /**
      * Product badge HTML
      * @param mixed $badge
      * @return void
      */
     public function badge_html( $badge ){
+
+        $badge = $this->prepare_badge( $badge );
 
         $badge_position = !empty( $badge['badge_position'] ) ? $badge['badge_position'] : "";
 
@@ -206,7 +245,9 @@ class Badge_Manager {
             $badge['has_ind'] = true;
         }
     
-        switch ( $badge['badge_condition'] ) {
+        $badge_condition = isset( $badge['badge_condition'] ) ? $badge['badge_condition'] : '';
+
+        switch ( $badge_condition ) {
             case 'all_product':
                 $this->badge_html($badge);
                 break;

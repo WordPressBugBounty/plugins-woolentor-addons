@@ -164,6 +164,20 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.5.6',
+                'date'    => '2026-11-04',
+                'changes' => [
+                    'Fixes' => [
+                        'Template Id parsing waring for non english site.',
+                        'Badge default value marge for ignore the warning.',
+                        'Some minor bugs fixed.'
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
                 'version' => '3.5.5',
                 'date'    => '2026-10-19',
                 'changes' => [
