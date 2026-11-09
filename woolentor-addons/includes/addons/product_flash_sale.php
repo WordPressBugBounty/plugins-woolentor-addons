@@ -1101,7 +1101,7 @@ class Woolentor_Product_Flash_Sale_Widget extends Widget_Base {
             }
 
             if( $exclude_products ){
-                $product_ids = array_intersect($product_ids, $exclude_products);
+                $product_ids = array_diff($product_ids, $exclude_products);
             }
 
         } elseif( $exclude_products ){

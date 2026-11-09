@@ -1,0 +1,909 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — The dark band and its deals
+   Transcribed from modern-style/v1/home-modern.html — `.deal-head`, `.deal-grid`
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-fs-modern-v1 {
+    --wl-fs-black: #080A0F;
+    --wl-fs-graphite: #111827;
+    --wl-fs-electric: #2563EB;
+    --wl-fs-cyan: #22D3EE;
+    --wl-fs-frost: #F5F7FA;
+    --wl-fs-line: #E5E7EB;
+    --wl-fs-muted: #6B7280;
+    --wl-fs-warning: #F59E0B;
+    --wl-fs-error: #EF4444;
+
+    --wl-fs-cols: 4;
+    --wl-fs-cols-md: 2;
+    --wl-fs-cols-sm: 1;
+    --wl-fs-gap: 24px;
+    --wl-fs-ratio: 4 / 3;
+    --wl-fs-icon-size: 34px;
+
+    background: var(--wl-fs-frost);
+    color: var(--wl-fs-black);
+}
+
+.wl-fs-modern-v1 .wl-fs-band {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 32px;
+    padding: 40px 50px;
+    border-radius: 28px;
+    background: linear-gradient(135deg, var(--wl-fs-black), var(--wl-fs-graphite));
+    color: #FFFFFF;
+}
+
+.wl-fs-modern-v1 .wl-fs-band::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(closest-side at 85% 50%, rgba(34, 211, 238, 0.2), transparent 60%);
+    pointer-events: none;
+}
+
+.wl-fs-modern-v1 .wl-fs-head-main {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.wl-fs-modern-v1 .wl-fs-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wl-fs-cyan);
+}
+
+.wl-fs-modern-v1 .wl-fs-eyebrow::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.25);
+}
+
+.wl-fs-modern-v1 .wl-fs-heading {
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+}
+
+.wl-fs-modern-v1 .wl-fs-heading em {
+    font-style: normal;
+    color: var(--wl-fs-cyan);
+}
+
+.wl-fs-modern-v1 .wl-fs-desc {
+    max-width: 480px;
+    margin-top: 6px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.wl-fs-modern-v1 .wl-fs-countdown {
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    --wl-pack-countdown-gap: 10px;
+}
+
+.wl-fs-modern-v1 .wl-pack-countdown-unit {
+    min-width: 72px;
+    padding: 14px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.wl-fs-modern-v1 .wl-pack-countdown-num {
+    font-size: 28px;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.wl-fs-modern-v1 .wl-pack-countdown-label {
+    margin-top: 6px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.wl-fs-modern-v1 .wl-fs-item {
+    overflow: hidden;
+    border: 1px solid var(--wl-fs-line);
+    border-radius: 20px;
+    background: #FFFFFF;
+    transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.wl-fs-modern-v1 .wl-fs-item:hover {
+    transform: translateY(-3px);
+    border-color: transparent;
+    box-shadow: 0 18px 44px rgba(8, 10, 15, 0.12);
+}
+
+.wl-fs-modern-v1 .wl-fs-media {
+    background: var(--wl-fs-frost);
+}
+
+.wl-fs-modern-v1 .wl-fs-off {
+    top: 14px;
+    left: 14px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--wl-fs-error);
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.wl-fs-modern-v1 .wl-fs-icons {
+    top: 12px;
+    right: 12px;
+    gap: 6px;
+}
+
+.wl-fs-modern-v1 .wl-fs-iconbtn {
+    border: 1px solid var(--wl-fs-line);
+    border-radius: 50%;
+    background: #FFFFFF;
+    color: var(--wl-fs-muted);
+    transition: background 200ms ease, color 200ms ease, transform 200ms ease;
+}
+
+.wl-fs-modern-v1 .wl-fs-iconbtn:hover {
+    transform: scale(1.08);
+    background: var(--wl-fs-black);
+    color: #FFFFFF;
+}
+
+.wl-fs-modern-v1 .wl-fs-body {
+    gap: 10px;
+    padding: 18px 20px 20px;
+}
+
+.wl-fs-modern-v1 .wl-fs-brand {
+    font-size: 12px;
+    color: var(--wl-fs-muted);
+}
+
+.wl-fs-modern-v1 .wl-fs-rating {
+    font-size: 12px;
+    color: var(--wl-fs-muted);
+}
+
+.wl-fs-modern-v1 .wl-fs-rating svg {
+    color: var(--wl-fs-warning);
+}
+
+.wl-fs-modern-v1 .wl-fs-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.wl-fs-modern-v1 .wl-fs-title a:hover {
+    color: var(--wl-fs-electric);
+}
+
+.wl-fs-modern-v1 .wl-fs-price {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.wl-fs-modern-v1 .wl-fs-price del {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--wl-fs-muted);
+}
+
+.wl-fs-modern-v1 .wl-fs-stock {
+    margin-top: 4px;
+}
+
+.wl-fs-modern-v1 .wl-fs-stock-bar {
+    margin-bottom: 6px;
+    border-radius: 3px;
+    background: var(--wl-fs-frost);
+}
+
+.wl-fs-modern-v1 .wl-fs-stock-fill {
+    background: linear-gradient(90deg, var(--wl-fs-warning), var(--wl-fs-error));
+}
+
+.wl-fs-modern-v1 .wl-fs-stock-meta {
+    font-size: 12px;
+    color: var(--wl-fs-muted);
+}
+
+.wl-fs-modern-v1 .wl-fs-stock-left {
+    font-weight: 600;
+    color: var(--wl-fs-error);
+}
+
+.wl-fs-modern-v1 .wl-fs-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.wl-fs-modern-v1 .wl-fs-actions .wl-fs-cart-wrap {
+    flex: 1;
+}
+
+.wl-fs-modern-v1 .wl-fs-cart-wrap a.button {
+    padding: 10px 12px;
+    border-radius: 999px;
+    background: var(--wl-fs-black);
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.wl-fs-modern-v1 .wl-fs-cart-wrap a.button:hover {
+    background: var(--wl-fs-electric);
+    color: #FFFFFF;
+}
+
+.wl-fs-modern-v1 .wl-fs-qview {
+    --wl-fs-icon-size: 40px;
+    border: 1.5px solid var(--wl-fs-line);
+    border-radius: 50%;
+    background: var(--wl-fs-frost);
+    color: var(--wl-fs-black);
+}
+
+.wl-fs-modern-v1 .wl-fs-qview:hover {
+    border-color: var(--wl-fs-black);
+    background: var(--wl-fs-black);
+    color: #FFFFFF;
+}
+
+@media (max-width: 1024px) {
+    .wl-fs-modern-v1 .wl-fs-band {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 30px;
+    }
+
+    .wl-fs-modern-v1 .wl-fs-heading {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-fs-modern-v1 {
+        padding: 56px 16px;
+    }
+
+    .wl-fs-modern-v1 .wl-fs-countdown {
+        width: 100%;
+    }
+
+    .wl-fs-modern-v1 .wl-pack-countdown-unit {
+        flex: 1;
+        min-width: 0;
+        padding: 12px 6px;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — The split
+   Designed in modern-style/v2's language: paper, olive, rust, its dark rounded card.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-fs-modern-v2 {
+    --wl-fs-bg: #FAFAF7;
+    --wl-fs-bg2: #F0EEE9;
+    --wl-fs-dark: #1D1D1B;
+    --wl-fs-text: #111111;
+    --wl-fs-muted: #666666;
+    --wl-fs-line: #D8D5CE;
+    --wl-fs-accent: #7A8F3A;
+    --wl-fs-accent-dk: #617230;
+    --wl-fs-rust: #B4573F;
+
+    --wl-fs-split: minmax(0, 1fr) minmax(0, 2.2fr);
+    --wl-fs-split-gap: 28px;
+    --wl-fs-cols: 3;
+    --wl-fs-cols-md: 3;
+    --wl-fs-cols-sm: 2;
+    --wl-fs-gap: 20px;
+    --wl-fs-ratio: 3 / 4;
+    --wl-fs-zoom: 1.06;
+    --wl-fs-icon-size: 34px;
+    --wl-fs-bar-height: 3px;
+
+    background: var(--wl-fs-bg);
+    color: var(--wl-fs-text);
+}
+
+.wl-fs-modern-v2 .wl-fs-aside {
+    position: sticky;
+    top: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 44px 36px;
+    border-radius: 20px;
+    background: var(--wl-fs-dark);
+    color: #FFFFFF;
+}
+
+.wl-fs-modern-v2 .wl-fs-aside::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(122, 143, 58, 0.28), transparent);
+    pointer-events: none;
+}
+
+.wl-fs-modern-v2 .wl-fs-aside>* {
+    position: relative;
+}
+
+.wl-fs-modern-v2 .wl-fs-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #B7C876;
+}
+
+.wl-fs-modern-v2 .wl-fs-eyebrow::before {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: currentColor;
+}
+
+.wl-fs-modern-v2 .wl-fs-heading {
+    font-size: clamp(30px, 3vw, 42px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+}
+
+.wl-fs-modern-v2 .wl-fs-heading em {
+    font-style: normal;
+    color: #B7C876;
+}
+
+.wl-fs-modern-v2 .wl-fs-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.wl-fs-modern-v2 .wl-fs-countdown {
+    flex-wrap: nowrap;
+    margin-top: 6px;
+    --wl-pack-countdown-gap: 6px;
+}
+
+.wl-fs-modern-v2 .wl-pack-countdown-unit {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 4px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.wl-fs-modern-v2 .wl-pack-countdown-num {
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.wl-fs-modern-v2 .wl-pack-countdown-label {
+    margin-top: 5px;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.wl-fs-modern-v2 .wl-pack-countdown-sep {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.wl-fs-modern-v2 .wl-fs-cta {
+    align-self: flex-start;
+    margin-top: 8px;
+    padding: 13px 26px;
+    border-radius: 999px;
+    background: var(--wl-fs-accent);
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 220ms ease;
+}
+
+.wl-fs-modern-v2 .wl-fs-cta:hover {
+    background: var(--wl-fs-accent-dk);
+    color: #FFFFFF;
+}
+
+.wl-fs-modern-v2 .wl-fs-media {
+    border-radius: 14px;
+    background: var(--wl-fs-bg2);
+}
+
+.wl-fs-modern-v2 .wl-fs-img {
+    object-position: top;
+}
+
+.wl-fs-modern-v2 .wl-fs-off {
+    top: 12px;
+    left: 12px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--wl-fs-rust);
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.wl-fs-modern-v2 .wl-fs-icons {
+    top: 12px;
+    right: 12px;
+    gap: 6px;
+    opacity: 0;
+    transform: translateX(8px);
+    transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.wl-fs-modern-v2 .wl-fs-item:hover .wl-fs-icons,
+.wl-fs-modern-v2 .wl-fs-item:focus-within .wl-fs-icons {
+    opacity: 1;
+    transform: none;
+}
+
+.wl-fs-modern-v2 .wl-fs-iconbtn {
+    border-radius: 50%;
+    background: #FFFFFF;
+    color: var(--wl-fs-dark);
+}
+
+.wl-fs-modern-v2 .wl-fs-iconbtn:hover {
+    background: var(--wl-fs-dark);
+    color: #FFFFFF;
+}
+
+.wl-fs-modern-v2 .wl-fs-cart-wrap {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.wl-fs-modern-v2 .wl-fs-item:hover .wl-fs-cart-wrap,
+.wl-fs-modern-v2 .wl-fs-item:focus-within .wl-fs-cart-wrap {
+    opacity: 1;
+    transform: none;
+}
+
+.wl-fs-modern-v2 .wl-fs-cart-wrap a.button {
+    padding: 11px;
+    border-radius: 999px;
+    background: var(--wl-fs-dark);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.wl-fs-modern-v2 .wl-fs-cart-wrap a.button:hover {
+    background: var(--wl-fs-accent);
+    color: #FFFFFF;
+}
+
+.wl-fs-modern-v2 .wl-fs-body {
+    gap: 6px;
+    padding-top: 14px;
+}
+
+.wl-fs-modern-v2 .wl-fs-title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+}
+
+.wl-fs-modern-v2 .wl-fs-title a:hover {
+    color: var(--wl-fs-accent);
+}
+
+.wl-fs-modern-v2 .wl-fs-price {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.wl-fs-modern-v2 .wl-fs-price ins {
+    color: var(--wl-fs-rust);
+}
+
+.wl-fs-modern-v2 .wl-fs-price del {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--wl-fs-muted);
+}
+
+.wl-fs-modern-v2 .wl-fs-stock {
+    margin-top: 6px;
+}
+
+.wl-fs-modern-v2 .wl-fs-stock-bar {
+    margin-bottom: 6px;
+    background: var(--wl-fs-line);
+}
+
+.wl-fs-modern-v2 .wl-fs-stock-fill {
+    background: var(--wl-fs-accent);
+}
+
+.wl-fs-modern-v2 .wl-fs-stock-meta {
+    font-size: 11px;
+    color: var(--wl-fs-muted);
+}
+
+.wl-fs-modern-v2 .wl-fs-stock-left {
+    color: var(--wl-fs-rust);
+}
+
+@media (max-width: 1024px) {
+    .wl-fs-modern-v2 .wl-fs-aside {
+        position: relative;
+        top: auto;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-fs-modern-v2 {
+        padding: 56px 16px;
+    }
+}
+
+@media (hover: none) {
+
+    .wl-fs-modern-v2 .wl-fs-icons,
+    .wl-fs-modern-v2 .wl-fs-cart-wrap {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — The dark panel and its photograph
+   Transcribed from modern-style/v3/01-homepage.html — `.promo`
+   The reference's 280px left padding assumes a full-bleed page; inside a boxed column it
+   would crush the copy, so it shrinks with the widget's own width.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-fs-modern-v3 {
+    --wl-fs-black: #11110F;
+    --wl-fs-off-white: #FAFAF7;
+    --wl-fs-clay: #B8755B;
+    --wl-fs-clay-dark: #9A5E47;
+
+    --wl-fs-plate: 45fr 55fr;
+    --wl-fs-gap: 10px;
+    --wl-fs-ratio: 4 / 3;
+    --wl-fs-arrow-size: 30px;
+    --wl-fs-arrow-icon: 13px;
+    --wl-fs-nav-gap: 6px;
+
+    container-type: inline-size;
+    color: var(--wl-fs-off-white);
+}
+
+.wl-fs-modern-v3 .wl-fs-plate {
+    min-height: 700px;
+}
+
+.wl-fs-modern-v3 .wl-fs-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-width: min-content;
+    padding: 80px 64px 80px clamp(40px, (100cqw - 1000px) * 0.6667, 280px);
+    background: var(--wl-fs-black);
+}
+
+.wl-fs-modern-v3 .wl-fs-eyebrow {
+    margin-bottom: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--wl-fs-clay);
+}
+
+.wl-fs-modern-v3 .wl-fs-percent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+    line-height: 1;
+}
+
+.wl-fs-modern-v3 .wl-fs-percent-num {
+    font-size: clamp(88px, 9vw, 136px);
+    font-weight: 700;
+    line-height: 0.88;
+    letter-spacing: -5px;
+    color: #FFFFFF;
+}
+
+.wl-fs-modern-v3 .wl-fs-percent-suffix {
+    max-width: 3ch;
+    padding-top: 6px;
+    font-size: clamp(30px, 3.2vw, 48px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    color: var(--wl-fs-clay);
+}
+
+.wl-fs-modern-v3 .wl-fs-heading {
+    margin-bottom: 16px;
+    font-size: clamp(26px, 2.6vw, 40px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    color: #FFFFFF;
+}
+
+.wl-fs-modern-v3 .wl-fs-heading em {
+    font-style: normal;
+    color: var(--wl-fs-clay);
+}
+
+.wl-fs-modern-v3 .wl-fs-desc {
+    max-width: 340px;
+    margin-bottom: 40px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: #FFFFFF;
+}
+
+.wl-fs-modern-v3 .wl-fs-countdown {
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    margin-bottom: 44px;
+    --wl-pack-countdown-gap: 6px;
+}
+
+.wl-fs-modern-v3 .wl-pack-countdown-unit {
+    min-width: 72px;
+    padding: 14px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.wl-fs-modern-v3 .wl-pack-countdown-num {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: #FFFFFF;
+}
+
+.wl-fs-modern-v3 .wl-pack-countdown-label {
+    margin-top: 5px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.wl-fs-modern-v3 .wl-pack-countdown-sep {
+    align-self: flex-end;
+    padding-bottom: 22px;
+    font-size: 24px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.wl-fs-modern-v3 .wl-fs-cta {
+    padding: 15px 32px;
+    border-radius: 100px;
+    background: var(--wl-fs-clay);
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 200ms ease, transform 200ms ease;
+}
+
+.wl-fs-modern-v3 .wl-fs-cta:hover {
+    background: var(--wl-fs-clay-dark);
+    color: #FFFFFF;
+    transform: translateY(-2px);
+}
+
+.wl-fs-modern-v3 .wl-fs-fine {
+    margin: 18px 0 0;
+    font-size: 12px;
+    letter-spacing: 0.2px;
+    color: #C7C7C7;
+}
+
+.wl-fs-modern-v3 .wl-fs-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(12, 12, 10, 0.72) 0%, rgba(12, 12, 10, 0.18) 38%, transparent 60%);
+    pointer-events: none;
+}
+
+.wl-fs-modern-v3 .wl-fs-float {
+    position: absolute;
+    right: 28px;
+    bottom: 28px;
+    left: 28px;
+    z-index: 2;
+    max-width: 638px;
+}
+
+.wl-fs-modern-v3 .wl-fs-float-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 0 2px;
+}
+
+.wl-fs-modern-v3 .wl-fs-panel-head {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
+}
+
+.wl-fs-modern-v3 .wl-fs-arrow {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+    background: rgba(14, 14, 12, 0.62);
+    color: #FFFFFF;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    transition: background 200ms ease, border-color 200ms ease;
+}
+
+.wl-fs-modern-v3 .wl-fs-arrow:hover:not(:disabled) {
+    border-color: var(--wl-fs-clay);
+    background: var(--wl-fs-clay);
+}
+
+.wl-fs-modern-v3 .wl-fs-item {
+    overflow: hidden;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    background: rgba(14, 14, 12, 0.72);
+    color: rgba(250, 250, 247, 0.92);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    transition: transform 200ms ease, border-color 200ms ease;
+}
+
+.wl-fs-modern-v3 .wl-fs-item:hover {
+    transform: translateY(-4px);
+    border-color: rgba(184, 117, 91, 0.38);
+}
+
+.wl-fs-modern-v3 .wl-fs-body {
+    align-items: flex-start;
+    padding: 12px 14px 15px;
+}
+
+.wl-fs-modern-v3 .wl-fs-off {
+    position: static;
+    margin-bottom: 6px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: rgba(184, 117, 91, 0.18);
+    color: var(--wl-fs-clay);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.wl-fs-modern-v3 .wl-fs-title {
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.wl-fs-modern-v3 .wl-fs-price {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: #FFFFFF;
+}
+
+.wl-fs-modern-v3 .wl-fs-price del {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 1024px) {
+    .wl-fs-modern-v3 .wl-fs-plate {
+        min-height: 0;
+    }
+
+    .wl-fs-modern-v3 .wl-fs-photo {
+        order: 1;
+        min-height: 480px;
+    }
+
+    .wl-fs-modern-v3 .wl-fs-panel {
+        order: 2;
+        min-width: 0;
+        padding: 52px 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-fs-modern-v3 .wl-fs-float {
+        right: 16px;
+        bottom: 16px;
+        left: 16px;
+    }
+
+    .wl-fs-modern-v3 .wl-fs-panel {
+        padding: 44px 16px;
+    }
+
+    .wl-fs-modern-v3 .wl-pack-countdown-unit {
+        flex: 1;
+        min-width: 0;
+        padding: 12px 6px;
+    }
+
+    .wl-fs-modern-v3 .wl-fs-percent-num {
+        letter-spacing: -3px;
+    }
+}

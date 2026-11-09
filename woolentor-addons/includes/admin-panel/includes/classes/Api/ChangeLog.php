@@ -164,6 +164,21 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.5.7',
+                'date'    => '2026-11-09',
+                'changes' => [
+                    'New Features' => [
+                        'Flash Sale - Elementor Addon flowing by 2026 tread'
+                    ],
+                    'Fixes' => [
+                        'Flash same module discount badge showing issue in side mini cart.',
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
                 'version' => '3.5.6',
                 'date'    => '2026-11-04',
                 'changes' => [

@@ -1209,6 +1209,48 @@
         } );
     };
 
+    /**
+     * WLFlashSale — hands each rail to the shared Slick core and wires the template's own arrows.
+     * The timer is not started here: WLPackCountdown already runs on every widget.
+     */
+    var WLFlashSale = function ( $scope ) {
+        $scope.find( '.wl-fs-rail[data-wl-slider="true"]' ).each( function () {
+            var $rail = $( this );
+            var $fs   = $rail.closest( '[data-wl-fs]' );
+
+            // Slick refuses to re-init a live instance, and the editor re-renders on every
+            // keystroke in a control.
+            if ( $rail.hasClass( 'slick-initialized' ) ) {
+                $rail.slick( 'unslick' );
+            }
+
+            WLPackSlider( $rail );
+
+            // Slick does not know about these buttons, so the ends are read back from it.
+            function paint() {
+                var slick = $rail.slick( 'getSlick' );
+                var at    = slick.currentSlide;
+                var last  = slick.slideCount - slick.options.slidesToShow;
+
+                $fs.find( '[data-wl-fs-prev]' ).prop( 'disabled', ! slick.options.infinite && at <= 0 );
+                $fs.find( '[data-wl-fs-next]' ).prop( 'disabled', ! slick.options.infinite && at >= last );
+            }
+
+            $fs.off( '.wlfs' )
+                .on( 'click.wlfs', '[data-wl-fs-prev]', function () {
+                    $rail.slick( 'slickPrev' );
+                } )
+                .on( 'click.wlfs', '[data-wl-fs-next]', function () {
+                    $rail.slick( 'slickNext' );
+                } );
+
+            $rail.off( 'afterChange.wlfs setPosition.wlfs' )
+                .on( 'afterChange.wlfs setPosition.wlfs', paint );
+
+            paint();
+        } );
+    };
+
     // ── Elementor editor / preview ────────────────────────────────────────────
 
     $( window ).on( 'elementor/frontend/init', function () {
@@ -1247,6 +1289,11 @@
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/woolentor-social-proof.default',
             WLSocialProof
+        );
+
+        elementorFrontend.hooks.addAction(
+            'frontend/element_ready/woolentor-flash-sale.default',
+            WLFlashSale
         );
 
         // Countdown is a shared component rather than one widget's behaviour, so it
@@ -1291,6 +1338,10 @@
 
         $( '.elementor-widget-woolentor-social-proof' ).each( function () {
             WLSocialProof( $( this ) );
+        } );
+
+        $( '.elementor-widget-woolentor-flash-sale' ).each( function () {
+            WLFlashSale( $( this ) );
         } );
 
         WLPackCountdown( $( document.body ) );

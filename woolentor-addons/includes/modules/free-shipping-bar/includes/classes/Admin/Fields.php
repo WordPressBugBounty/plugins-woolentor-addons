@@ -36,7 +36,8 @@ class Fields{
                 'is_active' => true,
                 'type'      => 'new',
                 'label'     => esc_html__('New','woolentor')
-            ]
+            ],
+            'documentation'    => esc_url('https://woolentor.com/doc/how-to-set-up-the-free-shipping-bar-in-shoplentor-for-woocommerce/'),
         ];
 
         // Block

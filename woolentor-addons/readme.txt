@@ -4,7 +4,7 @@ Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenb
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 3.5.6
+Stable tag: 3.5.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -672,6 +672,11 @@ Please report security issues to our team directly at **[woolentor.com/contact](
 24. Deliver a smooth shopping experience across desktop, tablet, and mobile.
 
 == Changelog ==
+= Version: 3.5.7 - Date: 09-11-2026 =
+* Added: Flash Sale - Elementor Addon flowing by 2026 tread.
+* Solved: Flash same module discount badge showing issue in side mini cart.
+* Compatibility: Latest WordPress and WooCommerce version.
+
 = Version: 3.5.6 - Date: 04-11-2026 =
 * Solved: Template Id parsing waring for non english site.
 * Solved: Badge default value marge for ignore the warning.
@@ -815,26 +820,6 @@ Please report security issues to our team directly at **[woolentor.com/contact](
 = Version: 3.3.4 - Date: 24-02-2026 =
 * Added: Setup Wizard.
 * Solved: Dashboard layout improvement in laptop screen.
-* Compatibility: Latest WordPress and WooCommerce version.
-
-= Version: 3.3.3 - Date: 15-02-2026 =
-* Solved: Permalink flash issue.
-* Compatibility: Latest WordPress and WooCommerce version.
-
-= Version: 3.3.2 - Date: 01-02-2026 =
-* Solved: Elementor promotional widget list rendering issue.
-* Solved: Add noflow attribute in product filter link.
-* Solved: Infinite scroll and load more product current query issue.
-* Compatibility: Latest WordPress and WooCommerce version.
-
-= Version: 3.3.1 - Date: 14-01-2026 =
-* Solved: Variation Swatch image tooltip typo issue.
-* Compatibility: Latest WordPress and WooCommerce version.
-
-= Version: 3.3.0 - Date: 15-12-2025 =
-* Solved: Global Selection issue with Editorial Product Grid Widget.
-* Solved: Focus outline issue in (WL: Product Grid - Modern, WL: Product Grid - Luxury, WL: Product Grid - Editorial, WL: Product Grid - Magazine) widget.
-* Improved: Template library caching.
 * Compatibility: Latest WordPress and WooCommerce version.
 
 **Looking for older releases?** See the **[complete version history](https://woolentor.com/changes-log/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=changelog)** for every ShopLentor version back to 2.5.5.

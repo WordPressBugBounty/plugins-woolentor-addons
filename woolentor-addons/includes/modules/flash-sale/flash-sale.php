@@ -26,6 +26,11 @@ class Woolentor_Flash_Sale{
         add_filter( 'woocommerce_product_get_price', [ $this, 'flash_sale_price_simple' ], 10, 2 );
         add_filter( 'woocommerce_product_get_sale_price', [ $this, 'flash_sale_price_simple' ], 10, 2 );
 
+        // Carry the deal price into the cart totals and the mini cart
+        add_action( 'woocommerce_before_calculate_totals', [ $this, 'flash_sale_cart_item_prices' ], 5 );
+        // The mini cart fragments render from the session without calculating totals.
+        add_action( 'woocommerce_cart_loaded_from_session', [ $this, 'flash_sale_cart_item_prices' ], 5 );
+
         // Change price range of the product
         add_action( 'woocommerce_product_variation_get_price', [ $this, 'flash_sale_price_variable' ], 10, 2 );
         add_filter( 'woocommerce_product_variation_get_sale_price', [ $this, 'flash_sale_price_variable' ], 10, 2 );
@@ -168,11 +173,11 @@ class Woolentor_Flash_Sale{
      * Enqueue cart label hide CSS on all WooCommerce pages (for mini cart support).
      */
     public function enqueue_cart_label_css(){
-        $inline_css = '.woocommerce dt.variation-woolentor_cart_flash_sale_label,
+        $inline_css = 'dt.variation-woolentor_cart_flash_sale_label,
             .wc-block-components-product-details__woolentor-cart-flash-sale-label .wc-block-components-product-details__name{
                 display: none !important;
             }
-            .woocommerce .variation-woolentor_cart_flash_sale_label{
+            .variation-woolentor_cart_flash_sale_label{
                 margin: 0 !important;
             }';
         wp_add_inline_style( 'woocommerce-general', $inline_css );
@@ -183,6 +188,11 @@ class Woolentor_Flash_Sale{
      * For displaying the price and also the price calculation
      */
     public function flash_sale_price_simple( $price, $product ){
+        // A price already set on this cart item stands: the deal's own, Order Bump's or a quantity rule's.
+        if ( array_key_exists( 'price', $product->get_changes() ) ) {
+            return $price;
+        }
+
         $product_id = $product->get_id();
 
         $deal           = self::get_deal( $product_id );
@@ -202,9 +212,63 @@ class Woolentor_Flash_Sale{
 
 
     /**
+     * Set the deal price on each cart item, so the totals, the mini cart and the Store API agree
+     * with the price shown on the cart page.
+     *
+     * flash_sale_price_simple() only acts while is_cart() or is_checkout() is true, and WooCommerce
+     * calculates the totals before that is known. Variations need nothing here: their price filters
+     * always run. Priority 5 and once per item, so a later price from Order Bump or a quantity rule
+     * still stands when the totals are calculated again.
+     */
+    public function flash_sale_cart_item_prices( $cart ){
+        if ( is_admin() && ! wp_doing_ajax() ) {
+            return;
+        }
+
+        static $priced = [];
+
+        foreach ( $cart->get_cart() as $cart_item ) {
+            $product = isset( $cart_item['data'] ) ? $cart_item['data'] : null;
+
+            if ( ! is_a( $product, 'WC_Product' ) || $product->is_type( 'variation' ) ) {
+                continue;
+            }
+
+            $object_key = spl_object_hash( $product );
+
+            if ( isset( $priced[ $object_key ] ) ) {
+                continue;
+            }
+
+            $priced[ $object_key ] = true;
+
+            $product_id = $product->get_id();
+            $deal       = self::get_deal( $product_id );
+
+            if ( ! $deal || empty( $deal['discount_value'] ) || ! self::datetime_validity( $deal ) ) {
+                continue;
+            }
+
+            if ( ! get_post_meta( $product_id, '_regular_price', true ) ) {
+                continue;
+            }
+
+            $price = self::get_calculated_price( $product_id, $deal );
+
+            if ( null !== $price ) {
+                $product->set_price( $price );
+            }
+        }
+    }
+
+    /**
      * Manage variable product price
      */
     public function flash_sale_price_variable( $price, $product ){
+        // A price already set on this cart item stands, as in flash_sale_price_simple().
+        if ( array_key_exists( 'price', $product->get_changes() ) ) {
+            return $price;
+        }
 
         $product_id = $product->get_id();
         $parent_id  = $product->get_parent_id() == 0 ? $product_id : $product->get_parent_id();
@@ -265,7 +329,7 @@ class Woolentor_Flash_Sale{
                     if ( $min_price !== $max_price ) {
                         $price = wc_format_price_range( $this->get_calculated_price('', $deal, $min_price), $this->get_calculated_price('', $deal, $max_price) );
                     } else {
-                        $price = wc_price( $this->get_calculated_price($min_price) );
+                        $price = wc_price( $this->get_calculated_price('', $deal, $min_price) );
                     }
 
                     $is_free = 0 === $min_price && 0 === $max_price;
@@ -471,7 +535,7 @@ class Woolentor_Flash_Sale{
 
        $base_price     = (float) $regular_price;
        $override_sale_price = woolentor_get_option('override_sale_price', 'woolentor_flash_sale_settings');
-       if( $override_sale_price && $sale_price ){
+       if( 'on' === $override_sale_price && $sale_price ){
            $base_price = (float) $sale_price;
        }
 
@@ -510,14 +574,15 @@ class Woolentor_Flash_Sale{
        $discount_value = !empty($deal['discount_value']) ? $deal['discount_value'] : '';
 
        $override_sale_price = woolentor_get_option('override_sale_price', 'woolentor_flash_sale_settings');
-       if( $override_sale_price ){
+       // $price is empty when this runs on the sale price of a variation that has none.
+       if( 'on' === $override_sale_price && (float) $price > 0 ){
            $base_price = (float) $price;
        }
 
        // prepare discounted price
        if( $discount_type == 'fixed_discount' ){
 
-           return $base_price -  (float) $discount_value;
+           return max( 0, $base_price - (float) $discount_value );
 
        } elseif( $discount_type == 'percentage_discount' ){
 

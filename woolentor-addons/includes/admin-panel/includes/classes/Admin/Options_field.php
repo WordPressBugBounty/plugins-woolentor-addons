@@ -1282,6 +1282,18 @@ class Options_Field {
                         'label'     => esc_html__('New','woolentor')
                     ]
                 ),
+
+                array(
+                    'id'    => 'flash_sale',
+                    'name'   => esc_html__( 'Flash Sale - 2026', 'woolentor' ),
+                    'type'    => 'element',
+                    'default' => 'on',
+                    'badge'   => [
+                        'is_active' => true,
+                        'type'      => 'new',
+                        'label'     => esc_html__('New','woolentor')
+                    ]
+                ),
                 
                 array(
                     'id'    => 'product_grid_modern',

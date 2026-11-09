@@ -1,0 +1,716 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v1 — The gold ledger
+   Designed in luxury-style/v1's language: gold on obsidian, translucent cards.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-fs-luxury-v1 {
+    --wl-fs-obsidian: #07080C;
+    --wl-fs-graphite: #111318;
+    --wl-fs-gold: #C9A86A;
+    --wl-fs-gold-hover: #B8966A;
+    --wl-fs-hair: rgba(255, 255, 255, 0.08);
+    --wl-fs-dim: rgba(255, 255, 255, 0.45);
+
+    --wl-fs-cols: 4;
+    --wl-fs-cols-md: 2;
+    --wl-fs-cols-sm: 1;
+    --wl-fs-gap: 20px;
+    --wl-fs-ratio: 1 / 1;
+    --wl-fs-bar-height: 2px;
+    --wl-fs-icon-size: 34px;
+
+    background: var(--wl-fs-obsidian);
+    color: #FFFFFF;
+}
+
+.wl-fs-luxury-v1 .wl-fs-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 56px;
+}
+
+.wl-fs-luxury-v1 .wl-fs-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--wl-fs-gold);
+}
+
+.wl-fs-luxury-v1 .wl-fs-eyebrow::before {
+    content: "";
+    width: 40px;
+    height: 1px;
+    background: currentColor;
+}
+
+.wl-fs-luxury-v1 .wl-fs-heading {
+    font-size: clamp(30px, 3.6vw, 44px);
+    font-weight: 300;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+}
+
+.wl-fs-luxury-v1 .wl-fs-heading em {
+    font-style: normal;
+    color: var(--wl-fs-gold);
+}
+
+.wl-fs-luxury-v1 .wl-fs-desc {
+    max-width: 52ch;
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--wl-fs-dim);
+}
+
+.wl-fs-luxury-v1 .wl-fs-countdown {
+    flex-wrap: nowrap;
+    --wl-pack-countdown-gap: 16px;
+}
+
+.wl-fs-luxury-v1 .wl-pack-countdown-num {
+    font-size: 40px;
+    font-weight: 300;
+    color: #FFFFFF;
+}
+
+.wl-fs-luxury-v1 .wl-pack-countdown-label {
+    margin-top: 8px;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wl-fs-dim);
+}
+
+.wl-fs-luxury-v1 .wl-pack-countdown-sep {
+    margin-top: -20px;
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--wl-fs-gold);
+}
+
+.wl-fs-luxury-v1 .wl-fs-item {
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    transition: border-color 220ms ease, background 220ms ease;
+}
+
+.wl-fs-luxury-v1 .wl-fs-item:hover {
+    border-color: rgba(201, 168, 106, 0.35);
+    background: rgba(201, 168, 106, 0.04);
+}
+
+.wl-fs-luxury-v1 .wl-fs-media {
+    background: var(--wl-fs-graphite);
+}
+
+.wl-fs-luxury-v1 .wl-fs-off {
+    top: 14px;
+    left: 14px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    background: var(--wl-fs-gold);
+    color: var(--wl-fs-obsidian);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.wl-fs-luxury-v1 .wl-fs-icons {
+    top: 14px;
+    right: 14px;
+    opacity: 0;
+    transition: opacity 220ms ease;
+}
+
+.wl-fs-luxury-v1 .wl-fs-item:hover .wl-fs-icons,
+.wl-fs-luxury-v1 .wl-fs-item:focus-within .wl-fs-icons {
+    opacity: 1;
+}
+
+.wl-fs-luxury-v1 .wl-fs-iconbtn {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 50%;
+    background: rgba(7, 8, 12, 0.72);
+    color: #FFFFFF;
+}
+
+.wl-fs-luxury-v1 .wl-fs-iconbtn:hover {
+    border-color: var(--wl-fs-gold);
+    color: var(--wl-fs-gold);
+}
+
+.wl-fs-luxury-v1 .wl-fs-body {
+    gap: 10px;
+    padding: 20px 22px 22px;
+}
+
+.wl-fs-luxury-v1 .wl-fs-cat {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--wl-fs-gold);
+}
+
+.wl-fs-luxury-v1 .wl-fs-title {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #FFFFFF;
+}
+
+.wl-fs-luxury-v1 .wl-fs-title a:hover {
+    color: var(--wl-fs-gold);
+}
+
+.wl-fs-luxury-v1 .wl-fs-price {
+    font-size: 17px;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.wl-fs-luxury-v1 .wl-fs-price del {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--wl-fs-dim);
+}
+
+.wl-fs-luxury-v1 .wl-fs-stock-bar {
+    margin-bottom: 8px;
+    background: var(--wl-fs-hair);
+}
+
+.wl-fs-luxury-v1 .wl-fs-stock-fill {
+    background: var(--wl-fs-gold);
+}
+
+.wl-fs-luxury-v1 .wl-fs-stock-meta {
+    font-size: 11.5px;
+    color: var(--wl-fs-dim);
+}
+
+.wl-fs-luxury-v1 .wl-fs-stock-left {
+    color: var(--wl-fs-gold);
+}
+
+.wl-fs-luxury-v1 .wl-fs-cart-wrap {
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.wl-fs-luxury-v1 .wl-fs-cart-wrap a.button {
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: var(--wl-fs-gold);
+    color: var(--wl-fs-obsidian);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.wl-fs-luxury-v1 .wl-fs-cart-wrap a.button:hover {
+    background: var(--wl-fs-gold-hover);
+    color: var(--wl-fs-obsidian);
+}
+
+@media (max-width: 767px) {
+    .wl-fs-luxury-v1 {
+        padding: 64px 16px;
+    }
+
+    .wl-fs-luxury-v1 .wl-pack-countdown-num {
+        font-size: 30px;
+    }
+
+    .wl-fs-luxury-v1 .wl-pack-countdown-sep {
+        font-size: 20px;
+    }
+}
+
+@media (hover: none) {
+    .wl-fs-luxury-v1 .wl-fs-icons {
+        opacity: 1;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v2 — The ruled banner
+   Designed in luxury-style/v2's language: dark olive, lime, square corners.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-fs-luxury-v2 {
+    --wl-fs-dark: #30382C;
+    --wl-fs-lime: #E7EC78;
+    --wl-fs-field: #EAEBE1;
+    --wl-fs-elevated: #FCFCF8;
+    --wl-fs-olive: #6B705E;
+    --wl-fs-on-light: #2A3024;
+    --wl-fs-soft: #5E6353;
+    --wl-fs-text: #F1F2EA;
+    --wl-fs-text-2: #B8BCA9;
+    --wl-fs-line: rgba(48, 56, 44, 0.14);
+
+    --wl-fs-cols: 4;
+    --wl-fs-cols-md: 2;
+    --wl-fs-cols-sm: 1;
+    --wl-fs-gap: 16px;
+    --wl-fs-ratio: 3 / 4;
+    --wl-fs-zoom: 1.06;
+    --wl-fs-icon-size: 36px;
+
+    background: var(--wl-fs-field);
+    color: var(--wl-fs-on-light);
+}
+
+.wl-fs-luxury-v2 .wl-fs-banner {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+    padding: clamp(44px, 5vw, 72px) 28px;
+    background: var(--wl-fs-dark);
+    text-align: center;
+}
+
+.wl-fs-luxury-v2 .wl-fs-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        repeating-linear-gradient(0deg, rgba(241, 242, 234, 0.035) 0, rgba(241, 242, 234, 0.035) 1px, transparent 1px, transparent 40px),
+        repeating-linear-gradient(90deg, rgba(241, 242, 234, 0.035) 0, rgba(241, 242, 234, 0.035) 1px, transparent 1px, transparent 40px);
+}
+
+.wl-fs-luxury-v2 .wl-fs-banner>* {
+    position: relative;
+}
+
+.wl-fs-luxury-v2 .wl-fs-eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.8px;
+    text-transform: uppercase;
+    color: var(--wl-fs-lime);
+}
+
+.wl-fs-luxury-v2 .wl-fs-heading {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(36px, 4vw, 58px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -1.2px;
+    color: var(--wl-fs-text);
+}
+
+.wl-fs-luxury-v2 .wl-fs-heading em {
+    font-style: italic;
+    color: var(--wl-fs-lime);
+}
+
+.wl-fs-luxury-v2 .wl-fs-desc {
+    max-width: 46ch;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--wl-fs-text-2);
+}
+
+.wl-fs-luxury-v2 .wl-fs-countdown {
+    flex-wrap: nowrap;
+    margin-top: 12px;
+    --wl-pack-countdown-gap: 18px;
+}
+
+.wl-fs-luxury-v2 .wl-pack-countdown-num {
+    font-family: var(--wl-pack-font-heading);
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 500;
+    color: var(--wl-fs-lime);
+}
+
+.wl-fs-luxury-v2 .wl-pack-countdown-label {
+    margin-top: 8px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--wl-fs-text-2);
+}
+
+.wl-fs-luxury-v2 .wl-pack-countdown-sep {
+    margin-top: -22px;
+    font-size: 28px;
+    color: rgba(241, 242, 234, 0.3);
+}
+
+.wl-fs-luxury-v2 .wl-fs-item {
+    border: 1px solid var(--wl-fs-line);
+    background: var(--wl-fs-elevated);
+}
+
+.wl-fs-luxury-v2 .wl-fs-media {
+    background: var(--wl-fs-field);
+}
+
+.wl-fs-luxury-v2 .wl-fs-img {
+    transition-duration: 1100ms;
+}
+
+.wl-fs-luxury-v2 .wl-fs-off {
+    top: 12px;
+    left: 12px;
+    padding: 6px 10px;
+    background: var(--wl-fs-dark);
+    color: var(--wl-fs-lime);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.wl-fs-luxury-v2 .wl-fs-icons {
+    top: 12px;
+    right: 12px;
+    gap: 6px;
+    opacity: 0;
+    transition: opacity 280ms ease;
+}
+
+.wl-fs-luxury-v2 .wl-fs-item:hover .wl-fs-icons,
+.wl-fs-luxury-v2 .wl-fs-item:focus-within .wl-fs-icons {
+    opacity: 1;
+}
+
+.wl-fs-luxury-v2 .wl-fs-iconbtn {
+    background: var(--wl-fs-elevated);
+    color: var(--wl-fs-on-light);
+}
+
+.wl-fs-luxury-v2 .wl-fs-iconbtn:hover {
+    background: var(--wl-fs-dark);
+    color: var(--wl-fs-text);
+}
+
+.wl-fs-luxury-v2 .wl-fs-cart-wrap {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 280ms ease, transform 280ms ease;
+}
+
+.wl-fs-luxury-v2 .wl-fs-item:hover .wl-fs-cart-wrap,
+.wl-fs-luxury-v2 .wl-fs-item:focus-within .wl-fs-cart-wrap {
+    opacity: 1;
+    transform: none;
+}
+
+.wl-fs-luxury-v2 .wl-fs-cart-wrap a.button {
+    padding: 14px;
+    border-radius: 0;
+    background: var(--wl-fs-dark);
+    color: var(--wl-fs-text);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+
+.wl-fs-luxury-v2 .wl-fs-cart-wrap a.button:hover {
+    background: var(--wl-fs-lime);
+    color: var(--wl-fs-on-light);
+}
+
+.wl-fs-luxury-v2 .wl-fs-body {
+    gap: 6px;
+    padding: 16px;
+}
+
+.wl-fs-luxury-v2 .wl-fs-title {
+    font-family: var(--wl-pack-font-heading);
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--wl-fs-on-light);
+}
+
+.wl-fs-luxury-v2 .wl-fs-title a:hover {
+    color: var(--wl-fs-olive);
+}
+
+.wl-fs-luxury-v2 .wl-fs-price {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--wl-fs-on-light);
+}
+
+.wl-fs-luxury-v2 .wl-fs-price del {
+    font-weight: 400;
+    color: var(--wl-fs-soft);
+}
+
+@media (max-width: 767px) {
+    .wl-fs-luxury-v2 {
+        padding: 60px 16px;
+    }
+
+    .wl-fs-luxury-v2 .wl-fs-countdown {
+        --wl-pack-countdown-gap: 10px;
+    }
+}
+
+@media (hover: none) {
+
+    .wl-fs-luxury-v2 .wl-fs-icons,
+    .wl-fs-luxury-v2 .wl-fs-cart-wrap {
+        opacity: 1;
+    }
+
+    .wl-fs-luxury-v2 .wl-fs-cart-wrap {
+        position: static;
+        transform: none;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Variant: v3 — The timer banner and four overlay cards
+   Transcribed from luxury-style/v3/homepage.html — `.flash-sale`
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.wl-fs-luxury-v3 {
+    --wl-fs-charcoal: #2C2A28;
+    --wl-fs-mocha: #6E5B4B;
+    --wl-fs-beige: #E7E7E7;
+    --wl-fs-ivory: #F8F5F0;
+
+    --wl-fs-cols: 4;
+    --wl-fs-cols-md: 2;
+    --wl-fs-cols-sm: 1;
+    --wl-fs-gap: 16px;
+    --wl-fs-ratio: 3 / 4;
+    --wl-fs-zoom: 1.06;
+
+    background: #F6F6F6;
+    color: var(--wl-fs-charcoal);
+}
+
+.wl-fs-luxury-v3 .wl-fs-banner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 28px;
+    padding: 28px 40px;
+    border-radius: 12px;
+    background: #E5E5E5;
+}
+
+.wl-fs-luxury-v3 .wl-fs-eyebrow {
+    flex-shrink: 0;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--wl-fs-charcoal);
+}
+
+.wl-fs-luxury-v3 .wl-fs-countdown {
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    --wl-pack-countdown-gap: 6px;
+}
+
+.wl-fs-luxury-v3 .wl-pack-countdown-num {
+    min-width: 56px;
+    font-size: 44px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--wl-fs-charcoal);
+}
+
+.wl-fs-luxury-v3 .wl-pack-countdown-sep {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--wl-fs-charcoal);
+}
+
+.wl-fs-luxury-v3 .wl-fs-desc {
+    flex: 0 1 240px;
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: right;
+    color: var(--wl-fs-mocha);
+}
+
+.wl-fs-luxury-v3 .wl-fs-cta {
+    flex-shrink: 0;
+    padding: 14px 26px;
+    border-radius: 100px;
+    background: var(--wl-fs-charcoal);
+    color: var(--wl-fs-ivory);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 150ms ease;
+}
+
+.wl-fs-luxury-v3 .wl-fs-cta:hover {
+    background: var(--wl-fs-mocha);
+    color: var(--wl-fs-ivory);
+}
+
+.wl-fs-luxury-v3 .wl-fs-item {
+    overflow: hidden;
+    border-radius: 12px;
+    color: #FFFFFF;
+}
+
+.wl-fs-luxury-v3 .wl-fs-media {
+    width: 100%;
+    background: var(--wl-fs-beige);
+}
+
+.wl-fs-luxury-v3 .wl-fs-img {
+    transition-duration: 600ms;
+}
+
+.wl-fs-luxury-v3 .wl-fs-off {
+    top: 14px;
+    left: 14px;
+    padding: 5px 10px;
+    border-radius: 100px;
+    background: #FFFFFF;
+    color: var(--wl-fs-charcoal);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.wl-fs-luxury-v3 .wl-fs-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15, 12, 10, 0.85) 0%, rgba(15, 12, 10, 0.28) 48%, transparent 72%);
+    pointer-events: none;
+}
+
+.wl-fs-luxury-v3 .wl-fs-body {
+    position: absolute;
+    inset: 0;
+    justify-content: flex-end;
+}
+
+.wl-fs-luxury-v3 .wl-fs-copy {
+    display: block;
+    padding: 0 20px 14px;
+}
+
+.wl-fs-luxury-v3 .wl-fs-cat {
+    margin-bottom: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.wl-fs-luxury-v3 .wl-fs-title {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #FFFFFF;
+}
+
+.wl-fs-luxury-v3 .wl-fs-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 12px 14px;
+    background: rgba(15, 12, 10, 0.52);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.wl-fs-luxury-v3 .wl-fs-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.wl-fs-luxury-v3 .wl-fs-mini {
+    flex-shrink: 0;
+    overflow: hidden;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background: var(--wl-fs-beige);
+}
+
+.wl-fs-luxury-v3 .wl-fs-item:hover .wl-fs-mini .wl-fs-img {
+    transform: none;
+}
+
+.wl-fs-luxury-v3 .wl-fs-price {
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.wl-fs-luxury-v3 .wl-fs-price del {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.wl-fs-luxury-v3 .wl-fs-shop {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    border-radius: 100px;
+    background: #FFFFFF;
+    color: var(--wl-fs-charcoal);
+    font-size: 13px;
+    font-weight: 600;
+    transition: background 150ms ease;
+}
+
+.wl-fs-luxury-v3 .wl-fs-item:hover .wl-fs-shop {
+    background: var(--wl-fs-beige);
+}
+
+@media (max-width: 1024px) {
+    .wl-fs-luxury-v3 .wl-fs-banner {
+        padding: 22px 28px;
+    }
+
+    .wl-fs-luxury-v3 .wl-pack-countdown-num {
+        min-width: 44px;
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 767px) {
+    .wl-fs-luxury-v3 {
+        padding: 64px 16px;
+    }
+
+    .wl-fs-luxury-v3 .wl-fs-desc {
+        flex-basis: 100%;
+        text-align: left;
+    }
+}

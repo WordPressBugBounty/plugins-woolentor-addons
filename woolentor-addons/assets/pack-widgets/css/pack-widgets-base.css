@@ -3435,3 +3435,373 @@
 [data-wl-pack] .wl-bp-more-status:empty {
     display: none;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Flash Sale - 2026 — mechanics. Colour, type and radius live in the pack files.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-wl-pack] .wl-fs,
+[data-wl-pack] .wl-fs * {
+    box-sizing: border-box;
+}
+
+[data-wl-pack] .wl-fs-heading,
+[data-wl-pack] .wl-fs-desc,
+[data-wl-pack] .wl-fs-title {
+    margin: 0;
+}
+
+[data-wl-pack] .wl-fs-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+[data-wl-pack] .wl-fs-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--wl-fs-cols, 4), minmax(0, 1fr));
+    gap: var(--wl-fs-gap, 24px);
+}
+
+@media (max-width: 1024px) {
+    [data-wl-pack] .wl-fs-grid {
+        grid-template-columns: repeat(var(--wl-fs-cols-md, 2), minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    [data-wl-pack] .wl-fs-grid {
+        grid-template-columns: repeat(var(--wl-fs-cols-sm, 1), minmax(0, 1fr));
+    }
+}
+
+[data-wl-pack] .wl-fs-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+[data-wl-pack] .wl-fs-media {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    aspect-ratio: var(--wl-fs-ratio, 1 / 1);
+}
+
+[data-wl-pack] .wl-fs-thumb {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+[data-wl-pack] .wl-fs-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 500ms ease;
+}
+
+[data-wl-pack] .wl-fs-item:hover .wl-fs-img {
+    transform: scale(var(--wl-fs-zoom, 1.05));
+}
+
+[data-wl-pack] .wl-fs-off,
+[data-wl-pack] .wl-fs-tag {
+    position: absolute;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+[data-wl-pack] .wl-fs-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+}
+
+[data-wl-pack] .wl-fs-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+[data-wl-pack] .wl-fs-price {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px;
+}
+
+[data-wl-pack] .wl-fs-price del {
+    order: 2;
+    text-decoration: line-through;
+}
+
+[data-wl-pack] .wl-fs-price ins {
+    order: 1;
+    text-decoration: none;
+}
+
+[data-wl-pack] .wl-fs-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+[data-wl-pack] .wl-fs-rating svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+}
+
+[data-wl-pack] .wl-fs-rating .star.empty {
+    opacity: 0.28;
+}
+
+/* ── Stock ────────────────────────────────────────────────────────────────── */
+
+[data-wl-pack] .wl-fs-stock-bar {
+    overflow: hidden;
+    height: var(--wl-fs-bar-height, 6px);
+}
+
+[data-wl-pack] .wl-fs-stock-fill {
+    height: 100%;
+    border-radius: inherit;
+}
+
+[data-wl-pack] .wl-fs-stock-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px 10px;
+}
+
+[data-wl-pack] .wl-fs-stock-left {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+[data-wl-pack] .wl-fs-icon {
+    display: block;
+    flex-shrink: 0;
+    width: 1em;
+    height: 1em;
+}
+
+/* ── Actions ──────────────────────────────────────────────────────────────── */
+
+[data-wl-pack] .wl-fs-icons {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+[data-wl-pack] .wl-fs-iconbtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: var(--wl-fs-icon-size, 36px);
+    height: var(--wl-fs-icon-size, 36px);
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    line-height: 1;
+}
+
+[data-wl-pack] .wl-fs-iconbtn svg {
+    display: block;
+    flex-shrink: 0;
+    margin: 0;
+}
+
+[data-wl-pack] .wl-fs-iconbtn a,
+[data-wl-pack] .wl-fs-iconbtn button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font-size: 0;
+}
+
+[data-wl-pack] .wl-fs-cart-wrap {
+    display: inline-flex;
+    min-width: 0;
+}
+
+[data-wl-pack] .wl-fs-cart-wrap a.button,
+[data-wl-pack] .wl-fs-cart-wrap a.wl-fs-cart {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin: 0;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+[data-wl-pack] .wl-fs-cart-wrap .added_to_cart {
+    display: none;
+}
+
+[data-wl-pack] .wl-fs-item a:focus-visible,
+[data-wl-pack] .wl-fs-item button:focus-visible,
+[data-wl-pack] .wl-fs-arrow:focus-visible,
+[data-wl-pack] .wl-fs-cta:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+/* ── Rail ─────────────────────────────────────────────────────────────────── */
+
+[data-wl-pack] .wl-fs-rail:not(.slick-initialized) {
+    display: flex;
+    gap: var(--wl-fs-gap, 20px);
+    overflow: hidden;
+}
+
+[data-wl-pack] .wl-fs-rail:not(.slick-initialized) .wl-fs-slide {
+    flex: 0 0 calc(100% / var(--wl-fs-shown, 3) - var(--wl-fs-gap, 20px));
+}
+
+[data-wl-pack] .wl-fs-rail.slick-initialized .slick-list {
+    margin: 0 calc(var(--wl-fs-gap, 20px) / -2);
+}
+
+[data-wl-pack] .wl-fs-rail.slick-initialized .slick-track {
+    display: flex;
+    align-items: stretch;
+}
+
+[data-wl-pack] .wl-fs-rail.slick-initialized .wl-fs-slide {
+    height: auto;
+    padding: 0 calc(var(--wl-fs-gap, 20px) / 2);
+}
+
+[data-wl-pack] .wl-fs-rail .wl-fs-slide>.wl-fs-item {
+    height: 100%;
+}
+
+[data-wl-pack] .wl-fs-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+    line-height: 0;
+}
+
+[data-wl-pack] .wl-fs-swatches {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+[data-wl-pack] .wl-fs-swatch {
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+}
+
+/* ── Plate, split, photograph ─────────────────────────────────────────────── */
+
+[data-wl-pack] .wl-fs-plate {
+    display: grid;
+    grid-template-columns: var(--wl-fs-plate, 1fr 1fr);
+    min-width: 0;
+}
+
+[data-wl-pack] .wl-fs-plate>*,
+[data-wl-pack] .wl-fs-split>* {
+    min-width: 0;
+}
+
+[data-wl-pack] .wl-fs-split {
+    display: grid;
+    grid-template-columns: var(--wl-fs-split, 1fr 2fr);
+    gap: var(--wl-fs-split-gap, 32px);
+    align-items: start;
+}
+
+[data-wl-pack] .wl-fs-photo {
+    position: relative;
+    overflow: hidden;
+    min-height: var(--wl-fs-photo-min, 320px);
+}
+
+[data-wl-pack] .wl-fs-photo-img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+[data-wl-pack] .wl-fs-nav {
+    display: flex;
+    gap: var(--wl-fs-nav-gap, 10px);
+}
+
+[data-wl-pack] .wl-fs-arrow {
+    width: var(--wl-fs-arrow-size, 44px);
+    height: var(--wl-fs-arrow-size, 44px);
+}
+
+[data-wl-pack] .wl-fs-arrow:disabled {
+    opacity: 0.32;
+    cursor: default;
+}
+
+[data-wl-pack] .wl-fs-arrow .wl-fs-icon {
+    width: var(--wl-fs-arrow-icon, 18px);
+    height: var(--wl-fs-arrow-icon, 18px);
+}
+
+[data-wl-pack] a.wl-fs-item {
+    display: flex;
+    color: inherit;
+    text-decoration: none;
+}
+
+[data-wl-pack] .wl-fs-panel-head,
+[data-wl-pack] .wl-fs-title,
+[data-wl-pack] .wl-fs-cat,
+[data-wl-pack] .wl-fs-brand {
+    display: block;
+}
+
+[data-wl-pack] .wl-fs-flag {
+    position: absolute;
+    z-index: 2;
+}
+
+@media (max-width: 1024px) {
+
+    [data-wl-pack] .wl-fs-plate,
+    [data-wl-pack] .wl-fs-split {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

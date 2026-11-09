@@ -47,6 +47,7 @@ class Currency_Switcher{
         require_once( MODULE_PATH. "/includes/Functions.php" );
         require_once( MODULE_PATH. "/includes/classes/Admin.php" );
         require_once( MODULE_PATH. "/includes/classes/Frontend.php" );
+        require_once( MODULE_PATH. "/includes/classes/Order_Analytics.php" );
         require_once( MODULE_PATH. "/includes/classes/Widgets_And_Blocks.php" );
 
         // If Pro active
@@ -75,6 +76,9 @@ class Currency_Switcher{
         // Register Widget and blocks
         if( self::$_enabled ){
             Widgets_And_Blocks::instance();
+            // Exchange rate on orders + WooCommerce Analytics in store currency. Loaded on every
+            // request type: Analytics imports run in cron / Action Scheduler.
+            Order_Analytics::instance();
         }
 
     }
