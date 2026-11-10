@@ -42,6 +42,37 @@
     }
 
     /**
+     * Turn a message into plain text: HTML entities (e.g. the currency symbol &euro;)
+     * are decoded and any markup is dropped. DOMParser builds an inert document, so
+     * nothing in the string runs or loads.
+     *
+     * @param  {string} str
+     * @return {string}
+     */
+    function toPlainText( str ) {
+        if ( typeof str !== 'string' || str === '' ) {
+            return '';
+        }
+        if ( window.DOMParser ) {
+            var doc = new window.DOMParser().parseFromString( str, 'text/html' );
+            return doc.body ? ( doc.body.textContent || '' ) : '';
+        }
+        return str.replace( /<[^>]*>/g, '' );
+    }
+
+    /**
+     * Show a message in an element as text, never as HTML.
+     *
+     * @param {Element} el
+     * @param {string}  message
+     */
+    function setMessage( el, message ) {
+        if ( el ) {
+            el.textContent = toPlainText( message );
+        }
+    }
+
+    /**
      * Build the bar message, replacing the {amount} placeholder.
      *
      * @param  {number}  remaining
@@ -185,7 +216,7 @@
         var notEligible = ! isEligible( cfg.eligible ) && !! cfg.msgNotEligible;
         bar.classList.toggle( 'wl-fsb-not-eligible', notEligible );
         if ( notEligible ) {
-            if ( msgEl ) msgEl.innerHTML = cfg.msgNotEligible;
+            setMessage( msgEl, cfg.msgNotEligible );
             bar.classList.remove( 'wl-fsb-complete' );
             return;
         }
@@ -196,7 +227,7 @@
         var pct        = Math.min( 100, ( total / threshold ) * 100 );
         var isComplete = remaining === 0;
 
-        if ( msgEl )   msgEl.innerHTML = buildMessage( remaining, isComplete, bar );
+        setMessage( msgEl, buildMessage( remaining, isComplete, bar ) );
         if ( fillEl )  fillEl.style.width = pct.toFixed( 2 ) + '%';
         if ( trackEl ) trackEl.setAttribute( 'aria-valuenow', Math.round( pct ) );
 

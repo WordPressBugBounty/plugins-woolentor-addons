@@ -229,11 +229,7 @@ class Woolentor_Manage_WC_Template{
                 if( method_exists('\WooLentorBlocks\Manage_Styles','generate_inline_css') && $inline_css === true ){
                     \WooLentorBlocks\Manage_Styles::instance()->generate_inline_css( $id );
                 }
-                $blocks = parse_blocks( $content );
-                $embed = new WP_Embed();
-                foreach ( $blocks as $block ) {
-                    $output .= $embed->autoembed(do_shortcode( render_block( $block ) )); //phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
-                }
+                $output = self::render_blocks( $content );
             }else{
                 $content = apply_filters( 'the_content', $content );
                 $content = str_replace(']]>', ']]&gt;', $content );
@@ -244,6 +240,68 @@ class Woolentor_Manage_WC_Template{
 
         return $output;
 
+    }
+
+    /**
+     * Render the blocks of a Gutenberg built template.
+     *
+     * Shortcodes and embeds are run on the template's own (saved) content before the blocks
+     * are rendered, like WordPress core does for block templates. They are never run on the
+     * rendered output: that output can contain visitor data (search term, product reviews,
+     * etc.), and running shortcodes on it lets a visitor execute any shortcode.
+     *
+     * @param  string $content Block markup.
+     * @return string
+     */
+    public static function render_blocks( $content ){
+        $output = '';
+        $embed  = new WP_Embed();
+
+        // The Shortcode block only runs wpautop() and leaves the shortcode to the_content's
+        // do_shortcode(). Its output is the author's own text, so run the shortcode there.
+        $shortcode_block = function( $block_content ){
+            return do_shortcode( $block_content );
+        };
+        add_filter( 'render_block_core/shortcode', $shortcode_block );
+
+        foreach ( parse_blocks( $content ) as $block ) {
+            $output .= render_block( self::prepare_block_content( $block, $embed ) );
+        }
+
+        remove_filter( 'render_block_core/shortcode', $shortcode_block );
+
+        return $output;
+    }
+
+    /**
+     * Run shortcodes and embeds on the static (saved) HTML of a block and its inner blocks.
+     *
+     * @param  array    $block Parsed block.
+     * @param  WP_Embed $embed
+     * @return array
+     */
+    private static function prepare_block_content( $block, $embed ){
+        if ( 'core/shortcode' === $block['blockName'] ) {
+            return $block; // Handled on render, see render_blocks().
+        }
+
+        if ( ! empty( $block['innerContent'] ) && is_array( $block['innerContent'] ) ) {
+            foreach ( $block['innerContent'] as $index => $chunk ) {
+                if ( is_string( $chunk ) && '' !== trim( $chunk ) ) {
+                    $block['innerContent'][ $index ] = $embed->autoembed( do_shortcode( $chunk ) );
+                }
+            }
+            // innerHTML is the block's own HTML without the inner blocks: the string chunks joined.
+            $block['innerHTML'] = implode( '', array_filter( $block['innerContent'], 'is_string' ) );
+        }
+
+        if ( ! empty( $block['innerBlocks'] ) && is_array( $block['innerBlocks'] ) ) {
+            foreach ( $block['innerBlocks'] as $index => $inner_block ) {
+                $block['innerBlocks'][ $index ] = self::prepare_block_content( $inner_block, $embed );
+            }
+        }
+
+        return $block;
     }
 
     /*

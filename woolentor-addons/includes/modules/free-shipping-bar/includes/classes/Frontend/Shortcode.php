@@ -156,11 +156,13 @@ class Shortcode {
      */
     private function build_data_attrs( array $atts ) {
         $data = '';
+        // The script shows these messages as text, but strip unsafe markup here as well:
+        // the attribute value is read back by JavaScript, so esc_attr() alone is not enough.
         if ( ! empty( $atts['message'] ) ) {
-            $data .= ' data-msg-initial="' . esc_attr( $atts['message'] ) . '"';
+            $data .= ' data-msg-initial="' . esc_attr( wp_kses_post( $atts['message'] ) ) . '"';
         }
         if ( ! empty( $atts['message_success'] ) ) {
-            $data .= ' data-msg-success="' . esc_attr( $atts['message_success'] ) . '"';
+            $data .= ' data-msg-success="' . esc_attr( wp_kses_post( $atts['message_success'] ) ) . '"';
         }
         return $data;
     }
