@@ -48,6 +48,10 @@ class Woolentor_Ajax_Action{
         add_action( 'wp_ajax_woolentor_add_bundle_to_cart', [ $this, 'add_bundle_to_cart' ] );
         add_action( 'wp_ajax_nopriv_woolentor_add_bundle_to_cart', [ $this, 'add_bundle_to_cart' ] );
 
+        // Take one product off the visitor's compare list, from a Compare Table - 2026 widget
+        add_action( 'wp_ajax_woolentor_compare_table_remove', [ $this, 'compare_table_remove' ] );
+        add_action( 'wp_ajax_nopriv_woolentor_compare_table_remove', [ $this, 'compare_table_remove' ] );
+
         // The next page of a Blog Posts - 2026 widget, for its Load More button (Pro)
         add_action( 'wp_ajax_woolentor_blog_posts_load_more', [ $this, 'blog_posts_load_more' ] );
         add_action( 'wp_ajax_nopriv_woolentor_blog_posts_load_more', [ $this, 'blog_posts_load_more' ] );
@@ -114,6 +118,42 @@ class Woolentor_Ajax_Action{
      *
      * @return void
      */
+    /**
+     * Take one product off the visitor's compare list, for the Compare Table - 2026 widget.
+     *
+     * Writes the cookie with the Compare module's own arguments, so the module and the Ever Compare
+     * plugin read the same list. The module's remove_from_compare() is not called because it sends
+     * its own response and exits.
+     *
+     * @return void
+     */
+    public function compare_table_remove() {
+        if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'woolentor_compare_table_remove' ) ) {
+            wp_send_json_error( [ 'message' => esc_html__( 'Security check failed', 'woolentor' ) ] );
+        }
+
+        if ( ! class_exists( '\EverCompare\Frontend\Manage_Compare' ) ) {
+            wp_send_json_error( [ 'message' => esc_html__( 'Compare is not available.', 'woolentor' ) ] );
+        }
+
+        $id      = isset( $_POST['product_id'] ) ? absint( $_POST['product_id'] ) : 0;
+        $compare = \EverCompare\Frontend\Manage_Compare::instance();
+        $name    = $compare->get_cookie_name();
+        $ids     = $compare->get_compared_products();
+        $ids     = array_values( array_filter( array_map( 'absint', is_array( $ids ) ? $ids : [] ) ) );
+        $ids     = array_values( array_diff( $ids, [ $id ] ) );
+
+        if ( $ids ) {
+            setcookie( $name, wp_json_encode( $ids ), 0, COOKIEPATH, COOKIE_DOMAIN, false, false );
+            $_COOKIE[ $name ] = wp_json_encode( $ids );
+        } else {
+            setcookie( $name, '', time() - HOUR_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, false, false );
+            unset( $_COOKIE[ $name ] );
+        }
+
+        wp_send_json_success( [ 'count' => count( $ids ) ] );
+    }
+
     public function add_look_to_cart() {
 
         if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'woolentor_psa_nonce' ) ) {

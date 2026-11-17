@@ -1251,6 +1251,87 @@
         } );
     };
 
+    /**
+     * WLCompareTable — fills the visitor's compare list.
+     *
+     * The page carries an empty shell, because the list lives in a cookie and a cached page must
+     * not show one visitor's list to another. The shell asks the Product Kit's section endpoint
+     * for the table. An empty answer, or a failed one, hides the whole element so its padding
+     * leaves no gap. The server reads the ids from the cookie; the browser sends only an address.
+     */
+    var WLCompareTable = ( function () {
+        function ajaxUrl() {
+            return ( window.wlPackWidgets && wlPackWidgets.ajaxurl ) || window.ajaxurl || '/wp-admin/admin-ajax.php';
+        }
+
+        function load( $shell ) {
+            var $element = $shell.closest( '.elementor-element' );
+
+            $.post( ajaxUrl(), {
+                action: 'woolentor_product_section',
+                nonce: $shell.attr( 'data-wl-section-nonce' ),
+                provider: $shell.attr( 'data-wl-section-provider' ),
+                post_id: $shell.attr( 'data-wl-section-post' ),
+                section_id: $shell.attr( 'data-wl-section-id' )
+            } ).done( function ( response ) {
+                var html = response && response.success && response.data ? response.data.html : '';
+
+                if ( ! html ) {
+                    $shell.empty();
+                    $element.hide();
+                    return;
+                }
+
+                $shell.html( html );
+                $element.show();
+                $( document.body ).trigger( 'wl-compare-table:rendered', [ $shell ] );
+            } ).fail( function () {
+                $shell.empty();
+                $element.hide();
+            } );
+        }
+
+        function refreshAll() {
+            $( '[data-wl-ct-shell]' ).each( function () {
+                load( $( this ) );
+            } );
+        }
+
+        // One delegated handler for every table on the page, bound once.
+        $( document ).off( 'click.wlct' ).on( 'click.wlct', '[data-wl-ct-shell] [data-wl-ct-remove]', function ( event ) {
+            var $btn   = $( this );
+            var $shell = $btn.closest( '[data-wl-ct-shell]' );
+
+            event.preventDefault();
+
+            if ( $btn.prop( 'disabled' ) ) {
+                return;
+            }
+
+            $btn.prop( 'disabled', true ).closest( '.wl-ct-col, .wl-ct-col-head' ).css( 'opacity', 0.5 );
+
+            $.post( ajaxUrl(), {
+                action: 'woolentor_compare_table_remove',
+                nonce: $shell.attr( 'data-wl-ct-nonce' ),
+                product_id: $btn.attr( 'data-wl-ct-remove' )
+            } ).always( refreshAll );
+        } );
+
+        // Elementor's ready hook and the plain fallback can both reach a shell; it loads once.
+        return function ( $scope ) {
+            $scope.find( '[data-wl-ct-shell]' ).each( function () {
+                var $shell = $( this );
+
+                if ( $shell.data( 'wlCtLoaded' ) ) {
+                    return;
+                }
+
+                $shell.data( 'wlCtLoaded', true );
+                load( $shell );
+            } );
+        };
+    } )();
+
     // ── Elementor editor / preview ────────────────────────────────────────────
 
     $( window ).on( 'elementor/frontend/init', function () {
@@ -1294,6 +1375,11 @@
         elementorFrontend.hooks.addAction(
             'frontend/element_ready/woolentor-flash-sale.default',
             WLFlashSale
+        );
+
+        elementorFrontend.hooks.addAction(
+            'frontend/element_ready/woolentor-compare-table.default',
+            WLCompareTable
         );
 
         // Countdown is a shared component rather than one widget's behaviour, so it
@@ -1342,6 +1428,10 @@
 
         $( '.elementor-widget-woolentor-flash-sale' ).each( function () {
             WLFlashSale( $( this ) );
+        } );
+
+        $( '.elementor-widget-woolentor-compare-table' ).each( function () {
+            WLCompareTable( $( this ) );
         } );
 
         WLPackCountdown( $( document.body ) );

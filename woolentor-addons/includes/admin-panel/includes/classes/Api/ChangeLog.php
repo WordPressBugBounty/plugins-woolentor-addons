@@ -164,6 +164,22 @@ class ChangeLog extends WP_REST_Controller {
     private function get_changelog_data() {
         return [
             [
+                'version' => '3.5.9',
+                'date'    => '2026-11-17',
+                'changes' => [
+                    'New Features' => [
+                        'Product Compare Table - Elementor Addon flowing by 2026 tread.',
+                    ],
+                    'Fixes' => [
+                        'Slider activation issue with tabs and Accordion',
+                        'Badge shows twice issue in product showcase Elementor widget.',
+                    ],
+                    'Compatibility' => [
+                        'Latest WordPress and WooCommerce version.',
+                    ],
+                ],
+            ],
+            [
                 'version' => '3.5.7',
                 'date'    => '2026-11-09',
                 'changes' => [

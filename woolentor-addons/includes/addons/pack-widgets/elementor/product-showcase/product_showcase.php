@@ -1895,7 +1895,22 @@ class Woolentor_Product_Showcase_Widget extends Widget_Base implements \WooLento
      * @return string
      */
     protected function card_media( $product, array $settings, $size = 'woocommerce_thumbnail' ) {
+        // The Badges module appends its badges to every product image through the
+        // woocommerce_product_get_image filter. The card prints them itself in card_badges(), so
+        // take that filter off for this image, or each badge shows twice.
+        $badge_filter = null;
+        if ( class_exists( '\Woolentor\Modules\Badges\Frontend\Badge_Manager' ) ) {
+            $badge_filter = [ \Woolentor\Modules\Badges\Frontend\Badge_Manager::instance(), 'product_badge_loop_item' ];
+            if ( ! remove_filter( 'woocommerce_product_get_image', $badge_filter, 100000 ) ) {
+                $badge_filter = null;
+            }
+        }
+
         $main = $product->get_image( $size, [ 'class' => 'wl-ps-img', 'loading' => 'lazy' ] );
+
+        if ( $badge_filter ) {
+            add_filter( 'woocommerce_product_get_image', $badge_filter, 100000, 2 );
+        }
 
         if ( '' === $main ) {
             $main = '<img class="wl-ps-img" src="' . esc_url( wc_placeholder_img_src( $size ) ) . '" alt="'
@@ -2327,7 +2342,14 @@ class Woolentor_Product_Showcase_Widget extends Widget_Base implements \WooLento
         $total = count( $terms );
 
         foreach ( array_slice( $terms, 0, $limit ) as $term ) {
-            $colour = get_term_meta( $term->term_id, 'product_attribute_color', true );
+            // The Variation Swatch module saves a term's colour as swatchly_color; the other two keys
+            // are kept as fallbacks for colours stored by other plugins.
+            $colour = get_term_meta( $term->term_id, 'swatchly_color', true );
+
+            if ( '' === $colour ) {
+                $colour = get_term_meta( $term->term_id, 'product_attribute_color', true );
+            }
+
             if ( '' === $colour ) {
                 $colour = get_term_meta( $term->term_id, 'wl_swatch_color', true );
             }

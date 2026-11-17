@@ -4,7 +4,7 @@ Tags: woocommerce, elementor, woocommerce elementor, woocommerce builder, gutenb
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 3.5.8
+Stable tag: 3.5.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -672,6 +672,12 @@ Please report security issues to our team directly at **[woolentor.com/contact](
 24. Deliver a smooth shopping experience across desktop, tablet, and mobile.
 
 == Changelog ==
+= Version: 3.5.9 - Date: 11-17-2026 =
+* Added: Compare Table Elementor widget flowing by latest design trend.
+* Solved: Slider activation issue with tabs and Accordion.
+* Solved: Badge shows twice issue in product showcase Elementor widget.
+* Compatibility: Latest WordPress and WooCommerce version.
+
 = Version: 3.5.8 - Date: 11-11-2026 =
 * Solved: Cross Site Scripting (XSS)
 
@@ -818,11 +824,6 @@ Please report security issues to our team directly at **[woolentor.com/contact](
 * Added: Elementor Custom control added for product search field.
 * Improved: Template library improvement with popup Redesign.
 * Solved: Enable all and disable all button not working issue in setup wizard module step.
-* Compatibility: Latest WordPress and WooCommerce version.
-
-= Version: 3.3.4 - Date: 24-02-2026 =
-* Added: Setup Wizard.
-* Solved: Dashboard layout improvement in laptop screen.
 * Compatibility: Latest WordPress and WooCommerce version.
 
 **Looking for older releases?** See the **[complete version history](https://woolentor.com/changes-log/?utm_source=wprepo&utm_medium=freeplugin&utm_campaign=changelog)** for every ShopLentor version back to 2.5.5.

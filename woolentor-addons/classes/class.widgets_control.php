@@ -388,6 +388,11 @@ class Widgets_Control{
                     'title'    => esc_html__('Flash Sale - 2026','woolentor'),
                     'is_pro'   => false,
                     'location' => ( $is_pro ? WOOLENTOR_ADDONS_PL_PATH_PRO : WOOLENTOR_ADDONS_PL_PATH ) . 'includes/addons/pack-widgets/elementor/flash-sale/',
+                ],
+                'compare_table' => [
+                    'title'    => esc_html__('Compare Table - 2026','woolentor'),
+                    'is_pro'   => false,
+                    'location' => ( $is_pro ? WOOLENTOR_ADDONS_PL_PATH_PRO : WOOLENTOR_ADDONS_PL_PATH ) . 'includes/addons/pack-widgets/elementor/compare-table/',
                 ]
 
             ],

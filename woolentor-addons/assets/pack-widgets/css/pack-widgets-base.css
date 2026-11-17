@@ -1014,6 +1014,13 @@
     pointer-events: none;
 }
 
+/* Badges module output: each badge places itself (top/bottom, left/right) inside the image,
+   so the box covers the whole image instead of being a stack in the corner. */
+[data-wl-pack] .wl-ps-badges.wl-ps-badges--module {
+    inset: 0;
+    display: block;
+}
+
 [data-wl-pack] .wl-ps-badge {
     display: inline-block;
     line-height: 1;
@@ -3803,5 +3810,373 @@
     [data-wl-pack] .wl-fs-plate,
     [data-wl-pack] .wl-fs-split {
         grid-template-columns: minmax(0, 1fr);
+    }
+}
+/* ═══════════════════════════════════════════════════════════════════════════
+   Compare Table - 2026 — mechanics. Colour, type and radius live in the pack files.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-wl-pack] .wl-ct,
+[data-wl-pack] .wl-ct * {
+    box-sizing: border-box;
+}
+
+[data-wl-pack] .wl-ct {
+    line-height: 1.6;
+}
+
+[data-wl-pack] .wl-ct-heading,
+[data-wl-pack] .wl-ct-desc,
+[data-wl-pack] .wl-ct-name,
+[data-wl-pack] .wl-ct-specs,
+[data-wl-pack] .wl-ct-specs dd {
+    margin: 0;
+}
+
+[data-wl-pack] .wl-ct-sr {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ── Head ─────────────────────────────────────────────────────────────────── */
+
+[data-wl-pack] .wl-ct-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px 30px;
+}
+
+[data-wl-pack] .wl-ct-head-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+}
+
+[data-wl-pack] .wl-ct-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+[data-wl-pack] .wl-ct-icon {
+    display: block;
+    flex-shrink: 0;
+    width: 1em;
+    height: 1em;
+}
+
+/* ── Frame and table ──────────────────────────────────────────────────────── */
+
+[data-wl-pack] .wl-ct-frame {
+    position: relative;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+[data-wl-pack] .wl-ct-table {
+    width: 100%;
+    margin: 0;
+    border: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    background: transparent;
+}
+
+/* Equal product columns, whatever the length of a name. */
+[data-wl-pack] .wl-ct-table .wl-ct-corner {
+    width: var(--wl-ct-label-w, 22%);
+}
+
+[data-wl-pack] .wl-ct-table th,
+[data-wl-pack] .wl-ct-table td {
+    border: 0;
+    background: transparent;
+    text-align: center;
+    vertical-align: middle;
+}
+
+[data-wl-pack] .wl-ct-table .wl-ct-label {
+    text-align: left;
+}
+
+[data-wl-pack] .wl-ct-table thead th {
+    vertical-align: bottom;
+    font-weight: inherit;
+}
+
+/* ── Cards ────────────────────────────────────────────────────────────────── */
+
+[data-wl-pack] .wl-ct-cards {
+    display: grid;
+    grid-template-columns: repeat(var(--wl-ct-cols, 3), minmax(0, 1fr));
+}
+
+[data-wl-pack] .wl-ct-count-1 { --wl-ct-cols: 1; }
+[data-wl-pack] .wl-ct-count-2 { --wl-ct-cols: 2; }
+[data-wl-pack] .wl-ct-count-3 { --wl-ct-cols: 3; }
+[data-wl-pack] .wl-ct-count-4 { --wl-ct-cols: 4; }
+
+[data-wl-pack] .wl-ct-col {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+[data-wl-pack] .wl-ct-specs .wl-ct-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+[data-wl-pack] .wl-ct-specs .wl-ct-value {
+    text-align: right;
+}
+
+[data-wl-pack] .wl-ct-col .wl-ct-foot {
+    margin-top: auto;
+}
+
+/* ── Product header ───────────────────────────────────────────────────────── */
+
+[data-wl-pack] .wl-ct-cell {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+[data-wl-pack] .wl-ct-thumb {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    max-width: var(--wl-ct-thumb, 220px);
+    aspect-ratio: 1 / 1;
+}
+
+[data-wl-pack] .wl-ct-thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+[data-wl-pack] .wl-ct-name a {
+    color: inherit;
+    text-decoration: none;
+}
+
+[data-wl-pack] .wl-ct-price,
+[data-wl-pack] .wl-ct-value .amount {
+    white-space: nowrap;
+}
+
+[data-wl-pack] .wl-ct-price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0 8px;
+}
+
+[data-wl-pack] .wl-ct-price del {
+    order: 2;
+}
+
+[data-wl-pack] .wl-ct-price ins {
+    order: 1;
+    text-decoration: none;
+}
+
+[data-wl-pack] .wl-ct-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+[data-wl-pack] .wl-ct-remove {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    font-size: 14px;
+    opacity: 0.55;
+    cursor: pointer;
+    transition: opacity 160ms ease;
+}
+
+[data-wl-pack] .wl-ct-remove:hover,
+[data-wl-pack] .wl-ct-remove:focus-visible {
+    opacity: 1;
+}
+
+/* ── Values ───────────────────────────────────────────────────────────────── */
+
+[data-wl-pack] .wl-ct-yes,
+[data-wl-pack] .wl-ct-no {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--wl-ct-mark, 18px);
+    line-height: 1;
+    vertical-align: middle;
+}
+
+[data-wl-pack] .wl-ct-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+}
+
+[data-wl-pack] .wl-ct-rating svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+    margin: 0;
+}
+
+[data-wl-pack] .wl-ct-rating-avg {
+    margin-left: 4px;
+}
+
+[data-wl-pack] .wl-ct-rating .star.empty {
+    opacity: 0.28;
+}
+
+[data-wl-pack] .wl-ct-swatches {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+[data-wl-pack] .wl-ct-swatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+
+[data-wl-pack] .wl-ct-empty {
+    opacity: 0.45;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+
+[data-wl-pack] .wl-ct-cart-wrap {
+    display: block;
+}
+
+[data-wl-pack] .wl-ct-cart-wrap a.button,
+[data-wl-pack] .wl-ct-view {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+[data-wl-pack] .wl-ct-cart-wrap .added_to_cart {
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* ── Split: the copy beside the table ─────────────────────────────────────── */
+
+[data-wl-pack] .wl-ct-split {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: start;
+    gap: var(--wl-ct-split-gap, 64px);
+}
+
+[data-wl-pack] .wl-ct-split .wl-ct-head {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+[data-wl-pack] .wl-ct-split-body {
+    min-width: 0;
+}
+
+@media (max-width: 1024px) {
+    [data-wl-pack] .wl-ct-split {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 40px;
+    }
+}
+
+/* ── Shell for the visitor's list ─────────────────────────────────────────── */
+
+[data-wl-pack] .wl-ct-shell:empty {
+    min-height: 1px;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+    [data-wl-pack] .wl-ct-count-4 {
+        --wl-ct-cols: 2;
+    }
+}
+
+@media (max-width: 767px) {
+    [data-wl-pack] .wl-ct-cards {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    /* A fixed table cannot shrink a column below its content, so the table itself is given room
+       and the frame scrolls sideways. */
+    [data-wl-pack] .wl-ct-table {
+        min-width: calc(var(--wl-ct-label-w-sm, 110px) + var(--wl-ct-cols, 3) * var(--wl-ct-col-sm, 140px));
+    }
+
+    [data-wl-pack] .wl-ct-table .wl-ct-corner {
+        width: var(--wl-ct-label-w-sm, 110px);
+    }
+
+    /* The labels stay in view while the products scroll sideways. */
+    [data-wl-pack] .wl-ct-table .wl-ct-label,
+    [data-wl-pack] .wl-ct-table .wl-ct-corner {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        background: var(--wl-ct-sticky-bg, #FFFFFF);
     }
 }

@@ -2175,7 +2175,14 @@ class Woolentor_Flash_Sale_Widget extends Widget_Base {
         $dots = '';
 
         foreach ( array_slice( array_values( $terms ), 0, $limit ) as $term ) {
-            $colour = get_term_meta( $term->term_id, 'product_attribute_color', true );
+            // The Variation Swatch module saves a term's colour as swatchly_color; the other two keys
+            // are kept as fallbacks for colours stored by other plugins.
+            $colour = get_term_meta( $term->term_id, 'swatchly_color', true );
+
+            if ( '' === $colour ) {
+                $colour = get_term_meta( $term->term_id, 'product_attribute_color', true );
+            }
+
 
             if ( '' === $colour ) {
                 $colour = get_term_meta( $term->term_id, 'wl_swatch_color', true );

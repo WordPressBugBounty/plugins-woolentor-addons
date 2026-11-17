@@ -116,8 +116,32 @@
             // A11y fix: Slick adds role="listbox" to .slick-track which is semantically
             // incorrect for a carousel and triggers a Lighthouse accessibility failure.
             slider_elem.find('.slick-track').removeAttr('role');
+
+            // Hidden container fix (Elementor Tabs / Nested Tabs, accordions, toggles, popups).
+            // Slick measures width 0 when initialised inside a display:none parent, so slides
+            // collapse. Recalculate once the slider receives a real width.
+            woolentorSlickRefreshOnVisible( slider_elem );
         };
     };
+
+    function woolentorSlickRefreshOnVisible( $slider ){
+        var el = $slider[0];
+        if( !el || el.dataset.wlVisibleWatch || typeof window.ResizeObserver === 'undefined' ){
+            return;
+        }
+        el.dataset.wlVisibleWatch = '1';
+
+        var lastWidth = el.offsetWidth;
+        var observer = new ResizeObserver(function(){
+            var width = el.offsetWidth;
+            // Only react to hidden -> visible; slick handles normal window resizes itself.
+            if( lastWidth === 0 && width > 0 && $slider.hasClass('slick-initialized') ){
+                $slider.slick('setPosition');
+            }
+            lastWidth = width;
+        });
+        observer.observe(el);
+    }
 
     /*
     * Custom Tab
