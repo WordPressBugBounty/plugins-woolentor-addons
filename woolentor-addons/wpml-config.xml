@@ -33,19 +33,7 @@
         <key name="wishsuite_table_settings_tabs">
             <key name="wishlist_page"/>
             <key name="table_heading">
-                <key name="remove"/>
-                <key name="image"/>
-                <key name="title"/>
-                <key name="price"/>
-                <key name="quantity"/>
-                <key name="add_to_cart"/>
-                <key name="description"/>
-                <key name="availability"/>
-                <key name="sku"/>
-                <key name="weight"/>
-                <key name="dimensions"/>
-                <key name="pa_color"/>
-                <key name="pa_size"/>
+                <key name="*"/>
             </key>
             <key name="empty_table_text"/>
             <key name="social_share_button_title"/>
@@ -60,21 +48,147 @@
             <key name="shareable_link_after_button_text"/>
             <key name="limit"/>
             <key name="table_heading">
-                <key name="title"/>
-                <key name="ratting"/>
-                <key name="price"/>
-                <key name="add_to_cart"/>
-                <key name="description"/>
-                <key name="availability"/>
-                <key name="sku"/>
-                <key name="weight"/>
-                <key name="dimensions"/>
-                <key name="pa_color"/>
-                <key name="pa_size"/>
+                <key name="*"/>
             </key>
             <key name="reached_max_limit_message"/>
             <key name="empty_table_text"/>
             <key name="shop_button_text"/>
         </key>
+        <key name="woolentor_free_shipping_bar_settings">
+            <key name="msg_initial"/>
+            <key name="msg_success"/>
+            <key name="msg_not_eligible"/>
+            <key name="ab_variant_a_msg"/>
+            <key name="ab_variant_b_msg"/>
+            <key name="countdown_message"/>
+            <key name="additional_bars">
+                <key name="*">
+                    <key name="msg_initial"/>
+                    <key name="msg_success"/>
+                    <key name="countdown_message"/>
+                </key>
+            </key>
+        </key>
+        <key name="woolentor_backorder_settings">
+            <key name="backorder_availability_message"/>
+        </key>
+        <key name="woolentor_cart_reserve_timer_settings">
+            <key name="cart_message"/>
+            <key name="timer_message"/>
+        </key>
+        <key name="woolentor_flash_sale_settings">
+            <key name="manage_price_label"/>
+            <key name="countdown_timer_title"/>
+        </key>
+        <key name="woolentor_quickview_settings">
+            <key name="button_text"/>
+            <key name="social_share_button_title"/>
+        </key>
+        <key name="woolentor_sales_notification_tabs">
+            <key name="purchased_by"/>
+            <key name="price_prefix"/>
+        </key>
+        <key name="woolentor_shopify_checkout_settings">
+            <key name="labels_list">
+                <key name="*">
+                    <key name="tab_label"/>
+                    <key name="label_1"/>
+                    <key name="label_2"/>
+                </key>
+            </key>
+        </key>
+        <key name="woolentor_smart_cross_sell_popup_settings">
+            <key name="popup_title"/>
+        </key>
+        <key name="woolentor_store_vacation_settings">
+            <key name="vacation_message"/>
+            <key name="product_availability_text"/>
+            <key name="vacation_meta_title"/>
+            <key name="vacation_meta_description"/>
+            <key name="multiple_schedules">
+                <key name="*">
+                    <key name="message"/>
+                </key>
+            </key>
+            <key name="category_specific_vacation">
+                <key name="*">
+                    <key name="message"/>
+                </key>
+            </key>
+        </key>
+        <key name="woolentor_swatch_settings">
+            <key name="pl_add_to_cart_text"/>
+            <key name="variation_label_separator"/>
+        </key>
+        <key name="woolentor_partial_payment_settings">
+            <key name="partial_payment_loop_btn_text"/>
+            <key name="partial_payment_button_text"/>
+            <key name="full_payment_button_text"/>
+            <key name="partial_payment_discount_text"/>
+            <key name="first_installment_text"/>
+            <key name="second_installment_text"/>
+            <key name="to_pay"/>
+        </key>
+        <key name="woolentor_pre_order_settings">
+            <key name="add_to_cart_btn_text"/>
+            <key name="manage_price_lavel"/>
+            <key name="availability_date"/>
+            <key name="customlabel_days"/>
+            <key name="customlabel_hours"/>
+            <key name="customlabel_minutes"/>
+            <key name="customlabel_seconds"/>
+        </key>
+        <key name="woolentor_product_filter_settings">
+            <key name="filters">
+                <key name="*">
+                    <key name="filter_label"/>
+                    <key name="filter_select_placeholder"/>
+                    <key name="filter_sorting_select_placeholder"/>
+                    <key name="filter_search_placeholder"/>
+                    <key name="filter_apply_action_button_txt"/>
+                    <key name="filter_clear_action_button_txt"/>
+                </key>
+            </key>
+            <key name="groups">
+                <key name="*">
+                    <key name="group_label"/>
+                    <key name="group_apply_action_button_txt"/>
+                    <key name="group_clear_action_button_txt"/>
+                </key>
+            </key>
+        </key>
+        <key name="woolentor_quick_checkout_settings">
+            <key name="button_text"/>
+        </key>
+        <key name="woolentor_size_chart_settings">
+            <key name="popup_button_text"/>
+            <key name="additional_tab_label"/>
+        </key>
     </admin-texts>
+    <custom-fields>
+        <custom-field action="translate">_saleflash_text</custom-field>
+        <custom-field action="copy">_woolentor_backorder_limit</custom-field>
+        <custom-field action="copy">_woolentor_backorder_availability_date</custom-field>
+        <custom-field action="copy">_woolentor_enable_custom_timer</custom-field>
+        <custom-field action="copy">_woolentor_custom_timer_duration</custom-field>
+        <custom-field action="copy">woolentor_partial_payment_enable</custom-field>
+        <custom-field action="copy">woolentor_partial_payment_amount_type</custom-field>
+        <custom-field action="copy">woolentor_partial_payment_amount</custom-field>
+        <custom-field action="copy">woolentor_pre_order_enable</custom-field>
+        <custom-field action="copy">woolentor_pre_order_available_date</custom-field>
+        <custom-field action="copy">woolentor_pre_order_available_time</custom-field>
+        <custom-field action="copy">woolentor_pre_order_manage_price</custom-field>
+        <custom-field action="copy">woolentor_pre_order_amount_type</custom-field>
+        <custom-field action="copy">woolentor_pre_order_amount</custom-field>
+    </custom-fields>
+    <custom-term-fields>
+        <custom-term-field action="copy">swatchly_color</custom-term-field>
+        <custom-term-field action="copy">swatchly_color_2</custom-term-field>
+        <custom-term-field action="copy">swatchly_enable_multi_color</custom-term-field>
+        <custom-term-field action="copy">swatchly_image</custom-term-field>
+        <custom-term-field action="copy">swatchly_tooltip</custom-term-field>
+        <custom-term-field action="translate">swatchly_tooltip_text</custom-term-field>
+        <custom-term-field action="copy">swatchly_tooltip_image</custom-term-field>
+        <custom-term-field action="copy">swatchly_tooltip_image_size</custom-term-field>
+    </custom-term-fields>
 </wpml-config>

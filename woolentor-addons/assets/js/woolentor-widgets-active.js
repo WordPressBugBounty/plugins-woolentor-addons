@@ -152,12 +152,18 @@
             var $this = $(this),
                 $target = $this.attr('href');
             $this.addClass('htactive').parent().siblings().children('a').removeClass('htactive');
+
+            // Only a plain "#id" may be used as a selector. Anything else (e.g. a
+            // string starting with "<") would be parsed by jQuery as HTML.
+            if( typeof $target !== 'string' || ! /^#[A-Za-z0-9_-]+$/.test( $target ) ){
+                return;
+            }
+
             $( $tabpane + $target ).addClass('htactive').siblings().removeClass('htactive');
 
             // slick refresh
             if( $('.slick-slider').length > 0 ){
-                var $id = $this.attr('href');
-                $( $id ).find('.slick-slider').slick('refresh');
+                $( $target ).find('.slick-slider').slick('refresh');
             }
 
         });

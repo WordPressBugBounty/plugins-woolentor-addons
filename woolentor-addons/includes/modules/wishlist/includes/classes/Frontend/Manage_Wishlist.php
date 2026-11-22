@@ -33,7 +33,8 @@ class Manage_Wishlist {
      * @return [int]
      */
     public function get_wishlist_page_id(){
-        return absint( woolentor_get_option( 'wishlist_page', 'wishsuite_table_settings_tabs' ) );
+        // The saved page is in one language; a translated site has a copy of it per language.
+        return absint( woolentor_current_language_id( woolentor_get_option( 'wishlist_page', 'wishsuite_table_settings_tabs' ), 'page' ) );
     }
 
     /**
@@ -101,6 +102,9 @@ class Manage_Wishlist {
      * @param [int] $id
      */
     public function add_product( $id ){
+
+        // If it is already saved under another language's ID, use that ID, so it isn't saved twice.
+        $id = $this->stored_product_id( $id );
 
         $user_id = get_current_user_id();
         $add_status = false;
@@ -229,7 +233,7 @@ class Manage_Wishlist {
      * @return [mixed]
      */
     public function update_product_quantity( $id, $quantity ){
-        $product_id = absint( $id );
+        $product_id = $this->stored_product_id( $id );
         $quantity   = absint( $quantity );
 
         if ( ! $product_id || $quantity < 1 ) {
@@ -268,6 +272,7 @@ class Manage_Wishlist {
      * @return [void]
      */
     public function remove_product( $id ){
+        $id = $this->stored_product_id( $id );
         $user_id = get_current_user_id();
         $delete_status = false;
 
@@ -460,13 +465,37 @@ class Manage_Wishlist {
      * @return boolean
      */
     public function is_product_in_wishlist( $id ) {
-        $id = (string) $id;
-        $list = $this->get_wishlist_products();
-        if ( is_array( $list ) ) {
-            return in_array( $id, $list, true );
-        }else{
-            return false;
+        return isset( $this->current_language_id_map()[ absint( $id ) ] );
+    }
+
+    /**
+     * [current_language_id_map] Saved wishlist IDs, keyed by the same product's ID in the current language.
+     *
+     * A product is saved under the ID of the page it was added from. On a translated site
+     * (WPML / Polylang) that may be another language, where the product has another ID.
+     * @return [array] current language id => saved id
+     */
+    public function current_language_id_map() {
+        $map = array();
+        foreach ( (array) $this->get_wishlist_products() as $saved_id ) {
+            $saved_id   = absint( $saved_id );
+            $current_id = woolentor_current_language_id( $saved_id, 'product' );
+            if ( $saved_id && ! isset( $map[ $current_id ] ) ) {
+                $map[ $current_id ] = $saved_id;
+            }
         }
+        return $map;
+    }
+
+    /**
+     * [stored_product_id] The ID a product is saved under in the wishlist.
+     * @param  [int] $id Product ID in the current language.
+     * @return [int]
+     */
+    public function stored_product_id( $id ) {
+        $id  = absint( $id );
+        $map = $this->current_language_id_map();
+        return isset( $map[ $id ] ) ? $map[ $id ] : $id;
     }
 
     /**
@@ -515,8 +544,17 @@ class Manage_Wishlist {
         // Guest quantities live in the cookie, logged in ones in the wishlist table.
         $guest_items = is_user_logged_in() ? array() : $this->get_guest_items();
 
+        // Show each product in the current language. Quantities stay under the saved ID.
+        $saved_ids = array();
+        foreach ( $ids as $saved_id ) {
+            $current_id = woolentor_current_language_id( absint( $saved_id ), 'product' );
+            if ( $current_id && ! isset( $saved_ids[ $current_id ] ) ) {
+                $saved_ids[ $current_id ] = absint( $saved_id );
+            }
+        }
+
         $args = array(
-            'include' => $ids,
+            'include' => array_keys( $saved_ids ),
             'limit'   => $limit,
             'page' => $page
         );
@@ -539,13 +577,14 @@ class Manage_Wishlist {
             $average        = $product->get_average_rating();
 
             $current_product_id = $product->get_id();
+            $saved_product_id   = isset( $saved_ids[ $current_product_id ] ) ? $saved_ids[ $current_product_id ] : $current_product_id;
 
-            if ( isset( $shared_qty_map[ $current_product_id ] ) ) {
-                $min_value = $shared_qty_map[ $current_product_id ];
-            } elseif ( ! empty( $guest_items[ $current_product_id ] ) ) {
-                $min_value = $guest_items[ $current_product_id ];
+            if ( isset( $shared_qty_map[ $saved_product_id ] ) ) {
+                $min_value = $shared_qty_map[ $saved_product_id ];
+            } elseif ( ! empty( $guest_items[ $saved_product_id ] ) ) {
+                $min_value = $guest_items[ $saved_product_id ];
             } else {
-                $get_row = \WishSuite\Manage_Data::instance()->read_single_item( get_current_user_id(), $current_product_id );
+                $get_row = \WishSuite\Manage_Data::instance()->read_single_item( get_current_user_id(), $saved_product_id );
                 if( is_object( $get_row ) && $get_row->quantity ){
                     $min_value = $get_row->quantity;
                 }else{

@@ -469,9 +469,10 @@ class Woolentor_Flash_Sale{
         $validity              = false;
 
         $apply_on_all_products = !empty( $deal['apply_on_all_products'] ) ? $deal['apply_on_all_products'] : '';
-        $applicable_categories = !empty( $deal['categories'] ) ? $deal['categories'] : array();
-        $applicable_products   = !empty( $deal['products'] ) ? $deal['products'] : array();
-        $exclude_products      = !empty( $deal['exclude_products'] ) ? $deal['exclude_products'] : array();
+        // Saved IDs belong to one language; map them to the language of the product being checked.
+        $applicable_categories = !empty( $deal['categories'] ) ? woolentor_language_match_ids( $deal['categories'], 'product_cat' ) : array();
+        $applicable_products   = !empty( $deal['products'] ) ? woolentor_language_match_ids( $deal['products'], 'product' ) : array();
+        $exclude_products      = !empty( $deal['exclude_products'] ) ? woolentor_language_match_ids( $deal['exclude_products'], 'product' ) : array();
 
         if( ! $product ){
             return false;
@@ -635,7 +636,7 @@ class Woolentor_Flash_Sale{
                 <p class="woolentor-flash-product-offer-timer-text"><?php echo wp_kses_post( $countdown_heading ) ?></p>
             <?php endif; ?>
 
-            <div class="woolentor-countdown woolentor-countdown-<?php echo esc_attr($countdown_style); ?>" data-countdown="<?php echo esc_attr( $remaining_time ) ?>" data-customlavel='<?php echo wp_json_encode( $custom_labels ) ?>'></div>
+            <div class="woolentor-countdown woolentor-countdown-<?php echo esc_attr($countdown_style); ?>" data-countdown="<?php echo esc_attr( $remaining_time ) ?>" data-customlavel="<?php echo esc_attr( wp_json_encode( $custom_labels ) ); ?>"></div>
         </div>
 
         <?php

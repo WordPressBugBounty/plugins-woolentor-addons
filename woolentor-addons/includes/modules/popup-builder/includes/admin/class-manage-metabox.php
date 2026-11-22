@@ -615,7 +615,39 @@ class Manage_Metabox{
                 'default' => '',
                 'wlpb_is_pro' => true
             ),
-            
+            // show_on_geolocation
+            array(
+                'name'  => 'show_on_geolocation',
+                'label' => __('Show by Visitor Location', 'woolentor'),
+                'type'  => 'checkbox',
+                'class' => 'wlpb-field',
+                'default' => '',
+                'wlpb_is_pro' => true
+            ),
+            // geo_rule_type
+            array(
+                'name'  => 'geo_rule_type',
+                'label' => __('Location Rule', 'woolentor'),
+                'type'  => 'select',
+                'class' => 'wlpb-field',
+                'options' => array(
+                    'include' => __('Show only in these countries', 'woolentor'),
+                    'exclude' => __('Hide in these countries', 'woolentor'),
+                ),
+                'default' => 'include',
+                'wlpb_is_pro' => true
+            ),
+            // geo_countries
+            array(
+                'name'  => 'geo_countries',
+                'label' => __('Countries', 'woolentor'),
+                'type'  => 'select2',
+                'class' => 'wlpb-field',
+                'options' => array(), // Filled from WooCommerce countries in the template.
+                'default' => '',
+                'wlpb_is_pro' => true
+            ),
+
         );
 
         $fields = apply_filters( 'wlpb_module_fields', $fields );

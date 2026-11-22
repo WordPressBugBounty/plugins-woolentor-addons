@@ -275,7 +275,8 @@ class Woolentor_Compare_Table_Widget extends Widget_Base implements \WooLentor\P
 
         $ids = \EverCompare\Frontend\Manage_Compare::instance()->get_compared_products();
 
-        return array_values( array_unique( array_filter( array_map( 'absint', is_array( $ids ) ? $ids : [] ) ) ) );
+        // Each product in the current language (WPML / Polylang); it may be saved under another language's ID.
+        return array_values( array_unique( woolentor_current_language_ids( is_array( $ids ) ? $ids : [], 'product' ) ) );
     }
 
     /**

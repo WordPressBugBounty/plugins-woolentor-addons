@@ -54,7 +54,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			if( is_array( $brands ) ){
 
 				if( $settings['slider'] === true ){
-					echo '<div id="'.esc_attr("product-slider-" . $settings['blockUniqId']).'" dir="'.esc_attr($direction).'" class="product-slider" data-settings=\'' . wp_json_encode( $slider_settings ) . '\' style="display:none">';
+					echo '<div id="'.esc_attr("product-slider-" . $settings['blockUniqId']).'" dir="'.esc_attr($direction).'" class="product-slider" data-settings="' . esc_attr( wp_json_encode( $slider_settings ) ) . '" style="display:none">';
 				}else{
 					echo '<div class="woolentor-grid '.( $settings['noGutter'] === true ? 'woolentor-no-gutters' : '' ).'">';
 				}

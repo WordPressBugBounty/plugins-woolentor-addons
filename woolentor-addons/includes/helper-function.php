@@ -283,6 +283,74 @@ function woolentor_translator( $name, $value, $context = 'ShopLentor' ){
 }
 
 /**
+ * Map a saved post or term ID to the current language (WPML / Polylang).
+ *
+ * Settings store the IDs picked in the admin, which belong to one language. On a translated page
+ * the same product, page or category has another ID. Without a translation plugin, or when the
+ * item has no translation, the ID comes back as it is. Non-numeric values (e.g. 'custom') too.
+ *
+ * @param mixed  $id
+ * @param string $type Post type or taxonomy, e.g. 'product', 'page', 'product_cat'.
+ * @return mixed
+ */
+if( ! function_exists( 'woolentor_current_language_id' ) ){ // Pro ships a copy for older free versions.
+function woolentor_current_language_id( $id, $type = 'product' ){
+    if( empty( $id ) || ! is_numeric( $id ) ){
+        return $id;
+    }
+    return (int) apply_filters( 'wpml_object_id', (int) $id, $type, true );
+}
+}
+
+/**
+ * Map a list of saved post or term IDs to the current language.
+ *
+ * @see woolentor_current_language_id()
+ * @param mixed  $ids  Array or comma separated string of IDs.
+ * @param string $type Post type or taxonomy.
+ * @return int[]
+ */
+if( ! function_exists( 'woolentor_current_language_ids' ) ){
+function woolentor_current_language_ids( $ids, $type = 'product' ){
+    if( empty( $ids ) ){
+        return [];
+    }
+    if( ! is_array( $ids ) ){
+        $ids = explode( ',', (string) $ids );
+    }
+    $mapped = [];
+    foreach( $ids as $id ){
+        $id = absint( $id );
+        if( $id ){
+            $mapped[] = woolentor_current_language_id( $id, $type );
+        }
+    }
+    return $mapped;
+}
+}
+
+/**
+ * IDs to match against: the saved IDs plus the same items in the current language.
+ *
+ * For checks such as "is this product in the list". The saved IDs stay, so whatever matched
+ * before still matches; translated copies match too. Not for building product lists, where
+ * both copies would show (use woolentor_current_language_ids() there).
+ *
+ * @param mixed  $ids  Array or comma separated string of IDs.
+ * @param string $type Post type or taxonomy.
+ * @return int[]
+ */
+if( ! function_exists( 'woolentor_language_match_ids' ) ){
+function woolentor_language_match_ids( $ids, $type = 'product' ){
+    if( empty( $ids ) ){
+        return [];
+    }
+    $saved = array_filter( array_map( 'absint', is_array( $ids ) ? $ids : explode( ',', (string) $ids ) ) );
+    return array_values( array_unique( array_merge( $saved, woolentor_current_language_ids( $saved, $type ) ) ) );
+}
+}
+
+/**
  * Register a string for translation with WPML/Polylang
  * Must be called before woolentor_translator() can find translations
  *

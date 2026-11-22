@@ -2217,10 +2217,10 @@ class Woolentor_Universal_Product_Widget extends Widget_Base {
         // Countdown Custom Label
         if( $settings['show_countdown'] == 'yes' ){
             $data_customlavel = [];
-            $data_customlavel['daytxt'] = ! empty( $settings['customlabel_days'] ) ? $settings['customlabel_days'] : 'Days';
-            $data_customlavel['hourtxt'] = ! empty( $settings['customlabel_hours'] ) ? $settings['customlabel_hours'] : 'Hours';
-            $data_customlavel['minutestxt'] = ! empty( $settings['customlabel_minutes'] ) ? $settings['customlabel_minutes'] : 'Min';
-            $data_customlavel['secondstxt'] = ! empty( $settings['customlabel_seconds'] ) ? $settings['customlabel_seconds'] : 'Sec';
+            $data_customlavel['daytxt'] = ! empty( $settings['customlabel_days'] ) ? sanitize_text_field( $settings['customlabel_days'] ) : 'Days';
+            $data_customlavel['hourtxt'] = ! empty( $settings['customlabel_hours'] ) ? sanitize_text_field( $settings['customlabel_hours'] ) : 'Hours';
+            $data_customlavel['minutestxt'] = ! empty( $settings['customlabel_minutes'] ) ? sanitize_text_field( $settings['customlabel_minutes'] ) : 'Min';
+            $data_customlavel['secondstxt'] = ! empty( $settings['customlabel_seconds'] ) ? sanitize_text_field( $settings['customlabel_seconds'] ) : 'Sec';
         }
 
         // Slider Options
@@ -2429,7 +2429,7 @@ class Woolentor_Universal_Product_Widget extends Widget_Base {
                                                     ): 
                                                 ?>
                                                     <div class="ht-product-countdown-wrap">
-                                                        <div class="ht-product-countdown" data-countdown="<?php echo esc_attr( $offer_end_date ); ?>" data-customlavel='<?php echo wp_json_encode( $data_customlavel ) ?>'></div>
+                                                        <div class="ht-product-countdown" data-countdown="<?php echo esc_attr( $offer_end_date ); ?>" data-customlavel="<?php echo esc_attr( wp_json_encode( $data_customlavel ) ); ?>"></div>
                                                     </div>
                                                 <?php endif; endif; ?>
 
@@ -2522,7 +2522,7 @@ class Woolentor_Universal_Product_Widget extends Widget_Base {
                                                         ):
                                                 ?>
                                                     <div class="ht-product-countdown-wrap">
-                                                        <div class="ht-product-countdown" data-countdown="<?php echo esc_attr( $offer_end_date ); ?>" data-customlavel='<?php echo wp_json_encode( $data_customlavel ) ?>'></div>
+                                                        <div class="ht-product-countdown" data-countdown="<?php echo esc_attr( $offer_end_date ); ?>" data-customlavel="<?php echo esc_attr( wp_json_encode( $data_customlavel ) ); ?>"></div>
                                                     </div>
                                                 <?php endif; endif; ?>
                                             </div>
@@ -2547,7 +2547,7 @@ class Woolentor_Universal_Product_Widget extends Widget_Base {
                         echo '<div class="ht-row">'; 
                     } 
                 ?>
-                    <div class="<?php echo $same_height_box == 'yes' ? 'woolentor-product-same-height' : ''; ?> ht-products woocommerce <?php if( $settings['product_layout_style'] == 'slider' ){ echo esc_attr( 'product-slider' ); } else{ echo 'ht-row'; } ?>" dir="<?php echo esc_attr($direction); ?>" data-settings='<?php if( $settings['product_layout_style'] == 'slider' ){ echo wp_json_encode( $slider_settings ); } ?>' <?php echo $slider_main_div_style; ?> >
+                    <div class="<?php echo $same_height_box == 'yes' ? 'woolentor-product-same-height' : ''; ?> ht-products woocommerce <?php if( $settings['product_layout_style'] == 'slider' ){ echo esc_attr( 'product-slider' ); } else{ echo 'ht-row'; } ?>" dir="<?php echo esc_attr($direction); ?>" data-settings="<?php if( $settings['product_layout_style'] == 'slider' ){ echo esc_attr( wp_json_encode( $slider_settings ) ); } ?>" <?php echo $slider_main_div_style; ?> >
 
                         <?php
                             if( $products->have_posts() ):
@@ -2628,7 +2628,7 @@ class Woolentor_Universal_Product_Widget extends Widget_Base {
                                             ): 
                                         ?>
                                             <div class="ht-product-countdown-wrap">
-                                                <div class="ht-product-countdown" data-countdown="<?php echo esc_attr( $offer_end_date ); ?>" data-customlavel='<?php echo wp_json_encode( $data_customlavel ) ?>'></div>
+                                                <div class="ht-product-countdown" data-countdown="<?php echo esc_attr( $offer_end_date ); ?>" data-customlavel="<?php echo esc_attr( wp_json_encode( $data_customlavel ) ); ?>"></div>
                                             </div>
                                         <?php endif; endif; ?>
 
@@ -2720,7 +2720,7 @@ class Woolentor_Universal_Product_Widget extends Widget_Base {
                                                 ):
                                         ?>
                                             <div class="ht-product-countdown-wrap">
-                                                <div class="ht-product-countdown" data-countdown="<?php echo esc_attr( $offer_end_date ); ?>" data-customlavel='<?php echo wp_json_encode( $data_customlavel ) ?>'></div>
+                                                <div class="ht-product-countdown" data-countdown="<?php echo esc_attr( $offer_end_date ); ?>" data-customlavel="<?php echo esc_attr( wp_json_encode( $data_customlavel ) ); ?>"></div>
                                             </div>
                                         <?php endif; endif; ?>
                                     </div>

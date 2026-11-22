@@ -76,4 +76,16 @@ class Product_Badges{
         
     }
 
+    /**
+     * String name a badge's text is registered and translated under (WPML / Polylang).
+     *
+     * Built from the badge title, so two badges with the same title share one translation.
+     * @param array $badge
+     * @return string
+     */
+    public static function text_string_name( $badge ){
+        $title = !empty( $badge['badge_title'] ) ? $badge['badge_title'] : 'Badge One'; // Not translated: the name must be the same in every language.
+        return 'woolentor_badge_text_' . str_replace( ' ', '', trim( preg_replace( '/\(.+\)/', '', $title ) ) );
+    }
+
 }

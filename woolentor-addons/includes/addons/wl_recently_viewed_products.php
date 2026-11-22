@@ -1286,10 +1286,10 @@ class Woolentor_Wl_Recently_Viewed_Products_Widget extends Widget_Base {
         );
         $products = new \WP_Query( $args );
         
-        //echo '<div class="wl-row '.( $settings['no_gutters'] === 'yes' ? 'wlno-gutters' : '' ).' '.( $settings['slider_on'] === 'yes' ? 'product-slider' : '' ).' " data-settings='.wp_json_encode( $slider_settings ).' '.$slider_main_div_style.'>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        //echo '<div class="wl-row '.( $settings['no_gutters'] === 'yes' ? 'wlno-gutters' : '' ).' '.( $settings['slider_on'] === 'yes' ? 'product-slider' : '' ).' " data-settings="'.esc_attr( wp_json_encode( $slider_settings ) ).'" '.$slider_main_div_style.'>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
         if ( $products->have_posts() ) {
-            echo '<div class="wl-row '.( $same_height_box == 'yes' ? 'woolentor-product-same-height' : '' ).' '.( $settings['slider_on'] === 'yes' ? 'product-slider' : '' ).' " data-settings='.wp_json_encode( $slider_settings ).' '.$slider_main_div_style.'>';
+            echo '<div class="wl-row '.( $same_height_box == 'yes' ? 'woolentor-product-same-height' : '' ).' '.( $settings['slider_on'] === 'yes' ? 'product-slider' : '' ).' " data-settings="'.esc_attr( wp_json_encode( $slider_settings ) ).'" '.$slider_main_div_style.'>';
             while( $products->have_posts() ): $products->the_post();
                 ?>
                     <div class="<?php echo esc_attr( $collumval ); ?>">

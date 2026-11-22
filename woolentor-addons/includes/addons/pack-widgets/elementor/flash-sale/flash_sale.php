@@ -521,7 +521,7 @@ class Woolentor_Flash_Sale_Widget extends Widget_Base {
      * @return array
      */
     protected function deal_args( array $deal, $limit ) {
-        $exclude = array_map( 'absint', (array) ( $deal['exclude_products'] ?? [] ) );
+        $exclude = woolentor_current_language_ids( $deal['exclude_products'] ?? [], 'product' );
 
         if ( 'on' === ( $deal['apply_on_all_products'] ?? '' ) ) {
             return [
@@ -531,7 +531,7 @@ class Woolentor_Flash_Sale_Widget extends Widget_Base {
             ];
         }
 
-        $ids = array_map( 'absint', (array) ( $deal['products'] ?? [] ) );
+        $ids = woolentor_current_language_ids( $deal['products'] ?? [], 'product' );
 
         if ( ! empty( $deal['categories'] ) ) {
             $ids = array_merge( $ids, get_posts( [
@@ -543,7 +543,7 @@ class Woolentor_Flash_Sale_Widget extends Widget_Base {
                 'tax_query'      => [ [ // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
                     'taxonomy' => 'product_cat',
                     'field'    => 'term_id',
-                    'terms'    => array_map( 'absint', (array) $deal['categories'] ),
+                    'terms'    => woolentor_current_language_ids( $deal['categories'], 'product_cat' ),
                 ] ],
             ] ) );
         }

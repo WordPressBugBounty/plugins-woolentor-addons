@@ -194,9 +194,11 @@ class Bar_Renderer {
         $pages = self::setting( 'display_pages', [] );
 
         // display_pages is a multiselect of WordPress page IDs (integers as strings).
-        // Cast each entry to int and drop zeros/empty values.
+        // Cast each entry to int and drop zeros/empty values, and map each to the current
+        // language (WPML / Polylang): a translated page has another ID. Without a translation
+        // plugin the IDs stay as they are.
         $page_ids = is_array( $pages )
-            ? array_values( array_filter( array_map( 'absint', $pages ) ) )
+            ? woolentor_language_match_ids( $pages, 'page' )
             : [];
 
         if ( empty( $page_ids ) ) {

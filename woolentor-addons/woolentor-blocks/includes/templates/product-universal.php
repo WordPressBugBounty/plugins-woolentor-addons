@@ -69,10 +69,10 @@
     // Countdown Custom Label
     if( $settings['showCountdown'] == true ){
         $data_customlavel = [];
-        $data_customlavel['daytxt'] = $settings['showCountdownCustomLabel'] == true && ! empty( $settings['CountdownCustomLabel']['days'] ) ? $settings['CountdownCustomLabel']['days'] : 'Days';
-        $data_customlavel['hourtxt'] = $settings['showCountdownCustomLabel'] == true && ! empty( $settings['CountdownCustomLabel']['hour'] ) ? $settings['CountdownCustomLabel']['hour'] : 'Hours';
-        $data_customlavel['minutestxt'] = $settings['showCountdownCustomLabel'] == true && ! empty( $settings['CountdownCustomLabel']['minutes'] ) ? $settings['CountdownCustomLabel']['minutes'] : 'Min';
-        $data_customlavel['secondstxt'] = $settings['showCountdownCustomLabel'] == true && ! empty( $settings['CountdownCustomLabel']['seconds'] ) ? $settings['CountdownCustomLabel']['seconds'] : 'Sec';
+        $data_customlavel['daytxt'] = $settings['showCountdownCustomLabel'] == true && ! empty( $settings['CountdownCustomLabel']['days'] ) ? sanitize_text_field( $settings['CountdownCustomLabel']['days'] ) : 'Days';
+        $data_customlavel['hourtxt'] = $settings['showCountdownCustomLabel'] == true && ! empty( $settings['CountdownCustomLabel']['hour'] ) ? sanitize_text_field( $settings['CountdownCustomLabel']['hour'] ) : 'Hours';
+        $data_customlavel['minutestxt'] = $settings['showCountdownCustomLabel'] == true && ! empty( $settings['CountdownCustomLabel']['minutes'] ) ? sanitize_text_field( $settings['CountdownCustomLabel']['minutes'] ) : 'Min';
+        $data_customlavel['secondstxt'] = $settings['showCountdownCustomLabel'] == true && ! empty( $settings['CountdownCustomLabel']['seconds'] ) ? sanitize_text_field( $settings['CountdownCustomLabel']['seconds'] ) : 'Sec';
     }
 
     $title_html_tag = woolentor_validate_html_tag( $settings['titleHtmlTag'] );
@@ -147,7 +147,7 @@
                     ): 
                 ?>
                     <div class="ht-product-countdown-wrap">
-                        <div class="ht-product-countdown" data-countdown="<?php echo esc_attr( $offer_end_date ); ?>" data-customlavel='<?php echo wp_json_encode( $data_customlavel ) ?>'></div>
+                        <div class="ht-product-countdown" data-countdown="<?php echo esc_attr( $offer_end_date ); ?>" data-customlavel="<?php echo esc_attr( wp_json_encode( $data_customlavel ) ); ?>"></div>
                     </div>
                 <?php endif; endif; ?>
 
@@ -241,7 +241,7 @@
                         ):
                 ?>
                     <div class="ht-product-countdown-wrap">
-                        <div class="ht-product-countdown" data-countdown="<?php echo esc_attr( $offer_end_date ); ?>" data-customlavel='<?php echo wp_json_encode( $data_customlavel ) ?>'></div>
+                        <div class="ht-product-countdown" data-countdown="<?php echo esc_attr( $offer_end_date ); ?>" data-customlavel="<?php echo esc_attr( wp_json_encode( $data_customlavel ) ); ?>"></div>
                     </div>
                 <?php endif; endif; ?>
             </div>

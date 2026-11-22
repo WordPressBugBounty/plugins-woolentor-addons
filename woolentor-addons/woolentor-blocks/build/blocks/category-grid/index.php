@@ -85,7 +85,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
         ];
         $slider_settings = array_merge( $slider_settings, $slider_responsive_settings );
-        $sliderOptions = 'data-settings='.wp_json_encode( $slider_settings );
+        $sliderOptions = 'data-settings="'.esc_attr( wp_json_encode( $slider_settings ) ).'"';
     }else{
         $sliderOptions = '';
         $direction = '';

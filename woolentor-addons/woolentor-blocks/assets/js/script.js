@@ -33,6 +33,13 @@
           .siblings()
           .children("a")
           .removeClass("htactive");
+
+        // Only a plain "#id" may be used as a selector. Anything else (e.g. a
+        // string starting with "<") would be parsed by jQuery as HTML.
+        if (typeof $target !== "string" || !/^#[A-Za-z0-9_-]+$/.test($target)) {
+          return;
+        }
+
         $($tabpane + $target)
           .addClass("htactive")
           .siblings()
@@ -40,8 +47,7 @@
 
         // slick refresh
         if ($(".slick-slider").length > 0) {
-          var $id = $this.attr("href");
-          $($id).find(".slick-slider").slick("refresh");
+          $($target).find(".slick-slider").slick("refresh");
         }
       });
     },
@@ -94,6 +100,8 @@
         var mobile_scroll_columns =
           parseInt(settings["mobile_scroll_columns"]) || 1;
 
+        WooLentorBlocks.stripSlickDataOptions($block);
+
         $($block)
           .not(".slick-initialized")
           .slick({
@@ -145,7 +153,10 @@
       $($sliderwrap).find(".woolentor-thumbnails").css("display", "block");
       var settings = WooLentorBlocks.sanitizeObject($($sliderwrap).data("settings"));
 
-      if (settings) {
+      if (settings && settings["mainslider"] && settings["thumbnailslider"]) {
+        WooLentorBlocks.stripSlickDataOptions(
+          $($sliderwrap).find(".woolentor-learg-img, .woolentor-thumbnails")
+        );
         $($sliderwrap)
           .find(".woolentor-learg-img")
           .not(".slick-initialized")
@@ -224,31 +235,59 @@
     /**
      * Object Sanitize
      */
-    sanitizeObject: function (inputObj) {
+    sanitizeObject: function (inputObj, depth) {
+      depth = depth || 0;
+
+      // Return null when there is nothing valid to read (missing/invalid
+      // data-settings), so callers do not initialise a slider for it.
+      if (
+        !inputObj ||
+        typeof inputObj !== 'object' ||
+        Array.isArray(inputObj) ||
+        depth > 2
+      ) {
+        return null;
+      }
+
       const sanitizedObj = {};
 
       for (let key in inputObj) {
-          if (inputObj.hasOwnProperty(key)) {
+          if (Object.prototype.hasOwnProperty.call(inputObj, key)) {
+              if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+                  continue;
+              }
               let value = inputObj[key];
-  
+
               // Sanitize based on the value type
               if (typeof value === 'string') {
                   // Sanitize strings to prevent injection
                   sanitizedObj[key] = WooLentorBlocks.sanitizeHTML(value);
               } else if (typeof value === 'number') {
-                  // Ensure numbers are valid (you could also set limits if needed)
                   sanitizedObj[key] = Number.isFinite(value) ? value : 0;
               } else if (typeof value === 'boolean') {
-                  // Keep boolean values as they are
                   sanitizedObj[key] = value;
-              } else {
-                  // Handle other types if needed (e.g., arrays, objects)
-                  sanitizedObj[key] = value;
+              } else if (value && typeof value === 'object' && !Array.isArray(value)) {
+                  // Nested settings (e.g. mainslider / thumbnailslider) are sanitized recursively.
+                  const nested = WooLentorBlocks.sanitizeObject(value, depth + 1);
+                  if (nested) {
+                      sanitizedObj[key] = nested;
+                  }
               }
+              // Arrays, functions and anything else are dropped.
           }
       }
-  
+
       return sanitizedObj;
+    },
+
+    /**
+     * Remove any Slick options supplied through the element's own data-slick
+     * attribute, so markup on the page cannot override the options we pass
+     * (prevArrow / nextArrow / appendArrows etc. are parsed as HTML by Slick).
+     */
+    stripSlickDataOptions: function ($el) {
+      $($el).removeAttr('data-slick').removeData('slick');
+      $($el).find('[data-slick]').removeAttr('data-slick').removeData('slick');
     },
 
     /*
@@ -287,13 +326,26 @@
      * Universal product
      */
     productImageThumbnailsSlider: function ($slider) {
-      $slider.slick({
-        dots: true,
-        arrows: true,
-        prevArrow:
-          '<button type="button" class="slick-prev" aria-label="Previous image"><i class="sli sli-arrow-left" aria-hidden="true"></i></button>',
-        nextArrow:
-          '<button type="button" class="slick-next" aria-label="Next image"><i class="sli sli-arrow-right" aria-hidden="true"></i></button>',
+      $slider.each(function () {
+        var $this = $(this);
+        // Our markup only sets {"rtl":bool} in data-slick; read that one value
+        // safely, then drop the attribute so no other option can come from markup.
+        var dataSlick = $this.data("slick");
+        var rtl = !!(dataSlick && typeof dataSlick === "object" && dataSlick.rtl === true);
+        WooLentorBlocks.stripSlickDataOptions($this);
+        $this.data("woolentorRtl", rtl);
+      });
+
+      $slider.not(".slick-initialized").each(function () {
+        $(this).slick({
+          rtl: $(this).data("woolentorRtl") === true,
+          dots: true,
+          arrows: true,
+          prevArrow:
+            '<button type="button" class="slick-prev" aria-label="Previous image"><i class="sli sli-arrow-left" aria-hidden="true"></i></button>',
+          nextArrow:
+            '<button type="button" class="slick-next" aria-label="Next image"><i class="sli sli-arrow-right" aria-hidden="true"></i></button>',
+        });
       });
 
       // A11y fix: remove semantically incorrect role="listbox" Slick adds to .slick-track.

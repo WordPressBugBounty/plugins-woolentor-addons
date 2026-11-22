@@ -147,7 +147,7 @@ class Ajax_Search{
 		ob_start();
 		?>
         	<div class="woolentor_widget_psa" id="<?php echo esc_attr('wluniq-'.uniqid()); ?>">
-	            <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>" data-settings='<?php echo wp_json_encode( $data_settings ); ?>'>
+	            <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>" data-settings="<?php echo esc_attr( wp_json_encode( $data_settings ) ); ?>">
 					<div class="woolentor_widget_psa_field_area">
 						<?php if( $show_category === true ):?>
 						<div class="woolentor_widget_psa_category">

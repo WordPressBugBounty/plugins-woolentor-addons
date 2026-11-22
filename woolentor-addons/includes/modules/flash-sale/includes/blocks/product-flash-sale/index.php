@@ -37,10 +37,10 @@ $show_custom_lavel  = !empty( $settings['customLabels'] ) ? $settings['customLab
 
 $data_customlavel = [];
 if( $show_countdown == 'yes' ){
-    $data_customlavel['daytxt']     = $show_custom_lavel && !empty( $settings['customlabelDays'] ) ? esc_html($settings['customlabelDays']) : __('Days', 'woolentor');
-    $data_customlavel['hourtxt']    = $show_custom_lavel && !empty( $settings['customlabelHours'] ) ? esc_html($settings['customlabelHours']) : __('Hours', 'woolentor');
-    $data_customlavel['minutestxt'] = $show_custom_lavel && !empty( $settings['customlabelMinutes'] ) ? esc_html($settings['customlabelMinutes']) : __('Min', 'woolentor');
-    $data_customlavel['secondstxt'] = $show_custom_lavel && !empty( $settings['customlabelSeconds'] ) ? esc_html($settings['customlabelSeconds']) : __('Sec', 'woolentor');
+    $data_customlavel['daytxt']     = $show_custom_lavel && !empty( $settings['customlabelDays'] ) ? sanitize_text_field( $settings['customlabelDays'] ) : __('Days', 'woolentor');
+    $data_customlavel['hourtxt']    = $show_custom_lavel && !empty( $settings['customlabelHours'] ) ? sanitize_text_field( $settings['customlabelHours'] ) : __('Hours', 'woolentor');
+    $data_customlavel['minutestxt'] = $show_custom_lavel && !empty( $settings['customlabelMinutes'] ) ? sanitize_text_field( $settings['customlabelMinutes'] ) : __('Min', 'woolentor');
+    $data_customlavel['secondstxt'] = $show_custom_lavel && !empty( $settings['customlabelSeconds'] ) ? sanitize_text_field( $settings['customlabelSeconds'] ) : __('Sec', 'woolentor');
 }
 
 // Stock Progress bar
@@ -73,9 +73,9 @@ if( $custom_order_ck ){
 }
 
 $apply_on_all_products = !empty($deal['apply_on_all_products']) ? $deal['apply_on_all_products'] : 'off';
-$include_categories    = !empty($deal['categories']) ? $deal['categories'] : [];
-$include_products      = !empty($deal['products']) ? $deal['products'] : [];
-$exclude_products      = !empty($deal['exclude_products']) ? $deal['exclude_products'] : [];
+$include_categories    = !empty($deal['categories']) ? woolentor_current_language_ids( $deal['categories'], 'product_cat' ) : [];
+$include_products      = !empty($deal['products']) ? woolentor_current_language_ids( $deal['products'], 'product' ) : [];
+$exclude_products      = !empty($deal['exclude_products']) ? woolentor_current_language_ids( $deal['exclude_products'], 'product' ) : [];
 $product_ids           = [];
 
 // Prepare product ids
@@ -111,7 +111,7 @@ if( $apply_on_all_products != 'on' ){
     }
 
     if( $exclude_products ){
-        $product_ids = array_intersect($product_ids, $exclude_products);
+        $product_ids = array_diff($product_ids, $exclude_products);
     }
 
 } elseif( $exclude_products ){
@@ -162,7 +162,7 @@ echo '<div class="'.esc_attr( implode(' ', $areaClasses ) ).'">';
                                 </a>
 
                                 <?php if($show_countdown == 'yes'): ?>
-                                    <div class="woolentor-countdown woolentor-countdown-<?php echo esc_attr($countdown_style); ?>" data-countdown="<?php echo esc_attr( $remaining_time ) ?>" data-customlavel='<?php echo wp_json_encode( $data_customlavel ) ?>'></div>
+                                    <div class="woolentor-countdown woolentor-countdown-<?php echo esc_attr($countdown_style); ?>" data-countdown="<?php echo esc_attr( $remaining_time ) ?>" data-customlavel="<?php echo esc_attr( wp_json_encode( $data_customlavel ) ); ?>"></div>
                                 <?php endif; ?>
 
 
@@ -208,7 +208,7 @@ echo '<div class="'.esc_attr( implode(' ', $areaClasses ) ).'">';
                                         <?php endif; ?>
 
                                         
-                                        <div class="woolentor-countdown woolentor-countdown-<?php echo esc_attr($countdown_style); ?>" data-countdown="<?php echo esc_attr( $remaining_time ) ?>" data-customlavel='<?php echo wp_json_encode( $data_customlavel ) ?>'></div>
+                                        <div class="woolentor-countdown woolentor-countdown-<?php echo esc_attr($countdown_style); ?>" data-countdown="<?php echo esc_attr( $remaining_time ) ?>" data-customlavel="<?php echo esc_attr( wp_json_encode( $data_customlavel ) ); ?>"></div>
                                     </div>
                                 <?php endif; ?>
 

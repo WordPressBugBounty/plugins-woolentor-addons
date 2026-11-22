@@ -199,7 +199,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php else:?>
 		<div class="woolentor-grid <?php echo ( $proslider == 'yes' ) ? 'woolentor-grid-slider' : ''; ?>">
 
-			<?php if( $proslider == 'yes' ){ echo '<div id="product-slider-' . esc_attr($settings['blockUniqId']) . '" dir="'.esc_attr($direction).'" class="product-slider" data-settings=\'' . wp_json_encode($slider_settings) . '\' style="display:none">';}?>
+			<?php if( $proslider == 'yes' ){ echo '<div id="product-slider-' . esc_attr($settings['blockUniqId']) . '" dir="'.esc_attr($direction).'" class="product-slider" data-settings="' . esc_attr( wp_json_encode( $slider_settings ) ) . '" style="display:none">';}?>
 				
 				<!-- product item start -->
 				<div class="<?php echo esc_attr( $collumval );?>">

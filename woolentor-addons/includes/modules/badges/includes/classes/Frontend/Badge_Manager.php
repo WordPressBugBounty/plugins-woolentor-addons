@@ -69,7 +69,7 @@ class Badge_Manager {
      * @return bool
      */
     private function is_excluded($product_id, $badge) {
-        $exclude_product_ids = !empty($badge['exclude_products']) ? $badge['exclude_products'] : [];
+        $exclude_product_ids = !empty($badge['exclude_products']) ? woolentor_language_match_ids( $badge['exclude_products'], 'product' ) : [];
         if( woolentor_is_pro() ){
             return in_array($product_id, $exclude_product_ids);
         }else{
@@ -91,7 +91,7 @@ class Badge_Manager {
         }
         return [];
     }
-    
+
     /**
      * Manage Selected Product Condition
      * @param mixed $badge
@@ -99,7 +99,7 @@ class Badge_Manager {
      * @return void
      */
     private function handle_selected_product_condition($badge, $product_id) {
-        if (!empty($badge['products']) && in_array($product_id, $badge['products'])) {
+        if (!empty($badge['products']) && in_array($product_id, woolentor_language_match_ids( $badge['products'], 'product' ))) {
             $this->badge_html($badge);
         }
     }
@@ -111,7 +111,7 @@ class Badge_Manager {
      * @return void
      */
     private function handle_category_condition($badge, $product) {
-        $category_list = !empty($badge['categories']) ? $badge['categories'] : [];
+        $category_list = !empty($badge['categories']) ? woolentor_language_match_ids( $badge['categories'], 'product_cat' ) : [];
         $product_categories = $product->get_category_ids();
         $match_category = array_intersect($product_categories, $category_list);
     

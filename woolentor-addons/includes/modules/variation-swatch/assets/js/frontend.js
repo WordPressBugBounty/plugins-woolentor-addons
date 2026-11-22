@@ -8,6 +8,61 @@
 		return false;
 	}
 
+	/* Safe HTML helper
+	 * Variation data (price_html / availability_html) is read from the
+	 * form's data-product_variations attribute, which can be present in
+	 * user supplied markup. Parse it inertly (DOMParser does not run
+	 * scripts or event handlers) and keep only a small set of formatting
+	 * tags and attributes.
+	======================================================= */
+	var swatchlyAllowedTags  = { SPAN: 1, DEL: 1, INS: 1, BDI: 1, P: 1, DIV: 1, SMALL: 1, STRONG: 1, B: 1, EM: 1, I: 1, BR: 1, ABBR: 1, SUP: 1, SUB: 1 };
+	var swatchlyAllowedAttrs = { 'class': 1, 'title': 1, 'aria-hidden': 1, 'aria-label': 1, 'dir': 1, 'translate': 1, 'lang': 1 };
+	var swatchlyDropTags     = /^(SCRIPT|STYLE|TEMPLATE|IFRAME|FRAME|OBJECT|EMBED|NOSCRIPT|SVG|MATH|LINK|META|BASE|FORM|INPUT|TEXTAREA|SELECT|BUTTON|IMG|VIDEO|AUDIO|SOURCE)$/i;
+
+	function swatchly_clean_node( node ){
+		var children = Array.prototype.slice.call( node.childNodes );
+
+		for ( var i = 0; i < children.length; i++ ) {
+			var child = children[i];
+
+			if ( child.nodeType === 3 ) {
+				continue; // text
+			}
+
+			if ( child.nodeType !== 1 || ! swatchlyAllowedTags[ child.nodeName.toUpperCase() ] ) {
+				// Unwrap unknown elements (keep their cleaned text), drop dangerous ones entirely.
+				if ( child.nodeType === 1 && ! swatchlyDropTags.test( child.nodeName ) ) {
+					swatchly_clean_node( child );
+					while ( child.firstChild ) {
+						node.insertBefore( child.firstChild, child );
+					}
+				}
+				node.removeChild( child );
+				continue;
+			}
+
+			var attrs = Array.prototype.slice.call( child.attributes );
+			for ( var j = 0; j < attrs.length; j++ ) {
+				if ( ! swatchlyAllowedAttrs[ attrs[j].name.toLowerCase() ] ) {
+					child.removeAttribute( attrs[j].name );
+				}
+			}
+
+			swatchly_clean_node( child );
+		}
+	}
+
+	function swatchly_safe_html( html ){
+		if ( typeof html !== 'string' || html === '' ) {
+			return $();
+		}
+
+		var doc = new window.DOMParser().parseFromString( html, 'text/html' );
+		swatchly_clean_node( doc.body );
+
+		return $( Array.prototype.slice.call( document.importNode( doc.body, true ).childNodes ) );
+	}
+
 	/* Tooltip JS
 	======================================================= */
 	function addTooltip(){
@@ -352,10 +407,29 @@
 
 	// Change add to cart button text
 	$.fn.change_add_to_cart_text = function(){
-		var original_cart_text = $(this).text(),
-			new_cart_text = $(this).data('add_to_cart_text');
+		var new_cart_text = $(this).data('add_to_cart_text');
 
-		$(this).html($(this).html().replace(original_cart_text, new_cart_text));
+		if ( typeof new_cart_text !== 'string' && typeof new_cart_text !== 'number' ) {
+			return this;
+		}
+		new_cart_text = String( new_cart_text );
+
+		// Replace only the visible text, as text (never as HTML), and keep any icon markup.
+		return this.each( function(){
+			var $button  = $( this ),
+				replaced = false;
+
+			$button.contents().each( function(){
+				if ( ! replaced && this.nodeType === 3 && $.trim( this.nodeValue ) !== '' ) {
+					this.nodeValue = this.nodeValue.replace( $.trim( this.nodeValue ), new_cart_text );
+					replaced = true;
+				}
+			} );
+
+			if ( ! replaced && $button.children().length === 0 ) {
+				$button.text( new_cart_text );
+			}
+		} );
 	};
 
 	// Function for each loop variation form
@@ -380,7 +454,7 @@
 
 				// If out of stcok
 				if(!is_in_stock){
-					$el_ajax_add_to_cart.before(`<div class="swatchly_pl swatchly_out_of_stock">${availability_html}</div>`);
+					$el_ajax_add_to_cart.before( $('<div class="swatchly_pl swatchly_out_of_stock"></div>').append( swatchly_safe_html( availability_html ) ) );
 					$el_ajax_add_to_cart.addClass('alt disabled wc-variation-is-unavailable');
 				} else {
 					$el_product.remove_out_of_stock();
@@ -391,13 +465,15 @@
 
 				// Update price if catalog mode is not enabled
 				if( !parseInt(swatchly_params.enable_catalog_mode ) ){
+					var $variation_price = swatchly_safe_html( variation.price_html );
+
 					if( !$el_product.find('.swatchly_price').length ){
-						if($(variation.price_html).length){
-							$el_product.find($price_selector).addClass('swatchly_d_none').after( $(variation.price_html).addClass('swatchly_price') );
+						if($variation_price.length){
+							$el_product.find($price_selector).addClass('swatchly_d_none').after( $variation_price.addClass('swatchly_price') );
 						}
 					} else {
 						$el_product.find('.swatchly_price').remove();
-						$el_product.find($price_selector).addClass('swatchly_d_none').after($(variation.price_html).addClass('swatchly_price'));
+						$el_product.find($price_selector).addClass('swatchly_d_none').after($variation_price.addClass('swatchly_price'));
 					}
 				}
 

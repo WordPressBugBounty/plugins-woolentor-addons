@@ -564,3 +564,37 @@ Table of contents:
     background-color: #e6f4ff;
     color: rgba(0, 0, 0, 0.88);
 }
+/* Geolocation advanced rule */
+.wplb-composite-field.wlpb-geolocation-field {
+    flex-wrap: wrap;
+}
+.wlpb-geolocation-field .wlpb-geo-countries {
+    flex-basis: 100%;
+}
+.wlpb-geolocation-field .wlpb-geo-countries .wplb-composite-field-inner-control,
+.wlpb-geolocation-field .wlpb-geo-countries .wplb-input-wrapper {
+    width: 100%;
+}
+.wlpb-geolocation-field .wlpb-field-desc {
+    flex-basis: 100%;
+    margin: 0;
+    font-size: 12px;
+    color: #757575;
+}
+/* Country list is long, so keep the select2 inline search for it. */
+.wlpb-modal .wlpb-geo-countries .select2-search--inline {
+    display: inline-block;
+    visibility: visible;
+    flex-grow: 1;
+    min-width: 160px;
+}
+.wlpb-modal .wlpb-geo-countries .select2-search--inline .select2-search__field {
+    visibility: visible;
+    width: 100% !important; /* select2 sets width:0 while the modal is hidden. */
+    border: 0;
+    box-shadow: none;
+    padding: 0 0 0 8px;
+    margin: 0 0 4px;
+    min-height: 26px;
+    background: transparent;
+}

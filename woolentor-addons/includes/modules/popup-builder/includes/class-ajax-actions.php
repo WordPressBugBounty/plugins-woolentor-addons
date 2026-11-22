@@ -107,6 +107,7 @@ class Ajax_Actions{
             $post_data['advanced']['url_match']        = '';
             $post_data['advanced']['show_on_devices']  = '';
             $post_data['advanced']['show_on_browsers'] = '';
+            $post_data['advanced']['show_on_geolocation'] = '';
         }
 
         // Sanitize $post_data array.

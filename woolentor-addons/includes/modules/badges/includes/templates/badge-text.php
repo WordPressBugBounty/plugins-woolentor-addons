@@ -1,8 +1,9 @@
 <?php
-    $badge_title = !empty( $badge['badge_title'] ) ? $badge['badge_title'] : esc_html__('Badge One','woolentor');
-    $badge_translate_name = str_replace(' ', '', trim(preg_replace('/\(.+\)/', '', $badge_title)));
-
-    $badge_text   = !empty( $badge['badge_text'] ) ? woolentor_translator('woolentor_badge_text_'.$badge_translate_name, $badge['badge_text']) : "";
+    // A text set on the product screen is translated with the product, not as a badge string.
+    $badge_text = !empty( $badge['badge_text'] ) ? $badge['badge_text'] : "";
+    if( $badge_text && empty( $badge['has_ind'] ) ){
+        $badge_text = woolentor_translator( \Woolentor\Modules\Badges\Product_Badges::text_string_name( $badge ), $badge_text );
+    }
     $badges_class = (!empty( $badge['has_ind'] ) && $badge['has_ind'] === true) ? 'ht-product-label ht-product-label-left' : '';
     $badge_postion= !empty( $badge['badge_position'] ) ? $badge['badge_position'] : "";
 

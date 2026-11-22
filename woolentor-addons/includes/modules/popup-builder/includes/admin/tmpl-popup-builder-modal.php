@@ -51,6 +51,12 @@ $allowed_devices    = array('desktop', 'tablet', 'mobile');
 $show_on_browsers   = '';
 $allowed_browsers   = array('chrome', 'firefox', 'safari', 'opera', 'ie', 'edge');
 
+// Geolocation
+$show_on_geolocation = '';
+$geo_rule_type       = 'include';
+$geo_countries       = array();
+$all_countries       = ( function_exists('WC') && WC()->countries ) ? WC()->countries->get_countries() : array();
+
 if( Helper::is_pro_version_active() ){
     $pro_adv_class      = '';
     $opacity_class      = '';
@@ -81,6 +87,11 @@ if( Helper::is_pro_version_active() ){
     if( !empty($advanced_settings['browsers']) ){
         $allowed_browsers = (array) $advanced_settings['browsers'];
     }
+
+    // Advanced Rule - Show by Visitor Location
+    $show_on_geolocation = $advanced_settings['show_on_geolocation'];
+    $geo_rule_type       = in_array( $advanced_settings['geo_rule_type'], array('include', 'exclude'), true ) ? $advanced_settings['geo_rule_type'] : 'include';
+    $geo_countries       = !empty($advanced_settings['geo_countries']) ? (array) $advanced_settings['geo_countries'] : array();
 }
 
 wp_enqueue_script('js-cookie');
@@ -456,11 +467,46 @@ wp_enqueue_script('js-cookie');
                                                 <option value="opera" <?php echo in_array('opera', $allowed_browsers) ? 'selected': '' ?>><?php esc_html_e('Opera', 'woolentor') ?></option>
                                                 <option value="ie" <?php echo in_array('ie', $allowed_browsers) ? 'selected': '' ?>><?php esc_html_e('IE', 'woolentor') ?></option>
                                                 <option value="edge" <?php echo in_array('edge', $allowed_browsers) ? 'selected': '' ?>><?php esc_html_e('Edge', 'woolentor') ?></option>
-                                                
+
                                             </select>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
+                            <!-- Geolocation -->
+                            <div class="wplb-composite-field wlpb-geolocation-field <?php echo esc_attr($opacity_class) ?>">
+                                <div class="wplb-composite-field-switcher wlpb-field">
+                                    <input type="checkbox" name="show_on_geolocation" id="show_on_geolocation" <?php checked( $show_on_geolocation, 1) ?>>
+                                </div>
+                                <div class="wplb-composite-field-label">
+                                    <label for="show_on_geolocation"><?php echo esc_html__('Show by Visitor Location', 'woolentor') ?></label>
+                                </div>
+
+                                <div class="wplb-composite-field-inner-controls">
+                                    <div class="wplb-composite-field-inner-control wlpb-field">
+                                        <div class="wplb-input-wrapper">
+                                            <select name="geo_rule_type" id="geo_rule_type">
+                                                <option value="include" <?php selected( $geo_rule_type, 'include') ?>><?php esc_html_e('Show only in these countries', 'woolentor') ?></option>
+                                                <option value="exclude" <?php selected( $geo_rule_type, 'exclude') ?>><?php esc_html_e('Hide in these countries', 'woolentor') ?></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="wplb-composite-field-inner-controls wlpb-geo-countries">
+                                    <div class="wplb-composite-field-inner-control wlpb-field">
+                                        <div class="wplb-input-wrapper">
+                                            <select name="geo_countries[]" multiple="multiple" data-placeholder="<?php esc_attr_e('Search countries...', 'woolentor') ?>">
+                                                <?php foreach( $all_countries as $country_code => $country_name ): ?>
+                                                    <option value="<?php echo esc_attr($country_code) ?>" <?php echo in_array($country_code, $geo_countries, true) ? 'selected': '' ?>><?php echo esc_html( html_entity_decode( $country_name ) ) ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="wlpb-field-desc"><?php esc_html_e('Location is detected from the visitor IP using WooCommerce geolocation (WooCommerce > Settings > Integration > MaxMind). If you use a full-page cache, exclude these pages or vary the cache by country.', 'woolentor') ?></p>
                             </div>
                         <?php 
                             if( !Helper::is_pro_version_active() ){

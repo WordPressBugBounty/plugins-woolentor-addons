@@ -1171,7 +1171,7 @@ class Woolentor_Wl_Category_Grid_Widget extends Widget_Base {
 
         $placeholder_image = sprintf( '<img src="%s" alt="%s" />', esc_url( wc_placeholder_img_src( 'woocommerce_single' ) ), esc_html__( 'Awaiting category image', 'woolentor' ) );
 
-        echo '<div class="wl-row '.( $settings['no_gutters'] === 'yes' ? 'wlno-gutters' : '' ).' '.( $settings['slider_on'] === 'yes' ? 'product-slider' : '' ).' " data-settings='.wp_json_encode( $slider_settings ).' '.$slider_main_div_style.'>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo '<div class="wl-row '.( $settings['no_gutters'] === 'yes' ? 'wlno-gutters' : '' ).' '.( $settings['slider_on'] === 'yes' ? 'product-slider' : '' ).' " data-settings="'.esc_attr( wp_json_encode( $slider_settings ) ).'" '.$slider_main_div_style.'>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             foreach ( $prod_categories as $key => $prod_cat ):
                 $counter++;
                 $bgc++;

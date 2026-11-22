@@ -64,7 +64,7 @@
                         $parent = $this.parent();
                     $this.select2({
                         dropdownParent: $parent,
-                        placeholder: "Select",
+                        placeholder: $this.data('placeholder') || "Select",
                     });
                 })
             });
@@ -369,7 +369,10 @@
                     'show_on_devices',
                     'devices',
                     'show_on_browsers',
-                    'browsers'
+                    'browsers',
+                    'show_on_geolocation',
+                    'geo_rule_type',
+                    'geo_countries'
                 ],
                 customization: [
                     'popup_vertical_position',

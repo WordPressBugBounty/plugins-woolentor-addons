@@ -1027,10 +1027,10 @@ class Woolentor_Product_Flash_Sale_Widget extends Widget_Base {
         $countdown_title    = $settings['countdown_title'];
         $data_customlavel   = [];
         if( $show_countdown == 'yes' ){
-            $data_customlavel['daytxt']     = ! empty( $settings['customlabel_days'] ) ? esc_html($settings['customlabel_days']) : __('Days', 'woolentor');
-            $data_customlavel['hourtxt']    = ! empty( $settings['customlabel_hours'] ) ? esc_html($settings['customlabel_hours']) : __('Hours', 'woolentor');
-            $data_customlavel['minutestxt'] = ! empty( $settings['customlabel_minutes'] ) ? esc_html($settings['customlabel_minutes']) : __('Min', 'woolentor');
-            $data_customlavel['secondstxt'] = ! empty( $settings['customlabel_seconds'] ) ? esc_html($settings['customlabel_seconds']) : __('Sec', 'woolentor');
+            $data_customlavel['daytxt']     = ! empty( $settings['customlabel_days'] ) ? sanitize_text_field( $settings['customlabel_days'] ) : __('Days', 'woolentor');
+            $data_customlavel['hourtxt']    = ! empty( $settings['customlabel_hours'] ) ? sanitize_text_field( $settings['customlabel_hours'] ) : __('Hours', 'woolentor');
+            $data_customlavel['minutestxt'] = ! empty( $settings['customlabel_minutes'] ) ? sanitize_text_field( $settings['customlabel_minutes'] ) : __('Min', 'woolentor');
+            $data_customlavel['secondstxt'] = ! empty( $settings['customlabel_seconds'] ) ? sanitize_text_field( $settings['customlabel_seconds'] ) : __('Sec', 'woolentor');
         }
 
         // Stock Progress bar
@@ -1063,9 +1063,9 @@ class Woolentor_Product_Flash_Sale_Widget extends Widget_Base {
         }
 
         $apply_on_all_products = !empty($deal['apply_on_all_products']) ? $deal['apply_on_all_products'] : 'off';
-        $include_categories    = !empty($deal['categories']) ? $deal['categories'] : array();
-        $include_products      = !empty($deal['products']) ? $deal['products'] : array();
-        $exclude_products      = !empty($deal['exclude_products']) ? $deal['exclude_products'] : array();
+        $include_categories    = !empty($deal['categories']) ? woolentor_current_language_ids( $deal['categories'], 'product_cat' ) : array();
+        $include_products      = !empty($deal['products']) ? woolentor_current_language_ids( $deal['products'], 'product' ) : array();
+        $exclude_products      = !empty($deal['exclude_products']) ? woolentor_current_language_ids( $deal['exclude_products'], 'product' ) : array();
         $product_ids           = array();
 
         // Prepare product ids
@@ -1152,7 +1152,7 @@ class Woolentor_Product_Flash_Sale_Widget extends Widget_Base {
                             </a>
 
                             <?php if($show_countdown == 'yes'): ?>
-                                <div class="woolentor-countdown woolentor-countdown-<?php echo esc_attr($countdown_style); ?>" data-countdown="<?php echo esc_attr( $remaining_time ) ?>" data-customlavel='<?php echo wp_json_encode( $data_customlavel ) ?>'></div>
+                                <div class="woolentor-countdown woolentor-countdown-<?php echo esc_attr($countdown_style); ?>" data-countdown="<?php echo esc_attr( $remaining_time ) ?>" data-customlavel="<?php echo esc_attr( wp_json_encode( $data_customlavel ) ); ?>"></div>
                             <?php endif; ?>
 
 
@@ -1198,7 +1198,7 @@ class Woolentor_Product_Flash_Sale_Widget extends Widget_Base {
                                     <?php endif; ?>
 
                                     
-                                    <div class="woolentor-countdown woolentor-countdown-<?php echo esc_attr($countdown_style); ?>" data-countdown="<?php echo esc_attr( $remaining_time ) ?>" data-customlavel='<?php echo wp_json_encode( $data_customlavel ) ?>'></div>
+                                    <div class="woolentor-countdown woolentor-countdown-<?php echo esc_attr($countdown_style); ?>" data-countdown="<?php echo esc_attr( $remaining_time ) ?>" data-customlavel="<?php echo esc_attr( wp_json_encode( $data_customlavel ) ); ?>"></div>
                                 </div>
                             <?php endif; ?>
 

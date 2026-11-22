@@ -1649,7 +1649,7 @@ class Woolentor_Product_Tabs_Widget extends Widget_Base {
                         $slider_main_div_style = '';
                         if( $proslider == 'yes' ){
                             $slider_main_div_style = "style='display:none'";
-                            echo '<div id="'.esc_attr('product-slider-' . uniqid()).'" dir="'.esc_attr($direction).'" class="product-slider" '.$slider_main_div_style.' data-settings=\'' . wp_json_encode($slider_settings) . '\'>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                            echo '<div id="'.esc_attr('product-slider-' . uniqid()).'" dir="'.esc_attr($direction).'" class="product-slider" '.$slider_main_div_style.' data-settings="' . esc_attr( wp_json_encode( $slider_settings ) ) . '">'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                         }
                     ?>
 

@@ -237,7 +237,11 @@ class Popup_Rules_Checker{
 
             // Specific Singulars of a specific post type.
             } else {
-                if( is_singular($rule_sub_name) && in_array( get_queried_object_id(), explode(',', $rule_sub_id) ) ){
+                // The saved IDs, plus the same posts in the current language (WPML / Polylang).
+                $rule_sub_ids = explode(',', $rule_sub_id);
+                $rule_sub_ids = array_merge( $rule_sub_ids, woolentor_current_language_ids( $rule_sub_ids, $rule_sub_name ) );
+
+                if( is_singular($rule_sub_name) && in_array( get_queried_object_id(), $rule_sub_ids ) ){
                     $return_value = true;
                 }
             }
@@ -289,6 +293,14 @@ class Popup_Rules_Checker{
         // If the selected taxonomy is a valid taxonomy.
         if( in_array( $selected_taxonomy, $taxonomies ) ){
             
+            // The saved terms, plus the same terms in the current language (WPML / Polylang):
+            // a translated post is in the translated terms, which have other IDs.
+            $query_terms = $selected_terms;
+            if( !empty( $selected_terms ) ){
+                $query_terms = explode( ',', $selected_terms );
+                $query_terms = array_values( array_unique( array_merge( $query_terms, woolentor_current_language_ids( $query_terms, $selected_taxonomy ) ) ) );
+            }
+
             // Get posts of the $selected_terms in the $selected_taxonomy.
             // We will need to match the $current_post_terms with the $posts_of_selected_terms.
             $posts_of_selected_terms = get_posts( array(
@@ -298,7 +310,7 @@ class Popup_Rules_Checker{
                     array(
                         'taxonomy' => $selected_taxonomy,
                         'field' => 'term_id',
-                        'terms' => $selected_terms,
+                        'terms' => $query_terms,
                     ),
                 ),
                 'fields' => 'ids',

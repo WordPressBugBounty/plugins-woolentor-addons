@@ -184,11 +184,11 @@ class Woo_Config {
         $image_id           = '';
         
         $product_id           = $product->get_id();
-        $product_meta         = (array) get_post_meta( $product_id, '_swatchly_product_meta', true );
+        $product_meta         = (array) Helper::get_product_swatch_meta( $product_id );
         $taxonomy             = $args['attribute'];
         $variation_attributes = $product->get_variation_attributes();
 
-        $meta_data                       = get_post_meta($product_id, '_swatchly_product_meta', true);
+        $meta_data                       = Helper::get_product_swatch_meta( $product_id );
         $swatch_type                     = Helper::get_swatch_type( $taxonomy, $product_id );
         $taxonomy_exists                 = taxonomy_exists( $taxonomy );
         $tooltip                         = Helper::get_option('tooltip', '', 'pl');

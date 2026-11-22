@@ -81,7 +81,7 @@ class Helper{
      */
     public static function get_product_meta( $product_id, $taxonomy, $option_name = '', $default = '') {
         // product override
-        $product_meta = get_post_meta( $product_id, '_swatchly_product_meta', true );
+        $product_meta = self::get_product_swatch_meta( $product_id );
     
         $meta_value = isset( $product_meta[$taxonomy][$option_name] ) && $product_meta[$taxonomy][$option_name] ? $product_meta[$taxonomy][$option_name] : $default;
     
@@ -95,6 +95,56 @@ class Helper{
      *
      * @return array
      */
+    /**
+     * A product's swatch overrides (_swatchly_product_meta), ready for the current language.
+     *
+     * On a translated site (WPML / Polylang):
+     * - a translated product usually has no copy of the overrides, so the ones saved on the
+     *   default language product are used;
+     * - per-term overrides are keyed by term ID, and translated terms have other IDs, so each
+     *   entry is also added under the term's ID in the current language.
+     * Saved keys are kept. Without a translation plugin the meta comes back unchanged.
+     *
+     * @param int $product_id
+     * @return mixed The meta as saved (string '' when unset), or the mapped array.
+     */
+    public static function get_product_swatch_meta( $product_id ) {
+        $product_meta = get_post_meta( $product_id, '_swatchly_product_meta', true );
+
+        if ( ! has_filter( 'wpml_object_id' ) ) {
+            return $product_meta;
+        }
+
+        if ( empty( $product_meta ) ) {
+            $default_language = apply_filters( 'wpml_default_language', null );
+            $original_id      = $default_language ? (int) apply_filters( 'wpml_object_id', (int) $product_id, 'product', true, $default_language ) : 0;
+            if ( $original_id && $original_id !== (int) $product_id ) {
+                $product_meta = get_post_meta( $original_id, '_swatchly_product_meta', true );
+            }
+        }
+
+        if ( ! is_array( $product_meta ) ) {
+            return $product_meta;
+        }
+
+        foreach ( $product_meta as $taxonomy => $settings ) {
+            if ( ! is_array( $settings ) || empty( $settings['terms'] ) || ! is_array( $settings['terms'] ) || ! taxonomy_exists( $taxonomy ) ) {
+                continue;
+            }
+            foreach ( $settings['terms'] as $term_id => $term_meta ) {
+                if ( ! is_numeric( $term_id ) ) {
+                    continue;
+                }
+                $current_id = woolentor_current_language_id( $term_id, $taxonomy );
+                if ( $current_id && ! isset( $product_meta[ $taxonomy ]['terms'][ $current_id ] ) ) {
+                    $product_meta[ $taxonomy ]['terms'][ $current_id ] = $term_meta;
+                }
+            }
+        }
+
+        return $product_meta;
+    }
+
     public static function get_image_sizes() {
         global $_wp_additional_image_sizes;
     
@@ -141,7 +191,7 @@ class Helper{
     
         // product override
         if( $product_id ){
-            $product_meta                    = get_post_meta( $product_id, '_swatchly_product_meta', true );
+            $product_meta                    = self::get_product_swatch_meta( $product_id );
             $auto_convert_dropdowns_to_label = isset($product_meta['auto_convert_dropdowns_to_label']) ? $product_meta['auto_convert_dropdowns_to_label'] : '';
             $swatch_type                     = isset( $product_meta[$taxonomy]['swatch_type'] ) && $product_meta[$taxonomy]['swatch_type'] ? $product_meta[$taxonomy]['swatch_type'] : $swatch_type;    
         }

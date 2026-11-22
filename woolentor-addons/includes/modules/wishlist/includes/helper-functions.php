@@ -50,7 +50,7 @@ function wishsuite_get_template( $tmp_name, $args = null, $echo = true ) {
  */
 function wishsuite_get_page_url() {
     $page_id = woolentor_get_option( 'wishlist_page', 'wishsuite_table_settings_tabs' );
-    return get_permalink( $page_id );
+    return get_permalink( woolentor_current_language_id( $page_id, 'page' ) );
 }
 
 /**

@@ -628,9 +628,17 @@ class Woolentor_Ajax_Action{
 
         $setting_data = isset( $_POST['settings'] ) ? (is_string($_POST['settings']) ? stripslashes( $_POST['settings'] ) : '' ) : '';
         $setting_data = json_decode( $setting_data, true );
-        $view_layout = isset( $_POST['viewlayout'] ) ? $_POST['viewlayout'] : '';
 
-        if(!empty($view_layout)){
+        // The settings come from a data attribute in the page markup, so treat them as untrusted.
+        if ( ! is_array( $setting_data ) ) {
+            wp_send_json_error( array( 'message' => __( 'Invalid request', 'woolentor' ) ) );
+        }
+        $setting_data = $this->sanitize_load_more_settings( $setting_data );
+
+        // The view switcher only sends "grid" or "list".
+        $view_layout = isset( $_POST['viewlayout'] ) && is_string( $_POST['viewlayout'] ) ? sanitize_key( $_POST['viewlayout'] ) : '';
+
+        if ( in_array( $view_layout, [ 'grid', 'list' ], true ) ) {
             $setting_data['layout'] = $view_layout;
         }
 
@@ -648,6 +656,55 @@ class Woolentor_Ajax_Action{
             'current_page' => $page
         ));
 
+    }
+
+    /**
+     * Normalize the grid settings posted by Load More / Infinite Scroll.
+     *
+     * They are read from the data-wl-widget-settings attribute in the page, so any visitor can
+     * change them. Clamp the values that drive the product query so a request cannot ask for an
+     * unbounded number of products or query an arbitrary taxonomy.
+     *
+     * @param array $settings
+     * @return array
+     */
+    private function sanitize_load_more_settings( $settings ) {
+
+        // Same range as the "Products Per Page" control (1 - 1000); -1 / 0 / huge values fall back to the default.
+        $per_page = isset( $settings['posts_per_page'] ) && is_numeric( $settings['posts_per_page'] ) ? (int) $settings['posts_per_page'] : 12;
+        $settings['posts_per_page'] = ( $per_page >= 1 && $per_page <= 1000 ) ? $per_page : 12;
+
+        foreach ( [ 'offset', 'current_product_id' ] as $key ) {
+            if ( isset( $settings[ $key ] ) ) {
+                $settings[ $key ] = is_scalar( $settings[ $key ] ) ? absint( $settings[ $key ] ) : 0;
+            }
+        }
+
+        foreach ( [ 'include_products', 'exclude_products' ] as $key ) {
+            if ( isset( $settings[ $key ] ) ) {
+                $ids = is_array( $settings[ $key ] ) ? $settings[ $key ] : explode( ',', (string) $settings[ $key ] );
+                $ids = array_filter( array_map( 'absint', array_filter( $ids, 'is_scalar' ) ) );
+                $settings[ $key ] = array_values( $ids );
+            }
+        }
+
+        // Archive context: only a public taxonomy and a numeric term ID.
+        if ( isset( $settings['queried_object'] ) ) {
+            $queried  = is_array( $settings['queried_object'] ) ? $settings['queried_object'] : [];
+            $taxonomy = isset( $queried['taxonomy'] ) && is_string( $queried['taxonomy'] ) ? sanitize_key( $queried['taxonomy'] ) : '';
+            $term_id  = isset( $queried['term_id'] ) && is_scalar( $queried['term_id'] ) ? absint( $queried['term_id'] ) : 0;
+
+            if ( $taxonomy && $term_id && taxonomy_exists( $taxonomy ) && ( ! function_exists( 'is_taxonomy_viewable' ) || is_taxonomy_viewable( $taxonomy ) ) ) {
+                $settings['queried_object'] = [
+                    'taxonomy' => $taxonomy,
+                    'term_id'  => $term_id,
+                ];
+            } else {
+                unset( $settings['queried_object'] );
+            }
+        }
+
+        return $settings;
     }
 
     /**

@@ -197,7 +197,7 @@ if( class_exists('WC_Shortcode_Products') ){
 
             }
 
-            return '<div class="woolentor-grid woolentor-block-products '.$loop_col.'  '.( $slider === true ? 'product-slider' : '' ).' " data-settings='.wp_json_encode( $slider_settings ).'>';
+            return '<div class="woolentor-grid woolentor-block-products '.$loop_col.'  '.( $slider === true ? 'product-slider' : '' ).' " data-settings="'.esc_attr( wp_json_encode( $slider_settings ) ).'">';
 
 
         }

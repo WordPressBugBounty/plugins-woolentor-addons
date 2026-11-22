@@ -259,6 +259,9 @@ class Manage_Compare {
 
         $products = $this->get_compared_products();
 
+        // The product may be saved under its ID in another language.
+        $id = $this->stored_product_id( $id );
+
         foreach ( $products as $prod_key => $product_id ) {
             if ( intval( $id ) == $product_id ) {
                 unset( $products[ $prod_key ] );
@@ -324,6 +327,9 @@ class Manage_Compare {
         if ( empty( $ids ) ) {
             return array();
         }
+
+        // Show each product in the current language (WPML / Polylang).
+        $ids = array_values( array_unique( woolentor_current_language_ids( $ids, 'product' ) ) );
 
         $args = array(
             'include' => $ids,
@@ -581,8 +587,38 @@ class Manage_Compare {
      * @return [array] product id list
      */
     public function is_product_in_compare( $id ) {
+        return isset( $this->current_language_id_map()[ absint( $id ) ] );
+    }
+
+    /**
+     * [current_language_id_map] Saved compare IDs, keyed by the same product's ID in the current language.
+     *
+     * A product is saved under the ID of the page it was added from. On a translated site
+     * (WPML / Polylang) that may be another language, where the product has another ID.
+     * @return [array] current language id => saved id
+     */
+    public function current_language_id_map() {
+        $map = array();
         $list = $this->get_compared_products();
-        return in_array( $id, $list, true );
+        foreach ( is_array( $list ) ? $list : array() as $saved_id ) {
+            $saved_id   = absint( $saved_id );
+            $current_id = woolentor_current_language_id( $saved_id, 'product' );
+            if ( $saved_id && ! isset( $map[ $current_id ] ) ) {
+                $map[ $current_id ] = $saved_id;
+            }
+        }
+        return $map;
+    }
+
+    /**
+     * [stored_product_id] The ID a product is saved under in the compare list.
+     * @param  [int] $id Product ID in the current language.
+     * @return [int]
+     */
+    public function stored_product_id( $id ) {
+        $id  = absint( $id );
+        $map = $this->current_language_id_map();
+        return isset( $map[ $id ] ) ? $map[ $id ] : $id;
     }
 
     /**
@@ -625,7 +661,7 @@ class Manage_Compare {
      */
     public function get_compare_page_url() {
         $page_id = woolentor_get_option( 'compare_page', 'ever_compare_table_settings_tabs' );
-        return get_permalink( $page_id );
+        return get_permalink( woolentor_current_language_id( $page_id, 'page' ) );
     }
 
     /**

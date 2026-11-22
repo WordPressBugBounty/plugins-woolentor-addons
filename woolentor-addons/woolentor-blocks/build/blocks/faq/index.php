@@ -17,11 +17,11 @@ $icon = '<span class="htwoolentor-faq-head-indicator"></span>';
 $accordion_settings = [
 	'showitem' => ( $settings['showFirstItem'] === true ),
 ];
-$dataOptions = 'data-settings='.wp_json_encode( $accordion_settings );
+$dataOptions = wp_json_encode( $accordion_settings );
 
 ?>
 <div class="<?php echo esc_attr(implode(' ', $areaClasses )); ?>">
-	<div class="<?php echo esc_attr(implode(' ', $classes )); ?>" id="<?php echo esc_attr('htwoolentor-faq-'.$settings['blockUniqId']); ?>" <?php echo esc_attr($dataOptions); ?>>
+	<div class="<?php echo esc_attr(implode(' ', $classes )); ?>" id="<?php echo esc_attr('htwoolentor-faq-'.$settings['blockUniqId']); ?>" data-settings="<?php echo esc_attr( $dataOptions ); ?>">
 
 		<?php
 			foreach ( $settings['faqList'] as $item ):
